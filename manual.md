@@ -3,116 +3,93 @@ Requirements
 
 Cacti requires that the following software is installed on your system.
 
--   RRDTool 1.0.49 or greater, 1.4+ recommended
+-   RRDTool 1.3 or greater, 1.5+ recommended
+-   MySQL 5.x or MariaDB 5.5 or greater
+-   PHP 5.4 or greater, 5.5+ recommended
+-   Web Server that supports PHP e.g. Apache, Nginx, or IIS
+-   Build environment when using spine (gcc, automake, autoconf, libtool, help2man)
 
--   MySQL 5.x or greater
+General Installing Instructions
+===============================
 
--   PHP 5.4 or greater
+Please make sure, the following packages are installed according to your operating systems requirements. Verify, that httpd/apache and mysqld/mariadb are started at system startup.
 
--   Web Server that supports PHP e.g. Apache or IIS
+Required Packages for Most Operating Systems
+--------------------------------------------------------------------
 
-Installing Under Unix
-=====================
+Depending on your operating system and php version, certain packages are required for Cacti.  The largest variability in these requirements come with regard to php and MySQL/MariaDB.  
 
-Please make sure, the following packages are installed according to your operating systems requirements. Verify, that httpd and mysqld are started at system startup.
+Installation requirements include the packages below.  The installation of these packages will vary by operating system. 
 
-Required Packages for RPM-based Operating Systems
--------------------------------------------------
+#### Base OS:
+-   apache, IIS, or nginx
+-   net-snmp, net-snmp-utils
+-   rrdtool
+-   help2man` (for spine)
+-   dos2unix (for spine)
+-   development packages (gcc, automake, autoconf, libtool, help2man) (for spine)
 
--   `httpd`
+#### Database:
+MySQL versions to 5.7 are supported.  MariaDB to 10.2 is also supported.
 
--   `php`
+-   mysql
+-   mysql-server
+-   libmysqlclient
 
--   `php-mysql`
+or
 
--   `php-snmp`
+-	mariadb
+-	mariadb-server
+-	libmariadbclient
 
--   `mysql`
+#### PHP Modules:
+The installation of these modules vary by OS.  Use the 'php -m' command to verify that they are installed.
 
--   `mysql-server`
+-   posix
+-   session
+-   sockets
+-   PDO
+-   pdo_mysql
+-   xml
+-   ldap
+-   mbstring
+-   pcre
+-   json
+-   openssl
+-   gd
+-   zlib
 
--   `net-snmp`
+#### PHP Optional Modules
+The following modules are optional, but preferred to be installed.
+
+-	snmp
+-	gmp (for plugin support)
+-	com or dotnet (windows only)
 
 Ports for FreeBSD
 -----------------
+When installing on FreeBSD and variants, you must consider these packages.
 
 -   `www/apache2`
-
 -   `net/rrdtool`
-
 -   `net/net-snmp`
-
 -   `www/php-cgi`
-
 -   `lang/php` (With MySQL and SNMP Support)
-
 -   `databases/mysql-server`
 
 Configure PHP
 -------------
 
-Please ensure, that PHP support is either builtin or installed for the following PHP extension modules:
-
--   PDO
-
--   pdo-mysql
-
--   snmp (Optional, but recommended)
-
--   xml
-
--   session
-
--   posix (Linux only)
-
--   sockets
-
--   ldap
-
--   json
-
--   pcre
-
--   mbstring
-
--   openssl
-
--   gd
-
--   zlib
-
--   gmp (Recommened for plugins)
-
--   com\_dotnet (Windows PHP 5.4.5+)
-
-You may run the following command to get the list of all available PHP modules
-
-    php -m
-
 Please verify, that the modules are installed and configured correctly. There are several ways to do so, please consult [PHP configuration instructions](http://www.php.net/manual/en/configuration.php) for a complete description.
 
-We will continue using the most recommended way of configuring php extension modules. Please find the file `/etc/php.ini` and make the following changes to it:
+It is imperative that you set the `date.timezone` in your `/etc/php.ini`, or `/etc/phpX/apache/php.ini` and `/etc/phpX/cli/php.ini` files.  Failure to do so will result in errors after the install is complete.
 
-    extension_dir = /etc/php.d
-
-This will enable PHP to find more configuration directives in that very directory. Other distros point to `/usr/lib/php/modules` instead. In each case, you should locate e.g. `mysql.so` in that directory.
-
-Activate the MySQL extension via /etc/php.d/mysql.ini
-
-    ; Enable mysql extension module
-    extension=mysql.so
-
-Activate the SNMP extension via /etc/php.d/snmp.ini
-
-    ; Enable snmp extension module
-    extension=snmp.so
-
-If you want to allow template importing, uncomment the following line:
-
-    file_uploads = On
+Most other PHP configuration is done automatically by the base OS, so there is not need to discuss here.
 
 Configure the Webserver (Apache)
 --------------------------------
+
+Most Linux/UNIX OS' automatically configure the Web Server to allow PHP content.  So, there should be no need to provide additional configuration.  However, the following section is included below for reference in the case that you are running a UNIX version that does not properly configure the Webserver properly.  The documentation below is written specifically for RHEL and variants.  So, the instructions may vary.
 
 Please find the file `/etc/httpd/conf/httpd.conf` or equivalent and make the following changes to it:
 
@@ -133,13 +110,19 @@ Now, please locate the PHP configuration file at `/etc/httpd/conf.d/php.conf`
     # indexes.
     DirectoryIndex index.php
 
-Configure MySQL
----------------
+Configure MySQL/MariaDB
+-----------------------
 
-Set a password for the root user
+Set a password for the root user.  Please record this password.  If you loose control of this password, you may have to re-install your database server in the case of any system disaster or recovering from a crash.
 
     shell> mysqladmin --user=root password somepassword
     shell> mysqladmin --user=root --password reload
+
+You must also load timezone information into the database.  This is required for various plugin use.  Later, you will be required to grant access to the `time_zone_name` table during the final installation steps.
+
+	shell> mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql
+
+Since Cacti 1.x is supporting internationalization (i18n), it is important that the default character set for MySQL or MariaDB be i18n compatible.  The Cacti installer will make specific recommendations on MySQL/MariaDB settings.  Please follow those as applicable for your OS.
 
 Galera clustering: There are several tables which are set to use the MEMORY storage engine which do not get replicated among nodes which can cause problems. If you configure Cacti to only connect to one node of your cluster and are not load balancing this does not apply to you.
 
@@ -153,7 +136,6 @@ If you are running multiple nodes in a load-balanced environment where you conne
     MariaDB [cacti]>> ALTER TABLE `poller_output` ENGINE=InnoDB;
     MariaDB [cacti]>> ALTER TABLE `poller_output_boost_processes` ENGINE=InnoDB;
                             
-
 These changes should replicate to the other nodes in your cluster. Allow Cacti to run at least two or three full polling cycles before placing the other nodes back into rotation.
 
 Install and Configure Cacti
@@ -175,6 +157,7 @@ Install and Configure Cacti
 
         shell> mysql --user=root mysql
         mysql> GRANT ALL ON cacti.* TO cactiuser@localhost IDENTIFIED BY 'somepassword';
+		mysql> GRANT SELECT ON mysql.time_zone_name TO cactiuser@localhost IDENTIFIED BY 'somepassword';
         mysql> flush privileges;
 
 5.  Edit `include/config.php` and specify the database type, name, host, user and password for your Cacti configuration.
@@ -185,45 +168,46 @@ Install and Configure Cacti
         $database_username = "cactiuser";
         $database_password = "cacti";
 
-6.  Set the appropriate permissions on cacti's directories for graph/log generation. You should execute these commands from inside cacti's directory to change the permissions.
+6.  Set the appropriate permissions on Cacti's directories for graph/log generation. You should execute these commands from inside Cacti's directory to change the permissions.
 
-        shell> chown -R cactiuser rra/ log/
+        shell> chown -R cactiuser rra/ log/ cache/
 
     (Enter a valid username for *cactiuser*, this user will also be used in the next step for data gathering.)
 
-7.  Add a line to your `/etc/crontab` file similar to:
+7.  Create a new file `/etc/cron.d/cacti` and add to it:
 
-        */5 * * * * cactiuser php /var/www/html/cacti/poller.php > /dev/null 2>&1
+        */5 * * * * cactiuser php <path_cacti>/poller.php > /dev/null 2>&1
 
     Replace *cactiuser* with the valid user specified in the previous step.
 
-    Replace `/var/www/html/cacti/` with your full Cacti path.
+    Replace `<path_cacti>` with your full Cacti path.
 
-8.  Point your web browser to:
+8.	During install, you will need to provide write access to the following files and directories:
 
-    > http://your-server/cacti/
+		shell> chown -R resource scripts include/config.php
+
+	Once the installation is complete, you may change the permissions to more restrictive settings.
+
+9.  Point your web browser to:
+
+    	http://your-server/cacti/
 
     Log in the with a username/password of *admin*. You will be required to change this password immediately. Make sure to fill in all of the path variables carefully and correctly on the following screen.
 
 (Optional) Install and Configure Spine
 --------------------------------------
 
-Spine is a very fast poller engine, written in C. It is an optional replacement for cmd.php. If you decide to use it, you will have to install it explicitely. It does not come with cacti itself.
+Spine is a very fast data collection engine, written in C. It is an optional replacement for cmd.php. If you decide to use it, you will have to install it explicitly. It does not come with cacti itself.
 
 The easiest way is to install Spine using rpm or ports. You will find packages for Spine at the main cacti site or from your distribution.
 
 To compile Spine, please download it to any location of your liking. Then, please issue from the downloaded directory following commands
 
-    shell>aclocal
-    shell>libtoolize --force  (glibtoolize --force on Max OS)
-    shell>autoheader
-    shell>autoconf
-    shell>automake
-    shell>./configure
-    shell>make
-    shell>make install
+	shell>./bootstrap    
 
-Assuming, you've managed to install Spine correctly, you will have to configure it. The configuration file may be placed in the same directory as Spine itself or at /etc/Spine.conf.
+If the `boostrap` script is successful, you then will follow the instructions it provides to compile and install.
+
+Assuming, you've managed to install spine correctly, you will have to configure it. The configuration file may be placed in the same directory as spine itself or at /etc/spine.conf.
 
     DB_Host  127.0.0.1 or hostname (not localhost)
     DB_Database cacti
@@ -235,6 +219,8 @@ Assuming, you've managed to install Spine correctly, you will have to configure 
 Installing Under Windows
 ========================
 
+BSOD2600, one of the long term users of Cacti, provides an Installer on Windows.  We recommend you use that installer for Cacti.  You can obtain that installer under the Windows section of the Cacti forums.  However, if you wish to install Cacti yourself, please follow the instructions below.
+
 1.  (Optional) Apache\> - This software is optional if running Windows Internet Information Server.
 
 2.  Cacti - Install from the zip distribution and install in the web root or your choice. Many choose to install into a "Cacti" sub folder.
@@ -243,15 +229,17 @@ Installing Under Windows
 
 4.  RRDTool - Install from the Cacti website. Install it into the `c:\cacti` directory.
 
-5.  PHP 5.x - Install into the `c:\php` folder. If you choose to install into `c:\Program Files\php`, you will have to use 8.3 filenames to reference it's binaries in Cacti.
+5.  PHP X - Install into the `c:\php` folder. If you choose to install into `c:\Program Files\php`, you will have to use 8.3 filenames to reference it's binaries in Cacti.
 
 6.  MySQL 5.x - Install into the default location. This is typically `c:\Program Files\MySQL\MySQL Server X.XX`.
 
-7.  (Optional) Cygwin - Download and execute `setup.exe` from the Cygwin website. Keep the `setup.exe` file for later use.
+7.  (Optional) Cygwin - Download and execute `setup.exe` from the Cygwin website. Keep the `setup.exe` file for later use.  You will need Cygwin and it's development packages for building RRDtool and spine.
 
 8.  (Optional) Net-SNMP - Install to the `c:\net-snmp` directory. If you choose to use `c:\Program Files\net-snmp` you will have tu use 8.3 filenames to reference it's binaries in Cacti.
 
-<!-- -->
+Common OS Changes
+-----------------
+The following changes will be required regardless of your selected Webserver.
 
 1.  Add the following directory to the existing Windows System `PATH` environment variable: `c:\php`. The Windows path can be accessed via the Control Panel at: System | Advanced | Environment Variables | System Variables.
 
@@ -278,7 +266,8 @@ Installing Under Windows
 
 7.  Give the user who will be running the scheduled task, modify rights to the `.index` file in the location pointed to by the `MIBDIRS` Windows System environment variable.
 
-<!-- -->
+Web Server Configuration
+------------------------
 
 1.  Make sure you have stopped any IIS web servers before you proceed with Apache installation, or make sure Apache is configured on an alternate port.
 
@@ -288,7 +277,8 @@ Installing Under Windows
         AddType application/x-httpd-php .php
         DirectoryIndex index.html index.htm index.php
 
-<!-- -->
+IIS Specific Steps
+------------------
 
 1.  Start the Internet Information Services (IIS) Manager, right click on the Default Web Site (in most cases) and select Properties.
 
@@ -309,21 +299,50 @@ Installing Under Windows
         net stop iisadmin
         net start w3svc
 
-<!-- -->
+Cygwin Installation Steps for spine and rrdtool
+-----------------------------------------------
 
 1.  Installing a single instance of Cygwin, and using it for all applications that require it is recommended so you do not have different versions of the Cygwin dlls laying around on your system, which can cause conflicts.
 
-2.  Run `setup.exe` you previously download.
+2.  Run `setup.exe` or `setup-x64.exe` you previously download.
 
 3.  Once you reach the portion of setup entitled Select Packages, install the following:
 
         Base (include all items)
         Libs
-            libart_lgpl
-            libfreetype26
-            libpng12
-            zlib
-            openssl
+			libcairo2
+			libcrypt0
+			libfontconfig-common
+			libfontconfig1
+			libfreetype6
+			libgcrypt20
+			libgd3
+			libglib2.0_0
+			libmysqlclient-devel
+			libmysqlclient18
+			libopenssl100
+			libpango1.0_0
+			libpng16
+			libreadline7
+			zlib-devel
+			zlib0
+		Devel
+			autoconf
+			automake
+			binutils
+			clang
+			cygwin-devel
+			gcc-core
+			gcc-g++
+			help2man
+			libargp
+			libltdl7
+			libtool
+			net-snmp-devel
+			textinfo
+			w32api-headers
+			w32api-runtime
+			windows-default-manifest
         Utils
             patch
         Web
@@ -331,13 +350,15 @@ Installing Under Windows
 
 4.  Add `c:\cygwin\bin` to your Windows System PATH environment variable.
 
-5.  Move `setup.exe` to `c:\cygwin` for future use.
+5.  Move `setup.exe` or `setup-x64.exe` to `c:\cygwin` for future use.  This binary is updated from time to time, so it's recommended that you update it periodically.
 
-<!-- -->
+RRDtool Download and Installation Instructions
+----------------------------------------------
 
-1.  Extract the RRDTool zip file from the Cacti web site to `c:\cacti\rrdtool.exe`.
+1.  TBD
 
-<!-- -->
+MySQL Download and Installation Instructions
+--------------------------------------------
 
 1.  Extract the MySQL zip file to a temp directory and run `setup.exe`.
 
@@ -363,23 +384,16 @@ Installing Under Windows
 
         shell> mysql --user=root --password mysql
         mysql> GRANT ALL ON cacti.* TO cactiuser@localhost IDENTIFIED BY 'somepassword';
+        mysql> GRANT SELECT ON mysql.time_zone_name TO cactiuser@localhost IDENTIFIED BY 'somepassword';
         mysql> flush privileges;
 
-8.  If you are running MySQl 4.1 and above, you will need to apply the old password setting in order to authenticate with Cacti. To make this change, stop the MySQL service and add the following to the Start Parameter field. Start it again once it has been added.
-
-        --old-password
-
-    You will also need to update the cactiuser account with the old password style.
-
-        shell> UPDATE mysql.user SET Password = OLD_PASSWORD('cactipwd')
-                        WHERE Host = 'localhost' AND User = 'cactiuser';
-        mysql> FLUSH PRIVILEGES;
-
-<!-- -->
+Net-SNMP Installation
+---------------------
 
 1.  If you plan to use any hosts with SNMP v2c support, and are using early versions of PHP, you must download and install the Net-SNMP libraries. Net-SNMP provides installers to install their product. However, caution must be taken if you choose to use long file names as Cacti does not them as long file names. You will have to user 8.3 notation. For example `c:\Program Files\Net-SNMP\bin` becomes `c:\progra~1\net-snmp\bin`.
 
-<!-- -->
+Cacti spine Installation
+------------------------
 
 1.  Extract the Spine zip file to `c:\cacti` and modify the `spine.conf.dist` file to include the following statements.
 
@@ -393,7 +407,8 @@ Installing Under Windows
 
 2.  Spine now comes with a binary distribution. However, we strongly suggest that you install Cygwin and then remove all the DLL files and `sh.exe` from the `c:\cacti` directory.
 
-<!-- -->
+Finishing your Setup
+--------------------
 
 1.  Edit `cacti_web_root/cacti/include/config.php` and specify the MySQL user, password, database, and database port for your Cacti configuration.
 
@@ -422,11 +437,8 @@ Installing Under Windows
     *SNMPGET, SNMPWALK, SNMPBULKWALK, SNMPGETNEXT Paths:*
 
         c:/progra~1/net-snmp/bin/snmpget.exe
-
         c:/progra~1/net-snmp/bin/snmpwalk.exe
-
         c:/progra~1/net-snmp/bin/snmpbulkwalk.exe
-
         c:/progra~1/net-snmp/bin/snmpgetnext.exe
 
     *Cacti Logfile Path:*
@@ -435,7 +447,7 @@ Installing Under Windows
 
     *Spine Path:*
 
-        c:/cacti/Spine.exe
+        c:/cacti/spine.exe
 
 4.  Click on Devices. Delete the Localhost devices as it intended for Linux environments In the upper right corner, click Add. Fill in the following information and then click Add.
 
@@ -499,16 +511,6 @@ Installing Under Windows
             c:\php\php.exe c:\mycacti\website\cacti\poller.php
 
         The start in box should say `c:\mycacti\website\cacti`.
-
-<!-- -->
-
-1.  There are two methods of applying patches to Cacti:
-
-    1.  If you have Cygwin installed, then the patch instructions which use wget and patch, will work.
-
-    2.  The other method requires you to visit http://www.cacti.net/downloads/patches/0.8.6h/pre-patched/ and manually download and replace the patched files.
-
-2.  You might need to reapply file/folder security on the files patched. Double check they are correct.
 
 Upgrading Cacti
 ===============
