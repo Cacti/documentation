@@ -45,6 +45,11 @@ Upgrading Cacti
 
     (Enter a valid username for cactiuser, this user will also be used in the next step for data gathering.)
 
+9a. If you are using the optional feature Performance -> Image Caching, also recreate the folder and correct the permissions.
+
+        shell> mkdir cache
+        shell> chown -R cactiuser cache
+
 10. Point your web browser to:
 
     > http://your-server/cacti/
