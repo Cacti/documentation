@@ -13,7 +13,7 @@ Upgrading Cacti
 
 3.  Extract the distribution tarball.
 
-        shell> tar xzvf cacti-version.tar.gz
+        shell> tar -xzvf cacti-version.tar.gz
 
 4.  Rename the new Cacti directory to match the old one.
 
