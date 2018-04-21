@@ -6,7 +6,7 @@ Cacti users sometimes complain about NaN's in their graphs. Unfortunately, there
 Check Cacti Log File
 --------------------
 
-Please have a look at your cacti log file. Usually, you'll find it at `<path_cacti>/log/cacti.log`. Else see `Settings`, `Paths`. Check for this kind of error:
+Your cacti log file should be located at `<path_cacti>/log/cacti.log`. If it is not, see `Settings`, `Paths`. Check for this kind of error:
 
     CACTID: Host[...] DS[....] WARNING: SNMP timeout detected [500 ms], ignoring host '........'
 
@@ -54,9 +54,9 @@ All output is printed to STDOUT in both cases. This procdure allows for repeated
 Check MySQL updating
 --------------------
 
-In most cases, this step make be skipped. You may want to return to this step, if the next one fails (e.g. no rrdtool update to be found)
+In most cases, this step can be skipped. You may want to return to this step if the next one fails (e.g. no rrdtool update to be found)
 
-From debug log, please find the MySQL update statement for that host concerning table `poller_output`. On very rare occasions, this will fail. So please copy that sql statement and paste it to a mysql session started from cli. This may as well be done from some tool like phpMyAdmin. Check the sql return code.
+From debug log, find the MySQL update statement for that host concerning table `poller_output`. On very rare occasions, this will fail. Copy that sql statement and paste it to a mysql session started from cli. This may as well be done from some tool like phpMyAdmin. Check the sql return code.
 
 Check rrd file updating
 -----------------------
@@ -67,7 +67,7 @@ Down in the same log, you should find some
 
 You should find exactly one update statement for each file.
 
-RRD files should be created by the poller. If it does not create them, it will not fill them either. If it does, please check your `Poller Cache` from Utilities and search for your target. Does the query show up here?
+RRD files should be created by the poller. If it does not create them, it will not fill them either. If it does check your `Poller Cache` from Utilities and search for your target. Does the query show up here?
 
 Check rrd file ownership
 ------------------------
@@ -106,7 +106,7 @@ and check the `ds[...].min` and `ds[...].max` entries, e.g.
 
 In this example, MINIMUM = 0 and MAXIMUM = 100. For a `ds.[...].type=GAUGE` verify, that e.g. the number returned by the script does not exceed `ds[...].MAX` (same holds for MINIMUM, respectively).
 
-If you run into this, please do not only update the data source definition within the Data Template, but perform a
+If you run into this, not only should you update the data source definition within the Data Template, but also perform a:
 
     rrdtool tune <rrd file> --maximum <ds-name>:<new ds maximum>
 
@@ -126,7 +126,7 @@ Up to current cacti 0.8.6h, table `poller_output` may increase beyond reasonable
 
 This is commonly due to php.ini's memory settings of 8MB default. Change this to at least 64 MB.
 
-To check this, please run following sql from mysql cli (or phpmyadmin or the like)
+To check this, run the following sql from mysql cli (or phpmyadmin or the like)
 
     select count(*) from poller_output;
 
@@ -141,7 +141,7 @@ RPM Installation?
 
 Most rpm installations will setup the crontab entry now. If you've followed the installation instructions to the letter (which you should always do ;-) ), you may now have two poller running. That's not a good thing, though. Most rpm installations will setup cron in `/etc/cron.d/cacti`
 
-Now, please check all your crontabs, especially `/etc/crontab` and crontabs of users root and cactiuser. Leave only one poller entry for all of them. Personally, I've chosen `/etc/cron.d/cacti` to avoid problems when updating rpm's. Mosten often, you won't remember this item when updating lots of rpm's, so I felt more secure to put it here. And I've made some slight modifications, see
+Now check all your crontabs, especially `/etc/crontab` and crontabs of users root and cactiuser. Leave only one poller entry for all of them. Personally, I've chosen `/etc/cron.d/cacti` to avoid problems when updating rpm's. Mosten often, you won't remember this item when updating lots of rpm's, so I felt more secure to put it here. And I've made some slight modifications, see
 
     shell> vi /etc/cron.d/cacti
     */5 * * * *     cactiuser       /usr/bin/php -q /var/www/html/cacti/poller.php > /var/local/log/poller.log 2>&1
