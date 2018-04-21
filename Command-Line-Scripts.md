@@ -1,7 +1,7 @@
 Command Line Scripts
 ====================
 
-Cacti support a number of command line scripts. Please find them in the `./cli` directory. As of current, following scripts are supported:
+Cacti supports a number of command line scripts. You will find them in the `./cli` directory. As of current, following scripts are supported:
 
     add_device.php
     add_data_query.php
@@ -72,7 +72,7 @@ Without any parameter, some dots are shown as progress indicators.
 
 > **Caution**
 >
-> Rebuilding the poller cache interferes with the poller operation. Please make sure, that the poller is not running and will not start during a rebuild operation
+> Rebuilding the poller cache interferes with the poller operation. Make sure that the poller is not running and will not start during a rebuild operation
 
 Re-Index Hosts
 --------------
@@ -132,7 +132,7 @@ It is possible, to select a host based on its host description using `--host-des
 
 > **Caution**
 >
-> Re-Indexing interferes with the poller operation. Please make sure, that the poller is not running and will not start during a reindex operation
+> Re-Indexing interferes with the poller operation. Make sure that the poller is not running and will not start during a reindex operation
 
 Empty Poller Output Table
 -------------------------
@@ -218,7 +218,7 @@ Assume a situation, where the suggested names where changed for the standard dat
     DEBUG: Graph Name 'Localhost - Used Space - /boot' starting
     DEBUG: Graph Rename Done for Graph 'Localhost - Used Space - /boot'
 
-Please notice my miss-spelling of the word “Space”. The `-s=` option is not case sensitive.
+Notice my miss-spelling of the word “Space”. The `-s=` option is not case sensitive.
 
 Copy Local Cacti Users
 ----------------------
@@ -315,7 +315,7 @@ Wow, that's quite a lot of options. To better understand it's use, let's first s
 
 Why are those `Host Templates` of such importance for this script? Well, when using this script to add a new device, there are 3 required parameters. The `description` and the `device ip address` are of course left to you. But for assigning the correct `Host Template Id`, you should first know the correct id of that very parameter. For the purpose of this chapter we assume to add a device that will be associated to a `ucd/net SNMP Host`, so the id of `3` is required.
 
-If you do not want to associate the host to any `Host Template Id`, known as host template None, please provide the parameter `--template=0` or omit this parameter.
+If you do not want to associate the host to any `Host Template Id`, known as host template None, either provide the parameter `--template=0` or omit this parameter.
 
 ### List all Community Strings
 
@@ -337,12 +337,12 @@ Now, let's set up the most basic command to add a new device. The description sh
     Adding Device Add Test (router.mydomain.com) as "ucd/net SNMP Host" using SNMP v1 with community "public"
     Success - new device-id: (11)
 
-Please visit Devices to see the result:
+Go to Devices to see the result:
 
     Description**       Graphs  Data Sources    Status  Hostname        Current (ms)    Average (ms)    Availability
     Device Add Test     0   0       Unknown router.mydomain.com     0       0       100
 
-Please use any other combination of parameters in the same way as via the web browser console. You may want to remember the new device id, `11` in this case, for the next steps.
+Use any other combination of parameters in the same way as via the web browser console. You may want to remember the new device id, `11` in this case, for the next steps.
 
 Associate a Data Query to an existing Host
 ------------------------------------------
@@ -791,7 +791,7 @@ Now, that a new tree has been created, you may want to add a new header to that 
 
 You will want to save the id returned if willing to add further nodes to exactly this new Header Node
 
-Please pay attention, that it is currently not possible to add another header with the same options even if this is possible from console
+Please note that it is currently not possible to add another header with the same options even if this is possible from console
 
 But it is possible to add a subheader to an already defined header. Even in this case, the `name` has to be unique
 
@@ -807,7 +807,7 @@ We will distinguish several options adding a host to a tree. First, let's add a 
 
     Added Node node-id: (23)
 
-As no `--parent-node` was given, this host is directly added to the tree itself. If you wish to add a host to a (sub)header, please specify as follows
+As no `--parent-node` was given, this host is directly added to the tree itself. If you wish to add a host to a (sub)header specify as follows
 
     shell>php -q add_tree.php --type=node --node-type=host --tree-id=6 --parent-node=21 --host-id=1
 
