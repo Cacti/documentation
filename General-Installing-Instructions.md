@@ -1,7 +1,7 @@
 General Installing Instructions
 ===============================
 
-Please make sure, the following packages are installed according to your operating systems requirements. Verify, that httpd/apache and mysqld/mariadb are started at system startup.
+Make sure the following packages are installed according to your operating systems requirements. Verify, that httpd/apache and mysqld/mariadb are started at system startup.
 
 Required Packages for Most Operating Systems
 --------------------------------------------------------------------
@@ -69,7 +69,7 @@ When installing on FreeBSD and variants, you must consider these packages.
 Configure PHP
 -------------
 
-Please verify, that the modules are installed and configured correctly. There are several ways to do so, please consult [PHP configuration instructions](http://www.php.net/manual/en/configuration.php) for a complete description.
+Verify that the modules are installed and configured correctly. There are several ways to do so - consult [PHP configuration instructions](http://www.php.net/manual/en/configuration.php) for a complete description.
 
 It is imperative that you set the `date.timezone` in your `/etc/php.ini`, or `/etc/phpX/apache/php.ini` and `/etc/phpX/cli/php.ini` files.  Failure to do so will result in errors after the install is complete.
 
@@ -78,14 +78,14 @@ Most other PHP configuration is done automatically by the base OS, so there is n
 Configure the Webserver (Apache)
 --------------------------------
 
-Most Linux/UNIX OS' automatically configure the Web Server to allow PHP content.  So, there should be no need to provide additional configuration.  However, the following section is included below for reference in the case that you are running a UNIX version that does not properly configure the Webserver properly.  The documentation below is written specifically for RHEL and variants.  So, the instructions may vary.
+Most Linux/UNIX OS' automatically configure the Web Server to allow PHP content.  So there should be no need to provide additional configuration.  However, the following section is included below for reference in the case that you are running a UNIX version that does not properly configure the Webserver properly.  The documentation below is written specifically for RHEL and variants.  So, the instructions may vary.
 
-Please find the file `/etc/httpd/conf/httpd.conf` or equivalent and make the following changes to it:
+Find the file `/etc/httpd/conf/httpd.conf` or its equivalent and make the following changes to it:
 
     # Load config files from the config directory "/etc/httpd/conf.d".
     Include conf.d/*.conf
 
-Now, please locate the PHP configuration file at `/etc/httpd/conf.d/php.conf`
+Now, locate the PHP configuration file at `/etc/httpd/conf.d/php.conf`
 
     # PHP is an HTML-embedded scripting language which attempts to make it
     # easy for developers to write dynamically generated webpages.
@@ -102,7 +102,7 @@ Now, please locate the PHP configuration file at `/etc/httpd/conf.d/php.conf`
 Configure MySQL/MariaDB
 -----------------------
 
-Set a password for the root user.  Please record this password.  If you loose control of this password, you may have to re-install your database server in the case of any system disaster or recovering from a crash.
+Set a password for the root user, and record this password.  If you loose control of this password, you may have to re-install your database server in the case of any system disaster or recovering from a crash.
 
     shell> mysqladmin --user=root password somepassword
     shell> mysqladmin --user=root --password reload
@@ -111,7 +111,7 @@ You must also load timezone information into the database.  This is required for
 
 	shell> mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql
 
-Since Cacti 1.x is supporting internationalization (i18n), it is important that the default character set for MySQL or MariaDB be i18n compatible.  The Cacti installer will make specific recommendations on MySQL/MariaDB settings.  Please follow those as applicable for your OS.
+Since Cacti 1.x is supporting internationalization (i18n), it is important that the default character set for MySQL or MariaDB be i18n compatible.  The Cacti installer will make specific recommendations on MySQL/MariaDB settings.  Follow those as applicable for your OS.
 
 Galera clustering: There are several tables which are set to use the MEMORY storage engine which do not get replicated among nodes which can cause problems. If you configure Cacti to only connect to one node of your cluster and are not load balancing this does not apply to you.
 
@@ -190,7 +190,7 @@ Spine is a very fast data collection engine, written in C. It is an optional rep
 
 The easiest way is to install Spine using rpm or ports. You will find packages for Spine at the main cacti site or from your distribution.
 
-To compile Spine, please download it to any location of your liking. Then, please issue from the downloaded directory following commands
+To compile Spine, download it to any location of your liking. Then, issue from the downloaded directory following commands
 
 	shell>./bootstrap    
 

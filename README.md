@@ -11,4 +11,4 @@ and its various components.
 2. Documentation should be divided into a topic per file.
 3. Link appropriate topics from the table of contents named *index.md*.
 
-Copyright 2017 The Cacti Group, Inc.
+Copyright 2018 The Cacti Group, Inc.

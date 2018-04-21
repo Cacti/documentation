@@ -2293,7 +2293,7 @@ There are several circumstances, that may result in the poller cache being out o
 Calling the script with the parameter `--help` yields
 
     shell>php -q rebuild_poller_cache.php --help
-    Cacti Rebuild Poller Cache Script 1.0, Copyright 2004-2017 - The Cacti Group
+    Cacti Rebuild Poller Cache Script 1.0, Copyright 2004-2018 - The Cacti Group
 
     usage: rebuild_poller_cache.php [-d] [-h] [--help] [-v] [--version]
 
@@ -2333,7 +2333,7 @@ Re-Indexing is required only for SNMP/Script Data Queries. Remember, that whan a
 If you feel the need for manual re-indexing, you may run it from cli. Calling the script with the parameter `--help` yields
 
     shell>php -q poller_reindex_hosts.php --help
-    Cacti Reindex Host Script 1.2, Copyright 2004-2017 - The Cacti Group
+    Cacti Reindex Host Script 1.2, Copyright 2004-2018 - The Cacti Group
 
     usage: poller_reindex_hosts.php --id=[host_id|All] [--qid=[ID|All]] [--host-descr=[description]]
                                [-d] [-h] [--help] [-v] [--version]
@@ -2391,7 +2391,7 @@ During normal poller operation, all retrieved results are intermediately stored 
 Conditions may arise, where the table is not (completely) emptied. The most often known issue is lack of php memory. In those cases, the table is bigger than the php memory size, thus not all items are handled correctly. If that issue occurs, you may save all pending updates *after increasing PHP memory appropriately* by running this very script. Calling the script with the parameter `--help` yields
 
     shell>php -q poller_output_empty.php --help
-    Cacti Empty Poller Output Table Script 1.0, Copyright 2004-2017 - The Cacti Group
+    Cacti Empty Poller Output Table Script 1.0, Copyright 2004-2018 - The Cacti Group
 
     usage: poller_output_empty.php [-h] [--help] [-v] [--version]
 
@@ -2439,7 +2439,7 @@ Reapply Suggested Names to Graphs
 For a general understanding of suggested names used with data queries, please see ?. Be aware, that changes to the `Suggested Names` section of a data query will not automatically be propagated to all existing graphs. This is, where poller\_graphs\_reapply\_names.php drops in. Calling the script with the parameter `--help` yields
 
     shell>php -q poller_graphs_reapply_names.php --help
-    Cacti Reapply Graph Names Script 1.0, Copyright 2004-2017 - The Cacti Group
+    Cacti Reapply Graph Names Script 1.0, Copyright 2004-2018 - The Cacti Group
 
     usage: poller_graphs_reapply_names.php -id=[host_id|All][host_id1|host_id2|...] [-s=[search_string] [-d] [-h] [--help] [-v] [--version]
 
@@ -2510,7 +2510,7 @@ While it is an easy task to add a new device from the panels, this would be a te
 
     shell>php -q add_device.php --help
 
-    Add Device Script 1.0, Copyright 2004-2017 - The Cacti Group
+    Add Device Script 1.0, Copyright 2004-2018 - The Cacti Group
 
     A simple command line utility to add a device in Cacti
 
@@ -2602,7 +2602,7 @@ Nevertheless, it is sometimes suitable to manually associate a certain data quer
 
     shell>php -q add_data_query.php --help
 
-    Add Data Query Script 1.0, Copyright 2004-2017 - The Cacti Group
+    Add Data Query Script 1.0, Copyright 2004-2018 - The Cacti Group
 
     A simple command line utility to add a data query to an existing device in Cacti
 
@@ -2664,7 +2664,7 @@ Nevertheless, it is sometimes suitable to manually associate a certain graph tem
 
     shell>php -q add_graph_template.php --help
 
-    Add Graph Template Script 1.0, Copyright 2004-2017 - The Cacti Group
+    Add Graph Template Script 1.0, Copyright 2004-2018 - The Cacti Group
 
     A simple command line utility to associate a graph template with a host in Cacti
 
@@ -2913,7 +2913,7 @@ Now, that we've created some nice graphs, they should be put the graph trees. Th
 
     shell>php -q add_tree.php --help
 
-    Add Tree Script 1.0, Copyright 2004-2017 - The Cacti Group
+    Add Tree Script 1.0, Copyright 2004-2018 - The Cacti Group
 
     A simple command line utility to add objects to a tree in Cacti
 
@@ -3097,7 +3097,7 @@ This script is used to specify special graph permissions to users. The list of p
 
     shell>php -q add_perms.php --help
 
-    Add Permissions Script 1.0, Copyright 2004-2017 - The Cacti Group
+    Add Permissions Script 1.0, Copyright 2004-2018 - The Cacti Group
 
     A simple command line utility to add permissions to tree items in Cacti
 
