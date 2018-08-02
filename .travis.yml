@@ -2,7 +2,7 @@ before_install:
   - gem install mdl
 
 script:
-  - mdl -c .mdlrc
+  - mdl .
 
 notifications:
   email:
