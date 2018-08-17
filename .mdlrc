@@ -1,0 +1,4 @@
+# mdl configuration file
+
+# ignored rules
+rules "~MD029"
