@@ -1,4 +1,4 @@
 # mdl configuration file
 
 # ignored rules
-rules "~MD029"
+rules "~MD029", "~MD030", "~MD046"
