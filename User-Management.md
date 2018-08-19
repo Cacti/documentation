@@ -1,5 +1,4 @@
-User Management
-===============
+# User Management
 
 In addition to giving you the tools to create sophisticated graphs, Cacti
 enables you to create users that are tailored specifically to their
@@ -23,8 +22,7 @@ user altogether under Cacti Settings. By default in 0.8.7 and later, the
 "guest" user is not set in the setting, effectively disabling "guest"
 (Unauthenticated) access to Cacti.
 
-Editing an existing User
-------------------------
+## Editing an existing User
 
 To edit an existing user, select the User Management item under the Utilities
 heading on the Cacti menu. Once at the user management screen, click username
@@ -38,8 +36,7 @@ user field is described in more detail below. In addition to these fields, each
 user can have their own realm permissions", graph permissions, and graph
 settings. Each of these items are described in this section of the manual.
 
-Realm Permissions
------------------
+## Realm Permissions
 
 Realm permissions control which areas of Cacti a user can access. You can edit
 a user's realm permissions by selecting User Management and choosing the user
@@ -54,8 +51,7 @@ Permissions section for more information about how to fine tune this even more
 on a per-graph basis. Conversely, if the user needs to access the console, they
 will need Console Access and any additional realms that you see fit.
 
-Graph Permissions
------------------
+## Graph Permissions
 
 Graph permissions control which graphs a user is allowed to view, it does not
 apply to editing graphs. You can edit a user's graph permissions by selecting
@@ -79,8 +75,7 @@ default policies to Deny for a restrictive user, or Allow for a non-restrictive
 user. If you thoroughly understand Cacti's graph permissions system, these
 default policies can be combined to provide very complex results.
 
-Graph Settings
---------------
+## Graph Settings
 
 Cacti stores certain graph viewing settings for each user, which enables each
 user to view graphs in an optimal way. These preferences controls things such
@@ -93,8 +88,7 @@ Settings checkbox in user management. The user will be presented with an
 "Access Denied" error message if they attempt to click the Settings tab when
 this box is checked.
 
-Creating a New User
--------------------
+## Creating a New User
 
 To create a new user, select the User Management item under the Utilities
 heading on the Cacti menu. Once at the user management screen, click Add.
@@ -107,8 +101,7 @@ previous to this one. In addition to these fields, each user can have their own
 realm permissions", graph permissions, and graph settings. Each of these items
 are described in editing existing users section of the manual.
 
-Copying a user
---------------
+## Copying a user
 
 ![Copy a User Part 1](images/user_management_copy_1.png)
 
@@ -125,8 +118,7 @@ Yes to copy the selected template user to the the designated new user. An error
 will be returned if you attempt to copy over an existing user. If you would
 like to copy over an existing user, use Batch Copy.
 
-Enable/Disable Users
---------------------
+## Enable/Disable Users
 
 ![Enable/Disable Users Part 1](images/user_management_enable_disable_1.png)
 
@@ -141,8 +133,7 @@ Confirm that you want to disable or enable the listed users. Click Yes to
 perform the action. Disabling your own account is possible and not recommended,
 as once you logoff you will not be able to return.
 
-Batch Copy Users
-----------------
+## Batch Copy Users
 
 Batch Copy is a helpful utility that helps Cacti Administrators maintain users.
 Because Cacti does not yet support groups, it is important that there is some
@@ -164,8 +155,7 @@ It is important to note that when using Batch Copy the original user(s) Full
 Name, Password, Realm and Enable status will be retained, all other fields will
 be overwritten with values from the selected template user.
 
-Delete Users
-------------
+## Delete Users
 
 ![Delete Users Part 1](images/user_management_delete_1.png)
 
@@ -179,8 +169,7 @@ selection box, click Go to continue.
 Confirm that you want to delete the listed users. Click Yes to perform the
 action. Deleting your own account is possible and not recommended.
 
-Guest (Anonymous) Access
-------------------------
+## Guest (Anonymous) Access
 
 By default in 0.8.7 and later of Cacti, Guest or Anonymous access is disabled.
 This is shift from previous release that came with the "Guest" user enabled and

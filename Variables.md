@@ -1,22 +1,18 @@
-Variables
-=========
+# Variables
 
-Graph Variables
----------------
+## Graph Variables
 
 The following variables can be used in the Text Format and Value graph item
 fields. Below is a description of each of these variables.
 
-Date/Time
----------
+## Date/Time
 
 `|date_time|`
 
 This variable will place the date and time of the last poller run on the graph.
 It can be used to replicate MRTG's "graph last updated" feature.
 
-Data Source Title
------------------
+## Data Source Title
 
 `|data_source_title|`
 
@@ -32,8 +28,7 @@ See attached examples to understand usage.
 
 ![Example 2 of a Graph making use of |data_source_title|](images/data_source_title_example2.png)
 
-Data Query Fields
------------------
+## Data Query Fields
 
 `|query_field_name|`
 
@@ -45,8 +40,7 @@ name.
 
 `|query_dskPath|`
 
-Nth Percentile
---------------
+## Nth Percentile
 
 `|[0-9]:(bits|bytes):[0-9]:(current|total|max|total_peak|all_max_current|all_max_
 peak|aggregate_max|aggregate_sum|aggregate_current|aggregate):[0-9]|`
@@ -71,8 +65,7 @@ variable you must give it five arguments:
 
 `|95:bits:6:max:2|`
 
-Bandwidth Summation
--------------------
+## Bandwidth Summation
 
 `|sum:([0-9]|auto):(current|total):([0-9]):([0-9]+|auto)|`
 
@@ -86,8 +79,7 @@ this variable you must give it three arguments:
 
 `|sum:auto:current:2:auto|`
 
-Host Variables
---------------
+## Host Variables
 
 Host variables represent host data and can be placed in graph or data source
 titles. The following table describes which host variables can be used and

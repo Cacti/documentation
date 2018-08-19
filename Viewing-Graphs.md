@@ -1,8 +1,6 @@
-Viewing Graphs
-==============
+# Viewing Graphs
 
-Graph Trees
------------
+## Graph Trees
 
 A graph tree can be thought of as a hierarchical way of organizing your graphs.
 Each graph tree consists of zero or more headers or branch nodes that contain
@@ -10,8 +8,7 @@ leaf nodes such as graphs or trees. Multiple graph trees or branches within a
 single tree can be combined to form a very powerful way of organizing your
 graphs.
 
-Creating a Graph Tree
----------------------
+## Creating a Graph Tree
 
 To create a new graph tree, select the Graph Trees menu item under the
 Management header. Select Add on this page to create a new tree. The following

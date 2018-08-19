@@ -1,5 +1,4 @@
-Upgrading Cacti
-===============
+# Upgrading Cacti
 
 1.  Backup the old Cacti database.
 
