@@ -1,4 +1,3 @@
-# mdl configuration file
-
-# ignored rules
-rules "~MD029", "~MD030", "~MD046"
+# mdl cli configuration
+style ".mdl_style.rb"
+verbose true
