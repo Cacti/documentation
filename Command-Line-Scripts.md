@@ -1,6 +1,6 @@
 # Command Line Scripts
 
-Cacti supports a number of command line scripts. You will find them in the 
+Cacti supports a number of command line scripts. You will find them in the
 `./cli` directory. As of current, following scripts are supported:
 
     add_device.php
@@ -17,15 +17,15 @@ Cacti supports a number of command line scripts. You will find them in the
 
 > **Caution**
 >
-> In the following examples, several numbers are shown as output from various 
-> scripts. They will vary between different installations. So don't bother, if 
+> In the following examples, several numbers are shown as output from various
+> scripts. They will vary between different installations. So don't bother, if
 > your numbers will vary
 
 ## Rebuild Poller Cache
 
-The poller cache holds all commands that cacti will issue during the polling 
-process in an internal format. It is possible, to review the currenty contents 
-of the poller cache by visiting `System Utilities`, `View Poller Cache`. It is 
+The poller cache holds all commands that cacti will issue during the polling
+process in an internal format. It is possible, to review the currenty contents
+of the poller cache by visiting `System Utilities`, `View Poller Cache`. It is
 possible to apply filters to this view; it will show up like
 
 ```console
@@ -45,9 +45,9 @@ Localhost - mtaReceivedVolume   SNMP Version: 1, Community: somesecret, OID: .1.
                                 RRD: /var/www/html/cacti/rra/localhost_mtareceivedvolume_49.rrd
 ```
 
-There are several circumstances, that may result in the poller cache being out 
-of sync. An example would be a change of the name of a script used in a `Data 
-Input Method`. This change is *not* automatically propagated to the poller 
+There are several circumstances, that may result in the poller cache being out
+of sync. An example would be a change of the name of a script used in a `Data
+Input Method`. This change is *not* automatically propagated to the poller
 cache. It is required, to run `php -q rebuild poller_cache.php` manually.
 
 Calling the script with the parameter `--help` yields
@@ -87,13 +87,13 @@ shell>
 
 > **Caution**
 >
-> Rebuilding the poller cache interferes with the poller operation. Make sure 
+> Rebuilding the poller cache interferes with the poller operation. Make sure
 > that the poller is not running and will not start during a rebuild operation
 
 ## Re-Index Hosts
 
-Re-Indexing is required only for SNMP/Script Data Queries. Remember, that whan 
-applying a Data Query to a Host, a `Re-Index Method` has to be chosen. This 
+Re-Indexing is required only for SNMP/Script Data Queries. Remember, that whan
+applying a Data Query to a Host, a `Re-Index Method` has to be chosen. This
 reindex method governs the automatic re-indexing based on specific events.
 
 ###### Table 20-1. Re_Index Methods
@@ -104,7 +104,7 @@ Uptime Goes Backwards | Refers to a system reboot. Cacti will detect if the targ
 Index Count Changed | Refers to a change of the number of indexed items, e.g. interfaces, without checking sysUptime. It is of particular interest in cases, where indexed entries may change without the need of a reboot. As modern operating systems seldom require reboots for system configuration changes, you may want to consider this setting for many cases (e.g. creating of a new filesystem without a reboot). The index to be considered is defined by the according XML file.
 Verify All Fields | All index fields of the according XML file are checked for changes. This is of particular interest e.g. in cases, where the index is non-numeric (e.g. a MAC address).
 
-If you feel the need for manual re-indexing, you may run it from cli. Calling 
+If you feel the need for manual re-indexing, you may run it from cli. Calling
 the script with the parameter `--help` yields
 
 ```console
@@ -140,7 +140,7 @@ WARNING: Do not interrupt this script.  Reindexing can take quite some time
 .....shell>
 ```
 
-You may run this script against a specific data query id using 
+You may run this script against a specific data query id using
 `--qid=[data query id]` like
 
 ```console
@@ -155,9 +155,9 @@ DEBUG: Data query number '3' host: '15' SNMP Query Id: '1' starting
 DEBUG: Data query number '3' host: '15' SNMP Query Id: '1' ending
 ```
 
-It is possible, to select a host based on its host description using 
-`--host-descr=[host description]`. It is allowed to apply an SQL filter 
-expression for the description like `--qid=some%descr`. Use this parameter in 
+It is possible, to select a host based on its host description using
+`--host-descr=[host description]`. It is allowed to apply an SQL filter
+expression for the description like `--qid=some%descr`. Use this parameter in
 conjunction with either `--id=[host id]` or `--qid=[data query id]` or both:
 
 ```console
@@ -170,21 +170,21 @@ DEBUG: Data query number '1' host: '2' SNMP Query Id: '1' ending
 
 > **Caution**
 >
-> Re-Indexing interferes with the poller operation. Make sure that the poller is 
+> Re-Indexing interferes with the poller operation. Make sure that the poller is
 > not running and will not start during a reindex operation
 
 ## Empty Poller Output Table
 
-During normal poller operation, all retrieved results are intermediately stored 
-in the table named poller_output After execution of cmd.php or Spine, this table 
-holds all results. The poller.php finally issues all rrdtool update operations. 
+During normal poller operation, all retrieved results are intermediately stored
+in the table named poller_output After execution of cmd.php or Spine, this table
+holds all results. The poller.php finally issues all rrdtool update operations.
 Thus, after polling has completed, the table should be empty.
 
-Conditions may arise, where the table is not (completely) emptied. The most 
-often known issue is lack of php memory. In those cases, the table is bigger 
-than the php memory size, thus not all items are handled correctly. If that 
-issue occurs, you may save all pending updates *after increasing PHP memory 
-appropriately* by running this very script. Calling the script with the 
+Conditions may arise, where the table is not (completely) emptied. The most
+often known issue is lack of php memory. In those cases, the table is bigger
+than the php memory size, thus not all items are handled correctly. If that
+issue occurs, you may save all pending updates *after increasing PHP memory
+appropriately* by running this very script. Calling the script with the
 parameter `--help` yields
 
 ```console
@@ -197,7 +197,7 @@ usage: poller_output_empty.php [-h] [--help] [-v] [--version]
 -h --help     - Display this help message
 ```
 
-You see, no parameter is required for operating successfully. Under normal 
+You see, no parameter is required for operating successfully. Under normal
 circumstances, running this script should yield
 
 ```console
@@ -206,7 +206,7 @@ There were 0, RRD updates made this pass
 shell>
 ```
 
-In case, you hit the poller process or if the table was really not fully 
+In case, you hit the poller process or if the table was really not fully
 processed, you may find
 
 ```console
@@ -236,15 +236,15 @@ There were 21, RRD updates made this pass
 shell>
 ```
 
-If logging level verbosity was switched to `DEBUG` you may find additional debug 
+If logging level verbosity was switched to `DEBUG` you may find additional debug
 messages that usually show up in `cacti.log`
 
 ## Reapply Suggested Names to Graphs
 
-For a general understanding of suggested names used with data queries, please 
-see ?. Be aware, that changes to the `Suggested Names` section of a data query 
-will not automatically be propagated to all existing graphs. This is, where 
-poller_graphs_reapply_names.php drops in. Calling the script with the parameter 
+For a general understanding of suggested names used with data queries, please
+see ?. Be aware, that changes to the `Suggested Names` section of a data query
+will not automatically be propagated to all existing graphs. This is, where
+poller_graphs_reapply_names.php drops in. Calling the script with the parameter
 `--help` yields
 
 ```console
@@ -260,8 +260,8 @@ usage: poller_graphs_reapply_names.php -id=[host_id|All][host_id1|host_id2|...] 
 -h --help     - Display this help message
 ```
 
-Assume a situation, where the suggested names where changed for the standard 
-data query named `SNMP - Get Mounted Partitions`. In this case, you will want to 
+Assume a situation, where the suggested names where changed for the standard
+data query named `SNMP - Get Mounted Partitions`. In this case, you will want to
 rework all graphs for this data query only. A verbose run will yield
 
 ```console
@@ -282,12 +282,12 @@ DEBUG: Graph Name 'Localhost - Used Space - /boot' starting
 DEBUG: Graph Rename Done for Graph 'Localhost - Used Space - /boot'
 ```
 
-Notice the miss-spelling of the word “Space”. The `-s=` option is not case 
+Notice the miss-spelling of the word “Space”. The `-s=` option is not case
 sensitive.
 
 ## Copy Local Cacti Users
 
-For use and understanding the limitation of this script, it is of importance to 
+For use and understanding the limitation of this script, it is of importance to
 read [User Management](User-Management.md)
 
 Calling the script with the parameter `--help` yields
@@ -324,10 +324,10 @@ Harry Potter | Guest Account | Yes | Local | ALLOW | N/A
 
 ## Add a New Device
 
-While it is an easy task to add a new device from the panels, this would be a 
-tedious task for creating dozens of hundreds of devices in one turn. This is, 
-where the script `add_device.php` comes in. First, let's have a look at the 
-whole list of features it provides. Calling the script with the parameter 
+While it is an easy task to add a new device from the panels, this would be a
+tedious task for creating dozens of hundreds of devices in one turn. This is,
+where the script `add_device.php` comes in. First, let's have a look at the
+whole list of features it provides. Calling the script with the parameter
 `--help` yields
 
 ```console
@@ -370,7 +370,7 @@ usage: add_device.php --description=[description] --ip=[IP] --template=[ID] [--n
         --quiet - batch mode value return
 ```
 
-Wow, that's quite a lot of options. To better understand it's use, let's first 
+Wow, that's quite a lot of options. To better understand it's use, let's first
 stick to the listing options
 
 ### List all Host Templates
@@ -388,16 +388,16 @@ Valid Host Templates: (id, name)
 8       Local Linux Machine
 ```
 
-Why are those `Host Templates` of such importance for this script? Well, when 
-using this script to add a new device, there are 3 required parameters. The 
-`description` and the `device ip address` are of course left to you. But for 
-assigning the correct `Host Template Id`, you should first know the correct id 
-of that very parameter. For the purpose of this chapter we assume to add a 
-device that will be associated to a `ucd/net SNMP Host`, so the id of `3` is 
+Why are those `Host Templates` of such importance for this script? Well, when
+using this script to add a new device, there are 3 required parameters. The
+`description` and the `device ip address` are of course left to you. But for
+assigning the correct `Host Template Id`, you should first know the correct id
+of that very parameter. For the purpose of this chapter we assume to add a
+device that will be associated to a `ucd/net SNMP Host`, so the id of `3` is
 required.
 
-If you do not want to associate the host to any `Host Template Id`, known as 
-host template None, either provide the parameter `--template=0` or omit this 
+If you do not want to associate the host to any `Host Template Id`, known as
+host template None, either provide the parameter `--template=0` or omit this
 parameter.
 
 ### List all Community Strings
@@ -413,10 +413,10 @@ Of course, your list will vary
 
 ### Create a New Device
 
-Now, let's set up the most basic command to add a new device. The description 
-shall be `"Device Add Test"`, the ip will be given as a FQDN, 
-`router.mydomain.com`. As a SNMP enabled device, surely a community string has 
-to be provided; in this case given as `public`. In total, this makes the 
+Now, let's set up the most basic command to add a new device. The description
+shall be `"Device Add Test"`, the ip will be given as a FQDN,
+`router.mydomain.com`. As a SNMP enabled device, surely a community string has
+to be provided; in this case given as `public`. In total, this makes the
 following command
 
 ```console
@@ -432,22 +432,22 @@ Description** | Graphs | Data Sources | Status | Hostname | Current (ms) | Avera
 --- | ---| --- | --- | --- | --- | --- | ---
 Device Add Test | 0 | 0 | Unknown | router.mydomain.com | 0 | 0 | 100
 
-Use any other combination of parameters in the same way as via the web browser 
-console. You may want to remember the new device id, `11` in this case, for the 
+Use any other combination of parameters in the same way as via the web browser
+console. You may want to remember the new device id, `11` in this case, for the
 next steps.
 
 ## Associate a Data Query to an existing Host
 
-It is recommended to maintain data query associations by maintaining host 
-templates. Each time, a data query is added to a host template, it will 
-automatically associated with all hosts related to that very host template. The 
-data query will be executed as well; this way the snmp cache will be filled with 
+It is recommended to maintain data query associations by maintaining host
+templates. Each time, a data query is added to a host template, it will
+automatically associated with all hosts related to that very host template. The
+data query will be executed as well; this way the snmp cache will be filled with
 all values related to that query.
 
-Nevertheless, it is sometimes suitable to manually associate a certain data 
-query with a single host only without changing any host template. This is, where 
-the script `add_data_query.php` comes in. First, let's have a look at the whole 
-list of features it provides. Calling the script with the parameter `--help` 
+Nevertheless, it is sometimes suitable to manually associate a certain data
+query with a single host only without changing any host template. This is, where
+the script `add_data_query.php` comes in. First, let's have a look at the whole
+list of features it provides. Calling the script with the parameter `--help`
 yields
 
 ```console
@@ -510,22 +510,22 @@ shell>php -q add_data_query.php --host-id=11 --data-query-id=1 --reindex-method=
 Success - Host (11: router.mydomain.com) data query (1: SNMP - Interface Statistics) reindex method (3: Verify All Fields)
 ```
 
-This example shows the use of a string `"fields"` for specifying the reindex 
-method. As given by the help text, the use of the numeric value of `"3"` would 
-have given the exact same result. When visiting the device edit panel, you will 
-find non-zero values for the data query status column, e.g. *Success [41 Items, 
+This example shows the use of a string `"fields"` for specifying the reindex
+method. As given by the help text, the use of the numeric value of `"3"` would
+have given the exact same result. When visiting the device edit panel, you will
+find non-zero values for the data query status column, e.g. *Success [41 Items,
 5 Rows]*.
 
 ## Associate a Graph Template to an existing Host
 
-It is recommended to maintain graph template associations by maintaining host 
-templates. Each time, a graph template is added to a host template, it will 
+It is recommended to maintain graph template associations by maintaining host
+templates. Each time, a graph template is added to a host template, it will
 automatically associated with all hosts related to that very host template.
 
-Nevertheless, it is sometimes suitable to manually associate a certain graph 
-template with a single host only without changing any host template. This is, 
-where the script `add_graph_template.php` comes in. First, let's have a look at 
-the whole list of features it provides. Calling the script with the parameter 
+Nevertheless, it is sometimes suitable to manually associate a certain graph
+template with a single host only without changing any host template. This is,
+where the script `add_graph_template.php` comes in. First, let's have a look at
+the whole list of features it provides. Calling the script with the parameter
 `--help` yields
 
 ```console
@@ -589,8 +589,8 @@ Success: Graph Template associated for host: (11: router) - graph-template: (7: 
 
 ## Add a New Graph
 
-You won't stop now as you've just created a device from cli. Surely, the task of 
-setting up graphs is the next step. This is done using `add_graphs.php`. Calling 
+You won't stop now as you've just created a device from cli. Surely, the task of
+setting up graphs is the next step. This is done using `add_graphs.php`. Calling
 the script with the parameter `--help` yields
 
 ```console
@@ -635,26 +635,26 @@ List Options:
     'ds' graphs are for data-source based graphs (interface stats etc.)
 ```
 
-Like the graph creation from the console, this task is split into two different 
+Like the graph creation from the console, this task is split into two different
 ones:
 
 - **Associated Graph Templates:**
   These are named `cg` graph_type for this script.
 
-- **Associated Data Queries:** 
-  These are named `ds` graph_type for this script. Additional SNMP parameters 
+- **Associated Data Queries:**
+  These are named `ds` graph_type for this script. Additional SNMP parameters
 are required to define those graphs.
 
 > **Caution**
 >
-> When running this cli script, caution must be taken to avoid typos. Sometimes, 
-> list options take an ending “s”, where the option for graph creation comes 
-> without “s”. Error messages are not issued to indicate this typo; instead you 
+> When running this cli script, caution must be taken to avoid typos. Sometimes,
+> list options take an ending “s”, where the option for graph creation comes
+> without “s”. Error messages are not issued to indicate this typo; instead you
 > will see the general help screen.
 
 ### List Options for Associated Graph Templates
 
-The first list option, `--list-hosts`, is required only if you do not know the 
+The first list option, `--list-hosts`, is required only if you do not know the
 `id` of the device you want to add graphs for. It will produce output as follows
 
 ```console
@@ -667,7 +667,7 @@ Known Hosts: (id, hostname, template, description)
 
 You surely recognize the device we've just added?
 
-The next list option, `--list-graph-templates`, is required to identify the 
+The next list option, `--list-graph-templates`, is required to identify the
 number of an `Associated Graph Templates`.
 
 ```console
@@ -685,11 +685,11 @@ Known Graph Templates:(id, name)
 ...
 ```
 
-We will need the graph template id of the `ucd/net - CPU Usage` template later. 
+We will need the graph template id of the `ucd/net - CPU Usage` template later.
 So note the number `4` for it.
 
-It is possible to reduce the listing to the graph templates associated with a 
-specific host template by using `--list-graph-templates 
+It is possible to reduce the listing to the graph templates associated with a
+specific host template by using `--list-graph-templates
 --host-template-id=[id]`. For a "ucd/net SNMP Host" this yields
 
 ```console
@@ -760,10 +760,10 @@ ifSpeed
 ifType
 ```
 
-For our graph, we will use the field `ifOperStatus` to select the correct 
+For our graph, we will use the field `ifOperStatus` to select the correct
 interfaces.
 
-In general, you will next determine the values available for the `SNMP Field`, 
+In general, you will next determine the values available for the `SNMP Field`,
 in our case `ifOperStatus`. This is done by
 
 ```console
@@ -774,12 +774,12 @@ Down
 Up
 ```
 
-This is no surprise, of course. Now, all paarmeters required for creating a new 
+This is no surprise, of course. Now, all paarmeters required for creating a new
 graph are determined.
 
 ### Add Non-Indexed Graphs
 
-We will create a graph for `ucd/net - CPU Usage`. Above, we've identified the 
+We will create a graph for `ucd/net - CPU Usage`. Above, we've identified the
 graph template it to be `4`. In total, that makes up for the following command
 
 ```console
@@ -794,7 +794,7 @@ Graph Title** | Template Name | Size
 --- | --- | ---
 Device Add Test - CPU Usage | ucd/net - CPU Usage | 120x500
 
-If the graph template was not associated with that host before, it is now added 
+If the graph template was not associated with that host before, it is now added
 to the list of Associated Graph Templates.
 
 ### Add Indexed Graphs
@@ -826,17 +826,17 @@ Graph Title** | Template Name | Size
 Device Add Test - CPU Usage | ucd/net - CPU Usage | 120x500
 Device Add Test - Traffic - lo | Interface - Traffic (bits/sec) | 120x500
 
-If the data query was not associated with that host before, it is now added to 
-the list of Associated Graph Templates. In this case, the Re-Index Method of 
-`Uptime Goes Backwards` is defaulted if not given otherwise. You may provide a 
+If the data query was not associated with that host before, it is now added to
+the list of Associated Graph Templates. In this case, the Re-Index Method of
+`Uptime Goes Backwards` is defaulted if not given otherwise. You may provide a
 different Re-Index Method by entering the optional parameter `--reindex-method`.
 
 ## Add Items to a Tree
 
-Now, that we've created some nice graphs, they should be put the graph trees. 
-This is done using `add_tree.php`. As you will notice soon, it is possible to 
-even add header items, hosts and graphs to a tree as well as adding a new tree 
-itself. But let us first see the help output. Calling the script with the 
+Now, that we've created some nice graphs, they should be put the graph trees.
+This is done using `add_tree.php`. As you will notice soon, it is possible to
+even add header items, hosts and graphs to a tree as well as adding a new tree
+itself. But let us first see the help output. Calling the script with the
 parameter `--help` yields
 
 ```console
@@ -921,8 +921,8 @@ Host    12      gandalf     Graph Template
 
 ### List RRAs
 
-For special tree add options, you will require the id of the RRA definition to 
-completly specify the add request. That's why the corresponding `--list-rras` 
+For special tree add options, you will require the id of the RRA definition to
+completly specify the add request. That's why the corresponding `--list-rras`
 option is implemented. It goes this way
 
 ```console
@@ -938,7 +938,7 @@ id      steps   rows    timespan        name
 
 ### List Graphs for given Hosts
 
-To be able to add a Graph, the id of that very graph is required. Thus, a 
+To be able to add a Graph, the id of that very graph is required. Thus, a
 `--list-graphs --host-id=[id]` option was implemented
 
 ```console
@@ -960,8 +960,8 @@ Known Host Graphs: (id, name, template)
 
 ### Add a new Tree
 
-Cacti comes with a single tree, named Default Tree. Console entry Graph Trees is 
-used to add more trees. With `add_tree.php`, you may now do so from command line 
+Cacti comes with a single tree, named Default Tree. Console entry Graph Trees is
+used to add more trees. With `add_tree.php`, you may now do so from command line
 as well:
 
 ```console
@@ -981,7 +981,7 @@ as expected.
 
 ### Add a new Header Node to a Tree
 
-Now, that a new tree has been created, you may want to add a new header to that 
+Now, that a new tree has been created, you may want to add a new header to that
 very tree. Use
 
 ```console
@@ -990,13 +990,13 @@ shell>php -q add_tree.php --type=node --node-type=header --tree-id=6 --name="Hea
 Added Node node-id: (21)
 ```
 
-You will want to save the id returned if willing to add further nodes to exactly 
+You will want to save the id returned if willing to add further nodes to exactly
 this new Header Node
 
-Please note that it is currently not possible to add another header with the 
+Please note that it is currently not possible to add another header with the
 same options even if this is possible from console
 
-But it is possible to add a subheader to an already defined header. Even in this 
+But it is possible to add a subheader to an already defined header. Even in this
 case, the `name` has to be unique
 
 ```console
@@ -1007,8 +1007,8 @@ Added Node node-id: (22)
 
 ### Add a new Host Node to a Tree
 
-We will distinguish several options adding a host to a tree. First, let's add a 
-Host directly to a tree. For this example, we use the tree id returned from 
+We will distinguish several options adding a host to a tree. First, let's add a
+Host directly to a tree. For this example, we use the tree id returned from
 adding our own `Test Tree Add` known with `id=6`
 
 ```console
@@ -1017,7 +1017,7 @@ shell>php -q add_tree.php --type=node --node-type=host --tree-id=6 --host-id=1
 Added Node node-id: (23)
 ```
 
-As no `--parent-node` was given, this host is directly added to the tree itself. 
+As no `--parent-node` was given, this host is directly added to the tree itself.
 If you wish to add a host to a (sub)header specify as follows
 
 ```console
@@ -1026,8 +1026,8 @@ shell>php -q add_tree.php --type=node --node-type=host --tree-id=6 --parent-node
 Added Node node-id: (24)
 ```
 
-Both example come without a `--host-group-style` option. For those cases, `Graph 
-Template` host group style is default. Here's an example for providing a host 
+Both example come without a `--host-group-style` option. For those cases, `Graph
+Template` host group style is default. Here's an example for providing a host
 group option of `Data Query Index` instead
 
 ```console
@@ -1038,8 +1038,8 @@ Added Node node-id: (25)
 
 ### Add a new Graph Node to a Tree
 
-Like above, instead of hosts it is possible to add a single graph to a tree or a 
-(sub)header of any tree. Of course, you again will require the `id` of the tree 
+Like above, instead of hosts it is possible to add a single graph to a tree or a
+(sub)header of any tree. Of course, you again will require the `id` of the tree
 and optionally of the `header`. This results in
 
 ```console
@@ -1048,7 +1048,7 @@ shell>php -q add_tree.php --type=node --node-type=graph --tree-id=6 --graph-id=5
 Added Node node-id: (26)
 ```
 
-Like above, this graph now was added directly to the tree itself. To add a graph 
+Like above, this graph now was added directly to the tree itself. To add a graph
 to a header, proceed as follows
 
 ```console
@@ -1057,7 +1057,7 @@ shell>php -q add_tree.php --type=node --node-type=graph --tree-id=6 --parent-nod
 Added Node node-id: (27)
 ```
 
-In both cases, no explicit `--rra-id` was given. This will default to the Daily 
+In both cases, no explicit `--rra-id` was given. This will default to the Daily
 (5 Minute Average). Specify any other `--rra-id` as given
 
 ```console
@@ -1070,8 +1070,8 @@ to provide the `--rra-id` for a rra of Yearly (1 Day Average).
 
 ## Add Graph Permissions
 
-This script is used to specify special graph permissions to users. The list of 
-parameters is displyed as usual when calling the script with the parameter 
+This script is used to specify special graph permissions to users. The list of
+parameters is displyed as usual when calling the script with the parameter
 `--help`
 
 ```console
@@ -1095,7 +1095,7 @@ List Options:
 
 ### List Users
 
-The list of users is retrieved by calling the script with the parameter 
+The list of users is retrieved by calling the script with the parameter
 `--list-users`. It goes like
 
 ```console
@@ -1109,7 +1109,7 @@ id      username        full_name
 
 ### List Trees
 
-The list of trees is retrieved by calling the script with the parameter 
+The list of trees is retrieved by calling the script with the parameter
 `--list-trees`. It goes like
 
 ```console
@@ -1122,7 +1122,7 @@ id      sort method                     name
 
 ### List Graph Templates
 
-The list of available graph templates is retrieved by calling the script with 
+The list of available graph templates is retrieved by calling the script with
 the parameter `--list-graph-templates`. It goes like
 
 ```console
@@ -1142,7 +1142,7 @@ Known Graph Templates:(id, name)
 
 ### List Graphs for given Hosts
 
-To be able to add a permissions to a specific Graph, the id of that very graph 
+To be able to add a permissions to a specific Graph, the id of that very graph
 is required. Thus, a `--list-graphs --host-id=[id]` option was implemented
 
 ```console
@@ -1164,54 +1164,54 @@ Known Host Graphs: (id, name, template)
 
 ### Add Graph Permissions to specific Users
 
-There are various ways to define graph permissions to specific users. First, we 
-will add graph permissions for a given host. This is done using the parameter 
+There are various ways to define graph permissions to specific users. First, we
+will add graph permissions for a given host. This is done using the parameter
 `--item-type=host` as follows
 
 ```console
 shell>php -q add_perms.php --user-id=4 --item-type=host --item-id=1
 ```
 
-`--user-id=4` must specify an existing users. Else, an error message will be 
-printed. As `--item-type=host` is given, `--item-id=1` must specify a valid 
-host. Again, if no host with this specific id exists, an error message will be 
+`--user-id=4` must specify an existing users. Else, an error message will be
+printed. As `--item-type=host` is given, `--item-id=1` must specify a valid
+host. Again, if no host with this specific id exists, an error message will be
 printed. No output is produced on successful operations.
 
-Next, we will add graph permissions for a given tree. This is done using the 
+Next, we will add graph permissions for a given tree. This is done using the
 parameter `--item-type=tree` as follows
 
 ```console
 shell>php -q add_perms.php --user-id=4 --item-type=tree --item-id=1
 ```
 
-`--user-id=4` must specify an existing users. Else, an error message will be 
-printed. As `--item-type=tree` is given, `--item-id=1` must specify a valid tree 
-(the Default Tree in this case). Again, if no tree with this specific id exists, 
-an error message will be printed. No output is produced on successful 
+`--user-id=4` must specify an existing users. Else, an error message will be
+printed. As `--item-type=tree` is given, `--item-id=1` must specify a valid tree
+(the Default Tree in this case). Again, if no tree with this specific id exists,
+an error message will be printed. No output is produced on successful
 operations.
 
-Adding graph permissions for a given graph template is done using the parameter 
+Adding graph permissions for a given graph template is done using the parameter
 `--item-type=graph_template` as follows
 
 ```console
 shell>php -q add_perms.php --user-id=4 --item-type=graph_template --item-id=25
 ```
 
-`--user-id=4` must specify an existing users. Else, an error message will be 
-printed. As `--item-type=graph_template` is given, `--item-id=1` must specify a 
-valid graph_template (the Interface - Traffic (bytes/sec) in this case). Again, 
-if no graph template with this specific id exists, an error message will be 
+`--user-id=4` must specify an existing users. Else, an error message will be
+printed. As `--item-type=graph_template` is given, `--item-id=1` must specify a
+valid graph_template (the Interface - Traffic (bytes/sec) in this case). Again,
+if no graph template with this specific id exists, an error message will be
 printed. No output is produced on successful operations.
 
-Last but not least we add graph permissions for a given graph by using the 
+Last but not least we add graph permissions for a given graph by using the
 parameter `--item-type=graph` as follows
 
 ```console
 shell>php -q add_perms.php --user-id=4 --item-type=graph --item-id=8
 ```
 
-`--user-id=4` must specify an existing users. Else, an error message will be 
-printed. As `--item-type=graph` is given, `--item-id=1` must specify a valid 
-graph. Again, if no graph template with this specific id exists, an error 
+`--user-id=4` must specify an existing users. Else, an error message will be
+printed. As `--item-type=graph` is given, `--item-id=1` must specify a valid
+graph. Again, if no graph template with this specific id exists, an error
 message will be printed. No output is produced on successful operations.
 
