@@ -170,15 +170,16 @@ DEBUG: Data query number '1' host: '2' SNMP Query Id: '1' ending
 
 > **Caution**
 >
-> Re-Indexing interferes with the poller operation. Make sure that the poller is
-> not running and will not start during a reindex operation
+> Re-Indexing interferes with the poller operation. Make sure that the 
+> poller is not running and will not start during a reindex operation
 
 ## Empty Poller Output Table
 
-During normal poller operation, all retrieved results are intermediately stored
-in the table named poller_output After execution of cmd.php or Spine, this table
-holds all results. The poller.php finally issues all rrdtool update operations.
-Thus, after polling has completed, the table should be empty.
+During normal poller operation, all retrieved results are intermediately 
+stored in the table named poller_output After execution of cmd.php or 
+Spine, this table holds all results. The poller.php finally issues all 
+rrdtool update operations. Thus, after polling has completed, the table 
+should be empty.
 
 Conditions may arise, where the table is not (completely) emptied. The most
 often known issue is lack of php memory. In those cases, the table is bigger
@@ -236,16 +237,16 @@ There were 21, RRD updates made this pass
 shell>
 ```
 
-If logging level verbosity was switched to `DEBUG` you may find additional debug
-messages that usually show up in `cacti.log`
+If logging level verbosity was switched to `DEBUG` you may find 
+additional debug messages that usually show up in `cacti.log`
 
 ## Reapply Suggested Names to Graphs
 
-For a general understanding of suggested names used with data queries, please
-see ?. Be aware, that changes to the `Suggested Names` section of a data query
-will not automatically be propagated to all existing graphs. This is, where
-poller_graphs_reapply_names.php drops in. Calling the script with the parameter
-`--help` yields
+For a general understanding of suggested names used with data queries, 
+please see ?. Be aware, that changes to the `Suggested Names` section of 
+a data query will not automatically be propagated to all existing graphs. 
+This is, where poller_graphs_reapply_names.php drops in. Calling the 
+script with the parameter `--help` yields
 
 ```console
 shell>php -q poller_graphs_reapply_names.php --help
@@ -438,17 +439,17 @@ next steps.
 
 ## Associate a Data Query to an existing Host
 
-It is recommended to maintain data query associations by maintaining host
-templates. Each time, a data query is added to a host template, it will
-automatically associated with all hosts related to that very host template. The
-data query will be executed as well; this way the snmp cache will be filled with
-all values related to that query.
+It is recommended to maintain data query associations by maintaining host 
+templates. Each time, a data query is added to a host template, it will 
+automatically associated with all hosts related to that very host 
+template. The data query will be executed as well; this way the snmp 
+cache will be filled with all values related to that query.
 
-Nevertheless, it is sometimes suitable to manually associate a certain data
-query with a single host only without changing any host template. This is, where
-the script `add_data_query.php` comes in. First, let's have a look at the whole
-list of features it provides. Calling the script with the parameter `--help`
-yields
+Nevertheless, it is sometimes suitable to manually associate a certain 
+data query with a single host only without changing any host template. 
+This is, where the script `add_data_query.php` comes in. First, let's 
+have a look at the whole list of features it provides. Calling the script 
+with the parameter `--help` yields
 
 ```console
 shell>php -q add_data_query.php --help
@@ -589,9 +590,9 @@ Success: Graph Template associated for host: (11: router) - graph-template: (7: 
 
 ## Add a New Graph
 
-You won't stop now as you've just created a device from cli. Surely, the task of
-setting up graphs is the next step. This is done using `add_graphs.php`. Calling
-the script with the parameter `--help` yields
+You won't stop now as you've just created a device from cli. Surely, the 
+task of setting up graphs is the next step. This is done using 
+`add_graphs.php`. Calling the script with the parameter `--help` yields
 
 ```console
 shell>php -q add_graphs.php
@@ -647,10 +648,10 @@ are required to define those graphs.
 
 > **Caution**
 >
-> When running this cli script, caution must be taken to avoid typos. Sometimes,
-> list options take an ending “s”, where the option for graph creation comes
-> without “s”. Error messages are not issued to indicate this typo; instead you
-> will see the general help screen.
+> When running this cli script, caution must be taken to avoid typos. 
+> Sometimes, list options take an ending “s”, where the option for graph 
+> creation comes without “s”. Error messages are not issued to indicate 
+> this typo; instead you will see the general help screen.
 
 ### List Options for Associated Graph Templates
 
@@ -960,9 +961,9 @@ Known Host Graphs: (id, name, template)
 
 ### Add a new Tree
 
-Cacti comes with a single tree, named Default Tree. Console entry Graph Trees is
-used to add more trees. With `add_tree.php`, you may now do so from command line
-as well:
+Cacti comes with a single tree, named Default Tree. Console entry Graph 
+Trees is used to add more trees. With `add_tree.php`, you may now do so 
+from command line as well:
 
 ```console
 shell>php -q add_tree.php --type=tree --name="Test Tree Add" --sort-method=manual
@@ -990,14 +991,14 @@ shell>php -q add_tree.php --type=node --node-type=header --tree-id=6 --name="Hea
 Added Node node-id: (21)
 ```
 
-You will want to save the id returned if willing to add further nodes to exactly
-this new Header Node
+You will want to save the id returned if willing to add further nodes to 
+exactly this new Header Node
 
-Please note that it is currently not possible to add another header with the
-same options even if this is possible from console
+Please note that it is currently not possible to add another header with 
+the same options even if this is possible from console
 
-But it is possible to add a subheader to an already defined header. Even in this
-case, the `name` has to be unique
+But it is possible to add a subheader to an already defined header. Even 
+in this case, the `name` has to be unique
 
 ```console
 shell>php -q add_tree.php --type=node --node-type=header --tree-id=6 --parent-node=21  --name="SubHeader Test"
@@ -1007,9 +1008,9 @@ Added Node node-id: (22)
 
 ### Add a new Host Node to a Tree
 
-We will distinguish several options adding a host to a tree. First, let's add a
-Host directly to a tree. For this example, we use the tree id returned from
-adding our own `Test Tree Add` known with `id=6`
+We will distinguish several options adding a host to a tree. First, let's 
+add a Host directly to a tree. For this example, we use the tree id 
+returned from adding our own `Test Tree Add` known with `id=6`
 
 ```console
 shell>php -q add_tree.php --type=node --node-type=host --tree-id=6 --host-id=1
@@ -1017,8 +1018,8 @@ shell>php -q add_tree.php --type=node --node-type=host --tree-id=6 --host-id=1
 Added Node node-id: (23)
 ```
 
-As no `--parent-node` was given, this host is directly added to the tree itself.
-If you wish to add a host to a (sub)header specify as follows
+As no `--parent-node` was given, this host is directly added to the tree 
+itself. If you wish to add a host to a (sub)header specify as follows
 
 ```console
 shell>php -q add_tree.php --type=node --node-type=host --tree-id=6 --parent-node=21 --host-id=1
@@ -1026,9 +1027,9 @@ shell>php -q add_tree.php --type=node --node-type=host --tree-id=6 --parent-node
 Added Node node-id: (24)
 ```
 
-Both example come without a `--host-group-style` option. For those cases, `Graph
-Template` host group style is default. Here's an example for providing a host
-group option of `Data Query Index` instead
+Both example come without a `--host-group-style` option. For those cases, 
+`Graph Template` host group style is default. Here's an example for 
+providing a host group option of `Data Query Index` instead
 
 ```console
 shell>php -q add_tree.php --type=node --node-type=host --tree-id=6 --parent-node=22 --host-id=1 --host-group-style=2
@@ -1038,9 +1039,9 @@ Added Node node-id: (25)
 
 ### Add a new Graph Node to a Tree
 
-Like above, instead of hosts it is possible to add a single graph to a tree or a
-(sub)header of any tree. Of course, you again will require the `id` of the tree
-and optionally of the `header`. This results in
+Like above, instead of hosts it is possible to add a single graph to a 
+tree or a (sub)header of any tree. Of course, you again will require the 
+`id` of the tree and optionally of the `header`. This results in
 
 ```console
 shell>php -q add_tree.php --type=node --node-type=graph --tree-id=6 --graph-id=5
@@ -1048,8 +1049,8 @@ shell>php -q add_tree.php --type=node --node-type=graph --tree-id=6 --graph-id=5
 Added Node node-id: (26)
 ```
 
-Like above, this graph now was added directly to the tree itself. To add a graph
-to a header, proceed as follows
+Like above, this graph now was added directly to the tree itself. To add 
+a graph to a header, proceed as follows
 
 ```console
 shell>php -q add_tree.php --type=node --node-type=graph --tree-id=6 --parent-node=21 --graph-id=5
@@ -1057,8 +1058,8 @@ shell>php -q add_tree.php --type=node --node-type=graph --tree-id=6 --parent-nod
 Added Node node-id: (27)
 ```
 
-In both cases, no explicit `--rra-id` was given. This will default to the Daily
-(5 Minute Average). Specify any other `--rra-id` as given
+In both cases, no explicit `--rra-id` was given. This will default to the 
+Daily (5 Minute Average). Specify any other `--rra-id` as given
 
 ```console
 shell>php -q add_tree.php --type=node --node-type=graph --tree-id=6 --parent-node=21 --graph-id=1 --rra-id=4
@@ -1070,9 +1071,9 @@ to provide the `--rra-id` for a rra of Yearly (1 Day Average).
 
 ## Add Graph Permissions
 
-This script is used to specify special graph permissions to users. The list of
-parameters is displyed as usual when calling the script with the parameter
-`--help`
+This script is used to specify special graph permissions to users. The 
+list of parameters is displyed as usual when calling the script with the 
+parameter `--help`
 
 ```console
 shell>php -q add_perms.php --help
@@ -1164,54 +1165,56 @@ Known Host Graphs: (id, name, template)
 
 ### Add Graph Permissions to specific Users
 
-There are various ways to define graph permissions to specific users. First, we
-will add graph permissions for a given host. This is done using the parameter
-`--item-type=host` as follows
+There are various ways to define graph permissions to specific users. 
+First, we will add graph permissions for a given host. This is done using 
+the parameter `--item-type=host` as follows
 
 ```console
 shell>php -q add_perms.php --user-id=4 --item-type=host --item-id=1
 ```
 
-`--user-id=4` must specify an existing users. Else, an error message will be
-printed. As `--item-type=host` is given, `--item-id=1` must specify a valid
-host. Again, if no host with this specific id exists, an error message will be
-printed. No output is produced on successful operations.
+`--user-id=4` must specify an existing users. Else, an error message will 
+be printed. As `--item-type=host` is given, `--item-id=1` must specify a 
+valid host. Again, if no host with this specific id exists, an error 
+message will be printed. No output is produced on successful operations.
 
-Next, we will add graph permissions for a given tree. This is done using the
-parameter `--item-type=tree` as follows
+Next, we will add graph permissions for a given tree. This is done using 
+the parameter `--item-type=tree` as follows
 
 ```console
 shell>php -q add_perms.php --user-id=4 --item-type=tree --item-id=1
 ```
 
-`--user-id=4` must specify an existing users. Else, an error message will be
-printed. As `--item-type=tree` is given, `--item-id=1` must specify a valid tree
-(the Default Tree in this case). Again, if no tree with this specific id exists,
-an error message will be printed. No output is produced on successful
-operations.
+`--user-id=4` must specify an existing users. Else, an error message will 
+be printed. As `--item-type=tree` is given, `--item-id=1` must specify a 
+valid tree (the Default Tree in this case). Again, if no tree with this 
+specific id exists, an error message will be printed. No output is 
+produced on successful operations.
 
-Adding graph permissions for a given graph template is done using the parameter
-`--item-type=graph_template` as follows
+Adding graph permissions for a given graph template is done using the 
+parameter `--item-type=graph_template` as follows
 
 ```console
 shell>php -q add_perms.php --user-id=4 --item-type=graph_template --item-id=25
 ```
 
-`--user-id=4` must specify an existing users. Else, an error message will be
-printed. As `--item-type=graph_template` is given, `--item-id=1` must specify a
-valid graph_template (the Interface - Traffic (bytes/sec) in this case). Again,
-if no graph template with this specific id exists, an error message will be
-printed. No output is produced on successful operations.
+`--user-id=4` must specify an existing users. Else, an error message will 
+be printed. As `--item-type=graph_template` is given, `--item-id=1` must 
+specify a valid graph_template (the Interface - Traffic (bytes/sec) in 
+this case). Again, if no graph template with this specific id exists, an 
+error message will be printed. No output is produced on successful 
+operations.
 
-Last but not least we add graph permissions for a given graph by using the
-parameter `--item-type=graph` as follows
+Last but not least we add graph permissions for a given graph by using 
+the parameter `--item-type=graph` as follows
 
 ```console
 shell>php -q add_perms.php --user-id=4 --item-type=graph --item-id=8
 ```
 
-`--user-id=4` must specify an existing users. Else, an error message will be
-printed. As `--item-type=graph` is given, `--item-id=1` must specify a valid
-graph. Again, if no graph template with this specific id exists, an error
-message will be printed. No output is produced on successful operations.
+`--user-id=4` must specify an existing users. Else, an error message will 
+be printed. As `--item-type=graph` is given, `--item-id=1` must specify a 
+valid graph. Again, if no graph template with this specific id exists, an 
+error message will be printed. No output is produced on successful 
+operations.
 
