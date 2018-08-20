@@ -402,6 +402,7 @@ host template None, either provide the parameter `--template=0` or omit this
 parameter.
 
 ### List all Community Strings
+
 ```console
 shell>php -q add_device.php --list-communities
 
