@@ -1,6 +1,6 @@
-![Cacti](images/logo.png)
+# Cacti (tm) Documentation
 
-# Cacti <sup>tm</sup> Documentation
+![Cacti](images/logo.png)
 
 ## Table of Contents
 
