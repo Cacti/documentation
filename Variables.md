@@ -142,7 +142,7 @@ which host fields the correspond to.
 ###### Table 15-4. Host Variables
 
 Variable Name | Description
-: --- | : ---
+:--- | :---
 \|host_availability\| | Availability of host
 \|host_avg_time\| | Average time for host
 \|host_cur_time\| | Current time for host
