@@ -249,3 +249,5 @@ therefor recommended to provide `/full/path/to/external/command`
 
 User "criggie" reported an issue with running smartctl. It was complaining "you
 are not root" so a quick `chmod +s` on the script fixed that problem.
+
+Copyright (c) 2018 Cacti Group

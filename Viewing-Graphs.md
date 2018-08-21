@@ -32,3 +32,5 @@ Please note the "++" and the "--" buttons. They will help you managing large
 trees. Pressing the "--" will collapse all tree levels while "++" expands all
 of them. You may expand each single subtree of a collapsed tree to reorder, add
 or delete entries without much scrolling.
+
+Copyright (c) 2018 Cacti Group

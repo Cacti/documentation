@@ -8,3 +8,5 @@ Cacti requires that the following software is installed on your system.
 - Web Server that supports PHP e.g. Apache, Nginx, or IIS
 - Build environment when using spine (gcc, automake, autoconf, libtool,
   help2man)
+
+Copyright (c) 2018 Cacti Group

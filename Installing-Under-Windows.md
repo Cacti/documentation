@@ -389,3 +389,5 @@ Processes:1 Threads:N/A Hosts:1 HostsPerProcess:2 DataSources:4 RRDsProcessed:2
        `c:\php\php.exe c:\mycacti\website\cacti\poller.php`
 
        The start in box should say `c:\mycacti\website\cacti`.
+
+Copyright (c) 2018 Cacti Group

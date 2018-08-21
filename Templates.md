@@ -240,3 +240,5 @@ You may select to export a graph template, a data template, a host template or
 a data query. When selecting `Include Dependencies`, e.g. a host template will
 include all referred templates (graph template, data template and, if defined,
 data query). Output may be written to the browser or to a file for uploading.
+
+Copyright (c) 2018 Cacti Group

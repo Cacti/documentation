@@ -124,3 +124,5 @@ query to hosts.
    </fields>
 </query>
 ~~~
+
+Copyright (c) 2018 Cacti Group

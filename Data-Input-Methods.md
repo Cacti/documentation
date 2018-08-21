@@ -79,3 +79,5 @@ One last thing to keep in mind when writing scripts for Cacti is that they will
 be executed as the user the data gatherer runs as. Sometimes a script may work
 correctly when executed as root, but fails due to permissions problems when
 executed as a less privileged user.
+
+Copyright (c) 2018 Cacti Group

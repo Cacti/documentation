@@ -555,3 +555,5 @@ items to the top. I've chosen opacity of `20%` for Item numbers 1 to 3.
 | Item # 5   | (proc): Current:          | GPRINT          | LAST    |            |
 | Item # 6   | (proc): Average:          | GPRINT          | AVERAGE |            |
 | Item # 7   | (proc): Maximum:          | GPRINT          | MAX     |            |
+
+Copyright (c) 2018 Cacti Group

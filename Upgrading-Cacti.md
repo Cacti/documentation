@@ -87,3 +87,5 @@
 
     Follow the on-screen instructions so your database can be updated to the
     new version.
+
+Copyright (c) 2018 Cacti Group

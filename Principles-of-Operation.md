@@ -48,3 +48,5 @@ Graphing can be done in very different ways. It is possible, to graph one or
 many items in one graph. Autoscaling is supported and logarithmic y-axis as
 well. You may stack items onto another and print pretty legends denoting
 characteristics such as minimum, average, maximum and lots more.
+
+Copyright (c) 2018 Cacti Group

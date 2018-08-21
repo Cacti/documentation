@@ -185,3 +185,5 @@ system. Once you have created the "Guest" user, you need to tell Cacti what the
 "Guest" user is. This is done by updating the Authenication Settings and
 selecting the "Guest" user you have designated. The "Guest" user must be
 enabled and be set as the guest user for anonymous access to work.
+
+Copyright (c) 2018 Cacti Group

@@ -280,3 +280,5 @@ called.
    - Now be patient. Hit your refresh button every few minutes. After the
      first poll I got a few empty graphs. A few minutes later data started
      showing up.
+
+Copyright (c) 2018 Cacti Group

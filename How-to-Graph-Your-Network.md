@@ -221,3 +221,5 @@ actually create your graphs.
 If you would like to edit or delete your graphs after they have been created,
 use the Graph Management item on the menu. Likewise, the Data Source menu item
 allows you to manage your data sources in Cacti.
+
+Copyright (c) 2018 Cacti Group

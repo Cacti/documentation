@@ -1219,3 +1219,4 @@ valid graph. Again, if no graph template with this specific id exists, an
 error message will be printed. No output is produced on successful
 operations.
 
+Copyright (c) 2018 Cacti Group

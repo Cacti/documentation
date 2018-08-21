@@ -14,3 +14,5 @@ subsequent polling cycles.
 While Spine is really fast, choosing the correct setup will ensure, that all
 processor resources are used. Required settings for Maximum Concurrent Poller
 Processes are 1-2 times the number of CPU cores available for Spine.
+
+Copyright (c) 2018 Cacti Group
