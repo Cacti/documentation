@@ -23,11 +23,11 @@ for more details.
 Have a tested script ready to go. I used the following script located in
 `/home/cactiuser/bin` called `random2.pl`:
 
-~~~perl
+```perl
 #!/usr/bin/perl -w
 
 print int(rand(10));
-~~~
+```
 
 This script simply prints out a random integer between 0 and 9 every time it's
 called.

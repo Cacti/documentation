@@ -50,15 +50,15 @@ php.ini file.
 **A:** To reset the admin account password back to the default of 'admin',
 connect to your Cacti database at the command line.
 
-~~~sql
+```sql
 shell> mysql -u root -p cacti
-~~~
+```
 
 Now execute the following SQL:
 
-~~~sql
+```sql
 mysql> update user_auth set password=md5('admin') where username='admin';
-~~~
+```
 
 ## Monitoring
 
@@ -112,9 +112,9 @@ files in Cacti's 'rra/' directory.
 If all of your settings appear correct, try running poller.php manually by
 cd'ing to Cacti's directory and typing:
 
-~~~sh
+```sh
 shell> php poller.php
-~~~
+```
 
 If you have files in your 'rra/' directory, but your graphs still appear as
 broken images, you should enable graph debug mode see exactly why the graphs
@@ -130,9 +130,9 @@ be able to update these .rrd files because they are owned by root. You can
 double check the owner of your .rrd files by running the following command in
 your Cacti directory:
 
-~~~sh
+```sh
 shell> ls -al rra/
-~~~
+```
 
 If only some of your graphs are not updating correctly, double check the
 Maximum Value field for all data sources used by these graphs. If the value

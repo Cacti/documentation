@@ -63,7 +63,7 @@ that the target device in question supports and is configured for SNMP V3 use.
 In general, configuration of V3 options is target type dependant. The following
 is cited from `man snmpd.conf` concerning user definitions
 
-~~~sh
+```sh
 SNMPv3 Users
     createUser [-e ENGINEID] username (MD5|SHA) authpassphrase [DES|AES] [privpassphrase]
 
@@ -78,11 +78,11 @@ SNMPv3 Users
            OpenSSL.
 
            Warning: the minimum pass phrase length is 8 characters.
-~~~
+```
 
 VACM directives are explained from `man snmpd.conf` as follows
 
-~~~sh
+```sh
 VACM Configuration
     The full flexibility of the VACM is available using four configuration directives -
     com2sec, group,  view and access.  These provide direct configuration of the underlying
@@ -136,12 +136,12 @@ VACM Configuration
            READ, WRITE and NOTIFY specifies the view to be used for GET*, SET and
            TRAP/INFORM requests (althought the NOTIFY view is not currently used).  For
            v1 or v2c access, LEVEL will need to be noauth.
-~~~
+```
 
 As an example, following definitions in the snmpd configuration create a set of
 definitions for use with SNMP V3
 
-~~~ini
+```ini
 # sample configuration for SNMP V3
 
 # create an SNMP V3 user with an authpassphrase and a privacy passphrase
@@ -166,12 +166,12 @@ view    all included   .iso      80
 ##                context sec.model sec.level prefix read   write  notif
 ##                ------- --------- --------- ------ ----   -----  -----
 access groupv3    ""      any       auth      exact  all    all    all
-~~~
+```
 
 When adding this stuff to your snmp configuration, please remember to restart
 the agent. Verify this setting using
 
-~~~sh
+```sh
 shell>snmpwalk -v 3 -a MD5 -A myauthpass -x DES -X myprivpass -u gandalf -l authpriv localhost interface
 IF-MIB::ifNumber.0 = INTEGER: 3
 IF-MIB::ifIndex.1 = INTEGER: 1
@@ -184,7 +184,7 @@ IF-MIB::ifType.1 = INTEGER: softwareLoopback(24)
 IF-MIB::ifType.2 = INTEGER: other(1)
 IF-MIB::ifType.3 = INTEGER: ethernetCsmacd(6)
 ...
-~~~
+```
 
 ## Creating the Graphs
 

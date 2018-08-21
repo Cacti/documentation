@@ -85,7 +85,7 @@ for this discussion it is very valuable. Item numbers 21-24 are related to a
 
 And this is the rrd graph statement:
 
-~~~sh
+```sh
 /usr/bin/rrdtool graph - \
 --imgformat=PNG \
 --start=-86400 \
@@ -135,7 +135,7 @@ LINE1:cdefca#000000FF:"AllDsNoDups" \
 GPRINT:cdefca:LAST:"        Current:%8.2lf%s" \
 GPRINT:cdefca:AVERAGE:"Average:%8.2lf%s" \
 GPRINT:cdefca:MAX:"Maximum:%8.2lf%sn"
-~~~
+```
 
 The data sources are denoted by the letters `a` to `h`. `cdefca` represents
 the important part. You surely notice, that all data sources using
@@ -178,7 +178,7 @@ this discussion it is very valuable. Item numbers 21-24 are related to a
 
 And this is the rrd graph statement:
 
-~~~sh
+```sh
 /usr/bin/rrdtool graph - \
 --imgformat=PNG \
 --start=-86400 \
@@ -228,7 +228,7 @@ LINE1:cdefca#000000FF:"AllDsDups" \
 GPRINT:cdefca:LAST:"             Current:%8.2lf%s" \
 GPRINT:cdefca:AVERAGE:"Average:%8.2lf%s" \
 GPRINT:cdefca:MAX:"Maximum:%8.2lf%sn"
-~~~
+```
 
 Again, the data sources are denoted by the letters `a` to `h` and `cdefca`
 represents the important part. Please pay attention to the data source denoted
@@ -271,7 +271,7 @@ long as you only choose a `traffic_in` data source)
 
 And this is the rrd graph statement:
 
-~~~sh
+```sh
 /usr/bin/rrdtool graph - \
 --imgformat=PNG \
 --start=-86400 \
@@ -323,7 +323,7 @@ LINE1:cdefca#000000FF:"SimilarDsNoDups" \
 GPRINT:cdefca:LAST:"           Current:%8.2lf%s" \
 GPRINT:cdefca:AVERAGE:"Average:%8.2lf%s" \
 GPRINT:cdefcd:MAX:"Maximum:%8.2lf%sn"
-~~~
+```
 
 `cdefca` calculates the `SUM` of `all traffic_in` data sources, but pays
 attention only to consolidation function `AVERAGE`. Duplicate suppression makes
@@ -375,7 +375,7 @@ data source)
 
 And this is the rrd graph statement:
 
-~~~sh
+```sh
 /usr/bin/rrdtool graph - \
 --imgformat=PNG \
 --start=-86400 \
@@ -426,7 +426,7 @@ LINE1:cdefca#000000FF:"SimilarDsDups" \
 GPRINT:cdefca:LAST:Current:%8.2lf%s" \
 GPRINT:cdefca:AVERAGE:"Average:%8.2lf%s" \
 GPRINT:cdefcd:MAX:"Maximum:%8.2lf%sn"
-~~~
+```
 
 `cdefca` and `cdefcd` represents the important part. You surely notice, that all
 data sources using consolidation function AVERAGE are taken into account for
@@ -481,7 +481,7 @@ the color is set to `red (FF0000)`.
 
 And this is the rrd graph statement:
 
-~~~sh
+```sh
 /usr/bin/rrdtool graph - \
 --imgformat=PNG \
 --start=-86400 \
@@ -507,7 +507,7 @@ CDEF:cdefc=a,TIME,1203272123,GT,a,a,UN,0,a,IF,IF,TIME,1203272123,GT,b,b,UN,0,b,I
 LINE1:cdefa:"" \
 LINE1:cdefb:"" \
 AREA:cdefc#FF0000FF:"% Used"
-~~~
+```
 
 `cdefa` and `cdefb` are used to make the according graph items zero. `cdefc`
 performs the percentage calculation.

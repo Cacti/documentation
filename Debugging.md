@@ -25,21 +25,21 @@ For scripts, run them as cactiuser from cli to check basic functionality. E.g.
 for a perl script named `your-perl-script.pl` with parameters "p1 p2" under
 *nix this would look like:
 
-~~~sh
+```sh
 su - cactiuser
 /full/path/to/perl your-perl-script.pl p1 p2
 ... (check output)
-~~~
+```
 
 For snmp, snmpget the _exact_ OID you're asking for, using same community
 string and snmp version as defined within cacti. For an OID of
 `.1.3.6.1.4.something`, community string of `very-secret` and version 2 for
 target host `target-host` this would look like
 
-~~~sh
+```sh
 snmpget -c very-secret -v 2c target-host .1.3.6.1.4.something
 .... (check output)
-~~~
+```
 
 ## Check cacti's poller
 
@@ -67,15 +67,15 @@ This procedure may be replaced by running the poller manually for the failing
 host only. To do so, you need the `<id>`, again. If you're using cmd.php, set the
 DEBUG logging level as defined above and run
 
-~~~sh
+```sh
 php -q cmd.php <id> <id>
-~~~
+```
 
 If you're using cactid, you may override logging level when calling the poller:
 
-~~~sh
+```sh
 ./cactid --verbosity=5 <id> <id>
-~~~
+```
 
 All output is printed to STDOUT in both cases. This procdure allows for
 repeated tests without waiting for the next polling interval. And there's no
@@ -96,9 +96,9 @@ done from some tool like phpMyAdmin. Check the sql return code.
 
 Down in the same log, you should find some
 
-~~~sh
+```sh
 rrdtool update <filename> --template ...
-~~~
+```
 
 You should find exactly one update statement for each file.
 
@@ -111,7 +111,7 @@ search for your target. Does the query show up here?
 If rrd files were created e.g. with root ownership, a poller running as
 cactiuser will not be able to update those files
 
-~~~sh
+```sh
 cd /var/www/html/cacti/rra
 ls -l localhost*
 -rw-r--r--  1 root      root      463824 May 31 12:40 localhost_load_1min_5.rrd
@@ -119,13 +119,13 @@ ls -l localhost*
 -rw-r--r--  1 cactiuser cactiuser 155584 Jun  1 17:10 localhost_mem_swap_4.rrd
 -rw-r--r--  1 cactiuser cactiuser 155584 Jun  1 17:10 localhost_proc_7.rrd
 -rw-r--r--  1 cactiuser cactiuser 155584 Jun  1 17:10 localhost_users_6.rrd
-~~~
+```
 
 Run the following command to cure this problem
 
-~~~sh
+```sh
 chown cactiuser:cactiuser *.rrd
-~~~
+```
 
 ## Check rrd file numbers
 
@@ -136,22 +136,22 @@ exceeded.
 
 Assuming, you've got some valid `rrdtool update` in step 3, perform a
 
-~~~sh
+```sh
 rrdtool fetch <rrd file> AVERAGE
-~~~
+```
 
 and look at the last 10-20 lines. If you find NaN's there, perform
 
-~~~sh
+```sh
 rrdtool info <rrd file>
-~~~
+```
 
 and check the `ds[...].min` and `ds[...].max` entries, e.g.
 
-~~~sh
+```sh
 ds[loss].min = 0.0000000000e+00
 ds[loss].max = 1.0000000000e+02
-~~~
+```
 
 In this example, MINIMUM = 0 and MAXIMUM = 100. For a `ds.[...].type=GAUGE`
 verify, that e.g. the number returned by the script does not exceed
@@ -160,9 +160,9 @@ verify, that e.g. the number returned by the script does not exceed
 If you run into this, not only should you update the data source definition
 within the Data Template, but also perform a:
 
-~~~sh
+```sh
 rrdtool tune <rrd file> --maximum <ds-name>:<new ds maximum>
-~~~
+```
 
 for all existing rrd files belonging to that Data Template.
 
@@ -193,15 +193,15 @@ to at least 64 MB.
 
 To check this, run the following sql from mysql cli (or phpmyadmin or the like)
 
-~~~sql
+```sql
 select count(*) from poller_output;
-~~~
+```
 
 If the result is huge, you may get rid of those stuff by
 
-~~~sql
+```sql
 truncate table poller_output;
-~~~
+```
 
 As of current SVN code for upcoming cacti 0.9, I saw measures were taken on
 both issues (memory size, truncating poller_output).
@@ -219,13 +219,13 @@ I've chosen `/etc/cron.d/cacti` to avoid problems when updating rpm's. Mosten
 often, you won't remember this item when updating lots of rpm's, so I felt more
 secure to put it here. And I've made some slight modifications, see
 
-~~~sh
+```sh
 shell> vi /etc/cron.d/cacti
-~~~
+```
 
-~~~ini
+```ini
 */5 * * * *     cactiuser       /usr/bin/php -q /var/www/html/cacti/poller.php > /var/local/log/poller.log 2>&1
-~~~
+```
 
 This will produce a file `/var/local/log/poller.log`, which includes some
 additional informations from each poller's run, such as rrdtool errors. It
@@ -233,13 +233,13 @@ occupies only some few bytes and will be overwritten each time.
 
 If you're using the crontab of user "cactiuser" instead, this will look like
 
-~~~sh
+```sh
 shell> crontab -e -u cactiuser
-~~~
+```
 
-~~~ini
+```ini
 */5 * * * *     /usr/bin/php -q /var/www/html/cacti/poller.php > /var/local/log/poller.log 2>&1
-~~~
+```
 
 ## Not NaN, but 0 (zero) values
 

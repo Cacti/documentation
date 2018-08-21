@@ -52,13 +52,13 @@ The following changes will be required regardless of your selected Webserver.
 
    Uncomment the following lines.
 
-   ~~~ini
+   ```ini
    extension_dir = c:phpext
    extension=php_mysql.dll
    extension=php_snmp.dll
    extension=php_sockets.dll
    cgi.force_redirect = 0
-   ~~~
+   ```
 
 5. In earlier installation guides to PHP, they recommended moving certain
    DLL's to the `c:\winnt\system32` directory. If so, you will have to
@@ -67,9 +67,9 @@ The following changes will be required regardless of your selected Webserver.
 
 6. If you want to allow template importing, uncomment the following line:
 
-   ~~~ini
+   ```ini
    file_uploads = On
-   ~~~
+   ```
 
 7. Give the user who will be running the scheduled task, modify rights to the
    `.index` file in the location pointed to by the `MIBDIRS` Windows System
@@ -82,11 +82,11 @@ The following changes will be required regardless of your selected Webserver.
 
 2. If using Apache 2.x and PHP 5, then add the following lines.
 
-~~~ini
+```ini
 LoadModule php5_module c:\php\php5\apache2.dll
 AddType application/x-httpd-php .php
 DirectoryIndex index.html index.htm index.php
-~~~
+```
 
 ## IIS Specific Steps
 
@@ -116,10 +116,10 @@ DirectoryIndex index.html index.htm index.php
 
 8. Completely stop and start the IIS service using the following commands:
 
-~~~batchfile
+```batchfile
 net stop iisadmin
 net start w3svc
-~~~
+```
 
 ## Cygwin Installation Steps for spine and rrdtool
 
@@ -195,35 +195,35 @@ net start w3svc
 
 4. Set a password for the root user
 
-~~~sh
+```sh
 shell> cd mysqlbin
 shell> mysqladmin --user=root password somepassword
 shell> mysqladmin --user=root --password reload
-~~~
+```
 
 5. Create the MySQL database:
 
-~~~sh
+```sh
 shell> mysqladmin --user=root --password create cacti
-~~~
+```
 
 6. Import the default Cacti database:
 
-~~~sh
+```sh
 shell> mysql --user=root --password cacti < c:\apache2\htdocs\cacti\cacti.sql
-~~~
+```
 
 7. Create a MySQL username and password for Cacti.
 
-~~~sh
+```sh
 shell> mysql --user=root --password mysql
-~~~
+```
 
-~~~sql
+```sql
 mysql> GRANT ALL ON cacti.* TO cactiuser@localhost IDENTIFIED BY 'somepassword';
 mysql> GRANT SELECT ON mysql.time_zone_name TO cactiuser@localhost IDENTIFIED BY 'somepassword';
 mysql> flush privileges;
-~~~
+```
 
 ## Net-SNMP Installation
 
@@ -239,13 +239,13 @@ mysql> flush privileges;
 1. Extract the Spine zip file to `c:\cacti` and modify the `spine.conf.dist`
    file to include the following statements.
 
-~~~ini
+```ini
 DB_Host  127.0.0.1 or hostname (not localhost)
 DB_Database cacti
 DB_User     cactiuser
 DB_Password cacti
 DB_Port     3306
-~~~
+```
 
    All other pre 0.8.6 settings are obsolete.
 
@@ -258,13 +258,13 @@ DB_Port     3306
 1. Edit `cacti_web_root/cacti/include/config.php` and specify the MySQL user,
    password, database, and database port for your Cacti configuration.
 
-~~~php
+```php
 $database_default = "cacti";
 $database_hostname = "localhost";
 $database_username = "cactiuser";
 $database_password = "cacti";
 $database_port = "3306";
-~~~
+```
 
 2. Point your web browser to:
 
@@ -320,13 +320,13 @@ $database_port = "3306";
    starting a Cacti polling cycle works. Do this by running the following from
    the command prompt:
 
-~~~sh
+```sh
 php c:/cacti_web_root/cacti/poller.php
-~~~
+```
 
    The output should look something like the following:
 
-~~~sh
+```sh
 C:\>php c:inetpubwwwrootcactipoller.php
 OK u:0.00 s:0.06 r:1.32
 OK u:0.00 s:0.06 r:1.32
@@ -334,7 +334,7 @@ OK u:0.00 s:0.16 r:2.59
 OK u:0.00 s:0.17 r:2.62
 10/28/2005 04:57:12 PM - SYSTEM STATS: Time:4.7272 Method:cmd.php
 Processes:1 Threads:N/A Hosts:1 HostsPerProcess:2 DataSources:4 RRDsProcessed:2
-~~~
+```
 
    After this has ran once, you should have `cacti.log` in `/cacti/log/` and
    rrd files in `/cacti/rra/`.

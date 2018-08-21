@@ -88,7 +88,7 @@ Script Server. Follow the steps below to complete.
 2. Edit the new PHP script and add the following required lines to the file,
    where `ss_myfunction` is the same as your filename.
 
-~~~php
+```php
 <?php
 $no_http_headers = true;
 
@@ -102,29 +102,29 @@ if (!isset($called_by_script_server)) {
     array_shift($_SERVER["argv"]);
     print call_user_func_array("ss_myfunction", $_SERVER["argv"]);
 }
-~~~
+```
 
 3. What was originally just mainline code, must be replaced with a function
    name. For example, if your program previously contained the following three
    lines of code:
 
-~~~php
+```php
 <?php
 $a = 100;
 $b = $a / 10;
 print $b;
 ?>
-~~~
+```
 
    Would become:
 
-~~~php
+```php
 function ss_myfunction() {
     $a = 100;
     $b = $a / 10;
     Print $b;
 }
-~~~
+```
 
 4. If you have any additional functions declared within your script file, you
    must prefix them to make them unique amongst all functions. Our
@@ -139,19 +139,19 @@ function ss_myfunction() {
    instead. However, this does not apply to `print` statements that are not
    called from the Poller. For a simple script, this results in
 
-~~~php
+```php
 function ss_myfunction() {
     $a = 100;
     $b = $a / 10;
     Return $b;
 }
-~~~
+```
 
    Be careful, when writing Script Server Data Queries. Use the `return`
    function for returning results of the GET operation. But use `print` for
    `index` and `query` operations, e.g.
 
-~~~php
+```php
 if (($cmd == "index")) {
     ...
     print $some_index_data . "n";
@@ -162,7 +162,7 @@ if (($cmd == "index")) {
     ...
     result $some_get_data;
 }
-~~~
+```
 
 ### XML File Changes
 
@@ -183,10 +183,10 @@ below:
 2. Add the following two XML tags below the `<script_path>` tag. Replace
    `ss_myfunction` with your function name:
 
-    ~~~xml
+    ```xml
     <script_function>ss_myfunction</script_function>
     <script_server>php</script_server>
-    ~~~
+    ```
 
 3. Save the XML file.
 
@@ -224,15 +224,15 @@ Server command line to exit the script server.
 2. Type in your command - Using the example from above, you would type in the
    following:
 
-   ~~~sh
+   ```sh
    script server> <path_myfunction> my_function argument1 argument2 ...
-   ~~~
+   ```
 
    In the Windows environment, your example could be the following:
 
-   ~~~sh
+   ```sh
    script server> c:\www\root\cacti\script\ss_myfunction.php ss_myfunction localhost public 1 get duddle
-   ~~~
+   ```
 
 3. If your function is operating properly, you should get a result.
 

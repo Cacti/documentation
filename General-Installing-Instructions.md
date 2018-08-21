@@ -100,14 +100,14 @@ variants.  So, the instructions may vary.
 Find the file `/etc/httpd/conf/httpd.conf` or its equivalent and make the
 following changes to it:
 
-~~~ini
+```ini
 # Load config files from the config directory "/etc/httpd/conf.d".
 Include conf.d/*.conf
-~~~
+```
 
 Now, locate the PHP configuration file at `/etc/httpd/conf.d/php.conf`
 
-~~~ini
+```ini
 # PHP is an HTML-embedded scripting language which attempts to make it
 # easy for developers to write dynamically generated webpages.
 LoadModule php_module modules/libphp.so
@@ -119,7 +119,7 @@ AddType text/html .php
 # Add index.php to the list of files that will be served as directory
 # indexes.
 DirectoryIndex index.php
-~~~
+```
 
 ## Configure MySQL/MariaDB
 
@@ -127,18 +127,18 @@ Set a password for the root user, and record this password.  If you loose
 control of this password, you may have to re-install your database server in
 the case of any system disaster or recovering from a crash.
 
-~~~sh
+```sh
 shell> mysqladmin --user=root password somepassword
 shell> mysqladmin --user=root --password reload
-~~~
+```
 
 You must also load timezone information into the database.  This is required
 for various plugin use.  Later, you will be required to grant access to the
 `time_zone_name` table during the final installation steps.
 
-~~~sh
+```sh
 shell> mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql
-~~~
+```
 
 Since Cacti 1.x is supporting internationalization (i18n), it is important that
 the default character set for MySQL or MariaDB be i18n compatible.  The Cacti
@@ -156,7 +156,7 @@ installation or update. After the installation/update login to your MySQL
 server and execute the following commands to update those tables to use the
 InnoDB engine:
 
-~~~sql
+```sql
 MariaDB [(none)]> use cacti;
 MariaDB [cacti]>> ALTER TABLE `automation_ips` ENGINE=InnoDB;
 MariaDB [cacti]>> ALTER TABLE `automation_processes` ENGINE=InnoDB;
@@ -164,7 +164,7 @@ MariaDB [cacti]>> ALTER TABLE `data_source_stats_hourly_cache` ENGINE=InnoDB;
 MariaDB [cacti]>> ALTER TABLE `data_source_stats_hourly_last` ENGINE=InnoDB;
 MariaDB [cacti]>> ALTER TABLE `poller_output` ENGINE=InnoDB;
 MariaDB [cacti]>> ALTER TABLE `poller_output_boost_processes` ENGINE=InnoDB;
-~~~
+```
 
 These changes should replicate to the other nodes in your cluster. Allow Cacti
 to run at least two or three full polling cycles before placing the other nodes
@@ -174,58 +174,58 @@ back into rotation.
 
 1. Extract the distribution tarball.
 
-~~~sh
+```sh
 shell> tar xzvf cacti-version.tar.gz
-~~~
+```
 
 2. Create the MySQL database:
 
-~~~sh
+```sh
 shell> mysqladmin --user=root create cacti
-~~~
+```
 
 3. Import the default cacti database:
 
-~~~sh
+```sh
 shell> mysql cacti < cacti.sql
-~~~
+```
 
 4. Optional: Create a MySQL username and password for Cacti.
 
-~~~sql
+```sql
 shell> mysql --user=root mysql
 mysql> GRANT ALL ON cacti.* TO cactiuser@localhost IDENTIFIED BY 'somepassword';
 mysql> GRANT SELECT ON mysql.time_zone_name TO cactiuser@localhost IDENTIFIED BY 'somepassword';
 mysql> flush privileges;
-~~~
+```
 
 5. Edit `include/config.php` and specify the database type, name, host, user
    and password for your Cacti configuration.
 
-~~~php
+```php
 $database_type = "mysql";
 $database_default = "cacti";
 $database_hostname = "localhost";
 $database_username = "cactiuser";
 $database_password = "cacti";
-~~~
+```
 
 6. Set the appropriate permissions on Cacti's directories for graph/log
    generation. You should execute these commands from inside Cacti's directory
    to change the permissions.
 
-~~~sh
+```sh
 shell> chown -R cactiuser rra/ log/ cache/
-~~~
+```
 
    (Enter a valid username for *cactiuser*, this user will also be used in the
    next step for data gathering.)
 
 7. Create a new file `/etc/cron.d/cacti` and add to it:
 
-~~~ini
+```ini
 */5 * * * * cactiuser php <path_cacti>/poller.php > /dev/null 2>&1
-~~~
+```
 
    Replace *cactiuser* with the valid user specified in the previous step.
 
@@ -234,9 +234,9 @@ shell> chown -R cactiuser rra/ log/ cache/
 8. During install, you will need to provide write access to the following
    files and directories:
 
-~~~sh
+```sh
 shell> chown -R resource scripts include/config.php
-~~~
+```
 
    Once the installation is complete, you may change the permissions to
     more restrictive settings.
@@ -261,9 +261,9 @@ for Spine at the main cacti site or from your distribution.
 To compile Spine, download it to any location of your liking. Then, issue from
 the downloaded directory following commands
 
-~~~sh
+```sh
 shell>./bootstrap
-~~~
+```
 
 If the `boostrap` script is successful, you then will follow the instructions
 it provides to compile and install.
@@ -272,12 +272,12 @@ Assuming, you've managed to install spine correctly, you will have to configure
 it. The configuration file may be placed in the same directory as spine itself
 or at /etc/spine.conf.
 
-~~~ini
+```ini
 DB_Host  127.0.0.1 or hostname (not localhost)
 DB_Database cacti
 DB_User     cactiuser
 DB_Password cacti
 DB_Port     3306
-~~~
+```
 
 Copyright (c) 2018 Cacti Group

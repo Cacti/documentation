@@ -75,7 +75,7 @@ query to hosts.
 
 ### SNMP Query XML Syntax
 
-~~~xml
+```xml
 <query>
    <name>Get SNMP Interfaces</name>
    <description>Queries a host for a list of monitorable interfaces</description>
@@ -97,11 +97,11 @@ query to hosts.
       </ifIndex>
    </fields>
 </query>
-~~~
+```
 
 ## Script Query XML Syntax
 
-~~~xml
+```xml
 <query>
    <name>Get Unix Mounted Partitions</name>
    <description>Queries a list of mounted partitions on a unix-based host  with the 'df' command.</description>
@@ -123,6 +123,6 @@ query to hosts.
       </dskDevice>
    </fields>
 </query>
-~~~
+```
 
 Copyright (c) 2018 Cacti Group

@@ -51,9 +51,9 @@ number of output fields that you define here is important to your script's
 output. For a data input method with only one output field, your script should
 output its value in the following format:
 
-~~~xml
+```xml
 <value_1>
-~~~
+```
 
 So if I wrote a script that outputs the number of running processes, its output
 might look like the following:
@@ -64,9 +64,9 @@ Data input methods with more than one output field are handled a bit
 differently when writing scripts. Scripts that output more than one value
 should be formatted like the following:
 
-~~~xml
+```xml
 <fieldname_1>:<value_1> <fieldname_2>:<value_2> ... <fieldname_n>:<value_n>
-~~~
+```
 
 Lets say that I write a script that outputs the 1, 5, and 10 minute load
 average of a Unix machine. In Cacti, I name the output fields '1min', '5min',
