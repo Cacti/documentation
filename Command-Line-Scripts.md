@@ -28,7 +28,7 @@ process in an internal format. It is possible, to review the currenty contents
 of the poller cache by visiting `System Utilities`, `View Poller Cache`. It is
 possible to apply filters to this view; it will show up like
 
-```console
+~~~console
 Localhost - Hard Drive Space    Script Server: /var/www/html/cacti/scripts/ss_host_disk.php ss_host_disk 127.0.0.1 1 1:161:500:somesecret:::::: get total 6
                                 RRD: /var/www/html/cacti/rra/localhost_hdd_total_61.rrd
 Localhost - Load Average        Script: /usr/bin/perl /var/www/html/cacti/scripts/loadavg_multi.pl
@@ -43,7 +43,7 @@ Localhost - mtaReceivedMessages SNMP Version: 1, Community: somesecret, OID: .1.
                                 RRD: /var/www/html/cacti/rra/localhost_mtareceivedmessages_47.rrd
 Localhost - mtaReceivedVolume   SNMP Version: 1, Community: somesecret, OID: .1.3.6.1.2.1.28.1.1.4.1
                                 RRD: /var/www/html/cacti/rra/localhost_mtareceivedvolume_49.rrd
-```
+~~~
 
 There are several circumstances, that may result in the poller cache being out
 of sync. An example would be a change of the name of a script used in a `Data
@@ -52,7 +52,7 @@ cache. It is required, to run `php -q rebuild poller_cache.php` manually.
 
 Calling the script with the parameter `--help` yields
 
-```console
+~~~console
 shell>php -q rebuild_poller_cache.php --help
 Cacti Rebuild Poller Cache Script 1.0, Copyright 2004-2018 - The Cacti Group
 
@@ -61,11 +61,11 @@ usage: rebuild_poller_cache.php [-d] [-h] [--help] [-v] [--version]
 -d            - Display verbose output during execution
 -v --version  - Display this help message
 -h --help     - Display this help message
-```
+~~~
 
 Debug mode lists the data sources items that are worked upon.
 
-```console
+~~~console
 shell>php -q rebuild_poller_cache.php -d
 WARNING: Do not interrupt this script.  Rebuilding the Poller Cache can take quite some time
 DEBUG: There are '38' data source elements to update.
@@ -74,16 +74,16 @@ DEBUG: Data Source Item '2' of '38' updated
 DEBUG: Data Source Item '3' of '38' updated
 DEBUG: Data Source Item '4' of '38' updated
 ....
-```
+~~~
 
 Without any parameter, some dots are shown as progress indicators.
 
-```console
+~~~console
 shell>php -q rebuild_poller_cache.php
 WARNING: Do not interrupt this script.  Rebuilding the Poller Cache can take quite some time
 ......................................
 shell>
-```
+~~~
 
 > **Caution**
 >
@@ -107,7 +107,7 @@ Verify All Fields | All index fields of the according XML file are checked for c
 If you feel the need for manual re-indexing, you may run it from cli. Calling
 the script with the parameter `--help` yields
 
-```console
+~~~console
 shell>php -q poller_reindex_hosts.php --help
 Cacti Reindex Host Script 1.2, Copyright 2004-2018 - The Cacti Group
 
@@ -120,30 +120,30 @@ usage: poller_reindex_hosts.php --id=[host_id|All] [--qid=[ID|All]] [--host-desc
 --debug                  - Display verbose output during execution
 -v --version             - Display this help message
 -h --help                - Display this help message
-```
+~~~
 
 Running it in debug mode for the host with `id=2` may yield
 
-```console
+~~~console
 shell>php -q poller_reindex_hosts.php -id=2 -d
 WARNING: Do not interrupt this script.  Reindexing can take quite some time
 DEBUG: There are '1' data queries to run
 DEBUG: Data query number '1' host: '2' SNMP Query Id: '1' starting
 DEBUG: Data query number '1' host: '2' SNMP Query Id: '1' ending
-```
+~~~
 
 A silent run for all devices is issued by
 
-```console
+~~~console
 shell>php -q poller_reindex_hosts.php -id=All
 WARNING: Do not interrupt this script.  Reindexing can take quite some time
 .....shell>
-```
+~~~
 
 You may run this script against a specific data query id using
 `--qid=[data query id]` like
 
-```console
+~~~console
 shell>php -q poller_reindex_hosts.php --id=All --qid=1 -d
 WARNING: Do not interrupt this script.  Reindexing can take quite some time
 DEBUG: There are '3' data queries to run
@@ -153,20 +153,20 @@ DEBUG: Data query number '2' host: '2' SNMP Query Id: '1' starting
 DEBUG: Data query number '2' host: '2' SNMP Query Id: '1' ending
 DEBUG: Data query number '3' host: '15' SNMP Query Id: '1' starting
 DEBUG: Data query number '3' host: '15' SNMP Query Id: '1' ending
-```
+~~~
 
 It is possible, to select a host based on its host description using
 `--host-descr=[host description]`. It is allowed to apply an SQL filter
 expression for the description like `--qid=some%descr`. Use this parameter in
 conjunction with either `--id=[host id]` or `--qid=[data query id]` or both:
 
-```console
+~~~console
 shell>php -q poller_reindex_hosts.php --id=All --qid=1 --host-descr=ga%f -d
 WARNING: Do not interrupt this script.  Reindexing can take quite some time
 DEBUG: There are '1' data queries to run
 DEBUG: Data query number '1' host: '2' SNMP Query Id: '1' starting
 DEBUG: Data query number '1' host: '2' SNMP Query Id: '1' ending
-```
+~~~
 
 > **Caution**
 >
@@ -188,7 +188,7 @@ issue occurs, you may save all pending updates *after increasing PHP memory
 appropriately* by running this very script. Calling the script with the
 parameter `--help` yields
 
-```console
+~~~console
 shell>php -q poller_output_empty.php --help
 Cacti Empty Poller Output Table Script 1.0, Copyright 2004-2018 - The Cacti Group
 
@@ -196,21 +196,21 @@ usage: poller_output_empty.php [-h] [--help] [-v] [--version]
 
 -v --version  - Display this help message
 -h --help     - Display this help message
-```
+~~~
 
 You see, no parameter is required for operating successfully. Under normal
 circumstances, running this script should yield
 
-```console
+~~~console
 shell>php -q poller_output_empty.php
 There were 0, RRD updates made this pass
 shell>
-```
+~~~
 
 In case, you hit the poller process or if the table was really not fully
 processed, you may find
 
-```console
+~~~console
 shell>php -q poller_output_empty.php
 OK u:0.00 s:0.00 r:0.04
 OK u:0.00 s:0.00 r:0.04
@@ -235,7 +235,7 @@ OK u:0.00 s:0.00 r:0.05
 OK u:0.00 s:0.01 r:0.06
 There were 21, RRD updates made this pass
 shell>
-```
+~~~
 
 If logging level verbosity was switched to `DEBUG` you may find
 additional debug messages that usually show up in `cacti.log`
@@ -248,7 +248,7 @@ a data query will not automatically be propagated to all existing graphs.
 This is, where poller_graphs_reapply_names.php drops in. Calling the
 script with the parameter `--help` yields
 
-```console
+~~~console
 shell>php -q poller_graphs_reapply_names.php --help
 Cacti Reapply Graph Names Script 1.0, Copyright 2004-2018 - The Cacti Group
 
@@ -259,13 +259,13 @@ usage: poller_graphs_reapply_names.php -id=[host_id|All][host_id1|host_id2|...] 
 -d            - Display verbose output during execution
 -v --version  - Display this help message
 -h --help     - Display this help message
-```
+~~~
 
 Assume a situation, where the suggested names where changed for the standard
 data query named `SNMP - Get Mounted Partitions`. In this case, you will want to
 rework all graphs for this data query only. A verbose run will yield
 
-```console
+~~~console
 shell>php -q poller_graphs_reapply_names.php -id=All -d -s="Used space"
 WARNING: Do not interrupt this script.  Interrupting during rename can cause issues
 DEBUG: There are '6' Graphs to rename
@@ -281,7 +281,7 @@ DEBUG: Graph Name 'Localhost - Used Space - /sys' starting
 DEBUG: Graph Rename Done for Graph 'Localhost - Used Space - /sys'
 DEBUG: Graph Name 'Localhost - Used Space - /boot' starting
 DEBUG: Graph Rename Done for Graph 'Localhost - Used Space - /boot'
-```
+~~~
 
 Notice the miss-spelling of the word “Space”. The `-s=` option is not case
 sensitive.
@@ -293,7 +293,7 @@ read [User Management](User-Management.md)
 
 Calling the script with the parameter `--help` yields
 
-```console
+~~~console
 shell>php -q copy_user.php --help
 Cacti Copy User Utility, Version 1.2.0, Copyright (C) 2004-2018 The Cacti Group
 usage: copy_cacti_user.php <template user> <new user>
@@ -302,18 +302,18 @@ A utility to copy on local Cacti user and their settings to a new one.
 
 NOTE: It is highly recommended that you use the web interface to copy users as
 this script will only copy Local Cacti users.
-```
+~~~
 
 Now let's create a new user Harry Potter as follows
 
-```console
+~~~console
 shell>php -q copy_user.php guest "Harry Potter"
 Template User: guest
 New User:      Harry Potter
 
 Copying User...
 User copied...
-```
+~~~
 
 Find the results of this program call at User Management
 
@@ -331,7 +331,7 @@ where the script `add_device.php` comes in. First, let's have a look at the
 whole list of features it provides. Calling the script with the parameter
 `--help` yields
 
-```console
+~~~console
 shell>php -q add_device.php --help
 Add Device Script 1.0, Copyright 2004-2018 - The Cacti Group
 
@@ -369,14 +369,14 @@ usage: add_device.php --description=[description] --ip=[IP] --template=[ID] [--n
         --list-host-templates
         --list-communities
         --quiet - batch mode value return
-```
+~~~
 
 Wow, that's quite a lot of options. To better understand it's use, let's first
 stick to the listing options
 
 ### List all Host Templates
 
-```console
+~~~console
 shell>php -q add_device.php --list-host-templates
 
 Valid Host Templates: (id, name)
@@ -387,7 +387,7 @@ Valid Host Templates: (id, name)
 6       Netware 4/5 Server
 7       Windows 2000/XP Host
 8       Local Linux Machine
-```
+~~~
 
 Why are those `Host Templates` of such importance for this script? Well, when
 using this script to add a new device, there are 3 required parameters. The
@@ -403,13 +403,13 @@ parameter.
 
 ### List all Community Strings
 
-```console
+~~~console
 shell>php -q add_device.php --list-communities
 
 Known communities are: (community)
     public
     snmp-get
-```
+~~~
 
 Of course, your list will vary
 
@@ -421,12 +421,12 @@ shall be `"Device Add Test"`, the ip will be given as a FQDN,
 to be provided; in this case given as `public`. In total, this makes the
 following command
 
-```console
+~~~console
 shell>php -q add_device.php --description="Device Add Test" --ip="router.mydomain.com" --template=3 --community="public"
 
 Adding Device Add Test (router.mydomain.com) as "ucd/net SNMP Host" using SNMP v1 with community "public"
 Success - new device-id: (11)
-```
+~~~
 
 Go to Devices to see the result:
 
@@ -452,7 +452,7 @@ This is, where the script `add_data_query.php` comes in. First, let's
 have a look at the whole list of features it provides. Calling the script
 with the parameter `--help` yields
 
-```console
+~~~console
 shell>php -q add_data_query.php --help
 
 Add Data Query Script 1.0, Copyright 2004-2018 - The Cacti Group
@@ -475,23 +475,23 @@ List Options:
         --quiet - batch mode value return
 
 If the data query was already associated, it will be reindexed.
-```
+~~~
 
 Let's first stick to the listing options
 
 ### List all Hosts
 
-```console
+~~~console
 shell>php -q add_data_query.php --list-hosts
 
 Known Hosts: (id, hostname, template, description)
 1       127.0.0.1       8       Localhost
 11      router          3       router.mydomain.com
-```
+~~~
 
 ### List all Data Queries
 
-```console
+~~~console
 shell>php -q add_data_query.php --list-data-queries
 
 Known SNMP Queries:(id, name)
@@ -503,14 +503,14 @@ Known SNMP Queries:(id, name)
 7       Netware - Get Processor Information
 8       SNMP - Get Mounted Partitions
 9       SNMP - Get Processor Information
-```
+~~~
 
 ### Add a Data Query
 
-```console
+~~~console
 shell>php -q add_data_query.php --host-id=11 --data-query-id=1 --reindex-method=fields
 Success - Host (11: router.mydomain.com) data query (1: SNMP - Interface Statistics) reindex method (3: Verify All Fields)
-```
+~~~
 
 This example shows the use of a string `"fields"` for specifying the reindex
 method. As given by the help text, the use of the numeric value of `"3"` would
@@ -530,7 +530,7 @@ where the script `add_graph_template.php` comes in. First, let's have a look at
 the whole list of features it provides. Calling the script with the parameter
 `--help` yields
 
-```console
+~~~console
 shell>php -q add_graph_template.php --help
 
 Add Graph Template Script 1.0, Copyright 2004-2018 - The Cacti Group
@@ -548,23 +548,23 @@ List Options:
         --list-hosts
         --list-graph-templates
         --quiet - batch mode value return
-```
+~~~
 
 Let's first stick to the listing options
 
 ### List all Hosts
 
-```console
+~~~console
 shell>php -q add_graph_template.php --list-hosts
 
 Known Hosts: (id, hostname, template, description)
 1       127.0.0.1       8       Localhost
 11      router          3       router.mydomain.com
-```
+~~~
 
 ### List all Graph Template
 
-```console
+~~~console
 shell>php -q add_graph_template.php --list-graph-templates
 
 Known Graph Templates:(id, name)
@@ -579,15 +579,15 @@ Known Graph Templates:(id, name)
 10      Unix - Logged in Users
 11      ucd/net - Load Average
 ...
-```
+~~~
 
 ### Add a Graph Template
 
-```console
+~~~console
 shell>php -q add_graph_template.php --host-id=11 --graph-template-id=7
 
 Success: Graph Template associated for host: (11: router) - graph-template: (7: Unix - Ping Latency)
-```
+~~~
 
 ## Add a New Graph
 
@@ -595,7 +595,7 @@ You won't stop now as you've just created a device from cli. Surely, the
 task of setting up graphs is the next step. This is done using
 `add_graphs.php`. Calling the script with the parameter `--help` yields
 
-```console
+~~~console
 shell>php -q add_graphs.php
 Add Graphs Script 1.2, Copyright 2008 - The Cacti Group
 
@@ -635,7 +635,7 @@ List Options:
 
     'cg' graphs are for things like CPU temp/fan speed, while
     'ds' graphs are for data-source based graphs (interface stats etc.)
-```
+~~~
 
 Like the graph creation from the console, this task is split into two different
 ones:
@@ -659,20 +659,20 @@ are required to define those graphs.
 The first list option, `--list-hosts`, is required only if you do not know the
 `id` of the device you want to add graphs for. It will produce output as follows
 
-```console
+~~~console
 shell>php -q add_graphs.php --list-hosts
 
 Known Hosts: (id, hostname, template, description)
 ...
 11      router.mydomain.com 3       Device Add Test
-```
+~~~
 
 You surely recognize the device we've just added?
 
 The next list option, `--list-graph-templates`, is required to identify the
 number of an `Associated Graph Templates`.
 
-```console
+~~~console
 shell>php -q add_graphs.php --list-graph-templates
 
 Known Graph Templates:(id, name)
@@ -685,7 +685,7 @@ Known Graph Templates:(id, name)
 8       Unix - Processes
 9       Unix - Load Average
 ...
-```
+~~~
 
 We will need the graph template id of the `ucd/net - CPU Usage` template later.
 So note the number `4` for it.
@@ -694,20 +694,20 @@ It is possible to reduce the listing to the graph templates associated with a
 specific host template by using `--list-graph-templates
 --host-template-id=[id]`. For a "ucd/net SNMP Host" this yields
 
-```console
+~~~console
 shell>php -q add_graphs.php --list-graph-templates --host-template-id=3
 
 Known Graph Templates:(id, name)
 4   ucd/net - CPU Usage
 11  ucd/net - Load Average
 13  ucd/net - Memory Usage...
-```
+~~~
 
 ### List Options for Associated Data Queries
 
 First task is to find all id's for available data queries.
 
-```console
+~~~console
 shell>php -q add_graphs.php --host-id=2 --list-snmp-queries
 
 Known SNMP Queries:(id, name)
@@ -719,13 +719,13 @@ Known SNMP Queries:(id, name)
 7       Netware - Get Processor Information
 8       SNMP - Get Mounted Partitions
 9       SNMP - Get Processor Information
-```
+~~~
 
 For standard interface statistics, we note the id of `1`
 
 Next task is to find the query_type as done by issuing
 
-```console
+~~~console
 shell>php -q add_graphs.php --snmp-query-id=1 --list-query-types
 
 Known SNMP Query Types: (id, name)
@@ -741,13 +741,13 @@ Known SNMP Query Types: (id, name)
 22      In/Out Bytes with Total Bandwidth
 23      In/Out Bits 1 min
 24      In/Out Bits 1 min (64-bit Counters)
-```
+~~~
 
 For a standard `In/Out Bits` type, we note the id of `13`
 
 Next issue is to select the `SNMP Field` that shall be used for a new graph.
 
-```console
+~~~console
 shell>php -q add_graphs.php --host-id=11 --list-snmp-fields
 
 Known SNMP Fields for host-id 11: (name)
@@ -760,7 +760,7 @@ ifName
 ifOperStatus
 ifSpeed
 ifType
-```
+~~~
 
 For our graph, we will use the field `ifOperStatus` to select the correct
 interfaces.
@@ -768,13 +768,13 @@ interfaces.
 In general, you will next determine the values available for the `SNMP Field`,
 in our case `ifOperStatus`. This is done by
 
-```console
+~~~console
 shell>php -q add_graphs.php --host-id=11 --snmp-field=ifOperStatus --list-snmp-values
 
 Known values for ifOperStatus for host 11: (name)
 Down
 Up
-```
+~~~
 
 This is no surprise, of course. Now, all paarmeters required for creating a new
 graph are determined.
@@ -784,11 +784,11 @@ graph are determined.
 We will create a graph for `ucd/net - CPU Usage`. Above, we've identified the
 graph template it to be `4`. In total, that makes up for the following command
 
-```console
+~~~console
 shell>php -q add_graphs.php --host-id=11 --graph-type=cg --graph-template-id=4
 
 Graph Added - graph-id: (39) - data-source-id: (63)
-```
+~~~
 
 Find the result when visiting Graph Management
 
@@ -815,11 +815,11 @@ SNMP Value | Up | Field value
 
 This will make up for the following command
 
-```console
+~~~console
 shell>php -q add_graphs.php --host-id=11 --graph-type=ds --graph-template-id=2 --snmp-query-id=1 --snmp-query-type-id=13 --snmp-field=ifOperStatus --snmp-value=Up
 
 Graph Added - graph-id: (40) - data-source-id: (65)
-```
+~~~
 
 Find the result when visiting Graph Management
 
@@ -841,7 +841,7 @@ even add header items, hosts and graphs to a tree as well as adding a new tree
 itself. But let us first see the help output. Calling the script with the
 parameter `--help` yields
 
-```console
+~~~console
 shell>php -q add_tree.php --help
 
 Add Tree Script 1.0, Copyright 2004-2018 - The Cacti Group
@@ -879,13 +879,13 @@ List Options:
         --list-nodes --tree-id=[ID]
         --list-rras
         --list-graphs --host-id=[ID]
-```
+~~~
 
 ### List Hosts
 
 The first try is dedicated to the list option `--list-hosts`. It goes like
 
-```console
+~~~console
 shell>php -q add_tree.php --list-hosts
 
 Known Hosts: (id, hostname, template, description)
@@ -893,25 +893,25 @@ Known Hosts: (id, hostname, template, description)
 2       gandalf         3       gandalf
 ...
 11      router.mydomain.com 3       Device Add Test
-```
+~~~
 
 ### List Trees
 
 Now, let us `--list-trees`. It goes like
 
-```console
+~~~console
 shell>php -q add_tree.php --list-trees
 
 Known Trees:
 id      sort method                     name
 1       Manual Ordering (No Sorting)    Default Tree
-```
+~~~
 
 ### List Nodes
 
 Listing all existend node of a given tree is done by
 
-```console
+~~~console
 shell>php -q add_tree.php --list-nodes --tree-id=1
 
 Known Tree Nodes:
@@ -919,7 +919,7 @@ type    id      text
 Host    7       127.0.0.1       Graph Template
 Host    9       gandalf     Graph Template
 Host    12      gandalf     Graph Template
-```
+~~~
 
 ### List RRAs
 
@@ -927,7 +927,7 @@ For special tree add options, you will require the id of the RRA definition to
 completly specify the add request. That's why the corresponding `--list-rras`
 option is implemented. It goes this way
 
-```console
+~~~console
 shell>php -q add_tree.php --list-rras
 
 Known RRAs:
@@ -936,14 +936,14 @@ id      steps   rows    timespan        name
 2       6       700     604800          Weekly (30 Minute Average)
 3       24      775     2678400         Monthly (2 Hour Average)
 4       288     797     33053184        Yearly (1 Day Average)
-```
+~~~
 
 ### List Graphs for given Hosts
 
 To be able to add a Graph, the id of that very graph is required. Thus, a
 `--list-graphs --host-id=[id]` option was implemented
 
-```console
+~~~console
 shell>php -q add_tree.php --list-graphs --host-id=1
 
 Known Host Graphs: (id, name, template)
@@ -958,7 +958,7 @@ Known Host Graphs: (id, name, template)
 36      Localhost - Used Space - /          Host MIB - Available Disk Space
 37      Localhost - Used Space - /sys       Host MIB - Available Disk Space
 38      Localhost - Used Space - /boot      Host MIB - Available Disk Space
-```
+~~~
 
 ### Add a new Tree
 
@@ -966,18 +966,18 @@ Cacti comes with a single tree, named Default Tree. Console entry Graph
 Trees is used to add more trees. With `add_tree.php`, you may now do so
 from command line as well:
 
-```console
+~~~console
 shell>php -q add_tree.php --type=tree --name="Test Tree Add" --sort-method=manual
 
 Tree Created - tree-id: (6)
-```
+~~~
 
 Verify this from console, Graph Trees to find
 
-```console
+~~~console
 Default Tree
 Test Tree Add
-```
+~~~
 
 as expected.
 
@@ -986,11 +986,11 @@ as expected.
 Now, that a new tree has been created, you may want to add a new header to that
 very tree. Use
 
-```console
+~~~console
 shell>php -q add_tree.php --type=node --node-type=header --tree-id=6 --name="Header Test"
 
 Added Node node-id: (21)
-```
+~~~
 
 You will want to save the id returned if willing to add further nodes to
 exactly this new Header Node
@@ -1001,11 +1001,11 @@ the same options even if this is possible from console
 But it is possible to add a subheader to an already defined header. Even
 in this case, the `name` has to be unique
 
-```console
+~~~console
 shell>php -q add_tree.php --type=node --node-type=header --tree-id=6 --parent-node=21  --name="SubHeader Test"
 
 Added Node node-id: (22)
-```
+~~~
 
 ### Add a new Host Node to a Tree
 
@@ -1013,30 +1013,30 @@ We will distinguish several options adding a host to a tree. First, let's
 add a Host directly to a tree. For this example, we use the tree id
 returned from adding our own `Test Tree Add` known with `id=6`
 
-```console
+~~~console
 shell>php -q add_tree.php --type=node --node-type=host --tree-id=6 --host-id=1
 
 Added Node node-id: (23)
-```
+~~~
 
 As no `--parent-node` was given, this host is directly added to the tree
 itself. If you wish to add a host to a (sub)header specify as follows
 
-```console
+~~~console
 shell>php -q add_tree.php --type=node --node-type=host --tree-id=6 --parent-node=21 --host-id=1
 
 Added Node node-id: (24)
-```
+~~~
 
 Both example come without a `--host-group-style` option. For those cases,
 `Graph Template` host group style is default. Here's an example for
 providing a host group option of `Data Query Index` instead
 
-```console
+~~~console
 shell>php -q add_tree.php --type=node --node-type=host --tree-id=6 --parent-node=22 --host-id=1 --host-group-style=2
 
 Added Node node-id: (25)
-```
+~~~
 
 ### Add a new Graph Node to a Tree
 
@@ -1044,29 +1044,29 @@ Like above, instead of hosts it is possible to add a single graph to a
 tree or a (sub)header of any tree. Of course, you again will require the
 `id` of the tree and optionally of the `header`. This results in
 
-```console
+~~~console
 shell>php -q add_tree.php --type=node --node-type=graph --tree-id=6 --graph-id=5
 
 Added Node node-id: (26)
-```
+~~~
 
 Like above, this graph now was added directly to the tree itself. To add
 a graph to a header, proceed as follows
 
-```console
+~~~console
 shell>php -q add_tree.php --type=node --node-type=graph --tree-id=6 --parent-node=21 --graph-id=5
 
 Added Node node-id: (27)
-```
+~~~
 
 In both cases, no explicit `--rra-id` was given. This will default to the
 Daily (5 Minute Average). Specify any other `--rra-id` as given
 
-```console
+~~~console
 shell>php -q add_tree.php --type=node --node-type=graph --tree-id=6 --parent-node=21 --graph-id=1 --rra-id=4
 
 Added Node node-id: (28)
-```
+~~~
 
 to provide the `--rra-id` for a rra of Yearly (1 Day Average).
 
@@ -1076,7 +1076,7 @@ This script is used to specify special graph permissions to users. The
 list of parameters is displyed as usual when calling the script with the
 parameter `--help`
 
-```console
+~~~console
 shell>php -q add_perms.php --help
 
 Add Permissions Script 1.0, Copyright 2004-2018 - The Cacti Group
@@ -1093,41 +1093,41 @@ List Options:
         --list-trees
         --list-graph-templates
         --list-graphs --host-id=[ID]
-```
+~~~
 
 ### List Users
 
 The list of users is retrieved by calling the script with the parameter
 `--list-users`. It goes like
 
-```console
+~~~console
 shell>php -q add_perms.php --list-users
 
 Known Users:
 id      username        full_name
 1       admin   Administrator
 3       guest   Guest Account
-```
+~~~
 
 ### List Trees
 
 The list of trees is retrieved by calling the script with the parameter
 `--list-trees`. It goes like
 
-```console
+~~~console
 shell>php -q add_perms.php --list-trees
 
 Known Trees:
 id      sort method                     name
 1       Manual Ordering (No Sorting)    Default Tree
-```
+~~~
 
 ### List Graph Templates
 
 The list of available graph templates is retrieved by calling the script with
 the parameter `--list-graph-templates`. It goes like
 
-```console
+~~~console
 shell>php -q add_perms.php --list-graph-templates
 
 Known Graph Templates:(id, name)
@@ -1140,14 +1140,14 @@ Known Graph Templates:(id, name)
 8       Unix - Processes
 9       Unix - Load Average
 ...
-```
+~~~
 
 ### List Graphs for given Hosts
 
 To be able to add a permissions to a specific Graph, the id of that very graph
 is required. Thus, a `--list-graphs --host-id=[id]` option was implemented
 
-```console
+~~~console
 shell>php -q add_perms.php --list-graphs --host-id=1
 
 Known Host Graphs: (id, name, template)
@@ -1162,7 +1162,7 @@ Known Host Graphs: (id, name, template)
 36      Localhost - Used Space - /          Host MIB - Available Disk Space
 37      Localhost - Used Space - /sys       Host MIB - Available Disk Space
 38      Localhost - Used Space - /boot      Host MIB - Available Disk Space
-```
+~~~
 
 ### Add Graph Permissions to specific Users
 
@@ -1170,9 +1170,9 @@ There are various ways to define graph permissions to specific users.
 First, we will add graph permissions for a given host. This is done using
 the parameter `--item-type=host` as follows
 
-```console
+~~~console
 shell>php -q add_perms.php --user-id=4 --item-type=host --item-id=1
-```
+~~~
 
 `--user-id=4` must specify an existing users. Else, an error message will
 be printed. As `--item-type=host` is given, `--item-id=1` must specify a
@@ -1182,9 +1182,9 @@ message will be printed. No output is produced on successful operations.
 Next, we will add graph permissions for a given tree. This is done using
 the parameter `--item-type=tree` as follows
 
-```console
+~~~console
 shell>php -q add_perms.php --user-id=4 --item-type=tree --item-id=1
-```
+~~~
 
 `--user-id=4` must specify an existing users. Else, an error message will
 be printed. As `--item-type=tree` is given, `--item-id=1` must specify a
@@ -1195,9 +1195,9 @@ produced on successful operations.
 Adding graph permissions for a given graph template is done using the
 parameter `--item-type=graph_template` as follows
 
-```console
+~~~console
 shell>php -q add_perms.php --user-id=4 --item-type=graph_template --item-id=25
-```
+~~~
 
 `--user-id=4` must specify an existing users. Else, an error message will
 be printed. As `--item-type=graph_template` is given, `--item-id=1` must
@@ -1209,9 +1209,9 @@ operations.
 Last but not least we add graph permissions for a given graph by using
 the parameter `--item-type=graph` as follows
 
-```console
+~~~console
 shell>php -q add_perms.php --user-id=4 --item-type=graph --item-id=8
-```
+~~~
 
 `--user-id=4` must specify an existing users. Else, an error message will
 be printed. As `--item-type=graph` is given, `--item-id=1` must specify a

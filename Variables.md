@@ -7,18 +7,18 @@ fields. Below is a description of each of these variables.
 
 ## Date/Time
 
-```
+~~~regex
 |date_time|
-```
+~~~
 
 This variable will place the date and time of the last poller run on the graph.
 It can be used to replicate MRTG's "graph last updated" feature.
 
 ## Data Source Title
 
-```
+~~~regex
 |data_source_title|
-```
+~~~
 
 This variable, `|data_source_title|`, gets replaced with the name of the data
 source associated with a particular graph item in a graph template. This change
@@ -34,27 +34,27 @@ See attached examples to understand usage.
 
 ## Data Query Fields
 
-```
+~~~regex
 |query_field_name|
-````
+~~~`
 
 You can place the value of any data query field on the by including this
 variable. Make sure to substitute "field_name" with the actual data query field
 name.
 
-```
+~~~regex
 |query_ifIP|
-```
+~~~
 
-```
+~~~regex
 |query_dskPath|
-```
+~~~
 
 ## Nth Percentile
 
-```
+~~~regex
 |[0-9]:(bits|bytes):[0-9]:(current|total|max|total_peak|all_max_current|all_max_peak|aggregate_max|aggregate_sum|aggregate_current|aggregate):[0-9]|
-```
+~~~
 
 Nth percentile is often used by hosting providers to bill customers based on
 their peak traffic usage while ignoring their top (100 - Nth) percent. This way
@@ -100,15 +100,15 @@ aggregate | Calculates the Nth percentile by summing like data source names row 
 
 ###### Example 15-3. Output in the following format, for 95th percentile: 42.58 mbit
 
-```
+~~~regex
 |95:bits:6:max:2|
-```
+~~~
 
 ## Bandwidth Summation
 
-```
+~~~regex
 |sum:([0-9]|auto):(current|total):([0-9]):([0-9]+|auto)|
-```
+~~~
 
 Bandwidth summation is useful for summing up all values in an RRD file for a
 given time range. This is typically useful on traffic graphs where you can see
@@ -129,9 +129,9 @@ Name | Description
 
 ###### Example 15-4. Output in the following format: 36.47 GB
 
-```
+~~~regex
 |sum:auto:current:2:auto|
-```
+~~~
 
 ## Host Variables
 
