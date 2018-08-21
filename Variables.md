@@ -98,7 +98,8 @@ aggregate | Calculates the Nth percentile by summing like data source names row 
 > of 64 megs memory limit for php when querying large ranges or graphs with a
 > large ammount of aggregated data sources.
 
-###### Example 15-3. Output in the following format, for 95th percentile: 42.58 mbit
+###### Example 15-3. Output in the following format, for 95th percentile: 42.58 mbit
+
 ```
 |95:bits:6:max:2|
 ```
