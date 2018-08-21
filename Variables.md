@@ -141,20 +141,33 @@ which host fields the correspond to.
 ###### Table 15-4. Host Variables
 
 Variable Name | Description
---- | ---
+: --- | : ---
+\|host_availability\| | Availability of host
+\|host_avg_time\| | Average time for host
+\|host_cur_time\| | Current time for host
 \|host_description\| | Description
+\|host_external_id\| | ID associated with external system
 \|host_hostname\| | Hostname
-\|host_snmp_community\| | SNMP Community
-\|host_snmp_version\| | SNMP Version
-\|host_snmp_username\| | SNMP Username (v3)
-\|host_snmp_password\| | SNMP Password (v3)
+\|host_id\| | Numerical ID of the Host as it is maintained in the MySQL Tables
+\|host_location\| | Location
+\|host_max_oids\| | SNMP Max OIDs for snmpbulkwalk
+\|host_notes\| | Administrative Notes
+\|host_ping_retries\| | Ping Retries (Downed Host Detection)
+\|host_polling_time\| | Last polling time
 \|host_snmp_auth_protocol\| | SNMP Authentication Protocol (v3)
+\|host_snmp_community\| | SNMP Community
+\|host_snmp_context\| | SNMP Context (v3)
+\|host_snmp_engine_id\| | SNMP Engine Id (v3)
+\|host_snmp_password\| | SNMP Password (v3)
+\|host_snmp_port\| | SNMP Port
 \|host_snmp_priv_passphrase\| | SNMP Privacy Passphrase (v3)
 \|host_snmp_priv_protocol\| | SNMP Privacy Protocol (v3)
-\|host_snmp_context\| | SNMP Context (v3)
-\|host_snmp_port\| | SNMP Port
+\|host_snmp_sysContact\| | SNMP Contact
+\|host_snmp_sysDescr\| | SNMP Description
+\|host_snmp_sysLocation\| | SNMP Location
+\|host_snmp_sysName\| | SNMP System Name
+\|host_snmp_sysObjectID\| | SNMP ObjectID
+\|host_snmp_sysUpTimeInstance\| | SNMP Up Time
 \|host_snmp_timeout\| | SNMP Timeout
-\|host_ping_retries\| | Ping Retries (Downed Host Detection)
-\|host_max_oids\| | SNMP Max OIDs for snmpbulkwalk
-\|host_id\| | Numerical ID of the Host as it is maintained in the MySQL Tables
-
+\|host_snmp_username\| | SNMP Username (v3)
+\|host_snmp_version\| | SNMP Version
