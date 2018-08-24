@@ -20,6 +20,8 @@
 
 8. [Viewing Graphs](Viewing-Graphs.md)
 
+9. [Aggregate Overview](Aggregate-Overview.md)
+
 9. [User Management](User-Management.md)
 
 10. [Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
