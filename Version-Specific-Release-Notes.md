@@ -1,12 +1,17 @@
 # Version Specific Release Notes
 
-# Cacti 1.0.0
+## Cacti 1.0.0
 
-With the release of Cacti 1.0.0 many improvements and enhancements have been made. As part of ongoing efforts to improve Cacti almost 20 plugins were merged into the core of Cacti eliminating the need for the plugins. A major refresh of the interface has been started and will continue to occur as development on Cacti continues.
+With the release of Cacti 1.0.0 many improvements and enhancements have been
+made. As part of ongoing efforts to improve Cacti almost 20 plugins were merged
+into the core of Cacti eliminating the need for the plugins. A major refresh
+of the interface has been started and will continue to occur as development on
+Cacti continues.
 
-## Plugins integrated into Cacti Core
+### Plugins integrated into Cacti Core
 
-The following plugins have been merged into the core Cacti code as of version 1.0.0:
+The following plugins have been merged into the core Cacti code as of
+version 1.0.0:
 
 | Plugin      | Description                                              |
 | ----------- | -------------------------------------------------------- |
@@ -30,6 +35,3 @@ The following plugins have been merged into the core Cacti code as of version 1.
 | discovery   | Network Discovery and Device automation                  |
 | spikekill   | Removes spikes from Graphs                               |
 | superlinks  | Allows administrators to links to additional sites       |
-
-
-
