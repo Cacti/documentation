@@ -22,30 +22,34 @@
 
 9. [Aggregate Overview](Aggregate-Overview.md)
 
-9. [User Management](User-Management.md)
+10. [User Management](User-Management.md)
 
-10. [Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
+11. [Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
 
-11. [Data Input Methods](Data-Input-Methods.md)
+12. [Data Input Methods](Data-Input-Methods.md)
 
-12. [Data Queries](Data-Queries.md)
+13. [Data Queries](Data-Queries.md)
 
-13. [Templates](Templates.md)
+14. [Templates](Templates.md)
 
-14. [PHP Script Server](PHP-Script-Server.md)
+15. [PHP Script Server](PHP-Script-Server.md)
 
-15. [Spine](Spine.md)
+16. [Spine](Spine.md)
 
-16. [How To](How-To.md)
+17. [How To](How-To.md)
 
-17. [Frequently Asked Questions](Frequently-Asked-Questions.md)
+18. [Frequently Asked Questions](Frequently-Asked-Questions.md)
 
-18. [Variables](Variables.md)
+19. [Variables](Variables.md)
 
-19. [RRDTool Specific Features](RRDTool-Specific-Features.md)
+20. [RRDTool Specific Features](RRDTool-Specific-Features.md)
 
-20. [Command Line Scripts](Command-Line-Scripts.md)
+21. [Command Line Scripts](Command-Line-Scripts.md)
 
-21. [Debugging](Debugging.md)
+22. [Debugging](Debugging.md)
+
+23. [Version Specific Release Notes](Version-Specific-Release-Notes.md)
+
+24. [Plugin Development](Plugin-Development.md)
 
 Copyright (c) 2018 Cacti Group
