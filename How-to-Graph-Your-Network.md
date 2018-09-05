@@ -53,7 +53,14 @@ The SNMP version that you choose can have a great effect on how SNMP works for y
 
 The way in which Cacti retrieves SNMP information from a host has an effect on which SNMP-related options are supported. Currently there are three types of SNMP retrieval methods in Cacti and are outlined below.
 
-||
+###### Table 7-2. SNMP Retrieval Types
+
+Type | Description | Supported Options | Places Used
+--- | --- | --- | --- |
+External SNMP | Calls the net-snmp snmpwalk and snmpget binaries that are installed on your system. | All SNMP options | Web interface and PHP poller (poller.php)
+Internal SNMP (php-snmp) | Uses PHP's SNMP functions which are linked against net-snmp or ucd-snmp at compile time. | Version 1 Only (Community and Port) | Web interface and PHP poller (poller.php)
+Spine SNMP | Links directly against net-snmp or ucd-snmp and calls the API directly. | All SNMP options | C-Based Poller (Spine)
+
 
 ### SNMP V3 Options Explained
 
