@@ -45,6 +45,10 @@ When creating documentation titles, they should:
 
   ```MD026 Trailing punctuation in header```
 
+- not use `----` or `====` on a line that follows a header
+
+   ```MD003 Header style```
+
 - increment down only one sub-level at a time
 
   *You may go back up any number of levels*
@@ -160,6 +164,8 @@ Any text written outside of code blocks must:
 
 - be formatted such that it does not exceed 79 characters.  This is to
   make it easier to read and adjust the paragraphs in any editor.
+  
+  ```MD013 Line length```
 
 - have blank lines between paragraphs
 
