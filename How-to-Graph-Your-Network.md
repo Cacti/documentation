@@ -16,7 +16,32 @@ To manage devices within Cacti, click on the Devices menu item. Clicking Add wil
 
 The field definitions are as follows
 
-||
+###### Table 7-1. Device Field Definitions
+
+Field | Description 
+--- | --- 
+Description | This description will show up in the first column of the device list. You may refer to it e.g. in graph titles
+Hostname | Either an IP address or a hostname. The hostname will be resolved using the standard host resolving mechanisms, e.g. Dynamic Name Services (DNS)
+Host Template | A Host Template is a container for a list of graph templates that will be related to this host. 
+Notes | New with cacti 0.8.7. Add notes to a host to add arbitrary text. 
+Disable Host | Exclude this host from being polled. This is of particular value, if a device is no longer available, but should be kept e.g. as a reference. 
+**Availability/Reachability Options** | 
+Downed Device Detection | NONE: Deactivate downed host detection PING and SNMP: perform both tests SNMP: verify SNMP check on OID .1 and .1.3 ICMP: perform a ping test, see below 
+Ping Method | Available only for "PING and SNMP" or "PING" ICMP: perform ICMP tests. Requires permissions UDP: perform a UDP test TCP: perform a TCP test 
+Ping Port | Available only for UDP/TCP PING test types. Please define the port to be tested here. Make sure, that no firewall intercepts the tests Ping 
+Timeout Value | After this time, the test fails. Measured in units of milliseconds 
+Ping Retry Count | The number of times Cacti will attempt to ping a host before failing. 
+**SNMP Options** | 
+SNMP Version | Version 1: Use SNMP Version 1. Be aware, that 64bit counters are not supported in this SNMP version Version 2: Referred to as SNMP V2c in most SNMP documentations Version 3: SNMP V3, supporting authentication and encryption 
+SNMP Community | SNMP read community for this device. 
+SNMP Port | Enter the UDP port number to use for SNMP (default is 161). 
+SNMP Timeout | The maximum number of milliseconds Cacti will wait for an SNMP response (does not work with php-snmp support). Maximum OID's Per Get Request | This is a performance feature. Specifies the number of OID's that can be obtained in a single SNMP Get request. NOTE: This feature only works when using Spine NOTE: Some devices do not support values > 1
+Security Options for SNMP V3 | 
+SNMP Username | The username of an SNMP V3 createUser statement or equivalent SNMP Password | The authpassphrase of an SNMP V3 createUser statement or equivalent 
+SNMP Auth Protocol | The authentication type of an SNMP V3 createUser statement or equivalent. Select either MD5 or SHA. This entry defaults to MD5. 
+SNMP Privacy Passphrase | The privacy passphrase of an SNMP V3 createUser statement or equivalent. 
+SNMP Privacy Protocol | The privacy protocol of an SNMP V3 createUser statement or equivalent. Select either DES or AES. This entry defaults to DES. 
+SNMP Context | When using the View-Based Access Control Model (VACM), it is possible to specify an SNMP Context when mapping a community name to a security name with a com2sec directive, with the group directive and the access directive. This allows for defining special access models. If using such a parameter with your target's SNMP configuration, specify the context name to be used to access that target here.
 
 After saving your new device, you should be redirected back to the same edit form with some additional information. If you configured SNMP for this host by providing a valid community string, you should see various statistics listed at the top of the page. If you see "SNMP error" instead, this indicates an SNMP problem between Cacti and your device.
 
