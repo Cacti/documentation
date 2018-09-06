@@ -56,7 +56,11 @@ SNMP Version | Version 1: Use SNMP Version 1. Be aware, that 64bit counters are 
 SNMP Community | SNMP read community for this device.
 SNMP Port | Enter the UDP port number to use for SNMP (default is 161).
 SNMP Timeout | The maximum number of milliseconds Cacti will wait for an SNMP response (does not work with php-snmp support). Maximum OID's Per Get Request | This is a performance feature. Specifies the number of OID's that can be obtained in a single SNMP Get request. NOTE: This feature only works when using Spine NOTE: Some devices do not support values > 1
-Security Options for SNMP V3 |
+
+###### Table 7-4. Security Options for SNMP V3
+
+Field | Description
+--- | ---
 SNMP Username | The username of an SNMP V3 createUser statement or equivalent SNMP Password | The authpassphrase of an SNMP V3 createUser statement or equivalent
 SNMP Auth Protocol | The authentication type of an SNMP V3 createUser statement or equivalent. Select either MD5 or SHA. This entry defaults to MD5.
 SNMP Privacy Passphrase | The privacy passphrase of an SNMP V3 createUser statement or equivalent.
@@ -90,7 +94,7 @@ The way in which Cacti retrieves SNMP information from a host has an effect on
 which SNMP-related options are supported. Currently there are three types of
 SNMP retrieval methods in Cacti and are outlined below.
 
-###### Table 7-4. SNMP Retrieval Types
+###### Table 7-5. SNMP Retrieval Types
 
 Type | Description | Supported Options | Places Used
 --- | --- | --- | --- |
