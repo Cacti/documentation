@@ -26,7 +26,7 @@ host.
 
 ![Adding a New Device](images/new_device.png)
 
-The field definitions are as follows
+The field definitions are as follows:
 
 ###### Table 7-1. Device Field Definitions
 
@@ -83,12 +83,6 @@ to your device, you can check the Cacti templates repository or create your own
 if nothing currently exists.
 
 ### A Word About SNMP
-
-The SNMP version that you choose can have a great effect on how SNMP works for
-you in Cacti. Version 1 should be used for everything unless you have reason to
-choose otherwise. If you plan on utilizing (and your device supports)
-high-speed (64-bit) counters, you must select version 2. Starting with Cacti
-0.8.7, version 3 is fully implemented.
 
 The way in which Cacti retrieves SNMP information from a host has an effect on
 which SNMP-related options are supported. Currently there are three types of
