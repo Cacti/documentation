@@ -18,15 +18,17 @@ currently supported Sorting Types
 
 ###### Table 8-1. Tree Sporting Type Definitions
 
-Field | Description --- | --- Name | Name of the tree entry. The sort order of
-all trees themselves is always alphabetical Sorting Type | Manual Ordering (No
-Sorting): You may chance the sequence at your will Alphabetical Ordering: All
-subtrees are ordered alphabetically, unless specifies otherwise (you may chance
-sort options at subtree lebel), i.e. 1, Ab, ab Once you type a name, click the
-Create button to continue. You will be redirected to a page similar to the one
-below, but without all of the items. Natural Ordering: ie. ab1, ab2, ab7, ab10,
-ab20 Numeric Ordering: Leading zeroes are not taken into account when ordering
-numerically, i.e. 01, 02, 4, 04
+Field | Value | Description
+--- | --- | ---
+Name | Name of the tree entry. | The sort order of all trees themselves is always alphabetical
+Sorting Type | Manual Ordering (No Sorting) | You may chance the sequence at your will
+Alphabetical Ordering |  1, Ab, ab | All subtrees are ordered alphabetically, unless specifies otherwise (you may chance sort options at subtree lebel)
+Natural Ordering | ab1, ab2, ab7, ab10, ab20 | N/A
+Numeric Ordering | 01, 02, 4, 04 | Leading zeroes are not taken into account when ordering numerically
+
+Once you type a name, click the Create button to continue.
+You will be redirected to a page similar to the one below,
+but without all of the items.
 
 ![Editing a Graph Tree](images/graph_tree.png)
 
