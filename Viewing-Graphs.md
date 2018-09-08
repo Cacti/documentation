@@ -16,8 +16,23 @@ page will prompt you for a tree name, which will be used to identify the graph
 tree throughout Cacti. Along with the Name, you may select one of four
 currently supported Sorting Types
 
-Once you type a name, click the Create button to continue. You will be
-redirected to a page similar to the one below, but without all of the items.
+###### Table 8-1. Tree Sporting Type Definitions
+
+Field | Description
+--- | ---
+Name | Name of the tree entry. The sort order of all trees themselves is always
+alphabetical
+Sorting Type | Manual Ordering (No Sorting): You may chance the sequence at
+your will
+Alphabetical Ordering: All subtrees are ordered alphabetically,
+unless specifies otherwise (you may chance sort options at subtree lebel),
+i.e. 1, Ab, ab
+Once you type a name, click the Create button to continue.
+You will be redirected to a page similar to the one below, but without
+all of the items.
+Natural Ordering: ie. ab1, ab2, ab7, ab10, ab20
+Numeric Ordering: Leading zeroes are not taken into account when ordering numerically,
+i.e. 01, 02, 4, 04
 
 ![Editing a Graph Tree](images/graph_tree.png)
 
