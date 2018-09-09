@@ -36,7 +36,7 @@
 
 16. [Spine](Spine.md)
 
-17. [How To](How-To.md)
+17. [How to Graph a Custom Collection Script](How-to-Graph-a-Custom-Collection-Script.md)
 
 18. [Frequently Asked Questions](Frequently-Asked-Questions.md)
 
