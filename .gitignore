@@ -1,0 +1,4 @@
+# Ignore vim swap files
+*.swp
+# Ignore any mac DS_Store files
+.DS_Store
