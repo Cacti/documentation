@@ -151,7 +151,7 @@ SNMP retrieval methods in Cacti and are outlined below.
 | Type          | Description              | Supported Options   | Where Used |
 |---------------|--------------------------|---------------------|------------|
 | External SNMP | Calls the net-snmp snmpwalk and snmpget binaries that are installed on your system. | All SNMP options | Web interface and PHP poller |
-| Internal SNMP | Uses PHP's SNMP functions which are linked against `net-snmp at compile time. | Version 1 Only | Web interface and PHP poller |
+| Internal SNMP | Uses PHP's SNMP functions which are linked against `net-snmp` at compile time. | Version 1 Only | Web interface and PHP poller |
 | Spine SNMP    | Links directly against `net-snmp` and directly uses the SNMP APIs. | All SNMP options | Spine Poller |
 
 ### SNMP V3 Options Explained
