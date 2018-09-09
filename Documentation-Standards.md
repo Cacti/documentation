@@ -54,6 +54,7 @@ When creating documentation titles, they should:
   *You may go back up any number of levels*
 
   ```markdown
+
   # Main Title 1
   ## Main Title 1.Sub Title 1
   ### Main Title 1.Sub Title 1.Sub Title 1
@@ -63,6 +64,7 @@ When creating documentation titles, they should:
   ### Main Title 1.Sub Title 2.Sub Title 2
   # Main Title 2
   ### Main Title 2.Invalid Sub Title 1.Invalid Sub Title 1
+
   ```
 
 - not use other title definition symbols
@@ -75,6 +77,7 @@ checks.
 ###### Example 1. Incorrect Markdown for Title Levels
 
 ```markdown
+
 # Welcome
 
 Welcome to us
@@ -86,11 +89,13 @@ To use most functions of our software, navigate the menus
 #### Accessing the menus 1.2.1.1
 
 The menus are located at the top of the page ...
+
 ```
 
 ###### Example 2. Corrected Markdown for Title Levels
 
 ```markdown
+
 # Welcome
 
 Welcome to us
@@ -102,6 +107,7 @@ To use most functions of our software, navigate the menus
 ### Accessing the menus 1.2.1
 
 The menus are located at the top of the page ...
+
 ```
 
 ### Title Spacing
@@ -114,6 +120,7 @@ symbols and text.
 ###### Example 3. Incorrect Markdown for Title Spacing
 
 ```markdown
+
 # Welcome
 Welcome to us
 
@@ -121,11 +128,13 @@ Welcome to us
 To use most functions of our software, navigate the menus
 ### Accessing the menus 1.2.1
 The menus are located at the top of the page ...
+
 ```
 
 ###### Example 4. Incorrect Markdown for Title Spacing
 
 ```markdown
+
 # Welcome
 
 Welcome to us
@@ -137,6 +146,7 @@ To use most functions of our software, navigate the menus
 ### Accessing the menus 1.2.1
 
 The menus are located at the top of the page ...
+
 ```
 
 ### Titles for Captions
@@ -147,13 +157,17 @@ Title Level rule.  These are normally set to 6 (Six) hash symbols (eg,
 of caption, a number, full stop, then the description
 
 ```markdown
+
 ###### <caption type> <number>. <descrption>
+
 ```
 
 ###### Example 5. Example of this caption
 
 ```markdown
+
 ###### Example 5. Example of this caption
+
 ```
 
 ## Text
@@ -164,7 +178,7 @@ Any text written outside of code blocks must:
 
 - be formatted such that it does not exceed 79 characters.  This is to
   make it easier to read and adjust the paragraphs in any editor.
-  
+
   ```MD013 Line length```
 
 - have blank lines between paragraphs
