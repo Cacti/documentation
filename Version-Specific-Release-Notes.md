@@ -35,3 +35,6 @@ version 1.0.0:
 | discovery   | Network Discovery and Device automation                  |
 | spikekill   | Removes spikes from Graphs                               |
 | superlinks  | Allows administrators to links to additional sites       |
+
+---
+Copyright (c) 2018 Cacti Group

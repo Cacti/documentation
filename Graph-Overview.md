@@ -23,4 +23,5 @@ network. When you are ready to take on the task of creating your own graph
 templates, extensive field descriptions for both graphs and graph items are
 provided in that section of the manual.
 
+---
 Copyright (c) 2018 Cacti Group

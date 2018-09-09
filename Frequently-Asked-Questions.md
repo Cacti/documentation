@@ -176,4 +176,5 @@ Cacti.
 PHP include path. Check your `php.ini` file to make sure there is not something
 like `include_path = C:/Apache2/htdocs/cacti`.
 
+---
 Copyright (c) 2018 Cacti Group

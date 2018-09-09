@@ -9,4 +9,5 @@ Cacti requires that the following software is installed on your system.
 - Build environment when using spine (gcc, automake, autoconf, libtool,
   help2man)
 
+---
 Copyright (c) 2018 Cacti Group

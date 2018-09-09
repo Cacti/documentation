@@ -52,4 +52,5 @@
 
 24. [Plugin Development](Plugin-Development.md)
 
+---
 Copyright (c) 2018 Cacti Group
