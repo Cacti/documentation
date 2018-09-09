@@ -29,20 +29,20 @@ host.
 ### Device Field Definitions
 
 - **Description** - This description will show up in the first column of the
-                    device list. You may refer to it e.g. in graph titles.
+  device list. You may refer to it e.g. in graph titles.
 
 - **Hostname** - Either an IP address or a hostname. The hostname will be
-                 resolved using the standard host resolving mechanisms, e.g.
-                 Dynamic Name Services (DNS)
+  resolved using the standard host resolving mechanisms, e.g. Dynamic Name
+  Services (DNS)
 
 - **Host Template** - A Host Template is a container for a list of graph
-                      templates that will be related to this host.
+  templates that will be related to this host.
 
 - **Notes** - Notes for a given device.
 
 - **Disable Host** - Exclude this host from being polled. This is of particular
-                     value, if a device is no longer available, but should be
-                     kept e.g. as a reference.
+  value, if a device is no longer available, but should be
+  kept e.g. as a reference.
 
 ### Availability/Reachability Options
 
@@ -58,14 +58,14 @@ host.
   - ___TCP___ - perform a TCP test
 
 - **Ping Port** - Available only for UDP/TCP PING test types. Please define the
-                  port to be tested here. Make sure, that no firewall
-                  intercepts the test ping.
+  port to be tested here. Make sure, that no firewall
+  intercepts the test ping.
 
 - **Timeout Value** - After this time, the test fails. Measured in units of
-                      milliseconds
+  milliseconds.
 
 - **Ping Retry Count** - The number of times Cacti will attempt to ping a host
-                         before failing
+  before failing.
 
 ### SNMP Options
 
@@ -80,44 +80,38 @@ host.
 - **SNMP Port** - UDP port number to use for SNMP (default is 161).
 
 - **SNMP Timeout** - Maximum number of milliseconds Cacti will wait for an SNMP
-                     response (does not work with php-snmp support).
+  response (does not work with php-snmp support).
 
 - **Maximum OID's Per Get Request** - This is a performance feature. Specifies
-                                      the number of OID's that can be obtained
-                                      in a single SNMP Get request.
-                                      ***WARNING***: This feature only works
-                                      when using Spine.
-                                      ***WARNING*** Some devices do not support
-                                      values greater than `1` and/or may crash
-                                      if this value is to high.
+  the number of OID's that can be obtained in a single SNMP Get request.
+  ***WARNING***: This feature only works when using Spine.
+  ***WARNING*** Some devices do not support values greater than `1` and/or may
+  crash if this value is to high.
 
 ### Security Options for SNMP V3
 
 - ***SNMP Username*** - `username` of an SNMP V3 `createUser` statement or
-                        equivalent
+  equivalent
 
 - ***SNMP Password*** - `authpassphrase` of an SNMP V3 `createUser` statement
-                        or equivalent
+  or equivalent
 
 - ***SNMP Auth Protocol*** - Authentication type of an SNMP V3 `createUser`
-                             statement or equivalent. Select either MD5 or SHA.
-                             Defaults to MD5.
+  statement or equivalent. Select either MD5 or SHA. Defaults to MD5.
 
 - ***SNMP Privacy Passphrase*** - The `privacy passphrase` of an SNMP V3
-                                  `createUser` statement or equivalent.
+  `createUser` statement or equivalent.
 
 - ***SNMP Privacy Protocol*** - The `privacy protocol` of an SNMP V3
-                                `createUser` statement or equivalent. Select
-                                either DES or AES. Defaults to DES.
+  `createUser` statement or equivalent. Select either DES or AES. Defaults to
+  DES.
 
 - ***SNMP Context*** - When using the View-Based Access Control Model (VACM),
-                       it is possible to specify an SNMP Context when mapping
-                       a community name to a security name with a `com2sec`
-                       directive, with the `group` directive and the `access`
-                       directive. This allows for defining special access
-                       models. If using such a parameter with your target's
-                       SNMP configuration, specify the context name to be used
-                       to access that target here.
+  it is possible to specify an SNMP Context when mapping a community name to
+  a security name with a `com2sec` directive, with the `group` directive and
+  the `access` directive. This allows for defining special access models. If
+  using such a parameter with your target's SNMP configuration, specify the
+  context name to be used to access that target here.
 
 After saving your new device, you should be redirected back to the same edit
 form with some additional information. If you configured SNMP for this host by
