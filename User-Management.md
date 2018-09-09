@@ -38,8 +38,6 @@ settings. Each of these items are described in this section of the manual.
 
 ### User Management Options
 
-Ruler ------------------------------------------------------------------------|
-
 - ***User Name*** - This field contains the actual login name for the user.
   There are no character limits this field, but it would make sense to keep it
   to alphanumeric characters to maintain simplicity.
