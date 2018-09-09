@@ -36,17 +36,46 @@ user field is described in more detail below. In addition to these fields, each
 user can have their own realm permissions", graph permissions, and graph
 settings. Each of these items are described in this section of the manual.
 
-###### Table 9-1. Field Description: User Management
+### User Management Options
 
-Name | Description
---- | ---
-User Name | This field contains the actual login name for the user. There are no character limits this field, but it would make sense to keep it to alphanumeric characters to maintain simplicity.
-Full Name | (Optional) You can use this field as a more descriptive identifier for the user. It is currently only used for display on the user management page.
-Password | Enter the password for the user twice, once in each text box. Keep in mind that passwords are case sensitive and the password will remain unchanged if the boxes are both left empty.
-Account Options | There are currently two account related options that can be set for each user. The first, 'User Must Change Password at Next Login', forces a password change immediately after the user logs in. The second option, 'Allow this User to Keep Custom Graph Settings', dictates whether the user can maintain their own custom graph viewing settings which includes expanding and collapsing trees.
-Graph Options | There are three permission related options that can be set for each user here. The 'User Has Rights to {Tree,List,Preview} View' checkboxes dictate which graph viewing areas the user can see.
-Login Options | These options dictate what occurs immediately after the user logs in. The first option, 'Show the page that user pointed their browser to.' will point the user to whatever page they were heading to before being interrupted by the login page. The 'Show the default console screen.' option will always point the user to 'index.php' after a successful login. The last option, 'Show the default graph screen.' will point the user to 'graph_view.php' after a successful login.
-Authentication Realm | Multiple types of users can exist in Cacti. This setting allows you to specify a user for use with Local, Web Basic or LDAP Authentication. Template users must be Local.
+Ruler ------------------------------------------------------------------------|
+
+- ***User Name*** - This field contains the actual login name for the user.
+  There are no character limits this field, but it would make sense to keep it
+  to alphanumeric characters to maintain simplicity.
+
+- ***Full Name*** - (Optional) You can use this field as a more descriptive
+  identifier for the user. It is currently only used for display on the user
+  management page.
+
+- ***Password*** - Enter the password for the user twice, once in each text
+  box. Keep in mind that passwords are case sensitive and the password will
+  remain unchanged if the boxes are both left empty.
+
+- ***Account Options*** - There are currently two account related options that
+  can be set for each user.
+  - ___User Must Change Password at Next Login___ - Force a password change
+    immediately after the user logs in.
+  - ___Allow this User to Keep Custom Graph Settings___ - Allows user to
+    maintain their own custom graph viewing settings.
+
+- ***Graph Options*** - Enables certain defined graph viewing options.
+  - *User Has Rights to Tree View*
+  - *User Has Rights to List View*
+  - *User Has Rights to Preview View*
+
+- ***Login Options*** - These options set what occurs after the user logs in.
+  - ___Show the page that user pointed their browser to___ - Will point the
+    user to whatever page they were heading to before being interrupted by
+    the login page.
+  - ___Show the default console screen___ - This option will always point
+    the user to 'index.php' after a successful login.
+  - ___Show the default graph screen___ This option will point the user to
+    default graph view after login.
+
+- ***Authentication Realm*** - This setting allows you to specify a user for
+  use with `Local`, `Web Basic` or `LDAP` Authentication.
+  **Note:** Template users must be Local.
 
 ## Realm Permissions
 
@@ -198,4 +227,5 @@ system. Once you have created the "Guest" user, you need to tell Cacti what the
 selecting the "Guest" user you have designated. The "Guest" user must be
 enabled and be set as the guest user for anonymous access to work.
 
+---
 Copyright (c) 2018 Cacti Group
