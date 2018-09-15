@@ -10,6 +10,15 @@ To create a new data input method, select the Data Input Methods option under
 the Management heading. Once on that screen, click Add on the right. You will
 be presented with a few fields to populate on the following screen.
 
+###### Table 11-1. Field Description: Data Input Methods
+
+Name | Description
+--- | ---
+Name | Give the data query a name that you will use to identify it. This name will be used throughout Cacti to identify the data input method.
+Input Type | Select the type of data input method you are trying to create. Valid options here are 'Script/Command', 'SNMP', 'SNMP Query', and 'Script Query'.
+Input String | This field is only used when the Input Type is set to 'Script/Command'. It specifies the full path to the script including any per data source variables inside <>'s from the user. For instance, if you are passing an IP address to a script, your input string might look something like: `/path/to/script.pl <ip>` When the user creates a data source based on this data input method, they will be prompted for an IP address to pass onto the script.
+Output String | This field is only here for legacy purposes and will probably go away in a future version of Cacti.
+
 When you are finished filling in all necessary fields, click the Create button
 to continue. You will be redirected back to the same page, but this time with
 two new boxes, Input Fields and Output Fields. The Input Fields box is used to
@@ -24,6 +33,17 @@ for a script.
 To define a new field, click Add next to the input or output field boxes. You
 will be presented with some or all of the fields below depending on whether you
 are adding an input or output field.
+
+###### Table 11-2. Field Description: Data Input Fields
+
+Name | Description
+--- | ---
+Field/Field Name | Either select or type in the name of the field you want to define. No spaces or other non-alphanumeric characters (except '-' or '_') should be used in this field.
+Friendly Name | Enter a more descriptive name for this field which will be used for identification throughout Cacti.
+Regular Expression Match (Input Only) | If you want to enforce a certain regular expression pattern when the user enters a value for this field, enter it here. The regular expression must follow POSIX syntax as it will be passed to PHP's ereg() function.
+Allow Empty Input (Input Only) | Select whether you want to allow the user to leave the value of this field blank or not.
+Special Type Code (Input Only) | Sometimes Cacti needs to reference a field internally, but needs to rely on more than just the field name. For instance, if your field requires an IP address from the user, you can enter 'management_ip' here and Cacti will fill this field in with the current IP address of the selected host. Valid values for this field are: 'hostname', 'management_ip', 'snmp_community', 'snmp_username', 'snmp_password', and 'snmp_version'.
+Update RRD File (Output Only) | Check this box if you want Cacti to insert the return value from this field into the RRD file. Obviously, this box needs to be checked for at least one output field per data input source, but can be left blank to have Cacti store the value in the database instead.
 
 When you are finished filling in all necessary fields, click the Create button
 to continue. You will be redirected back to the data input method edit page.
