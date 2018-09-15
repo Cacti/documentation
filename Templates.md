@@ -54,6 +54,16 @@ checkbox is checked, every data source attached to the template will contain
 its own value for that particular field. When generating a real data source,
 you will be prompted to fill those non-templated fields.
 
+###### Table 13-1. Data Templates: Field Description of the Data Source Section
+
+Name | Description
+--- | ---
+Name | The name of the Data Source that will be created by using this Template. You can use the keyword |host_description| in this field, which will be automatically substituted with the current host description.
+Data Input Method | Here is where you tell cacti how it is supposed to fetch data for this data source. There are several data input sources that come with cacti, and you can add your own by going to Data Input Methods. If this RRD file is being populated outside of cacti, make sure to leave this field set to "None".
+Associated RRAs | You need to associate the data source with at least one RRA so RRDTool knows how often and for how long to keep its data. You will almost always want to select all of these values however so you can render daily, weekly, monthly, and yearly graphs.
+Step | This tells RRDTool how many seconds there will be between updates. The default is 300 seconds (5 minutes), and is sufficient for most installations.
+Data Source Active | This is a quick and easy to tell Cacti to stop gathering data for this data source. The data source can still be used on graphs, but no data will be fed to it until it is made active again.
+
 > **Note:** For most data templates, you will want to check the Use Per-Graph
 > Value checkbox for the name field so each data source using this template
 > has its own unique name. It also makes sense to enter an inital value in
@@ -72,6 +82,16 @@ situations where a script returns more than piece of data at one time. This
 also applies to data queries, so you can have a single data template that
 contains both inbound and outbound traffic, rather than having to create a
 separate data template for each.
+
+###### Table 13-2. Data Templates: Field Description of the Data Source Items Section
+
+Name | Description
+--- | ---
+Internal Data Source Name | This is the name used by RRDTool to identify this particular data source within the RRD file. RRDTool places a limit of 19 alphanumeric characters (plus '_' and '-') on this field.
+Minimum Value | Here is where you specify the minimum value that is expected for this data source in the RRD file. If a value lower than the minimum is given, it will be stored as Unknown (U).
+Maximum Value | Here is where you specify the maximum value that is expected for this data source in the RRD file. If a value higher than the maximum is given, it will be stored as Unknown (U). Note: It often makes sense to define a reasonable maximum value here to avoid spikes in case of a COUNTER wrap
+Data Source Type | Cacti currently supports four types of data that RRDTool can represent for any given data source: COUNTER: is for continuous incrementing counters like the ifInOctets counter in a router. The COUNTER data source assumes that the counter never decreases, except when a counter overflows. It is always a whole INTEGER, floating point numbers are invalid. The update function takes the overflow into account. The counter is stored as a per-second rate. When the counter overflows, RRDTool checks if the overflow happened at the 32bit or 64bit border and acts accordingly by adding an appropriate value to the result. GAUGE: numbers that are not continuously incrementing, e.g. a temperature reading. Floating point numbers are accepted. ABSOLUTE: counters that are reset upon reading. DERIVE: like COUNTER but without overflow checks
+Heartbeat | As defined by RRDTool: "The maximum amount of time that can pass before data is entered as "unknown". This field is usually '600' or 2 data gathering intervals".
 
 #### Custom Data
 
@@ -127,6 +147,29 @@ will inherit its value from the template. If the checkbox is checked, every
 graph attached to the template will contain its own value for that particular
 field.
 
+###### Table 13-3. Field Description: Graph Templates
+
+Name | Description
+--- | ---
+Title | The title of the graph within Cacti and the title that will be printed on the actual graph itself. Note: You can use the keyword |host_description| in this field, which will be automatically substituted with the current host description.
+Image Format | Choose whether you would prefer to output your graph images in PNG or SVG. GIF is supported only with rrdtool 1.0.x and has been deleted from rrdtool 1.2.x and later
+Height | The height of the graph area in pixels
+Width | The width of the graph area in pixels
+Slope Mode | RRDtool graphs are composed of stair case curves by default. This is in line with the way RRDtool calculates its data. Some people favor a more "organic" look for their graphs. RRDTool version 1.2 and above support smoothing of graphs, know as slope mode.
+Auto Scale | Enable auto scale for the graph. This option must be check to use the next two options. Upper/Lower limit values are ignored when using autoscale since these boundaries are determined automatically.
+Auto Scale Options | Choose whether you would like to use --alt-autoscale (ignoring given limits), --alt-autoscale-max (accepting a lower limit), --alt-autoscale-min (accepting an upper limit, requires rrdtool 1.2.x) or --alt-autoscale (accepting both limits, rrdtool default) on the graph. The RRDTool graph manual says: Limits [-u|--upper-limit value] [-l|--lower-limit value] [-r|--rigid] By default the graph will be autoscaling so that it will adjust the y-axis to the range of the data. You can change this behaviour by explicitly setting the limits. The displayed y-axis will then range at least from lower-limit to upper-limit. Autoscaling will still permit those boundaries to be stretched unless the rigid option is set. [-A|--alt-autoscale] Sometimes the default algorithm for selecting the y-axis scale is not satisfactory. Normally the scale is selected from a predefined set of ranges and this fails miserably when you need to graph something like "260 + 0.001 * sin(x)". This option calculates the minimum and maximum y-axis from the actual minimum and maximum data values. Our example would display slightly less than "260-0.001" to slightly more than "260+0.001" (this feature was contributed by Sasha Mikheev). [-J|--alt-autoscale-min] Where "--alt-autoscale" will modify both the absolute maximum AND minimum values, this option will only affect the minimum value. The maximum value, if not defined on the command line, will be 0. This option can be useful when graphing router traffic when the WAN line uses compression, and thus the throughput may be higher than the WAN line speed. [-M|--alt-autoscale-max] Where "--alt-autoscale" will modify both the absolute maximum AND minimum values, this option will only affect the maximum value. The minimum value, if not defined on the command line, will be 0. This option can be useful when graphing router traffic when the WAN line uses compression, and thus the throughput may be higher than the WAN line speed.
+Logarithmic Scaling | Choose if you want logarithmic y-axis scaling.
+Scientific Units for Logarithmic Scaling | This option is not available for rrdtool-1.0.x. For linear graphs, scientific units (in magnitudes of k=kilo, M=mega, ...) is default. But for logarithmic graphs, exponential notation is default. Choose if you want logarithmic y-axis scaling and scientific units.
+Rigid Boundaries Mode | From the RRDTool manual "Normally rrdgraph will automatically expand the lower and upper limit if the graph contains a value outside the valid range. With this option you can disable this behavior".
+Auto Padding | If you have ever created RRDTool-based graphs manually, you may have realized how annoying it can be to get text to line up properly. With this option Cacti will do its best to make the columns on your graph legend line up. This option works best when your graph legend has a consistent number of columns.
+Allow Graph Export | If you choose to use Cacti's static HTML/image export, you can choose whether you want each individual graph to be exported.
+Upper Limit | The maximum value that will be displayed on the y-axis. This value is ignored is auto-scaling is turned on.
+Lower Limit | The minimum value that will be displayed on the y-axis. This value is ignored is auto-scaling is turned on.
+Base Value | Whether you want to base the y-axis labels on 1000 or 1024. This field will typically be set to 1024 for memory and 1000 for traffic measurements.
+Unit Grid Value | Sets the unit value for the y-axis (--y-grid). You should probably keep the unit short as to keep it readable.
+Unit Exponent Value | Sets the 10^e scaling of the y-axis. Valid values for this field are between -18 and 18. For example, you could use 3 to display everything in 'k' (kilo) or -6 to display everything in 'u' (micro).
+Vertical Label | The text to print on the left edge of the graph. Usually is the units the data on the graph is measured in.
+
 > *Note:* For most graph templates, you will want to check the Use Per-Graph
 > Value checkbox for the title field so each graph using this template has its
 > own unique title. It also makes sense to enter an initial value in this field
@@ -145,6 +188,21 @@ Sources dropdown will contain a list of data template items rather than data
 source items. It is important that Cacti can make this association here, so
 that Cacti doesn't have to make unnecessary assumptions later.
 
+###### Table 13-4. Field Description: Graph Template Items
+
+Name | Description
+--- | ---
+Data Source | If this graph item is to represent some sort of data, you must select a your data source here. Keep in mind that not all graph items have a data source. Graph item types such as COMMENT, VRULE, and HRULE typically do not.
+Color | Depending on the graph item type, you can select a color for the graph item. This field only applies to the graph item types AREA, STACK, LINE1, LINE2, and LINE3.
+Opacity/Alpha Channel | For a colored graph item, you may optionally select an opacity (alpha channel). This option is not available with rrdtool-1.0.x.
+Graph Item Type | This field is important because it defines what kind of graph item this is. Types such as AREA, STACK, LINE1, LINE2, and LINE3 are used to represent data on the graph, while COMMENT and GPRINT are used put on the legend. The LEGEND type is specific to Cacti only and can be used if you want to Cacti to automatically create a GPRINT-LAST/GPRINT-AVERAGE/GPRINT-MAXIMUM graph item for you. Note: You must always put an AREA item before using STACK or your graph will not render.
+Consolidation Function | This tells RRDTool which consolidation function to use when representing this data on the graph. You will typically use AVERAGE for most things on the graph area, and LAST/MAXIMUM as well for GPRINT items.
+CDEF Function | If you want to apply a CDEF function to the graph item, select one here. Check out the CDEF section of the manual for more information.
+Value | This field is only used with the HRULE/VRULE graph item types. Type any valid integer to draw the line at for HRULE or the time of the day HH:MM for VRULE.
+GPRINT Type | If this item is a GPRINT, you can choose how you want the number to be formatted. You can add your own in the GPRINT Presets section of Cacti.
+Text Format | You can enter text to be displayed on the legend here. This field is applicable for all graph item types except for the virtual LEGEND type.
+Hard Return | Check this box to force graph items onto the next line.
+
 #### Graph Item Inputs
 
 After creating graph items for your template, you will need to create some
@@ -155,6 +213,15 @@ to take one graph item field, and associate it with multiple graph items.
 To create a new graph item input, click Add on the right of the Graph Item
 Inputs box. There are various fields that must be filled in for every graph
 item input:
+
+###### Table 13-5. Field Description: Graph Template Items
+
+Name | Description
+--- | ---
+Name | This will be the name used to identify the graph item input on both the graph template and graph edit pages.
+Description | (Optional) This description will be displayed on the graph edit page of any graph using this template if specified.
+Field Type | You must choose the field that you are going to associate with one or more graph items.
+Associated Graph Items | Choose one or more graph items to associate with the field selected for "Field Type". When the user specifies a value for the field, it will be applied to all of the items you select here.
 
 ### Applying Graph Templates to Graphs
 
