@@ -162,5 +162,26 @@ query->fields->ifIndex->oid | You must specify the actual OID that corresponds w
 </query>
 ```
 
+###### Table 12-4. Script Query XML Field Reference
+
+Field | Description
+--- | ---
+query->name | (Optional) You can enter a "friendly name" for the script query here. It will not be used by Cacti, and is for identification only.
+query->description | (Optional) You can enter a description for the script query here. It will not be used by Cacti, and is for identification only.
+query->script_path | Enter the complete path to the script or executable that is going to handle your script query. When in doubt, specify the pull path to all binaries referenced in this path, the query may not execute otherwise.
+query->arg_index | Enter the argument that is to be passed to the script to retrieve a list of indexes.
+query->arg_query | Enter the argument that is to be passed to the script to retrieve a list of values given a field name.
+query->arg_get | Enter the argument that is to be passed to the script to retrieve a single value given a field name and index value.
+query->arg_num_indexes | Enter the argument that is to be passed to the script to determine the total number of available indexes. If specified, this will be used to determine when to automatically recache this script query when it is attached to a device.
+query->output_delimeter | Enter the one character delimiter that will be used to separate output values. This is only used when you "query" the script in which case it outputs 'index(delimiter)value'.
+query->index_order | As of version 0.8.6, Cacti will attempt to find the best field to index off of based on whether each row in the query is unique and non-null. If specified, Cacti will perform this check on the fields listed here in the order specified. Only input fields can be specified and multiple fields should be delimited with a comma.
+query->index_order_type | For sorting purposes, specify whether the index is numeric or alphanumeric. numeric: The indexes in this script query are to be sorted numerically (ie. 1,2,3,10,20,31) alphabetic: The indexes in this script query are to be sorted alphabetically (1,10,2,20,3,31).
+query->index_title_format | Specify the title format to use when representing an index to the user. Any input field name can be used as a variable if enclosed in pipes (|). The variable |chosen_order_field| will be substituted with the field chosen by Cacti to index off of (see index_order above).
+query->fields | Each field contained within the script query must be defined under this tag.
+query->fields->dskDevice | Each defined field in the script query must have a unique name given to it. Do not use spaces or any non-alphanumeric characters, this name must be identifiable within Cacti.
+query->fields->dskDevice->name | Here you can specify a "friendly name" for the field. This name will be used by Cacti to help the user identify this field.
+query->fields->dskDevice->direction | input: Input values are the "known" values that you will use to derive the output values, this is where the "query" part of script query comes in. When you create a graph based on a script query, Cacti will prompt you to choose the input value to base the graph on. output: Output values are "unknown" values that are returned from the script. A script query may return multiple statistics for a single index. For instance, a single partition could return free disk space, total disk space, fragmentation percentage, etc. A rule of thumb is that input fields contain semi-static data that is not graphable, while the output fields contain the data that will be graphed.
+query->fields->dskDevice->query_name | Enter the name that Cacti must use when asking the script for information about this field. For instance, the following should return values: '(script_name) query (query_name)'.
+
 ---
 Copyright (c) 2018 Cacti Group
