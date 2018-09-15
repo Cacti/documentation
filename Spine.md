@@ -15,5 +15,14 @@ While Spine is really fast, choosing the correct setup will ensure, that all
 processor resources are used. Required settings for Maximum Concurrent Poller
 Processes are 1-2 times the number of CPU cores available for Spine.
 
+###### Table 15-1. Spine Specific Execution Parameters
+
+Name | Description
+--- | ---
+Maximum Threads per Process | The maximum threads allowed per process. Using a higher number when using Spine will improve performance. Required settings are 10-15. Values above 50 are most often insane and may degrade preformance
+Number of PHP Script Servers | The number of concurrent script server processes to run per Spine process. Settings between 1 and 10 are accepted. Script Servers will pre-load a PHP environment. Then, the Script Server Scripts are included into that environment to save the overhead of reloading PHP each and every time.
+Script and Script Server Timeout Value | The maximum time that Spine will wait on a script to complete, in units of seconds. If a Script Server Script is terminated due to timeout conditions, the value entered into the rrd file will be NaN
+The Maximum SNMP OID's Per SNMP Get Request | The maximum number of snmp get OID's to issue per snmp request. Increasing this value speeds poller performance over slow links. The maximum value is 60 OID's. Please bear in mind, that some type of devices do not accept huge OID numbers and may fail if set above 1. That's why cacti 0.8.7 allows to define this value at device level
+
 ---
 Copyright (c) 2018 Cacti Group
