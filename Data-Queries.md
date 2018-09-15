@@ -38,6 +38,15 @@ the data query within Cacti. To do this you must click on Data Queries under
 the Data Gathering heading, and select Add. You will be prompted for some basic
 information about the data query, described in more detail below.
 
+###### Table 12-1. Field Description: Data Queries
+
+Name | Description
+--- | ---
+Name | Give the data query a name that you will use to identify it. This name will be used throughout Cacti when presented with a list of data queries.
+Description (Optional) | Enter a more detailed description of the data query including the information it queries or additional requirements.
+XML Path | Fill in the full path to the XML file that defines this query. You can optionally use the `path_cacti` variable that will be substituted with the full path to Cacti. On the next screen, Cacti will check to make sure that it can find the XML file.
+Data Input Method | This is how you tell Cacti to handle the data it receives from the data query. Typically, you will select `Get SNMP Data (Indexed)` for an SNMP query and `Get Script Data (Indexed)` for a script query.
+
 When you are finished filling in all necessary fields, click the Create button
 to continue. You will be redirected back to the same page, but this time with
 some additional information to fill in. If you receive a red warning that says
@@ -52,6 +61,13 @@ query. For instance, the interface data query has multiple graph template
 associations, used to graph traffic, errors, or packets. To add a new graph
 template association, simply click Add at the right of the Associated Graph
 Templates box. You will be presented with a few fields to fill in:
+
+###### Table 12-2. Field Description: Associated Graph Templates
+
+Name | Description
+--- | ---
+Name | Give a name describing what kind of data you are trying to represent or graph. When the user creates a graph using this data query, they will see a list of graph template associations that they will have to choose from.
+Graph Template | Choose the actual graph template that you want to make the association with.
 
 When you are finished filling in these fields, click the Create button. You
 will be redirected back to the same page with some additional information to
