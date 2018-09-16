@@ -96,13 +96,32 @@ Re-Indexing is required only for SNMP/Script Data Queries. Remember, that whan
 applying a Data Query to a Host, a `Re-Index Method` has to be chosen. This
 reindex method governs the automatic re-indexing based on specific events.
 
-###### Table 20-1. Re_Index Methods
+###### Table 20-1. Re-Index Methods
 
 Re-Index Method | Description
 --- | ---
-Uptime Goes Backwards | Refers to a system reboot. Cacti will detect if the target has been rebootet by querying sysUptime (.1.3.6.1.2.1.1.3.0). If the current value for the uptime is lower than the previous one (uptime goes backwards), a reboot is assumed and a re-index is performed
-Index Count Changed | Refers to a change of the number of indexed items, e.g. interfaces, without checking sysUptime. It is of particular interest in cases, where indexed entries may change without the need of a reboot. As modern operating systems seldom require reboots for system configuration changes, you may want to consider this setting for many cases (e.g. creating of a new filesystem without a reboot). The index to be considered is defined by the according XML file.
-Verify All Fields | All index fields of the according XML file are checked for changes. This is of particular interest e.g. in cases, where the index is non-numeric (e.g. a MAC address).
+Uptime Goes Backwards | Refers to a system reboot
+Index Count Changed | Refers to a change of the number of indexed items
+Verify All Fields | All index fields of the according XML file are checked for changes
+
+If the method is set to `Uptime Goes Backwards`, Cacti will detect if the
+target has been rebooted by querying sysUptime (.1.3.6.1.2.1.1.3.0). If
+the current value for the uptime is lower than the previous one (uptime
+goes backwards), a reboot is assumed and a re-index is performed
+
+If the method is set to `Index Count Change`, e.g. the number of interfaces,
+without checking sysUptime. It is of particular interest in cases, where
+indexed entries may change without the need of a reboot. As modern operating
+systems seldom require reboots for system configuration changes, you may want
+to consider this setting for many cases (e.g. creating of a new filesystem
+without a reboot). The index to be considered is defined by the according
+XML file.
+
+If the method is set to `Verify All Fields`, all indexes of the data source
+are checked for changes.  This is of particular interest e.g. in cases,
+where the index is non-numeric (e.g. a MAC address).  It should be noted that
+in the 1.0 and 1.1 releases, this method was found to be broken and has been
+corrected since 1.2.
 
 If you feel the need for manual re-indexing, you may run it from cli. Calling
 the script with the parameter `--help` yields
