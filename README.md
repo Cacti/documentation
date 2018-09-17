@@ -2,6 +2,40 @@
 
 ![Cacti](images/logo.png)
 
+Cacti is designed to be a complete graphing solution based on the RRDtool's
+framework. Its goal is to make a network administrator's job easier by taking
+care of all the necessary details necessary to create meaningful graphs.
+
+Please see the official Cacti website for information, support, and updates.
+
+## Cacti Developers
+
+Ian Berry (raX)
+Larry Adams (TheWitness)
+Tony Roman (rony)
+J.P. Pasnak, CD (Linegod)
+Jimmy Conner (cigamit)
+Reinhard Scheck (gandalf)
+Andreas Braun (browniebraun)
+Mark Brugnoli-Vinten (netniV)
+
+## Thanks
+
+A very special thanks to Tobi Oetiker, the creator of RRDtool and the very
+popular MRTG. The users of Cacti Especially anyone who has taken the time to
+create an issue report, or otherwise help fix a Cacti related problems. Also
+to anyone who has contributed to supporting Cacti. License Cacti is licensed
+under the GNU GPL:
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
 ## Table of Contents
 
 1. [Requirements](Requirements.md)
