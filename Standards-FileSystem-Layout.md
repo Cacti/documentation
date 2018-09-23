@@ -34,11 +34,11 @@ parent directory name). Valid token names are
 This part should reflect what type of actions the file contains. Specific
 examples are listed below.
 
-* ''info'' - reads information
-* ''update'' - writes (or changes) information
-* ''form'' - draws form-related information
-* ''execute'' - performs some action that does not modify or return information
-* ''utility'' - contains miscellaneous functions
+* info - reads information
+* update - writes (or changes) information
+* form - draws form-related information
+* execute - performs some action that does not modify or return information
+* utility - contains miscellaneous functions
 
 ## Function Verbs
 
@@ -64,9 +64,9 @@ calls and javascript includes for web interface functionality.
 
 ## images/
 
-* icons/                                # 16x16, 32x32 icons
-* buttons/                              # button images (save, cancel, etc)
-* tabs/                                 # tab images
+* icons/        # 16x16, 32x32 icons
+* buttons/      # button images (save, cancel, etc)
+* tabs/         # tab images
 
 ## include/
 
