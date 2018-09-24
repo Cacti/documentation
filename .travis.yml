@@ -2,8 +2,8 @@ before_install:
   - gem install mdl
 
 script:
-  - ./check_markdown_style.sh
-  - ./check_missing_link.sh
+  - ./bin/check_missing_link.sh
+  - ./bin/check_markdown_style.sh
 
 notifications:
   email:
