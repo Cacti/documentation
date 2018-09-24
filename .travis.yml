@@ -3,6 +3,7 @@ before_install:
 
 script:
   - ./check_markdown_style.sh
+  - ./check_missing_link.sh
 
 notifications:
   email:
