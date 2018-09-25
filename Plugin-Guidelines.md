@@ -1,6 +1,7 @@
 # Plugin Guidelines
 
---- **Note:** All file attachments (except for images) should be in tar.gz,
+--- 
+**Note:** All file attachments (except for images) should be in tar.gz,
 tar.bz or zip format.
 ---
 

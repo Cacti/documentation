@@ -9,11 +9,12 @@ following plugins:
 ## Documentation Link to github
 
 [MacTrack](https://github.com/Cacti/plugin_mactrack)
-[Thold](https://github.com/Cacti/plugin_thold)
-[Syslog](https://github.com/Cacti/plugin_syslog)
-[Monitor](https://github.com/Cacti/plugin_monitor)
 
-Regards, Larry Adams (aka [[wiki:user:thewitness|TheWitness]])
+[Thold](https://github.com/Cacti/plugin_thold)
+
+[Syslog](https://github.com/Cacti/plugin_syslog)
+
+[Monitor](https://github.com/Cacti/plugin_monitor)
 
 ## Hook API Table
 
