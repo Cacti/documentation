@@ -144,5 +144,15 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 7. [Security](Standards-Security.md)
 
+### Cacti Plugins
+
+1. [Plugin Guidelines](Plugin-Guidelines.md)
+
+2. [Creating Plugins](Plugin-Creating-Plugins.md)
+
+3. [References](Plugin-Reference.md)
+
+4. [Hook API Reference](Plugin-Hook-API-Ref.md)
+
 ---
 Copyright (c) 2018 Cacti Group
