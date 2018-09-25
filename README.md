@@ -45,19 +45,38 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 ## Table of Contents
 
+1. [Installation](README.md#Installation)
+
+   This section contains information on how to install and/or upgrade the
+   Cacti system.  It covers requirements, different platforms and the steps
+   needed to get your system working under normal circumstances.
+
+2. [Standard Operations](README.md#Standard-Operations)
+
+   This section covers materials from viewing your graphs to templates and
+   script server operations.
+
+3. [Advanced Operations](README.md#Advanced-Operations)
+
+   This section covers more advanced material such as using a custom script
+   or the replacement variables that can be used within templates, etc.
+
+4. [Cacti Standards](README.md#Cacti-Standards)
+
+   This section contains the relevant information on how to ensure that any
+   work you contribute is kept to the same standards that we would apply if
+   we had written the work ourselves.  It should be noted that just because
+   your work was not in compliance, we wouldn't automatically excluded it
+   though were possible we will suggest amendments to make.
+
+   Otherwise, we will likely make any minor alterations after excepting
+   your work.  It should also be noted that there is a posibility of finding
+   code in Cacti that is non-compliant and it should be fixed up wherever
+   possible.
+
+### Installation
+
 1. [Requirements](Requirements.md)
-
-1. Standards
-
-   1. [Documentation](Standards-Documentation.md)
-
-   2. [Code Formating](Standards-Code-Formatting.md)
-
-   3. [PHP Specific Constructs](Standards-PHP-Spec-Constructs.md)
-
-   4. [FileSystm Layout](Standards-FileSystem-Layout.md)
-
-   5. [Patch Creation](Standards-Patch-Creation.md)
 
 2. [General Installing Instructions](General-Installing-Instructions.md)
 
@@ -65,45 +84,61 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 4. [Upgrading Cacti](Upgrading-Cacti.md)
 
-5. [Principles of Operation](Principles-of-Operation.md)
+### Standard Operations
 
-6. [Graph Overview](Graph-Overview.md)
+1. [Principles of Operation](Principles-of-Operation.md)
 
-7. [How to Graph Your Network](How-to-Graph-Your-Network.md)
+2. [Graph Overview](Graph-Overview.md)
 
-8. [Viewing Graphs](Viewing-Graphs.md)
+3. [How to Graph Your Network](How-to-Graph-Your-Network.md)
 
-9. [Aggregate Overview](Aggregate-Overview.md)
+4. [Viewing Graphs](Viewing-Graphs.md)
 
-10. [User Management](User-Management.md)
+5. [Aggregate Overview](Aggregate-Overview.md)
 
-11. [Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
+6. [User Management](User-Management.md)
 
-12. [Data Input Methods](Data-Input-Methods.md)
+7. [Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
 
-13. [Data Queries](Data-Queries.md)
+8. [Data Input Methods](Data-Input-Methods.md)
 
-14. [Templates](Templates.md)
+9. [Data Queries](Data-Queries.md)
 
-15. [PHP Script Server](PHP-Script-Server.md)
+10. [Templates](Templates.md)
 
-16. [Spine](Spine.md)
+11. [PHP Script Server](PHP-Script-Server.md)
 
-17. [How to Graph a Custom Collection Script](How-to-Graph-a-Custom-Collection-Script.md)
+12. [Spine](Spine.md)
 
-18. [Frequently Asked Questions](Frequently-Asked-Questions.md)
+### Advanced Operations
 
-19. [Variables](Variables.md)
+1. [How to Graph a Custom Collection Script](How-to-Graph-a-Custom-Collection-Script.md)
 
-20. [RRDTool Specific Features](RRDTool-Specific-Features.md)
+2. [Frequently Asked Questions](Frequently-Asked-Questions.md)
 
-21. [Command Line Scripts](Command-Line-Scripts.md)
+3. [Variables](Variables.md)
 
-22. [Debugging](Debugging.md)
+4. [RRDTool Specific Features](RRDTool-Specific-Features.md)
 
-23. [Version Specific Release Notes](Version-Specific-Release-Notes.md)
+5. [Command Line Scripts](Command-Line-Scripts.md)
 
-24. [Plugin Development](Plugin-Development.md)
+6. [Debugging](Debugging.md)
+
+7. [Version Specific Release Notes](Version-Specific-Release-Notes.md)
+
+8. [Plugin Development](Plugin-Development.md)
+
+### Cacti Standards
+
+1. [Documentation](Standards-Documentation.md)
+
+2. [Code Formating](Standards-Code-Formatting.md)
+
+3. [PHP Specific Constructs](Standards-PHP-Spec-Constructs.md)
+
+4. [File System Layout](Standards-FileSystem-Layout.md)
+
+5. [Patch Creation](Standards-Patch-Creation.md)
 
 ---
 Copyright (c) 2018 Cacti Group
