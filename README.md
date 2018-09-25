@@ -78,6 +78,10 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 1. [Requirements](Requirements.md)
 
+   6. [SQL Standards](Standards-SQL.md)
+
+   7. [Security](Standards-Security.md)
+
 2. [General Installing Instructions](General-Installing-Instructions.md)
 
 3. [Installing Under Windows](Installing-Under-Windows.md)
