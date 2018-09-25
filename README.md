@@ -45,23 +45,23 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 ## Table of Contents
 
-1. [Installation](README.md#Installation)
+1. [Installation](README.md#installation)
 
    This section contains information on how to install and/or upgrade the
    Cacti system.  It covers requirements, different platforms and the steps
    needed to get your system working under normal circumstances.
 
-2. [Standard Operations](README.md#Standard-Operations)
+2. [Standard Operations](README.md#standard-operations)
 
    This section covers materials from viewing your graphs to templates and
    script server operations.
 
-3. [Advanced Operations](README.md#Advanced-Operations)
+3. [Advanced Operations](README.md#advanced-operations)
 
    This section covers more advanced material such as using a custom script
    or the replacement variables that can be used within templates, etc.
 
-4. [Cacti Standards](README.md#Cacti-Standards)
+4. [Cacti Standards](README.md#cacti-standards)
 
    This section contains the relevant information on how to ensure that any
    work you contribute is kept to the same standards that we would apply if
