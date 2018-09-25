@@ -78,10 +78,6 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 1. [Requirements](Requirements.md)
 
-   6. [SQL Standards](Standards-SQL.md)
-
-   7. [Security](Standards-Security.md)
-
 2. [General Installing Instructions](General-Installing-Instructions.md)
 
 3. [Installing Under Windows](Installing-Under-Windows.md)
@@ -143,6 +139,10 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 4. [File System Layout](Standards-FileSystem-Layout.md)
 
 5. [Patch Creation](Standards-Patch-Creation.md)
+
+6. [SQL Standards](Standards-SQL.md)
+
+7. [Security](Standards-Security.md)
 
 ---
 Copyright (c) 2018 Cacti Group
