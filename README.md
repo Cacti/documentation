@@ -10,14 +10,21 @@ Please see the official Cacti website for information, support, and updates.
 
 ## Cacti Developers
 
-Ian Berry (raX)
-Larry Adams (TheWitness)
-Tony Roman (rony)
-J.P. Pasnak, CD (Linegod)
-Jimmy Conner (cigamit)
-Reinhard Scheck (gandalf)
-Andreas Braun (browniebraun)
-Mark Brugnoli-Vinten (netniV)
+- Ian Berry (raX)
+
+- Larry Adams (TheWitness)
+
+- Tony Roman (rony)
+
+- J.P. Pasnak, CD (Linegod)
+
+- Jimmy Conner (cigamit)
+
+- Reinhard Scheck (gandalf)
+
+- Andreas Braun (browniebraun)
+
+- Mark Brugnoli-Vinten (netniV)
 
 ## Thanks
 
@@ -39,6 +46,18 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 ## Table of Contents
 
 1. [Requirements](Requirements.md)
+
+1. Standards
+
+   1. [Documentation](Standards-Documentation.md)
+
+   2. [Code Formating](Standards-Code-Formatting.md)
+
+   3. [PHP Specific Constructs](Standards-PHP-Spec-Constructs.md)
+
+   4. [FileSystm Layout](Standards-FileSystem-Layout.md)
+
+   5. [Patch Creation](Standards-Patch-Creation.md)
 
 2. [General Installing Instructions](General-Installing-Instructions.md)
 

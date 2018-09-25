@@ -26,9 +26,9 @@ Use the following style guidelines for control structures.
 ```php
 if ($var == 0) {
     $i++;
-}else if ($var == 1) {
+} else if ($var == 1) {
     $i--;
-}else{
+} else {
     $i = 0;
 }
 ```
@@ -178,10 +178,11 @@ As a general rule of thumb, it is ok to include additional spaces where
 necessary to improve code readability.
 The key here is that writing readable code always takes priority.
 
-### Vertical Whitespace
+### Whitespace
 
 Always place a single blank line after a control structure unless the following
-line is an ending brace `}` or is the last line in the file.
+line is an ending brace `}`.  There should be no blank lines at the end of the
+file, and no spaces at the end of line.
 
 ```php
 if ($var == 0) {
@@ -325,7 +326,7 @@ the file.
 ```php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2010 The Cacti Group                                 |
+ | Copyright (C) 2004-2018 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -337,7 +338,7 @@ the file.
  | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           |
  | GNU General Public License for more details.                            |
  +-------------------------------------------------------------------------+
- | Cacti: The Complete RRDTool-based Graphing Solution                     |
+ | Cacti: The Complete RRDtool-based Graphing Solution                     |
  +-------------------------------------------------------------------------+
  | This code is designed, written, and maintained by the Cacti Group. See  |
  | about.php and/or the AUTHORS file for specific developer information.   |
@@ -369,9 +370,3 @@ list, and return type of the function. It should be formatted as such:
  * @return bool true if successful, false otherwise
  */
 ```
-
-See [phpDocumentor's
-Manual](https://manual.phpdoc.org/HTMLframesConverter/default/) for additional
-functionality that can be included in function comments.
-
-

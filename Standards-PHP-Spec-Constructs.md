@@ -16,10 +16,16 @@ if ((is_array($array)) && (sizeof($array) > 0)) {
 }
 ```
 
+It should be noted that with PHP 7.2 use of `list() = each()` syntax will result
+in warnings and/or errors.  It should also be noted that 7.2 also introduced the
+need for the variable to implement ICountable which are arrays and objects.  You
+should therefore check if `variable !=== false` before using `sizeof()` or
+`count()`
+
 ## Error Return Values
 
-When an a function needs to return a generic error, it is best to return
-boolean `false` in PHP. This makes it very straightforward to check for.
+When an a function needs to return a generic error, it is best to return boolean
+`false` in PHP. This makes it very straightforward to check for.
 
 ```php
 if (file_list() === false) {
@@ -47,18 +53,11 @@ $items = split(':', $string));
 ## Use `preg` Functions Instead of `ereg`
 
 The POSIX based regular expressions in PHP tend to be slower than their
-Perl-based equivalents. Use Perl-based regular expression functions unless
-there is an explicit reason to do otherwise.
+Perl-based equivalents. Use Perl-based regular expression functions unless there
+is an explicit reason to do otherwise.
 
----
-
-### NOTE
-
-```markdown
-Do not use any deprecated functions:  eregi_replace, ereg, eregi
-```
-
----
+***NOTE:*** Do not use any deprecated functions: `eregi_replace`, `ereg`, or
+`eregi`
 
 ## Quotes
 
@@ -84,3 +83,19 @@ and
 
 Don't bother trying to break out variables out of the string if you are just
 going to have to concatenate them.
+
+## Including other PHP files
+
+When including other PHP files, you should use the `$config['base_path']` to
+ensure that the base path is configured properly.
+
+If the main file is a web-based page, it should include `include/auth.php` to
+ensure that the current user is authenticated.
+
+If the main file is a CLI-based program to be run by end users, it should
+include `lib/cli_check.php` and support `-h` and `-v` parameters which run
+`display_help()` and `display_version()` respectively.
+
+```php
+include($config['base_path'] . '/lib/database.php');
+```

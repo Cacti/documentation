@@ -53,22 +53,19 @@ to explain the purpose. Specific examples are listed below.
 * remove
 * update
 
-## access/
+## Dirctory Structure
 
-Directly under the `access/` directory are sub directories for ajax related
-calls and javascript includes for web interface functionality.
-
-## cli/
+### cli/
 
 `[token]_[action].php`
 
-## images/
+### images/
 
 * icons/        # 16x16, 32x32 icons
 * buttons/      # button images (save, cancel, etc)
 * tabs/         # tab images
 
-## include/
+### include/
 
 Code that must be accessed globally but is not contained inside of a function
 should be stored in the `include/` directory. The most common examples are to
@@ -89,39 +86,50 @@ include/global_constants.php
 Arrays that are only used with graphs
 
 ```markdown
-include/graph/graph_arrays.php
+include/graph_arrays.php
 ```
 
 ```markdown
+  content/
+  fa/                                   # FontAwesome files
   js/                                   # javascript files
-    jquery/                             # jquery dist
-    jscalendar/                         # jscalendar dist
-    jstree/                             # treeview control
-    zoom.js
-  html/                                 # contains mostly html
-    template/                           # base html template includes
-      page_header.php
-      page_graph_header.php
-      page_footer
-  css/
-    jquery/
-    main.css                            # global css only
-    form.css                            # css for drawing forms
-    graph.css                           # css for graph viewing
-  [token]/                              # token specific includes
-    [token]_arrays.php
-    [token]_form.php
-    [token]_constants.php
-  config.php
-  global.php
-  global_arrays.php
-  global_constants.php
-  global_form.php
-  global_languge.php
-  global_settings.php
+  themes/[theme]/                       # Visual theme files
+  vendor/
+    csrf/                               # CSRF Magic
+    flag-icon-css/                      # Flag Icons
+    phpgettext/                         # PHP GetText Library
+    phpmailer/                          # PHP Mailer Library
+    phpseclib/                          # PHP Security Library
+    phpsnmp/                            # PHP Snmp Library
 ```
 
-## lib/
+```markdown
+  auth.php                              # Ensures user authenticate and
+                                        # includes global.php
+  cacti_version
+  cli_check.php                         # Default Command Line Include also
+                                        # includes global.php
+  global_arrays.php
+  global_constants.php                  # Constants only
+  global_form.php                       # Form field defintions
+  global_languages.php                  # Langauge selector
+  global.php
+  global_session.php                    # Session variable management
+  global_settings.php                   # Setting defintions
+  session.php                           # Session management
+
+  plugins.php                           # Global plugin variables
+
+  bottom_footer.php                     # Standard Footer
+  top_general_header.php
+  top_graph_header.php
+  top_header.php
+
+  layout.js                             # Main layout javascript
+  realtime.js                           # Realtime javascript functions
+```
+
+### lib/
 
 Functions that must be accessed globally should be stored in the ''lib/''
 directory. This is where most of the heavy lifting in Cacti occurs.
@@ -141,37 +149,20 @@ API wrapper for graph-related functions
 lib/api_graph.php
 ```
 
-Functions that update information about devices
+### locales/
 
-```markdown
-lib/device/device_update.php
-```
+Language-related files are stored here to handle the multi-lingual natural of
+Cacti. These can be updated by running the `update-pot.sh` script.  It is
+advised to do this whenever you are submiting a change to the Cacti via Pull
+Request.  Otherwise, langauge translations can be missed.
 
-Functions that read information about data templates
-
-```markdown
-lib/data_template/data_template_info.php
-```
-
-```markdown
-  adodb/                                # adodb dist
-  sys/                                  # internal libraries (snmp, database, etc)
-  [token]/
-     [token]_form.php
-     [token]_info.php
-     [token]_update.php
-     [token]_ajax.php
-  api_[token].php
-```
-
-## locales/
-
-## plugins/
+### plugins/
 
 Directly under the `plugins/` directory are sub directories that contain
-plugins for Cacti.
+plugins for Cacti.  Since Cacti 1.0.0, all plugins must have an accompanying
+INFO file that details the plugin.
 
-### Including and Requiring Files
+## Including and Requiring Files
 
 To reduce bloat, each file and/or function should include any and all files
 which it relies on.
