@@ -1,7 +1,9 @@
 # Plugin Guidelines
 
---- 
-**Note:** All file attachments (except for images) should be in tar.gz,
+---
+## Note:
+
+All file attachments (except for images) should be in tar.gz,
 tar.bz or zip format.
 ---
 
@@ -57,11 +59,11 @@ syslog, wicked cool, damn near magic' is unnecessary.
 
 ## Plugin Deletion
 
-Remove everything in the page except for %% DELETEME %% ( DELETEME ) and the
+Remove everything in the page except for `DELETEME` and the
 admins will purge it.
 
 If there is a file attached to the page, leave the link to the file and place
-%% DELETEME %% beside it.
+`DELETEME` beside it.
 
-In 'Edit Summary' ensure you enter %% DELETEME %% as it will make it easier to
+In 'Edit Summary' ensure you enter `DELETEME` as it will make it easier to
 find under Recent Changes.
