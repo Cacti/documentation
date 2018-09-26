@@ -166,7 +166,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 4. [Hook API Reference](Plugin-Hook-API-Ref.md)
 
-### Cacti How To's
+### Cacti How To
 
 1. [Contributing](How-To-Contributing.md)
 
