@@ -80,7 +80,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
    Guidelines, hooks, references, etc.
    More How To's can also be found at [Cacti's forum](https://forums.cacti.net/viewforum.php?f=6)
 
-6. How To's
+6. [How To's](README.md#cacti-howtos)
 
    This section contains how to's for several topics.
    Feel free to contribute your own by following the [Guidelines](How-To-Guidelines.md).
