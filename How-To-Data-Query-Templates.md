@@ -11,7 +11,7 @@ I've ran across three scenarios and their solutions:
 ## SNMP index is present
 
 Basically mimic the interface.xml template which comes with Cacti
-`(cacti\resource\snmp_queries\interface.xml)`.
+`(cacti/resource/snmp_queries/interface.xml)`.
 
 SNMPWALK:
 
@@ -53,7 +53,7 @@ In the SNMP XML file, specify the `<oid_index>` and optional
 
 A verbose query from inside Cacti shows the following:
 
-```markdown
+```shell
 + Running data query [1].
 + Found type = '3' [snmp query].
 + Found data query XML file at 'C:/Inetpub/wwwroot/cacti/resource/snmp_queries/interface.xml'
