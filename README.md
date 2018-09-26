@@ -172,7 +172,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 2. [Guidelines](How-To-Guidelines.md)
 
-3. [Determine Cacti template version](How-To-Determine-Template-Version.md)
+3. [Determine template version](How-To-Determine-Template-Version.md)
 
 4. [Using SSH Tunnels](How-To-SSH-Tunnels.md)
 
