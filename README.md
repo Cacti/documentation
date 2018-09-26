@@ -74,6 +74,18 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
    code in Cacti that is non-compliant and it should be fixed up wherever
    possible.
 
+5. [Plugins](README.md#cacti-plugins)
+
+   This section contains all Plugin related information.
+   Guidelines, hooks, references, etc.
+   More How To's can also be found at [Cacti's forum](https://forums.cacti.net/viewforum.php?f=6)
+
+6. How To's
+
+   This section contains how to's for several topics.
+   Feel free to contribute your own by following the [Guidelines](How-To-Guidelines.md).
+   Make sure you read [Contributing](How-To-Contributing.md) first.
+
 ### Installation
 
 1. [Requirements](Requirements.md)
@@ -153,6 +165,18 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 3. [References](Plugin-Reference.md)
 
 4. [Hook API Reference](Plugin-Hook-API-Ref.md)
+
+### How To's
+
+1. [Contributing](How-To-Contributing.md)
+
+2. [Guidelines](How-To-Guidelines.md)
+
+3. [Determine Cacti template version](How-To-Determine-Template-Version.md)
+
+4. [Using SSH Tunnels](How-To-SSH-Tunnels.md)
+
+5. [Data Query Templates](How-To-Data-Query-Templates.md)
 
 ---
 Copyright (c) 2018 Cacti Group
