@@ -117,7 +117,7 @@ XML script:
 After creating the Data Query, Data & Graph templates in Cacti, a verbose query
 will spit out the following:
 
-```markdown
+```shell
 + Running data query [20].
 + Found type = '3' [snmp query].
 + Found data query XML file at 'C:/Inetpub/wwwroot/cacti/resource/snmp_queries/f5_bigip_vs.xml'

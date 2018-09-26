@@ -52,7 +52,7 @@ to 192.168.1.2 on port TCP 161.
 
 The options that are used are the following :
 
-```markdown
+```shell
 -f : requests SSH to go to background just before command execution
 -N : do not execute a remote command
 -g : allows remote hosts to connect to local forwarded ports
@@ -68,7 +68,7 @@ configuration to listen on TCP port 161.
 
 To do so, use that in `snmpd.conf` on the target server :
 
-```markdown
+```console
 agentaddress tcp:161
 rocommunity mycommunity
 ```
