@@ -14,7 +14,7 @@ The next 32 digits are a random number.
 
 ## List of Versions
 
-```markdown
+```php
 "0.8.4"  => "0000",
 "0.8.5"  => "0001",
 "0.8.5a" => "0002",

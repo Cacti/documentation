@@ -185,7 +185,7 @@ Create the following SNMP XML file:
 Once all of the required templates have been created, a verbose query from
 Cacti results in the following:
 
-```markdown
+```shell
 + Running data query [23].
 + Found type = '3' [snmp query].
 + Found data query XML file at 'C:/Inetpub/wwwroot/cacti/resource/snmp_queries/RFC1213.xml'
