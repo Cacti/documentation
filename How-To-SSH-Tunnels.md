@@ -68,7 +68,7 @@ configuration to listen on TCP port 161.
 
 To do so, use that in `snmpd.conf` on the target server :
 
-```console
+```ini
 agentaddress tcp:161
 rocommunity mycommunity
 ```
