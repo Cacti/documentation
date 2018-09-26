@@ -16,7 +16,8 @@ but there may be times, where we either require a separate branch to be created
 for you, or as you to create a pull request in a separate branch.  Bottom line,
 ask questions, and follow the directions that the team provides you.
 
-[Standards-Patch-Creation](Standards-Patch-Creation.md)
+Detailed guide on how to create Pull Requests on Github under
+[Standards-Patch-Creation](Standards-Patch-Creation.md) section.
 
 We appreciate all the support we can get.
 
