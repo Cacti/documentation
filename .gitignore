@@ -2,3 +2,5 @@
 *.swp
 # Ignore any mac DS_Store files
 .DS_Store
+# Ignore build HTML output
+html/*
