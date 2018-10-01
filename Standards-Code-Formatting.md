@@ -10,7 +10,7 @@ Tab stops should be set to 4 spaces.
 
 Below are the vim rules to accomplish this:
 
-```markdown
+```console
 set expandtab
 set shiftwidth=4
 set softtabstop=4

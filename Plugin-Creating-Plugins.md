@@ -12,7 +12,7 @@ a-z and digits 0-9.
 
 So to begin, create your directory in the plugins directory like this.
 
-```markdown
+```console
 /plugins/PLUGINNAME/
 ```
 

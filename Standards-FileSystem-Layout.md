@@ -79,17 +79,17 @@ etc), where information specific to that category is to be stored.
 
 Constants that are made available everyone in the program
 
-```markdown
+```console
 include/global_constants.php
 ```
 
 Arrays that are only used with graphs
 
-```markdown
+```console
 include/graph_arrays.php
 ```
 
-```markdown
+```console
   content/
   fa/                                   # FontAwesome files
   js/                                   # javascript files
@@ -103,7 +103,7 @@ include/graph_arrays.php
     phpsnmp/                            # PHP Snmp Library
 ```
 
-```markdown
+```console
   auth.php                              # Ensures user authenticate and
                                         # includes global.php
   cacti_version
@@ -145,7 +145,7 @@ within the API.
 
 API wrapper for graph-related functions
 
-```markdown
+```console
 lib/api_graph.php
 ```
 
