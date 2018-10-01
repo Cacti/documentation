@@ -1,6 +1,38 @@
 # Formatting Guidlines
 
-All style guidelines should be followed exactly as shown in these examples
+## Overview
+
+Over the years Cacti has attempted to adhere to standards in code construction,
+syntax, style, etc. It has been a very organic grow which has resulted in some
+mixed styles. Cacti is in the process of moving to [PHP Standards
+Recommendations](http://www.php-fig.org/psr/) (PSR) standards.
+
+Initially we are moving towards [PSR-2](http://www.php-fig.org/psr/psr-2/) code
+syntax standard with the following exceptions:
+
+- Initial white space must be tabs not spaces followed by the use of spaces to
+  align elements after initial tab.
+
+- In a block of variable assignments or array elements (moved to multi-line) it
+  is acceptable, but not required, to use spaces to align the `=` or `=>` for the
+  purpose of readability.
+
+- Bracketing/braces should start on the same line of the statement.  For example:
+  - `if (expression) {`,
+  - `} else {`,
+  - and `} elseif {`
+
+- Function declarations should include ending braces on the same line as
+  the function.  For example:
+  - `function name($params ...) {`
+
+- White-space inside of evaluations is discouraged.  For example:
+  - `if (expression) {` and not `if ( expression ) {`.
+
+- Using single quotes to enclose strings, and arrays. This save quite a bit of
+  page processing time.  Use of double quotes is acceptable in certain circumstances.
+
+All style guidelines should be followed exactly as shown in these examples,
 unless indicated otherwise.
 
 ## Indenting
@@ -116,12 +148,12 @@ function graph_title_get() {
 
 ### Constant Naming
 
-Constants should always be in all capital letters. In most cases, they begin
+Constants should always be all capital letters. In most cases, they begin
 with some identifier. The name should be verbose enough that it describes
 **exactly** what the constant represents. Below is the general structure of the
 name.
 
-`[identifer]_[type]_[value]`
+`[identifier]_[type]_[value]`
 
 `Supported graph rendering file types`
 
@@ -141,21 +173,21 @@ define('DATA_INPUT_TYPE_SNMP', 4);
 
 ## Common Action Types
 
-* list - an array of one or more items
+- list - an array of one or more items
 
-* get - an array with one item or a single value (such as an integer or string)
+- get - an array with one item or a single value (such as an integer or string)
 
-* remove - some data is to be removed from the database
+- remove - some data is to be removed from the database
 
-* update - some pre-existing data is to be updated
+- update - some pre-existing data is to be updated
 
-* insert - some new data to be saved
+- insert - some new data to be saved
 
-* print - information will be echoed to the screen/browser
+- print - information will be echoed to the screen/browser
 
-* generate - data will be generated and returned
+- generate - data will be generated and returned
 
-* format - data will be passed in, formatted, and then returned
+- format - data will be passed in, formatted, and then returned
 
 ## Formatting
 
@@ -206,7 +238,7 @@ if ($var ==0) {
 
 ### Constants
 
-Always use constants in place of numbers to represent static values. Instead of
+Always use constants instead of numbers to represent static values. Instead of
 doing:
 
 ```php
@@ -351,7 +383,7 @@ the file.
 ### Function Comments
 
 All functions must be preceded by a comment describing the purpose, argument
-list, and return type of the function. It should be formatted as such:
+list, and return type of the function. It should be formatted as follow:
 
 ```php
 /**
@@ -370,3 +402,6 @@ list, and return type of the function. It should be formatted as such:
  * @return bool true if successful, false otherwise
  */
 ```
+
+---
+Copyright (c) 2018 Cacti Group

@@ -359,12 +359,6 @@ have ruby installed and then run:
 gem install mdl
 ```
 
-And then run or simply add the line to your `.bash_profile` file
-
-```console
-scl enable rh-ruby22 bash
-```
-
 If this pre-requisite has already been completed, then you can simply
 type the following into your shell
 
