@@ -86,3 +86,6 @@ ref_one/
     index.php
     setup.php
 ```
+
+---
+Copyright (c) 2018 Cacti Group

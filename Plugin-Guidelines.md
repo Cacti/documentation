@@ -67,3 +67,6 @@ If there is a file attached to the page, leave the link to the file and place
 
 In 'Edit Summary' ensure you enter `DELETEME` as it will make it easier to
 find under Recent Changes.
+
+---
+Copyright (c) 2018 Cacti Group
