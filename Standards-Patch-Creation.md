@@ -291,3 +291,6 @@ using:
 ```shell
 git push -u
 ```
+
+---
+Copyright (c) 2018 Cacti Group

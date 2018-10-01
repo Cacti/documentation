@@ -139,3 +139,6 @@ config_settings | include/config_settings.php | Allows you to extend the Cacti s
 substitute_host_data | lib/variables.php | This allows you to add to the substitution variables that cacti can parse. Ex  is one of them.
 update_host_status | lib/functions.php | This is called when cmd.php detects a change in the status of a host. Granted, this is not used when you use Cactid, hence the reason THold will not send host down alerts when using Cactid.
 valid_host_fields | include/config_form.php | Pretty sure that this hook allows you to define custom replacement values in graphs.
+
+---
+Copyright (c) 2018 Cacti Group

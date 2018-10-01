@@ -166,3 +166,7 @@ function plugin_PLUGINNAME_install () {
      api_plugin_register_realm('PLUGINNAME', 'PLUGINNAME.php,', 'View PLUGINNAME', 1);
      }
 ```
+
+---
+Copyright (c) 2018 Cacti Group
+

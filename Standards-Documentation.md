@@ -339,13 +339,30 @@ Paragraph 1 text
 Paragraph 2 text
 ```
 
+## Link new files to README.md
+
+Before testing your changes make sure you add the necessary links to README.md
+for any new files
+
+Running this script will help you check for any missing links.
+
+```console
+bin/check_missing_link.sh
+```
+
 ## Testing changes
 
 To locally test the changes made to any Markdown document, you will need to
-have installed ruby then run:
+have ruby installed and then run:
 
 ```console
 gem install mdl
+```
+
+And then run or simply add the line to your `.bash_profile` file
+
+```console
+scl enable rh-ruby22 bash
 ```
 
 If this pre-requisite has already been completed, then you can simply
@@ -353,7 +370,7 @@ type the following into your shell
 
 ```console
 cd <cacti_docs>
-./check_markdown_style.sh
+bin/check_markdown_style.sh
 ```
 
 Which will generate the same output that is seen on the Travis CI build

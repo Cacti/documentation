@@ -29,3 +29,6 @@ Common examples of such functions are `MD5()`, `CONCAT()`, and `NOW()`.
 Always use the database libraries provided by Cacti as an extra layer between
 the code and ADODB. Details about these functions are located in
 `lib/sys/database.php`.
+
+---
+Copyright (c) 2018 Cacti Group

@@ -99,3 +99,6 @@ include `lib/cli_check.php` and support `-h` and `-v` parameters which run
 ```php
 include($config['base_path'] . '/lib/database.php');
 ```
+
+---
+Copyright (c) 2018 Cacti Group

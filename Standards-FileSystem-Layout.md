@@ -177,3 +177,6 @@ function api_graph_item_save($graph_item_id, &$_fields_graph_item) {
     require_once(CACTI_BASE_PATH . '/lib/graph/graph_info.php');
 ```
 
+---
+Copyright (c) 2018 Cacti Group
+
