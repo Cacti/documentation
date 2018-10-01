@@ -74,7 +74,7 @@ header("Location:../index.php");
 
 All plugin files should reside under the plugin directory - in these examples 'ref_one'.
 
-```markdown
+```console
 ref_one/
     docs/
         CHANGELOG
