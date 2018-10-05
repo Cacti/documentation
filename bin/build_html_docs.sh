@@ -18,7 +18,7 @@
 # Helper script to build HTML documentation from markdown source
 
 # define script variables
-UTILS="python pip pandoc"
+UTILS="pandoc"
 ODIR="html"
 
 # check if for required utilities
@@ -38,6 +38,15 @@ then
 	echo
 	echo "Please install the following utilities:"
 	echo "${ERROR}"
+	exit 1
+fi
+
+# make sure pandoc has lua support
+pandoc --help | grep 'lua-filter' 1>/dev/null 2>&1
+if [ ${?} -gt 0 ]
+then
+	echo "ERROR: Required LUA Filter support not found in Pandoc utility"
+	echo "       Make sure you have version 2.3.1 or higher installed"
 	exit 1
 fi
 
