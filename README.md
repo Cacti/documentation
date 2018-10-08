@@ -8,7 +8,7 @@ care of all the necessary details necessary to create meaningful graphs.
 
 Please see the official Cacti website for information, support, and updates.
 
-## Cacti Developers
+## Developers
 
 - Ian Berry (raX)
 
@@ -61,30 +61,24 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
    This section covers more advanced material such as using a custom script
    or the replacement variables that can be used within templates, etc.
 
-4. [Cacti Standards](README.md#cacti-standards)
-
-   This section contains the relevant information on how to ensure that any
-   work you contribute is kept to the same standards that we would apply if
-   we had written the work ourselves.  It should be noted that just because
-   your work was not in compliance, we wouldn't automatically excluded it
-   though were possible we will suggest amendments to make.
-
-   Otherwise, we will likely make any minor alterations after excepting
-   your work.  It should also be noted that there is a posibility of finding
-   code in Cacti that is non-compliant and it should be fixed up wherever
-   possible.
-
-5. [Plugins](README.md#cacti-plugins)
+4. [Plugins](README.md#plugins)
 
    This section contains all Plugin related information.
    Guidelines, hooks, references, etc.
    More How To's can also be found at [Cacti's forum](https://forums.cacti.net/viewforum.php?f=6)
 
-6. [How To's](README.md#cacti-how-tos)
+5. [How To's](README.md#how-tos)
 
    This section contains how to's for several topics.
    Feel free to contribute your own by following the [Guidelines](How-To-Guidelines.md).
    Make sure you read [Contributing](How-To-Contributing.md) first.
+
+6. [Development Standards](README.md#development-standards)
+
+   This section contains the relevant information on how to ensure that any
+   contribution is kept to the same standards that are applied for the Cacti
+   Group.  It should be noted that non-compliance does not mean automatically
+   exclusion of proposed changes.
 
 ### Installation
 
@@ -140,7 +134,29 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 8. [Plugin Development](Plugin-Development.md)
 
-### Cacti Standards
+### Plugins
+
+1. [Plugin Guidelines](Plugin-Guidelines.md)
+
+2. [Creating Plugins](Plugin-Creating-Plugins.md)
+
+3. [References](Plugin-Reference.md)
+
+4. [Hook API Reference](Plugin-Hook-API-Ref.md)
+
+### How Tos
+
+1. [Contributing](How-To-Contributing.md)
+
+2. [Guidelines](How-To-Guidelines.md)
+
+3. [Determine template version](How-To-Determine-Template-Version.md)
+
+4. [Using SSH Tunnels](How-To-SSH-Tunnels.md)
+
+5. [Data Query Templates](How-To-Data-Query-Templates.md)
+
+### Development Standards
 
 1. [Documentation](Standards-Documentation.md)
 
@@ -155,28 +171,6 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 6. [SQL Standards](Standards-SQL.md)
 
 7. [Security](Standards-Security.md)
-
-### Cacti Plugins
-
-1. [Plugin Guidelines](Plugin-Guidelines.md)
-
-2. [Creating Plugins](Plugin-Creating-Plugins.md)
-
-3. [References](Plugin-Reference.md)
-
-4. [Hook API Reference](Plugin-Hook-API-Ref.md)
-
-### Cacti How Tos
-
-1. [Contributing](How-To-Contributing.md)
-
-2. [Guidelines](How-To-Guidelines.md)
-
-3. [Determine template version](How-To-Determine-Template-Version.md)
-
-4. [Using SSH Tunnels](How-To-SSH-Tunnels.md)
-
-5. [Data Query Templates](How-To-Data-Query-Templates.md)
 
 ---
 Copyright (c) 2018 Cacti Group
