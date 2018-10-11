@@ -31,8 +31,9 @@ Please see the official Cacti website for information, support, and updates.
 A very special thanks to Tobi Oetiker, the creator of RRDtool and the very
 popular MRTG. The users of Cacti Especially anyone who has taken the time to
 create an issue report, or otherwise help fix a Cacti related problems. Also
-to anyone who has contributed to supporting Cacti. License Cacti is licensed
-under the GNU GPL:
+to anyone who has contributed to supporting Cacti.
+
+Cacti is licensed under the GNU GPL:
 
 This program is free software; you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
@@ -65,15 +66,17 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    This section contains all Plugin related information.
    Guidelines, hooks, references, etc.
-   More How To's can also be found at [Cacti's forum](https://forums.cacti.net/viewforum.php?f=6)
+   More information can be found on the [Cacti Forums](https://forums.cacti.net/viewforum.php?f=6).
 
 5. [How To's](README.md#how-tos)
 
    This section contains how to's for several topics.
-   Feel free to contribute your own by following the [Guidelines](How-To-Guidelines.md).
-   Make sure you read [Contributing](How-To-Contributing.md) first.
 
-6. [Development Standards](README.md#development-standards)
+6. [Contributing](README.md#contributing)
+
+   This section contains information on how to contribute to Cacti.
+
+7. [Development Standards](README.md#development-standards)
 
    This section contains the relevant information on how to ensure that any
    contribution is kept to the same standards that are applied for the Cacti
@@ -146,15 +149,17 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 ### How Tos
 
-1. [Contributing](How-To-Contributing.md)
+1. [Determine template version](How-To-Determine-Template-Version.md)
 
-2. [Guidelines](How-To-Guidelines.md)
+2. [Using SSH Tunnels](How-To-SSH-Tunnels.md)
 
-3. [Determine template version](How-To-Determine-Template-Version.md)
+3. [Data Query Templates](How-To-Data-Query-Templates.md)
 
-4. [Using SSH Tunnels](How-To-SSH-Tunnels.md)
+### Contributing
 
-5. [Data Query Templates](How-To-Data-Query-Templates.md)
+1. [Contributing](Contributing.md)
+
+2. [Translations](Contributing-Translations.md)
 
 ### Development Standards
 
