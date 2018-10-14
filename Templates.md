@@ -124,6 +124,58 @@ for.
 > **Note:** Now any time a change is made to the data template, it will be
 > automatically propagated to the data sources attached to it.
 
+#### Walkthrough: My First Data Template
+
+For this task, let's stick to SNMP stuff. For you to be able to reproduce this
+example, I've chosen the **UDP** information of the IP MIB.
+
+```console
+snmpwalk -c <community string> -v1 <device> udp
+UDP-MIB::udpInDatagrams.0 = Counter32: 7675
+UDP-MIB::udpNoPorts.0 = Counter32: 128
+UDP-MIB::udpInErrors.0 = Counter32: 0
+UDP-MIB::udpOutDatagrams.0 = Counter32: 8406
+```
+
+As cacti does not use the MIBs but pure ASN.1 OIDs, let's search the OID used
+as udpInDatagrams:
+
+```console
+snmpwalk -c <community string> -v1 -On <device> udp
+.1.3.6.1.2.1.7.1.0 = Counter32: 7778
+.1.3.6.1.2.1.7.2.0 = Counter32: 129
+.1.3.6.1.2.1.7.3.0 = Counter32: 0
+.1.3.6.1.2.1.7.4.0 = Counter32: 8514
+```
+
+The needed OID is .1.3.6.1.2.1.7.1.0. Now learn how to enter this into a new
+Cacti Data Template: Please proceed to Data Templates and filter for SNMP.
+Check the SNMP - Generic OID Template
+
+![Data Templates](images/data-templates.png)
+
+After clicking Go, you're prompted with a new page to enter the name for the
+new Data Template:
+
+![Data Templates Duplicate](images/data-templates-copy.png)
+
+Due to the filter defined above, you won't see the new Template at once, so
+please enter udp as a new filter to find:
+
+![Data Templates New](images/data-templates-new.png)
+
+Now select this entry to change some definitions according to the following
+images:
+
+![Data Templates New 1](images/data-templates-new1.png)
+
+![Data Templates New 2](images/data-templates-new2.png)
+
+for the lower one. Please pay attention to change the MAXIMUM value to 0 to
+prevent data suppression for values exceeding 100. And you saw the OID
+`.1.3.6.1.2.1.7.1.0` from above, didn't you? Please copy another one for OID
+`.1.3.6.1.2.1.7.4.0`, using the description **udpOutDatagrams**
+
 ## Graph Templates
 
 In Cacti, a graph template provides a skeleton for an actual graph. If you have
@@ -244,6 +296,61 @@ input.
 > **Note:** Any time a change is made to the graph template, it will be
 > automatically propagated to the graphs attached to it.
 
+#### Walkthrough: My First Graph Template
+
+Now let's generate the **Graph Template** for those already generated Data
+Templates. Please goto **Graph Templates** and **Add** a new one:
+
+![Graph Template](images/graph-templates.png)
+
+Now you have to fill in some global parameters:
+
+![Graph Template New](images/graph-templates-new1.png)
+
+on the lower part of the page, please fill in:
+
+![Graph Template New 2](images/graph-templates-new2.png)
+
+and **Create** to see:
+
+![Graph Template New 3](images/graph-templates-new3.png)
+
+Now let's add some Graph Template Items. They will specify, which Data Sources
+defined by some Data Template should be displayed on the Graph. Please click
+Add as shown on the last image:
+
+![Graph Template Items 1](images/graph-templates-item1.png)
+
+Now click Save to see:
+
+![Graph Template Items 1](images/graph-templates-item1s.png)
+
+I always appreciate some nice legends to see the numbers for e.g. maximum,
+average and last value. There's a shortcut for this:
+
+![Graph Template Items](images/graph-templates-item2.png)
+
+Press Save to see three legend items created in one step!
+
+![Graph Template Items 2](images/graph-templates-item2s.png)
+
+Now let's turn to the second data source. This works very much the same way. So
+see all four images in sequence:
+
+![Graph Template Items 3](images/graph-templates-item3.png)
+
+![Graph Template Items 3s](images/graph-templates-item3s.png)
+
+![Graph Template Items 4](images/graph-templates-item4.png)
+
+![Graph Template Items 4s](images/graph-templates-item4s.png)
+
+ Please scroll down to the bottom of the page and Save your whole work.
+
+Now, you may add this new Graph Template to any hosts that responds to those
+udp OIDs. But in this case, please wait a moment. Let's first proceed to the
+Host Templates and use this new Graph template for our first own Host Template.
+
 ## Host Templates
 
 Host templates in Cacti serve a different purpose then data and graph
@@ -263,6 +370,31 @@ graph templates or data queries with the host template. Simply select something
 from the dropdown menu and click Add to associate it with your host template.
 
 ![Adding a Host Template](images/host_template.png)
+
+### Walkthrough: My First Host Template
+
+The next task is creating a new **Host Template**. Switch over to **Host
+Templates** and **Add**:
+
+![Add Host Template](images/host-template-add.png)
+
+and fill in the name of this new Template:
+
+![Add Host Template New](images/host-template-new.png)
+
+Now you'll find two sections added. First, let's deal with **Associated Graph
+Templates**. The Add **Graph template** select box holds all defined Graph
+Templates. Select the one we've just created
+
+![Host Template Associate Graph Template](images/host-template-new-gt.png)
+
+and Add it:
+
+![Host Template Associate Graph Template 2](images/host-template-new-gts.png)
+
+Next, let's add the Data Query already selected above:
+
+![Host Template - Data Query](images/host-template-new-dqs.png)
 
 ## Import Templates
 
