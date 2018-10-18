@@ -113,6 +113,12 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 9. [Data Queries](Data-Queries.md)
 
+    9.1. [SNMP Data Queries Walkthrough](SNMP-Data-Queries-Walkthrough.md)
+
+    9.2. [SNMP New Data Query Walkthrough](SNMP-New-Data-Query-Walkthrough.md)
+
+    9.3. [Script Data Query Walkthrough](Script-Data-Query-Walkthrough.md)
+
 10. [Templates](Templates.md)
 
 11. [PHP Script Server](PHP-Script-Server.md)
