@@ -90,7 +90,7 @@ do
 	OFILE=${ODIR}/${IFILE//.md/.html}
 
 	# handle special case for table of contents
-	if [ "${IFILE}" == "README.md" ]
+	if [ "${IFILE}" = "README.md" ]
 	then
 		OFILE="${ODIR}/Table-of-Contents.html"
 	fi
