@@ -2,8 +2,8 @@
 
 Download latest cacti-xxx.zip
 
-1. Stop poller.  
-Cacti > Configuration > Settings > Poller > uncheck Data Collection Enabled and Save.
+1. Stop poller.
+   Cacti > Configuration > Settings > Poller > uncheck Data Collection Enabled and Save.
 
 2. Run Command Prompt as administrator and backup database.
 
@@ -24,9 +24,11 @@ Cacti > Configuration > Settings > Poller > uncheck Data Collection Enabled and 
 5. MySQL Installer - update Catalog, then upgrade MySQL Server
 
 6. Overwrite new Cacti version to production folder.
-   Extract contents of cacti-xxx folder in cacti-xxx.zip to C:\inetpub\wwwroot\cacti\ and replace files.
+   Extract contents of cacti-xxx folder in cacti-xxx.zip to 
+   C:\inetpub\wwwroot\cacti\ and replace files.
 
-7. Edit `include/config.php` and specify the MySQL user, password and database for your Cacti configuration.
+7. Edit `include/config.php` and specify the MySQL user, password and database
+   for your Cacti configuration.
 
    ```sh
    shell> notepad cacti/include/config.php
@@ -55,7 +57,8 @@ Cacti > Configuration > Settings > Poller > uncheck Data Collection Enabled and 
    set global innodb_flush_log_at_timeout = 3;
    ```
 
-9. Start poller.  Cacti > Configuration > Settings > Poller > check Data Collection Enabled and Save.
+9. Start poller.
+   Cacti > Configuration > Settings > Poller > check Data Collection Enabled and Save.
 
 ---
 Copyright (c) 2018 Cacti Group
