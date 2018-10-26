@@ -1,12 +1,16 @@
 # Upgrading Cacti under Windows
-> Download latest cacti-xxx.zip
 
-1. Stop poller.  Cacti > Configuration > Settings > Poller > uncheck Data Collection Enabled and Save.
+Download latest cacti-xxx.zip
+
+1. Stop poller.  
+Cacti > Configuration > Settings > Poller > uncheck Data Collection Enabled and Save.
 
 2. Run Command Prompt as administrator and backup database.
+
    ```sh
    shell> cd Documents
-   shell> "\Program Files\MySQL\MySQL Server 5.7\bin\mysqldump.exe" -uroot -p -l --add-drop-table cacti > cacti-version-YYYYMMDD.sql
+   shell> "\Program Files\MySQL\MySQL Server 5.7\bin\mysqldump.exe" -uroot -p -l 
+   --add-drop-table cacti > cacti-version-YYYYMMDD.sql
    ```
 
 3. Backup the old Cacti directory.
@@ -19,9 +23,11 @@
 
 5. MySQL Installer - update Catalog, then upgrade MySQL Server
 
-6. Overwrite new version to production folder by extracting contents of cacti-xxx folder in cacti-xxx.zip to C:\inetpub\wwwroot\cacti\ and replace files.
+6. Overwrite new Cacti version to production folder.
+   Extract contents of cacti-xxx folder in cacti-xxx.zip to C:\inetpub\wwwroot\cacti\ and replace files.
 
 7. Edit `include/config.php` and specify the MySQL user, password and database for your Cacti configuration.
+
    ```sh
    shell> notepad cacti/include/config.php
    ```
@@ -35,11 +41,13 @@
    ```
 
 8. Point your web browser to:
+
     `http://localhost/cacti/`
 
    Follow the on-screen instructions so your database can be updated to the new version.
 
    Open "MySQL 5.7 Command Line Client" and set variables as needed in following format:
+   
    ```sh
    set global max_allowed_packet = 16777216;
    set global tmp_table_size = 67108864;
