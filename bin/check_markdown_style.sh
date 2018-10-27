@@ -36,4 +36,13 @@ else
 fi
 
 # Run mdl with documentation repository configuration
-${MDL_PATH} -c .mdlrc ${ARGV}
+MDL_OUTPUT=`${MDL_PATH} -c .mdlrc ${ARGV}`
+MDL_RESULT=$?
+echo "${MDL_OUTPUT}" | grep -v "RULES.md"
+if [ $MDL_RESULT -gt 0 ]
+then
+	echo "Cacti's Documentation Standards can be found at:"
+	echo "https://github.com/Cacti/documentation/blob/develop/Standards-Documentation.md"
+	echo
+	exit 1
+fi

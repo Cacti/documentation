@@ -207,6 +207,14 @@ All lists should:
 
 - use a single `-` (dash) character for bullet points
 
+- use the same indentation for the same level
+
+  ```MD005 Inconsistent indentation for list items at the same level```
+
+- start at the beginning of a line (no spaces/indents) for the top level
+
+  ```MD006 Consider starting bulleted lists at the beginning of the line```
+
 - use a digit following by a full stop for numbered lists
 
 - should have a single space between the list item marker and the start of the text

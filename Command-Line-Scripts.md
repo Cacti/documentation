@@ -10,10 +10,31 @@ Cacti supports a number of command line scripts. You will find them in the
     add_perms.php
     add_tree.php
     copy_user.php
+    input_whitelist.php
     poller_graphs_reapply_names.php
     poller_output_empty.php
     poller_reindex_hosts.php
     rebuild_poller_cache.php
+
+The following scripts should only be utilised when recommended in response to an
+outstanding issue:
+
+    analyze_database.php
+    audit_database.php
+    convert_tables.php
+    install_cacti.php
+    md5sum.php
+    rebuild_poller_cache.php
+    repair_database.php
+    repair_graphs.php
+    repair_templates.php
+    splice_rra.php
+    sqltable_to_php.php
+    structure_rra_paths.php
+    upgrade_database.php
+
+Package maintainers may wish to utilise the CLI methods of install_cacti.php and
+upgrade_database.php to perform inplace installations and upgrades.
 
 > **Caution**
 >
@@ -571,7 +592,7 @@ List Options:
 
 Let's first stick to the listing options
 
-### List all Hosts
+### List all Hosts for a graph template
 
 ```console
 shell>php -q add_graph_template.php --list-hosts
@@ -1128,7 +1149,7 @@ id      username        full_name
 3       guest   Guest Account
 ```
 
-### List Trees
+### List Trees who accept permissions
 
 The list of trees is retrieved by calling the script with the parameter
 `--list-trees`. It goes like
@@ -1161,7 +1182,7 @@ Known Graph Templates:(id, name)
 ...
 ```
 
-### List Graphs for given Hosts
+### List Graphs for given Hosts where permissions can be set
 
 To be able to add a permissions to a specific Graph, the id of that very graph
 is required. Thus, a `--list-graphs --host-id=[id]` option was implemented
