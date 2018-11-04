@@ -828,7 +828,7 @@ some data in your new graph. The next image shows both our new graph (the first
 one) and a standard interface traffic graph. The latter one holds more data in
 this example, don't worry about that.
 
-![[Script Data Query - Devices 05](images/dev-dev-14.png)
+![Script Data Query - Devices 05](images/dev-dev-14.png)
 
 Having a closer view, you may notice a difference in magnitude (y-axis). But
 please compare the units used. The first graph uses **Bytes**, the latter one
