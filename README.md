@@ -89,9 +89,15 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 2. [General Installing Instructions](General-Installing-Instructions.md)
 
-3. [Installing Under Windows](Installing-Under-Windows.md)
+3. Installation Under CentOS
 
-4. [Upgrading Cacti](Upgrading-Cacti.md)
+    3.1  [Installation Under CentOS 7 - LAMP Stack](Install-Under-CentOS_LAMP.md)
+
+    3.2  [Installation Under CentOS 7 - LEMP Stack](Install-Under-CentOS_LEMP.md)
+
+4. [Installing Under Windows](Installing-Under-Windows.md)
+
+5. [Upgrading Cacti](Upgrading-Cacti.md)
 
 ### Standard Operations
 
