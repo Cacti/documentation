@@ -398,7 +398,7 @@ documentation on how to make your selinux policy right.
    setenforce 1
    ```
 
---- Note: If you installed Cacti out of `/var/www/html` make sure you fix up
+**Note:** If you installed Cacti out of `/var/www/html` make sure you fix up
 all selinux context and permissions.
 
 ---
