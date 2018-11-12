@@ -44,55 +44,30 @@ server {
    server_name cacti.domain.com;
         root /usr/share/nginx/html/cacti;
         index index.php index.html index.htm;
+
         location / {
-        try_files $uri $uri/ =404;
+                try_files $uri $uri/ /index.php$query_string;
         }
+
         error_page 404 /404.html;
         error_page 500 502 503 504 /50x.html;
         location = /50x.html {
                 root /usr/share/nginx/html/;
         }
 
-        #location ~ \.php$ {
-        #try_files $uri $uri/ =404;
-        #fastcgi_index index.php;
-        #fastcgi_pass unix:/var/run/php7.0-fpm.sock;
-        #fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        #fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        #include fastcgi_params;
-        #}
-
-        # Installer
-        # Remove this if you don't need the web installer (anymore)
-        #if (-f $document_root/install.php) {
-        #rewrite ^/install(/?.*) /install.php$1 last;
-        #}
-        # Use this location when the installer has to be run
-        #location ~ /(index|install)\.php(/|$) {
-        location ~ /(index|home)\.php(/|$) {
-        alias /usr/share/nginx/html/cacti;
-        #
-        # Use this after initial install is done:
-        # location ~ ^/app\.php(/|$) {
-        send_timeout 1800;
-        fastcgi_read_timeout 1800;
-        # regex to split $uri to $fastcgi_script_name and $fastcgi_path
-        fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        # Check that the PHP script exists before passing it
-        try_files $fastcgi_script_name $uri /install.php =404;
-        #try_files $uri $uri/ /install.php$is_args$args;
-        include fastcgi.conf;
-        # Bypass the fact that try_files resets $fastcgi_path_info
-        # see: http://trac.nginx.org/nginx/ticket/321
-        set $path_info $fastcgi_path_info;
-        #fastcgi_param SCRIPT_FILENAME /usr/share/nginx/html$request_filename;
-        ##fastcgi_param PATH_INFO $path_info;
-
-        fastcgi_pass unix:/var/run/php7.0-fpm.sock;
-    }
+        location ~ \.php$ {
+                alias /usr/share/nginx/html/cacti;
+                index index.php
+                try_files $uri $uri/ =404;
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                fastcgi_pass unix:/var/run/php7.0-fpm.sock;
+                fastcgi_index index.php;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                include /etc/nginx/fastcgi_params;
+        }
 
         location /cacti {
-           root /usr/share/nginx/html;
+           root /usr/share/nginx/html/;
            index index.php index.html index.htm;
            location ~ ^/cacti/(.+\.php)$ {
                    try_files $uri =404;
@@ -102,8 +77,8 @@ server {
                    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
                    include /etc/nginx/fastcgi_params;
            }
+
            location ~* ^/cacti/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt))$ {
-                root /usr/share/nginx/html;
                 expires max;
                 log_not_found off;
            }
