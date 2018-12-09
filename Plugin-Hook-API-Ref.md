@@ -1,3 +1,7 @@
+# Plugin Hook API Reference
+
+The following table shows all known Cacti plugin hooks and a brief description of their function.
+
 hook | hook | hook
 --- | --- | ---
 [add\_graph\_template\_to\_host](Plugin-Hook-API-Ref.md#add_graph_template_to_host) | [api\_device\_new](Plugin-Hook-API-Ref.md#api_device_new) | [api\_device\_save](Plugin-Hook-API-Ref.md#api_device_save)
