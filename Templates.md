@@ -1,58 +1,24 @@
 # Templates
 
-The real strength of Cacti is unleashed by using templates. There are three
-different types of templates with the basic Cacti installation: *Data
-Templates*, *Graph Templates* and *Host Templates*. While it is perfectly fine
-to define all data sources and graphs without using Templates at all, the
-burden of this approach is high. In most installations, there are lots of
-devices of the same kind. And there are lots of data of the same kind, e.g.
-traffic information is needed for almost every device. Therefor, the parameters
-needed to create a traffic rrd file are defined by a *Data Template*, in this
-case known as "Interface - Traffic". These definitions are used by all
-Traffic-related rrd files.
+The real strength of Cacti is unleashed by using templates. There are three different types of templates with the basic Cacti installation: **Data Templates**, **Graph Templates**, **Device Templates**, **Aggregate Templates**, and **Color Templates**. While it is perfectly fine to define all data sources and graphs without using Templates at all, the burden of this approach is high. In most installations, there are lots of devices of the same kind. And there are lots of data of the same kind, e.g. traffic information is needed for almost every device. Therefore, the parameters needed to create a traffic rrd file are defined by a *Data Template*, in this case known as "Interface - Traffic". These definitions are used by all Traffic-related RRDfiles.
 
-The same approach is used for defining *Graph Templates*. This is done only
-once. And all parameters defined within such a *Graph Template* are copied to
-all Graphs that are created using this Template.
+The same approach is used for defining **Graph Templates**. This is done only once. And all parameters defined within such a **Graph Template** are copied to all **Graphs** that are created using this Template.
 
-The last type of Templates are the *Host Templates*. They are not related to
-some rrdtool stuff. The purpose of *Host Templates* is to group all Graph
-Templates and Data Queries (these are explained later) for a given device type.
-So you will make up a *Host Template* e.g. for a specific type of router,
-switch, host and the like. By assigning the correct *Host Template* to each new
-Device, you'll never forget to create all needed Graphs.
+The last type of Templates are the **Device Templates**. They are not related to some RRDtool stuff. The purpose of **Device Templates** is to group all **Graph Templates** and **Data Queries** (these are explained later) for a given device type.  So you will make up a **Device Template** e.g. for a specific type of router, switch, host and the like. By assigning the correct **Device Template** to each new **Device**, you'll never forget to create all needed **Graphs**.
 
-There's no need to create all Templates on your own! Apart from the fact, that
-many common templates are provided out-of-the-box, there's a very simple
-machnism to Import Templates and to Export Templates.
+There's no need to create all Templates on your own! Apart from the fact, that many common templates are provided out-of-the-box, there's a very simple machanism to **Import Templates** and to **Export Templates**.
 
 ## Data Templates
 
-In Cacti, a data template provides a skeleton for an actual data source. If you
-have many data sources that share most of their characteristics, using a data
-template would probably make sense. No change of a Data Template is propagated
-to already existing rrd files. But most of them may be changed by using
-`rrdtool tune` from command line. Pay attention to not append new Data Source
-Items to already existing rrd files. There's no `rrdtool` command to achieve
-this!
+In Cacti, a **Data Template** provides a skeleton for an actual **Data Source**. If you have many **Data Sources** that share most of their characteristics, using a **Data Template** would probably make sense. No change of a **Data Template** is propagated to already existing RRDfiles. But most of them may be changed by using `rrdtool tune` from command line. Pay attention to not append new *Data Source Items* to already existing RRDfiles. There's no `rrdtool` command to achieve this!
 
 ### Creating a Data Template
 
-To create a new data template, select Data Templates under the Templates
-heading and click Add.
+To create a new **Data Template**, select **Data Templates** under the **Console > Templates** menu heading and click Add.
 
-The first thing you must do is give the template a name. This name has nothing
-to do with the data source name, but is what you will use to identify the
-template throughout Cacti.
+The first thing you must do is give the template a name. This name has nothing to do with the **Data Source** name, but is what you will use to identify the template throughout Cacti.
 
-Second, you will notice a list of data source/data source item field names with
-Use Per-Data Source Value checkboxes next to each one. The nice thing about
-templates in Cacti is that you can choose whether to template each field on a
-per-field basis. If you leave the checkbox unchecked, every data source
-attached to the template will inherit its value from the template. If the
-checkbox is checked, every data source attached to the template will contain
-its own value for that particular field. When generating a real data source,
-you will be prompted to fill those non-templated fields.
+Second, you will notice a list of data source/data source item field names with Use Per-Data Source Value checkboxes next to each one. The nice thing about templates in Cacti is that you can choose whether to template each field on a per-field basis. If you leave the checkbox unchecked, every data source attached to the template will inherit its value from the template. If the checkbox is checked, every data source attached to the template will contain its own value for that particular field. When generating a real data source, you will be prompted to fill those non-templated fields.
 
 ###### Table 13-1. Data Templates: Field Description of the Data Source Section
 
