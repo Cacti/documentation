@@ -75,10 +75,10 @@ function ss_myfunction() {
 ```php
 if (($cmd == "index")) {
     ...
-    print $some_index_data . "n";
+    print $some_index_data . PHP_EOL;
 } elseif ($cmd == "query") {
     ...
-    print $some_query_data . "n";
+    print $some_query_data . PHP_EOL;
 } elseif ($cmd == "get") {
     ...
     return $some_get_data;
