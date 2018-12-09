@@ -148,6 +148,7 @@ To test your script in the script server, simply follow the instructions below. 
    script server> c:\www\root\cacti\script\ss_myserver_file.php ss_myfunction argument1 argument2 ...
    nameA:valueA nameB:valueB ...
    ```
+
 4. To quit the script server, simply type `quit <CR>` at the command line.
 
    > **Note**: If there are errors in your script, you must restart the script server before your retest your code.
