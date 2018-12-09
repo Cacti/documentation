@@ -128,7 +128,7 @@ From this sub-tab, you can `Grant` or `Revoke` a **Users** access to the various
 
 From this sub-tab, you can modify a **Users** settings to assist the **User** with their use of Cacti, or to set defaults for that **User**.
 
-![User Settings](images/user_management_permissions_settings.png)
+![User Settings](images/user_management_settings.png)
 
 ## Copying a user
 
