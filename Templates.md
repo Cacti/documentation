@@ -398,47 +398,29 @@ Next, let's add the Data Query already selected above:
 
 ## Import Templates
 
-Assume, you're searching for a specific set of templates to monitor a special
-type of device. Apart from designing templates from scratch, there's a good
-chance to find a solution in the [Scripts and Templates Forum](http://forums.cacti.net/forum-12.html).
-The set of templates is usually provided as a single XML file holding all
-required definitions for a data template and a graph template. Depending
-on the goal of the original author, he/she may have provided a host template
-as well as part of this XML file.
+Assume, you're searching for a specific set of templates to monitor a special type of device. Apart from designing templates from scratch, there's a good chance to find a solution in the [Scripts and Templates Forum](http://forums.cacti.net/forum-12.html).  The set of templates is usually provided as a single XML file holding all required definitions for a data template and a graph template. Depending on the goal of the original author, he/she may have provided a **Device Template** as well as part of this XML file.  Note that after you **Import Templates**, you may also have to copy a Resource XML file to the appropriate <path_cacti>/resource directory, and a script to the <path_cacti>/scripts directory.  However, also note that in the current version of Cacti, **Packages** are now importable as well.  When you import a **Package** all of the required additional file changes will also be accomodated.  We will discuss **Packages** later in the docuemntation.
 
 ![Import Templates](images/import_template.png)
 
-If the XML file was downloaded, you may import it from the filesystem via the
-search button. As an alternative, you may want to cut and paste the XML into
-the textbox.
+If the XML file was downloaded, simply select that file from the Downloads location on your local system.  Cacti no longer supports pasting the XML into the browser window.
 
-Please pay attention the the *Import RRA Settings*. By default, current RRA
-settings will be preserved, even if the imported XML file specifies different
-settings. This is recommended to avoid accidentally overwriting these global
-RRA definitions. If you are sure, you may override this default.
+Please pay attention the the `Data Source Profile` field. By default, cacti will attempt to use your default **Data Source Profile**.  However, you can change that at import time to use an alternate **Data Source Profile** or even the one from the **Template** itself, if it includes one.
 
-For a single OID based template, this will be all. For a script based template,
-the author will provide the script that has to be downloaded to the Cacti
-`./scripts` directory. For a SNMP/SCRIPT Data Query, a second XML file holding
-the Data Query definitions will have to be downloaded to the appropriate
-directory under `./resources`.
+Also, not that if you have made local modification to an earlier version of a **Graph Template**, and wish to fully migrate to the new **Graph Template** for all your existing **Graphs**, please select `Remove Orphaned Graph Items`.  Otherwise, your **Graphs** will look awkward in the end.  This should not be a problem for new Imports.
 
-When importing templates, Cacti will perform a version check. All XML templates
-hold the version of the Cacti system that generated this XML set. Cacti will
-import only, if your current Cacti version equals or is higher than the
-exporting one.
+It's also important to `Preview` the **Template** imports to access the impact that the import will have on existing database object.  In earlier versions of Cacti, you were unable to determine what would actually change.  However, in the current and future versions of Cacti, you will be able to see all local modifications when performing a `Preview` prior to `Importing`.
+
+As mentioned previously, for a single OID based template, **Importing** the **Template** is all that will be required. However, for a script based template, the author will provide the script that has to be downloaded to the Cacti `./scripts` directory and for a **Data Query** based **Template**, a second XML file holding the Data Query definitions will have to be downloaded to the appropriate directory under `./resources`.
+
+When importing templates, Cacti will perform a version check. All XML templates hold the version of the Cacti system that generated this XML set. Cacti will import only, if your current Cacti version equals or is higher than the exporting one.
 
 ## Export Templates
 
-Now that you know how to import, you may want to know in which way to export as
-well. Selecting the Export Templates gives
+Now that you know how to import, you may want to know in which way to export as well. Selecting the Export Templates gives
 
 ![Export Templates](images/export_template.png)
 
-You may select to export a graph template, a data template, a host template or
-a data query. When selecting `Include Dependencies`, e.g. a host template will
-include all referred templates (graph template, data template and, if defined,
-data query). Output may be written to the browser or to a file for uploading.
+You may select to export a graph template, a data template, a **Device Template** or a **Data Query**. When selecting `Include Dependencies`, e.g. a **Device Template** will include all referred templates (**Graph Template**, **Data Template**, if defined, **Data Query**). Output may be written to the browser or to a file for uploading.
 
 ---
 Copyright (c) 2018 Cacti Group
