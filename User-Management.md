@@ -96,6 +96,8 @@ From this sub-tab, you can modify general **User** attributes including Full Nam
 
 From this sub-tab, you control what areas of Cacti a **User** has access to.  Cacti has broken those access areas into various `Roles` to make the setting of permissions easier to understand.  Note that **Plugin** permissions are still grouped by Plugin in the current version of Cacti.  This will change over the next few releases to be more in line with the various Cacti Roles.
 
+![Permissions](images/user_management_permissions.png)
+
 ### Group Membership
 
 From this sub-tab, you can assign or remove users from various **User Groups**.
@@ -104,13 +106,19 @@ From this sub-tab, you can assign or remove users from various **User Groups**.
 
 From this sub-tab, you can view a users `Effective` Graph permisions and also `Grant` or `Revoke` access to **Graphs** for an individual **User**.
 
+![Graph Permissions](images/user_management_permissions_graph.png)
+
 ### Device Perms
 
 From this sub-tab, you can view and edit a users **Device** permissions.  Note that removing a users permission to a **Device** can be overwridden if they have access to either a **Graph** or, depending on the permission model you have chosen, a **Devices** **Graph Template**.
 
+![Graph Permissions](images/user_management_permissions_device.png)
+
 ### Template Perms
 
 From this sub-tab, you can `Grant` or `Revoke` a **Users** access to various Cacti **Graph Templates**.
+
+![Graph Permissions](images/user_management_permissions_templates.png)
 
 ### Tree Perms
 
@@ -119,6 +127,8 @@ From this sub-tab, you can `Grant` or `Revoke` a **Users** access to the various
 ### User Settings
 
 From this sub-tab, you can modify a **Users** settings to assist the **User** with their use of Cacti, or to set defaults for that **User**.
+
+![User Settings](images/user_management_permissions_settings.png)
 
 ## Copying a user
 
