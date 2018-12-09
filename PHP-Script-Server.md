@@ -127,8 +127,7 @@ To test your script in the script server, simply follow the instructions below. 
 
    `shell> php <path_cacti>/script_server.php`
 
-   > **NOTE**: Due to a bug in Windows implementation of PHP, you must type
-   > the full path name to the `script_server.php` file.
+   > **NOTE**: Due to a bug in Windows implementation of PHP, you must type the full path name to the `script_server.php` file.
 
 2. Type in your command - Using the example from above, you would type in the
    following:
@@ -151,8 +150,7 @@ To test your script in the script server, simply follow the instructions below. 
    ```
 4. To quit the script server, simply type `quit <CR>` at the command line.
 
-> **Note**: If there are errors in your script, you must restart the script
-> server before your retest your code.
+   > **Note**: If there are errors in your script, you must restart the script server before your retest your code.
 
 ---
 Copyright (c) 2018 Cacti Group
