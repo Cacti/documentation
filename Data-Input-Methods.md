@@ -11,7 +11,7 @@ To create a new **Data Input Method**, from the Cacti Console, select **Data Col
 ###### Table 11-1. Field Description: Data Input Methods
 
  Name | Description
- --- | --- 
+ --- | ---
 Name | Give the data query a name that you will use to identify it
 Input Type | Select the type of **Data Input Method** you are trying to create
 Input String | This field is only used when the Input Type is set to **Script/Command**
