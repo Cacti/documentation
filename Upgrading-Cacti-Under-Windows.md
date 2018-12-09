@@ -9,11 +9,12 @@ Download latest cacti-xxx.zip
 
    ```sh
    shell> cd Documents
-   shell> "\Program Files\MySQL\MySQL Server 5.7\bin\mysqldump.exe" -uroot -p -l 
+   shell> "\Program Files\MySQL\MySQL Server 5.7\bin\mysqldump.exe" -uroot -p -l
    --add-drop-table cacti > cacti-version-YYYYMMDD.sql
    ```
 
 3. Backup the old Cacti directory.
+
    ```sh
    shell> cd \inetpub\wwwroot
    shell> robocopy cacti cacti-version-YYYYMMDD /s /b /copyall
@@ -24,7 +25,7 @@ Download latest cacti-xxx.zip
 5. MySQL Installer - update Catalog, then upgrade MySQL Server
 
 6. Overwrite new Cacti version to production folder.
-   Extract contents of cacti-xxx folder in cacti-xxx.zip to 
+   Extract contents of cacti-xxx folder in cacti-xxx.zip to
    C:\inetpub\wwwroot\cacti\ and replace files.
 
 7. Edit `include/config.php` and specify the MySQL user, password and database
@@ -49,7 +50,7 @@ Download latest cacti-xxx.zip
    Follow the on-screen instructions so your database can be updated to the new version.
 
    Open "MySQL 5.7 Command Line Client" and set variables as needed in following format:
-   
+
    ```sh
    set global max_allowed_packet = 16777216;
    set global tmp_table_size = 67108864;
