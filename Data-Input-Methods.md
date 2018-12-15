@@ -334,7 +334,7 @@ You should see:
 
 Enter the name of the new **Data Input Method**, select **Script/Command** and type in the command to call the script. Please use the **full path to the command interpreter**. Instead of entering the specific parameters, type `<symbolic variable name>` for each parameter the script needs. **Save**:
 
-![More Scripts dim 3](image/dim-add03.preview.png)
+![More Scripts dim 3](images/dim-add03.preview.png)
 
 Now add each of the input parameters in the **Input Fields** section, one after the other. All of them are listed in sequence, starting with `<host>`:
 
@@ -346,7 +346,7 @@ Now add each of the input parameters in the **Input Fields** section, one after 
 
 `<community>`
 
-![More Scripts dim 6](dim-add06.preview.png)
+![More Scripts dim 6](images/dim-add06.preview.png)
 
 `<version>`
 
@@ -381,21 +381,25 @@ The previous step explained how to call the script that retrieves the data. Now 
 
 The first step is quite the same as Create the **Data Template** for a simple **Data Input Method**. For sure, we provide a different name, **Example - UDP Packets**. Now, let's enter the first **Data Source**. Again, its like above. But we now provide the name of **udpInPackets**, enter a **Maximum value** of 100,000 and select the **Data Source Type** of COUNTER.
 
-![Data Template - Two DS, Step1](images/logo.png)
+![Data Template - Two DS, Step1](images/dim-add13.preview.png)
 
-Then save and find
+Then save and find with the exception that the *Output Field* will be set to *None Selected*.  Therefore, before adding the second *Data Source Item*, make sure you select the *Output Field* of *udpInDatagrams* and press the Save button to create the association.
 
-![Data Template - Two DS, Step2](images/logo.png)
+![Data Template - Two DS, Step2](images/dim-add14.preview.png)
 
-Add the second **Data Source** by hitting **New** and provide data for **udpOutPackets**. Pay attention to select the correct **Output Field** defined by the **Data Input Method**.
+Then, add the second **Data Source** by pressing the plus (+) glyph and providing data for *udpOutPackets*. Pay attention to select the correct *Output Field* defined by the **Data Input Method** as we did with the *udpInDatagrams*.
 
-![Data Template - Two DS, Step3](images/logo.png)
+![Data Template - Two DS, Step3](images/dim-add15.preview.png)
 
-Please pay attention, as **Maximum Value** for second and following **Data Sources** defaults to 100! In most cases, this value won't fit. To deactivate maximum checking, enter 0, else the desired number. Do not forget to select the correct **Data Source Type** and the **Output Field**.
+To deactivate maximum checking, enter 'U', else the desired number. Do not forget to select the correct *Data Source Type* and the *Output Field* as before.
 
 ### The Graph Template
 
-Again, most of this task was already described at Create the **Graph Template** of the previous chapter. You will define the **Graph Templates** global data just as in that example. But now, you will want to add both **Data Sources** to the **Graph**. Just copy the steps for **Data Source** **time** twice, one for **udpInPackets** and for **udpOutPackets**.  Add a **Legend** for both and you're happy.
+Most of this task of creating a **Graph Template** has already been covered in our example.  You will basically create a new **Graph Template**, provide a *Line* or an *Area Fill* followed by a *Legend* for both the *udpInDatagrams* and *udpOutDatagrams*.  The result of those actions will be the image below:
+
+![Graph Template - Two DS, Step4](images/dim-add16.preview.png)
+
+After you have created your **Graph Template** you can proceed to Add the **Graph Template** to your **Device**, and either allow the automation to create the **Graph** for you, or to manually add it from the **New Graphs** menu pick.
 
 ---
 Copyright (c) 2018 Cacti Group
