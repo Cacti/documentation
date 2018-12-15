@@ -99,6 +99,8 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 5. [Upgrading Cacti](Upgrading-Cacti.md)
 
+6. [Upgrading Cacti Under Windows](Upgrading-Cacti-Under-Windows.md)
+
 ### Standard Operations
 
 1. [Principles of Operation](Principles-of-Operation.md)
