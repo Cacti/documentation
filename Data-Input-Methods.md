@@ -190,9 +190,9 @@ Notice, that not only an entry was made under **Graph Template Items**, but unde
 
 Notice, that the **Data Source** is filled in automagically. Select LEGEND as **Graph Item Type** (it is not really a **Graph Item Type** in RRDtool-speak, but a nice time-saver), and click **Create** to see:
 
-![Graph Template Items 5](r-gt6.png)
+![Graph Template Items 5](images/r-gt6.png)
 
-Wow! Three items filled with one action! You may want to define a **Vertical Label** at the very bottom of the screen and **Save**.
+Wow! Three items filled with one action!
 
 #### Apply the Graph Template to a Device
 
@@ -204,7 +204,7 @@ Select your newly created **Graph Template** from the Add **Graph Template** dro
 
 ![Associate Data Queries](images/r-dev2.png)
 
-The **Graph Template** is added and shown as **Not Being Graphed**. On the top of the page you'll find the **Create Graphs** for this **Device** link. Click this to see:
+By default, the **Graph Template** is added and shown as **Is Being Graphed**.  The reason for this is that Cacti now automatically creates **Graphs** automatically, unless disabled.  If the **Graph Template** shows **Not Being Graphed**, you can create the **Graph** by pressing the **Create Graphs** at the top of the **Devices** page. Click this link to see:
 
 ![Create New Graph](images/r-dev3.png)
 
@@ -214,12 +214,12 @@ Check the box that belongs to the new template and Create. See the results:
 
 This will automatically
 
-- create the needed **Graph Description** from the **Graph Template**. As you may  notice from the success message, this **Graph** takes the hosts name in it:  **router - Test ping** (router is the hosts name of this example).
-- create the needed **Data Source Description** from the **Data Template**. Again, you will find the Hosts name replaced for |host_description|
-- create the needed RRDfile with definitions from the **Data Template**.  The name of this file is derived from the Host and the **Data Template** in conjunction with an auto-incrementing number.
-- create an entry to the poller_table to instruct Cacti to gather data on each polling cycle
+- Create the needed **Graph Description** from the **Graph Template**. As you may  notice from the success message, this **Graph** takes the hosts name in it:  **router - Test ping** (router is the hosts name of this example).
+- Create the needed **Data Source Description** from the **Data Template**. Again, you will find the Hosts name replaced for |host_description|
+- Create the needed RRDfile with definitions from the **Data Template**.  The name of this file is derived from the Host and the **Data Template** in conjunction with an auto-incrementing number.
+- Create an entry to the poller_item to instruct Cacti to gather data on each polling cycle.
 
-You'll have to wait at least for two polling cycles to find data in the **Graph**. Find your **Graph** by going to **Graph Management**, filtering for your host and selecting the appropriate **Graph** (there are other methods as well). This may look like:
+You'll have to wait at least two polling cycles to find data in the **Graph**. Find your **Graph** by going to **Graph Management**, filtering for your host and selecting the appropriate **Graph** (there are other methods as well). This may look like:
 
 ![Newly Graph after a few polling cycles](images/router_ping_graph.png)
 
