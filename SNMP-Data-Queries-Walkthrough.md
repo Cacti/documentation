@@ -84,9 +84,9 @@ In addition, we need to setup any *Suggested Values* as you can see from the exa
 
 Once the **Associated Graph Template** mappings have been completed, you should see the image below, where we have:
 
-   - Mapped the internal **Data Template** *Data Sources* to the XML file *Input Data Sources*
-   - Added any *Suggested Values* for the *Graph Title* or other **Graph** fields
-   - Added any *Suggested Values* for the *Data Source* name or other **Data Source** fields
+- Mapped the internal **Data Template** *Data Sources* to the XML file *Input Data Sources*
+- Added any *Suggested Values* for the *Graph Title* or other **Graph** fields
+- Added any *Suggested Values* for the *Data Source* name or other **Data Source** fields
 
 ![Associated Graph Template Completed](images/r-dq6.png)
 
