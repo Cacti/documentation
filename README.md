@@ -103,35 +103,37 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 ### Standard Operations
 
-1. [Principles of Operation](Principles-of-Operation.md)
+1. [Navigating the User Interface](Navigating-The-User-Interface.md)
 
-2. [Graph Overview](Graph-Overview.md)
+2. [Principles of Operation](Principles-of-Operation.md)
 
-3. [How to Graph Your Network](How-to-Graph-Your-Network.md)
+3. [Graph Overview](Graph-Overview.md)
 
-4. [Viewing Graphs](Viewing-Graphs.md)
+4. [How to Graph Your Network](How-to-Graph-Your-Network.md)
 
-5. [Aggregate Overview](Aggregate-Overview.md)
+5. [Viewing Graphs](Viewing-Graphs.md)
 
-6. [User Management](User-Management.md)
+6. [Aggregate Overview](Aggregate-Overview.md)
 
-7. [Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
+7. [User Management](User-Management.md)
 
-8. [Data Input Methods](Data-Input-Methods.md)
+8. [Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
 
-9. [Data Queries](Data-Queries.md)
+9. [Data Input Methods](Data-Input-Methods.md)
 
-    9.1. [SNMP Data Queries Walkthrough](SNMP-Data-Queries-Walkthrough.md)
+10. [Data Queries](Data-Queries.md)
 
-    9.2. [SNMP New Data Query Walkthrough](SNMP-New-Data-Query-Walkthrough.md)
+    10.1. [SNMP Data Queries Walkthrough](SNMP-Data-Queries-Walkthrough.md)
 
-    9.3. [Script Data Query Walkthrough](Script-Data-Query-Walkthrough.md)
+    10.2. [SNMP New Data Query Walkthrough](SNMP-New-Data-Query-Walkthrough.md)
 
-10. [Templates](Templates.md)
+    10.3. [Script Data Query Walkthrough](Script-Data-Query-Walkthrough.md)
 
-11. [PHP Script Server](PHP-Script-Server.md)
+11. [Templates](Templates.md)
 
-12. [Spine](Spine.md)
+12. [PHP Script Server](PHP-Script-Server.md)
+
+13. [Spine](Spine.md)
 
 ### Advanced Operations
 
