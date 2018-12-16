@@ -132,11 +132,11 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    3.3. [Data Queries](Data-Queries.md)
 
-      - [SNMP Data Queries Walkthrough](SNMP-Data-Queries-Walkthrough.md)
+      [SNMP Data Queries Walkthrough](SNMP-Data-Queries-Walkthrough.md)
 
-      - [SNMP New Data Query Walkthrough](SNMP-New-Data-Query-Walkthrough.md)
+      [SNMP New Data Query Walkthrough](SNMP-New-Data-Query-Walkthrough.md)
 
-      - [Script Data Query Walkthrough](Script-Data-Query-Walkthrough.md)
+      [Script Data Query Walkthrough](Script-Data-Query-Walkthrough.md)
 
 4. [Templates](Templates.md)
 
