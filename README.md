@@ -46,27 +46,23 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 ## Table of Contents
 
-1. [Installation](README.md#installation)
+1. [Cacti Installation](README.md#cacti-installation)
 
    This section contains information on how to install and/or upgrade the
    Cacti system.  It covers requirements, different platforms and the steps
    needed to get your system working under normal circumstances.
 
-2. [Standard Operations](README.md#standard-operations)
+2. [Cacti Overview](README.md#cacti-overview)
 
-   This section covers materials from viewing your graphs to templates and
-   script server operations.
+   This section describes Cacti components and their purpose as well as providing examples including on how to create **Templates** in Cacti.
 
 3. [Advanced Operations](README.md#advanced-operations)
 
-   This section covers more advanced material such as using a custom script
-   or the replacement variables that can be used within templates, etc.
+   This section covers more advanced material such as using a advanced data collection and replacement variables that can be used within **Templates**, etc.
 
 4. [Plugins](README.md#plugins)
 
-   This section contains all Plugin related information.
-   Guidelines, hooks, references, etc.
-   More information can be found on the [Cacti Forums](https://forums.cacti.net/viewforum.php?f=6).
+   This section contains all Plugin related information.  Guidelines, hooks, references, etc.  More information can be found on the [Cacti Forums](https://forums.cacti.net/viewforum.php?f=6).
 
 5. [How To's](README.md#how-tos)
 
@@ -78,12 +74,9 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 7. [Development Standards](README.md#development-standards)
 
-   This section contains the relevant information on how to ensure that any
-   contribution is kept to the same standards that are applied for the Cacti
-   Group.  It should be noted that non-compliance does not mean automatically
-   exclusion of proposed changes.
+   This section contains the relevant information on how to ensure that any contribution is kept to the same standards that are applied for the Cacti Group.  It should be noted that non-compliance does not mean automatically exclusion of proposed changes.
 
-### Installation
+### Cacti Installation
 
 1. [Requirements](Requirements.md)
 
@@ -97,71 +90,151 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 4. [Installing Under Windows](Installing-Under-Windows.md)
 
-5. [Upgrading Cacti](Upgrading-Cacti.md)
+5. [Upgrading Cacti Under Linux/UNIX](Upgrading-Cacti.md)
 
 6. [Upgrading Cacti Under Windows](Upgrading-Cacti-Under-Windows.md)
 
-### Standard Operations
+### Cacti Overview
 
-1. [Navigating the User Interface](Navigating-The-User-Interface.md)
+1. Overview
 
-2. [Principles of Operation](Principles-of-Operation.md)
+    1.1 [Navigating the User Interface](Navigating-The-User-Interface.md)
 
-3. [Graph Overview](Graph-Overview.md)
+    1.2. [Principles of Operation](Principles-of-Operation.md)
 
-4. [How to Graph Your Network](How-to-Graph-Your-Network.md)
+    1.3. [Graph Overview](Graph-Overview.md)
 
-5. [Viewing Graphs](Viewing-Graphs.md)
+    1.4. [How to Graph Your Network](How-to-Graph-Your-Network.md)
 
-6. [Aggregate Overview](Aggregate-Overview.md)
+    1.5. [Viewing Graphs](Viewing-Graphs.md)
 
-7. [User Management](User-Management.md)
+    1.6. [Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
 
-8. [Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
+2. Management
 
-9. [Data Input Methods](Data-Input-Methods.md)
+    2.1. [Devices](Devices.md)
+    
+    2.2. [Sites](Sites.md)
+    
+    2.3 [Trees](Trees.md)
+    
+    2.4 [Graphs](Graphs.md)
+    
+    2.5 [Data Sources](Data-Sources.md)
+    
+    2.6 [Aggregates](Aggregate-Overview.md)
+    
+3. Data Collection
 
-10. [Data Queries](Data-Queries.md)
+    3.1. [Data Source Profiles](Data-Source-Profiles.md)
 
-    10.1. [SNMP Data Queries Walkthrough](SNMP-Data-Queries-Walkthrough.md)
+    3.2. [Data Input Methods](Data-Input-Methods.md)
 
-    10.2. [SNMP New Data Query Walkthrough](SNMP-New-Data-Query-Walkthrough.md)
+    3.3. [Data Queries](Data-Queries.md)
 
-    10.3. [Script Data Query Walkthrough](Script-Data-Query-Walkthrough.md)
+        3.3.1. [SNMP Data Queries Walkthrough](SNMP-Data-Queries-Walkthrough.md)
 
-11. [Templates](Templates.md)
+        3.3.2. [SNMP New Data Query Walkthrough](SNMP-New-Data-Query-Walkthrough.md)
 
-12. [PHP Script Server](PHP-Script-Server.md)
+        3.3.3. [Script Data Query Walkthrough](Script-Data-Query-Walkthrough.md)
 
-13. [Spine](Spine.md)
+4. [Templates](Templates.md)
+
+    4.1. [Device](Device-Templates.md)
+    
+    4.2. [Graph](Graph-Templates.md)
+    
+    4.3. [Data Source](Data-Source-Templates.md)
+    
+    4.4. [Aggregate](Aggregate-Templates.md)
+    
+    4.5 [Color](Color-Templates.md)
+    
+5. [Automation](Automation.md)
+
+    5.1. [Networks](Automation-Networks.md)
+    
+    5.2. [Discovered Devices](Discovered-Devices.md)
+    
+    5.3. [Device Rules](Device-Rules.md)
+    
+    5.4. [Graph Rules](Graph-Rules.md)
+    
+    5.5. [Tree Rules](Tree-Rules.md)
+    
+    5.6. [SNMP Options](SNMP-Options.md)
+    
+6. Presets
+
+    6.1. [Data Profiles](Data-Profiles.md)
+    
+    6.2. [CDEFS](CDEFS.md)
+    
+    6.3. [VDEFS](VDEFS.md)
+    
+    6.4. [Colors](Colors.md)
+    
+    6.5. [GPRINTs](GPRINTs.md)
+    
+7. Import/Export
+
+    7.1. [Import Templates](Import-Templates.md)
+    
+    7.2. [Export Templates](Export-Templates.md)
+
+8. Configuration
+
+    8.1. [Settings](Settings.md)
+
+    8.2. [Users](User-Management.md)
+
+    8.3. [User Groups](User-Group-Management.md)
+   
+    8.4. [User Domains](User-Domains.md)
+   
+    8.5. [Plugins](Plugins.md)
+   
+9. Utilities
+
+    9.1. [System Utilities](System-Utilities.md)
+   
+    9.2. [Data Debug](Data-Debug.md)
+   
+    9.3. [External Links](External-Links.md)
 
 ### Advanced Operations
 
-1. [How to Graph a Custom Collection Script](How-to-Graph-a-Custom-Collection-Script.md)
+1. Data Collection
+
+    1.1. [How to Graph a Custom Collection Script](How-to-Graph-a-Custom-Collection-Script.md)
+
+    1.2. [PHP Script Server](PHP-Script-Server.md)
+
+    1.3. [Spine Data Collection](Spine.md)
+
+    1.4. [Command Line Scripts](Command-Line-Scripts.md)
 
 2. [Frequently Asked Questions](Frequently-Asked-Questions.md)
 
-3. [Variables](Variables.md)
+3. [Replacement Variables](Variables.md)
 
 4. [RRDTool Specific Features](RRDTool-Specific-Features.md)
-
-5. [Command Line Scripts](Command-Line-Scripts.md)
 
 6. [Debugging](Debugging.md)
 
 7. [Version Specific Release Notes](Version-Specific-Release-Notes.md)
 
-8. [Plugin Development](Plugin-Development.md)
+### Plugin Development
 
-### Plugins
+1. [Plugin Overview](Plugin-Development.md)
 
-1. [Plugin Guidelines](Plugin-Guidelines.md)
+2. [Plugin Guidelines](Plugin-Guidelines.md)
 
-2. [Creating Plugins](Plugin-Creating-Plugins.md)
+3. [Creating Plugins](Plugin-Creating-Plugins.md)
 
-3. [References](Plugin-Reference.md)
+4. [References](Plugin-Reference.md)
 
-4. [Hook API Reference](Plugin-Hook-API-Ref.md)
+5. [Hook API Reference](Plugin-Hook-API-Ref.md)
 
 ### How Tos
 
