@@ -113,63 +113,93 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 2. Management
 
    2.1. [Devices](Devices.md)
+
    2.2. [Sites](Sites.md)
+
    2.3. [Trees](Trees.md)
+
    2.4. [Graphs](Graphs.md)
+
    2.5. [Data Sources](Data-Sources.md)
+
    2.6. [Aggregates](Aggregate-Overview.md)
-    
+
 3. Data Collection
 
    3.1. [Data Source Profiles](Data-Source-Profiles.md)
+
    3.2. [Data Input Methods](Data-Input-Methods.md)
+
    3.3. [Data Queries](Data-Queries.md)
+
       3.3.1. [SNMP Data Queries Walkthrough](SNMP-Data-Queries-Walkthrough.md)
+
       3.3.2. [SNMP New Data Query Walkthrough](SNMP-New-Data-Query-Walkthrough.md)
+
       3.3.3. [Script Data Query Walkthrough](Script-Data-Query-Walkthrough.md)
 
 4. [Templates](Templates.md)
 
    4.1. [Device](Device-Templates.md)
+
    4.2. [Graph](Graph-Templates.md)
+
    4.3. [Data Source](Data-Source-Templates.md)
+
    4.4. [Aggregate](Aggregate-Templates.md)
+
    4.5. [Color](Color-Templates.md)
     
 5. [Automation](Automation.md)
 
    5.1. [Networks](Automation-Networks.md)
+
    5.2. [Discovered Devices](Discovered-Devices.md)
+
    5.3. [Device Rules](Device-Rules.md)
+
    5.4. [Graph Rules](Graph-Rules.md)
+
    5.5. [Tree Rules](Tree-Rules.md)
+
    5.6. [SNMP Options](SNMP-Options.md)
     
 6. Presets
 
    6.1. [Data Profiles](Data-Profiles.md)
+
    6.2. [CDEFS](CDEFS.md)
+
    6.3. [VDEFS](VDEFS.md)
+
    6.4. [Colors](Colors.md)
+
    6.5. [GPRINTs](GPRINTs.md)
     
 7. Import/Export
 
    7.1. [Import Templates](Import-Templates.md)
+
    7.2. [Export Templates](Export-Templates.md)
 
 8. Configuration
 
    8.1. [Settings](Settings.md)
+
    8.2. [Users](User-Management.md)
+
    8.3. [User Groups](User-Group-Management.md)
+
    8.4. [User Domains](User-Domains.md)
+
    8.5. [Plugins](Plugins.md)
-   
+
 9. Utilities
 
    9.1. [System Utilities](System-Utilities.md)
+
    9.2. [Data Debug](Data-Debug.md)
+
    9.3. [External Links](External-Links.md)
 
 ### Advanced Operations
@@ -177,8 +207,11 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 1. Data Collection
 
    1.1. [How to Graph a Custom Collection Script](How-to-Graph-a-Custom-Collection-Script.md)
+
    1.2. [PHP Script Server](PHP-Script-Server.md)
+
    1.3. [Spine Data Collection](Spine.md)
+
    1.4. [Command Line Scripts](Command-Line-Scripts.md)
 
 2. [Frequently Asked Questions](Frequently-Asked-Questions.md)
