@@ -84,9 +84,9 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 3. Installation Under CentOS
 
-    3.1  [Installation Under CentOS 7 - LAMP Stack](Install-Under-CentOS_LAMP.md)
+    3.1.  [Installation Under CentOS 7 - LAMP Stack](Install-Under-CentOS_LAMP.md)
 
-    3.2  [Installation Under CentOS 7 - LEMP Stack](Install-Under-CentOS_LEMP.md)
+    3.2.  [Installation Under CentOS 7 - LEMP Stack](Install-Under-CentOS_LEMP.md)
 
 4. [Installing Under Windows](Installing-Under-Windows.md)
 
@@ -98,7 +98,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 1. Overview
 
-    1.1 [Navigating the User Interface](Navigating-The-User-Interface.md)
+    1.1. [Navigating the User Interface](Navigating-The-User-Interface.md)
 
     1.2. [Principles of Operation](Principles-of-Operation.md)
 
@@ -132,11 +132,11 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    3.3. [Data Queries](Data-Queries.md)
 
-      3.3.1. [SNMP Data Queries Walkthrough](SNMP-Data-Queries-Walkthrough.md)
+        3.3.1. [SNMP Data Queries Walkthrough](SNMP-Data-Queries-Walkthrough.md)
 
-      3.3.2. [SNMP New Data Query Walkthrough](SNMP-New-Data-Query-Walkthrough.md)
+        3.3.2. [SNMP New Data Query Walkthrough](SNMP-New-Data-Query-Walkthrough.md)
 
-      3.3.3. [Script Data Query Walkthrough](Script-Data-Query-Walkthrough.md)
+        3.3.3. [Script Data Query Walkthrough](Script-Data-Query-Walkthrough.md)
 
 4. [Templates](Templates.md)
 
@@ -149,7 +149,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
    4.4. [Aggregate](Aggregate-Templates.md)
 
    4.5. [Color](Color-Templates.md)
-    
+
 5. [Automation](Automation.md)
 
    5.1. [Networks](Automation-Networks.md)
@@ -163,7 +163,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
    5.5. [Tree Rules](Tree-Rules.md)
 
    5.6. [SNMP Options](SNMP-Options.md)
-    
+
 6. Presets
 
    6.1. [Data Profiles](Data-Profiles.md)
@@ -175,7 +175,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
    6.4. [Colors](Colors.md)
 
    6.5. [GPRINTs](GPRINTs.md)
-    
+
 7. Import/Export
 
    7.1. [Import Templates](Import-Templates.md)
