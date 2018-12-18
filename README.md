@@ -126,17 +126,17 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 3. Data Collection
 
-   3.1. [Data Source Profiles](Data-Source-Profiles.md)
+   3.1. [Data Collectors](Data-Collectors.md)
 
    3.2. [Data Input Methods](Data-Input-Methods.md)
 
    3.3. [Data Queries](Data-Queries.md)
 
-      [SNMP Data Queries Walkthrough](SNMP-Data-Queries-Walkthrough.md)
+    3.3.1. [SNMP Data Queries Walkthrough](SNMP-Data-Queries-Walkthrough.md)
 
-      [SNMP New Data Query Walkthrough](SNMP-New-Data-Query-Walkthrough.md)
+    3.3.2. [SNMP New Data Query Walkthrough](SNMP-New-Data-Query-Walkthrough.md)
 
-      [Script Data Query Walkthrough](Script-Data-Query-Walkthrough.md)
+    3.3.3 [Script Data Query Walkthrough](Script-Data-Query-Walkthrough.md)
 
 4. [Templates](Templates.md)
 
