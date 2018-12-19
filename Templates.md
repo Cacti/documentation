@@ -346,21 +346,21 @@ Templates** and **Add**:
 
 and fill in the name of this new Template:
 
-![Add Host Template New](images/host-template-new.png)
+![Add Host Template New](images/device-template-new.png)
 
 Now you'll find two sections added. First, let's deal with **Associated Graph
 Templates**. The Add **Graph template** select box holds all defined Graph
 Templates. Select the one we've just created
 
-![Host Template Associate Graph Template](images/host-template-new-gt.png)
+![Host Template Associate Graph Template](images/device-template-new-gt.png)
 
 and Add it:
 
-![Host Template Associate Graph Template 2](images/host-template-new-gts.png)
+![Host Template Associate Graph Template 2](images/device-template-new-gts.png)
 
 Next, let's add the Data Query already selected above:
 
-![Host Template - Data Query](images/host-template-new-dqs.png)
+![Host Template - Data Query](images/device-template-new-dqs.png)
 
 ## Import Templates
 
