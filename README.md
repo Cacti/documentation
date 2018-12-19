@@ -122,7 +122,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    2.5. [Data Sources](Data-Sources.md)
 
-   2.6. [Aggregates](Aggregate-Overview.md)
+   2.6. [Aggregates](Aggregates.md)
 
 3. Data Collection
 
@@ -168,9 +168,9 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    6.1. [Data Profiles](Data-Profiles.md)
 
-   6.2. [CDEFS](CDEFS.md)
+   6.2. [CDEFS](CDEFs.md)
 
-   6.3. [VDEFS](VDEFS.md)
+   6.3. [VDEFS](VDEFs.md)
 
    6.4. [Colors](Colors.md)
 
