@@ -6,7 +6,7 @@ Forum](http://forums.cacti.net/viewtopic.php?t=24960)
 This HowTo will explain how to use SSH tunnels to graph a Unix server that
 isn't directly reachable by your Cacti server :
 
-![Overview](images/ht_ssh_tunnel.png)
+![Overview](images/device-templates-ssh-tunnel.png)
 
 In this example, the Cacti server can reach the Gateway, which can reach the
 target server.
@@ -101,7 +101,7 @@ If not, review your network configuration (firewall rules, especially).
 
 In Cacti, create a new device like that :
 
-![Add device](images/ht_ssh_add_device.png)
+![Add device](images/device-templates-ssh-add-device.png)
 
 Voila ! Your target server is graphed by Cacti :)
 

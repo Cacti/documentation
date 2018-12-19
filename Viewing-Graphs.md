@@ -30,7 +30,7 @@ Once you type a name, click the Create button to continue.
 You will be redirected to a page similar to the one below,
 but without all of the items.
 
-![Editing a Graph Tree](images/graph_tree.png)
+![Editing a Graph Tree](images/graph-tree.png)
 
 To start adding items to your tree, click add in the Tree Items box. There are
 currently three different types of tree items you can choose from: header,

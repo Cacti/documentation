@@ -39,7 +39,7 @@ Data Source Active | This is a quick and easy to tell Cacti to stop gathering da
 When you are finished filling in values for the data template, click Create and
 you will be presented with a screen similar to the data source edit screen.
 
-![Adding a Data Template](images/data_template.png)
+![Adding a Data Template](images/data-template.png)
 
 #### Data Source Items
 
@@ -196,7 +196,7 @@ Vertical Label | The text to print on the left edge of the graph. Usually is the
 When you are finished filling in values for the graph template, click Create
 and you will be presented with a page similar to the graph edit page.
 
-![Adding a Graph Template](images/graph_template.png)
+![Adding a Graph Template](images/graph-template.png)
 
 #### Graph Items
 
@@ -335,14 +335,14 @@ Associated Data Queries boxes. These two boxes allow you to associate certain
 graph templates or data queries with the host template. Simply select something
 from the dropdown menu and click Add to associate it with your host template.
 
-![Adding a Host Template](images/host_template.png)
+![Adding a Host Template](images/device-template.png)
 
 ### Walkthrough: My First Host Template
 
 The next task is creating a new **Host Template**. Switch over to **Host
 Templates** and **Add**:
 
-![Add Host Template](images/host-template-add.png)
+![Add Host Template](images/device-template-add.png)
 
 and fill in the name of this new Template:
 

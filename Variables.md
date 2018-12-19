@@ -26,11 +26,11 @@ allows the creation of generic graph templates (2-variable line graph,
 3-variable stack, etc.) which can be reused with large numbers of data sources.
 See attached examples to understand usage.
 
-![Example of a Graph Template using |data_source_title|](images/data_source_title_template.png)
+![Example of a Graph Template using |data_source_title|](images/data-source-title-template.png)
 
-![Example 1 of a Graph making use of |data_source_title|](images/data_source_title_example1.png)
+![Example 1 of a Graph making use of |data_source_title|](images/data-source-title-example1.png)
 
-![Example 2 of a Graph making use of |data_source_title|](images/data_source_title_example2.png)
+![Example 2 of a Graph making use of |data_source_title|](images/data-source-title-example2.png)
 
 ## Data Query Fields
 

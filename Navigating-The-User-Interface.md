@@ -21,7 +21,7 @@ The image below is of the Cacti *Console*.  From the Cacti Console, we can see m
 - **Actions Dropdown** - Any page that includes a **Cacti Table** will generally include an **Actions Dropdown**.  These **Actions Dropdown** menus allow you to take action on a table row or rows.
 - **User Profile and Menu** - This is where a **Cacti User** can edit their profile, change their password, logout, or find links to other Cacti information and support.
 
-![Example Cacti Page](images/cacti_page_layout.png)
+![Example Cacti Page](images/cacti-page-layout.png)
 
 Normal users, such as the Cacti Guest account should not have access to the Cacti *Console*.
 
@@ -35,7 +35,7 @@ The Cacti Graphs **Top Tab** is where most Cacti **Graphs** are viewed.  By defa
 
 In the example **Tree View** page below, you can see the **Tree Navigation Area** to the left, and in the **Cacti Content Area**, you can see the **Graphs** and a **Table Filter** area for constraining the list of **Graphs** returned.  You can *Search* the Tree View from the *Search* area above the **Tree Navigation Area**.
 
-![Cacti Tree View Page](images/cacti_tree_view_page.png)
+![Cacti Tree View Page](images/cacti-tree-view-page.png)
 
 ---
 Copyright (c) 2018 Cacti Group
