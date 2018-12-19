@@ -178,9 +178,9 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 7. Import/Export
 
-   7.1. [Import Templates](Import-Templates.md)
+   7.1. [Import Templates](Import-Template.md)
 
-   7.2. [Export Templates](Export-Templates.md)
+   7.2. [Export Templates](Export-Template.md)
 
 8. Configuration
 
