@@ -25,4 +25,4 @@ Script and Script Server Timeout Value | The maximum time that Spine will wait o
 The Maximum SNMP OID's Per SNMP Get Request | The maximum number of snmp get OID's to issue per snmp request. Increasing this value speeds poller performance over slow links. The maximum value is 60 OID's. Please bear in mind, that some type of devices do not accept huge OID numbers and may fail if set above 1. That's why cacti 0.8.7 allows to define this value at device level
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

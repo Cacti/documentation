@@ -35,4 +35,4 @@ new graph can now be accessed through the Graph Management page or the Graphs
 tab inside of Cacti.
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

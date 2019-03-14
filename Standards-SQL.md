@@ -45,4 +45,4 @@ db_execute(UPDATE host SET hostname = '$myhost' WHERE id = $id");
 ```
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

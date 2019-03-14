@@ -11,4 +11,4 @@ This section will describe **Data Collectors** in Cacti.
 ![Data Collectors Edit Remote Connection Test](images/data-collectors-edit-remote2.png)
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

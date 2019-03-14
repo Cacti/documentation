@@ -23,4 +23,4 @@ When Editing a **Device Template**, you will see the page as displayed below.  F
 To add a **Graph Template** or **Data Query** to the **Device Template**, simply select it from the drop down, and press the *Add* button.  There is no need to *Save* afterwards.  To removed one of these items, simply press the x glyph to the right of the desired **Graph Template** or **Data Query**.
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

@@ -124,4 +124,4 @@ Without these core functions, in your setup.php, your plugin will not fully oper
 Any core plugin functions should always be placed in the lib/functions.php file, and settings should go into the include/settings.php file.  The plugin architecture allows hooks to be defined that reach into the include/settings.php file.  Having those hooks point to the include version of the file will keep Cacti page loads fast.  Including too much in the setup.php slows Cacti and should be avoided.
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

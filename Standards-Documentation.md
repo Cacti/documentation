@@ -25,7 +25,7 @@ page (including the blank line):
 ```markdown
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group
 ```
 
 ## Titles
@@ -396,4 +396,4 @@ Documentation-Standards.md:240: MD033 Inline HTML
 ```
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

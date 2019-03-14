@@ -73,4 +73,4 @@ The *Legend* options allow you to specify how the *Legend* should be placed on t
 ![Legend Options](images/graph-templates-edit6.png)
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

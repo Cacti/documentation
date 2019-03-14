@@ -13,4 +13,4 @@ Relying on JavaScript-based validation is nice for instant feedback to the
 user, but should not replace validation checking in the PHP code.
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

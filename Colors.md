@@ -15,4 +15,4 @@ Below, you can see the color picker that allows you to visually find the appeali
 ![Colors Color Edit](images/colors-edit2.png)
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

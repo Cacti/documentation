@@ -13,4 +13,4 @@ This section will describe **Tree Rules** in Cacti.
 ![Tree Rules Preview](images/automation-tree-rules-edit4.png)
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

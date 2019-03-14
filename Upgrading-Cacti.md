@@ -60,4 +60,4 @@ To upgrade Cacti under UNIX style operating systems, you should use the followin
 > Note that starting with Cacti 1.0, all **Data Collectors** will upgrade themselves automatically within two polling cycles.  If for some reason they do not, upgrade them one at a time.
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

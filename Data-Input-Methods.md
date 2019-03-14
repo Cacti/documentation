@@ -402,4 +402,4 @@ Most of this task of creating a **Graph Template** has already been covered in o
 After you have created your **Graph Template** you can proceed to Add the **Graph Template** to your **Device**, and either allow the automation to create the **Graph** for you, or to manually add it from the **New Graphs** menu pick.
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

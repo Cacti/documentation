@@ -13,4 +13,4 @@ This section will describe **User Group** management in Cacti.
 ![User Groups Graph Permissions](images/user-groups-edit-graph-permissions.png)
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

@@ -11,4 +11,4 @@ This section will describe **SNMP Options** in Cacti.
 ![SNMP Options Item Edit SNMPv3](images/automation-snmp-options-edit3.png)
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

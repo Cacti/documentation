@@ -15,4 +15,4 @@ This section will describe **Graph Rules** in Cacti.
 ![Automation Graph Rules Matching Objects](images/automation-graph-rules-edit5.png)
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

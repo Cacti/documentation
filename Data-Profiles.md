@@ -9,4 +9,4 @@ This section will describe **Data Source Profiles** in Cacti.
 ![Data Source Profiles RRA Edit](images/data-source-profiles-edit2.png)
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

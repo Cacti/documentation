@@ -279,4 +279,4 @@ called.
 ---
 Originally written by Kevin der Kinderen, <http://kdeuja.com/~kevin/>
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

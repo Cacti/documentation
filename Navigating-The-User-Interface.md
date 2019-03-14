@@ -38,4 +38,4 @@ In the example **Tree View** page below, you can see the **Tree Navigation Area*
 ![Cacti Tree View Page](images/cacti-tree-view-page.png)
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

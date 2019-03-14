@@ -52,4 +52,4 @@ your code confirms to this, as there are strict checks in place which will fail
 your submission if it fails these standards.
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

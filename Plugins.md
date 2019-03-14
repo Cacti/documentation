@@ -9,4 +9,4 @@ This section will describe **Plugin** management in Cacti.
 ![Plugin Dependencies](images/plugins-dependencies.png)
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

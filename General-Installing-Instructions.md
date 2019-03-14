@@ -234,4 +234,4 @@ DB_Port     3306
 ```
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

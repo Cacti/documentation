@@ -317,4 +317,4 @@ The following changes will be required regardless of your selected Webserver.
    The start in box should say `c:\mycacti\website\cacti`.
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

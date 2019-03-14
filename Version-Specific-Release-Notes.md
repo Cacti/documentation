@@ -37,4 +37,4 @@ version 1.0.0:
 | superlinks  | Allows administrators to links to additional sites       |
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

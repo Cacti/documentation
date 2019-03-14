@@ -7,4 +7,4 @@ This section will describe **Device Rules** in Cacti.
 ![Automation Device Rules Edit](images/automation-device-templates-edit1.png)
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

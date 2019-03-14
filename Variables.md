@@ -174,4 +174,4 @@ Variable Name | Description
 \|host_snmp_version\| | SNMP Version
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

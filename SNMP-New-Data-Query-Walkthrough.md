@@ -481,4 +481,4 @@ cacti_graph_template_host_mib_hrstoragetable.xml.
 [hrStorageTable](resource/xml/hrStorageTable.xml.gz) Unzip and store into resource/snmp_queries.
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

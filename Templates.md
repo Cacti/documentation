@@ -389,4 +389,4 @@ Now that you know how to import, you may want to know in which way to export as 
 You may select to export a graph template, a data template, a **Device Template** or a **Data Query**. When selecting `Include Dependencies`, e.g. a **Device Template** will include all referred templates (**Graph Template**, **Data Template**, if defined, **Data Query**). Output may be written to the browser or to a file for uploading.
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

@@ -402,4 +402,4 @@ documentation on how to make your selinux policy right.
 all selinux context and permissions.
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

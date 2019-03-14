@@ -9,4 +9,4 @@ This section will describe **User Domain** management in Cacti.
 ![User Domains Edit](images/user-domains-edit2.png)
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

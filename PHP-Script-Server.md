@@ -154,4 +154,4 @@ To test your script in the script server, simply follow the instructions below. 
    > **Note**: If there are errors in your script, you must restart the script server before your retest your code.
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

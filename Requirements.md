@@ -178,4 +178,4 @@ Cacti requires that the following software is installed on your system.
     - Some of these recommendations should be scaled where appropriate
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

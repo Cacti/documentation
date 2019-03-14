@@ -15,4 +15,4 @@ Shown in the image below, only Cacti **Colors** are allowed to be selected for A
 ![Color Templates Item Edit](images/color-templates-edit2.png)
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group

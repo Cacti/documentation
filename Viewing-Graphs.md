@@ -45,4 +45,4 @@ of them. You may expand each single subtree of a collapsed tree to reorder, add
 or delete entries without much scrolling.
 
 ---
-Copyright (c) 2018 Cacti Group
+Copyright (c) 2004-2019 The Cacti Group
