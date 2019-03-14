@@ -46,23 +46,41 @@ db_execute(UPDATE host SET hostname = '$myhost' WHERE id = $id");
 
 ## Format of SQL statements
 
-For short statements, SQL calls may be made on a single row.  If the SQL
-statement starts to grow and be unreadable without scrolling, it should be
-wrapped for ease of use.  The following keywords should also be placed at the
-start of a new line:
+- For short statements, SQL calls may be made on a single row.
 
-* JOIN (including INNER JOIN, LEFT JOIN, RIGHT JOIN, OUTER JOIN, CROSS JOIN)
-* AND / OR
-* FROM
-* WHERE
-* ORDER
-* GROUP BY
-* prepared statement arrays
+- If the SQL statement starts to grow and be unreadable without scrolling, it
+  should be wrapped onto a continuation line for ease of use and readability.
+  The following keywords should also be placed at the start of a new line:
 
-Any continuation lines should be indented by one extra tab.
+  - joins statements (excluding JOIN itself which should not be used)
+    (eg, INNER JOIN, LEFT JOIN, RIGHT JOIN, OUTER JOIN, CROSS JOIN)
 
-Any implicit join via a WHERE statement should also be converted to an explicit
-INNER JOIN.
+    **Note:** *Any implicit join or JOIN without one of the modifiers should be
+    converted to an explicit join with a modifier.  When converting the implicit
+    join statement, remember to remove the WHERE joining clause.
+
+  - AND / OR
+
+  - FROM
+
+  - WHERE
+
+  - ORDER
+
+  - GROUP BY
+
+  - prepared statement arrays
+
+- Indentation should consist of one extra tab when any of the following occur:
+
+  - continuation lines
+
+  - Subqueries
+
+- There should always be 'AS' when defining an alias for any table, field or
+  query to clearly define the definitino of said alias.
+
+- There should always be a space following a comma and before/after an operator.
 
 ### Example of single line SQL
 
@@ -97,6 +115,7 @@ $templates = db_fetch_assoc_prepared('SELECT DISTINCT gt.id, gt.name
 ### Example of implicit join
 
 ###### Before formatting
+
 ```php
 $user_realms = db_fetch_assoc('SELECT ua.id, uar.realm_id
 	FROM user_auth ua, user_auth_realms uar
