@@ -18,11 +18,11 @@ $graphs = db_fetch_assoc('SELECT * FROM graph WHERE height >= 150');
 $rows = db_fetch_cell("SELECT count(*) FROM $archive_table");
 ```
 
-## SQL Functions
+## DBMS Functions
 
-Do not use functions in SQL queries that are provided by the DBMS. These
-functions are generally not uniformly support or even available in all DBMS's.
-Common examples of such functions are `MD5()`, `CONCAT()`, and `NOW()`.
+Do not use functions in SQL queries that are provided only by a single DBMS.
+These functions are generally not uniformly support or even available in all
+DBMS's. Common examples of such functions are `MD5()`, `CONCAT()`, and `NOW()`.
 
 ## SQL Injection
 
@@ -43,6 +43,75 @@ $hostname = db_escape('myhost.com');
 db_execute(UPDATE host SET hostname = '$myhost' WHERE id = $id");
 
 ```
+
+## Format of SQL statements
+
+For short statements, SQL calls may be made on a single row.  If the SQL
+statement starts to grow and be unreadable without scrolling, it should be
+wrapped for ease of use.  The following keywords should also be placed at the
+start of a new line:
+
+* JOIN (including INNER JOIN, LEFT JOIN, RIGHT JOIN, OUTER JOIN, CROSS JOIN)
+* AND / OR
+* FROM
+* WHERE
+* ORDER
+* GROUP BY
+* prepared statement arrays
+
+Any continuation lines should be indented by one extra tab.
+
+Any implicit join via a WHERE statement should also be converted to an explicit
+INNER JOIN.
+
+### Example of single line SQL
+
+###### Before formatting
+
+```php
+$templates = db_fetch_assoc('SELECT DISTINCT gt.id, gt.name FROM graph_templates AS gt INNER JOIN graph_templates_graph AS gtg ON gt.id = gtg.graph_template_id INNER JOIN graph_templates_item AS gti ON gtg.graph_template_id=gti.graph_template_id INNER JOIN data_template_rrd AS dtr ON gti.task_item_id=dtr.id INNER JOIN data_template_data AS dtd ON dtd.data_template_id=dtr.data_template_id AND dtd.local_data_id = 0 WHERE gtg.local_graph_id=0 AND dtr.local_data_id = 0 AND dtd.local_data_id = 0 AND dtd.data_input_id in (2,11,12) ORDER BY gt.name;'
+```
+
+###### Corrected formatting with prepared usage
+
+```php
+$templates = db_fetch_assoc_prepared('SELECT DISTINCT gt.id, gt.name
+	FROM graph_templates AS gt
+	INNER JOIN graph_templates_graph AS gtg
+	ON gt.id = gtg.graph_template_id
+	INNER JOIN graph_templates_item AS gti
+	ON gtg.graph_template_id=gti.graph_template_id
+	INNER JOIN data_template_rrd AS dtr
+	ON gti.task_item_id=dtr.id
+	INNER JOIN data_template_data AS dtd
+	ON dtd.data_template_id=dtr.data_template_id
+	AND dtd.local_data_id = 0
+	WHERE gtg.local_graph_id=0
+	AND dtr.local_data_id = 0
+	AND dtd.local_data_id = 0
+	AND dtd.data_input_id in (?,?,?)
+	ORDER BY gt.name',
+	array(2,11,12));
+```
+
+### Example of implicit join
+
+###### Before formatting
+```php
+$user_realms = db_fetch_assoc('SELECT ua.id, uar.realm_id
+	FROM user_auth ua, user_auth_realms uar
+	WHERE ua.id = uar.user_id');
+```
+
+###### Corrected formatting
+
+```php
+$user_realms = db_fetch_assoc('SELECT ua.id, uar.realm_id
+	FROM user_auth ua
+	INNER JOIN user_auth_realms uar
+	ON ua.id = uar.user_id');
+```
+
 
 ---
 Copyright (c) 2004-2019 The Cacti Group
