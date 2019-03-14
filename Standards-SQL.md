@@ -26,7 +26,9 @@ Common examples of such functions are `MD5()`, `CONCAT()`, and `NOW()`.
 
 ## SQL Injection
 
-Cacti provides support for prepared statements.  You should use these prepared statement functions as much as possible to avoid the risk of SQL Injection attacks from the Cacti website.  Examples include:
+Cacti provides support for prepared statements.  You should use these prepared
+statement functions as much as possible to avoid the risk of SQL Injection
+attacks from the Cacti website.  Examples include:
 
 ```php
 // Example prepared statements
