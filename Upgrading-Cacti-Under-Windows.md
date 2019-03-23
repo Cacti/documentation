@@ -1,9 +1,12 @@
 # Upgrading Cacti under Windows
 
-Download latest cacti-xxx.zip
+Download [latest stable version](https://www.cacti.net/download_cacti.php)
+of Cacti - *referred to as `cacti-xxx.zip` in this document.*
 
 1. Stop poller.
-   Cacti > Configuration > Settings > Poller > uncheck Data Collection Enabled and Save.
+
+   Cacti Console > Configuration > Settings > Poller > 
+   uncheck Data Collection Enabled and Save.
 
 2. Run Command Prompt as administrator and backup database.
 
@@ -22,13 +25,24 @@ Download latest cacti-xxx.zip
 
 4. Windows Update
 
-5. MySQL Installer - update Catalog, then upgrade MySQL Server
+5. MySQL
 
-6. Overwrite new Cacti version to production folder.
-   Extract contents of cacti-xxx folder in cacti-xxx.zip to
-   C:\inetpub\wwwroot\cacti\ and replace files.
+   * Open `MySQL Installer - Community`, update Catalog,
+   upgrade MySQL Server
 
-7. Edit `include/config.php` and specify the MySQL user, password and database
+6. PHP
+
+   * Backup `C:\php\` folder
+   * Download a [supported version](http://php.net/supported-versions.php) of 
+   [PHP for Windows](https://windows.php.net/download/) using the appropriate 
+   build for IIS or Apache. If missing, install the appropriate VC build.
+   * Overwrite `C:\php\` folder contents from zip file.
+
+7. Overwrite new Cacti version to production folder.
+   Extract contents of `cacti-xxx` folder in `cacti-xxx.zip` to
+   `C:\inetpub\wwwroot\cacti\` and replace files.
+
+8. Edit `include/config.php` and specify the MySQL user, password and database
    for your Cacti configuration.
 
    ```sh
@@ -43,13 +57,13 @@ Download latest cacti-xxx.zip
    $database_password = "cacti";
    ```
 
-8. Point your web browser to:
+9. Point your web browser to: `http://localhost/cacti/`
 
-    `http://localhost/cacti/`
+   Follow the on-screen instructions so your database can be updated to the 
+   new version.
 
-   Follow the on-screen instructions so your database can be updated to the new version.
-
-   Open "MySQL 5.7 Command Line Client" and set variables as needed in following format:
+   Open "MySQL 5.7 Command Line Client" and set variables as needed in 
+   following format:
 
    ```sh
    set global max_allowed_packet = 16777216;
@@ -58,8 +72,10 @@ Download latest cacti-xxx.zip
    set global innodb_flush_log_at_timeout = 3;
    ```
 
-9. Start poller.
-   Cacti > Configuration > Settings > Poller > check Data Collection Enabled and Save.
+10. Start poller.
+
+   Cacti Console > Configuration > Settings > Poller > 
+   check Data Collection Enabled and Save.
 
 ---
 Copyright (c) 2004-2019 The Cacti Group
