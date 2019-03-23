@@ -5,7 +5,7 @@ of Cacti - *referred to as `cacti-xxx.zip` in this document.*
 
 1. Stop poller.
 
-   Cacti Console > Configuration > Settings > Poller > 
+   Cacti Console > Configuration > Settings > Poller >
    uncheck Data Collection Enabled and Save.
 
 2. Run Command Prompt as administrator and backup database.
@@ -33,8 +33,8 @@ of Cacti - *referred to as `cacti-xxx.zip` in this document.*
 6. PHP
 
    * Backup `C:\php\` folder
-   * Download a [supported version](http://php.net/supported-versions.php) of 
-   [PHP for Windows](https://windows.php.net/download/) using the appropriate 
+   * Download a [supported version](http://php.net/supported-versions.php) of
+   [PHP for Windows](https://windows.php.net/download/) using the appropriate
    build for IIS or Apache. If missing, install the appropriate VC build.
    * Overwrite `C:\php\` folder contents from zip file.
 
@@ -59,10 +59,10 @@ of Cacti - *referred to as `cacti-xxx.zip` in this document.*
 
 9. Point your web browser to: `http://localhost/cacti/`
 
-   Follow the on-screen instructions so your database can be updated to the 
+   Follow the on-screen instructions so your database can be updated to the
    new version.
 
-   Open "MySQL 5.7 Command Line Client" and set variables as needed in 
+   Open "MySQL 5.7 Command Line Client" and set variables as needed in
    following format:
 
    ```sh
@@ -74,7 +74,7 @@ of Cacti - *referred to as `cacti-xxx.zip` in this document.*
 
 10. Start poller.
 
-   Cacti Console > Configuration > Settings > Poller > 
+   Cacti Console > Configuration > Settings > Poller >
    check Data Collection Enabled and Save.
 
 ---
