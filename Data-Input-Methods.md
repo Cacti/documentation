@@ -108,7 +108,7 @@ Lets start with a simple script, that takes a hostname or IP address as input pa
 $host = $ARGV[0];
 $host =~ s/tcp:/$1/gis;
 
-# old linux version use "icmp_seq"
+# old Linux version use "icmp_seq"
 # newer use "icmp_req" instead
 open(PROCESS, "ping -c 1 $host | grep 'icmp_[s|r]eq' | grep time |");
 $ping = <PROCESS>;
@@ -225,7 +225,7 @@ You'll have to wait at least two polling cycles to find data in the **Graph**. F
 
 ## Walkthrough: Script with more Output Parameters
 
-The script below will be implemented in perl.  Please note that any supported language is suppored using Cacti from direct command execution to scripts written in perl, python, php, bash, etc.
+The script below will be implemented in perl.  Please note that any supported language is supported using Cacti from direct command execution to scripts written in perl, python, php, bash, etc.
 
 ```shell
 #!/usr/bin/perl -w

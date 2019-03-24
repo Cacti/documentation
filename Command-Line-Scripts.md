@@ -16,7 +16,7 @@ Cacti supports a number of command line scripts. You will find them in the
     poller_reindex_hosts.php
     rebuild_poller_cache.php
 
-The following scripts should only be utilised when recommended in response to an
+The following scripts should only be used when recommended in response to an
 outstanding issue:
 
     analyze_database.php
@@ -33,8 +33,8 @@ outstanding issue:
     structure_rra_paths.php
     upgrade_database.php
 
-Package maintainers may wish to utilise the CLI methods of install_cacti.php and
-upgrade_database.php to perform inplace installations and upgrades.
+Package maintainers may wish to utilize the CLI methods of install_cacti.php and
+upgrade_database.php to perform in place installations and upgrades.
 
 > **Caution**
 >
@@ -45,7 +45,7 @@ upgrade_database.php to perform inplace installations and upgrades.
 ## Rebuild Poller Cache
 
 The poller cache holds all commands that cacti will issue during the polling
-process in an internal format. It is possible, to review the currenty contents
+process in an internal format. It is possible, to review the current contents
 of the poller cache by visiting `System Utilities`, `View Poller Cache`. It is
 possible to apply filters to this view; it will show up like
 
@@ -113,7 +113,7 @@ shell>
 
 ## Re-Index Hosts
 
-Re-Indexing is required only for SNMP/Script Data Queries. Remember, that whan
+Re-Indexing is required only for SNMP/Script Data Queries. Remember, that when
 applying a Data Query to a Host, a `Re-Index Method` has to be chosen. This
 reindex method governs the automatic re-indexing based on specific events.
 
@@ -144,7 +144,7 @@ where the index is non-numeric (e.g. a MAC address).  It should be noted that
 in the 1.0 and 1.1 releases, this method was found to be broken and has been
 corrected since 1.2.
 
-If you feel the need for manual re-indexing, you may run it from cli. Calling
+If you feel the need for manual re-indexing, you may run it from CLI. Calling
 the script with the parameter `--help` yields
 
 ```console
@@ -816,7 +816,7 @@ Down
 Up
 ```
 
-This is no surprise, of course. Now, all paarmeters required for creating a new
+This is no surprise, of course. Now, all parameters required for creating a new
 graph are determined.
 
 ### Add Non-Indexed Graphs
@@ -843,7 +843,7 @@ to the list of Associated Graph Templates.
 
 First, let's sum up the id's of all resources required for this task:
 
-###### Table 20-2. Parametes required for an Interface Traffic Graph
+###### Table 20-2. Parameters required for an Interface Traffic Graph
 
 Object | Value | Description
 --- | --- | ---
@@ -964,7 +964,7 @@ Host    12      gandalf     Graph Template
 ### List RRAs
 
 For special tree add options, you will require the id of the RRA definition to
-completly specify the add request. That's why the corresponding `--list-rras`
+completely specify the add request. That's why the corresponding `--list-rras`
 option is implemented. It goes this way
 
 ```console
@@ -1113,7 +1113,7 @@ to provide the `--rra-id` for a rra of Yearly (1 Day Average).
 ## Add Graph Permissions
 
 This script is used to specify special graph permissions to users. The
-list of parameters is displyed as usual when calling the script with the
+list of parameters is displayed as usual when calling the script with the
 parameter `--help`
 
 ```console
