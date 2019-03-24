@@ -27,7 +27,7 @@ files holding your certificate (`.crt`) and private key (`.key`).
 
 ```console
 #
-# Cacti: An rrd based graphing tool
+# Cacti: An RRD based graphing tool
 #
 
 # For security reasons, the Cacti web interface is accessible only to
@@ -100,9 +100,9 @@ files holding your certificate (`.crt`) and private key (`.key`).
 The choice between MySQL server and MariaDB is normally down to the OS
 maintainers if you use one of the predefined LAMP setup installations.  If you
 are deciding between these yourself, you should research this via your
-favourite search engine.
+favorite search engine.
 
-Whilst MySQL is the original open source sql database server created in 1995
+Whilst MySQL is the original open source SQL database server created in 1995
 which is now owned by Oracle, MariaDB is designed as a drop-in replacement by
 some of the original MySQL developers / owners.  This will likely continue to
 be a drop-in alternative until there is a major divergence that can not be
@@ -373,33 +373,33 @@ Make sure to setup the correct path to poller.php
 
 ### Security Enhanced Linux (SELinux)
 
-If you are having issues to access the web page, disable selinux temporarily to
-prove that the issues come from the selinux policy. It is NOT recommended to
-disable SELINUX permanently.
+If you are having issues to access the web page, disable SELinux temporarily to
+prove that the issues come from the SELinux policy. It is NOT recommended to
+disable SELinux permanently.
 
 [CentOS](https:////wiki.centos.org/es/HowTos/SELinux) has a lot of
-documentation on how to make your selinux policy right.
+documentation on how to make your SELinux policy right.
 
-1. Check selinux status
+1. Check SELinux status
 
    ```console
    getenforce
    ```
 
-2. Disable selinux temporarily
+2. Disable SELinux temporarily
 
    ```console
    setenforce 0
    ```
 
-3. Enable selinux back
+3. Enable SELinux back
 
    ```console
    setenforce 1
    ```
 
 **Note:** If you installed Cacti out of `/var/www/html` make sure you fix up
-all selinux context and permissions.
+all SELinux context and permissions.
 
 ---
 Copyright (c) 2004-2019 The Cacti Group

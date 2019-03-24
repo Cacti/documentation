@@ -66,7 +66,7 @@ mysql> update user_auth set password=md5('admin') where username='admin';
 to run.
 
 **A:** Give Spine, the fast replacement for poller.php a try. Unlike
-poller.php, Spine is written in c and makes use of pthreads. On a typical
+poller.php, Spine is written in c and makes use of threads. On a typical
 installation, it is not uncommon for Spine to poll about 500 items in less then
 10 seconds.
 
@@ -148,7 +148,7 @@ the Visual tab, and changing the value for Data Queries - Maximum Field Length.
 
 **Q:** One of my devices rebooted and now I have a huge spike on my graph!
 
-**A:** This occurs because the reboot causes SNMP's counters to reset, which
+**A:** This occurs because the reboot causes SNMP counters to reset, which
 can cause a rather large spike on the graph when RRDTool tries to determine the
 change between the new small counter value and the large previous value. One
 way to combat this issue is to specify realistic maximum values for your data

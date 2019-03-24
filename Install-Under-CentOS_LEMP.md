@@ -131,9 +131,9 @@ server {
 The choice between MySQL server and MariaDB is normally down to the OS
 maintainers if you use one of the predefined LAMP setup installations.  If you
 are deciding between these yourself, you should research this via your
-favourite search engine.
+favorite search engine.
 
-Whilst MySQL is the original open source sql database server created in 1995
+Whilst MySQL is the original open source SQL database server created in 1995
 which is now owned by Oracle, MariaDB is designed as a drop-in replacement by
 some of the original MySQL developers / owners.  This will likely continue to
 be a drop-in alternative until there is a major divergence that can not be
@@ -451,33 +451,33 @@ Make sure to setup the correct path to poller.php
 
 ### Security Enhanced Linux (SELinux)
 
-If you are having issues to access the web page, disable selinux temporarily to
-prove that the issues come from the selinux policy. It is NOT recommended to
-disable SELINUX permanently.
+If you are having issues to access the web page, disable SELinux temporarily to
+prove that the issues come from the SELinux policy. It is NOT recommended to
+disable SELinux permanently.
 
 [CentOS](https:////wiki.centos.org/es/HowTos/SELinux) has a lot of
-documentation on how to make your selinux policy right.
+documentation on how to make your SELinux policy right.
 
-Check selinux status
+Check SELinux status
 
 ```console
 getenforce
 ```
 
-Disable selinux temporarily
+Disable SELinux temporarily
 
 ```console
 setenforce 0
 ```
 
-Enable selinux back
+Enable SELinux back
 
 ```console
 setenforce 1
 ```
 
 **Note:** If you installed Cacti out of `/usr/share/nginx/html` make sure you  fix
-up all selinux context and permissions.
+up all SELinux context and permissions.
 
 ---
 Copyright (c) 2004-2019 The Cacti Group

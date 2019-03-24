@@ -146,7 +146,7 @@ Cacti requires that the following software is installed on your system.
     - **innodb_file_io_threads >= 16**
 
       With modern SSD type storage, having multiple io threads is advantageous
-      for applications with high io characteristics.
+      for applications with high IO characteristics.
 
     - **innodb_flush_log_at_timeout >= 3**
 
@@ -155,22 +155,22 @@ Cacti requires that the following software is installed on your system.
       but in high I/O systems setting to a value greater than 1 can allow disk
       I/O to be more sequential
 
-    - **innodb_read_io_threads >= 32**
+    - **innodb_read_IO_threads >= 32**
 
-      With modern SSD type storage, having multiple read io threads is
-      advantageous for applications with high io characteristics.
+      With modern SSD type storage, having multiple read IO threads is
+      advantageous for applications with high IO characteristics.
 
-    - **innodb_write_io_threads >= 16**
+    - **innodb_write_IO_threads >= 16**
 
-      With modern SSD type storage, having multiple write io threads is
-      advantageous for applications with high io characteristics.
+      With modern SSD type storage, having multiple write IO threads is
+      advantageous for applications with high IO characteristics.
 
     - **innodb_buffer_pool_instances >= 16**
 
       MySQL/MariaDB will divide the innodb_buffer_pool into memory regions to
       improve performance with a maximum value is 64.  When your
       innodb_buffer_pool is less than 1GB, you should use the pool size
-      divided by 128MB. Continue to use this equation upto the max of 64.
+      divided by 128MB. Continue to use this equation up to the max of 64.
 
     Note:
     - Some of these recommendations may not be applicable depending on the

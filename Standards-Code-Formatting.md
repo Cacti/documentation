@@ -1,4 +1,4 @@
-# Formatting Guidlines
+# Formatting Guidelines
 
 ## Overview
 
@@ -206,11 +206,11 @@ function log_insert($facility, $severity, $message) {
 log_insert(LOG_FACILITY_LOCAL0, LOG_LEVEL_WARNING, 'test message');
 ```
 
-As a general rule of thumb, it is ok to include additional spaces where
+As a general rule of thumb, it is OK to include additional spaces where
 necessary to improve code readability.
 The key here is that writing readable code always takes priority.
 
-### Whitespace
+### White space
 
 Always place a single blank line after a control structure unless the following
 line is an ending brace `}`.  There should be no blank lines at the end of the

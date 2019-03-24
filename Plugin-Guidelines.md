@@ -17,7 +17,7 @@ User submitted plugin pages can be created by simply entering
 
 ## Plugin Defaults
 
-When creating a plugin for the first time, it is automagically populated with a
+When creating a plugin for the first time, it is automatically populated with a
 standard set of defaults. Please complete as many of the sections as possible
 to maintain the site standard.
 
