@@ -79,8 +79,8 @@ Name | Description
 
 Type | Description
 --- | ---
-current | Calculates the Nth percentile based off the selected data source on the graph item wich the variable is used. This type requires a selected Data Source Item in the graph item in which it is defined.
-total | Calculates the Nth percentile based off the selected data source on the graph item wich the variable is used. But unlike current, this function totals the Nth percentile results of all same named data source names on the graph. Example, all traffic_in would have their Nth percentile calculated and then totaled. This type requires a selected Data Source Item in the graph item in which it is defined.
+current | Calculates the Nth percentile based off the selected data source on the graph item which the variable is used. This type requires a selected Data Source Item in the graph item in which it is defined.
+total | Calculates the Nth percentile based off the selected data source on the graph item which the variable is used. But unlike current, this function totals the Nth percentile results of all same named data source names on the graph. Example, all traffic_in would have their Nth percentile calculated and then totaled. This type requires a selected Data Source Item in the graph item in which it is defined.
 max | Calculates the Nth percentile based off the selected data source on the graph item which the variable is used, but it is important to note that it selects the higher of the values for each row in data source and then uses the resulting set to calculate the Nth percentile. Example, you have selected a interface data source for traffic_in, this will evaluate traffic_out and traffic_in for that selected data source (rrdtool file) and select the higher of the two values for each row of data. The resulting max values are used to calculate the Nth percentile value. This type requires a selected Data Source Item in the graph item in which it is defined.
 total_peak | Calculates the Nth percentile based on the max for each data source defined on the graph. Example, the max is taken for each data source defined on the graph, but it\'s the max of traffic_in or traffic_out for that data source (rrdtool file). The resulting max values are summed and returned.
 all_max_current | Calculates the Nth percentile based off the selected data source on the graph item which the variable is used, but it only selects the highest (max) value of all the data source items on the graph. Example, there are 3 data sources defined on the graph, the selected data source is traffic_in, all data sources for traffic_in will be compared against each other and the highest Nth value of all graph items will be selected as the result. This type requires a selected Data Source Item in the graph item in which it is defined.
@@ -91,12 +91,12 @@ aggregate | Calculates the Nth percentile by summing like data source names row 
 
 > **Note**
 >
-> All data sources used in a graph MUST have the same rra definitions. If the
+> All data sources used in a graph MUST have the same RRA definitions. If the
 > number of rows do not match when calculations are attempted, the results may
 > produce errors and invalid results. Please also be aware the aggregate
 > functions take more memory and processor power when used. Recommended minimum
 > of 64 megs memory limit for php when querying large ranges or graphs with a
-> large ammount of aggregated data sources.
+> large amount of aggregated data sources.
 
 ###### Example 15-3. Output in the following format, for 95th percentile: 42.58 mbit
 

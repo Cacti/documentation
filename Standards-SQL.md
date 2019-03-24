@@ -131,6 +131,5 @@ $user_realms = db_fetch_assoc('SELECT ua.id, uar.realm_id
 	ON ua.id = uar.user_id');
 ```
 
-
 ---
 Copyright (c) 2004-2019 The Cacti Group

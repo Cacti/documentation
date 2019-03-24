@@ -3,14 +3,14 @@
 ## Introduction
 
 The following are the standards to be used by Cacti Group members and
-Contributers when maintaining the documentation of Cacti or any of its
+Contributes when maintaining the documentation of Cacti or any of its
 plugins.  These standards have also been applied to the Travis CI
 checker on GitHub.
 
 ## Reporting corrections / omissions
 
 Please report any errors or corrections on the Cacti Documentation
-GitHub repositiory which is located at
+GitHub repository which is located at
 [https://github.com/cacti/documentation/](https://github.com/cacti/documentation/)
 where all changes can be tracked.  Any **Pull Requests** will be welcome
 to help speed up changes by allowing the Cacti Group to simply verify
@@ -113,7 +113,7 @@ The menus are located at the top of the page ...
 
 ### Title Spacing
 
-All titles should be separated with blank linese either side of the
+All titles should be separated with blank lines either side of the
 title.  The only exception to this is if the title is on the first line
 of the page. They should also have a single space between the hash
 symbols and text.
@@ -153,13 +153,13 @@ The menus are located at the top of the page ...
 ### Titles for Captions
 
 Titles for examples, images and tables are the only exception to the
-Title Level rule.  These are normally set to 6 (Six) hash symbols (eg,
+Title Level rule.  These are normally set to 6 (Six) hash symbols (e.g.,
 `######`).  The format of the text should be such that it reads the type
 of caption, a number, full stop, then the description
 
 ```markdown
 
-###### <caption type> <number>. <descrption>
+###### <caption type> <number>. <description>
 
 ```
 
@@ -291,11 +291,11 @@ All code blocks must be:
 
   ```MD040 Fenced code blocks should have a language specified```
 
-- an exception to the above text formating rules as they may contain
+- an exception to the above text formatting rules as they may contain
   example lines that are required to be on a single line.
 
 Where possible, it is advised to try and make use of continuation lines
-(\\) so that these are easily readible on any screen.
+(\\) so that these are easily readable on any screen.
 
 ###### Example 7. Code Block with Style
 
@@ -323,7 +323,7 @@ Markdown | markdown | Formats code block as Markdown
 
 ### URLs
 
-All URLs should be formated in the markdown format and not just inserted
+All URLs should be formatted in the markdown format and not just inserted
 directly into the text.  The format for this is:
 
 ```markdown

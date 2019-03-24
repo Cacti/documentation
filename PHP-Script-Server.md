@@ -18,7 +18,7 @@ If you have **Scripts** or **Data Queries** that you wish to migrate, you must f
 
 ### Script File Changes
 
-First, if your script is written in another languages, say perl, or Python, you need to convert it to PHP.  Then, each PHP Script file must be changed to the new Script Server format. The changes are not dramatic, but required for the proper operation of the **PHP Script Server**. Note that you should use PHP internal functions for calling services rather than forking binaries within the PHP script as this will defeat the purpose of the **PHP Script Server**.  Follow the steps below to complete the migration.
+First, if your script is written in another languages, say Perl, or Python, you need to convert it to PHP.  Then, each PHP Script file must be changed to the new Script Server format. The changes are not dramatic, but required for the proper operation of the **PHP Script Server**. Note that you should use PHP internal functions for calling services rather than forking binaries within the PHP script as this will defeat the purpose of the **PHP Script Server**.  Follow the steps below to complete the migration.
 
 1. Copy you existing script to a new name. The name must begin `ss_` followed by your script name. The `ss_` identifies the script as being a script server variety of the a PHP script and is named that way to easily identify them in your install. For example, if you previously had a script called `get_mysql_stats.php`, it's new name would be `ss_get_mysql_stats.php`.
 
