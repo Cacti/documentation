@@ -16,7 +16,7 @@ data from remote targets/hosts, cacti will mainly use the Simple Network
 Management Protocol SNMP. Thus, all devices capable of using SNMP will be
 eligible to be monitored by cacti.
 
-Later on, we demonstrate how to extend cacti's capabilities of retrieving data
+Later on, we demonstrate how to extend Cacti's capabilities of retrieving data
 to scripts, script queries and more.
 
 ## Data Storage
@@ -42,7 +42,7 @@ MINIMUM and LAST.
 One of the most appreciated features of [RRDTool](http://www.rrdtool.org/) is
 the built-in graphing function. This comes in useful when combining this with
 some commonly used webserver. Such, it is possible to access the graphs from
-merely any browser on any plattform.
+merely any browser on any platform.
 
 Graphing can be done in very different ways. It is possible, to graph one or
 many items in one graph. Autoscaling is supported and logarithmic y-axis as

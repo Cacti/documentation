@@ -54,7 +54,7 @@ header("Location:../index.php");
 
 ## File Structure
 
-All plugin files should reside under thier own respective plugin directory.  The example below is for a plugin called 'myplugin'.
+All plugin files should reside under their own respective plugin directory.  The example below is for a plugin called 'myplugin'.
 
 ```console
 myplugin/
@@ -82,7 +82,7 @@ The four core sub-directories included in your plugin should be docs, images, li
 
 The two main files required for every plugin are the INFO and the setup.php file.  Without these two files, the plugin directory will not be recognized as a valid plugin and will be skipped.
 
-The INFO file is formatted as Microsoft standard INI file.  It constains information about the plugin including its version, author, dependencies, functions, and minimum version of Cacti and other plugins required.  Below, you can see a reference INFO file for the myplugin plugin.
+The INFO file is formatted as Microsoft standard INI file.  It contains information about the plugin including its version, author, dependencies, functions, and minimum version of Cacti and other plugins required.  Below, you can see a reference INFO file for the myplugin plugin.
 
 ```console
 [info]

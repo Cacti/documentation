@@ -7,7 +7,7 @@ Your plugin will require a few things to be properly detected by Cacti.
 Your plugin will reside in its own directory in Cacti's plugin directory.  You
 will need to create a new directory, with a unique name.  It is recommended
 that you use all lowercase alpha letters, and try to keep it short (you will be
-typing it alot). All plugin names must contain only upper or lowercase letters
+typing it a lot). All plugin names must contain only upper or lowercase letters
 a-z and digits 0-9.
 
 So to begin, create your directory in the plugins directory like this.
@@ -133,7 +133,7 @@ function PLUGINNAME_show_tab () {
 
 Here you can find a full listing of the available hooks
 
-[Hook Api Referemce](Plugin-Hook-API-Ref.md)
+[Hook Api Reference](Plugin-Hook-API-Ref.md)
 
 #### Registering Realms
 

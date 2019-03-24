@@ -1,10 +1,10 @@
 # PHP Script Server
 
-The **PHP Script Server** is a memory resident PHP interpretor that is launched by each Cacti **Data Collector** or poller each polling cycle.  If using `cmd.php`, there will be at most one **PHP Script Server** launched per poller process.  If using `spine` poller, then upto 10 **PHP Script Servers** will be launched in a pool for the various `spine` threads to consume.
+The **PHP Script Server** is a memory resident PHP interpreter that is launched by each Cacti **Data Collector** or poller each polling cycle.  If using `cmd.php`, there will be at most one **PHP Script Server** launched per poller process.  If using `spine` poller, then up to 10 **PHP Script Servers** will be launched in a pool for the various `spine` threads to consume.
 
 If you have a number of devices that must gather their data via a script, it's very important to utilize the **PHP Script Server**. This feature allows for the rapid execution of PHP based **Scripts** and **Data Queries** in Cacti thus reducing **Data Collector** polling times.
 
-The reason that the **PHP Script Server** is so fast is that the PHP interpretor is started in memory one time, and for every **Data Source** polled, it's controlling function is interpreted only once. The resulting much faster script execution and reduced load average during the **Data Collectors** life cycle. Using the **PHP Script Server** process over the traditional exec() process nets roughly a 20+ fold speed improvement in Cacti's **Data Collection** process.
+The reason that the **PHP Script Server** is so fast is that the PHP interpreter is started in memory one time, and for every **Data Source** polled, it's controlling function is interpreted only once. The resulting much faster script execution and reduced load average during the **Data Collectors** life cycle. Using the **PHP Script Server** process over the traditional exec() process nets roughly a 20+ fold speed improvement in Cacti's **Data Collection** process.
 
 Since PHP is such a powerful language, this Cacti feature enables rapid collection of virtually any **Data Source** metric.  It's an excellent choice for both SNMP and non-SNMP based data.
 
@@ -58,7 +58,7 @@ function ss_myfunction() {
 }
 ```
 
-4. If you have any additional functions declared within your script file, you must prefix them to make them unique amongst all functions. Our recommendation would be to prefix all functions with the name of the main function. For example if you have a function called "meme" you would rename it to `ss_myfunction_meme`. This guarantee's correct **PHP Script Server** functionality.
+4. If you have any additional functions declared within your script file, you must prefix them to make them unique among all functions. Our recommendation would be to prefix all functions with the name of the main function. For example if you have a function called "meme" you would rename it to `ss_myfunction_meme`. This guarantee's correct **PHP Script Server** functionality.
 
 5. The last step is to change the function call that could have traditionally returned the value to the Cacti poller using the `print` function. You must change that line or lines in your code to utilize the `return` function instead. However, this does not apply to `print` statements that are not called from the Poller. For a simple script, this results in
 
@@ -115,7 +115,7 @@ Your **Data Queries** and **Data Templates** must be also modified. Although som
 
 2. If the **Data Template** is based upon a **Data Query**, edit the **Data Query** and change it's **Data Input Method** to `Get Script Server Data (Indexed)` and change the XML file path to point to the new XML file in the `<path_cacti>/resources/script_server/` directory.
 
-3. Your final step is to go to the **Console > System Utilities > Rebild Poller Cache** to apply the new settings.
+3. Your final step is to go to the **Console > System Utilities > Rebuild Poller Cache** to apply the new settings.
 
 If your **PHP Script Server** script is operating correctly, you should now be migrated to the **PHP Script Server**.
 

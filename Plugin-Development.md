@@ -68,7 +68,7 @@ includes the following sections:
 - **version** - The version number of the plugin
 - **longname** - A description for the plugin
 - **author** - The plugins author
-- **email** - An eMail contact in order to reach the author
+- **email** - An email contact in order to reach the author
 - **homepage** - A link to the plugin authors homepage
 - **compat** - The minimum supported Cacti version
 - **capabilities** - a comma delimited string of capabilities defining how the
