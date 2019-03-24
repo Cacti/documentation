@@ -36,7 +36,7 @@ The *Graph Items* make up what is draw within the canvas of the Graph.  There ar
 - *AREA:STACK* - The second item of an *Area Fill* to be stacked upon the first
 - *COMMENT* - A written comment.  Can include: |host_*|, |query_*|, |input_*| *Replacement Variables*
 - *GPRINT* - Print a numeric value from the RRDfile with an optional **CDEF** or **VDEF** and formatted using a **GPRINT Preset**.
-- *GPRINT:AVERAGE* - Print a numeric value from the RRDfile from the *AVERAGE* *Consolidation Function* within the RRA, modified by an optional **CDEF**, or **VDEF**, and formtted using a **GPRINT Preset**.
+- *GPRINT:AVERAGE* - Print a numeric value from the RRDfile from the *AVERAGE* *Consolidation Function* within the RRA, modified by an optional **CDEF**, or **VDEF**, and formatted using a **GPRINT Preset**.
 - *GPRINT:LAST* - Print a numeric value from the RRDfile from the *LAST* *Consolidation Function* within the RRA, modified by an optional **CDEF**, or **VDEF**, and formatted using a **GPRINT Preset**.
 - *GPRINT:MAX* - Print a numeric value from the RRDfile from the *MAX* *Consolidation Function* within the RRA, modified by an optional **CDEF**, or **VDEF**, and formatted using a **GPRINT Preset**.
 - *GPRINT:MIN* - Print a numeric value from the RRDfile from the *MIN* *Consolidation Function* within the RRA, modified by an optional **CDEF**, or **VDEF**, and formatted using a **GPRINT Preset**.

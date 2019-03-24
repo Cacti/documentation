@@ -153,7 +153,7 @@ SNMP retrieval methods in Cacti and are outlined below.
 SNMP supports authentication and encryption features when using SNMP protocol
 version 3 known as *View-Based Access Control Model (VACM)*. This requires,
 that the target device in question supports and is configured for SNMP V3 use.
-In general, configuration of V3 options is target type dependant. The following
+In general, configuration of V3 options is target type dependent. The following
 is cited from `man snmpd.conf` concerning user definitions
 
 ```sh
@@ -163,7 +163,7 @@ SNMPv3 Users
            MD5 and SHA are the authentication types to use.  DES and AES are the privacy
            protocols  to  use. If  the  privacy  passphrase  is not specified, it is assumed
            to be the same as the authentication passphrase.  Note that the users created will
-           be useless unless they are also added  to  the  VACM accesscontrol tables
+           be useless unless they are also added  to  the  VACM access control tables
            described above.
 
            SHA  authentication  and DES/AES privacy require OpenSSL to be installed and the
@@ -198,7 +198,7 @@ VACM Configuration
            context ("") will be used.
 
     group GROUP {v1|v2c|usm} SECNAME
-           maps  a  security name (in the specified security model) intoa named group.
+           maps  a  security name (in the specified security model) into a named group.
            Several group directives can specify the same group name, allowing a single
            access setting to apply to several  users and/or community strings.
 
@@ -227,7 +227,7 @@ VACM Configuration
            LEVEL is one of noauth, auth, or priv.  PREFX specifies how CONTEXT should be
            matched against  the context  of  the  incoming  request, either exact or prefix.
            READ, WRITE and NOTIFY specifies the view to be used for GET*, SET and
-           TRAP/INFORM requests (althought the NOTIFY view is not currently used).  For
+           TRAP/INFORM requests (although the NOTIFY view is not currently used).  For
            v1 or v2c access, LEVEL will need to be noauth.
 ```
 

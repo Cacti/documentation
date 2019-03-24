@@ -117,7 +117,7 @@ server {
         # Disable SSLv3
         ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 
-        # Diffie-Hellman parameter for DHE ciphersuites
+        # Diffie-Hellman parameter for DHE cipher suites
         # $ sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 4096
         ssl_dhparam /etc/ssl/certs/dhparam.pem;
 
@@ -366,7 +366,7 @@ configure the basics for Cacti.
     mv -v /usr/share/nginx/html/cacti/include/config.php-dist /usr/share/nginx/html/cacti/include/config.php
     ```
 
-3. Update dababase_ fields with your own details. This section only applies to
+3. Update database_ fields with your own details. This section only applies to
  the Main Cacti Server
 
     ```php

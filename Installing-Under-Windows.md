@@ -14,9 +14,9 @@ BSOD2600, one of the long term users of Cacti, provides an Installer on Windows.
 
 6. MySQL 5.x - Install into the default location. This is typically `c:\Program Files\MySQL\MySQL Server X.XX`.
 
-7. (Optional) Cygwin - Download and execute `setup.exe` from the Cygwin website. Keep the `setup.exe` file for later use.  You will need Cygwin and it's development packages for building RRDtool and spine.
+7. (Optional) Cygwin - Download and execute `setup.exe` from the Cygwin website. Keep the `setup.exe` file for later use.  You will need Cygwin and its development packages for building RRDtool and spine.
 
-8. (Optional) Net-SNMP - Install to the `c:net-snmp` directory. If you choose to use `c:\Program Files\net-snmp` you will have tu use 8.3 filenames to reference it's binaries in Cacti.
+8. (Optional) Net-SNMP - Install to the `c:net-snmp` directory. If you choose to use `c:\Program Files\net-snmp` you will have to use 8.3 filenames to reference its binaries in Cacti.
 
 ## Common OS Changes
 

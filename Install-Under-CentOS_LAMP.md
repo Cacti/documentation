@@ -288,7 +288,7 @@ configure the basics for Cacti.
    mv -v /var/www/html/cacti/include/config.php-dist /var/www/html/cacti/include/config.php
    ```
 
-3. Update `dababase_` fields with your own details. This section only applies
+3. Update `database_` fields with your own details. This section only applies
  to the Main Cacti Server
 
     ```php
