@@ -1,6 +1,6 @@
 # General Installing Instructions
 
-Make sure the following packages are installed according to your operating systems requirements. Verify, that httpd/apache and mysqld/mariadb are started at system startup.
+Make sure the following packages are installed according to your operating systems requirements. Verify, that httpd/apache and MySQLd/mariadb are started at system startup.
 
 ## Required Packages for Most Operating Systems
 
@@ -161,9 +161,9 @@ shell> mysql cacti < cacti.sql
 
 ```sql
 shell> mysql --user=root mysql
-mysql> GRANT ALL ON cacti.* TO cactiuser@localhost IDENTIFIED BY 'somepassword';
-mysql> GRANT SELECT ON mysql.time_zone_name TO cactiuser@localhost IDENTIFIED BY 'somepassword';
-mysql> flush privileges;
+MySQL> GRANT ALL ON cacti.* TO cactiuser@localhost IDENTIFIED BY 'somepassword';
+MySQL> GRANT SELECT ON mysql.time_zone_name TO cactiuser@localhost IDENTIFIED BY 'somepassword';
+MySQL> flush privileges;
 ```
 
 5. Edit `include/config.php` and specify the database type, name, host, user

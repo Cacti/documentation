@@ -57,7 +57,7 @@ shell> mysql -u root -p cacti
 Now execute the following SQL:
 
 ```sql
-mysql> update user_auth set password=md5('admin') where username='admin';
+MySQL> update user_auth set password=md5('admin') where username='admin';
 ```
 
 ## Monitoring

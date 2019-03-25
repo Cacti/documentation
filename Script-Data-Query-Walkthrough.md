@@ -27,8 +27,8 @@ any production environment. But, again, this is not the primary goal.
 Before starting the work, I feel encouraged to point out a drawback of this
 approach. Cacti will start a PHP instance, each time it has to fetch a value
 from the target device. This is not that fast, obviously. And it will not
-prosper from the performance boost when switching over from cmd.php to cactid.
-Of course, even cactid will need to start php! And that's exactly, where the
+prosper from the performance boost when switching over from cmd.php to Spine.
+Of course, even Spine will need to start php! And that's exactly, where the
 thingy called **Script Server Data Query** drops in. But let's leave this for
 the next main chapter.
 

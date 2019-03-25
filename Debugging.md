@@ -9,7 +9,7 @@ procedure recommended for debugging.
 Your cacti log file should be located at `<path_cacti>/log/cacti.log`. If it is
 not, see `Settings`, `Paths`. Check for this kind of error:
 
-    CACTID: Host[...] DS[....] WARNING: SNMP timeout detected [500 ms],
+    SPINE: Host[...] DS[....] WARNING: SNMP timeout detected [500 ms],
 ignoring host '........'
 
 For "reasonable" timeouts, this may be related to a snmpbulkwalk issue. To
@@ -89,7 +89,7 @@ the next one fails (e.g. no rrdtool update to be found)
 
 From debug log, find the MySQL update statement for that host concerning table
 `poller_output`. On very rare occasions, this will fail. Copy that SQL
-statement and paste it to a mysql session started from CLI. This may as well be
+statement and paste it to a MySQL session started from CLI. This may as well be
 done from some tool like phpMyAdmin. Check the SQL return code.
 
 ## Check RRD file updating
@@ -191,7 +191,7 @@ reasonable size.
 This is commonly due to php.ini's memory settings of 8MB default. Change this
 to at least 64 MB.
 
-To check this, run the following SQL from mysql CLI (or phpmyadmin or the like)
+To check this, run the following SQL from MySQL CLI (or phpMyAdmin or the like)
 
 ```sql
 select count(*) from poller_output;
