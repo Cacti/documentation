@@ -53,7 +53,7 @@ to explain the purpose. Specific examples are listed below.
 * remove
 * update
 
-## Dirctory Structure
+## Directory Structure
 
 ### cli/
 
@@ -111,11 +111,11 @@ include/graph_arrays.php
                                         # includes global.php
   global_arrays.php
   global_constants.php                  # Constants only
-  global_form.php                       # Form field defintions
-  global_languages.php                  # Langauge selector
+  global_form.php                       # Form field definitions
+  global_languages.php                  # Language selector
   global.php
   global_session.php                    # Session variable management
-  global_settings.php                   # Setting defintions
+  global_settings.php                   # Setting definitions
   session.php                           # Session management
 
   plugins.php                           # Global plugin variables
@@ -137,7 +137,7 @@ directory. This is where most of the heavy lifting in Cacti occurs.
 Directly under the `lib/` directory, the files beginning with `api` are generic
 wrappers that are only to be used by third party developers. These files simply
 include the contents of the various subdirectories under `lib/` to make
-developers' lives easier. Also under the `lib/` directory is a directory for
+developers lives easier. Also under the `lib/` directory is a directory for
 each category (graph, device, etc), where functions specific to that category
 are to be stored. The `lib/sys/` directory is a special category that is meant
 to store Cacti internal functions that are not to be made available directly
@@ -153,8 +153,8 @@ lib/api_graph.php
 
 Language-related files are stored here to handle the multi-lingual natural of
 Cacti. These can be updated by running the `update-pot.sh` script.  It is
-advised to do this whenever you are submiting a change to the Cacti via Pull
-Request.  Otherwise, langauge translations can be missed.
+advised to do this whenever you are submitting a change to the Cacti via Pull
+Request.  Otherwise, language translations can be missed.
 
 ### plugins/
 

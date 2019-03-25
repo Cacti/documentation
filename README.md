@@ -254,7 +254,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 1. [Documentation](Standards-Documentation.md)
 
-2. [Code Formating](Standards-Code-Formatting.md)
+2. [Code Formatting](Standards-Code-Formatting.md)
 
 3. [PHP Specific Constructs](Standards-PHP-Spec-Constructs.md)
 

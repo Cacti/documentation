@@ -7,10 +7,10 @@ such a thing? Suppose, your target features some indexed readings, that are
 …). Writing a Script Data Queries works very much the same way as SNMP Data
 Queries. But nevertheless, I'll take you through all of the steps now.
 
-The example uses php. Why php? First, it's easier to copy stuff from already
-existing php scripts. Second, it would be possible to use cacti functions. It
+The example uses PHP. Why PHP? First, it's easier to copy stuff from already
+existing PHP scripts. Second, it would be possible to use cacti functions. It
 should be possible to imagine, how this works with other programming languages.
-Strictly speaking, I'm not that php expert. So be patient with me.
+Strictly speaking, I'm not that PHP expert. So be patient with me.
 
 Please pay attention. This HowTo will not explain how to write a **Script
 Server Data Query** (yes, there is such a thing!). It would not introduce that
@@ -25,7 +25,7 @@ fast as pure SNMP. So, to my shame, I suppose that this will never make it into
 any production environment. But, again, this is not the primary goal.
 
 Before starting the work, I feel encouraged to point out a drawback of this
-approach. Cacti will start a php instance, each time it has to fetch a value
+approach. Cacti will start a PHP instance, each time it has to fetch a value
 from the target device. This is not that fast, obviously. And it will not
 prosper from the performance boost when switching over from cmd.php to cactid.
 Of course, even cactid will need to start php! And that's exactly, where the
@@ -42,7 +42,7 @@ indices only for the given target host. The script takes two parameters as
 input, the **hostname** of the target and the string **index**. You have to
 implement the **index method**, as OO programmers would say. In this case,
 there's an “if” clause to process index requests. Output is a list of indices,
-each one on a seperate line.
+each one on a separate line.
 
 ```php
 <?php
@@ -221,7 +221,7 @@ direction | Description
 input | defines all fields that serve as a descriptive information to a specific table index. These values will not be graphed but may be printed in e.g.graph titles by means of `|query_<name>|`
 output | defines all fields that will yield a number that should be stored in some rrd file
 
-Now save this file and lets turn to cacti to implement this one. First, goto
+Now save this file and lets turn to cacti to implement this one. First, go to
 **Data Queries** to see
 
 ![Script Data Query - Add 01](images/dq-add-01.preview.png)
@@ -458,7 +458,7 @@ Let's discuss the changes
 
 Field | Description
 --- | ---
-arg_prepend | some more parameters were added to provide all necessary values for the script. They are position-dependant. You may notice the strange tics I've added to e.g. host_snmp_username and host_snmp_password. If you're not using those SNMP V3 parameters, they must be quoted, else the script would fail because two parameters would be missing.
+arg_prepend | some more parameters were added to provide all necessary values for the script. They are position-dependent. You may notice the strange tics I've added to e.g. host_snmp_username and host_snmp_password. If you're not using those SNMP V3 parameters, they must be quoted, else the script would fail because two parameters would be missing.
 arg_query | The string passed to the query to perform query requests is given here. So you may modify it to your liking (in this case, the script has to be modified accordingly).
 arg_get | Some as above for get requests
 output_delimiter | The delimiter used for query requests to separate index and value
@@ -562,7 +562,7 @@ content of the requested variable is printed
 Last, the “get” option is shown. The keyword “get” is required, followed again
 by the variable (see above). Last needed option is the index, for which the
 “get” should be performed. Contrary to the “query” option, only one index is
-scanned. So the index number is not required and will nort be printed.
+scanned. So the index number is not required and will not be printed.
 
 ```console
 [me@gandalf scripts]$ php -q query_interface_traffic.php <target> <community> 1 161 500 "" "" "" "" "" "" "" get iftype 1
@@ -694,7 +694,7 @@ enter some text
 ![Script Data Query - Graph Template 05](images/dev-gt-05.preview.png)
 
 Save and add the next graph item. Now, we're going to use the “LEGEND”
-timesaver again:
+time saver again:
 
 ![Script Data Query - Graph Template 06](images/dev-gt-06.preview.png)
 
