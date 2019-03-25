@@ -712,7 +712,7 @@ poller.php |  1.0.0  |
 
 ## poller\_output
 
-This hook was designed specifically for the boost plug-in. However, it has found new life in many plugins making them much faster now. What this hook allows you to do is intercept the contents of the `poller_output` table before the data is deleted. This allows for things like threshold checking and other interesting actions such as checking for up/down events and the like. Previously, plugins were reliant on using things like RRDtool fetch to perform these actions. Now they can leverage the pollers output directly.
+This hook was designed specifically for the boost plug-in. However, it has found new life in many plugins making them much faster now. What this hook allows you to do is intercept the contents of the `poller_output` table before the data is deleted. This allows for things like threshold checking and other interesting actions such as checking for up/down events and the like. Previously, plugins were reliant on using things like `rrdtool fetch` to perform these actions. Now they can leverage the pollers output directly.
 
 file | introduced | retired
 --- | :--- | :---
@@ -753,7 +753,7 @@ lib/export.php |  1.2.0-beta1  |
 
 ## rrd\_graph\_graph\_options
 
-This hook allows you to specify additional options or change parameters regarding graph image rendering. Some of the parameters will be passed to rrdtool.
+This hook allows you to specify additional options or change parameters regarding graph image rendering. Some of the parameters will be passed to RRDTool.
 
 file | introduced | retired
 --- | :--- | :---

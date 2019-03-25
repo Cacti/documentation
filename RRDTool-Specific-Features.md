@@ -38,7 +38,7 @@ description of each CDEF item type.
 
 Type | Description
 --- | ---
-Function | You can choose a CDEF function to use as the item. [The RRDTool graph manual](http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/doc/rrdgraph.en.html) describes the purpose of each CDEF function.
+Function | You can choose a CDEF function to use as the item. [The RRDTool's graph manual](http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/doc/rrdgraph.en.html) describes the purpose of each CDEF function.
 Operator | Just your standard math operators, including modulo (%).
 Special Data Source | A special data source is basically a flag to tell Cacti to do some special processing when it encounters this CDEF item. The "Current Graph Item Data Source" type basically inserts the name of the data source that is referenced by the graph item that references to this CDEF. Both of the "All Data Sources" types insert a summation of all data sources used on a graph.
 Another CDEF | You can recursively use another CDEF within this CDEF.
@@ -541,13 +541,13 @@ AREA:cdefc#FF0000FF:"% Used"
 performs the percentage calculation.
 
 You may of course add `GPRINT` legends as usual. If you do this for the "% Used"
-entry only, you will get surprising results, if your rrd file holds either
+entry only, you will get surprising results, if your RRD file holds either
 `MAXIMUM`, `LAST` and/or `MINIMUM` consolidation function(s). This is left as
 an exercise to you :)
 
 This set of CDEFs is used to colorize the background of a graph with different
 colors for day, night and weekends. The CDEFs are created as usual, we will
-show the CDEF definition only. Examples are taken from rrdtool-users mailing
+show the CDEF definition only. Examples are taken from RRDTool-users mailing
 list courtesy Erik de Mare. Here are the definitions
 
 #### Background for Daytime

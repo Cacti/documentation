@@ -2,7 +2,7 @@
 
 ![Cacti](images/logo.png)
 
-Cacti is designed to be a complete graphing solution based on the RRDtool's
+Cacti is designed to be a complete graphing solution based on the RRDTool's
 framework. Its goal is to make a network administrator's job easier by taking
 care of all the necessary details necessary to create meaningful graphs.
 
@@ -28,7 +28,7 @@ Please see the official Cacti website for information, support, and updates.
 
 ## Thanks
 
-A very special thanks to Tobi Oetiker, the creator of RRDtool and the very
+A very special thanks to Tobi Oetiker, the creator of RRDTool and the very
 popular MRTG. The users of Cacti Especially anyone who has taken the time to
 create an issue report, or otherwise help fix a Cacti related problems. Also
 to anyone who has contributed to supporting Cacti.

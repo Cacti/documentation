@@ -67,7 +67,7 @@ files holding your certificate (`.crt`) and private key (`.key`).
         # Uncomment these if you use mod_security.
         # allow POST of application/x-www-form-urlencoded during install
         #SecRuleRemoveById 960010
-        # permit the specification of the rrdtool paths during install
+        # permit the specification of the RRDTool paths during install
         #SecRuleRemoveById 900011
     </Directory>
 
@@ -250,13 +250,13 @@ PHP and various packages are all required by Cacti for successful operation
    date.timezone = Pacific/Auckland
    ```
 
-#### RRDtool
+#### RRDTool
 
 RRDTool is required to store the data retrieved from devices in `.rra` files to
 produce the graphs which are shown within Cacti
 
 ```console
-yum install -y rrdtool
+yum install -y RRDTool
 ```
 
 #### SNMP

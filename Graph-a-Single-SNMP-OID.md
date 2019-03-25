@@ -20,7 +20,7 @@ Name | Description
 (Graph) Title | The title that is to be used for the new graph. It is generally a good idea to keep `|host_description|` in the title, as to make the graph easier to identify later.
 (Graph) Vertical Label | The text that will be printed along the y-axis of the graph. It is generally used to describe units, such as 'bytes' or 'percent'.
 (Graph Items) Legend Color | The color that will be used to represent the data on the graph.
-(Graph Items) Opacity/Alpha Channel | This optionally provides an opacity (not available with rrdtool-1.0.x) for a colored item.
+(Graph Items) Opacity/Alpha Channel | This optionally provides an opacity (not available with RRDTool-1.0.x) for a colored item.
 (Graph Items) Legend Text | The text that will be used to describe the data on the graph legend.
 (Data Source) Name | The title that is to be used for the new data source. It is generally a good idea to keep |host_description| in the title, as to make the data source easier to identify later.
 (Data Source) Maximum Value [snmp_oid] | The maximum value that will be accepted from the OID. Make sure you choose a value that is reasonable for the data you are trying to graph because anything larger than the maximum will be ignored. If you are graphing a percentage, you should use '100' as the value should never exceed this.

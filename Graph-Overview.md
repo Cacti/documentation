@@ -6,7 +6,7 @@ it is possible to manually create graphs through this screen, new users should
 follow the instructions provided in the next chapter for creating new graphs in
 Cacti.
 
-For users that are familiar with [RRDTool](http://www.rrdtool.org/), you will
+For users that are familiar with [RRDTool](http://www.RRDTool.org/), you will
 immediately recognize that a graph in Cacti is closely modeled after RRDTool's
 graphs. This makes sense since Cacti provides a user friendly interface to
 RRDTool without requiring users to understand how RRDTool works. With this in

@@ -89,7 +89,7 @@ For a simple plugin example, please review the gexport plugin.
 
 Several JavaScript based HTML5 Charting packages have been included in Cacti in
 an effort to assist plugin developers who wish to use graphing API's in their
-plugins other than RRDtool.
+plugins other than RRDTool.
 
 - [C3](http://c3js.org/)
 - [D3](https://d3js.org/)

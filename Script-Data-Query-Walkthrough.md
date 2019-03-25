@@ -219,7 +219,7 @@ query_name | Name of this field when performing a query or a get request (will b
 direction | Description
 --- | ---
 input | defines all fields that serve as a descriptive information to a specific table index. These values will not be graphed but may be printed in e.g.graph titles by means of `|query_<name>|`
-output | defines all fields that will yield a number that should be stored in some rrd file
+output | defines all fields that will yield a number that should be stored in some RRD file
 
 Now save this file and lets turn to cacti to implement this one. First, go to
 **Data Queries** to see
@@ -631,7 +631,7 @@ Of course, snmp_username and snmp_user_password and more may differ from your
 installation defaults. Read it carefully, and you'll notice, that all XML
 **fields** were scanned and the output shown. All? No, not all. The **direction
 output** fields are missing! But this is on purpose as those won't make sense
-as header fields but will be written to rrd files.
+as header fields but will be written to RRD files.
 
 ## Create the Data Template
 
@@ -670,7 +670,7 @@ For the second data source item, please select **New**.
 ![Script Data Query - Data Template 05](images/dev-dt-05.png)
 
 Again, fill in the Data Source Name. Pay attention to set the maximum value to
-0 to avoid clipping it off during updating of the rrd file. COUNTER has to be
+0 to avoid clipping it off during updating of the RRD file. COUNTER has to be
 set as done above. **Important!** You have to select the marked Index fields!
 Now, save again and you're done.
 

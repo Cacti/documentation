@@ -27,7 +27,7 @@ Cacti yourself, please follow the instructions below.
 
 7. (Optional) Cygwin - Download and execute `setup.exe` from the Cygwin website.
    Keep the `setup.exe` file for later use.  You will need Cygwin and its
-   development packages for building RRDtool and spine.
+   development packages for building RRDTool and spine.
 
 8. (Optional) Net-SNMP - Install to the `c:net-snmp` directory. If you choose to
    use `c:\Program Files\net-snmp` you will have to use 8.3 filenames to
@@ -121,7 +121,7 @@ The following changes will be required regardless of your selected Webserver.
    net start w3svc
    ```
 
-## Cygwin Installation Steps for spine and RRDtool
+## Cygwin Installation Steps for spine and RRDTool
 
 1. Installing a single instance of Cygwin, and using it for all applications
    that require it is recommended so you do not have different versions of the
@@ -178,7 +178,7 @@ The following changes will be required regardless of your selected Webserver.
    is updated from time to time, so it's recommended that you update it
    periodically.
 
-## RRDtool Download and Installation Instructions
+## RRDTool Download and Installation Instructions
 
 1. TBD
 
@@ -340,7 +340,7 @@ The following changes will be required regardless of your selected Webserver.
    ```
 
    After this has ran once, you should have `cacti.log` in `/cacti/log/` and
-   RRDfiles in `/cacti/rra/`.
+   RRD files in `/cacti/rra/`.
 
 7. You are going to need to schedule a task while logged on as an Administrator.
    This task is required to you can run `poller.php` every 5 minutes. Make sure
