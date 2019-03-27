@@ -1,6 +1,6 @@
 # User Management
 
-In addition to giving you the tools to create sophisticated **Graphs**, Cacti enables you to manage **User** and **User Group** access to those **Graphs** as well as various other areas of Cacti. Each **User** has a variety of settings and permissions.  Some of these settings can be controlled by the individual **User** via editing their Profile, or controlled by the Cacti Administrator.  A **Users** Cacti permissions are only modifiable by authorized Cacti Adminnistrators.  Note, that for a users to see new settings, will have to log off and back in again to view.
+In addition to giving you the tools to create sophisticated **Graphs**, Cacti enables you to manage **User** and **User Group** access to those **Graphs** as well as various other areas of Cacti. Each **User** has a variety of settings and permissions.  Some of these settings can be controlled by the individual **User** via editing their Profile, or controlled by the Cacti Administrator.  A **Users** Cacti permissions are only modifiable by authorized Cacti Administrators.  Note, that for a users to see new settings, will have to log off and back in again to view.
 
 ![User Management](images/users-list.png)
 
@@ -46,13 +46,13 @@ access.
 
 If you want to create a user that can only view graphs, you should select the View Graphs realm and leave everything else unchecked. See the Graph Permissions section for more information about how to fine tune this even more on a per-graph basis. Conversely, if the user needs to access the console, they will need Console Access and any additional realms that you see fit.
 
-![User Realm Managmeent](images/users-permissions.png)
+![User Realm Management](images/users-permissions.png)
 
 ## Graph Permissions
 
 **Graph Permissions** control which graphs a user is allowed to view.  However, in general, these permissions do not apply to editing graphs. You can edit a **Users** **Graph Permissions** either by assigning that **User** to one to many **User Groups**, or by modifying their **Graph Permissions** directly.
 
-![User Realm Managmeent](images/users-permissions-graph.png)
+![User Realm Management](images/users-permissions-graph.png)
 
 Cacti supports two Graph Permission models.  There is the `Permissive` Graph permission which states that if a user has access either to the Graph, the Device or Graph Template, the user will have access to all the Graphs that match that class.  For example, in the `Permissive` model, if you have access to the **Device**, you have access to all it's **Graphs**.  If you have access to a **Graph Template**, you have access to every **Device Graph** that matches that **Graph Template**.
 
@@ -74,13 +74,13 @@ Note that even if a **User** is denied access to a **Device** or **Graph Templat
 
 **Device Permissions** allow you to `Grant` or `Revoke` access to specific **Devices**.  If you wish to `Grant` or `Revoke` access to a **Device**, you can select it, and then choose the specified action from the drop down, and press the `Go` button to make that permission change.  As mentioned above, revoking **Device** access does not necessarily block a **User** from seeing that **Device** from the User Interface.
 
-![User Realm Managmeent](images/users-permissions-device.png)
+![User Realm Management](images/users-permissions-device.png)
 
 ## Template Permissions
 
 **Template Permissions** allow you to `Grant` or `Revoke` access to specific **Graph Templates**.  If you wish to `Grant` or `Revoke` access to a **Graph Template**, you can select it, and then choose the specified action from the drop down, and press the `Go` button to make that permission change.  As mentioned above, revoking **Graph Template** access does not necessarily block a **User** from seeing that **Graph Template** from the User Interface.
 
-![User Realm Managmeent](images/users-permissions-templates.png)
+![User Realm Management](images/users-permissions-templates.png)
 
 ## Tree Permissions
 
@@ -88,13 +88,13 @@ Cacti allows the Administrator to `Grant` and `Revoke` **Tree** permissions from
 
 ## User Settings
 
-Cacti optionally allows **Users** to control certain **User Settings** such as their `Email Address` and `Full Name`.  However, the Cacti Adminnistrator also has the ability to view a **Users** settings and modify them for the **User** from the **User Settings** tab.  This feature allows the Cacti Administrator to better support their **Users**.  However, you can disable a **Users** ability to modify defaults from the `General` **User Management** tab.  This is important for the `guest` account for example.
+Cacti optionally allows **Users** to control certain **User Settings** such as their `Email Address` and `Full Name`.  However, the Cacti Administrator also has the ability to view a **Users** settings and modify them for the **User** from the **User Settings** tab.  This feature allows the Cacti Administrator to better support their **Users**.  However, you can disable a **Users** ability to modify defaults from the `General` **User Management** tab.  This is important for the `guest` account for example.
 
-![User Realm Managmeent](images/users-settings1.png)
+![User Realm Management](images/users-settings1.png)
 
-![User Realm Managmeent](images/users-settings2.png)
+![User Realm Management](images/users-settings2.png)
 
-![User Realm Managmeent](images/users-settings3.png)
+![User Realm Management](images/users-settings3.png)
 
 ## Caching of Permissions
 
@@ -124,13 +124,13 @@ From this sub-tab, you can assign or remove users from various **User Groups**.
 
 ### Graph Perms
 
-From this sub-tab, you can view a users `Effective` Graph permisions and also `Grant` or `Revoke` access to **Graphs** for an individual **User**.
+From this sub-tab, you can view a users `Effective` Graph permissions and also `Grant` or `Revoke` access to **Graphs** for an individual **User**.
 
 ![Graph Permissions](images/users-permissions-graph.png)
 
 ### Device Perms
 
-From this sub-tab, you can view and edit a users **Device** permissions.  Note that removing a users permission to a **Device** can be overwridden if they have access to either a **Graph** or, depending on the permission model you have chosen, a **Devices** **Graph Template**.
+From this sub-tab, you can view and edit a users **Device** permissions.  Note that removing a users permission to a **Device** can be overridden if they have access to either a **Graph** or, depending on the permission model you have chosen, a **Devices** **Graph Template**.
 
 ![Graph Permissions](images/users-permissions-device.png)
 

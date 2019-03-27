@@ -95,7 +95,7 @@ aggregate | Calculates the Nth percentile by summing like data source names row 
 > number of rows do not match when calculations are attempted, the results may
 > produce errors and invalid results. Please also be aware the aggregate
 > functions take more memory and processor power when used. Recommended minimum
-> of 64 megs memory limit for php when querying large ranges or graphs with a
+> of 64 megs memory limit for PHP when querying large ranges or graphs with a
 > large amount of aggregated data sources.
 
 ###### Example 15-3. Output in the following format, for 95th percentile: 42.58 mbit

@@ -24,7 +24,7 @@ to each new **Device**, you'll never forget to create all needed **Graphs**.
 
 There's no need to create all Templates on your own! Apart from the fact, that
 many common templates are provided out-of-the-box, there's a very simple
-machanism to **Import Templates** and to **Export Templates**.
+mechanism to **Import Templates** and to **Export Templates**.
 
 ## Data Templates
 
@@ -66,7 +66,7 @@ Data Source Active | This is a quick and easy to tell Cacti to stop gathering da
 
 > **Note:** For most data templates, you will want to check the Use Per-Graph
 > Value checkbox for the name field so each data source using this template
-> has its own unique name. It also makes sense to enter an inital value in
+> has its own unique name. It also makes sense to enter an initial value in
 > this field that includes the variable `|host_description|` for organizational
 > purposes.
 
@@ -193,7 +193,7 @@ to do with the graph title, but is what you will use to identify the template
 throughout Cacti. Second, you will notice a list of graph field names with Use
 Per-Graph Value checkboxes next to each one. The nice thing about templates in
 Cacti is that you can choose whether to template each field on a per-field
-basis. If you leave the checkbox uncheked, every graph attached to the template
+basis. If you leave the checkbox unchecked, every graph attached to the template
 will inherit its value from the template. If the checkbox is checked, every
 graph attached to the template will contain its own value for that particular
 field.
@@ -282,7 +282,7 @@ Management. Under the Graph Template Selection box, select the graph template
 that you want to apply to the graph and click Save. If this is a new graph or
 the graph and graph template contains an equal number of graph items, the graph
 template will be automatically applied. If number of graph items varies from the
-graph to the target graph template, you will be propmted with a warning that
+graph to the target graph template, you will be prompted with a warning that
 your graph will be changed.
 
 Once the template is applied to the graph, you will notice that you can only
@@ -298,7 +298,7 @@ input.
 #### Walkthrough: My First Graph Template
 
 Now let's generate the **Graph Template** for those already generated Data
-Templates. Please goto **Graph Templates** and **Add** a new one:
+Templates. Please go to **Graph Templates** and **Add** a new one:
 
 ![Graph Template](images/graph-templates.png)
 
@@ -409,7 +409,7 @@ XML file to the appropriate &lt;path_cacti&gt;/resource directory, and a script
 to the &lt;path_cacti&gt;/scripts directory.  However, also note that in the
 current version of Cacti, **Packages** are now importable as well.  When you
 import a **Package** all of the required additional file changes will also be
-accomodated.  We will discuss **Packages** later in the docuemntation.
+accommodated.  We will discuss **Packages** later in the documentation.
 
 ![Import Templates](images/import_template.png)
 
