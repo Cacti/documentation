@@ -71,6 +71,7 @@ For both ways, cacti has a lot of dependendent packages, you don't need install 
 ```sh
 pkg install cacti
 pkg install spine
+```
 
 - For ports:
 [Howto use ports](https://www.freebsd.org/doc/handbook/ports-using.html) 
@@ -83,6 +84,7 @@ cd /usr/ports/net-mgt/cacti
 make install
 cd /usr/ports/net-mgt/spine
 make install
+```
 
 Apache is possible install with package or Ports too.
 
