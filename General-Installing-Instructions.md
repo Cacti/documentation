@@ -65,7 +65,7 @@ When installing on FreeBSD you can use two ways. Both ways have few pros and con
 
 - FreeBSD ports - compilation could last long time, but without invariant dependencies
 
-For both ways, cacti has a lot of dependendent packages, you don't need install nothing more. Everything is prepared.
+For both ways, cacti has a lot of dependent packages, you don't need to install anything else. Everything is prepared.
 
 - For packages you need only:
 ```sh
@@ -80,18 +80,18 @@ portsnap fetch extract
 portsnap fetch update
 cd /usr/ports/databases/mariadb102-server (or mysql57-server)
 make install
-cd /usr/ports/net-mgt/cacti
+cd /usr/ports/net-mgmt/cacti
 make install
-cd /usr/ports/net-mgt/spine
+cd /usr/ports/net-mgmt/spine
 make install
 ```
 
 Apache is possible install with package or Ports too.
 
-Everything in BSD is installed to /usr/local/ directory! In this documentation you can see paths like /etc/php.ini, /usr/bin/spine, ...
+Everything in FreeBSD is installed to /usr/local/ directory! In this documentation you can see paths like /etc/php.ini, /usr/bin/spine, ...
 Please use correct paths - /usr/local/etc, /usr/local/bin/spine, ...
 
-For Spine set suid bit:
+For Spine set suid bit (without this isn't possible make ICMP ping):
 ```sh
 chmod +s /usr/local/bin/spine
 ```
