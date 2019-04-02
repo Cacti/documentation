@@ -91,6 +91,11 @@ Apache is possible install with package or Ports too.
 Everything in BSD is installed to /usr/local/ directory! In this documentation you can see paths like /etc/php.ini, /usr/bin/spine, ...
 Please use correct paths - /usr/local/etc, /usr/local/bin/spine, ...
 
+For Spine set suid bit:
+```sh
+chmod +s /usr/local/bin/spine
+```
+
 ## Configure PHP
 
 Verify that the modules are installed and configured correctly. There are several ways to do so - consult [PHP configuration instructions](http://www.php.net/manual/en/configuration.php) for a complete description.
