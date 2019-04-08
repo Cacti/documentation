@@ -60,30 +60,28 @@ The following modules are optional, but preferred to be installed.
 
 ## FreeBSD
 
-When installing on FreeBSD you can use two ways. For both ways, cacti has a lot of dependent packages, you don't need 
-to install anything else. Everything is prepared. Both ways have few pros and cons:
+When installing on FreeBSD you can use two ways. For both ways, cacti has a lot of dependent packages, you don't need to install anything else. Everything is prepared. Both ways have few pros and cons:
 - Compiled packages - fast, but invariant dependencies (like older MySQL server, PHP version, ...)
 
-```sh
-pkg install cacti
-pkg install spine
-```
+   ```sh
+   pkg install cacti
+   pkg install spine
+   ```
 
 - FreeBSD ports - compilation could last long time, but without invariant dependencies
 
-[Howto use ports](https://www.freebsd.org/doc/handbook/ports-using.html) 
+   [Howto use ports](https://www.freebsd.org/doc/handbook/ports-using.html) 
 
-```sh
-portsnap fetch extract
-portsnap fetch update
-cd /usr/ports/databases/mariadb102-server (or mysql57-server)
-make install
-cd /usr/ports/net-mgmt/cacti
-make install
-cd /usr/ports/net-mgmt/spine
-make install
-```
-
+   ```sh
+   portsnap fetch extract
+   portsnap fetch update
+   cd /usr/ports/databases/mariadb102-server (or mysql57-server)
+   make install
+   cd /usr/ports/net-mgmt/cacti
+   make install
+   cd /usr/ports/net-mgmt/spine
+   make install
+   ```
 
 Apache and other software is possible install with package or Ports too.
 
