@@ -58,16 +58,40 @@ The following modules are optional, but preferred to be installed.
 - gmp (for plugin support)
 - com or dotnet (windows only)
 
-## Ports for FreeBSD
+## FreeBSD
 
-When installing on FreeBSD and variants, you must consider these packages.
+When installing on FreeBSD you can use two ways. For both ways, cacti has a lot of dependent packages, you don't need to install anything else. Everything is prepared. Both ways have few pros and cons:
+- Compiled packages - fast, but invariant dependencies (like older MySQL server, PHP version, ...)
 
-- `www/apache2`
-- `net/rrdtool`
-- `net/net-snmp`
-- `www/php-cgi`
-- `lang/php` (With MySQL and SNMP Support)
-- `databases/mysql-server`
+   ```sh
+   pkg install cacti
+   pkg install spine
+   ```
+
+- FreeBSD ports - compilation could last long time, but without invariant dependencies
+
+   [Howto use ports](https://www.freebsd.org/doc/handbook/ports-using.html) 
+
+   ```sh
+   portsnap fetch extract
+   portsnap fetch update
+   cd /usr/ports/databases/mariadb102-server (or mysql57-server)
+   make install
+   cd /usr/ports/net-mgmt/cacti
+   make install
+   cd /usr/ports/net-mgmt/spine
+   make install
+   ```
+
+Apache and other software is possible install with package or Ports too.
+
+Everything in FreeBSD is installed to /usr/local/ directory! In this documentation you can see paths like /etc/php.ini, /usr/bin/spine, ...
+Please use correct paths - /usr/local/etc, /usr/local/bin/spine, ...
+
+For Spine set suid bit (without this isn't possible make ICMP ping):
+```sh
+chmod +s /usr/local/bin/spine
+```
 
 ## Configure PHP
 
