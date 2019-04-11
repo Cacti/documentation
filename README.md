@@ -94,6 +94,8 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 6. [Upgrading Cacti Under Windows](Upgrading-Cacti-Under-Windows.md)
 
+7. [Upgrading Cacti Under FreeBSD](Upgrading-Cacti-Under-FreeBSD.md)
+
 ### Cacti Overview
 
 1. Overview
