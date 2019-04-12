@@ -1,15 +1,15 @@
 # Upgrading Cacti under Windows
 
 Download [latest stable version](https://www.cacti.net/download_cacti.php)
-of Cacti - *referred to as `cacti-xxx.zip` in this document.*
+of Cacti which is referred to as `cacti-xxx.zip` in this document.
 
 1. Stop poller.
 
-   * Cacti Console
-   * Configuration
-   * Settings
-   * Poller
-   * uncheck Data Collection Enabled and Save
+   - Cacti Console
+   - Configuration
+   - Settings
+   - Poller
+   - uncheck Data Collection Enabled and Save
 
 2. Run Command Prompt as administrator and backup database.
 
@@ -30,17 +30,17 @@ of Cacti - *referred to as `cacti-xxx.zip` in this document.*
 
 5. MySQL
 
-   * Open `MySQL Installer - Community`
-   * update Catalog
-   * upgrade MySQL Server
+   - Open `MySQL Installer - Community`
+   - update Catalog
+   - upgrade MySQL Server
 
 6. PHP
 
-   * Backup `C:\php\` folder
-   * Download a [supported version](http://php.net/supported-versions.php) of
+   - Backup `C:\php\` folder
+   - Download a [supported version](http://php.net/supported-versions.php) of
    [PHP for Windows](https://windows.php.net/download/) using the appropriate
    build for IIS or Apache. If missing, install the appropriate VC build.
-   * Overwrite `C:\php\` folder contents from zip file.
+   - Overwrite `C:\php\` folder contents from zip file.
 
 7. Overwrite new Cacti version to production folder.
    Extract contents of `cacti-xxx` folder in `cacti-xxx.zip` to
@@ -78,11 +78,11 @@ of Cacti - *referred to as `cacti-xxx.zip` in this document.*
 
 10. Start poller.
 
-    * Cacti Console
-    * Configuration
-    * Settings
-    * Poller
-    * check Data Collection Enabled and Save
+    - Cacti Console
+    - Configuration
+    - Settings
+    - Poller
+    - check Data Collection Enabled and Save
 
 ---
 Copyright (c) 2004-2019 The Cacti Group
