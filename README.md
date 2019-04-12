@@ -2,7 +2,7 @@
 
 ![Cacti](images/logo.png)
 
-Cacti is designed to be a complete graphing solution based on the RRDtool's
+Cacti is designed to be a complete graphing solution based on the RRDTool's
 framework. Its goal is to make a network administrator's job easier by taking
 care of all the necessary details necessary to create meaningful graphs.
 
@@ -28,7 +28,7 @@ Please see the official Cacti website for information, support, and updates.
 
 ## Thanks
 
-A very special thanks to Tobi Oetiker, the creator of RRDtool and the very
+A very special thanks to Tobi Oetiker, the creator of RRDTool and the very
 popular MRTG. The users of Cacti Especially anyone who has taken the time to
 create an issue report, or otherwise help fix a Cacti related problems. Also
 to anyone who has contributed to supporting Cacti.
@@ -93,6 +93,8 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 5. [Upgrading Cacti Under Linux/UNIX](Upgrading-Cacti.md)
 
 6. [Upgrading Cacti Under Windows](Upgrading-Cacti-Under-Windows.md)
+
+7. [Upgrading Cacti Under FreeBSD](Upgrading-Cacti-Under-FreeBSD.md)
 
 ### Cacti Overview
 
@@ -254,7 +256,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 1. [Documentation](Standards-Documentation.md)
 
-2. [Code Formating](Standards-Code-Formatting.md)
+2. [Code Formatting](Standards-Code-Formatting.md)
 
 3. [PHP Specific Constructs](Standards-PHP-Spec-Constructs.md)
 

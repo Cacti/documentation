@@ -22,7 +22,7 @@ Field | Value | Description
 --- | --- | ---
 Name | Name of the tree entry. | The sort order of all trees themselves is always alphabetical
 Sorting Type | Manual Ordering (No Sorting) | You may chance the sequence at your will
-Alphabetical Ordering |  1, Ab, ab | All subtrees are ordered alphabetically, unless specifies otherwise (you may chance sort options at subtree lebel)
+Alphabetical Ordering |  1, Ab, ab | All sub-trees are ordered alphabetically, unless specifies otherwise (you may chance sort options at sub-tree label)
 Natural Ordering | ab1, ab2, ab7, ab10, ab20 | N/A
 Numeric Ordering | 01, 02, 4, 04 | Leading zeroes are not taken into account when ordering numerically
 
@@ -41,7 +41,7 @@ change the branch that any item belongs to by changing its Parent Item field.
 
 Please note the "++" and the "--" buttons. They will help you managing large
 trees. Pressing the "--" will collapse all tree levels while "++" expands all
-of them. You may expand each single subtree of a collapsed tree to reorder, add
+of them. You may expand each single sub-tree of a collapsed tree to reorder, add
 or delete entries without much scrolling.
 
 ---

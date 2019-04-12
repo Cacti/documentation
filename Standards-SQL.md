@@ -78,7 +78,7 @@ db_execute(UPDATE host SET hostname = '$myhost' WHERE id = $id");
   - Subqueries
 
 - There should always be 'AS' when defining an alias for any table, field or
-  query to clearly define the definitino of said alias.
+  query to clearly define the definition of said alias.
 
 - There should always be a space following a comma and before/after an operator.
 
@@ -130,7 +130,6 @@ $user_realms = db_fetch_assoc('SELECT ua.id, uar.realm_id
 	INNER JOIN user_auth_realms uar
 	ON ua.id = uar.user_id');
 ```
-
 
 ---
 Copyright (c) 2004-2019 The Cacti Group

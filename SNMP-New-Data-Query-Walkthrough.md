@@ -25,7 +25,7 @@ SNMP table: HOST-RESOURCES-MIB::hrStorageTable
              11     HOST-RESOURCES-TYPES::hrStorageFixedDisk /var/lib/nfs/rpc_pipefs               4096 Bytes             0            0                           ?**
 ```
 
-This given, the first step will be the definition of an xml file based on those
+This given, the first step will be the definition of an XML file based on those
 OIDs. So change to your `<path_cacti>/resources/snmp_queries` directory and
 create a file named **hrStorageTable.xml**. You may of course choose your own
 name, but for me it seems appropriate to take the name of the SNMP Table
@@ -50,7 +50,7 @@ snmpwalk -c <community> -v 1 -On <host> HOST-RESOURCES-MIB::hrStorageTable|more
 ```
 
 The first index is `.1.3.6.1.2.1.25.2.3.1.1.1`, but the Index Base is
-`.1.3.6.1.2.1.25.2.3.1.1.` This OID is needed for the xml file:
+`.1.3.6.1.2.1.25.2.3.1.1.` This OID is needed for the XML file:
 
 ```xml
 <interface>
@@ -96,11 +96,11 @@ Field | Description
 --- | ---
 Name | Short Name
 Method | Walk or get (representing snmpwalk or snmpget to fetch the values)
-Source | Value = take the value of that OID as the requested value. Sounds ugly, but there are more options that we won't need for the purpose of this Howto
+Source | Value = take the value of that OID as the requested value. Sounds ugly, but there are more options that we won't need for the purpose of this example
 Direction | Input (for values that may be printed as COMMENTs or the like). Output (for values that shall be graphed, e.g. COUNTERs or GAUGEs).
 OID | the real OID as numeric representation
 
-Now save this file and lets turn to cacti to implement this one. First, goto
+Now save this file and lets turn to cacti to implement this one. First, go to
 **Data Queries** to see
 
 ![SNMP Table 1 - Data Query](images/dq-01.preview.png)
@@ -121,7 +121,7 @@ query and add the new **Data Query** as shown:
 ![SNMP Table 1 - Device](images/dev-01.preview.png)
 
 **Index Count Changed** was chosen on purpose to tell cacti to re-index not
-only on rebbot but each time the Index Count (e.g. number of partitions)
+only on reboot but each time the Index Count (e.g. number of partitions)
 changed. When done, see the results as
 
 ![SNMP Table 2 - Device](images/dev-02.preview.png)
@@ -203,7 +203,7 @@ your host from the **Devices** list to see:
 ![SNMP Table 3 - Devices](images/dev-10.preview.png)
 
 Select the little green circle next to our SNMP XML to update your last
-changes. Then you'll see sth like:
+changes. Then you'll see something like:
 
 ![SNMP Table 4 - Devices](images/dev-11.preview.png)
 
@@ -275,7 +275,7 @@ XML field descriptions, see:
 
 This works very much the same way as above.
 
-- Provide the fields hrStorageSize and hrStoageUsed
+- Provide the fields hrStorageSize and hrStorageUsed
 
 - Provide a useful name
 
@@ -289,14 +289,14 @@ definitions against the host and updates the rows/columns. You will notice the
 
 ---
 Note: Don't forget to set `<direction>output</direction>` for all
-variables/fields, that should be stored in rrd files and be graphed!. This is
+variables/fields, that should be stored in RRD files and be graphed!. This is
 the mistake that occurs most often.
 
 ### Defining the Data Template
 
 The Data Template will define, how the data is retrieved by the XML Query is
 saved. For more information about the principles of operation, please see
-Common Tasks. Please goto **Data Templates** and **Add**:
+Common Tasks. Please go to **Data Templates** and **Add**:
 
 ![SNMP Table 1 - Data Template](images/dt-01.preview.png)
 
@@ -330,7 +330,7 @@ Output Type Id**
 
 The Graph Template will define, how the data is presented. For more information
 about the principles of operation, please see [Common Tasks](Common-Tasks.md).
-Please goto Graph Templates and Add:
+Please go to Graph Templates and Add:
 
 ![Defining Graph Template](images/gt-01.preview.png)
 
@@ -381,7 +381,7 @@ Now the **Data Query** is complete:
 
 ## Create Graphs for this Host
 
-Now we're almost done. Everything's ready for use now. So goto your device and
+Now we're almost done. Everything's ready for use now. So go to your device and
 select **Create Graphs for this Host**. Select some of the partitions you're
 interested in:
 
@@ -419,7 +419,7 @@ As said above, with the current XML size values are measured in **Units**. The
 current Unit Size is given by **hrStorageAllocationUnits**, but the reading of
 it is like **4096 Bytes**. To use this in any calculations, we must get rid of
 the string **Bytes**. This can be done by the **VALUE/REGEXP** Feature of
-cacti's XML definitions. So please change
+Cacti's XML definitions. So please change
 
 ```xml
 <hrStorageAllocationUnits>
@@ -443,7 +443,7 @@ By
 </hrStorageAllocationUnits>
 ```
 
-To proove this, goto your device and again **Verbose Query** our Data Query to see:
+To prove this, go to your device and again **Verbose Query** our Data Query to see:
 
 ![Data Query Debug Info](images/dev-30.png)
 
@@ -457,7 +457,7 @@ To use these values, we define a CDEF:
 ![CDEF Preview](images/cdef-01.preview.png)
 
 Notice, that with recent releases of cacti, it is possible to use `|query_*|`
-values within CDEFs. Finally, goto **Graph Templates** and use this CDEF with
+values within CDEFs. Finally, go to **Graph Templates** and use this CDEF with
 all **Graph Items**:
 
 ![Graph Template - CDEF](images/gt-10.preview.png)

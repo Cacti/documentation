@@ -30,7 +30,7 @@ Now you can map
 - Type: IF-MIB::ifType
 - Speed: IF-MIB::ifSpeed
 
-All those are `<direction>input</direction>` Parameters. They serve as descriptive information to each row to help you identify the proper interface to use. Those parameters of `<direction>output</direction>` can be compared to output parameters of a script (see ping.pl script above). These are the readings from the device. By selecting the appropriate row (the one greyed out had been selected by me), you tell cacti to retrieve data from the interface defined by this index. But how does cacti know, what output parameters it shall retrieve? See the Select a Graph type DropDown. It specifies a **Graph Template** defined for this Data Query. The Graph Template in turn references a **Data Template** which incorporates the needed output parameters as Data Sources. This works quite the same way as defined for a Data Input Method.
+All those are `<direction>input</direction>` Parameters. They serve as descriptive information to each row to help you identify the proper interface to use. Those parameters of `<direction>output</direction>` can be compared to output parameters of a script (see ping.pl script above). These are the readings from the device. By selecting the appropriate row (the one grayed out had been selected by me), you tell cacti to retrieve data from the interface defined by this index. But how does cacti know, what output parameters it shall retrieve? See the Select a Graph type dropdown. It specifies a **Graph Template** defined for this Data Query. The Graph Template in turn references a **Data Template** which incorporates the needed output parameters as Data Sources. This works quite the same way as defined for a Data Input Method.
 
 To sum up: the SNMP XML file is somehow a **replacement** for the **Data Input Method** described above to be used on indexed values. It tells cacti, what data it should retrieve (direction: output). To help you identifying the relevant indexes, the XML defines descriptive parameters (direction: input) to be displayed in the selection table.
 
@@ -54,7 +54,7 @@ This is the exact copy of the definitions made above. So I do not repeat everyth
 
 ![Enter new Data Source Item](images/r-dq-dt1.png)
 
-The name of the internal RRDtool Data Source (ifOutOctets) is not replaced in the Tab until you save your work. By default, *Maximum Value* is set to 100. This is way too low for an interface. All readings above this value will be stored as NaN by RRDtool. To avoid this, set to 0 (no clipping) or to a reasonable value (e.g. interface speed). Don't forget to specify COUNTER! You will have noticed, that the name of the data source does not match the Name in the interface.xml. Don't worry, the solution to this is given later on. Before leaving, pay attention to the bottom of the page:
+The name of the internal RRDTool Data Source (ifOutOctets) is not replaced in the Tab until you save your work. By default, *Maximum Value* is set to 100. This is way too low for an interface. All readings above this value will be stored as NaN by RRDTool. To avoid this, set to 0 (no clipping) or to a reasonable value (e.g. interface speed). Don't forget to specify COUNTER! You will have noticed, that the name of the data source does not match the Name in the interface.xml. Don't worry, the solution to this is given later on. Before leaving, pay attention to the bottom of the page:
 
 ![Check Indexes for Data Query Data Template](images/r-dq-dt2.png)
 

@@ -9,7 +9,7 @@ procedure recommended for debugging.
 Your cacti log file should be located at `<path_cacti>/log/cacti.log`. If it is
 not, see `Settings`, `Paths`. Check for this kind of error:
 
-    CACTID: Host[...] DS[....] WARNING: SNMP timeout detected [500 ms],
+    SPINE: Host[...] DS[....] WARNING: SNMP timeout detected [500 ms],
 ignoring host '........'
 
 For "reasonable" timeouts, this may be related to a snmpbulkwalk issue. To
@@ -17,12 +17,12 @@ change this, see `Settings`, `Poller` and lower the value for `The Maximum SNMP
 OID's Per SNMP Get Request`. Start at a value of 2 and increase it again, if
 the poller starts working. (1 or less disables snmpbulkwalk) Some agent's don't
 have the horsepower to deliver that many OID's at a time. Therefore, we can
-reduce the number for those older/underpowered devices.
+reduce the number for those older/under-powered devices.
 
 ## Check Basic Data Gathering
 
-For scripts, run them as cactiuser from cli to check basic functionality. E.g.
-for a perl script named `your-perl-script.pl` with parameters "p1 p2" under
+For scripts, run them as cactiuser from CLI to check basic functionality. E.g.
+for a Perl script named `your-perl-script.pl` with parameters "p1 p2" under
 *nix this would look like:
 
 ```sh
@@ -31,8 +31,8 @@ su - cactiuser
 ... (check output)
 ```
 
-For snmp, snmpget the _exact_ OID you're asking for, using same community
-string and snmp version as defined within cacti. For an OID of
+For SNMP, snmpget the _exact_ OID you're asking for, using same community
+string and SNMP version as defined within cacti. For an OID of
 `.1.3.6.1.4.something`, community string of `very-secret` and version 2 for
 target host `target-host` this would look like
 
@@ -41,12 +41,12 @@ snmpget -c very-secret -v 2c target-host .1.3.6.1.4.something
 .... (check output)
 ```
 
-## Check cacti's poller
+## Check Cacti's poller
 
 First make sure that crontab always shows poller.php. This program will either
-call cmd.php, the PHP based poller _or_ cactid, the fast alternative, written
-in C. Define the poller you're using at `Settings`, `Poller`. Cactid has to be
-implemented seperately, it does not come with cacti by default.
+call cmd.php, the PHP based poller _or_ spine, the fast alternative, written
+in C. Define the poller you're using at `Settings`, `Poller`. Spine has to be
+implemented separately, it does not come with cacti by default.
 
 Now, clear `./log/cacti.log` (or rename it to get a fresh start)
 
@@ -56,12 +56,12 @@ subsequent polling cycles.
 
 Now, find the host/data source in question. The `Host[<id>]` is given
 numerically, the `<id>` being a specific number for that host. Find this `<id>`
-from the `Devices` menue when editing the host: The url contains a string like
+from the `Devices` menu when editing the host: The URL contains a string like
 
 `id=<id>`
 
 Check, whether the output is as expected. If not, check your script (e.g.
-`/full/path/to/perl`). If ok, proceed to next step
+`/full/path/to/perl`). If OK, proceed to next step
 
 This procedure may be replaced by running the poller manually for the failing
 host only. To do so, you need the `<id>`, again. If you're using cmd.php, set the
@@ -71,13 +71,13 @@ DEBUG logging level as defined above and run
 php -q cmd.php <id> <id>
 ```
 
-If you're using cactid, you may override logging level when calling the poller:
+If you're using spine, you may override logging level when calling the poller:
 
 ```sh
-./cactid --verbosity=5 <id> <id>
+./spine --verbosity=5 <id> <id>
 ```
 
-All output is printed to STDOUT in both cases. This procdure allows for
+All output is printed to STDOUT in both cases. This procedure allows for
 repeated tests without waiting for the next polling interval. And there's no
 need to manually search for the failing host between hundreds of lines of
 output.
@@ -88,11 +88,11 @@ In most cases, this step can be skipped. You may want to return to this step if
 the next one fails (e.g. no rrdtool update to be found)
 
 From debug log, find the MySQL update statement for that host concerning table
-`poller_output`. On very rare occasions, this will fail. Copy that sql
-statement and paste it to a mysql session started from cli. This may as well be
-done from some tool like phpMyAdmin. Check the sql return code.
+`poller_output`. On very rare occasions, this will fail. Copy that SQL
+statement and paste it to a MySQL session started from CLI. This may as well be
+done from some tool like phpMyAdmin. Check the SQL return code.
 
-## Check rrd file updating
+## Check RRD file updating
 
 Down in the same log, you should find some
 
@@ -106,9 +106,9 @@ RRD files should be created by the poller. If it does not create them, it will
 not fill them either. If it does check your `Poller Cache` from Utilities and
 search for your target. Does the query show up here?
 
-## Check rrd file ownership
+## Check RRD file ownership
 
-If rrd files were created e.g. with root ownership, a poller running as
+If RRD files were created e.g. with root ownership, a poller running as
 cactiuser will not be able to update those files
 
 ```sh
@@ -127,23 +127,23 @@ Run the following command to cure this problem
 chown cactiuser:cactiuser *.rrd
 ```
 
-## Check rrd file numbers
+## Check RRD file numbers
 
-You're perhaps wondering about this step, if the former was ok. But due to data
+You're perhaps wondering about this step, if the former was OK. But due to data
 sources MINIMUM and MAXIMUM definitions, it is possible, that valid updates for
-rrd files are suppressed, because MINIMUM was not reached or MAXIMUM was
+RRD files are suppressed, because MINIMUM was not reached or MAXIMUM was
 exceeded.
 
 Assuming, you've got some valid `rrdtool update` in step 3, perform a
 
 ```sh
-rrdtool fetch <rrd file> AVERAGE
+rrdtool fetch <RRD file> AVERAGE
 ```
 
 and look at the last 10-20 lines. If you find NaN's there, perform
 
 ```sh
-rrdtool info <rrd file>
+rrdtool info <RRD file>
 ```
 
 and check the `ds[...].min` and `ds[...].max` entries, e.g.
@@ -161,26 +161,26 @@ If you run into this, not only should you update the data source definition
 within the Data Template, but also perform a:
 
 ```sh
-rrdtool tune <rrd file> --maximum <ds-name>:<new ds maximum>
+rrdtool tune <RRD file> --maximum <ds-name>:<new ds maximum>
 ```
 
-for all existing rrd files belonging to that Data Template.
+for all existing RRD files belonging to that Data Template.
 
-At this step, it is wise to check `step` and `heartbeat` of the rrd file as
+At this step, it is wise to check `step` and `heartbeat` of the RRD file as
 well. For standard 300 seconds polling intervals (step=300), it is wise to set
 `minimal_heartbeat` to 600 seconds. If a single update is missing and the next
-one occurs in less than 600 seconds from the last one, rrdtool will interpolate
+one occurs in less than 600 seconds from the last one, RRDTool will interpolate
 the missing update. Thus, gaps are "filled" automatically by interpolation. Be
 aware of the fact, that this is no "real" data! Again, this must be done in the
-Data Template itself and by using rrdtool tune for all existing rrd files of
+Data Template itself and by using `rrdtool tune` for all existing RRD files of
 this type.
 
-## Check rrdtool graph statement
+## Check `rrdtool graph` statement
 
-Last resort would be to check, that the correct data sources are used. Goto
+Last resort would be to check, that the correct data sources are used. Go to
 `Graph Management` and select your Graph. Enable DEBUG Mode to find the whole
 `rrdtool graph` statement. You should notice the `DEF` statements. They specify
-the rrd file and data source to be used. You may check, that all of them are as
+the RRD file and data source to be used. You may check, that all of them are as
 wanted.
 
 ## Miscellaneous
@@ -191,7 +191,7 @@ reasonable size.
 This is commonly due to php.ini's memory settings of 8MB default. Change this
 to at least 64 MB.
 
-To check this, run the following sql from mysql cli (or phpmyadmin or the like)
+To check this, run the following SQL from MySQL CLI (or phpMyAdmin or the like)
 
 ```sql
 select count(*) from poller_output;
@@ -213,10 +213,10 @@ installation instructions to the letter (which you should always do ;-) ), you
 may now have two poller running. That's not a good thing, though. Most rpm
 installations will setup cron in `/etc/cron.d/cacti`
 
-Now check all your crontabs, especially `/etc/crontab` and crontabs of users
+Now check all your crontab, especially `/etc/crontab` and crontab of users
 root and cactiuser. Leave only one poller entry for all of them. Personally,
-I've chosen `/etc/cron.d/cacti` to avoid problems when updating rpm's. Mosten
-often, you won't remember this item when updating lots of rpm's, so I felt more
+I've chosen `/etc/cron.d/cacti` to avoid problems when updating RPM's. Mosten
+often, you won't remember this item when updating lots of RPM's, so I felt more
 secure to put it here. And I've made some slight modifications, see
 
 ```sh
@@ -228,7 +228,7 @@ shell> vi /etc/cron.d/cacti
 ```
 
 This will produce a file `/var/local/log/poller.log`, which includes some
-additional informations from each poller's run, such as rrdtool errors. It
+additional informations from each poller's run, such as RRDTool errors. It
 occupies only some few bytes and will be overwritten each time.
 
 If you're using the crontab of user "cactiuser" instead, this will look like

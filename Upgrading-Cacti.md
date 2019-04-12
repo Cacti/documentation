@@ -14,7 +14,7 @@ To upgrade Cacti under UNIX style operating systems, you should use the followin
    > MySQL username and password. This user must have permission to read from
    > Cacti's database or you will end up with an empty backup.
 
-2. Backup the old Cacti directory with the exception of the RRDfiles which should not need backup.
+2. Backup the old Cacti directory with the exception of the RRD files which should not need backup.
 
    ```sh
    shell> tar --exclude=*.rrd -zcf cacti_backup_YYYYMMDD.tgz cacti

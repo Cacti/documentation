@@ -88,6 +88,7 @@ for FILE in `find ${BASE_PATH} -name "*.md"`
 do
 	IFILE=${FILE//$BASE_PATH\/}
 	OFILE=${ODIR}/${IFILE//.md/.html}
+	TITLE=$(grep "^# " $FILE | head -1 | sed 's/# //')
 
 	# handle special case for table of contents
 	if [ "${IFILE}" = "README.md" ]
@@ -100,8 +101,9 @@ do
 	        --standalone \
 		--output=${BASE_PATH}/${OFILE} \
 		--lua-filter=${BASE_PATH}/resources/build/pandoc_links_to_html.lua \
-		--css=Cacti-Github.css
-
+		--css=Cacti-Github.css \
+		--metadata=pagetitle:"$TITLE" \
+		-T "Cacti"
 done
 
 # done

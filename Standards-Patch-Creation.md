@@ -144,7 +144,7 @@ there if no where else.
 In order to get these latest changes, we must pull from the upstream (cacti)
 repo and commit these to our local repo.
 
-1. If you hav previously added an upstream repo, you may skip this step.  If
+1. If you have previously added an upstream repo, you may skip this step.  If
    not, we add the upstream using the following command.
 
    ```shell
@@ -169,7 +169,7 @@ repo and commit these to our local repo.
 
 4. Once we have merged the latest changes, there may be conflicts due to changes
    made by other people at the same point in a file as you have made. Any file
-   listed as being in conflict needs to be edited by looking forthe `<<<` and `>>>`
+   listed as being in conflict needs to be edited by looking for the `<<<` and `>>>`
    points.
 
 5. Edit these points (and there may be more that one set in a given file) as you

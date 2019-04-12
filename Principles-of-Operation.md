@@ -16,13 +16,13 @@ data from remote targets/hosts, cacti will mainly use the Simple Network
 Management Protocol SNMP. Thus, all devices capable of using SNMP will be
 eligible to be monitored by cacti.
 
-Later on, we demonstrate how to extend cacti's capabilities of retrieving data
+Later on, we demonstrate how to extend Cacti's capabilities of retrieving data
 to scripts, script queries and more.
 
 ## Data Storage
 
 There are lots of different approaches for this task. Some may use an (SQL)
-database, others flat files. Cacti uses [RRDTool](http://www.rrdtool.org/) to
+database, others flat files. Cacti uses [RRDTool](http://www.RRDTool.org/) to
 store data.
 
 RRD is the acronym for Round Robin Database. RRD is a system to store and
@@ -31,18 +31,18 @@ server load average). It stores the data in a very compact way that will not
 expand over time, and it can create beautiful graphs. This keeps storage
 requirements at bay.
 
-Likewise, rrdtool will perform some specific tasks. It performs consolidation
-to combine raw data (a primary data point in rrdtool lingo) to consolidated
+Likewise, RRDTool will perform some specific tasks. It performs consolidation
+to combine raw data (a primary data point in RRDTool lingo) to consolidated
 data (a consolidated data point). This way, historical data is compressed to
-save space. rrdtool knows different consolidation functions: AVERAGE, MAXIMUM,
+save space. RRDTool knows different consolidation functions: AVERAGE, MAXIMUM,
 MINIMUM and LAST.
 
 ## Data Presentation
 
-One of the most appreciated features of [RRDTool](http://www.rrdtool.org/) is
+One of the most appreciated features of [RRDTool](http://www.RRDTool.org/) is
 the built-in graphing function. This comes in useful when combining this with
 some commonly used webserver. Such, it is possible to access the graphs from
-merely any browser on any plattform.
+merely any browser on any platform.
 
 Graphing can be done in very different ways. It is possible, to graph one or
 many items in one graph. Autoscaling is supported and logarithmic y-axis as

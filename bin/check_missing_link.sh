@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #  +-------------------------------------------------------------------------+
 #  | Copyright (C) 2004-2018 The Cacti Group                                 |
 #  |                                                                         |
@@ -23,7 +23,7 @@ then
 
 	FILENAME=`basename $1`
 	LINES=`grep "${FILENAME}" README.md | wc -l`
-	if [ ${LINES} -gt 0 ]; then
+	if [[ ${LINES} -gt 0 ]]; then
 		if [ ! -z ${CHECK_SHOW_LINKED} ]; then
 			echo "Linked....: ${FILENAME}";
 		fi
@@ -35,9 +35,11 @@ else
 	LINES=`find -name \*.md ! -name README.md -exec "$0" "{}" \;`
 	COUNT=`echo "${LINES}" | grep "Not Linked:" | wc -l`
 
-	if [ -n ${CHECK_SHOW_LINKED} ] || [ ${COUNT} -gt 0 ]; then
-		echo "${LINES}";
-		echo "";
+	if [[ -n "${CHECK_SHOW_LINKED}" || ${COUNT} -gt 0 ]]; then
+		if [[ -n "$LINES" ]]; then
+			echo "${LINES}";
+			echo "";
+		fi;
 		echo "$COUNT unlinked files";
 	fi
 	exit $COUNT;

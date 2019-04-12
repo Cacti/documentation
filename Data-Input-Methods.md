@@ -1,6 +1,6 @@
 # Data Input Methods
 
-Data Input Methods allow Cacti to retrieve data to insert into RRDfiles based upon a mapping controlled by **Data Templates** and their corresponding **Data Sources**.  These resulting **Data Templates** and **Data Sources** can then be used to create **Graph Templates** and **Graphs**.  Cacti includes a number of build in **Data Input Methods** for **SNMP** data and for **Script**, **Script Server** and **SNMP Data Queries**.
+Data Input Methods allow Cacti to retrieve data to insert into RRD files based upon a mapping controlled by **Data Templates** and their corresponding **Data Sources**.  These resulting **Data Templates** and **Data Sources** can then be used to create **Graph Templates** and **Graphs**.  Cacti includes a number of build in **Data Input Methods** for **SNMP** data and for **Script**, **Script Server** and **SNMP Data Queries**.
 
 Outside of the built in **Data Input Methods**, the Cacti Administrator can create virtually any **Data Input Method** based upon a **Scripts**, or a PHP **Script Server** script.  The **Script** based **Data Input Method** allows Cacti to virtually collect data from anywhere, though the built in **SNMP** and **Script Server** methods provide the greatest scalability in Cacti.  Both **Data Queries**, and PHP **Script Server** topics will be covered in later sections of the documentation.
 
@@ -26,7 +26,7 @@ When you are finished filling in all necessary fields, click the Create button t
 
 The `Input Fields` box is used to define any fields that require information from the user or from various data within the Cacti Database such as the hostname, ip address, host id, etc. Any input fields referenced to in the input string must be defined here.
 
-The `Output Fields` box is used to define each field that you expect back from the script and will be eventually stored in both the database and RRDfiles.
+The `Output Fields` box is used to define each field that you expect back from the script and will be eventually stored in both the database and RRD files.
 
 *All **Data Input Methods** must have at least one output field defined*, but may have more than one depending on the type.
 
@@ -108,7 +108,7 @@ Lets start with a simple script, that takes a hostname or IP address as input pa
 $host = $ARGV[0];
 $host =~ s/tcp:/$1/gis;
 
-# old linux version use "icmp_seq"
+# old Linux version use "icmp_seq"
 # newer use "icmp_req" instead
 open(PROCESS, "ping -c 1 $host | grep 'icmp_[s|r]eq' | grep time |");
 $ping = <PROCESS>;
@@ -116,7 +116,7 @@ close(PROCESS);
 $ping =~ m/(.*time=)(.*) (ms|usec)/;
 
 if ($2 == "") {
-	print "U";              # avoid cacti errors, but do not fake RRDtool stats
+	print "U";              # avoid cacti errors, but do not fake RRDTool stats
 }elsif ($3 eq "usec") {
 	print $2/1000;  # re-calculate in units of "ms"
 }else{
@@ -188,7 +188,7 @@ Notice, that not only an entry was made under **Graph Template Items**, but unde
 
 ![Graph Template Items 4](images/r-gt5.png)
 
-Notice, that the **Data Source** is filled in automagically. Select LEGEND as **Graph Item Type** (it is not really a **Graph Item Type** in RRDtool-speak, but a nice time-saver), and click **Create** to see:
+Notice, that the **Data Source** is filled in automagically. Select LEGEND as **Graph Item Type** (it is not really a **Graph Item Type** in RRDTool-speak, but a nice time-saver), and click **Create** to see:
 
 ![Graph Template Items 5](images/r-gt6.png)
 
@@ -225,7 +225,7 @@ You'll have to wait at least two polling cycles to find data in the **Graph**. F
 
 ## Walkthrough: Script with more Output Parameters
 
-The script below will be implemented in perl.  Please note that any supported language is suppored using Cacti from direct command execution to scripts written in perl, python, php, bash, etc.
+The script below will be implemented in perl.  Please note that any supported language is supported using Cacti from direct command execution to scripts written in perl, python, php, bash, etc.
 
 ```shell
 #!/usr/bin/perl -w
@@ -374,7 +374,7 @@ Finally Save and be proud!
 
 ### The Data Template
 
-The previous step explained how to call the script that retrieves the data. Now it's time to tell Cacti, how to store them in RRDfiles. You will need a single **Data Template** only, even if two different output fields will be stored. RRDfiles are able to store more than one output fields; RRDtools name for those is **Data Source**. So we will create
+The previous step explained how to call the script that retrieves the data. Now it's time to tell Cacti, how to store them in RRD files. You will need a single **Data Template** only, even if two different output fields will be stored. RRD files are able to store more than one output fields; RRDTool's name for those is **Data Source**. So we will create
 
 1. one single **Data Template** representing one RRDfile
 2. two output fields/data sources

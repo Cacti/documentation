@@ -38,7 +38,7 @@ description of each CDEF item type.
 
 Type | Description
 --- | ---
-Function | You can choose a CDEF function to use as the item. [The RRDTool graph manual](http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/doc/rrdgraph.en.html) describes the purpose of each CDEF function.
+Function | You can choose a CDEF function to use as the item. [The RRDTool's graph manual](http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/doc/rrdgraph.en.html) describes the purpose of each CDEF function.
 Operator | Just your standard math operators, including modulo (%).
 Special Data Source | A special data source is basically a flag to tell Cacti to do some special processing when it encounters this CDEF item. The "Current Graph Item Data Source" type basically inserts the name of the data source that is referenced by the graph item that references to this CDEF. Both of the "All Data Sources" types insert a summation of all data sources used on a graph.
 Another CDEF | You can recursively use another CDEF within this CDEF.
@@ -46,22 +46,22 @@ Custom String | Sometimes it's just easier to type out the literal CDEF string m
 
 ### Special Data Source
 
-The Special Data Souce selection introduces some variables not known to plain
-vanilla rrdtool. Let's spend some few words of them to unleash their power.
+The Special Data Source selection introduces some variables not known to plain
+vanilla RRDTool. Let's spend some few words of them to unleash their power.
 
 ###### Table 19-2. CDEF Special Data Source
 
 Special Data Source | Description
 --- | ---
-Current Graph Item Data Source | Will be replaced by the DEF name of the rrdtool data source referred by the graph item this CDEF is associated to.
+Current Graph Item Data Source | Will be replaced by the DEF name of the RRDTool data source referred by the graph item this CDEF is associated to.
 All Data Sources (Don't Include Duplicates) | Will add up all data sources of the whole graph to form a total. A data source that appears more than once will be counted only once. Data sources that differ by consolidation functions only are NOT counted as different data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted only once). It is NOT required to associate the graph item to any data source!
 All Data Sources (Include Duplicates) | Will add up all data sources of the whole graph to form a total. A data source that appears more than once will be counted for each time of it's appearance. Data sources that differ by consolidation functions only are NOT counted as different data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted only once). It is NOT required to associate the graph item to any data source!
-Similar Data Sources (Don't Include Duplicates) | It is REQUIRED to associate the graph item to the data source that shall be totalled! Let's assume the data source is named "traffic_in". Then, cacti will add up all data sources "traffic_in" of the whole graph to form a data source specific total (e.g. Total traffic In). Data sources with different consolidation functions are counted as same data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted once)
-Similar Data Sources (Include Duplicates) | It is REQUIRED to associate the graph item to the data source that shall be totalled! If a data source appears multiple times, it will be added this many times.
+Similar Data Sources (Don't Include Duplicates) | It is REQUIRED to associate the graph item to the data source that shall be totaled! Let's assume the data source is named "traffic_in". Then, cacti will add up all data sources "traffic_in" of the whole graph to form a data source specific total (e.g. Total traffic In). Data sources with different consolidation functions are counted as same data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted once)
+Similar Data Sources (Include Duplicates) | It is REQUIRED to associate the graph item to the data source that shall be totaled! If a data source appears multiple times, it will be added this many times.
 Current Data Source Item: Minimum Value | Taken from the Data Template - Data Source Item related to this graph item: fetches the minimum value defined for the given data template. Caution: This is NOT the smallest entry of the given data source!
 Current Data Source Item: Maximum Value | Taken from the Data Template - Data Source Item related to this graph item: fetches the maximum value defined for the given data template. Caution: This is NOT the highest entry of the given data source!
-Graph: Lower Limit | Taken from the Graph Template: fetches the Lower Limit defined to the Graph Template. This is independant of all --alt-autoscaling options. It is NOT the dynamically determined lower boundary of the graph!
-Graph: Upper Limit | Taken from the Graph Template: fetches the Upper Limit defined to the Graph Template. This is independant of all --alt-autoscaling options. It is NOT the dynamically determined upper boundary of the graph!
+Graph: Lower Limit | Taken from the Graph Template: fetches the Lower Limit defined to the Graph Template. This is independent of all --alt-autoscaling options. It is NOT the dynamically determined lower boundary of the graph!
+Graph: Upper Limit | Taken from the Graph Template: fetches the Upper Limit defined to the Graph Template. This is independent of all --alt-autoscaling options. It is NOT the dynamically determined upper boundary of the graph!
 Count of All Data Sources (Don't Include Duplicates) | Will count the number of all data sources of the whole graph. A data source that appears more than once will be counted only once. Data sources that differ by consolidation functions only are NOT counted as different data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted only once). It is NOT required to associate the graph item to any data source!
 Count of All Data Sources (Include Duplicates) | Will count the number of all data sources of the whole graph. A data source that appears more than once will be counted for each time of it's appearance. Data sources that differ by consolidation functions only are NOT counted as different data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted only once). It is NOT required to associate the graph item to any data source!
 Count of Similar Data Sources (Don't Include Duplicates) | It is REQUIRED to associate the graph item to the data source that shall be counted! Let's assume the data source is named "traffic_in". Then, cacti will count all data sources "traffic_in" of the whole graph. Data sources with different consolidation functions are counted as same data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted once)
@@ -69,7 +69,7 @@ Count of Similar Data Sources (Include Duplicates) | It is REQUIRED to associate
 
 While the `All Data Sources/Similar Data Sources` pseudo CDEF variables perform
 *totaling*, the `Count All Data Sources/Count Similar Data Sources` pseudo CDEF
-Variables simply *count* the occurences of the related data sources. Thus, it
+Variables simply *count* the occurrences of the related data sources. Thus, it
 is easy to compute e.g. an average of all similar data sources by creating the
 CDEF:
 
@@ -466,7 +466,7 @@ twice in those CDEFs as expected.
 
 This example is based on the standard data template `ucd/net - Hard Drive
 Space`. Cacti ships an associated graph template named `ucd/net - Available
-Disk Space`. Often, users complain about the fact, tha tthis template prints
+Disk Space`. Often, users complain about the fact, that this template prints
 free and used space as absolute figures only. But instead of knowing, that your
 data partition has about 10GB used space, you may be interested in the
 percentage used. So let's create a simple example to show the power of the
@@ -540,14 +540,14 @@ AREA:cdefc#FF0000FF:"% Used"
 `cdefa` and `cdefb` are used to make the according graph items zero. `cdefc`
 performs the percentage calculation.
 
-You may of cource add `GPRINT` legends as usual. If you do this for the "% Used"
-entry only, you will get surprising results, if your rrd file holds either
+You may of course add `GPRINT` legends as usual. If you do this for the "% Used"
+entry only, you will get surprising results, if your RRD file holds either
 `MAXIMUM`, `LAST` and/or `MINIMUM` consolidation function(s). This is left as
 an exercise to you :)
 
 This set of CDEFs is used to colorize the background of a graph with different
 colors for day, night and weekends. The CDEFs are created as usual, we will
-show the CDEF definition only. Examples are taken from rrdtool-users mailing
+show the CDEF definition only. Examples are taken from RRDTool-users mailing
 list courtesy Erik de Mare. Here are the definitions
 
 #### Background for Daytime
