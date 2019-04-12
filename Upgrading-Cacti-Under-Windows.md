@@ -76,13 +76,13 @@ of Cacti which is referred to as `cacti-xxx.zip` in this document.
    set global innodb_flush_log_at_timeout = 3;
    ```
 
-10. Start poller.
+0. Start poller.
 
-    - Cacti Console
-    - Configuration
-    - Settings
-    - Poller
-    - check Data Collection Enabled and Save
+   - Cacti Console
+   - Configuration
+   - Settings
+   - Poller
+   - check Data Collection Enabled and Save
 
 ---
 Copyright (c) 2004-2019 The Cacti Group
