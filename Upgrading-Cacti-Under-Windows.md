@@ -78,11 +78,11 @@ of Cacti - *referred to as `cacti-xxx.zip` in this document.*
 
 10. Start poller.
 
-   * Cacti Console
-   * Configuration
-   * Settings
-   * Poller
-   * check Data Collection Enabled and Save
+    * Cacti Console
+    * Configuration
+    * Settings
+    * Poller
+    * check Data Collection Enabled and Save
 
 ---
 Copyright (c) 2004-2019 The Cacti Group
