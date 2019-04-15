@@ -1,12 +1,17 @@
 # General Installing Instructions
 
-Make sure the following packages are installed according to your operating systems requirements. Verify, that httpd/apache and MySQLd/mariadb are started at system startup.
+Make sure the following packages are installed according to your operating
+systems requirements. Verify, that httpd/apache and MySQLd/mariadb are started
+at system startup.
 
 ## Required Packages for Most Operating Systems
 
-Depending on your operating system and php version, certain packages are required for Cacti.  The largest variability in these requirements come with regard to php and MySQL/MariaDB.
+Depending on your operating system and php version, certain packages are
+required for Cacti.  The largest variability in these requirements come with
+regard to php and MySQL/MariaDB.
 
-Installation requirements include the packages below.  The installation of these packages will vary by operating system.
+Installation requirements include the packages below.  The installation of these
+packages will vary by operating system.
 
 ### Base OS
 
@@ -250,7 +255,9 @@ back into rotation.
    MySQL> flush privileges;
    ```
 
-Note that if your `root` (or equivalent) user does not have `SUPER` permissions, it may still be possible to `GRANT SELECT` privileges to the Cacti user via an `INSERT INTO mysql.tables_priv`.
+Note that if your `root` (or equivalent) user does not have `SUPER` permissions,
+it may still be possible to `GRANT SELECT` privileges to the Cacti user via an
+`INSERT INTO mysql.tables_priv`.
 
 ```sql
 INSERT INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Table_priv)
