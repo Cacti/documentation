@@ -250,6 +250,13 @@ back into rotation.
    MySQL> flush privileges;
    ```
 
+Note that if your `root` (or equivalent) user does not have `SUPER` permissions, it may still be possible to `GRANT SELECT` privileges to the Cacti user via an `INSERT INTO mysql.tables_priv`.
+
+```sql
+INSERT INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Table_priv)
+VALUES ('localhost', 'mysql', 'cactiuser', 'time_zone_name', 'root@localhost', 'Select');
+```
+
 5. Edit `include/config.php` and specify the database type, name, host, user
    and password for your Cacti configuration.
 
