@@ -14,9 +14,9 @@ ignoring host '........'
 
 For "reasonable" timeouts, this may be related to a snmpbulkwalk issue. To
 change this, see `Settings`, `Poller` and lower the value for `The Maximum SNMP
-OID's Per SNMP Get Request`. Start at a value of 2 and increase it again, if
+OIDs Per SNMP Get Request`. Start at a value of 2 and increase it again, if
 the poller starts working. (1 or less disables snmpbulkwalk) Some agent's don't
-have the horsepower to deliver that many OID's at a time. Therefore, we can
+have the horsepower to deliver that many OIDs at a time. Therefore, we can
 reduce the number for those older/under-powered devices.
 
 ## Check Basic Data Gathering
