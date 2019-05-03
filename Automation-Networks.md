@@ -33,6 +33,13 @@ Ensure after you are done adding your network to enable the rule and save
 <br>
 <br>
 
+Ensure that if you have a SNMP rule for this part of the network to select the  SNMP option set <br>
+this will tie the network to the SNMP rules 
+
+![Automation Networks Edit General](images/automation-reachability-settings.png)
+
+<br>
+<br>
 
 To begin the scanner click on the bottom right drop down and select discover this will start the discovery
 
