@@ -41,7 +41,7 @@ this will tie the network to the SNMP rules
 <br>
 <br>
 
-To begin the scanner click on the bottom right drop down and select discover this will start the discovery
+To begin the scanner click on the bottom right drop down and select "Discover Now" this will start the discovery
 
 
 
