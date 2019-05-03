@@ -36,6 +36,7 @@ Netbios - Attempt to resolve the hostname by netbios
 
 
 
+![Automation Networks](images/automation-networks.png)
 
 
 
