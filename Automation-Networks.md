@@ -11,7 +11,7 @@ once on the below page click the + on the top right of the page
 <br>
 <br>
 
-you will now see the below page for example if you want to scan 192.168.1.0/24 you would enter that in the subnet range textbox/n
+you will now see the below page for example if you want to scan 192.168.1.0/24 you would enter that in the subnet range textbox<br>
 you will need to note the subnet in CIDR format<br>
 
 Other important options are 
