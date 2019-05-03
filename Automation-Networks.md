@@ -32,7 +32,6 @@ Netbios - Attempt to resolve the hostname by netbios
 <br>
 
 
-![Automation Networks Edit Notification/Reachability](images/automation-networks-edit2.png)
 
 
 
