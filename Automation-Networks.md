@@ -20,7 +20,9 @@ Schedule type - How often you want to scan this subnet for devices<br>
 Discovery threads - How many proccessess to spawn during the scan <br>
 Max Runtime - to prevent the scan from running indefinetly <br>
 Automatically add to cacti - If a device is SNMP reachable and matches a rule from this subnet the device will be added<br>
-Netbios - Attempt to resolve the hostname by netbios
+Netbios - Attempt to resolve the hostname by netbios <br>
+
+Ensure after you are done adding your network to enable the rule and save 
 
 
 
@@ -32,6 +34,7 @@ Netbios - Attempt to resolve the hostname by netbios
 <br>
 
 
+To begin the scanner click on the bottom right drop down and select discover this will start the discovery
 
 
 
