@@ -94,11 +94,22 @@ The system is now ready to go just surf to <youip>/cacti to start the cacti init
  <br>
  <br>
  
+ #### Auto installation script by BMFMANCINI 
+ This script will do the above steps in a interactive style via a bash script 
+ <br>
+ <br>
+ https://github.com/bmfmancini/cacti-install-wizard
+ 
+ <br>
+ 
+ 
  You can also see a video tutorial of this installation below
  <br>
   [![IMAGE ALT TEXT](http://img.youtube.com/vi/be8Pz5O4d8Y/0.jpg)](http://www.youtube.com/watch?v=be8Pz5O4d8YE "Video Title")
  
  <br>
+ 
+ 
  
  
  Copyright (c) 2004-2019 The Cacti Group
