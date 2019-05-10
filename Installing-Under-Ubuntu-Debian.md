@@ -53,15 +53,15 @@ cp config.php.dist config.php
 
 make changes as needed to the below entries 
 
-$database_type     = 'mysql';
-$database_default  = 'cacti';
-$database_hostname = 'localhost';
-$database_username = 'cactiuser';
-$database_password = 'cactiuser';
-$database_port     = '3306';
-$database_retries  = 5;
-$database_ssl      = false;
-$database_ssl_key  = '';
+$database_type     = 'mysql';  
+$database_default  = 'cacti';  
+$database_hostname = 'localhost';  
+$database_username = 'cactiuser';  
+$database_password = 'cactiuser';  
+$database_port     = '3306';  
+$database_retries  = 5;  
+$database_ssl      = false;  
+$database_ssl_key  = '';  
 
 
 The system is now ready to go just surf to <youip>/cacti to start the cacti initalization 
