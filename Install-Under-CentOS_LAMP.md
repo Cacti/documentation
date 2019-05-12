@@ -409,5 +409,13 @@ documentation on how to make your SELinux policy right.
 **Note:** If you installed Cacti out of `/var/www/html` make sure you fix up
 all SELinux context and permissions.
 
+
+### Use setup wizard script for an interactive installation 
+
+https://github.com/bmfmancini/cacti-install-wizard
+
+This script written by BMFMANCINI (Sean Mancini) will interactivley walk you through the installation proccess without having to worry about missing something along the way! The script will also help with plugin installation
+(This script is not part of the official cacti project)
+
 ---
 Copyright (c) 2004-2019 The Cacti Group
