@@ -67,7 +67,7 @@ $database_ssl_key  = '';
 The system is now ready to go just surf to <youip>/cacti to start the cacti initalization 
 
  
- #### Auto installation script by BMFMANCINI 
+ #### Interactive Installation Wizard script  by BMFMANCINI 
  This script will do the above steps in a interactive style via a bash script 
 
  https://github.com/bmfmancini/cacti-install-wizard
