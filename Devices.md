@@ -10,13 +10,9 @@ To add a device via the gui first click on Console >> Managment >> Devices
 
 you will see the below device console window which will show exisiting devices if any 
 
-
 You will now select the + on the top right hand corner 
 
 Once you select the + otherwise known as the add device button you will see the below screen which will ask you for device specific information 
-
-
-
 
 Some of the most important information about the device will be required in this window which includes
 -Device Name
@@ -54,14 +50,5 @@ Adding test (192.168.1.15) as "Cacti Stats" using SNMP v3 with community "public
 Success - new device-id: (45)
 bmfmancini@localhost:/var/www/html/cacti/cli$ 
 ```
-
-
-
-
-
-
-
-
-
 ---
 Copyright (c) 2004-2019 The Cacti Group
