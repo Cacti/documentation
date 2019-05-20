@@ -4,13 +4,21 @@
 
 ### Web Server (Apache)
 
-1. Install Apache
+1. Enable Epel repo to enable PHP 7.2 package download
+
+   ```console
+   yum install <http://rpms.remirepo.net/enterprise/remi-release-7.rpm> -y
+   yum install yum-utils -y
+   yum-config-manager --enable remi-php72
+```
+
+2. Install Apache
 
    ```console
    yum install -y httpd
    ```
 
-2. Enable and start the service to ensure it starts when the system reboots
+3. Enable and start the service to ensure it starts when the system reboots
 
    ```console
    systemctl start httpd
@@ -164,15 +172,14 @@ tailored to your environment.
    [mysqld]
    character-set-server=utf8mb4
    collation-server=utf8mb4_unicode_ci
-   max_allowed_packet=18M
-   max_heap_table_size=98M
-   tmp_table_size=64M
-   join_buffer_size=64M
-   innodb_buffer_pool_size=488M
-   innodb_doublewrite=OFF
-   innodb_flush_log_at_timeout=3
-   innodb_read_io_threads=32
-   innodb_write_io_threads=16
+   innodb_file_format = Barracuda
+   max_allowed_packet = 16777777
+   join_buffer_size = 32M
+   innodb_file_per_table = ON
+   innodb_large_prefix = 1
+   innodb_buffer_pool_size = 250M
+   innodb_additional_mem_pool_size = 90M
+   innodb_flush_log_at_trx_commit = 2
    log-error                      = /var/log/mysql/mysql-error.log
    log-queries-not-using-indexes  = 1
    slow-query-log                 = 1
@@ -400,6 +407,13 @@ documentation on how to make your SELinux policy right.
 
 **Note:** If you installed Cacti out of `/var/www/html` make sure you fix up
 all SELinux context and permissions.
+
+### Use setup wizard script for an interactive installation
+
+<https://github.com/bmfmancini/cacti-install-wizard>
+
+This script written by BMFMANCINI (Sean Mancini) will interactivley walk you through the installation proccess without having to worry about missing something along the way! The script will also help with plugin installation
+(This script is not part of the official cacti project)
 
 ---
 Copyright (c) 2004-2019 The Cacti Group
