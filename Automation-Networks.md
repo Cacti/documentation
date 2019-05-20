@@ -8,8 +8,6 @@ once on the below page click the + on the top right of the page
 ![Automation Networks](images/automation-network-main.png)  
 
 
-
-
 you will now see the below page for example if you want to scan 192.168.1.0/24 you would enter that in the subnet range textbox  
 
 
@@ -25,12 +23,7 @@ Netbios - Attempt to resolve the hostname by netbios
 
 Ensure after you are done adding your network to enable the rule and save  
 
-
-
 ![Automation Networks Edit General](images/automation-networks-edit1.png)
-
-
-
 
 Ensure that if you have a SNMP rule for this part of the network to select the  SNMP option set  
 this will tie the network to the SNMP rules   
@@ -39,12 +32,7 @@ this will tie the network to the SNMP rules
 
 To begin the scanner click on the bottom right drop down and select "Discover Now" this will start the discovery  
 
-
-
 ![Automation Networks](images/automation-networks.png)
-
-
-
 
 ---
 Copyright (c) 2004-2019 The Cacti Group
