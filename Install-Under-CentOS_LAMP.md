@@ -5,14 +5,14 @@
 ### Web Server (Apache)
 
 1. Enable Epel repo to enable PHP 7.2 package download
+
    ```console
-   yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
+   yum install <http://rpms.remirepo.net/enterprise/remi-release-7.rpm> -y
    yum install yum-utils -y
    yum-config-manager --enable remi-php72
 
    ```
-
-
+   
 2. Install Apache
 
    ```console
@@ -409,10 +409,9 @@ documentation on how to make your SELinux policy right.
 **Note:** If you installed Cacti out of `/var/www/html` make sure you fix up
 all SELinux context and permissions.
 
-
 ### Use setup wizard script for an interactive installation 
 
-(https://github.com/bmfmancini/cacti-install-wizard)
+<https://github.com/bmfmancini/cacti-install-wizard>
 
 This script written by BMFMANCINI (Sean Mancini) will interactivley walk you through the installation proccess without having to worry about missing something along the way! The script will also help with plugin installation
 (This script is not part of the official cacti project)
