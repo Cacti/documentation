@@ -1,4 +1,3 @@
-
 # Installing Cacti 1.x  in Ubuntu/Debian LAMP stack
 &nbsp;
 &nbsp;
