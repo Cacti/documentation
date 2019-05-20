@@ -10,9 +10,8 @@
    yum install <http://rpms.remirepo.net/enterprise/remi-release-7.rpm> -y
    yum install yum-utils -y
    yum-config-manager --enable remi-php72
-
-   ```
-   
+```
+  
 2. Install Apache
 
    ```console
@@ -409,7 +408,7 @@ documentation on how to make your SELinux policy right.
 **Note:** If you installed Cacti out of `/var/www/html` make sure you fix up
 all SELinux context and permissions.
 
-### Use setup wizard script for an interactive installation 
+### Use setup wizard script for an interactive installation
 
 <https://github.com/bmfmancini/cacti-install-wizard>
 
