@@ -4,23 +4,23 @@
 &nbsp;
 ## Installing the required packages needed for the LAMP stack
 &nbsp;
-apt-get update  
-apt-get install -y apache2 rrdtool mariadb-server snmp snmpd php7.0 php-mysql php7.0-snmp php7.0-xml php7.0-mbstring php7.0-json php7.0-gd php7.0-gmp php7.0-zip php7.0-ldap php7.0-mc  
+apt-get update
+apt-get install -y apache2 rrdtool mariadb-server snmp snmpd php7.0 php-mysql php7.0-snmp php7.0-xml php7.0-mbstring php7.0-json php7.0-gd php7.0-gmp php7.0-zip php7.0-ldap php7.0-mc
 &nbsp;
-### Downloading the Cacti software 
+### Downloading the Cacti software
 Once the OS packages are installed we need to download the Cacti files you can do this by using the git command
 &nbsp;
 &nbsp;
-git clone https://github.com/Cacti/cacti.git  
-Cloning into 'cacti'...  
-remote: Enumerating objects: 81, done.  
-remote: Counting objects: 100% (81/81), done.  
-remote: Compressing objects: 100% (55/55), done.  
-remote: Total 59936 (delta 40), reused 51 (delta 26), pack-reused 59855  
-Receiving objects: 100% (59936/59936), 76.33 MiB | 1.81 MiB/s, done.  
-Resolving deltas: 100% (43598/43598), done.  
+git clone https://github.com/Cacti/cacti.git
+Cloning into 'cacti'...
+remote: Enumerating objects: 81, done.
+remote: Counting objects: 100% (81/81), done.
+remote: Compressing objects: 100% (55/55), done.
+remote: Total 59936 (delta 40), reused 51 (delta 26), pack-reused 59855
+Receiving objects: 100% (59936/59936), 76.33 MiB | 1.81 MiB/s, done.
+Resolving deltas: 100% (43598/43598), done.
 &nbsp;
-After downloading the cacti files move the files into the /var/www/html directory 
+After downloading the cacti files move the files into the /var/www/html directory
 &nbsp;
 mv cacti /var/www/html
 &nbsp;
