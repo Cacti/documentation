@@ -23,18 +23,15 @@ Receiving objects: 100% (59936/59936), 76.33 MiB | 1.81 MiB/s, done.
 Resolving deltas: 100% (43598/43598), done.
 ```
 
-
- 
-&nbsp;
 After downloading the cacti files move the files into the /var/www/html directory
-&nbsp;
+
 mv cacti /var/www/html
-&nbsp;
+
 #### Database Creation
-&nbsp;
+
 Next we will create a database for the cacti installation to use
-&nbsp;
-&nbsp;
+
+
 ```console
 mysql -u root -p
 CREATE DATABASE cacti DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
@@ -75,19 +72,12 @@ The system is now ready to go just surf to <youip>/cacti to start the cacti init
  &nbsp;
  #### Interactive Installation Wizard script  by BMFMANCINI
  This script will do the above steps in a interactive style via a bash script
-&nbsp;
- https://github.com/bmfmancini/cacti-install-wizard
-<br>
- You can also see a video tutorial of this installation below
- &nbsp;
- &nbsp;
-  [![IMAGE ALT TEXT](http://img.youtube.com/vi/be8Pz5O4d8Y/0.jpg)](http://www.youtube.com/watch?v=be8Pz5O4d8YE "Video Title")
- &nbsp;
- &nbsp;
- &nbsp;
- &nbsp;
- &nbsp;
- &nbsp;
+ 
+
+Get The script Here <https://github.com/bmfmancini/cacti-install-wizard>
+
+
+  
+
  Copyright (c) 2004-2019 The Cacti Group
- &nbsp;
- &nbsp;
+
