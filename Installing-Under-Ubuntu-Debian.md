@@ -70,7 +70,7 @@ $database_ssl      = false;
 $database_ssl_key  = '';
 ```
 
-The system is now ready to go just surf to <youip>/cacti to start the cacti initalization
+The system is now ready to go just surf to yourip/cacti to start the cacti initalization
 &nbsp;
  &nbsp;
  #### Interactive Installation Wizard script  by BMFMANCINI
