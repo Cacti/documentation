@@ -30,8 +30,6 @@ mv cacti /var/www/html
 #### Database Creation
 
 Next we will create a database for the cacti installation to use
-
-
 ```console
 mysql -u root -p
 CREATE DATABASE cacti DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
@@ -72,12 +70,8 @@ The system is now ready to go just surf to <youip>/cacti to start the cacti init
  &nbsp;
  #### Interactive Installation Wizard script  by BMFMANCINI
  This script will do the above steps in a interactive style via a bash script
- 
 
 Get The script Here <https://github.com/bmfmancini/cacti-install-wizard>
 
-
-  
-
- Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2019 The Cacti Group
 
