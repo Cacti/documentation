@@ -1,13 +1,16 @@
 # Installing Cacti 1.x  in Ubuntu/Debian LAMP stack
+
 &nbsp;
 &nbsp;
 ## Installing the required packages needed for the LAMP stack
+
 ```console
 apt-get update
 apt-get install -y apache2 rrdtool mariadb-server snmp snmpd php7.0 php-mysql php7.0-snmp php7.0-xml php7.0-mbstring php7.0-json php7.0-gd php7.0-gmp php7.0-zip php7.0-ldap php7.0-mc
 ```
 
 ### Downloading the Cacti software
+
 Once the OS packages are installed we need to download the Cacti files you can do this by using the git command
 &nbsp;
 &nbsp;
@@ -30,6 +33,7 @@ mv cacti /var/www/html
 #### Database Creation
 
 Next we will create a database for the cacti installation to use
+
 ```console
 mysql -u root -p
 CREATE DATABASE cacti DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
@@ -46,6 +50,7 @@ mysql -u root cacti < /var/www/html/cacti/cacti.sql
 ```
 
 Now we are ready to start configuring cacti we have  need to edit the config.php file locating in /var/www/html/cacti/include
+
 ```console
 cd /var/www/html/cacti/include
 cp config.php.dist config.php
