@@ -12,6 +12,8 @@ you will see the below device console window which will show exisiting devices i
 
 You will now select the + on the top right hand corner
 
+![Add Device Button](images/add_device_button.png)
+
 Once you select the + otherwise known as the add device button you will see the below screen which will ask you for device specific information
 
 Some of the most important information about the device will be required in this window which includes
@@ -20,6 +22,8 @@ Some of the most important information about the device will be required in this
 -Template i.e Cisco,Linux etc
 -SNMP information
 -Device Notes
+
+![Add Device Info Screen](images/Add_Device_screen.png)
 
 Cacti requires this basic information to be able to monitor the device once you have entered the basic information click save on the bottom right corner
 The device is now created you will need to add graphs for the device  which can be done by clicking Create graphs for this device on the top right hand corner.
