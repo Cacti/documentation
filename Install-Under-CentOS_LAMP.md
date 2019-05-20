@@ -11,7 +11,7 @@
    yum install yum-utils -y
    yum-config-manager --enable remi-php72
 ```
-  
+
 2. Install Apache
 
    ```console
