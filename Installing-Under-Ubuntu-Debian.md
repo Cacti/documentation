@@ -24,21 +24,21 @@ After downloading the cacti files move the files into the /var/www/html director
 &nbsp;
 mv cacti /var/www/html
 &nbsp;
-#### Database Creation 
+#### Database Creation
 &nbsp;
-Next we will create a database for the cacti installation to use 
+Next we will create a database for the cacti installation to use
 &nbsp;
 &nbsp;
 mysql -u root -p
-CREATE DATABASE cacti DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;  
-GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'localhost' IDENTIFIED BY 'cacti'; ;  
-GRANT SELECT ON mysql.time_zone_name TO cacti@localhost;  
-ALTER DATABASE cacti CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;  
-FLUSH PRIVILEGES;  
+CREATE DATABASE cacti DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
+GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'localhost' IDENTIFIED BY 'cacti'; ;
+GRANT SELECT ON mysql.time_zone_name TO cacti@localhost;
+ALTER DATABASE cacti CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+FLUSH PRIVILEGES;
 &nbsp;
 &nbsp;
 &nbsp;
-we will now need to pre-populate the database used by cacti 
+we will now need to pre-populate the database used by cacti
 &nbsp;
 mysql -u root cacti < /var/www/html/cacti/cacti.sql
 &nbsp;
@@ -50,24 +50,24 @@ cd /var/www/html/cacti/include
 cp config.php.dist config.php
 &nbsp;
 &nbsp;
-make changes as needed to the below entries 
+make changes as needed to the below entries
 &nbsp;
-$database_type     = 'mysql';  
+$database_type     = 'mysql';
 $database_default  = 'cacti';  
-$database_hostname = 'localhost';  
+$database_hostname = 'localhost';
 $database_username = 'cactiuser';  
 $database_password = 'cactiuser';  
-$database_port     = '3306';  
-$database_retries  = 5;  
-$database_ssl      = false;  
-$database_ssl_key  = '';  
+$database_port     = '3306';
+$database_retries  = 5;
+$database_ssl      = false;
+$database_ssl_key  = '';
 &nbsp;
 &nbsp;
-The system is now ready to go just surf to <youip>/cacti to start the cacti initalization 
+The system is now ready to go just surf to <youip>/cacti to start the cacti initalization
 &nbsp;
  &nbsp;
- #### Interactive Installation Wizard script  by BMFMANCINI 
- This script will do the above steps in a interactive style via a bash script 
+ #### Interactive Installation Wizard script  by BMFMANCINI
+ This script will do the above steps in a interactive style via a bash script
 &nbsp;
  https://github.com/bmfmancini/cacti-install-wizard
  &nbsp;
