@@ -74,6 +74,7 @@ The system is now ready to go just surf to yourip/cacti to start the cacti inita
 &nbsp;
  &nbsp;
 #### Interactive Installation Wizard script  by BMFMANCINI
+
  This script will do the above steps in a interactive style via a bash script
 
 Get The script Here <https://github.com/bmfmancini/cacti-install-wizard>
