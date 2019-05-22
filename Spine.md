@@ -30,7 +30,7 @@ As Spine is written in C is must be compiled on the local system that it is to b
 
 ### Ubuntu 
 
-Install the required system packages 
+Install the required system packages
 
 ```console
 apt-get install -y build-essential dos2unix dh-autoreconf libtool help2man libssl-dev libmysql++-dev librrds-perl libsnmp-dev
@@ -43,7 +43,7 @@ wget (https://github.com/Cacti/spine/archive/release/1.2.3.zip)
 unzip 1.2.3
 cd spine-release-1.2.3
 
-once you are in the spine directory its time to compile the poller 
+once you are in the spine directory its time to compile the poller
 
 Issue the following commands to compile spine
 
@@ -56,7 +56,7 @@ chown root:root /usr/local/spine/bin/spine
 chmod u+s /usr/local/spine/bin/spine
 ```
 
-once complete you will need to configure spine's config file 
+once complete you will need to configure spine's config file
 
 ```console
 vi /usr/local/spine/etc/spine.conf
