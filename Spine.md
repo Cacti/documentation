@@ -24,11 +24,11 @@ Number of PHP Script Servers | The number of concurrent script server processes 
 Script and Script Server Timeout Value | The maximum time that Spine will wait on a script to complete, in units of seconds. If a Script Server Script is terminated due to timeout conditions, the value entered into the RRD file will be NaN
 The Maximum SNMP OIDs Per SNMP Get Request | The maximum number of SNMP get OIDs to issue per SNMP request. Increasing this value speeds poller performance over slow links. The maximum value is 60 OIDs. Please bear in mind, that some type of devices do not accept huge OID numbers and may fail if set above 1. That's why cacti 0.8.7 allows to define this value at device level
 
-### Installing Spine 
+### Installing Spine
 
-As Spine is written in C is must be compiled on the local system that it is to be installed on  below is an example of compiling on centos and Ubuntu 
+As Spine is written in C is must be compiled on the local system that it is to be installed on  below is an example of compiling on centos and Ubuntu
 
-### Ubuntu 
+### Ubuntu
 
 Install the required system packages
 
@@ -39,7 +39,7 @@ apt-get install -y build-essential dos2unix dh-autoreconf libtool help2man libss
 Next Download the version of spine you are looking for Typically this should match the version of Cacti you are using
 In this case we will download Version 1.2.3 of Spine
 
-wget (https://github.com/Cacti/spine/archive/release/1.2.3.zip)
+wget <https://github.com/Cacti/spine/archive/release/1.2.3.zip>
 unzip 1.2.3
 cd spine-release-1.2.3
 
