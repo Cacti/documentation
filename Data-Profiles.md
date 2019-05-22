@@ -18,7 +18,6 @@ Monthly 46kb
 
 Yearly 140kb
 
-
 ### 1 minute polling
 
 Daily 93kb / data source
@@ -28,7 +27,6 @@ Weekly 45kb / data source
 Monthly 47kb /datasource
 
 Yearly 140KB/data source
-
 
 ### 5 minute polling
 
