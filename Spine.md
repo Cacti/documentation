@@ -8,10 +8,10 @@ and standard local disks.
 
 When using Spine, don't change crontab settings! Always use poller.php with
 crontab! To activate Spine instead of cmd.php, please visit Settings and select
-the Poller tab. Select Spine and save. Now, poller.php will use Spine on all
+the Poller tab. Select Spine and save. Once saved, poller.php will use Spine on all
 subsequent polling cycles.
 
-While Spine is really fast, choosing the correct setup will ensure, that all
+While Spine is really fast, choosing the correct setup will ensure that all
 processor resources are used. Required settings for Maximum Concurrent Poller
 Processes are 1-2 times the number of CPU cores available for Spine.
 

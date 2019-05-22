@@ -1,14 +1,14 @@
 # General Installing Instructions
 
 Make sure the following packages are installed according to your operating
-systems requirements. Verify, that httpd/apache and MySQLd/mariadb are started
+systems requirements. Verify, that httpd/apache and MySQL/MariaDB are started
 at system startup.
 
 ## Required Packages for Most Operating Systems
 
-Depending on your operating system and php version, certain packages are
-required for Cacti.  The largest variability in these requirements come with
-regard to php and MySQL/MariaDB.
+Depending on your operating system and PHP version, certain packages are
+required for Cacti.  The largest variable in these requirements come with
+regard to PHP and MySQL/MariaDB.
 
 Installation requirements include the packages below.  The installation of these
 packages will vary by operating system.
@@ -197,7 +197,7 @@ shell> mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql
 ```
 
 Since Cacti 1.x is supporting internationalization (i18n), it is important that
-the default character set for MySQL or MariaDB be i18n compatible.  The Cacti
+the default character set for MySQL/MariaDB be i18n compatible.  The Cacti
 installer will make specific recommendations on MySQL/MariaDB settings.  Follow
 those as applicable for your OS.
 
