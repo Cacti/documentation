@@ -49,6 +49,7 @@ Next setup the server for cacti and update the config.php located in /cacti/incl
 
 You will now need to install Cacti on the remote server selecting the new remote poller option
 
+![remote poller setup](images/cacti_remote_poller_setup.JPG)
 
 ---
 Copyright (c) 2004-2019 The Cacti Group
