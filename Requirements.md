@@ -176,7 +176,7 @@ Cacti requires that the following software is installed on your system.
     - Some of these recommendations may not be applicable depending on the
       version of MySQL/MariaDB you are running.
     - Some of these recommendations should be scaled where appropriate
- 
+
 To implement the above mysql recomendations you can use the below entries and paste them into my.cnf
 
 ```console
