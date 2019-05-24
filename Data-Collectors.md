@@ -2,13 +2,13 @@
 
 This section will describe **Data Collectors** in Cacti.
 
-As of Cacti 1.x remote polling is now supported remote polling allows for devices to be monitored by differnt servers 
-either geographically closer to the node being monitored or by a redudant server for load balancing.
+As of Cacti 1.x remote polling is now supported remote polling allows for devices to be monitored by different servers
+either geographically closer to the node being monitored or by a redundant server for load balancing.
 
 To accomplish this a master cacti instance must be installed along with a remote poller which is a full cacti installation the remote poller must be able to reach and read/write to the database hosted on the main server. Cacti will display all the devices weather on the remote or main poller on the main poller dashboard for an easy view.
 
-The below page shows the current online collecter aka pollers these are used to reach out to the device either by SNMP or Ping
-all traffic would originiate from the poller asigned to the device.
+The below page shows the current online collector aka pollers these are used to reach out to the device either by SNMP or Ping
+all traffic would originate from the poller assigned to the device.
 
 ![Data Collectors](images/data-collectors.png)
 
