@@ -12,9 +12,9 @@ all traffic would originiate from the poller asigned to the device.
 
 ![Data Collectors Edit Main](images/data-collectors-edit-main.png)
 
-The below page allows you to modify remote poller specific details such as username and password
-
 ![Data Collectors Edit Remote](images/data-collectors-edit-remote1.png)
+
+The below page allows you to modify remote poller specific details such as username and password
 
 ![Data Collectors Edit Remote Connection Test](images/data-collectors-edit-remote2.png)
 
