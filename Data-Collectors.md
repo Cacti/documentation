@@ -19,6 +19,7 @@ The Main poller resides on the local server that you are logged into this also s
 ![Data Collectors Edit Remote](images/data-collectors-edit-remote1.png)
 
 The below page allows you to modify remote poller specific details such as username and password
+You will also be able to test the connection between the main poller and the remote poller.
 
 ![Data Collectors Edit Remote Connection Test](images/data-collectors-edit-remote2.png)
 
