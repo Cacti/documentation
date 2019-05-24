@@ -2,9 +2,9 @@
 
 ### Installing Plugins
 
-Installing plugins on cacti is a simple procedure 
+Installing plugins on cacti is a simple procedure
 
-Step 1 download the plugin to cactidir/cacti/plugins 
+Step 1 download the plugin to cactidir/cacti/plugins
 
 ```console
 git clone https://github.com/Cacti/plugin_thold.git
@@ -31,7 +31,7 @@ After installing the plugin by clicking on the grey gear you will now how to ena
 ### Unistall a plugin
 
 To uninstall a plugin go into the plugins page console >> configuration >> plugins
-Click on the plugin to disable the plugin 
+Click on the plugin to disable the plugin
 
 Click on the red dot beside the plugin to uninstall the plugin a dialouge box will appear now click uninstall.
 ![uninstall plugin](images/plugins-uninstall.png)
@@ -45,7 +45,5 @@ Some dependencies such as THOLD aka Thresholds rely on another plugin in this ca
 
 ![plugin dependencies](images/plugins-dependencies.png)
 
-```
+---
 Copyright (c) 2004-2019 The Cacti Group
-```
-
