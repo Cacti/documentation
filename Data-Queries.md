@@ -142,6 +142,13 @@ method | Tell Cacti how you want it to gather SNMP information for this field. g
 source | When Cacti obtains a list for this field, you need to tell it how to derive its value for each row. value: The 'value' option simply returns the result of the snmpget for each row. OID/REGEXP:(regexp_match): The 'OID/REGEXP:(regexp_match)' can be used when you need to use a POSIX-based regular expression to derive the value from the OID. The most common example of this is to retrieve the IP address of an interface, and can be seen in the 'interface.xml' file. VALUE/REGEXP:(regexp_match): The 'OID/REGEXP:(regexp_match)' option can be used to parse the value based on a regular expression, returning the first match. index: Simply use the value of the index for this row as the value. If the index is being parsed from the OID using the oid_index_parse field, you must specify index here. Omit the `<oid>...</oid>` field, then.
 direction | input: Input values are the "known" values that you will use to derive the output values, this is where the "query" part of SNMP query comes in. When you create a graph based on an SNMP query, Cacti will prompt you to choose the input value to base the graph on. output: Output values are "unknown" values that are returned from the script. An SNMP query may return multiple statistics for a single index. For instance, a single interface could return bytes/sec in, errors, packets/sec, etc. A rule of thumb is that input fields contain semi-static data that is not graphable, while the output fields contain the data that will be graphed.
 oid | You must specify the actual OID that corresponds with the field. Each value for this field can be obtained by doing an snmpget on `oid.(each)snmpindex`.
+oid_rewrite_pattern | You can specifv and OID/REGEXP: string which will be replaced by the oid_rewrite_replacement string if found.
+oid_rewrite_replacement | You must specify the actual OID that corresponds with the field. Each value for this field can be obtained by doing an snmpget on `oid.(each)snmpindex`.
+oid_suffix | The suffix, if specified will be appended to the each oid from the walk or get response, prior to the oid_rewrite_pattern to oid_rewrite_replace regular expression replace.  If the method is get, Cacti will issue an snmpget to obtain the resulting data.
+rewrite_index | Modifies the snmp values using the rewrite_index expression.
+output_format | Determines the output format of the column values.  Options are 'ascii', 'hex'.  If not specified, Cacti will allow SNMP to 'guess' the output format.
+
+
 
 ## Script Query XML Syntax
 
