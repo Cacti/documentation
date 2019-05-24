@@ -148,8 +148,6 @@ oid_suffix | The suffix, if specified will be appended to the each oid from the 
 rewrite_index | Modifies the snmp values using the rewrite_index expression.
 output_format | Determines the output format of the column values.  Options are 'ascii', 'hex'.  If not specified, Cacti will allow SNMP to 'guess' the output format.
 
-
-
 ## Script Query XML Syntax
 
 ```xml
