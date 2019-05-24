@@ -10,6 +10,8 @@ all traffic would originiate from the poller asigned to the device.
 
 ![Data Collectors](images/data-collectors.png)
 
+The Main poller resides on the local server that you are logged into this also serves as the master poller for a distributed system using remote pollers.
+
 ![Data Collectors Edit Main](images/data-collectors-edit-main.png)
 
 ![Data Collectors Edit Remote](images/data-collectors-edit-remote1.png)
