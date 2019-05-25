@@ -12,7 +12,6 @@ Adjust log settings.
 
 View the user log for audits.
 
-
 ![System Utilities](images/cacti_system_utilities.JPG).
 
 Some of the most important tools are listed below
