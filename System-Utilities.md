@@ -5,9 +5,13 @@ This section will describe **System Utilities** in Cacti.
 The system utilities page in cacti contains tools used for administering cacti  from this page you can do the following
 
 Rebuild poller cache.
+
 View technical support information.
-adjust log settings.
+
+Adjust log settings.
+
 View the user log for audits.
+
 
 ![System Utilities](images/cacti_system_utilities.JPG).
 
