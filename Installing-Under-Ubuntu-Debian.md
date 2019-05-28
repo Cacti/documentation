@@ -1,7 +1,5 @@
 # Installing Cacti 1.x  in Ubuntu/Debian LAMP stack
 
-&nbsp;
-&nbsp;
 ## Installing the required packages needed for the LAMP stack
 
 ```console
@@ -12,8 +10,6 @@ apt-get install -y apache2 rrdtool mariadb-server snmp snmpd php7.0 php-mysql ph
 ### Downloading the Cacti software
 
 Once the OS packages are installed we need to download the Cacti files you can do this by using the git command
-&nbsp;
-&nbsp;
 
 ```console
 git clone https://github.com/Cacti/cacti.git
@@ -71,8 +67,6 @@ $database_ssl_key  = '';
 ```
 
 The system is now ready to go just surf to yourip/cacti to start the cacti initalization
-&nbsp;
- &nbsp;
 
 #### Interactive Installation Wizard script  by BMFMANCINI (Sean Mancini)
 
