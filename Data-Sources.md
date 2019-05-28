@@ -7,6 +7,7 @@ Data sources in cacti are the points of data that cacti will collect from a devi
 You have a ping monitor going to a device that ping monitor will count as 1 data source.
 
 If you have a 24 port switch and you poll the device via snmp and graph all of the ports then there will be 24 data sources
+
 However if you add more graphs that base their data on the original data source that would not count as another data source
 
 Example you have a 24 port switch that you graph all of the in/out bits on each interface if you then add the in/out bits with 95th percential that would still be 24 data sources.
