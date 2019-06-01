@@ -29,27 +29,39 @@ This output tells us we have 162 data sources on the system.
 
 ### Storage considerations and datasources
 
-The amount of data sources on your system has an impact on the amount of storage you will need on your server you will also need to consider and what rate you are polling your devices i.e 1 minute or 5 Minute polls
+The amount of data sources on your system has an impact on the amount of storage you will need.
+you will also need to consider and what rate you are polling your devices i.e 1 minute or 5 Minute polls
 
 Here is the amount of storage you can expect to consume per data source
 
-30 second polling
-Daily 48kb  / Datasource
-Weekly 43kb / Datasource
-Monthly 46kb / Datasource
-Yearly 140kb / Datasource
+ 30 second polling
+ 
+| Retention      | size         |
+| ------------- |:-------------:| 
+| Daily      |         48kb |
+| Weekly      |         43kb|
+| Monthly  |            46kb|
+|yearly          |      140kb |
+
 
 1 minute polling
-Daily 93kb / Datasource
-Weekly 45kb / Datasource
-Monthly 47kb / Datasource
 
-Yearly 140KB/data source
+| Retention      | size         |
+| ------------- |:-------------:| 
+| Daily      |         93kb |
+| Weekly      |         45kb|
+| Monthly  |            47kb|
+|yearly          |      140kb |
+
 5 minute polling
-Daily 19kb  / Datasource
-Weekly 22kb / Datasource
-Monthly 25kb / Datasource
-Yearly 26kb  / Datasource
+
+| Retention      | size         |
+| ------------- |:-------------:| 
+| Daily      |         19b |
+| Weekly      |         22kb|
+| Monthly  |            25kb|
+|yearly          |      26kb |
+
 
 ---
 Copyright (c) 2004-2019 The Cacti Group
