@@ -35,19 +35,18 @@ you will also need to consider and what rate you are polling your devices i.e 1 
 Here is the amount of storage you can expect to consume per data source
 
  30 second polling
- 
+
 | Retention      | size         |
-| ------------- |:-------------:| 
+| ------------- |:-------------:|
 | Daily      |         48kb |
 | Weekly      |         43kb|
 | Monthly  |            46kb|
 |yearly          |      140kb |
 
-
 1 minute polling
 
 | Retention      | size         |
-| ------------- |:-------------:| 
+| ------------- |:-------------:|
 | Daily      |         93kb |
 | Weekly      |         45kb|
 | Monthly  |            47kb|
@@ -56,12 +55,11 @@ Here is the amount of storage you can expect to consume per data source
 5 minute polling
 
 | Retention      | size         |
-| ------------- |:-------------:| 
+| ------------- |:-------------:|
 | Daily      |         19b |
 | Weekly      |         22kb|
 | Monthly  |            25kb|
 |yearly          |      26kb |
-
 
 ---
 Copyright (c) 2004-2019 The Cacti Group
