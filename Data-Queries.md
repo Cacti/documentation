@@ -115,26 +115,38 @@ query to hosts.
 </query>
 ```
 
-###### Table 12-3. SNMP Query XML Field Reference
+###### Table 12-3. SNMP Query XML Settings Reference
 
 Field | Description
 --- | ---
-query->name | (Optional) You can enter a "friendly name" for the SNMP query here. It will not be used by Cacti, and is for identification only.
-query->description | (Optional) You can enter a description for the SNMP query here. It will not be used by Cacti, and is for identification only.
-query->oid_uptime | New with 0.8.7: If you have another OID that contains ticks (time), say for example a Java VM. Then, you can create a data query that specifies an alternate uptime OID. To implement this for a data query, simply add the oid_uptime XML parameter to your XML file. Then, if you select your re-index method to be Uptime Goes Backward, Cacti will use that OID to detect whether it is time to re-index the host instead of the standard SNMP OID for uptime.
-query->oid_index | Every SNMP query must have an OID that represents the index values for the query when walked. As described above, any data query in Cacti must contain a field that uniquely identifies each row returned by the query. In the example above, the oid_index points to the OID of ifIndex in the interface MIB. Note: Starting with version 0.8.6c, Cacti is able to parse unique indexes from the OID itself. While the regular expression used for parsing the value from the OID is defined below, you must still specify an OID that can be walked by Cacti in order to obtain the list of OID's. Any OID defined for one of your input fields should work in this case. The values returned from the snmpwalk walk will be completely disregarded.
-query->oid_index_parse | This field should only be used if you are trying to parse the unique index from the OID itself. If this field is defined, to obtain a list of indexes, Cacti walks the OID provided in the oid_index field above. It then applies the regular expression provided in this field to the list of OID's that are returned. The matched substrings that remain become the list of indexes for this SNMP query.
-query->oid_num_indexes | An OID that can be queried to determine the total number of available indexes. If specified, this will be used to determine when to automatically re-cache this SNMP query when it is attached to a device.
-query->index_order | As of version 0.8.6, Cacti will attempt to find the best field to index off of based on whether each row in the query is unique and non-null. If specified, Cacti will perform this check on the fields listed here in the order specified. Only input fields can be specified and multiple fields should be delimited with a colon.
-query->index_order_type | For sorting purposes, specify whether the index is numeric or alphanumeric. numeric: The indexes in this SNMP query are to be sorted numerically (ie. 1,2,3,10,20,31) alphabetic: The indexes in this SNMP query are to be sorted alphabetically (1,10,2,20,3,31).
-query->index_title_format | Specify the title format to use when representing an index to the user. Any input field name can be used as a variable if enclosed in pipes (|). The variable `|chosen_order_field|` will be substituted with the field chosen by Cacti to index off of (see index_order above).
-query->fields | Each field contained within the SNMP query must be defined under this tag.
-query->fields->ifIndex | Each defined field in the SNMP query must have a unique name given to it. Do not use spaces or any non-alphanumeric characters, this name must be identifiable within Cacti.
-query->fields->ifIndex->name | Here you can specify a "friendly name" for the field. This name will be used by Cacti to help the user identify this field.
-query->fields->ifIndex->method | Tell Cacti how you want it to gather SNMP information for this field. get: The `get` method performs an snmpget for the OID specified for this field appended by the index values derived from `<oid_index>/<oid_index_parse>`. walk: The `walk` method does a walk of the OID specified for this field. If all OIDs belong to the same SNMP table, both methods will return the same values, even though the 'walk' method is typically more efficient.
-query->fields->ifIndex->source | When Cacti obtains a list for this field, you need to tell it how to derive its value for each row. value: The 'value' option simply returns the result of the snmpget for each row. OID/REGEXP:(regexp_match): The 'OID/REGEXP:(regexp_match)' can be used when you need to use a POSIX-based regular expression to derive the value from the OID. The most common example of this is to retrieve the IP address of an interface, and can be seen in the 'interface.xml' file. VALUE/REGEXP:(regexp_match): The 'OID/REGEXP:(regexp_match)' option can be used to parse the value based on a regular expression, returning the first match. index: Simply use the value of the index for this row as the value. If the index is being parsed from the OID using the oid_index_parse field, you must specify index here. Omit the `<oid>...</oid>` field, then.
-query->fields->ifIndex->direction | input: Input values are the "known" values that you will use to derive the output values, this is where the "query" part of SNMP query comes in. When you create a graph based on an SNMP query, Cacti will prompt you to choose the input value to base the graph on. output: Output values are "unknown" values that are returned from the script. An SNMP query may return multiple statistics for a single index. For instance, a single interface could return bytes/sec in, errors, packets/sec, etc. A rule of thumb is that input fields contain semi-static data that is not graphable, while the output fields contain the data that will be graphed.
-query->fields->ifIndex->oid | You must specify the actual OID that corresponds with the field. Each value for this field can be obtained by doing an snmpget on `oid.(each)snmpindex`.
+name | (Optional) You can enter a "friendly name" for the SNMP Query here. It will not be used by Cacti, and is for identification only.
+description | (Optional) You can enter a description for the SNMP Query here. It will not be used by Cacti, and is for identification only.
+oid_uptime | If you have another OID that contains ticks (time), say for example a Java VM. Then, you can create a data query that specifies an alternate uptime OID. To implement this for a data query, simply add the oid_uptime XML parameter to your XML file. Then, if you select your re-index method to be Uptime Goes Backward, Cacti will use that OID to detect whether it is time to re-index the host instead of the standard SNMP OID for uptime.
+oid_index | Every SNMP Query must have an OID that represents the index values for the query when walked. As described above, any data query in Cacti must contain a field that uniquely identifies each row returned by the query. In the example above, the oid_index points to the OID of ifIndex in the interface MIB. Note: Cacti is able to parse unique indexes from the OID itself. While the regular expression used for parsing the value from the OID is defined below, you must still specify an OID that can be walked by Cacti in order to obtain the list of OID's. Any OID defined for one of your input fields should work in this case. The values returned from the snmpwalk walk will be completely disregarded.
+non_unique | If set to true, Cacti will allow the Data Query index to be non-unique, and it will not attempt to change the index_order if for some reason, the chosen index field is not unique.
+oid_index_parse | This field should only be used if you are trying to parse the unique index from the OID itself. If this field is defined, to obtain a list of indexes, Cacti walks the OID provided in the oid_index field above. It then applies the regular expression provided in this field to the list of OID's that are returned. The matched substrings that remain become the list of indexes for this SNMP Query.
+oid_num_indexes | An OID that can be queried to determine the total number of available indexes. If specified, this will be used to determine when to automatically re-cache this SNMP Query when it is attached to a device.
+index_order | Cacti will attempt to find the best field to index off of based on whether each row in the query is unique and non-null. If specified, Cacti will perform this check on the fields listed here in the order specified. Only input fields can be specified and multiple fields should be delimited with a colon.
+index_transient | If set to 'true', this field instructs Cacti not to stop attempting to Graph an index if it disappears from the host cache as a result of a re-index.  This setting is for indexes that come and go, for example PPPoE statitics or user statistics which appear when a user log's in, but disappear a few hours after the connection is terminated.
+index_order_type | For sorting purposes, specify whether the index is numeric or alphanumeric. numeric: The indexes in this SNMP Query are to be sorted numerically (ie. 1,2,3,10,20,31) alphabetic: The indexes in this SNMP Query are to be sorted alphabetically (1,10,2,20,3,31).
+index_title_format | Specify the title format to use when representing an index to the user. Any input field name can be used as a variable if enclosed in pipes (&#124;). The variable `&#124;chosen_order_field&#124;` will be substituted with the field chosen by Cacti to index off of (see index_order above).
+
+###### Table 12-4. SNMP Query XML Field Settings Reference
+
+Each field contained within the SNMP Query must be defined under the field tag as show in the example above.  In addition, each defined field in the SNMP Query must have a unique name given to it. Do not use spaces or any non-alphanumeric characters, this name must be identifiable within Cacti.
+
+Field | Description
+--- | ---
+name | Here you can specify a "friendly name" for the field. This name will be used by Cacti to help the user identify this field.
+method | Tell Cacti how you want it to gather SNMP information for this field. get: The `get` method performs an snmpget for the OID specified for this field appended by the index values derived from `<oid_index>/<oid_index_parse>`. walk: The `walk` method does a walk of the OID specified for this field. If all OIDs belong to the same SNMP table, both methods will return the same values, even though the 'walk' method is typically more efficient.
+source | When Cacti obtains a list for this field, you need to tell it how to derive its value for each row. value: The 'value' option simply returns the result of the snmpget for each row. OID/REGEXP:(regexp_match): The 'OID/REGEXP:(regexp_match)' can be used when you need to use a POSIX-based regular expression to derive the value from the OID. The most common example of this is to retrieve the IP address of an interface, and can be seen in the 'interface.xml' file. VALUE/REGEXP:(regexp_match): The 'OID/REGEXP:(regexp_match)' option can be used to parse the value based on a regular expression, returning the first match. index: Simply use the value of the index for this row as the value. If the index is being parsed from the OID using the oid_index_parse field, you must specify index here. Omit the `<oid>...</oid>` field, then.
+direction | input: Input values are the "known" values that you will use to derive the output values, this is where the "query" part of SNMP query comes in. When you create a graph based on an SNMP query, Cacti will prompt you to choose the input value to base the graph on. output: Output values are "unknown" values that are returned from the script. An SNMP query may return multiple statistics for a single index. For instance, a single interface could return bytes/sec in, errors, packets/sec, etc. A rule of thumb is that input fields contain semi-static data that is not graphable, while the output fields contain the data that will be graphed.
+oid | You must specify the actual OID that corresponds with the field. Each value for this field can be obtained by doing an snmpget on `oid.(each)snmpindex`.
+oid_rewrite_pattern | You can specifv and OID/REGEXP: string which will be replaced by the oid_rewrite_replacement string if found.
+oid_rewrite_replacement | You must specify the actual OID that corresponds with the field. Each value for this field can be obtained by doing an snmpget on `oid.(each)snmpindex`.
+oid_suffix | The suffix, if specified will be appended to the each oid from the walk or get response, prior to the oid_rewrite_pattern to oid_rewrite_replace regular expression replace.  If the method is get, Cacti will issue an snmpget to obtain the resulting data.
+rewrite_index | Modifies the snmp values using the rewrite_index expression.
+output_format | Determines the output format of the column values.  Options are 'ascii', 'hex'.  If not specified, Cacti will allow SNMP to 'guess' the output format.
 
 ## Script Query XML Syntax
 
@@ -162,26 +174,96 @@ query->fields->ifIndex->oid | You must specify the actual OID that corresponds w
 </query>
 ```
 
-###### Table 12-4. Script Query XML Field Reference
+###### Table 12-5. Script Query XML Settings
 
 Field | Description
 --- | ---
-query->name | (Optional) You can enter a "friendly name" for the script query here. It will not be used by Cacti, and is for identification only.
-query->description | (Optional) You can enter a description for the script query here. It will not be used by Cacti, and is for identification only.
-query->script_path | Enter the complete path to the script or executable that is going to handle your script query. When in doubt, specify the pull path to all binaries referenced in this path, the query may not execute otherwise.
-query->arg_index | Enter the argument that is to be passed to the script to retrieve a list of indexes.
-query->arg_query | Enter the argument that is to be passed to the script to retrieve a list of values given a field name.
-query->arg_get | Enter the argument that is to be passed to the script to retrieve a single value given a field name and index value.
-query->arg_num_indexes | Enter the argument that is to be passed to the script to determine the total number of available indexes. If specified, this will be used to determine when to automatically re-cache this script query when it is attached to a device.
-query->output_delimeter | Enter the one character delimiter that will be used to separate output values. This is only used when you "query" the script in which case it outputs 'index(delimiter)value'.
-query->index_order | As of version 0.8.6, Cacti will attempt to find the best field to index off of based on whether each row in the query is unique and non-null. If specified, Cacti will perform this check on the fields listed here in the order specified. Only input fields can be specified and multiple fields should be delimited with a comma.
-query->index_order_type | For sorting purposes, specify whether the index is numeric or alphanumeric. numeric: The indexes in this script query are to be sorted numerically (ie. 1,2,3,10,20,31) alphabetic: The indexes in this script query are to be sorted alphabetically (1,10,2,20,3,31).
-query->index_title_format | Specify the title format to use when representing an index to the user. Any input field name can be used as a variable if enclosed in pipes (|). The variable |chosen_order_field| will be substituted with the field chosen by Cacti to index off of (see index_order above).
-query->fields | Each field contained within the script query must be defined under this tag.
-query->fields->dskDevice | Each defined field in the script query must have a unique name given to it. Do not use spaces or any non-alphanumeric characters, this name must be identifiable within Cacti.
-query->fields->dskDevice->name | Here you can specify a "friendly name" for the field. This name will be used by Cacti to help the user identify this field.
-query->fields->dskDevice->direction | input: Input values are the "known" values that you will use to derive the output values, this is where the "query" part of script query comes in. When you create a graph based on a script query, Cacti will prompt you to choose the input value to base the graph on. output: Output values are "unknown" values that are returned from the script. A script query may return multiple statistics for a single index. For instance, a single partition could return free disk space, total disk space, fragmentation percentage, etc. A rule of thumb is that input fields contain semi-static data that is not graphable, while the output fields contain the data that will be graphed.
-query->fields->dskDevice->query_name | Enter the name that Cacti must use when asking the script for information about this field. For instance, the following should return values: '(script_name) query (query_name)'.
+name | (Optional) You can enter a "friendly name" for the script query here. It will not be used by Cacti, and is for identification only.
+description | (Optional) You can enter a description for the script query here. It will not be used by Cacti, and is for identification only.
+script_path | Enter the complete path to the script or executable that is going to handle your script query. When in doubt, specify the pull path to all binaries referenced in this path, the query may not execute otherwise.
+arg_index | Enter the argument that is to be passed to the script to retrieve a list of indexes.
+arg_query | Enter the argument that is to be passed to the script to retrieve a list of values given a field name.
+arg_get | Enter the argument that is to be passed to the script to retrieve a single value given a field name and index value.
+arg_num_indexes | Enter the argument that is to be passed to the script to determine the total number of available indexes. If specified, this will be used to determine when to automatically re-cache this script query when it is attached to a device.
+output_delimeter | Enter the one character delimiter that will be used to separate output values. This is only used when you "query" the script in which case it outputs 'index(delimiter)value'.
+index_order | Cacti will attempt to find the best field to index off of based on whether each row in the query is unique and non-null. If specified, Cacti will perform this check on the fields listed here in the order specified. Only input fields can be specified and multiple fields should be delimited with a comma.
+index_transient | If set to 'true', this field instructs Cacti not to stop attempting to Graph an index if it disappears from the host cache as a result of a re-index.  This setting is for indexes that come and go, for example PPPoE statitics or user statistics which appear when a user log's in, but disappear a few hours after the connection is terminated.
+index_order_type | For sorting purposes, specify whether the index is numeric or alphanumeric. numeric: The indexes in this script query are to be sorted numerically (ie. 1,2,3,10,20,31) alphabetic: The indexes in this script query are to be sorted alphabetically (1,10,2,20,3,31).
+index_title_format | Specify the title format to use when representing an index to the user. Any input field name can be used as a variable if enclosed in pipes (&#124;). The variable &#124;chosen_order_field&#124; will be substituted with the field chosen by Cacti to index off of (see index_order above).
+
+###### Table 12-6. Script Query XML Field Settings
+
+Each field contained within the Script Query must be defined under the field tag as show in the example above.  In addition, each defined field in the Script Query must have a unique name given to it. Do not use spaces or any non-alphanumeric characters, this name must be identifiable within Cacti.
+
+Field | Description
+--- | ---
+name | Here you can specify a "friendly name" for the field. This name will be used by Cacti to help the user identify this field.
+direction | input: Input values are the "known" values that you will use to derive the output values, this is where the "query" part of script query comes in. When you create a graph based on a script query, Cacti will prompt you to choose the input value to base the graph on. output: Output values are "unknown" values that are returned from the script. A script query may return multiple statistics for a single index. For instance, a single partition could return free disk space, total disk space, fragmentation percentage, etc. A rule of thumb is that input fields contain semi-static data that is not graphable, while the output fields contain the data that will be graphed.
+query_name | Enter the name that Cacti must use when asking the script for information about this field. For instance, the following should return values: '(script_name) query (query_name)'.
+
+## Script Server XML Syntax
+
+```xml
+<query>
+    <name>Get Host MIB CPUs</name>
+    <script_path>|path_cacti|/scripts/ss_host_cpu.php</script_path>
+    <script_function>ss_host_cpu</script_function>
+    <script_server>php</script_server>
+    <arg_prepend>|host_hostname| |host_id| |host_snmp_version|:|host_snmp_port|:|host_snmp_timeout|:|host_ping_retries|:|host_max_oids|:|host_snmp_community|:|host_snmp_username|:|host_snmp_password|:|host_snmp_auth_protocol|:|host_snmp_priv_passphrase|:|host_snmp_priv_protocol|:|host_snmp_context|</arg_prepend>
+    <arg_index>index</arg_index>
+    <arg_query>query</arg_query>
+    <arg_get>get</arg_get>
+    <arg_num_indexes>num_indexes</arg_num_indexes>
+    <output_delimeter>!</output_delimeter>
+    <index_order>hrProcessorFrwID</index_order>
+    <index_order_type>numeric</index_order_type>
+    <index_title_format>CPU#|chosen_order_field|</index_title_format>
+
+    <fields>
+        <hrProcessorFrwID>
+            <name>Processor Index Number</name>
+            <direction>input</direction>
+            <query_name>index</query_name>
+        </hrProcessorFrwID>
+
+        <hrProcessorLoad>
+            <name>Processor Usage</name>
+            <direction>output</direction>
+            <query_name>usage</query_name>
+        </hrProcessorLoad>
+    </fields>
+</query>
+
+```
+
+###### Table 12-7. Script Server XML Settings
+
+Field | Description
+--- | ---
+name | (Optional) You can enter a "friendly name" for the script query here. It will not be used by Cacti, and is for identification only.
+description | (Optional) You can enter a description for the script query here. It will not be used by Cacti, and is for identification only.
+script_path | Enter the complete path to the script or executable that is going to handle your script query. When in doubt, specify the pull path to all binaries referenced in this path, the query may not execute otherwise.
+script_function | The function within the script in the case where the script can be used for multiple data collection functions.  Most script server scripts are associated with only one Data Query, but it's possible to have one script perform the collection for multiple Data Queries.
+arg_prepend | A list of device variables from the host to prepend after the script function when calling the script.  This information can be used to identify the device that is being monitored or pass certain device information to the script.
+arg_index | Enter the argument that is to be passed to the script to retrieve a list of indexes.
+arg_query | Enter the argument that is to be passed to the script to retrieve a list of values given a field name.
+arg_get | Enter the argument that is to be passed to the script to retrieve a single value given a field name and index value.
+arg_num_indexes | Enter the argument that is to be passed to the script to determine the total number of available indexes. If specified, this will be used to determine when to automatically re-cache this script query when it is attached to a device.
+output_delimeter | Enter the one character delimiter that will be used to separate output values. This is only used when you "query" the script in which case it outputs 'index(delimiter)value'.
+index_order | Cacti will attempt to find the best field to index off of based on whether each row in the query is unique and non-null. If specified, Cacti will perform this check on the fields listed here in the order specified. Only input fields can be specified and multiple fields should be delimited with a comma.
+index_transient | If set to 'true', this field instructs Cacti not to stop attempting to Graph an index if it disappears from the host cache as a result of a re-index.  This setting is for indexes that come and go, for example PPPoE statitics or user statistics which appear when a user log's in, but disappear a few hours after the connection is terminated.
+index_order_type | For sorting purposes, specify whether the index is numeric or alphanumeric. numeric: The indexes in this script query are to be sorted numerically (ie. 1,2,3,10,20,31) alphabetic: The indexes in this script query are to be sorted alphabetically (1,10,2,20,3,31).
+index_title_format | Specify the title format to use when representing an index to the user. Any input field name can be used as a variable if enclosed in pipes (&#124;). The variable &#124;chosen_order_field&#124; will be substituted with the field chosen by Cacti to index off of (see index_order above).
+
+###### Table 12-6. Script Server XML Field Settings
+
+Each field contained within the Script Query must be defined under the field tag as show in the example above.  In addition, each defined field in the Script Query must have a unique name given to it. Do not use spaces or any non-alphanumeric characters, this name must be identifiable within Cacti.
+
+Field | Description
+--- | ---
+name | Here you can specify a "friendly name" for the field. This name will be used by Cacti to help the user identify this field.
+direction | input: Input values are the "known" values that you will use to derive the output values, this is where the "query" part of script query comes in. When you create a graph based on a script query, Cacti will prompt you to choose the input value to base the graph on. output: Output values are "unknown" values that are returned from the script. A script query may return multiple statistics for a single index. For instance, a single partition could return free disk space, total disk space, fragmentation percentage, etc. A rule of thumb is that input fields contain semi-static data that is not graphable, while the output fields contain the data that will be graphed.
+query_name | Enter the name that Cacti must use when asking the script for information about this field. For instance, the following should return values: '(script_name) query (query_name)'.
 
 ---
 Copyright (c) 2004-2019 The Cacti Group

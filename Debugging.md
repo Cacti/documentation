@@ -215,7 +215,7 @@ installations will setup cron in `/etc/cron.d/cacti`
 
 Now check all your crontab, especially `/etc/crontab` and crontab of users
 root and cactiuser. Leave only one poller entry for all of them. Personally,
-I've chosen `/etc/cron.d/cacti` to avoid problems when updating RPM's. Mosten
+I've chosen `/etc/cron.d/cacti` to avoid problems when updating RPM's. Most
 often, you won't remember this item when updating lots of RPM's, so I felt more
 secure to put it here. And I've made some slight modifications, see
 
