@@ -76,5 +76,22 @@ DB_Port       3306
 #RDB_SSL_CA
 ```
 
+### Centos
+
+Install required system packages
+
+```console
+yum install -y gcc mysql-devel net-snmp-devel autoconf automake libtool dos2unix help2man
+```
+
+```Console
+./bootstrap
+./configure
+make
+make install
+chown root:root /usr/local/spine/bin/spine
+chmod u+s /usr/local/spine/bin/spine
+```
+
 ---
 Copyright (c) 2004-2019 The Cacti Group
