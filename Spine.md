@@ -26,7 +26,8 @@ The Maximum SNMP OIDs Per SNMP Get Request | The maximum number of SNMP get OIDs
 
 ### Installing Spine
 
-As Spine is written in C is must be compiled on the local system that it is to be installed on  below is an example of compiling on centos and Ubuntu
+As Spine is written in C is must be compiled on the local system that it is to
+be installed on  below is an example of compiling on centos and Ubuntu
 
 ### Ubuntu
 
@@ -36,16 +37,18 @@ Install the required system packages
 apt-get install -y build-essential dos2unix dh-autoreconf libtool help2man libssl-dev libmysql++-dev librrds-perl libsnmp-dev
 ```
 
-Next Download the version of spine you are looking for Typically this should match the version of Cacti you are using
-In this case we will download Version 1.2.3 of Spine
+Next, download the version of spine you are looking for Typically this should
+match the version of Cacti you are using. In this case we will download Version
+1.2.3 of Spine
 
+```console
 wget <https://github.com/Cacti/spine/archive/release/1.2.3.zip>
 unzip 1.2.3
 cd spine-release-1.2.3
+```
 
-once you are in the spine directory its time to compile the poller
-
-Issue the following commands to compile spine
+Once you are in the spine directory its time to compile the poller by issuing
+the following commands:
 
 ```Console
 ./bootstrap
@@ -56,13 +59,14 @@ chown root:root /usr/local/spine/bin/spine
 chmod u+s /usr/local/spine/bin/spine
 ```
 
-once complete you will need to configure spine's config file
+Once that has completed, you will need to configure spine's config file
 
 ```console
 vi /usr/local/spine/etc/spine.conf
 ```
 
-Below is an example of a configuration however yours should match your cacti database username and password
+Below is an example of a configuration however yours should match your cacti
+database username and password
 
 ```console
 DB_Host       localhost
@@ -84,7 +88,9 @@ Install required system packages
 yum install -y gcc mysql-devel net-snmp-devel autoconf automake libtool dos2unix help2man
 ```
 
-```Console
+Then compile using the folowing commands
+
+```console
 ./bootstrap
 ./configure
 make

@@ -1,6 +1,7 @@
 # Plugin Hook API Reference
 
-The following table shows all known Cacti plugin hooks and a brief description of their function.
+The following table shows all known Cacti plugin hooks and a brief description
+of their function.
 
 hook | hook | hook
 --- | --- | ---
@@ -48,7 +49,8 @@ hook | hook | hook
 
 ## add\_graph\_template\_to\_host
 
-Allows you to perform additional operations when adding a graph template to host. The parameters passed are `host_id` and `graph_template_id`.
+Allows you to perform additional operations when adding a graph template to
+host. The parameters passed are `host_id` and `graph_template_id`.
 
 file | introduced | retired
 --- | :--- | :---
@@ -59,7 +61,9 @@ lib/api_device.php |  1.0.0  |
 
 ## api\_device\_new
 
-This hooks allows you to perform additional operation at the end of api_device_save function. Unlike the api_device_save hook, the device ID is already defined here.
+This hooks allows you to perform additional operation at the end of
+api_device_save function. Unlike the api_device_save hook, the device ID is
+already defined here.
 
 file | introduced | retired
 --- | :--- | :---
@@ -67,9 +71,13 @@ lib/api_device.php |  1.0.0  |
 
 ## api\_device\_save
 
-This hooks allows you to perform additional operation at the end of api_device_save function. Unlike the api_device_new hook, the device ID is might not be defined here.
+This hook allows you to perform additional operation at the end of
+api_device_save function. Unlike the api_device_new hook, the device ID is might
+not be defined here.
 
-This hook allows you to alter the contents to the device table with custom fields. When used properly, it allows you to extend the host table with your plugins custom fields.
+This hook allows you to alter the contents to the device table with custom
+fields. When used properly, it allows you to extend the host table with your
+plugins custom fields.
 
 file | introduced | retired
 --- | :--- | :---
@@ -77,7 +85,8 @@ lib/api_device.php |  1.0.0  |
 
 ## auth\_alternate\_realms
 
-This hook allows you to handle user login check alternate plugin defined authentication realms.
+This hook allows you to handle user login check alternate plugin defined
+authentication realms.
 
 file | introduced | retired
 --- | :--- | :---
@@ -91,7 +100,7 @@ poller_boost.php |  1.0.0  |
 
 ## bottom\_footer
 
- Allows you to override the rendering of the bottom_footer html snippet.
+Allows you to override the rendering of the bottom_footer html snippet.
 
 file | introduced | retired
 --- | :--- | :---
@@ -119,7 +128,8 @@ lib/clog_webapi.php |  1.1.34  |
 
 ## config\_arrays
 
-Allows your plug-in to define custom array elements to be used throughout cacti. Things like dropdown arrays and the like.
+Allows your plug-in to define custom array elements to be used throughout cacti.
+Things like dropdown arrays and the like.
 
 file | introduced | retired
 --- | :--- | :---
@@ -127,7 +137,11 @@ include/global_arrays.php |  1.0.0  |
 
 ## config\_form
 
-Allows you to define form object to represent data to be stored in your tables. In the case of MacTrack, there is a table called `mac_track_sites` and in order to drive the UI and allow for the user to provide input and save a site, you must provide the Cacti form engine a form array to allow for the form to be presented and contents to be saved.
+Allows you to define form object to represent data to be stored in your tables.
+In the case of MacTrack, there is a table called `mac_track_sites` and in order
+to drive the UI and allow for the user to provide input and save a site, you
+must provide the Cacti form engine a form array to allow for the form to be
+presented and contents to be saved.
 
 file | introduced | retired
 --- | :--- | :---
@@ -135,7 +149,8 @@ include/global_form.php |  1.0.0  |
 
 ## config\_insert
 
-This is a general purpose hook used for connecting to other database, or sourcing common includes that would otherwise not be sourced.
+This is a general purpose hook used for connecting to other database, or
+sourcing common includes that would otherwise not be sourced.
 
 file | introduced | retired
 --- | :--- | :---
@@ -143,7 +158,8 @@ include/global.php |  1.0.0  |
 
 ## config\_settings
 
-Allows you to extend the Cacti settings page to allow for custom tabs and global settings within them.
+Allows you to extend the Cacti settings page to allow for custom tabs and global
+settings within them.
 
 file | introduced | retired
 --- | :--- | :---
@@ -159,7 +175,9 @@ index.php |  1.0.0  |
 
 ## console\_before
 
-Allows you to add text before the default message on the console page. For instance, the Update plug-in will display a message here if there are new versions of plugins.
+Allows you to add text before the default message on the console page. For
+instance, the Update plug-in will display a message here if there are new
+versions of plugins.
 
 file | introduced | retired
 --- | :--- | :---
@@ -167,7 +185,8 @@ index.php |  1.0.0  |
 
 ## copy\_user
 
-Allows a plugin to take part in the Copy User actions.  This is important a plugin maintains user settings.
+Allows a plugin to take part in the Copy User actions.  This is important a
+plugin maintains user settings.
 
 file | introduced | retired
 --- | :--- | :---
@@ -175,7 +194,8 @@ lib/auth.php |  1.0.0  |
 
 ## create\_complete\_graph\_from\_template
 
-Allows you to perform additional operations when adding new graph to device from graph template.
+Allows you to perform additional operations when adding new graph to device from
+graph template.
 
 file | introduced | retired
 --- | :--- | :---
@@ -207,7 +227,8 @@ auth_changepassword.php |  1.0.0  |
 
 ## custom\_version\_info
 
-Allows your plugin to display additional information on the cacti tech support page.
+Allows your plugin to display additional information on the cacti tech support
+page.
 
 file | introduced | retired
 --- | :--- | :---
@@ -243,7 +264,10 @@ data_sources.php |  1.0.0  |
 
 ## data\_source\_action\_prepare
 
-This is the final component to creating a custom action within the data sources. In Cacti's form engine, you must provide the dropdown action and then two follow-up actions to complete the cycle. This is were you actually save the data.
+This is the final component to creating a custom action within the data sources.
+In Cacti's form engine, you must provide the dropdown action and then two
+follow-up actions to complete the cycle. This is were you actually save the
+data.
 
 file | introduced | retired
 --- | :--- | :---
@@ -251,7 +275,8 @@ data_sources.php |  1.0.0  |
 
 ## data\_source\_edit\_bottom
 
-Allows you to make minor change to the Data Sources page, like add a tabbed interface.
+Allows you to make minor change to the Data Sources page, like add a tabbed
+interface.
 
 file | introduced | retired
 --- | :--- | :---
@@ -259,7 +284,8 @@ data_sources.php |  1.0.0  |
 
 ## data\_source\_edit\_top
 
-Allows you to make minor changes to the Data Sources page, like add a tabbed interface.
+Allows you to make minor changes to the Data Sources page, like add a tabbed
+interface.
 
 file | introduced | retired
 --- | :--- | :---
@@ -267,7 +293,8 @@ data_sources.php |  1.0.0  |
 
 ## data\_source\_remove
 
-This hook is called when the data sources used by a graph are removed. The parameters are the graphs data sources.
+This hook is called when the data sources used by a graph are removed. The
+parameters are the graphs data sources.
 
 file | introduced | retired
 --- | :--- | :---
@@ -278,7 +305,8 @@ lib/api_data_source.php |  1.2.0-beta1  |
 
 ## data\_sources\_table
 
-Allows you to change the data displayed on the Data Sources table. THold uses this to create a link to that datasources threshold
+Allows you to change the data displayed on the Data Sources table. THold uses
+this to create a link to that datasources threshold
 
 file | introduced | retired
 --- | :--- | :---
@@ -314,7 +342,9 @@ host.php |  1.0.0  |
 
 ## device\_action\_prepare
 
-This is the final component to creating a custom action within the devices. In Cacti's form engine, you must provide the dropdown action and then two follow-up actions to complete the cycle. This is were you actually save the data.
+This is the final component to creating a custom action within the devices. In
+Cacti's form engine, you must provide the dropdown action and then two follow-up
+actions to complete the cycle. This is were you actually save the data.
 
 file | introduced | retired
 --- | :--- | :---
@@ -328,7 +358,8 @@ host.php |  1.0.0  |
 
 ## device\_edit\_top\_links
 
-This hook allows you to add custom actions to the host edit page, below the "Create graphs for this Host".
+This hook allows you to add custom actions to the host edit page, below the
+"Create graphs for this Host".
 
 file | introduced | retired
 --- | :--- | :---
@@ -342,7 +373,9 @@ host.php |  1.0.0  |
 
 ## device\_remove
 
-This hook allows you to perform additional actions on devices that have been selected for deletion. The parameter is an array of deleted device IDs. Note that at this point, the devices are already deleted from the host table.
+This hook allows you to perform additional actions on devices that have been
+selected for deletion. The parameter is an array of deleted device IDs. Note
+that at this point, the devices are already deleted from the host table.
 
 file | introduced | retired
 --- | :--- | :---
@@ -375,7 +408,9 @@ host_templates.php |  1.0.0  |
 
 ## draw\_navigation\_text
 
-Just below the Cacti "Console", and "Graphs" tabs, cacti provides a Navigation bar that allows you to move backward in a selection tree. Although it is not foolproof, this hook allows you to populate and navigate that tree.
+Just below the Cacti "Console", and "Graphs" tabs, cacti provides a Navigation
+bar that allows you to move backward in a selection tree. Although it is not
+foolproof, this hook allows you to populate and navigate that tree.
 
 file | introduced | retired
 --- | :--- | :---
@@ -415,7 +450,8 @@ graph.php |  1.0.0  |
 
 ## graph\_buttons
 
-You know about the zoom button right? Well this allows you to add any additional custom button to the right of a graph.
+You know about the zoom button right? Well this allows you to add any additional
+custom button to the right of a graph.
 
 file | introduced | retired
 --- | :--- | :---
@@ -429,7 +465,9 @@ graphs.php |  1.2.0-beta1  |
 
 ## graph\_image
 
-This hooks allows displaying of alternative graphics in place of a graph image. This hook can no output text, only modify the image, as it is only called when a graph is required to be outputted.
+This hooks allows displaying of alternative graphics in place of a graph image.
+This hook can no output text, only modify the image, as it is only called when a
+graph is required to be outputted.
 
 file | introduced | retired
 --- | :--- | :---
@@ -438,7 +476,8 @@ graph_json.php |  1.0.0  |
 
 ## graph\_items\_remove
 
-This hook is called when when the data source is deleted, and the option to remove all graph items tied to the data source is selected.
+This hook is called when when the data source is deleted, and the option to
+remove all graph items tied to the data source is selected.
 
 file | introduced | retired
 --- | :--- | :---
@@ -446,7 +485,8 @@ data_sources.php |  1.0.0  |
 
 ## graphs\_action\_array
 
-Similar to the host actions and host, prepare and execute hooks. It allows you to have custom dropdown actions within the graph management interface.
+Similar to the host actions and host, prepare and execute hooks. It allows you
+to have custom dropdown actions within the graph management interface.
 
 file | introduced | retired
 --- | :--- | :---
@@ -486,7 +526,8 @@ graphs_new.php |  1.0.0  |
 
 ## graphs\_remove
 
-This hook is called after one or more graphs are removed. The parameters are the removed graph IDs.
+This hook is called after one or more graphs are removed. The parameters are the
+removed graph IDs.
 
 file | introduced | retired
 --- | :--- | :---
@@ -497,7 +538,8 @@ lib/api_graph.php |  1.2.0-beta1  |
 
 ## graphs\_sql\_where
 
-This hooks allows you to add additional where clauses to the select statement used to display graphs on the graphs.php page.
+This hooks allows you to add additional where clauses to the select statement
+used to display graphs on the graphs.php page.
 
 file | introduced | retired
 --- | :--- | :---
@@ -505,7 +547,8 @@ graphs.php |  1.0.0  |
 
 ## graph\_tree\_page\_buttons
 
-Allows you to add custom HTML to the graph tree view page, under the timespan presets and the graph search box.
+Allows you to add custom HTML to the graph tree view page, under the timespan
+presets and the graph search box.
 
 file | introduced | retired
 --- | :--- | :---
@@ -531,7 +574,8 @@ scripts/ss_host_disk.php |  1.0.0  |
 
 ## host\_edit\_bottom
 
-Allows you to make minor changes to the Devices page, like add a tabbed interface.
+Allows you to make minor changes to the Devices page, like add a tabbed
+interface.
 
 file | introduced | retired
 --- | :--- | :---
@@ -539,7 +583,8 @@ host.php |  1.0.0  |
 
 ## host\_edit\_top
 
-Allows you to make minor changes to the Devices page, like add a tabbed interface.
+Allows you to make minor changes to the Devices page, like add a tabbed
+interface.
 
 file | introduced | retired
 --- | :--- | :---
@@ -573,7 +618,9 @@ auth_login.php |  1.0.0  |
 
 ## login\_before
 
-This allows you to display text or html before the login form. Combined with the above hook, you could draw a box, etc around the form, change its background color, etc to slightly customize the login page.
+This allows you to display text or html before the login form. Combined with the
+above hook, you could draw a box, etc around the form, change its background
+color, etc to slightly customize the login page.
 
 file | introduced | retired
 --- | :--- | :---
@@ -598,7 +645,8 @@ auth_login.php |  1.0.0  |
 
 ## login\_realms
 
-Used to defined additional custom plugin defined authentication realms. The parameter passed is an array of existing authentication realms.
+Used to defined additional custom plugin defined authentication realms. The
+parameter passed is an array of existing authentication realms.
 
 file | introduced | retired
 --- | :--- | :---
@@ -614,7 +662,9 @@ auth_login.php |  1.0.0  |
 
 ## logout\_post\_session\_destroy
 
-This pair of hooks (`logout_pre_session_destroy` and `logout_post_session_destroy`) allows you to preserve some session variables that would otherwise get unset, when `session_destroy()` is called.
+This pair of hooks (`logout_pre_session_destroy` and
+`logout_post_session_destroy`) allows you to preserve some session variables
+that would otherwise get unset, when `session_destroy()` is called.
 
 file | introduced | retired
 --- | :--- | :---
@@ -622,7 +672,9 @@ logout.php |  1.0.0  |
 
 ## logout\_pre\_session\_destroy
 
-This pair of hooks (`logout_pre_session_destroy` and `logout_post_session_destroy`) allows you to preserve some session variables that would otherwise get unset, when `session_destroy()` is called.
+This pair of hooks (`logout_pre_session_destroy` and
+`logout_post_session_destroy`) allows you to preserve some session variables
+that would otherwise get unset, when `session_destroy()` is called.
 
 file | introduced | retired
 --- | :--- | :---
@@ -630,7 +682,8 @@ logout.php |  1.0.0  |
 
 ## nav\_login\_after
 
-This pair of hooks (`nav_login_before` and `nav_login_after`) allows you to add custom HTML to the navigation bar, before and after the "Logged in as " text.
+This pair of hooks (`nav_login_before` and `nav_login_after`) allows you to add
+custom HTML to the navigation bar, before and after the "Logged in as " text.
 
 file | introduced | retired
 --- | :--- | :---
@@ -638,7 +691,8 @@ lib/functions.php |  1.0.0  |
 
 ## nav\_login\_before
 
-This pair of hooks (`nav_login_before` and `nav_login_after`) allows you to add custom HTML to the navigation bar, before and after the "Logged in as " text.
+This pair of hooks (`nav_login_before` and `nav_login_after`) allows you to add
+custom HTML to the navigation bar, before and after the "Logged in as " text.
 
 file | introduced | retired
 --- | :--- | :---
@@ -646,7 +700,8 @@ lib/functions.php |  1.0.0  |
 
 ## page\_bottom
 
-This hook allows you to add custom HTML to the bottom of the page, after the main layout table.
+This hook allows you to add custom HTML to the bottom of the page, after the
+main layout table.
 
 file | introduced | retired
 --- | :--- | :---
@@ -654,7 +709,8 @@ include/bottom_footer.php |  1.0.0  |
 
 ## page\_buttons
 
-Allows you to add custom buttons and HTML to the top of the graph.php page, above the "Viewing graph" row.
+Allows you to add custom buttons and HTML to the top of the graph.php page,
+above the "Viewing graph" row.
 
 file | introduced | retired
 --- | :--- | :---
@@ -684,7 +740,9 @@ include/top_header.php |  1.0.0  |
 
 ## poller\_bottom
 
-This hook allows you to launch other polling activities once Cacti has complete it's polling activities. Things like MacTrack, Boost, THold, and others use this hook to launch their respective poller.
+This hook allows you to launch other polling activities once Cacti has complete
+it's polling activities. Things like MacTrack, Boost, THold, and others use this
+hook to launch their respective poller.
 
 file | introduced | retired
 --- | :--- | :---
@@ -692,7 +750,8 @@ poller.php |  1.0.0  |
 
 ## poller\_command\_args
 
-Using this hook, your plugin can pass additional command line arguments to the poller.
+Using this hook, your plugin can pass additional command line arguments to the
+poller.
 
 file | introduced | retired
 --- | :--- | :---
@@ -712,7 +771,13 @@ poller.php |  1.0.0  |
 
 ## poller\_output
 
-This hook was designed specifically for the boost plug-in. However, it has found new life in many plugins making them much faster now. What this hook allows you to do is intercept the contents of the `poller_output` table before the data is deleted. This allows for things like threshold checking and other interesting actions such as checking for up/down events and the like. Previously, plugins were reliant on using things like `rrdtool fetch` to perform these actions. Now they can leverage the pollers output directly.
+This hook was designed specifically for the boost plug-in. However, it has found
+new life in many plugins making them much faster now. What this hook allows you
+to do is intercept the contents of the `poller_output` table before the data is
+deleted. This allows for things like threshold checking and other interesting
+actions such as checking for up/down events and the like. Previously, plugins
+were reliant on using things like `rrdtool fetch` to perform these actions. Now
+they can leverage the pollers output directly.
 
 file | introduced | retired
 --- | :--- | :---
@@ -720,7 +785,8 @@ lib/poller.php |  1.0.0  |
 
 ## poller\_top
 
-This hook allows you to launch processes concurrently with the Cacti poller for things like THolds fast poller for example.
+This hook allows you to launch processes concurrently with the Cacti poller for
+things like THolds fast poller for example.
 
 file | introduced | retired
 --- | :--- | :---
@@ -753,7 +819,9 @@ lib/export.php |  1.2.0-beta1  |
 
 ## rrd\_graph\_graph\_options
 
-This hook allows you to specify additional options or change parameters regarding graph image rendering. Some of the parameters will be passed to RRDTool.
+This hook allows you to specify additional options or change parameters
+regarding graph image rendering. Some of the parameters will be passed to
+RRDTool.
 
 file | introduced | retired
 --- | :--- | :---
@@ -761,7 +829,8 @@ lib/rrd.php |  1.0.0  |
 
 ## run\_data\_query
 
-This hook allows your plugin to perform additional operations after a data query update was triggered.
+This hook allows your plugin to perform additional operations after a data query
+update was triggered.
 
 file | introduced | retired
 --- | :--- | :---
@@ -805,7 +874,8 @@ lib/html_tree.php |  1.0.0  |
 
 ## top\_graph\_refresh
 
-This allows you to change the refresh on the graph (and any plug-in page that calls the graph header)
+This allows you to change the refresh on the graph (and any plug-in page that
+calls the graph header)
 
 file | introduced | retired
 --- | :--- | :---
@@ -814,7 +884,9 @@ include/themes/sunrise/global_session.php |  1.1.11  |  1.1.38
 
 ## top\_header
 
-This hooks enables you to output custom HTML on top the the graph view page, if navigation tabs are not rendered. Allows you to override the rendering of the top_header.php include.
+This hooks enables you to output custom HTML on top the the graph view page, if
+navigation tabs are not rendered. Allows you to override the rendering of the
+top_header.php include.
 
 file | introduced | retired
 --- | :--- | :---
@@ -823,7 +895,8 @@ include/top_header.php |  1.0.0  |  1.1.38
 
 ## tree\_after
 
-This hook allows you to add additional HTML at the bottom of the graph tree view page. The HTML is rendered only if a valid graph tree leaf is selected.
+This hook allows you to add additional HTML at the bottom of the graph tree view
+page. The HTML is rendered only if a valid graph tree leaf is selected.
 
 file | introduced | retired
 --- | :--- | :---
@@ -831,7 +904,8 @@ lib/html_tree.php |  1.0.0  |
 
 ## tree\_view\_page\_end
 
-This hook allows you to add additional HTML at the bottom of the graph tree view page, irrespective of the leaf selection.
+This hook allows you to add additional HTML at the bottom of the graph tree view
+page, irrespective of the leaf selection.
 
 file | introduced | retired
 --- | :--- | :---
@@ -854,7 +928,15 @@ lib/variables.php |  1.0.0  |
 
 ## user\_admin\_action
 
-This hook is part of a series of hooks that allow you to add custom user settings. Consider a plug-in called "abc". In that plug-in, you want to save custom settings on a per user basis. Therefore, following our unpublished ? table naming standards, you would create a table called "abc_settings". When you tab over to the "abc" plug-in, you are provided an "abc settings" on the right similar to "Graphs". The next series of hooks allow you to present those settings to the user, enable or disable the users access to that specific "abc settings" tab and allow an administrator to define customer values for that plug-in on a per user basis.
+This hook is part of a series of hooks that allow you to add custom user
+settings. Consider a plug-in called "abc". In that plug-in, you want to save
+custom settings on a per user basis. Therefore, following our unpublished ?
+table naming standards, you would create a table called "abc_settings". When you
+tab over to the "abc" plug-in, you are provided an "abc settings" on the right
+similar to "Graphs". The next series of hooks allow you to present those
+settings to the user, enable or disable the users access to that specific "abc
+settings" tab and allow an administrator to define customer values for that
+plug-in on a per user basis.
 
 file | introduced | retired
 --- | :--- | :---
@@ -927,7 +1009,8 @@ user_group_admin.php |  1.0.0  |
 
 ## user\_remove
 
-Allows the plugin to take part in the user removal process.  Important when the plugin maintains user settings.
+Allows the plugin to take part in the user removal process.  Important when the
+plugin maintains user settings.
 
 file | introduced | retired
 --- | :--- | :---
@@ -936,7 +1019,8 @@ user_admin.php |  1.0.0  |
 
 ## utilities\_action
 
-This hook set's up the function to be executed from within Cacti's utilities section.
+This hook set's up the function to be executed from within Cacti's utilities
+section.
 
 file | introduced | retired
 --- | :--- | :---
@@ -950,7 +1034,8 @@ utilities.php |  1.0.4  |
 
 ## utilities\_list
 
-This hook allows you to add a custom utilities pick under Cacti's "Utilities" page.
+This hook allows you to add a custom utilities pick under Cacti's "Utilities"
+page.
 
 file | introduced | retired
 --- | :--- | :---
@@ -958,9 +1043,11 @@ utilities.php |  1.0.0  |
 
 ## valid\_host\_fields
 
-Allows your plugin to define additional variables that will be used in substitute_host_data.
+Allows your plugin to define additional variables that will be used in
+substitute_host_data.
 
-Pretty sure that this hook allows you to define custom replacement values in graphs.
+Pretty sure that this hook allows you to define custom replacement values in
+graphs.
 
 file | introduced | retired
 --- | :--- | :---

@@ -185,7 +185,8 @@ Cacti requires that the following software is installed on your system.
       - change mysqldump file - remove **ROW_FORMAT=FIXED** from table definition
       - before mysqldump run query **ALTER TABLE `poller_output_boost` ROW_FORMAT=DYNAMIC;**
 
-To implement the above mysql recomendations you can use the below entries and paste them into my.cnf
+To implement the above mysql recomendations you can use the below entries and
+paste them into my.cnf
 
 ```console
  innodb_flush_log_at_timeout = 4

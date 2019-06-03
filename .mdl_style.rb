@@ -6,7 +6,7 @@ rule "MD046", style: "fenced"
 
 # Lesser rules
 exclude_rule "MD010" # hard tabs
-exclude_rule "MD013" # line length
+#exclude_rule "MD013" # line length
 
 # Rule Exclusions
 exclude_rule "MD001" # Headers are useful in other ways

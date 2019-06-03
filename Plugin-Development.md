@@ -30,33 +30,47 @@ details on performing each step.
 ### Required Steps
 
 - Creation of Information (INFO) file (mandatory)
+
 - Applying correct classes to Anchor tags to trigger callbacks (mandatory)
+
 - Remove instances of including top_header.php, top_graph_header.php,
   top_general_header.php and replacing with function calls top_header(),
   bottom_footer(), top_graph_header(), and top_general_header(). (mandatory)
+
 - Adding '&header=false' to most header() function calls to drive Ajax
   rendering. (mandatory)
+
 - Movement of form elements to be W3C compliant as HTML5 requires it (mandatory)
+
 - Moving the $nav variable within the page to ensure tables are formatted
   correctly.  This includes the $nav before the table and the $nav afterwards.
   (mandatory)
+
 - Remove all instances of $_GET, $_REQUEST, and $_POST and replacing the
   wrappers get_request_var(), get_filter_request_var(), set_request_var(),
   isset_request_var(), isempty_request_var() (mandatory)
+
 - Utilize the 'validate_store_request_vars()' function to greatly simplify
   request validation on your pages. (mandatory)
+
 - Migration of the Plugin to the PIA 2.x+ install and setup process.  Cacti PIA
   1.x plugins are not supported in Cacti 1.0 and beyond. (mandatory)
+
 - Removal of hooks that inject jQuery, jQueryUI into Cacti's header (mandatory)
 
 ### Optional Steps
 
 - Remove inline styles, and use Cacti's classes instead (highly recommended)
+
 - Migration of filters to Ajax callbacks (highly recommended)
+
 - Removing references to the $colors array (optional)
+
 - Using new functions for alternate colored rows, sorted, checkbox and other
   headers (optional)
+
 - Using new options for headers to support tool tips, alignment etc (optional)
+
 - Migration to new pagination functions, which simplify page navigation
 
 ### INFO File structure
@@ -65,14 +79,22 @@ The INFO file follows the INI file specification.  An example INFO file
 includes the following sections:
 
 - **name** - The name of the plugin directory
+
 - **version** - The version number of the plugin
+
 - **longname** - A description for the plugin
+
 - **author** - The plugins author
+
 - **email** - An email contact in order to reach the author
+
 - **homepage** - A link to the plugin authors homepage
+
 - **compat** - The minimum supported Cacti version
+
 - **capabilities** - a comma delimited string of capabilities defining how the
   plugin works with remote data collectors
+
 - **nosync** - a comma delimited string of directories or file extensions to
   skip during the remote data collector synchronization.  File extensions must be
   formatted as `*.extension` and only are relevant in the base directory of the

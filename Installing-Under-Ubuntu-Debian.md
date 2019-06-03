@@ -9,7 +9,8 @@ apt-get install -y apache2 rrdtool mariadb-server snmp snmpd php7.0 php-mysql ph
 
 ### Downloading the Cacti software
 
-Once the OS packages are installed we need to download the Cacti files you can do this by using the git command
+Once the OS packages are installed, you will need to download the Cacti files
+you can do this by using the git command
 
 ```console
 git clone https://github.com/Cacti/cacti.git
@@ -22,9 +23,12 @@ Receiving objects: 100% (59936/59936), 76.33 MiB | 1.81 MiB/s, done.
 Resolving deltas: 100% (43598/43598), done.
 ```
 
-After downloading the cacti files move the files into the /var/www/html directory
+After cloning the Cacti repository, move the files into the /var/www/html
+directory
 
+```console
 mv cacti /var/www/html
+```
 
 #### Database Creation
 
@@ -39,20 +43,22 @@ ALTER DATABASE cacti CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 FLUSH PRIVILEGES;
 ```
 
-we will now need to pre-populate the database used by cacti
+You will now need to pre-populate the database used by cacti
 
 ```console
 mysql -u root cacti < /var/www/html/cacti/cacti.sql
 ```
 
-Now we are ready to start configuring cacti we have  need to edit the config.php file locating in /var/www/html/cacti/include
+Next, you will need to create the config.php file in /var/www/html/cacti/include
 
 ```console
 cd /var/www/html/cacti/include
 cp config.php.dist config.php
 ```
 
-make changes as needed to the below entries
+Now, edit the config.php file and make sure to change the database settings as
+needed to match the below entries (though it is highly recommended to use a
+customised username/password combination for security)
 
 ```console
 $database_type     = 'mysql';
@@ -66,7 +72,9 @@ $database_ssl      = false;
 $database_ssl_key  = '';
 ```
 
-The system is now ready to go just surf to yourip/cacti to start the cacti initalization
+The system is now ready to finialise the steps by browsing to
+[http://serverip/cacti](http://serverip/cacti) to start the cacti initalization
+wizard.
 
 ---
 Copyright (c) 2004-2019 The Cacti Group

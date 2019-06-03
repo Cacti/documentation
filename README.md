@@ -54,15 +54,20 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 2. [Cacti Overview](README.md#cacti-overview)
 
-   This section describes Cacti components and their purpose as well as providing examples including on how to create **Templates** in Cacti.
+   This section describes Cacti components and their purpose as well as
+   providing examples including on how to create **Templates** in Cacti.
 
 3. [Advanced Operations](README.md#advanced-operations)
 
-   This section covers more advanced material such as using a advanced data collection and replacement variables that can be used within **Templates**, etc.
+   This section covers more advanced material such as using a advanced data
+   collection and replacement variables that can be used within **Templates**,
+   etc.
 
 4. [Plugins](README.md#plugins)
 
-   This section contains all Plugin related information.  Guidelines, hooks, references, etc.  More information can be found on the [Cacti Forums](https://forums.cacti.net/viewforum.php?f=6).
+   This section contains all Plugin related information.  Guidelines, hooks,
+   references, etc.  More information can be found on the [Cacti
+   Forums](https://forums.cacti.net/viewforum.php?f=6).
 
 5. [How To's](README.md#how-tos)
 
@@ -74,7 +79,10 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 7. [Development Standards](README.md#development-standards)
 
-   This section contains the relevant information on how to ensure that any contribution is kept to the same standards that are applied for the Cacti Group.  It should be noted that non-compliance does not mean automatically exclusion of proposed changes.
+   This section contains the relevant information on how to ensure that any
+   contribution is kept to the same standards that are applied for the Cacti
+   Group. It should be noted that non-compliance does not mean automatically
+   exclusion of proposed changes.
 
 ### Cacti Installation
 

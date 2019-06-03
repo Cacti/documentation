@@ -6,7 +6,8 @@ This section will describe **Data Source Profiles** in Cacti.
 
 ![Data Source Profiles Edit](images/data-source-profiles-edit1.png)
 
-The following values are for the disk usage per Data source for the respective data profile
+The following values are for the disk usage per Data source for the respective
+data profile
 
 ### 30 second polling
 

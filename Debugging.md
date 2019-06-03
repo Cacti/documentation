@@ -1,29 +1,30 @@
 # Debugging
 
-Cacti users sometimes complain about NaN's in their graphs. Unfortunately,
-there are several reasons for this result. The following is a step-by-step
-procedure recommended for debugging.
+Cacti users sometimes complain about NaN's in their graphs. Unfortunately, there
+are several reasons for this result. The following is a step-by-step procedure
+recommended for debugging.
 
 ## Check Cacti Log File
 
 Your cacti log file should be located at `<path_cacti>/log/cacti.log`. If it is
 not, see `Settings`, `Paths`. Check for this kind of error:
 
-    SPINE: Host[...] DS[....] WARNING: SNMP timeout detected [500 ms],
-ignoring host '........'
+```console
+SPINE: Host[...] DS[....] WARNING: SNMP timeout detected [500 ms], ignoring host '........'
+```
 
 For "reasonable" timeouts, this may be related to a snmpbulkwalk issue. To
 change this, see `Settings`, `Poller` and lower the value for `The Maximum SNMP
-OIDs Per SNMP Get Request`. Start at a value of 2 and increase it again, if
-the poller starts working. (1 or less disables snmpbulkwalk) Some agent's don't
-have the horsepower to deliver that many OIDs at a time. Therefore, we can
-reduce the number for those older/under-powered devices.
+OIDs Per SNMP Get Request`. Start at a value of 2 and increase it again, if the
+poller starts working. (1 or less disables snmpbulkwalk) Some agent's don't have
+the horsepower to deliver that many OIDs at a time. Therefore, we can reduce the
+number for those older/under-powered devices.
 
 ## Check Basic Data Gathering
 
 For scripts, run them as cactiuser from CLI to check basic functionality. E.g.
-for a Perl script named `your-perl-script.pl` with parameters "p1 p2" under
-*nix this would look like:
+for a Perl script named `your-perl-script.pl` with parameters "p1 p2" under *nix
+this would look like:
 
 ```sh
 su - cactiuser
@@ -31,10 +32,10 @@ su - cactiuser
 ... (check output)
 ```
 
-For SNMP, snmpget the _exact_ OID you're asking for, using same community
-string and SNMP version as defined within cacti. For an OID of
-`.1.3.6.1.4.something`, community string of `very-secret` and version 2 for
-target host `target-host` this would look like
+For SNMP, snmpget the _exact_ OID you're asking for, using same community string
+and SNMP version as defined within cacti. For an OID of `.1.3.6.1.4.something`,
+community string of `very-secret` and version 2 for target host `target-host`
+this would look like
 
 ```sh
 snmpget -c very-secret -v 2c target-host .1.3.6.1.4.something
@@ -44,8 +45,8 @@ snmpget -c very-secret -v 2c target-host .1.3.6.1.4.something
 ## Check Cacti's poller
 
 First make sure that crontab always shows poller.php. This program will either
-call cmd.php, the PHP based poller _or_ spine, the fast alternative, written
-in C. Define the poller you're using at `Settings`, `Poller`. Spine has to be
+call cmd.php, the PHP based poller _or_ spine, the fast alternative, written in
+C. Define the poller you're using at `Settings`, `Poller`. Spine has to be
 implemented separately, it does not come with cacti by default.
 
 Now, clear `./log/cacti.log` (or rename it to get a fresh start)
@@ -58,14 +59,16 @@ Now, find the host/data source in question. The `Host[<id>]` is given
 numerically, the `<id>` being a specific number for that host. Find this `<id>`
 from the `Devices` menu when editing the host: The URL contains a string like
 
-`id=<id>`
+```console
+id=<id>
+```
 
 Check, whether the output is as expected. If not, check your script (e.g.
 `/full/path/to/perl`). If OK, proceed to next step
 
 This procedure may be replaced by running the poller manually for the failing
-host only. To do so, you need the `<id>`, again. If you're using cmd.php, set the
-DEBUG logging level as defined above and run
+host only. To do so, you need the `<id>`, again. If you're using cmd.php, set
+the DEBUG logging level as defined above and run
 
 ```sh
 php -q cmd.php <id> <id>
@@ -88,9 +91,9 @@ In most cases, this step can be skipped. You may want to return to this step if
 the next one fails (e.g. no rrdtool update to be found)
 
 From debug log, find the MySQL update statement for that host concerning table
-`poller_output`. On very rare occasions, this will fail. Copy that SQL
-statement and paste it to a MySQL session started from CLI. This may as well be
-done from some tool like phpMyAdmin. Check the SQL return code.
+`poller_output`. On very rare occasions, this will fail. Copy that SQL statement
+and paste it to a MySQL session started from CLI. This may as well be done from
+some tool like phpMyAdmin. Check the SQL return code.
 
 ## Check RRD file updating
 
@@ -185,11 +188,11 @@ wanted.
 
 ## Miscellaneous
 
-Up to current cacti 0.8.6h, table `poller_output` may increase beyond
-reasonable size.
+Up to current cacti 0.8.6h, table `poller_output` may increase beyond reasonable
+size.
 
-This is commonly due to php.ini's memory settings of 8MB default. Change this
-to at least 64 MB.
+This is commonly due to php.ini's memory settings of 8MB default. Change this to
+at least 64 MB.
 
 To check this, run the following SQL from MySQL CLI (or phpMyAdmin or the like)
 
@@ -203,8 +206,8 @@ If the result is huge, you may get rid of those stuff by
 truncate table poller_output;
 ```
 
-As of current SVN code for upcoming cacti 0.9, I saw measures were taken on
-both issues (memory size, truncating poller_output).
+As of current SVN code for upcoming cacti 0.9, I saw measures were taken on both
+issues (memory size, truncating poller_output).
 
 ## RPM Installation
 
@@ -213,11 +216,11 @@ installation instructions to the letter (which you should always do ;-) ), you
 may now have two poller running. That's not a good thing, though. Most rpm
 installations will setup cron in `/etc/cron.d/cacti`
 
-Now check all your crontab, especially `/etc/crontab` and crontab of users
-root and cactiuser. Leave only one poller entry for all of them. Personally,
-I've chosen `/etc/cron.d/cacti` to avoid problems when updating RPM's. Most
-often, you won't remember this item when updating lots of RPM's, so I felt more
-secure to put it here. And I've made some slight modifications, see
+Now check all your crontab, especially `/etc/crontab` and crontab of users root
+and cactiuser. Leave only one poller entry for all of them. Personally, I've
+chosen `/etc/cron.d/cacti` to avoid problems when updating RPM's. Most often,
+you won't remember this item when updating lots of RPM's, so I felt more secure
+to put it here. And I've made some slight modifications, see
 
 ```sh
 shell> vi /etc/cron.d/cacti
