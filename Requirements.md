@@ -176,8 +176,8 @@ Cacti requires that the following software is installed on your system.
     - Some of these recommendations may not be applicable depending on the
       version of MySQL/MariaDB you are running.
     - Some of these recommendations should be scaled where appropriate
-    - Newer MySQL/MariaDB databases are using [strict modes](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html)
-      and it can causes unexpected problems with import older Cacti mysqldumps, 
+    - Newer MySQL/MariaDB software are using [strict modes](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html)
+      and it can cause unexpected problems when importing dumps of Cacti databases from older systems, 
       like **Can't create table `cacti`.`poller_output_boost` (errno: 140 "Wrong create options")**. 
       
       You have more posibilities:
@@ -185,6 +185,21 @@ Cacti requires that the following software is installed on your system.
       - change mysqldump file - remove **ROW_FORMAT=FIXED** from table definition
       - before mysqldump run query **ALTER TABLE `poller_output_boost` ROW_FORMAT=DYNAMIC;**   
 
+To implement the above mysql recomendations you can use the below entries and paste them into my.cnf
+
+```console
+ innodb_flush_log_at_timeout = 4
+ innodb_read_io_threads = 34
+ innodb_write_io_threads = 17
+ max_heap_table_size = 70M
+ tmp_table_size = 70M
+ join_buffer_size = 130M
+ innodb_buffer_pool_size = 250M
+ innodb_io_capacity = 5000
+ innodb_io_capacity_max = 10000
+ innodb_file_format = Barracuda
+ innodb_large_prefix = 1
+ ```
 
 ---
 Copyright (c) 2004-2019 The Cacti Group
