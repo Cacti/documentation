@@ -25,6 +25,10 @@ sure you change the paths to match your setup.
 Replace `YourOwnCertFile.crt` and `YourOwnCertFile.key` with the names of the
 files holding your certificate (`.crt`) and private key (`.key`).
 
+```
+/etc/nginx/conf.d/cacti.yourdomain.com.conf
+```
+
 ```console
 # Advanced config for NGINX
         #server_tokens off;
@@ -41,7 +45,7 @@ server {
 # SSL configuration
 server {
    listen 443 ssl default deferred;
-   server_name cacti.domain.com;
+   server_name cacti.yourdomain.com;
         root /usr/share/nginx/html/cacti;
         index index.php index.html index.htm;
 
@@ -103,7 +107,7 @@ server {
         access_log /var/log/nginx/cacti_access.log;
         error_log  /var/log/nginx/cacti_error.log info;
 
-        ssl_certificate      /etc/ssl/private/YourOwnCertFile.crt;
+        ssl_certificate      /etc/ssl/certs/YourOwnCertFile.crt;
         ssl_certificate_key  /etc/ssl/private/YourOwnCertKey.key;
 
         # Improve HTTPS performance with session resumption

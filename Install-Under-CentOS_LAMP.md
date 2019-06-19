@@ -48,13 +48,13 @@ files holding your certificate (`.crt`) and private key (`.key`).
 <VirtualHost *:443>
     LogLevel warn
 
-    ServerName cacti.domain.com
-    ServerAdmin  admin@domain.com
+    ServerName cacti.yourdomain.com
+    ServerAdmin  admin@yourdomain.com
 
     DocumentRoot "/var/www/html/cacti"
     Alias /cacti    /var/www/html/cacti
     SSLEngine On
-    SSLCertificateFile /etc/ssl/private/YourOwnCertFile.crt
+    SSLCertificateFile /etc/ssl/certs/YourOwnCertFile.crt
     SSLCertificateKeyFile /etc/ssl/private/YourOwnCertKey.key
 
     <Directory /var/www/html/cacti/>
