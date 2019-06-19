@@ -25,7 +25,7 @@ sure you change the paths to match your setup.
 Replace `YourOwnCertFile.crt` and `YourOwnCertFile.key` with the names of the
 files holding your certificate (`.crt`) and private key (`.key`).
 
-```
+```console
 /etc/nginx/conf.d/cacti.yourdomain.com.conf
 ```
 
