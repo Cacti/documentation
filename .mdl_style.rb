@@ -6,7 +6,7 @@ rule "MD029", style: "ordered"
 rule "MD046", style: "fenced"
 
 # Lesser rules
-#exclude_rule "MD010" # hard tabs
+exclude_rule "MD010" # hard tabs
 #exclude_rule "MD013" # line length
 
 # Rule Exclusions
