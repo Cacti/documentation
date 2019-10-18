@@ -176,5 +176,32 @@ Cacti.
 PHP include path. Check your `php.ini` file to make sure there is not something
 like `include_path = C:/Apache2/htdocs/cacti`.
 
+## Common Problems
+
+### Cron is out of sync with the Poller Interval!
+
+```shell
+WARNING: Cron is out of sync with the Poller Interval! The Poller Interval is
+'15' seconds, with a maximum of a '60' second Cron, but 300.9 seconds have
+passed since the last poll!
+```
+
+This warning message may be recorded in the Cacti logs if you have a mismatch
+between the cron file that runs the poller.php and the settings within Cacti
+itself.  Browse to **Console -> Configuration -> Settings -> Poller** *(tab)*
+and check that the Cron Interval is defined as either 1 minute or 5 minutes.
+
+If the cron inteval is 5 minutes, then the schedule within the cron
+configuration file (normally /etc/cron.d/cacti) should be set to:
+
+```console
+*/5 * * * *
+```
+
+For 1 minute intervals, this should be:
+
+```console
+* * * * *
+```
 ---
 Copyright (c) 2004-2019 The Cacti Group
