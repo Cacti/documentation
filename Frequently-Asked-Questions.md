@@ -215,7 +215,6 @@ To do this, edit a graph that has the issue, select **Turn On Graph Debug** and
 a new section should appear beneath the graph.  This should show both the
 command and what output we received from the tool.
 
-
 ```console
 RRDtool Command:
   /usr/bin/rrdtool graph - \
