@@ -274,5 +274,6 @@ runas /user:<machine or domain>\<user> cmd.exe
 
 The newly created command prompt should show the user name if you have entered
 the correct password.
+
 ---
 Copyright (c) 2004-2019 The Cacti Group
