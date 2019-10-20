@@ -205,6 +205,7 @@ For 1 minute intervals, this should be:
 ```
 
 ### RRDtool reports Unknown Error
+
 Sometimes, RRDtool can be rather unhelpful and display the simple error within
 the graph image of "Unknown Error".  When this occurs, the best course of action
 would be to grab the command that Cacti uses and see if any more information is
@@ -213,7 +214,6 @@ given at the command line level.
 To do this, edit a graph that has the issue, select **Turn On Graph Debug** and
 a new section should appear beneath the graph.  This should show both the
 command and what output we received from the tool.
-
 
 ```console
 RRDtool Command:
