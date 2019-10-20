@@ -215,9 +215,9 @@ To do this, edit a graph that has the issue, select **Turn On Graph Debug** and
 a new section should appear beneath the graph.  This should show both the
 command and what output we received from the tool.
 
-  **RRDtool Command:**
 
-  ```console
+```console
+RRDtool Command:
   /usr/bin/rrdtool graph - \
   --imgformat=PNG \
   --start='-86400' \
@@ -255,13 +255,10 @@ command and what output we received from the tool.
   GPRINT:a:LAST:'Current\:%8.0lf'  \
   GPRINT:a:AVERAGE:'Average\:%8.0lf'  \
   GPRINT:a:MAX:'Maximum\:%8.0lf\n'
-  ```
 
-  **RRDtool Says:**
-
-  ```console
+RRDtool Says:
   OK
-  ```
+```
 
 If the output above isn't helpful, simply copy the command section and then
 run it as the user which the website runs as.  For Linux, you can do this by
