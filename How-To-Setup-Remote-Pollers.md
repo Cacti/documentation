@@ -23,9 +23,10 @@ user account to connect back to the main pollers database via the network
 
 
 Main server database config
-
+```
 GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'192.168.1.10' IDENTIFIED BY 'cacti';
 GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'192.168.1.20' IDENTIFIED BY 'cacti';
+```
 
 Remote poller 1 database configuration
 
@@ -46,7 +47,7 @@ we have also let the main poller talk to the remote pollers to keep in sync
 When you have setup multiple pollers while using spine you will need to also configure the spine.conf file to connect to the remote database as well
 
 Be sure to remove the # next to the below entries
-
+```
 RDB_Host 192.168.1.5
 RDB_Database cacti
 RDB_User cacti
@@ -56,7 +57,7 @@ RDB_Port 3306
 #RDB_SSL_Key
 #RDB_SSL_Cert
 #RDB_SSL_CA
-
+```
  
 Spine poller and max connections
 Since in a multi poller setup Spine is highly recommended you will need to follow the following calculation when
@@ -69,7 +70,7 @@ Connections = Spine-processes x ( 1 + Threads-per-process  + PHP servers )
 Now that we have set up the database connections we need to set up the cacti config.php file on the remote pollers to give them the database info they need to connect to the main poller,
 we won’t have to edit the main servers config.php file aside from the normal install procedure to give it access to its local database.
 Below is the portion of the config.php that we need to edit to allow the remote poller to talk to the main server  be sure to remove the #
-
+```
 $rdatabase_type = 'mysql';
 $rdatabase_default = 'cacti';
 $rdatabase_hostname = '192.168.1.5;
@@ -81,3 +82,4 @@ $rdatabase_ssl = false;
 $rdatabase_ssl_key = '';
 $rdatabase_ssl_cert = '';
 $rdatabase_ssl_ca = '';
+```
