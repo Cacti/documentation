@@ -1,10 +1,11 @@
 
 # Remote Poller setup
-Remote Pollers add complexity to your cacti setup while also massivley extended the capability of it 
+Remote Pollers add complexity to your cacti setup while also massivley extended the capability of it
 remote pollers allow sysadmin to distribute the load of polling between differnt servers as well as provide
 another source of polling close to a device
 
-For example you may have a device in toronto but if your pollers are in Newyork the network latency may causes issues with your metrics
+For example you may have a device in toronto but if your pollers are in Newyork
+the network latency may causes issues with your metrics
 having a remote poller in Toronto in this case will help with that issue
 
 ## Setup instructions
@@ -17,7 +18,8 @@ Remote poller 2 servers Ip is 192.168.1.20
 
 
 ## Database configurations
-Each server will have its own local database however the remote pollers will need to talk back to the main poller so we must allow the remote servers
+Each server will have its own local database however the remote pollers
+will need to talk back to the main poller so we must allow the remote servers
 user account to connect back to the main pollers database via the network
 
 
@@ -39,11 +41,9 @@ What we have just done is allowed the remote pollers to talk to the main server 
 
 we have also let the main poller talk to the remote pollers to keep in sync
 
-
 ## Spine configuration
 
-
-When you have setup multiple pollers while using spine you will need to also 
+When you have setup multiple pollers while using spine you will need to also
 configure the spine.conf file to connect to the remote database as well
 
 Be sure to remove the # next to the below entries
@@ -68,10 +68,10 @@ Connections = Spine-processes x ( 1 + Threads-per-process  + PHP servers )
 ## Remote poller config.php  setup
 
 Now that we have set up the database connections we need to set up the cacti config.php
-file on the remote pollers to give them the database info they need to connect to the main poller,
-we won’t have to edit the main servers config.php file aside from the normal 
+file on the remote pollers to give them the database info they need to connect to the main poller
+we won’t have to edit the main servers config.php file aside from the normal
 install procedure to give it access to its local database.
-Below is the portion of the config.php that we need to edit to allow the 
+Below is the portion of the config.php that we need to edit to allow the
 remote poller to talk to the main server  be sure to remove the #
 ```
 $rdatabase_type = 'mysql';
