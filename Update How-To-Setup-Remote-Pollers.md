@@ -1,4 +1,3 @@
-
 # Remote Poller setup
 
 Remote Pollers add complexity to your cacti setup while also massivley extended the capability of it
@@ -26,7 +25,7 @@ user account to connect back to the main pollers database via the network
 
 Main server database config
 
-```
+```bash
 
 GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'192.168.1.10' IDENTIFIED BY 'cacti';
 GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'192.168.1.20' IDENTIFIED BY 'cacti';
@@ -50,7 +49,7 @@ configure the spine.conf file to connect to the remote database as well
 
 Be sure to remove the # next to the below entries
 
-```
+```bash
 
 RDB_Host 192.168.1.5
 RDB_Database cacti
@@ -79,7 +78,7 @@ install procedure to give it access to its local database.
 Below is the portion of the config.php that we need to edit to allow the
 remote poller to talk to the main server  be sure to remove the #
 
-```
+```bash
 
 $rdatabase_type = 'mysql';
 $rdatabase_default = 'cacti';
