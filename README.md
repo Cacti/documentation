@@ -230,6 +230,8 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 4. [RRDTool Specific Features](RRDTool-Specific-Features.md)
 
+5. [RRDProxy Specific Features](RRDproxy.md)
+
 6. [Debugging](Debugging.md)
 
 7. [Version Specific Release Notes](Version-Specific-Release-Notes.md)
@@ -253,6 +255,8 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 2. [Using SSH Tunnels](How-To-SSH-Tunnels.md)
 
 3. [Data Query Templates](How-To-Data-Query-Templates.md)
+
+4. [How To Setup Remote Pollers](How-To-Setup-Remote-Pollers.md)
 
 ### Contributing
 
