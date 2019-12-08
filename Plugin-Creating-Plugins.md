@@ -5,8 +5,8 @@ Your plugin will require a few things to be properly detected by Cacti.
 ## Directory Structure
 
 Your plugin will reside in its own directory in Cacti's plugin directory.  You
-will need to create a new directory, with a unique name.  It is recommended
-that you use all lowercase alpha letters, and try to keep it short (you will be
+will need to create a new directory, with a unique name.  It is recommended that
+you use all lowercase alpha letters, and try to keep it short (you will be
 typing it a lot). All plugin names must contain only upper or lowercase letters
 a-z and digits 0-9.
 
@@ -24,26 +24,23 @@ functions, no code that runs automatically.
 
 ## INFO File
 
-Every Cacti plugin must have an INFO file.  Any legacy plugins that do not
-have an INFO file will not work with Cacti 1.x.  This was done intentionally
-so that plugin users could know ahead of time that their plugin was not
-designed for Cacti 1.x.  The info file includes several line including:
+Every Cacti plugin must have an INFO file.  Any legacy plugins that do not have
+an INFO file will not work with Cacti 1.x.  This was done intentionally so that
+plugin users could know ahead of time that their plugin was not designed for
+Cacti 1.x.  The info file includes several line including:
 
-* name - The short name for the plugin.  Must be alpha with no spaces and
-match the directory name.
-* version - The version of the plugin.  Use two to three decimal places.
-* longname - A user readable short description for the plugin.
-* author - The author of the plugin.
-* email - The authors email address for obtaining support.
-* homepage - If the author maintains a homepage, the address for that page.
-* compat - A sminimum version of Cacti that is required to use this plugin.
-* depends - A space delimited list of plugins:version that are required
-to use this plugin.
-* capabilities - A comma delimited list of capabilities for define what 
-capabilities the plugin has primarily remotely.
-* nosync - A comma delimited list of relative paths that should not be
-syncronized with the remote data collectors, for example transient folders
-that may contain quite a bit of data that changes often.
+setting | description
+:--- | :---
+*name* | The short name for the plugin.  Must be alpha with no spaces and match  the directory name.
+*version* | The version of the plugin.  Use two to three decimal places.
+*longname* | A user readable short description for the plugin.
+*author* | The author of the plugin.
+*email* | The authors email address for obtaining support.
+*homepage* | If the author maintains a homepage, the address for that page.
+*compat* | The minimum version of Cacti that is required to use this plugin.
+*depends* | A space delimited list of plugins:version that are required to use this plugin.
+*capabilities* | A comma delimited list of capabilities for define what capabilities the plugin has primarily remotely.
+*nosync* | A comma delimited list of relative paths that should not be syncronized with the remote data collectors, for example transient folders that may contain quite a bit of data that changes often.
 
 ## Functions
 
@@ -87,7 +84,7 @@ compatible with the 'update' plugin.
 function plugin_PLUGINNAME_version () {
      global $config;
      $info = parse_ini_file($config['base_path'] . '/plugins/PLUGINNAME/INFO', true);
-     
+
      return $info['info'];
 }
 ```
@@ -112,7 +109,7 @@ function plugin_PLUGINNAME_check_config () {
      if (read_config_option('PLUGINNAME_SETTING') != '') {
           return true;
      }
-     
+
      return false;
 }
 ```
