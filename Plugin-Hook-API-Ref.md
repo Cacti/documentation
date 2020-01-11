@@ -755,7 +755,7 @@ poller.
 
 file | introduced | retired
 --- | :--- | :---
-poller.php |  1.0.0  |
+poller.php |  1.0.0  | 1.2.29
 
 ## poller\_exiting
 
