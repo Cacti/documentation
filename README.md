@@ -92,11 +92,9 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 3. Installing Cacti on Linux
 
-    3.1.  [Installation Under CentOS 7 - LAMP Stack](Install-Under-CentOS_LAMP.md)
-    
-    3.2.  [Installation Under CentOS 7 - LEMP Stack](Install-Under-CentOS_LEMP.md)
-    
-    3.3. [Installation Under Ubuntu/Debian - LAMP Stack](Installing-Under-Ubuntu-Debian.md)
+   - 3.1.  [Installation Under CentOS 7 - LAMP Stack](Install-Under-CentOS_LAMP.md)
+   - 3.2.  [Installation Under CentOS 7 - LEMP Stack](Install-Under-CentOS_LEMP.md)
+   - 3.3. [Installation Under Ubuntu/Debian - LAMP Stack](Installing-Under-Ubuntu-Debian.md)
 
 4. [Installing Under Windows](Installing-Under-Windows.md)
 
