@@ -32,6 +32,39 @@ Now that you have working SNMP support, follow these steps.
 
 ## General
 
+**Q:** When I visit the Cacti Monitoring Website, I see garbage instead of a
+login prompt.
+
+**A:** Starting iwth Cacti 1.2.x, the first thing you should always see is a
+login prompt asking for your admin credentials before the installation wizard
+will be displayed.  However, if you fail to see the login prompt, you may be
+presented with text that looks like:
+
+```
+<?php
+/*
+ +-------------------------------------------------------------------------+
+ | Copyright (C) 2004-2020 The Cacti Group                                 |
+ |                                                                         |
+ | This program is free software; you can redistribute it and/or           |
+ | modify it under the terms of the GNU General Public License             |
+ | as published by the Free Software Foundation; either version 2          |
+ | of the License, or (at your option) any later version.                  |
+```
+
+If this happens, it usually means that you have not enabled the PHP module to
+work with your web server software.  This can be as simple as running `a2enmod`
+on Ubuntu, or having to manually create a configuration for nginx under another
+flavour of Linux.  For specific help on enabling PHP, search the internet using
+your favourite search engine with keywords such as:
+
+> How do I enable PHP under ...
+
+Replacing the three dots with your operating system and web server software
+should reveal many results on how to do this.  The specific steps are outside of
+the scope of Cacti's FAQ documentation, though there are several How To
+installation documents included that may also help.
+
 **Q:** I get a "Undefined variable: _SERVER" error message from Cacti.
 
 **A:** Cacti 0.8.6 and above requires that you have at least PHP 4.1 or greater
