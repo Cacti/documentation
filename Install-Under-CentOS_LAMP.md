@@ -1,6 +1,6 @@
 # Installing on CentOS 7
 
-## LAMP (Linux, Apache, MySQL, PHP) Required packages
+## LAMP (Linux, Apache, MySQL/MariaDB, PHP) Required packages
 
 ### Web Server (Apache)
 
@@ -220,14 +220,16 @@ tailored to your environment.
  and `your_cacti_password` with your own details.
 
    ```sql
-   MariaDB [(none)]> GRANT ALL PRIVILEGES ON cacti.* TO 'your_cacti_username'@'localhost' IDENTIFIED BY 'your_cacti_password';
+   MariaDB [(none)]> CREATE USER 'your_cacti_username'@'localhost' IDENTIFIED BY 'your_cacti_password';
+   Query OK, 0 rows affected (0.00 sec)
+   MariaDB [(none)]> GRANT ALL PRIVILEGES ON cacti.* TO 'your_cacti_username'@'localhost';
    Query OK, 0 rows affected (0.00 sec)
    ```
 
 4. Grant cacti username to MySQL timezone table
 
    ```sql
-   MariaDB [(none)]> GRANT SELECT ON mysql.time_zone_name TO 'cacti'@'localhost';
+   MariaDB [(none)]> GRANT SELECT ON mysql.time_zone_name TO 'your_cacti_username'@'localhost';
    Query OK, 0 rows affected (0.00 sec)
   MariaDB [(none)]> FLUSH PRIVILEGES;
    Query OK, 0 rows affected (0.00 sec)
@@ -317,7 +319,7 @@ Create and edit `/etc/cron.d/cacti` file.
 Make sure to setup the correct path to poller.php
 
 ```console
-*/5 * * * * nginx php /usr/share/nginx/html/cacti/poller.php &>/dev/null
+*/5 * * * * apache php /var/www/html/cacti/poller.php &>/dev/null
 ```
 
 #### Spine
