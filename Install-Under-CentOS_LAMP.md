@@ -10,7 +10,7 @@
    yum install <http://rpms.remirepo.net/enterprise/remi-release-7.rpm> -y
    yum install yum-utils -y
    yum-config-manager --enable remi-php72
-```
+   ```
 
 2. Install Apache
 
@@ -229,7 +229,7 @@ tailored to your environment.
    ```sql
    MariaDB [(none)]> GRANT SELECT ON mysql.time_zone_name TO 'cacti'@'localhost';
    Query OK, 0 rows affected (0.00 sec)
-  MariaDB [(none)]> FLUSH PRIVILEGES;
+   MariaDB [(none)]> FLUSH PRIVILEGES;
    Query OK, 0 rows affected (0.00 sec)
    ```
 
@@ -313,12 +313,12 @@ configure the basics for Cacti.
 
 4. Create your cron task file
 
-Create and edit `/etc/cron.d/cacti` file.
-Make sure to setup the correct path to poller.php
+   Create and edit `/etc/cron.d/cacti` file.
+   Make sure to setup the correct path to poller.php
 
-```console
-*/5 * * * * nginx php /usr/share/nginx/html/cacti/poller.php &>/dev/null
-```
+   ```console
+   */5 * * * * nginx php /usr/share/nginx/html/cacti/poller.php &>/dev/null
+   ```
 
 #### Spine
 
@@ -349,10 +349,10 @@ Make sure to setup the correct path to poller.php
    config/install-sh -c -d '/usr/local/spine/bin'
    /bin/sh ./libtool   --mode=install /usr/bin/install -c spine '/usr/local/spine/bin'
    libtool: install: /usr/bin/install -c spine /usr/local/spine/bin/spine
- config/install-sh -c -d '/usr/local/spine/etc'
+   config/install-sh -c -d '/usr/local/spine/etc'
    /usr/bin/install -c -m 644 spine.conf.dist '/usr/local/spine/etc'
    config/install-sh -c -d '/usr/local/spine/share/man/man1'
- /usr/bin/install -c -m 644 spine.1 '/usr/local/spine/share/man/man1'
+   /usr/bin/install -c -m 644 spine.1 '/usr/local/spine/share/man/man1'
    ```
 
 4. Edit spine.conf
