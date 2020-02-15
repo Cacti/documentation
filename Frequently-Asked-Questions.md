@@ -40,7 +40,7 @@ login prompt asking for your admin credentials before the installation wizard
 will be displayed.  However, if you fail to see the login prompt, you may be
 presented with text that looks like:
 
-```
+```php
 <?php
 /*
  +-------------------------------------------------------------------------+
