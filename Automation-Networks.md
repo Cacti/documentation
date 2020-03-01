@@ -37,4 +37,4 @@ Now" this will start the discovery
 ![Automation Networks](images/automation-networks.png)
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group

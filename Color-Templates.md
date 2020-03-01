@@ -29,4 +29,4 @@ wish to search through the list of approximately 340 legacy and *Named Colors*.
 ![Color Templates Item Edit](images/color-templates-edit2.png)
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group

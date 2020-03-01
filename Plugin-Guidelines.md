@@ -69,4 +69,4 @@ In 'Edit Summary' ensure you enter `DELETEME` as it will make it easier to
 find under Recent Changes.
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group

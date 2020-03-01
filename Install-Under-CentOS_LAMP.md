@@ -165,8 +165,8 @@ during the installation.
    ```
 
    The following `[mysqld]` section is a base configuration.  The installer
-will provide recommendations based on the actual system which will be more
-tailored to your environment.
+   will provide recommendations based on the actual system which will be more
+   tailored to your environment.
 
    ```shell
    [mysqld]
@@ -217,7 +217,7 @@ tailored to your environment.
    ```
 
 3. Grant Cacti username access to Cacti database. Replace `your_cacti_username`
- and `your_cacti_password` with your own details.
+   and `your_cacti_password` with your own details.
 
    ```sql
    MariaDB [(none)]> GRANT ALL PRIVILEGES ON cacti.* TO 'your_cacti_username'@'localhost' IDENTIFIED BY 'your_cacti_password';
@@ -280,7 +280,7 @@ The following steps will show you how to manually download, install and
 configure the basics for Cacti.
 
 1. Download Cacti source code from [Cacti Web
- Site](https://www.cacti.net/download_cacti.php)
+   Site](https://www.cacti.net/download_cacti.php)
 
    ```console
    cd /tmp
@@ -317,7 +317,7 @@ configure the basics for Cacti.
    Make sure to setup the correct path to poller.php
 
    ```console
-   */5 * * * * nginx php /usr/share/nginx/html/cacti/poller.php &>/dev/null
+   */5 * * * * apache php /var/www/html/cacti/poller.php &>/dev/null
    ```
 
 #### Spine
@@ -330,7 +330,7 @@ configure the basics for Cacti.
    ```
 
 2. Download spine source code from [Cacti Web
- Site](https://www.cacti.net/spine_download.php)
+   Site](https://www.cacti.net/spine_download.php)
 
    Go to /tmp to download the source code and extract it
 
@@ -409,4 +409,4 @@ documentation on how to make your SELinux policy right.
 all SELinux context and permissions.
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group

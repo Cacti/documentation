@@ -27,7 +27,7 @@ directory as it prevents remote file browsing of your Cacti site.
 
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2019 The Cacti Group                                 |
+ | Copyright (C) 2004-2020 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -142,4 +142,4 @@ Cacti page loads fast.  Including too much in the setup.php slows Cacti and
 should be avoided.
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group

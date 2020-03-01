@@ -31,4 +31,4 @@ earlier Cacti version.
 ![Colors Color Edit](images/colors-edit2.png)
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group
