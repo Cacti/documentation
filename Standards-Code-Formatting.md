@@ -404,4 +404,4 @@ list, and return type of the function. It should be formatted as follow:
 ```
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group

@@ -96,3 +96,6 @@ $rdatabase_ssl_key = '';
 $rdatabase_ssl_cert = '';
 $rdatabase_ssl_ca = '';
 ```
+
+---
+Copyright (c) 2004-2020 The Cacti Group

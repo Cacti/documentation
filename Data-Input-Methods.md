@@ -569,4 +569,4 @@ After you have created your **Graph Template** you can proceed to Add the
 the **Graph** for you, or to manually add it from the **New Graphs** menu pick.
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group

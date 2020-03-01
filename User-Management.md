@@ -373,4 +373,4 @@ selecting the "Guest" user you have designated. The "Guest" user must be enabled
 and be set as the guest user for anonymous access to work.
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group
