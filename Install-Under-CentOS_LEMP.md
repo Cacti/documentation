@@ -398,6 +398,7 @@ configure the basics for Cacti.
     $database_ssl_cert = '';
     $database_ssl_ca   = '';
     ```
+
 4. Set your cookie domain to match your web site domain name
 
     ```console
