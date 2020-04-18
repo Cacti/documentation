@@ -6,46 +6,50 @@ of their function.
 hook | hook | hook
 --- | --- | ---
 [add\_graph\_template\_to\_host](Plugin-Hook-API-Ref.md#add_graph_template_to_host) | [api\_device\_new](Plugin-Hook-API-Ref.md#api_device_new) | [api\_device\_save](Plugin-Hook-API-Ref.md#api_device_save)
-[auth\_alternate\_realms](Plugin-Hook-API-Ref.md#auth_alternate_realms) | [boost\_poller\_bottom](Plugin-Hook-API-Ref.md#boost_poller_bottom) | [bottom\_footer](Plugin-Hook-API-Ref.md#bottom_footer)
+[auth\_alternate\_realms](Plugin-Hook-API-Ref.md#auth_alternate_realms) | [auth\_profile\_reset](Plugin-Hook-API-Ref.md#auth_profile_reset) | [auth\_profile\_reset\_value](Plugin-Hook-API-Ref.md#auth_profile_reset_value)
+[auth\_profile\_run\_action](Plugin-Hook-API-Ref.md#auth_profile_run_action) | [auth\_profile\_save](Plugin-Hook-API-Ref.md#auth_profile_save) | [auth\_profile\_tabs](Plugin-Hook-API-Ref.md#auth_profile_tabs)
+[auth\_profile\_update\_data](Plugin-Hook-API-Ref.md#auth_profile_update_data) | [boost\_poller\_bottom](Plugin-Hook-API-Ref.md#boost_poller_bottom) | [bottom\_footer](Plugin-Hook-API-Ref.md#bottom_footer)
 [cacti\_stats\_update](Plugin-Hook-API-Ref.md#cacti_stats_update) | [change\_password\_title](Plugin-Hook-API-Ref.md#change_password_title) | [clog\_regex\_array](Plugin-Hook-API-Ref.md#clog_regex_array)
 [config\_arrays](Plugin-Hook-API-Ref.md#config_arrays) | [config\_form](Plugin-Hook-API-Ref.md#config_form) | [config\_insert](Plugin-Hook-API-Ref.md#config_insert)
 [config\_settings](Plugin-Hook-API-Ref.md#config_settings) | [console\_after](Plugin-Hook-API-Ref.md#console_after) | [console\_before](Plugin-Hook-API-Ref.md#console_before)
-[copy\_user](Plugin-Hook-API-Ref.md#copy_user) | [create\_complete\_graph\_from\_template](Plugin-Hook-API-Ref.md#create_complete_graph_from_template) | [custom\_login](Plugin-Hook-API-Ref.md#custom_login)
-[custom\_logout\_message](Plugin-Hook-API-Ref.md#custom_logout_message) | [custom\_password](Plugin-Hook-API-Ref.md#custom_password) | [custom\_version\_info](Plugin-Hook-API-Ref.md#custom_version_info)
-[data\_input\_sql\_where](Plugin-Hook-API-Ref.md#data_input_sql_where) | [data\_source\_action\_array](Plugin-Hook-API-Ref.md#data_source_action_array) | [data\_source\_action\_bottom](Plugin-Hook-API-Ref.md#data_source_action_bottom)
-[data\_source\_action\_execute](Plugin-Hook-API-Ref.md#data_source_action_execute) | [data\_source\_action\_prepare](Plugin-Hook-API-Ref.md#data_source_action_prepare) | [data\_source\_edit\_bottom](Plugin-Hook-API-Ref.md#data_source_edit_bottom)
-[data\_source\_edit\_top](Plugin-Hook-API-Ref.md#data_source_edit_top) | [data\_source\_remove](Plugin-Hook-API-Ref.md#data_source_remove) | [data\_sources\_table](Plugin-Hook-API-Ref.md#data_sources_table)
-[data\_source\_to\_poller\_items](Plugin-Hook-API-Ref.md#data_source_to_poller_items) | [device\_action\_array](Plugin-Hook-API-Ref.md#device_action_array) | [device\_action\_bottom](Plugin-Hook-API-Ref.md#device_action_bottom)
-[device\_action\_execute](Plugin-Hook-API-Ref.md#device_action_execute) | [device\_action\_prepare](Plugin-Hook-API-Ref.md#device_action_prepare) | [device\_edit\_pre\_bottom](Plugin-Hook-API-Ref.md#device_edit_pre_bottom)
-[device\_edit\_top\_links](Plugin-Hook-API-Ref.md#device_edit_top_links) | [device\_filters](Plugin-Hook-API-Ref.md#device_filters) | [device\_remove](Plugin-Hook-API-Ref.md#device_remove)
-[device\_sql\_where](Plugin-Hook-API-Ref.md#device_sql_where) | [device\_table\_bottom](Plugin-Hook-API-Ref.md#device_table_bottom) | [device\_template\_edit](Plugin-Hook-API-Ref.md#device_template_edit)
-[device\_template\_top](Plugin-Hook-API-Ref.md#device_template_top) | [draw\_navigation\_text](Plugin-Hook-API-Ref.md#draw_navigation_text) | [export\_action](Plugin-Hook-API-Ref.md#export_action)
-[fgc\_contextoption](Plugin-Hook-API-Ref.md#fgc_contextoption) | [get\_friendly\_name](Plugin-Hook-API-Ref.md#get_friendly_name) | [global\_settings\_update](Plugin-Hook-API-Ref.md#global_settings_update)
-[graph](Plugin-Hook-API-Ref.md#graph) | [graph\_buttons](Plugin-Hook-API-Ref.md#graph_buttons) | [graph\_edit\_after](Plugin-Hook-API-Ref.md#graph_edit_after)
-[graph\_image](Plugin-Hook-API-Ref.md#graph_image) | [graph\_items\_remove](Plugin-Hook-API-Ref.md#graph_items_remove) | [graphs\_action\_array](Plugin-Hook-API-Ref.md#graphs_action_array)
+[copy\_user](Plugin-Hook-API-Ref.md#copy_user) | [create\_complete\_graph\_from\_template](Plugin-Hook-API-Ref.md#create_complete_graph_from_template) | [custom\_denied](Plugin-Hook-API-Ref.md#custom_denied)
+[custom\_login](Plugin-Hook-API-Ref.md#custom_login) | [custom\_logout\_message](Plugin-Hook-API-Ref.md#custom_logout_message) | [custom\_password](Plugin-Hook-API-Ref.md#custom_password)
+[custom\_version\_info](Plugin-Hook-API-Ref.md#custom_version_info) | [data\_input\_sql\_where](Plugin-Hook-API-Ref.md#data_input_sql_where) | [data\_source\_action\_array](Plugin-Hook-API-Ref.md#data_source_action_array)
+[data\_source\_action\_bottom](Plugin-Hook-API-Ref.md#data_source_action_bottom) | [data\_source\_action\_execute](Plugin-Hook-API-Ref.md#data_source_action_execute) | [data\_source\_action\_prepare](Plugin-Hook-API-Ref.md#data_source_action_prepare)
+[data\_source\_edit\_bottom](Plugin-Hook-API-Ref.md#data_source_edit_bottom) | [data\_source\_edit\_top](Plugin-Hook-API-Ref.md#data_source_edit_top) | [data\_source\_remove](Plugin-Hook-API-Ref.md#data_source_remove)
+[data\_source\_to\_poller\_items](Plugin-Hook-API-Ref.md#data_source_to_poller_items) | [data\_sources\_table](Plugin-Hook-API-Ref.md#data_sources_table) | [device\_action\_array](Plugin-Hook-API-Ref.md#device_action_array)
+[device\_action\_bottom](Plugin-Hook-API-Ref.md#device_action_bottom) | [device\_action\_execute](Plugin-Hook-API-Ref.md#device_action_execute) | [device\_action\_prepare](Plugin-Hook-API-Ref.md#device_action_prepare)
+[device\_display\_text](Plugin-Hook-API-Ref.md#device_display_text) | [device\_edit\_pre\_bottom](Plugin-Hook-API-Ref.md#device_edit_pre_bottom) | [device\_edit\_top\_links](Plugin-Hook-API-Ref.md#device_edit_top_links)
+[device\_filter\_end](Plugin-Hook-API-Ref.md#device_filter_end) | [device\_filter\_start](Plugin-Hook-API-Ref.md#device_filter_start) | [device\_filters](Plugin-Hook-API-Ref.md#device_filters)
+[device\_remove](Plugin-Hook-API-Ref.md#device_remove) | [device\_sql\_where](Plugin-Hook-API-Ref.md#device_sql_where) | [device\_table\_bottom](Plugin-Hook-API-Ref.md#device_table_bottom)
+[device\_table\_replace](Plugin-Hook-API-Ref.md#device_table_replace) | [device\_template\_edit](Plugin-Hook-API-Ref.md#device_template_edit) | [device\_template\_top](Plugin-Hook-API-Ref.md#device_template_top)
+[draw\_navigation\_text](Plugin-Hook-API-Ref.md#draw_navigation_text) | [export\_action](Plugin-Hook-API-Ref.md#export_action) | [fgc\_contextoption](Plugin-Hook-API-Ref.md#fgc_contextoption)
+[get\_friendly\_name](Plugin-Hook-API-Ref.md#get_friendly_name) | [global\_settings\_update](Plugin-Hook-API-Ref.md#global_settings_update) | [graph](Plugin-Hook-API-Ref.md#graph)
+[graph\_buttons](Plugin-Hook-API-Ref.md#graph_buttons) | [graph\_edit\_after](Plugin-Hook-API-Ref.md#graph_edit_after) | [graph\_image](Plugin-Hook-API-Ref.md#graph_image)
+[graph\_items\_remove](Plugin-Hook-API-Ref.md#graph_items_remove) | [graph\_tree\_page\_buttons](Plugin-Hook-API-Ref.md#graph_tree_page_buttons) | [graphs\_action\_array](Plugin-Hook-API-Ref.md#graphs_action_array)
 [graphs\_action\_bottom](Plugin-Hook-API-Ref.md#graphs_action_bottom) | [graphs\_action\_execute](Plugin-Hook-API-Ref.md#graphs_action_execute) | [graphs\_action\_prepare](Plugin-Hook-API-Ref.md#graphs_action_prepare)
 [graphs\_item\_array](Plugin-Hook-API-Ref.md#graphs_item_array) | [graphs\_new\_top\_links](Plugin-Hook-API-Ref.md#graphs_new_top_links) | [graphs\_remove](Plugin-Hook-API-Ref.md#graphs_remove)
-[graphs\_sql\_where](Plugin-Hook-API-Ref.md#graphs_sql_where) | [graph\_tree\_page\_buttons](Plugin-Hook-API-Ref.md#graph_tree_page_buttons) | [hmib\_get\_cpu](Plugin-Hook-API-Ref.md#hmib_get_cpu)
-[hmib\_get\_cpu\_indexes](Plugin-Hook-API-Ref.md#hmib_get_cpu_indexes) | [hmib\_get\_disk](Plugin-Hook-API-Ref.md#hmib_get_disk) | [host\_edit\_bottom](Plugin-Hook-API-Ref.md#host_edit_bottom)
-[host\_edit\_top](Plugin-Hook-API-Ref.md#host_edit_top) | [host\_save](Plugin-Hook-API-Ref.md#host_save) | [import\_action](Plugin-Hook-API-Ref.md#import_action)
-[is\_console\_page](Plugin-Hook-API-Ref.md#is_console_page) | [login\_after](Plugin-Hook-API-Ref.md#login_after) | [login\_before](Plugin-Hook-API-Ref.md#login_before)
-[login\_options\_navigate](Plugin-Hook-API-Ref.md#login_options_navigate) | [login\_process](Plugin-Hook-API-Ref.md#login_process) | [login\_realms](Plugin-Hook-API-Ref.md#login_realms)
-[login\_title](Plugin-Hook-API-Ref.md#login_title) | [logout\_post\_session\_destroy](Plugin-Hook-API-Ref.md#logout_post_session_destroy) | [logout\_pre\_session\_destroy](Plugin-Hook-API-Ref.md#logout_pre_session_destroy)
-[nav\_login\_after](Plugin-Hook-API-Ref.md#nav_login_after) | [nav\_login\_before](Plugin-Hook-API-Ref.md#nav_login_before) | [page\_bottom](Plugin-Hook-API-Ref.md#page_bottom)
-[page\_buttons](Plugin-Hook-API-Ref.md#page_buttons) | [page\_head](Plugin-Hook-API-Ref.md#page_head) | [page\_title](Plugin-Hook-API-Ref.md#page_title)
-[poller\_bottom](Plugin-Hook-API-Ref.md#poller_bottom) | [poller\_command\_args](Plugin-Hook-API-Ref.md#poller_command_args) | [poller\_exiting](Plugin-Hook-API-Ref.md#poller_exiting)
-[poller\_finishing](Plugin-Hook-API-Ref.md#poller_finishing) | [poller\_output](Plugin-Hook-API-Ref.md#poller_output) | [poller\_top](Plugin-Hook-API-Ref.md#poller_top)
-[remote\_agent](Plugin-Hook-API-Ref.md#remote_agent) | [replicate\_in](Plugin-Hook-API-Ref.md#replicate_in) | [replicate\_out](Plugin-Hook-API-Ref.md#replicate_out)
-[report\_filters](Plugin-Hook-API-Ref.md#report_filters) | [resolve\_dependencies](Plugin-Hook-API-Ref.md#resolve_dependencies) | [rrd\_graph\_graph\_options](Plugin-Hook-API-Ref.md#rrd_graph_graph_options)
-[run\_data\_query](Plugin-Hook-API-Ref.md#run_data_query) | [snmpagent\_cache\_install](Plugin-Hook-API-Ref.md#snmpagent_cache_install) | [substitute\_host\_data](Plugin-Hook-API-Ref.md#substitute_host_data)
-[top\_graph\_header](Plugin-Hook-API-Ref.md#top_graph_header) | [top\_graph\_header\_tabs](Plugin-Hook-API-Ref.md#top_graph_header_tabs) | [top\_graph\_jquery\_function](Plugin-Hook-API-Ref.md#top_graph_jquery_function)
-[top\_graph\_refresh](Plugin-Hook-API-Ref.md#top_graph_refresh) | [top\_header](Plugin-Hook-API-Ref.md#top_header) | [tree\_after](Plugin-Hook-API-Ref.md#tree_after)
-[tree\_view\_page\_end](Plugin-Hook-API-Ref.md#tree_view_page_end) | [ugroup\_tabs](Plugin-Hook-API-Ref.md#ugroup_tabs) | [update\_data\_source\_title\_cache](Plugin-Hook-API-Ref.md#update_data_source_title_cache)
-[user\_admin\_action](Plugin-Hook-API-Ref.md#user_admin_action) | [user\_admin\_edit](Plugin-Hook-API-Ref.md#user_admin_edit) | [user\_admin\_run\_action](Plugin-Hook-API-Ref.md#user_admin_run_action)
-[user\_admin\_setup\_sql\_save](Plugin-Hook-API-Ref.md#user_admin_setup_sql_save) | [user\_admin\_tab](Plugin-Hook-API-Ref.md#user_admin_tab) | [user\_admin\_user\_save](Plugin-Hook-API-Ref.md#user_admin_user_save)
-[user\_group\_admin\_action](Plugin-Hook-API-Ref.md#user_group_admin_action) | [user\_group\_admin\_edit](Plugin-Hook-API-Ref.md#user_group_admin_edit) | [user\_group\_admin\_save](Plugin-Hook-API-Ref.md#user_group_admin_save)
-[user\_group\_admin\_setup\_sql\_save](Plugin-Hook-API-Ref.md#user_group_admin_setup_sql_save) | [user\_remove](Plugin-Hook-API-Ref.md#user_remove) | [utilities\_action](Plugin-Hook-API-Ref.md#utilities_action)
-[utilities\_array](Plugin-Hook-API-Ref.md#utilities_array) | [utilities\_list](Plugin-Hook-API-Ref.md#utilities_list) | [valid\_host\_fields](Plugin-Hook-API-Ref.md#valid_host_fields)
+[graphs\_sql\_where](Plugin-Hook-API-Ref.md#graphs_sql_where) | [hmib\_get\_cpu](Plugin-Hook-API-Ref.md#hmib_get_cpu) | [hmib\_get\_cpu\_indexes](Plugin-Hook-API-Ref.md#hmib_get_cpu_indexes)
+[hmib\_get\_disk](Plugin-Hook-API-Ref.md#hmib_get_disk) | [host\_edit\_bottom](Plugin-Hook-API-Ref.md#host_edit_bottom) | [host\_edit\_top](Plugin-Hook-API-Ref.md#host_edit_top)
+[host\_save](Plugin-Hook-API-Ref.md#host_save) | [import\_action](Plugin-Hook-API-Ref.md#import_action) | [is\_console\_page](Plugin-Hook-API-Ref.md#is_console_page)
+[login\_after](Plugin-Hook-API-Ref.md#login_after) | [login\_before](Plugin-Hook-API-Ref.md#login_before) | [login\_options\_navigate](Plugin-Hook-API-Ref.md#login_options_navigate)
+[login\_process](Plugin-Hook-API-Ref.md#login_process) | [login\_realms](Plugin-Hook-API-Ref.md#login_realms) | [login\_title](Plugin-Hook-API-Ref.md#login_title)
+[logout\_post\_session\_destroy](Plugin-Hook-API-Ref.md#logout_post_session_destroy) | [logout\_pre\_session\_destroy](Plugin-Hook-API-Ref.md#logout_pre_session_destroy) | [nav\_login\_after](Plugin-Hook-API-Ref.md#nav_login_after)
+[nav\_login\_before](Plugin-Hook-API-Ref.md#nav_login_before) | [page\_bottom](Plugin-Hook-API-Ref.md#page_bottom) | [page\_buttons](Plugin-Hook-API-Ref.md#page_buttons)
+[page\_head](Plugin-Hook-API-Ref.md#page_head) | [page\_title](Plugin-Hook-API-Ref.md#page_title) | [poller\_bottom](Plugin-Hook-API-Ref.md#poller_bottom)
+[poller\_command\_args](Plugin-Hook-API-Ref.md#poller_command_args) | [poller\_exiting](Plugin-Hook-API-Ref.md#poller_exiting) | [poller\_finishing](Plugin-Hook-API-Ref.md#poller_finishing)
+[poller\_output](Plugin-Hook-API-Ref.md#poller_output) | [poller\_top](Plugin-Hook-API-Ref.md#poller_top) | [remote\_agent](Plugin-Hook-API-Ref.md#remote_agent)
+[replicate\_in](Plugin-Hook-API-Ref.md#replicate_in) | [replicate\_out](Plugin-Hook-API-Ref.md#replicate_out) | [report\_filters](Plugin-Hook-API-Ref.md#report_filters)
+[resolve\_dependencies](Plugin-Hook-API-Ref.md#resolve_dependencies) | [rrd\_graph\_graph\_options](Plugin-Hook-API-Ref.md#rrd_graph_graph_options) | [run\_data\_query](Plugin-Hook-API-Ref.md#run_data_query)
+[snmpagent\_cache\_install](Plugin-Hook-API-Ref.md#snmpagent_cache_install) | [substitute\_host\_data](Plugin-Hook-API-Ref.md#substitute_host_data) | [top\_graph\_header](Plugin-Hook-API-Ref.md#top_graph_header)
+[top\_graph\_header\_tabs](Plugin-Hook-API-Ref.md#top_graph_header_tabs) | [top\_graph\_jquery\_function](Plugin-Hook-API-Ref.md#top_graph_jquery_function) | [top\_graph\_refresh](Plugin-Hook-API-Ref.md#top_graph_refresh)
+[top\_header](Plugin-Hook-API-Ref.md#top_header) | [tree\_after](Plugin-Hook-API-Ref.md#tree_after) | [tree\_view\_page\_end](Plugin-Hook-API-Ref.md#tree_view_page_end)
+[ugroup\_tabs](Plugin-Hook-API-Ref.md#ugroup_tabs) | [update\_data\_source\_title\_cache](Plugin-Hook-API-Ref.md#update_data_source_title_cache) | [user\_admin\_action](Plugin-Hook-API-Ref.md#user_admin_action)
+[user\_admin\_edit](Plugin-Hook-API-Ref.md#user_admin_edit) | [user\_admin\_run\_action](Plugin-Hook-API-Ref.md#user_admin_run_action) | [user\_admin\_setup\_sql\_save](Plugin-Hook-API-Ref.md#user_admin_setup_sql_save)
+[user\_admin\_tab](Plugin-Hook-API-Ref.md#user_admin_tab) | [user\_admin\_user\_save](Plugin-Hook-API-Ref.md#user_admin_user_save) | [user\_group\_admin\_action](Plugin-Hook-API-Ref.md#user_group_admin_action)
+[user\_group\_admin\_edit](Plugin-Hook-API-Ref.md#user_group_admin_edit) | [user\_group\_admin\_save](Plugin-Hook-API-Ref.md#user_group_admin_save) | [user\_group\_admin\_setup\_sql\_save](Plugin-Hook-API-Ref.md#user_group_admin_setup_sql_save)
+[user\_remove](Plugin-Hook-API-Ref.md#user_remove) | [utilities\_action](Plugin-Hook-API-Ref.md#utilities_action) | [utilities\_array](Plugin-Hook-API-Ref.md#utilities_array)
+[utilities\_list](Plugin-Hook-API-Ref.md#utilities_list) | [utilities\_tab](Plugin-Hook-API-Ref.md#utilities_tab) | [valid\_host\_fields](Plugin-Hook-API-Ref.md#valid_host_fields)
 
 ## add\_graph\_template\_to\_host
 
@@ -92,6 +96,54 @@ file | introduced | retired
 --- | :--- | :---
 include/auth.php |  1.0.0  |
 
+## auth\_profile\_reset
+
+Allows you to reset plugins all user settings
+
+file | introduced | retired
+--- | :--- | :---
+auth_profile.php |  1.2.0-beta3  |
+
+## auth\_profile\_reset\_value
+
+Allows you to reset plugins single user settings
+
+file | introduced | retired
+--- | :--- | :---
+auth_profile.php |  1.2.0-beta3  |
+
+## auth\_profile\_run\_action
+
+Allows you to draw plugins user settings form
+
+file | introduced | retired
+--- | :--- | :---
+auth_profile.php |  1.2.0-beta3  |
+
+## auth\_profile\_save
+
+Allows you to save plugins all user settings
+
+file | introduced | retired
+--- | :--- | :---
+auth_profile.php |  1.2.0-beta3  |
+
+## auth\_profile\_tabs
+
+Allows you to draw plugins user setting tabs
+
+file | introduced | retired
+--- | :--- | :---
+auth_profile.php |  1.2.0-beta3  |
+
+## auth\_profile\_update\_data
+
+Allows you to update plugins single user setting
+
+file | introduced | retired
+--- | :--- | :---
+auth_profile.php |  1.2.4  |
+
 ## boost\_poller\_bottom
 
 file | introduced | retired
@@ -104,7 +156,7 @@ Allows you to override the rendering of the bottom_footer html snippet.
 
 file | introduced | retired
 --- | :--- | :---
-include/bottom_footer.php |  1.0.0  |  1.1.38
+include/bottom_footer.php |  0.8.7i |  1.1.38
 
 ## cacti\_stats\_update
 
@@ -200,6 +252,14 @@ graph template.
 file | introduced | retired
 --- | :--- | :---
 lib/template.php |  1.0.0  |
+
+## custom\_denied
+
+Allows you to override the rendering of the permission denied interface.
+
+file | introduced | retired
+--- | :--- | :---
+auth_login.php |  1.2.12  |
 
 ## custom\_login
 
@@ -303,6 +363,12 @@ graphs.php |  1.0.0  |  1.1.38
 host.php |  1.0.0  |  1.1.38
 lib/api_data_source.php |  1.2.0-beta1  |
 
+## data\_source\_to\_poller\_items
+
+file | introduced | retired
+--- | :--- | :---
+lib/utility.php |  1.0.0  |
+
 ## data\_sources\_table
 
 Allows you to change the data displayed on the Data Sources table. THold uses
@@ -311,12 +377,6 @@ this to create a link to that datasources threshold
 file | introduced | retired
 --- | :--- | :---
 data_sources.php |  1.0.0  |
-
-## data\_source\_to\_poller\_items
-
-file | introduced | retired
---- | :--- | :---
-lib/utility.php |  1.0.0  |
 
 ## device\_action\_array
 
@@ -350,6 +410,14 @@ file | introduced | retired
 --- | :--- | :---
 host.php |  1.0.0  |
 
+## device\_display\_text
+
+This hook allows you to add custom columns header to the host list page
+
+file | introduced | retired
+--- | :--- | :---
+host.php |  1.3.0 - Dev  |
+
 ## device\_edit\_pre\_bottom
 
 file | introduced | retired
@@ -364,6 +432,24 @@ This hook allows you to add custom actions to the host edit page, below the
 file | introduced | retired
 --- | :--- | :---
 host.php |  1.0.0  |
+
+## device\_filter\_end
+
+This hook allows you to add custom filter fields before Cacti buildin filter to
+the host list page
+
+file | introduced | retired
+--- | :--- | :---
+host.php |  1.3.0 - Dev  |
+
+## device\_filter\_start
+
+This hook allows you to add custom filter fields after Cacti buildin filter to
+the host list page
+
+file | introduced | retired
+--- | :--- | :---
+host.php |  1.3.0 - Dev  |
 
 ## device\_filters
 
@@ -393,6 +479,14 @@ host.php |  1.0.0  |
 file | introduced | retired
 --- | :--- | :---
 host.php |  1.0.0  |
+
+## device\_table\_replace
+
+Allows you to override the rendering of the host list page
+
+file | introduced | retired
+--- | :--- | :---
+host.php |  1.3.0 - Dev |
 
 ## device\_template\_edit
 
@@ -483,6 +577,15 @@ file | introduced | retired
 --- | :--- | :---
 data_sources.php |  1.0.0  |
 
+## graph\_tree\_page\_buttons
+
+Allows you to add custom HTML to the graph tree view page, under the timespan
+presets and the graph search box.
+
+file | introduced | retired
+--- | :--- | :---
+lib/html_tree.php |  0.8.7i  |
+
 ## graphs\_action\_array
 
 Similar to the host actions and host, prepare and execute hooks. It allows you
@@ -544,15 +647,6 @@ used to display graphs on the graphs.php page.
 file | introduced | retired
 --- | :--- | :---
 graphs.php |  1.0.0  |
-
-## graph\_tree\_page\_buttons
-
-Allows you to add custom HTML to the graph tree view page, under the timespan
-presets and the graph search box.
-
-file | introduced | retired
---- | :--- | :---
-lib/html_tree.php |  1.0.0  |
 
 ## hmib\_get\_cpu
 
@@ -755,7 +849,7 @@ poller.
 
 file | introduced | retired
 --- | :--- | :---
-poller.php |  1.0.0  | 1.2.29
+poller.php |  0.8.7i  | 1.2.8
 
 ## poller\_exiting
 
@@ -856,7 +950,7 @@ Allows you to override the rendering of the top_graph_header.php include.
 
 file | introduced | retired
 --- | :--- | :---
-include/top_graph_header.php |  1.0.0  |  1.1.38
+include/top_graph_header.php |  0.8.7i  |  1.1.38
 
 ## top\_graph\_header\_tabs
 
@@ -891,7 +985,7 @@ top_header.php include.
 file | introduced | retired
 --- | :--- | :---
 include/top_general_header.php |  1.0.0  |  1.1.38
-include/top_header.php |  1.0.0  |  1.1.38
+include/top_header.php |  0.8.7i  |  1.1.38
 
 ## tree\_after
 
@@ -973,7 +1067,7 @@ See the explanation on `user_admin_action`
 file | introduced | retired
 --- | :--- | :---
 user_admin.php |  1.0.0  |
-utilities.php |  1.0.0  |
+utilities.php |  1.0.0  | 1.2.0-beta3
 
 ## user\_admin\_user\_save
 
@@ -1040,6 +1134,15 @@ page.
 file | introduced | retired
 --- | :--- | :---
 utilities.php |  1.0.0  |
+
+## utilities\_tab
+
+This hook allows you to add a custom utilities tab under Cacti's "Utilities"
+page.
+
+file | introduced | retired
+--- | :--- | :---
+utilities.php |  1.2.0-beta3  |
 
 ## valid\_host\_fields
 
