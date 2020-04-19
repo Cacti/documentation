@@ -1,6 +1,18 @@
 # Data Collectors
 
-This section will describe **Data Collectors** in Cacti.
+As of Cacti 1.x remote polling is now supported remote polling allows for
+devices to be monitored by different servers either geographically closer to the
+node being monitored or by a redundant server for load balancing.
+
+To accomplish this a master cacti instance must be installed along with a remote
+poller which is a full cacti installation the remote poller must be able to
+reach and read/write to the database hosted on the main server. Cacti will
+display all the devices weather on the remote or main poller on the main poller
+dashboard for an easy view.
+
+The below page shows the current online collector aka pollers these are used to
+reach out to the device either by SNMP or Ping all traffic would originate from
+the poller assigned to the device.
 
 As of Cacti 1.x remote polling is now supported remote polling allows for devices 
 to be monitored by different servers either geographically closer to the node 
@@ -25,16 +37,16 @@ serves as the master poller for a distributed system using remote pollers.
 
 ![Data Collectors Edit Remote](images/data-collectors-edit-remote1.png)
 
-The below page allows you to modify remote poller specific details such as 
-username and password. You will also be able to test the connection between 
+The below page allows you to modify remote poller specific details such as
+username and password You will also be able to test the connection between 
 the main poller and the remote poller.
 
 ![Data Collectors Edit Remote Connection Test](images/data-collectors-edit-remote2.png)
 
 ### Setup Main database to accept connections from a remote poller
 
-We will need to make some config changes to the mysql configuration to allow 
-the remote poller to talk to the main poller
+We will need to make some config changes to the mysql configuration to allow the
+remote poller to talk to the main poller
 
 ```console
 mysql -u root mysql -e "GRANT ALL ON cacti.* TO cactidb@<ip of remote poller host>  IDENTIFIED BY 'password';"
@@ -58,10 +70,10 @@ Next setup the server for cacti and update the config.php located in
 #$rdatabase_ssl_ca   = '';
 ```
 
-You will now need to install Cacti on the remote server selecting the new remote 
+You will now need to install Cacti on the remote server selecting the new remote
 poller option
 
 ![remote poller setup](images/cacti_remote_poller_setup.JPG)
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group

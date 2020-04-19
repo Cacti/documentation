@@ -1,6 +1,6 @@
 # Installing on CentOS 7
 
-## LAMP (Linux, Apache, MySQL, PHP) Required packages
+## LAMP (Linux, Apache, MySQL/MariaDB, PHP) Required packages
 
 ### Web Server (Apache)
 
@@ -10,7 +10,7 @@
    yum install <http://rpms.remirepo.net/enterprise/remi-release-7.rpm> -y
    yum install yum-utils -y
    yum-config-manager --enable remi-php72
-```
+   ```
 
 2. Install Apache
 
@@ -48,13 +48,13 @@ files holding your certificate (`.crt`) and private key (`.key`).
 <VirtualHost *:443>
     LogLevel warn
 
-    ServerName cacti.domain.com
-    ServerAdmin  admin@domain.com
+    ServerName cacti.yourdomain.com
+    ServerAdmin  admin@yourdomain.com
 
     DocumentRoot "/var/www/html/cacti"
     Alias /cacti    /var/www/html/cacti
     SSLEngine On
-    SSLCertificateFile /etc/ssl/private/YourOwnCertFile.crt
+    SSLCertificateFile /etc/ssl/certs/YourOwnCertFile.crt
     SSLCertificateKeyFile /etc/ssl/private/YourOwnCertKey.key
 
     <Directory /var/www/html/cacti/>
@@ -165,8 +165,8 @@ during the installation.
    ```
 
    The following `[mysqld]` section is a base configuration.  The installer
-will provide recommendations based on the actual system which will be more
-tailored to your environment.
+   will provide recommendations based on the actual system which will be more
+   tailored to your environment.
 
    ```shell
    [mysqld]
@@ -217,19 +217,21 @@ tailored to your environment.
    ```
 
 3. Grant Cacti username access to Cacti database. Replace `your_cacti_username`
- and `your_cacti_password` with your own details.
+   and `your_cacti_password` with your own details.
 
    ```sql
-   MariaDB [(none)]> GRANT ALL PRIVILEGES ON cacti.* TO 'your_cacti_username'@'localhost' IDENTIFIED BY 'your_cacti_password';
+   MariaDB [(none)]> CREATE USER 'your_cacti_username'@'localhost' IDENTIFIED BY 'your_cacti_password';
+   Query OK, 0 rows affected (0.00 sec)
+   MariaDB [(none)]> GRANT ALL PRIVILEGES ON cacti.* TO 'your_cacti_username'@'localhost';
    Query OK, 0 rows affected (0.00 sec)
    ```
 
 4. Grant cacti username to MySQL timezone table
 
    ```sql
-   MariaDB [(none)]> GRANT SELECT ON mysql.time_zone_name TO 'cacti'@'localhost';
+   MariaDB [(none)]> GRANT SELECT ON mysql.time_zone_name TO 'your_cacti_username'@'localhost';
    Query OK, 0 rows affected (0.00 sec)
-  MariaDB [(none)]> FLUSH PRIVILEGES;
+   MariaDB [(none)]> FLUSH PRIVILEGES;
    Query OK, 0 rows affected (0.00 sec)
    ```
 
@@ -280,7 +282,7 @@ The following steps will show you how to manually download, install and
 configure the basics for Cacti.
 
 1. Download Cacti source code from [Cacti Web
- Site](https://www.cacti.net/download_cacti.php)
+   Site](https://www.cacti.net/download_cacti.php)
 
    ```console
    cd /tmp
@@ -313,12 +315,12 @@ configure the basics for Cacti.
 
 4. Create your cron task file
 
-Create and edit `/etc/cron.d/cacti` file.
-Make sure to setup the correct path to poller.php
+   Create and edit `/etc/cron.d/cacti` file.
+   Make sure to setup the correct path to poller.php
 
-```console
-*/5 * * * * nginx php /usr/share/nginx/html/cacti/poller.php &>/dev/null
-```
+   ```console
+   */5 * * * * apache php /var/www/html/cacti/poller.php &>/dev/null
+   ```
 
 #### Spine
 
@@ -330,7 +332,7 @@ Make sure to setup the correct path to poller.php
    ```
 
 2. Download spine source code from [Cacti Web
- Site](https://www.cacti.net/spine_download.php)
+   Site](https://www.cacti.net/spine_download.php)
 
    Go to /tmp to download the source code and extract it
 
@@ -349,10 +351,10 @@ Make sure to setup the correct path to poller.php
    config/install-sh -c -d '/usr/local/spine/bin'
    /bin/sh ./libtool   --mode=install /usr/bin/install -c spine '/usr/local/spine/bin'
    libtool: install: /usr/bin/install -c spine /usr/local/spine/bin/spine
- config/install-sh -c -d '/usr/local/spine/etc'
+   config/install-sh -c -d '/usr/local/spine/etc'
    /usr/bin/install -c -m 644 spine.conf.dist '/usr/local/spine/etc'
    config/install-sh -c -d '/usr/local/spine/share/man/man1'
- /usr/bin/install -c -m 644 spine.1 '/usr/local/spine/share/man/man1'
+   /usr/bin/install -c -m 644 spine.1 '/usr/local/spine/share/man/man1'
    ```
 
 4. Edit spine.conf
@@ -408,12 +410,5 @@ documentation on how to make your SELinux policy right.
 **Note:** If you installed Cacti out of `/var/www/html` make sure you fix up
 all SELinux context and permissions.
 
-### Use setup wizard script for an interactive installation
-
-<https://github.com/bmfmancini/cacti-install-wizard>
-
-This script written by BMFMANCINI (Sean Mancini) will interactivley walk you through the installation proccess without having to worry about missing something along the way! The script will also help with plugin installation
-(This script is not part of the official cacti project)
-
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group

@@ -54,15 +54,20 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 2. [Cacti Overview](README.md#cacti-overview)
 
-   This section describes Cacti components and their purpose as well as providing examples including on how to create **Templates** in Cacti.
+   This section describes Cacti components and their purpose as well as
+   providing examples including on how to create **Templates** in Cacti.
 
 3. [Advanced Operations](README.md#advanced-operations)
 
-   This section covers more advanced material such as using a advanced data collection and replacement variables that can be used within **Templates**, etc.
+   This section covers more advanced material such as using a advanced data
+   collection and replacement variables that can be used within **Templates**,
+   etc.
 
 4. [Plugins](README.md#plugins)
 
-   This section contains all Plugin related information.  Guidelines, hooks, references, etc.  More information can be found on the [Cacti Forums](https://forums.cacti.net/viewforum.php?f=6).
+   This section contains all Plugin related information.  Guidelines, hooks,
+   references, etc.  More information can be found on the [Cacti
+   Forums](https://forums.cacti.net/viewforum.php?f=6).
 
 5. [How To's](README.md#how-tos)
 
@@ -74,7 +79,10 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 7. [Development Standards](README.md#development-standards)
 
-   This section contains the relevant information on how to ensure that any contribution is kept to the same standards that are applied for the Cacti Group.  It should be noted that non-compliance does not mean automatically exclusion of proposed changes.
+   This section contains the relevant information on how to ensure that any
+   contribution is kept to the same standards that are applied for the Cacti
+   Group. It should be noted that non-compliance does not mean automatically
+   exclusion of proposed changes.
 
 ### Cacti Installation
 
@@ -84,9 +92,11 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 3. Installing Cacti on Linux
 
-    3.1.  [Installation Under CentOS 7 - LAMP Stack](Install-Under-CentOS_LAMP.md)
-    3.2.  [Installation Under CentOS 7 - LEMP Stack](Install-Under-CentOS_LEMP.md)
-    3.3. [Installation Under Ubuntu/Debian - LAMP Stack](Installing-Under-Ubuntu-Debian.md)
+   3.1. [Installation Under CentOS 7 - LAMP Stack](Install-Under-CentOS_LAMP.md)
+
+   3.2. [Installation Under CentOS 7 - LEMP Stack](Install-Under-CentOS_LEMP.md)
+
+   3.3. [Installation Under Ubuntu/Debian - LAMP Stack](Installing-Under-Ubuntu-Debian.md)
 
 4. [Installing Under Windows](Installing-Under-Windows.md)
 
@@ -100,17 +110,17 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 1. Overview
 
-    1.1. [Navigating the User Interface](Navigating-The-User-Interface.md)
+   1.1. [Navigating the User Interface](Navigating-The-User-Interface.md)
 
-    1.2. [Principles of Operation](Principles-of-Operation.md)
+   1.2. [Principles of Operation](Principles-of-Operation.md)
 
-    1.3. [Graph Overview](Graph-Overview.md)
+   1.3. [Graph Overview](Graph-Overview.md)
 
-    1.4. [How to Graph Your Network](How-to-Graph-Your-Network.md)
+   1.4. [How to Graph Your Network](How-to-Graph-Your-Network.md)
 
-    1.5. [Viewing Graphs](Viewing-Graphs.md)
+   1.5. [Viewing Graphs](Viewing-Graphs.md)
 
-    1.6. [Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
+   1.6. [Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
 
 2. Management
 
@@ -134,11 +144,11 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    3.3. [Data Queries](Data-Queries.md)
 
-    3.3.1. [SNMP Data Queries Walkthrough](SNMP-Data-Queries-Walkthrough.md)
+      3.3.1. [SNMP Data Queries Walkthrough](SNMP-Data-Queries-Walkthrough.md)
 
-    3.3.2. [SNMP New Data Query Walkthrough](SNMP-New-Data-Query-Walkthrough.md)
+      3.3.2. [SNMP New Data Query Walkthrough](SNMP-New-Data-Query-Walkthrough.md)
 
-    3.3.3 [Script Data Query Walkthrough](Script-Data-Query-Walkthrough.md)
+      3.3.3. [Script Data Query Walkthrough](Script-Data-Query-Walkthrough.md)
 
 4. [Templates](Templates.md)
 
@@ -222,6 +232,8 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 4. [RRDTool Specific Features](RRDTool-Specific-Features.md)
 
+5. [RRDProxy Specific Features](RRDproxy.md)
+
 6. [Debugging](Debugging.md)
 
 7. [Version Specific Release Notes](Version-Specific-Release-Notes.md)
@@ -246,6 +258,8 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 3. [Data Query Templates](How-To-Data-Query-Templates.md)
 
+4. [How To Setup Remote Pollers](How-To-Setup-Remote-Pollers.md)
+
 ### Contributing
 
 1. [Contributing](Contributing.md)
@@ -269,4 +283,4 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 7. [Security](Standards-Security.md)
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group

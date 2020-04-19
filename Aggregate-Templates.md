@@ -19,4 +19,4 @@ This section will describe **Aggregate Templates** in Cacti.
 ![Aggregate Templates Edit Legend Options](images/aggregate-templates-edit7.png)
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group

@@ -24,4 +24,4 @@ templates, extensive field descriptions for both graphs and graph items are
 provided in that section of the manual.
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group

@@ -6,9 +6,9 @@ Adding a device to Cacti can be done in a few differnt ways  either via the GUI,
 
 ## GUI option
 
-To add a device via the gui first click on Console >> Managment >> Devices
-
-you will see the below device console window which will show exisiting devices if any
+To add a device via the gui first click on `Console >> Managment >> Devices` and
+you will see the below device console window which will show exisiting devices
+if any
 
 ![Device Console](images/Device_console_windows.JPG)
 
@@ -16,20 +16,24 @@ You will now select the + on the top right hand corner
 
 ![Add Device Button](images/add_device_button.png)
 
-Once you select the + otherwise known as the add device button you will see the below screen which will ask you for device specific information
+Once you select the + otherwise known as the add device button you will see the
+below screen which will ask you for device specific information
 
-Some of the most important information about the device will be required in this window which includes
--Device Name
--IP/Hostname
--Template i.e Cisco,Linux etc
--SNMP information
--Device Notes
+Some of the most important information about the device will be required in this
+window which includes
+
+- Device Name
+- IP/Hostname
+- Template i.e Cisco,Linux etc
+- SNMP information
+- Device Notes
 
 ![Add Device Info Screen](images/Add_Device_screen.png)
 
-Cacti requires this basic information to be able to monitor the device once you have entered the basic information click save on the bottom right corner
-The device is now created you will need to add graphs for the device  which can be done by clicking Create graphs for this device on the top right hand corner.
-to see more information about Graph creation see .....
+Cacti requires this basic information to be able to monitor the device and once
+entered, click save on the bottom right corner. With the device created you will
+need to add graphs for the device by clicking **Create graphs for this device**
+on the top right hand corner.
 
 ## Creating devices via cli script
 
@@ -51,11 +55,10 @@ Required:
 To add a device using the bare minimum information would look something like this
 
 ```console
-bmfmancini@localhost:/var/www/html/cacti/cli$ php add_device.php --description=test --ip=192.168.1.15
+$ php add_device.php --description=test --ip=192.168.1.15
 Adding test (192.168.1.15) as "Cacti Stats" using SNMP v3 with community "public"
 Success - new device-id: (45)
-bmfmancini@localhost:/var/www/html/cacti/cli$
 ```
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group

@@ -173,11 +173,30 @@ Cacti requires that the following software is installed on your system.
       divided by 128MB. Continue to use this equation up to the max of 64.
 
     Note:
+
     - Some of these recommendations may not be applicable depending on the
       version of MySQL/MariaDB you are running.
+
     - Some of these recommendations should be scaled where appropriate
 
-To implement the above mysql recomendations you can use the below entries and paste them into my.cnf
+    - Newer MySQL/MariaDB software are using [strict
+      modes](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html) and it can
+      cause unexpected problems when importing dumps of Cacti databases from
+      older systems, like **Can't create table `cacti`.`poller_output_boost`
+      (errno: 140 "Wrong create options")**.
+
+      You have more posibilities:
+
+      - disable appropriate strict mode - not recomended
+
+      - change mysqldump file - remove **ROW_FORMAT=FIXED** from table
+        definition
+
+      - before mysqldump run query:
+        **ALTER TABLE `poller_output_boost` ROW_FORMAT=DYNAMIC;**
+
+To implement the above mysql recomendations you can use the below entries and
+paste them into my.cnf
 
 ```console
  innodb_flush_log_at_timeout = 4
@@ -194,4 +213,4 @@ To implement the above mysql recomendations you can use the below entries and pa
  ```
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group

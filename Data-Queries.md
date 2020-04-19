@@ -1,16 +1,16 @@
 # Data Queries
 
-Data queries are not a replacement for data input methods in Cacti. Instead
-they provide an easy way to query, or list data based upon an index, making the
-data easier to graph. The most common use of a data query within Cacti is to
-retrieve a list of network interfaces via SNMP. If you want to graph the
-traffic of a network interface, first Cacti must retrieve a list of interfaces
-on the host. Second, Cacti can use that information to create the necessary
-graphs and data sources. Data queries are only concerned with the first step of
-the process, that is obtaining a list of network interfaces and not creating
-the graphs/data sources for them. While listing network interfaces is a common
-use for data queries, they also have other uses such as listing partitions,
-processors, or even cards in a router.
+Data queries are not a replacement for data input methods in Cacti. Instead they
+provide an easy way to query, or list data based upon an index, making the data
+easier to graph. The most common use of a data query within Cacti is to retrieve
+a list of network interfaces via SNMP. If you want to graph the traffic of a
+network interface, first Cacti must retrieve a list of interfaces on the host.
+Second, Cacti can use that information to create the necessary graphs and data
+sources. Data queries are only concerned with the first step of the process,
+that is obtaining a list of network interfaces and not creating the graphs/data
+sources for them. While listing network interfaces is a common use for data
+queries, they also have other uses such as listing partitions, processors, or
+even cards in a router.
 
 One requirement for any data query in Cacti, is that it has some unique value
 that defines each row in the list. This concept follows that of a 'primary key'
@@ -21,8 +21,8 @@ device name for partitions.
 There are two types of data queries that you will see referred to throughout
 Cacti. They are script queries and SNMP queries. Script and SNMP queries are
 virtually identical in their functionality and only differ in how they obtain
-their information. A script query will call an external command or script and
-an SNMP query will make an SNMP call to retrieve a list of data.
+their information. A script query will call an external command or script and an
+SNMP query will make an SNMP call to retrieve a list of data.
 
 All data queries have two parts, the XML file and the definition within Cacti.
 An XML file must be created for each query, that defines where each piece of
@@ -34,8 +34,8 @@ templates.
 ## Creating a Data Query
 
 Once you have created the XML file that defines your data query, you must add
-the data query within Cacti. To do this you must click on Data Queries under
-the Data Gathering heading, and select Add. You will be prompted for some basic
+the data query within Cacti. To do this you must click on Data Queries under the
+Data Gathering heading, and select Add. You will be prompted for some basic
 information about the data query, described in more detail below.
 
 ###### Table 12-1. Field Description: Data Queries
@@ -133,7 +133,10 @@ index_title_format | Specify the title format to use when representing an index 
 
 ###### Table 12-4. SNMP Query XML Field Settings Reference
 
-Each field contained within the SNMP Query must be defined under the field tag as show in the example above.  In addition, each defined field in the SNMP Query must have a unique name given to it. Do not use spaces or any non-alphanumeric characters, this name must be identifiable within Cacti.
+Each field contained within the SNMP Query must be defined under the field tag
+as show in the example above.  In addition, each defined field in the SNMP Query
+must have a unique name given to it. Do not use spaces or any non-alphanumeric
+characters, this name must be identifiable within Cacti.
 
 Field | Description
 --- | ---
@@ -193,7 +196,10 @@ index_title_format | Specify the title format to use when representing an index 
 
 ###### Table 12-6. Script Query XML Field Settings
 
-Each field contained within the Script Query must be defined under the field tag as show in the example above.  In addition, each defined field in the Script Query must have a unique name given to it. Do not use spaces or any non-alphanumeric characters, this name must be identifiable within Cacti.
+Each field contained within the Script Query must be defined under the field tag
+as show in the example above.  In addition, each defined field in the Script
+Query must have a unique name given to it. Do not use spaces or any
+non-alphanumeric characters, this name must be identifiable within Cacti.
 
 Field | Description
 --- | ---
@@ -257,7 +263,10 @@ index_title_format | Specify the title format to use when representing an index 
 
 ###### Table 12-6. Script Server XML Field Settings
 
-Each field contained within the Script Query must be defined under the field tag as show in the example above.  In addition, each defined field in the Script Query must have a unique name given to it. Do not use spaces or any non-alphanumeric characters, this name must be identifiable within Cacti.
+Each field contained within the Script Query must be defined under the field tag
+as show in the example above.  In addition, each defined field in the Script
+Query must have a unique name given to it. Do not use spaces or any
+non-alphanumeric characters, this name must be identifiable within Cacti.
 
 Field | Description
 --- | ---
@@ -266,4 +275,4 @@ direction | input: Input values are the "known" values that you will use to deri
 query_name | Enter the name that Cacti must use when asking the script for information about this field. For instance, the following should return values: '(script_name) query (query_name)'.
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group

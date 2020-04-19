@@ -9,4 +9,4 @@ This section will describe **External Links** in Cacti.
 ![External Links Example](images/external-links-example1.png)
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group

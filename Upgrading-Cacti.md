@@ -1,6 +1,8 @@
 # Upgrading Cacti Under UNIX Compatible Operating Systems
 
-To upgrade Cacti under UNIX style operating systems, you should use the following instructions.  To upgrade Cacti on Windows, you should use the instructions in the Link below:
+To upgrade Cacti under UNIX style operating systems, you should use the
+following instructions.  To upgrade Cacti on Windows, you should use the
+instructions in the Link below:
 
 [Upgrading in Windows](Upgrading-Cacti-Under-Windows.md)
 
@@ -14,7 +16,8 @@ To upgrade Cacti under UNIX style operating systems, you should use the followin
    > MySQL username and password. This user must have permission to read from
    > Cacti's database or you will end up with an empty backup.
 
-2. Backup the old Cacti directory with the exception of the RRD files which should not need backup.
+2. Backup the old Cacti directory with the exception of the RRD files which
+   should not need backup.
 
    ```sh
    shell> tar --exclude=*.rrd -zcf cacti_backup_YYYYMMDD.tgz cacti
@@ -43,7 +46,8 @@ To upgrade Cacti under UNIX style operating systems, you should use the followin
    (Enter a valid username for cactiuser, this user will also be used in the
    next step for data gathering.)
 
-6. If you are using the optional feature Performance -> Image Caching, also recreate the folder and correct the permissions.
+6. If you are using the optional feature Performance -> Image Caching, also
+   recreate the folder and correct the permissions.
 
     ```sh
     shell> mkdir cache
@@ -57,7 +61,9 @@ To upgrade Cacti under UNIX style operating systems, you should use the followin
     Follow the on-screen instructions so your database can be updated to the
     new version.
 
-> Note that starting with Cacti 1.0, all **Data Collectors** will upgrade themselves automatically within two polling cycles.  If for some reason they do not, upgrade them one at a time.
+> Note that starting with Cacti 1.0, all **Data Collectors** will upgrade
+> themselves automatically within two polling cycles.  If for some reason they
+> do not, upgrade them one at a time.
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+Copyright (c) 2004-2020 The Cacti Group
