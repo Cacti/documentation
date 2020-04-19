@@ -198,7 +198,8 @@ Cacti results in the following:
 
 ## A note on Textual SNMP MIBS and SPINE
 
-Please be aware the SPINE does not parse out textual Mibs if you were to put a SNMP string i.e interfaces.mib.1.1.1.1.1 this will fail
+Please be aware the SPINE does not parse out textual Mibs if you were to put a SNMP string 
+i.e interfaces.mib.1.1.1.1.1 this will fail
 Graphs will not generate due to spine not reciving a value at each poll
 
 ---
