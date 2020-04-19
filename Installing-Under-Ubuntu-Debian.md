@@ -76,5 +76,9 @@ The system is now ready to finialise the steps by browsing to
 [http://serverip/cacti](http://serverip/cacti) to start the cacti initalization
 wizard.
 
+### Video Tutorial on how to install cacti step by step
+
+[![Video Tutorial ](https://www.youtube.com/watch?v=xegaAJU1_MU/0.jpg)](https://www.youtube.com/watch?v=xegaAJU1_MU "Video Tutorial")
+
 ---
 Copyright (c) 2004-2020 The Cacti Group
