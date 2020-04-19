@@ -45,15 +45,15 @@ the main poller and the remote poller.
 
 ### Setup Main database to accept connections from a remote poller
 
-We will need to make some config changes to the mysql configuration to allow the
-remote poller to talk to the main poller
+We will need to make some config changes to the mysql configuration to allow
+the remote poller to talk to the main poller
 
 ```console
 mysql -u root mysql -e "GRANT ALL ON cacti.* TO cactidb@<ip of remote poller host>  IDENTIFIED BY 'password';"
 mysql -u root mysql -e "GRANT SELECT ON mysql.time_zone_name TO cacti@<ip of remote poller host> IDENTIFIED BY 'password';"
 ```
 
-Next setup the server for cacti and update the config.php located in 
+Next setup the server for cacti and update the config.php located in
 /cacti/include/config.php with the remote database details and credentials.
 
 ```console
