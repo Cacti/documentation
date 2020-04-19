@@ -41,5 +41,9 @@ Yearly 26kb / data source
 
 ![Data Source Profiles RRA Edit](images/data-source-profiles-edit2.png)
 
+### How to adjust data profile averages 
+
+[![Video Tutorial ](https://www.youtube.com/watch?v=BGpFopJ5334/0.jpg)](https://www.youtube.com/watch?v=BGpFopJ5334 "Video Tutorial")
+
 ---
 Copyright (c) 2004-2020 The Cacti Group
