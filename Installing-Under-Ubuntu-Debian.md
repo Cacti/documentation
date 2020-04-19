@@ -9,7 +9,8 @@ apt-get install -y apache2 rrdtool mariadb-server snmp snmpd php7.0 php-mysql ph
 
 ### Downloading the Cacti software
 
-Once the OS packages are installed we need to download the Cacti files you can do this by using the git command
+Once the OS packages are installed we need to download the Cacti files you 
+can do this by using the git command
 
 ```console
 git clone https://github.com/Cacti/cacti.git
@@ -22,7 +23,8 @@ Receiving objects: 100% (59936/59936), 76.33 MiB | 1.81 MiB/s, done.
 Resolving deltas: 100% (43598/43598), done.
 ```
 
-After downloading the cacti files move the files into the /var/www/html directory
+After downloading the cacti files move the files into the /var/www/html 
+directory
 
 mv cacti /var/www/html
 
@@ -45,7 +47,8 @@ we will now need to pre-populate the database used by cacti
 mysql -u root cacti < /var/www/html/cacti/cacti.sql
 ```
 
-Now we are ready to start configuring cacti we have  need to edit the config.php file locating in /var/www/html/cacti/include
+Now we are ready to start configuring cacti we have  need to edit the 
+config.php file locating in /var/www/html/cacti/include
 
 ```console
 cd /var/www/html/cacti/include
@@ -66,7 +69,8 @@ $database_ssl      = false;
 $database_ssl_key  = '';
 ```
 
-The system is now ready to go just surf to yourip/cacti to start the cacti initalization
+The system is now ready to go just surf to yourip/cacti to start the 
+cacti initalization
 
 ---
 Copyright (c) 2004-2019 The Cacti Group
