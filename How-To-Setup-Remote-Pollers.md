@@ -97,5 +97,9 @@ $rdatabase_ssl_cert = '';
 $rdatabase_ssl_ca = '';
 ```
 
+### Video tutorial on how to setup remote pollers set by step
+
+[![Video Tutorial ](https://www.youtube.com/watch?v=ne7-jJvt38I&feature=emb_title/0.jpg)](https://www.youtube.com/watch?v=ne7-jJvt38I&feature=emb_title "Video Tutorial")
+
 ---
 Copyright (c) 2004-2020 The Cacti Group
