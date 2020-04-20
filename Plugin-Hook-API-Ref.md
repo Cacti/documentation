@@ -259,6 +259,7 @@ Allows you to override the rendering of the permission denied interface.
 
 file | introduced | retired
 --- | :--- | :---
+permission_denied.php |  1.2.2  |
 auth_login.php |  1.2.12  |
 
 ## custom\_login
@@ -1066,7 +1067,7 @@ See the explanation on `user_admin_action`
 
 file | introduced | retired
 --- | :--- | :---
-user_admin.php |  1.0.0  |
+user_admin.php |  0.8.7i  |
 utilities.php |  1.0.0  | 1.2.0-beta3
 
 ## user\_admin\_user\_save
