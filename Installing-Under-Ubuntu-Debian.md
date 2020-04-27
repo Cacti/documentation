@@ -78,7 +78,7 @@ wizard.
 
 ### Video Tutorial on how to install cacti step by step
 
-[![Video Tutorial ](https://www.youtube.com/watch?v=xegaAJU1_MU/0.jpg)](https://www.youtube.com/watch?v=xegaAJU1_MU "Video Tutorial")
+[![Video Tutorial ](https://www.youtube.com/watch?v=bCiL51G0sSg/0.jpg)](https://www.youtube.com/watch?v=bCiL51G0sSg "Video Tutorial")
 
 ---
 Copyright (c) 2004-2020 The Cacti Group
