@@ -50,7 +50,7 @@ cd spine-release-1.2.3
 Once you are in the spine directory its time to compile the poller by issuing
 the following commands:
 
-```Console
+```console
 ./bootstrap
 ./configure
 make
