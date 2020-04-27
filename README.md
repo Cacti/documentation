@@ -84,6 +84,10 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
    Group. It should be noted that non-compliance does not mean automatically
    exclusion of proposed changes.
 
+###Known Issues
+
+[List of Known issue ](known-issues.md)
+
 ### Cacti Installation
 
 1. [Requirements](Requirements.md)

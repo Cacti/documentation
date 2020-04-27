@@ -1,5 +1,5 @@
 
-### This page will list known issues per Cacti Version that have impact either on installation and performance
+### This page will list known issues per Cacti Version that have impact either on installation or  performance
 
 
 ## 1.2.11
