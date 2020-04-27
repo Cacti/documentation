@@ -1,6 +1,8 @@
 
-### This page will list known issues per Cacti Version that have impact either on installation or  performance
+### This page will list known issues in the Latest Cacti Version that impacts either
+Performance or Installation and the applicable workaround/Fix if avaliable
 
+Current Latest Version
 
 ## 1.2.11
 
