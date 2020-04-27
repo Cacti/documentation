@@ -14,18 +14,18 @@ The below page shows the current online collector aka pollers these are used to
 reach out to the device either by SNMP or Ping all traffic would originate from
 the poller assigned to the device.
 
-As of Cacti 1.x remote polling is now supported remote polling allows for devices 
-to be monitored by different servers either geographically closer to the node 
+As of Cacti 1.x remote polling is now supported remote polling allows for devices
+to be monitored by different servers either geographically closer to the node
 being monitored or by a redundant server for load balancing.
 
-To accomplish this a master cacti instance must be installed along with a remote 
-poller which is a full cacti installation the remote poller must be able to 
-reach and read/write to the database hosted on the main server. Cacti will 
+To accomplish this a master cacti instance must be installed along with a remote
+poller which is a full cacti installation the remote poller must be able to
+reach and read/write to the database hosted on the main server. Cacti will
 display all the devices weather on the remote or main poller on the main poller
 dashboard for an easy view.
 
-The below page shows the current online collector aka pollers these are used 
-to reach out to the device either by SNMP or Ping all traffic would originate 
+The below page shows the current online collector aka pollers these are used
+to reach out to the device either by SNMP or Ping all traffic would originate
 from the poller assigned to the device.
 
 ![Data Collectors](images/data-collectors.png)
@@ -38,7 +38,7 @@ serves as the master poller for a distributed system using remote pollers.
 ![Data Collectors Edit Remote](images/data-collectors-edit-remote1.png)
 
 The below page allows you to modify remote poller specific details such as
-username and password You will also be able to test the connection between 
+username and password You will also be able to test the connection between
 the main poller and the remote poller.
 
 ![Data Collectors Edit Remote Connection Test](images/data-collectors-edit-remote2.png)

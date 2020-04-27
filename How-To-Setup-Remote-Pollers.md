@@ -1,8 +1,8 @@
 # Remote Poller setup
 
 Remote Pollers add complexity to your cacti setup while also massivley extended
-the scalability of it.  Remote Pollers allow system admins to distribute 
-the load of polling between differnt servers as well as provideanother source 
+the scalability of it.  Remote Pollers allow system admins to distribute
+the load of polling between differnt servers as well as provideanother source
 of polling close to a device
 
 For example you may have a device in toronto but if your pollers are in Newyork

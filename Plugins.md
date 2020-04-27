@@ -25,7 +25,7 @@ installing thold
 
 ![thold plugin](images/cacti_thold_plugin_install.JPG).
 
-After installing the plugin by clicking on the grey gear you will now how 
+After installing the plugin by clicking on the grey gear you will now how
 to enable it this can be done via clicking on the green check mark
 
 ![thold plugin enable](images/cacti_thold_enable.JPG)

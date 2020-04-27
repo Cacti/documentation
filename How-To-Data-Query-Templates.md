@@ -198,9 +198,16 @@ Cacti results in the following:
 
 ## A note on Textual SNMP MIBS and SPINE
 
-Please be aware the SPINE does not parse out textual Mibs if you were to put a SNMP string 
-i.e interfaces.mib.1.1.1.1.1 this will fail
-Graphs will not generate due to spine not reciving a value at each poll
+Please be aware the SPINE does not parse out textual Mibs.  This means that if
+you were to use an OID that contained a string reference, rather than numerical,
+this will cause Graphs to fail as they will not be generated due to spine not
+reciving a value at each poll
+
+Example of a bad OID reference for spine:
+
+```shell
+interfaces.mib.1.1.1.1.1
+```
 
 ---
 Copyright (c) 2004-2020 The Cacti Group
