@@ -49,7 +49,7 @@ keep the most data this will come with a cost of storage due to the bigger sized
 
 To do this follow these steps
 
-## New system without any hosts
+Method 1: New system without any hosts
 
 1.) Login to cacti
 
