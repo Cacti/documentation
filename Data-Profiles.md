@@ -43,7 +43,7 @@ Yearly 26kb / data source
 
 ### Changing data profile averages 
 
-The Cacti gui allows you to change the averages on a specifc Data source profile
+The Cacti gui allows you to change the averages on a specific Data source profile
 some setups require a higher resolution of data and you may want to change the averaging to
 keep the most data this will come with a cost of storage due to the bigger sized RRD file
 
@@ -65,6 +65,14 @@ Method 1: New system without any hosts
 averaged out to the monthly graph
 
 7.) save config and generate graphs
+
+Note the row calculation take in to account the following 
+
+Rows = Aggregate level * hours i.e
+
+1 Minute aggregate level storing for 3 days ( 72 hours) 
+
+(Aggregate level)60 * 72 ( 72 hours) = 4,320
 
 ---
 Copyright (c) 2004-2020 The Cacti Group
