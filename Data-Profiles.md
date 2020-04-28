@@ -41,5 +41,24 @@ Yearly 26kb / data source
 
 ![Data Source Profiles RRA Edit](images/data-source-profiles-edit2.png)
 
+### Changing data profile averages 
+
+The Cacti gui allows you to change the averages on a specifc Data source profile
+some setups require a higher resolution of data and you may want to change the averaging to
+keep the most data this will come with a cost of storage due to the bigger sized RRD file
+
+To do this follow these steps
+
+## New system without any hosts
+
+1.) Login to cacti
+2.) Click on Presets >> Data Profiles
+3.) Select the profile you want to edit i.e 1 minute collection
+4.) Select the period which you want to edit i.e weekly 
+5.) if you wish to change the average select the aggregate level for 1 minute you will be able to go as low as 5 Minutes
+6.) you will need to edit the Rows amount to match the data retention you want to set after this period the data will be 
+averaged out to the monthly graph
+7.) save config and generate graphs
+
 ---
 Copyright (c) 2004-2020 The Cacti Group
