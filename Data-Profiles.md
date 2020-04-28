@@ -66,7 +66,9 @@ averaged out to the monthly graph
 
 7.) save config and generate graphs
 
-Note the row calculation take in to account the following 
+### Data profile Rows Calculation
+
+The rows calculation take in to account the following 
 
 Rows = Aggregate level * hours i.e
 
