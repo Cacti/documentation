@@ -69,16 +69,13 @@ averaged out to the monthly graph
 
 Method 2: Existing device on system ( Remove exisitng graphs)
 
+```
 This is a more data destructive route and it will depend on your situation
-
 If you have graphs already on cacti you will not be able to use method 1
-
 One option if you do not care about the graphs is to either remove the graphs via the gui
-
 or run the following script /cli/php remove_graphs.php with the --all function which will REMOVE ALL THE GRAPHS
-
 You can then follow the steps outlined in Method 1 to change the profile how you like
-
+```
 
 Method 3: Existing device on system ( Keep Graphs)
 
