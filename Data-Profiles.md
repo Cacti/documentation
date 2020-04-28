@@ -49,7 +49,7 @@ keep the most data this will come with a cost of storage due to the bigger sized
 
 To do this follow these steps
 
-Method 1: New system without any hosts
+#### Method 1: New system without any hosts
 
 1.) Login to cacti
 
@@ -67,7 +67,7 @@ averaged out to the monthly graph
 7.) save config and generate graphs
 
 
-Method 2: Existing device on system ( Remove exisitng graphs)
+#### Method 2: Existing device on system ( Remove exisitng graphs)
 
 This is a more data destructive route and it will depend on your situation
 If you have graphs already on cacti you will not be able to use method 1
