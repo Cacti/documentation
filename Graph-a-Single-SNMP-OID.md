@@ -34,7 +34,7 @@ When finished filling in values for these fields, click the Create button. Your
 new graph can now be accessed through the Graph Management page or the Graphs
 tab inside of Cacti.
 
-##### Note on graphing single OID's with spine
+#### Note on graphing single OID's with spine
 Spine will only proccess the number OID i.e 1.3.6.1.1.1 spine will not parse OID's such as enterprise.1.3.6.1.1.1 
 the result will be a graph that is blank
 
