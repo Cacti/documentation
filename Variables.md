@@ -172,6 +172,7 @@ Variable Name | Description
 \|host_snmp_timeout\| | SNMP Timeout
 \|host_snmp_username\| | SNMP Username (v3)
 \|host_snmp_version\| | SNMP Version
+\|host_uptime\| | SNMP Uptime
 
 ---
 Copyright (c) 2004-2020 The Cacti Group
