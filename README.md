@@ -63,7 +63,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
    collection and replacement variables that can be used within **Templates**,
    etc.
 
-4. [Plugin Development](README.md#Plugin Development)
+4. [Plugin Development](README.md#plugin-development)
 
    This section contains all Plugin development related information.
    Guidelines, hooks, references, etc.  More information can be found on
