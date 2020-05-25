@@ -36,7 +36,7 @@ Now" this will start the discovery
 
 ![Automation Networks](images/automation-networks.png)
 
-Here is a flow chart of the automation proccess 
+Here is the flow of the automation scan
 
 ![Automation Flow](images/cacti_automation_flow2.JPG)
 
