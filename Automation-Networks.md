@@ -38,7 +38,7 @@ Now" this will start the discovery
 
 Here is a flow chart of the automation proccess 
 
-![Automation Flow](images/cacti_automation_flow.JPG)
+![Automation Flow](images/cacti_automation_flow2.JPG)
 
 ---
 Copyright (c) 2004-2020 The Cacti Group
