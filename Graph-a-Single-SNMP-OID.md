@@ -35,6 +35,7 @@ new graph can now be accessed through the Graph Management page or the Graphs
 tab inside of Cacti.
 
 #### Note on graphing single OID's with spine
+
 Spine will only proccess a numeric OID i.e 1.3.6.1.1.1 spine will not parse OID's such as enterprise.1.3.6.1.1.1 
 
 ---
