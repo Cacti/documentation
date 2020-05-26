@@ -36,7 +36,6 @@ tab inside of Cacti.
 
 #### Note on graphing single OID's with spine
 Spine will only proccess a numeric OID i.e 1.3.6.1.1.1 spine will not parse OID's such as enterprise.1.3.6.1.1.1 
-Otherwise the spine poller will not proccess the OID
 
 ---
 Copyright (c) 2004-2020 The Cacti Group
