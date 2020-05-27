@@ -51,7 +51,7 @@ To do this follow these steps
 
 #### Method 1: New system without any hosts
 
-1. Login to cacti
+1. Login to Cacti
 2. Click on Presets >> Data Profiles
 3. Select the profile you want to edit i.e 1 minute collection
 4. Select the period which you want to edit i.e weekly 
