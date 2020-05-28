@@ -52,13 +52,19 @@ To do this follow these steps
 #### Method 1: New system without any hosts
 
 1. Login to Cacti
+
 2. Click on Presets >> Data Profiles
+
 3. Select the profile you want to edit i.e 1 minute collection
-4. Select the period which you want to edit i.e weekly 
+
+4. Select the period which you want to edit i.e weekly
+
 5. If you wish to change the average select the aggregate level for 1 minute
 you will be able to go as low as 5 Minutes
+
 6. You will need to edit the Rows amount to match the data retention you want 
-to set after this period the data will be averaged out to the monthly graph
+   to set after this period the data will be averaged out to the monthly graph
+
 7. Save config and generate graphs
 
 
