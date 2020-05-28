@@ -37,9 +37,9 @@ tab inside of Cacti.
 #### Note on graphing single OID's with spine
 
 In order to ensure that Spine will process single OID's correctly, 
-They should be written using numeric format separated by dots, such as 1.3.6.1.4.1.9.9.97. 
-At this time, ASN's (named OID's) such as enterprise.9.9.97 (Cisco Switch) or 
-enterprises.cisco.ciscoMgnt.ciscoSwitchEngineMIB are not supported.
+They should be written using numeric format separated by dots, such as `1.3.6.1.4.1.9.9.97.` 
+At this time, ASN's (named OID's) such as `enterprise.9.9.97` (Cisco Switch) or 
+`enterprises.cisco.ciscoMgnt.ciscoSwitchEngineMIB` are not supported.
 
 ---
 Copyright (c) 2004-2020 The Cacti Group
