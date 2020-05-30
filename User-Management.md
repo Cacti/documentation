@@ -6,7 +6,7 @@ well as various other areas of Cacti. Each **User** has a variety of settings
 and permissions.  Some of these settings can be controlled by the individual
 **User** via editing their Profile, or controlled by the Cacti Administrator.  A
 **Users** Cacti permissions are only modifiable by authorized Cacti
-Administrators.  
+Administrators.
 
 Note: for a users to see new settings, they will have to log
 off and back in again to view.
@@ -15,9 +15,9 @@ off and back in again to view.
 
 Out of the box, there are two users that come with every Cacti installation. The
 "admin" user - the main user that by default has access to see and change
-everything in Cacti. This is the user that you first login with in Cacti, and it is
-probably a good idea to keep around unless you know otherwise. The second user
-is the "guest" user, which controls which areas/graphs are allowed for
+everything in Cacti. This is the user that you first login with in Cacti, and it
+is probably a good idea to keep around unless you know otherwise. The second
+user is the "guest" user, which controls which areas/graphs are allowed for
 unauthenticated users. By default this user only has rights to view, but not
 change graphs. This enables any unauthenticated user to visit
 'graph_view.php' and view your graphs. This behavior can be changed by either
