@@ -6,22 +6,24 @@ well as various other areas of Cacti. Each **User** has a variety of settings
 and permissions.  Some of these settings can be controlled by the individual
 **User** via editing their Profile, or controlled by the Cacti Administrator.  A
 **Users** Cacti permissions are only modifiable by authorized Cacti
-Administrators.  Note, that for a users to see new settings, will have to log
+Administrators.  
+
+Note: for a users to see new settings, they will have to log
 off and back in again to view.
 
 ![User Management](images/users-list.png)
 
 Out of the box, there are two users that come with every Cacti installation. The
-"admin" user, is the main user that by default has access to see and change
-everything in Cacti. This is the user that you first login with in Cacti, and is
+"admin" user - the main user that by default has access to see and change
+everything in Cacti. This is the user that you first login with in Cacti, and it is
 probably a good idea to keep around unless you know otherwise. The second user
 is the "guest" user, which controls which areas/graphs are allowed for
 unauthenticated users. By default this user only has rights to view, but not
-change all graphs. This enables any unauthenticated user to visit
+change graphs. This enables any unauthenticated user to visit
 'graph_view.php' and view your graphs. This behavior can be changed by either
 changing the realm permissions for the "guest" user, or disabling the guest user
 altogether under Cacti Settings. By default in 0.8.7 and later, the "guest" user
-is not set in the setting, effectively disabling "guest" (Unauthenticated)
+is not enabled, effectively disabling "guest" (Unauthenticated)
 access to Cacti.
 
 ## Editing an existing User
@@ -42,7 +44,7 @@ Each of these items are described in this section of the manual.
 
 - ***User Name***
 
-  This field contains the actual login name for the user.  There are no
+  This field contains the login name for the user.  There are no
   character limits this field, but it would make sense to keep it to
   alphanumeric characters to maintain simplicity.
 
@@ -59,7 +61,7 @@ Each of these items are described in this section of the manual.
 
 - ***Account Options***
 
-  There are currently two account related options that can be set for each user.
+  There are two account related options that can be set for each user.
 
   - ___User Must Change Password at Next Login___
 
@@ -155,7 +157,7 @@ which combines all the **Users** various **User Group* and **User** permissions
 to provide an effective permission.  If the **Graph** is ultimately permitted
 for the **User** to view, you will see for what reason from this Permission tab.
 
-Note that even if a **User** is denied access to a **Device** or **Graph
+Note: even if a **User** is denied access to a **Device** or **Graph
 Template**, but has access to at least one **Graph** from that **Device** or
 **Graph Template**, they will see that **Device** or **Graph Template** name in
 areas of Cacti that display it.
@@ -218,8 +220,8 @@ for the `guest` account for example.
 
 In order to increase Cacti User Interface performance, when a **User** first
 checks for their permissions after login to either **Devices** or **Graph
-Templates** that permission is cached for their entire login session.  If you
-chance a **Users** **Device** or **Graph Template** permissions, they will not
+Templates** those permissions are cached for their entire login session.  If you
+change a **Users** **Device** or **Graph Template** permissions, they will not
 see those permission changes until their next login.
 
 ## Creating a New User
