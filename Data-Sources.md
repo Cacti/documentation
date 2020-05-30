@@ -9,7 +9,7 @@ for graphing, though is just the surface of what is achievable:
 - A 24 port switch and you poll the device via snmp and graph all of
   the ports then there will be 24 data sources
 
-Note, if you add more graphs that base their data on the original data source
+Note: if you add more graphs that base their data on the original data source
 that would not count as another data source since it uses the already existing
 source.
 
@@ -17,17 +17,17 @@ For example, if you have a 24 port switch that you create an **In/Out Bits**
 graph for each interface, and you then add the **In/Out Bits with 95th
 Percential** for each interface, you would still only have 24 data sources.
 
-Keeping on top of the amount of data sources you have is important as the larger
-the amount of data sources you have the more resources you will need to allocate
+Keeping on top of the amount of data sources you have is important as the more
+data sources you have the more resources you will need to allocate
 to your server.
 
 You can see how many data sources are associated with a single device by going
-to managment then click on devices.
+to managment then clicking on devices.
 
 ![device datasources](images/cacti_device_datasource.JPG)
 
 You can also see the total amount of data sources by checking the poller stats
-on the system Click the log tab and filter by stats and lookout for the below
+on the system. Click the log tab and filter by stats and lookout for the below
 messege
 
 ```console
@@ -42,7 +42,7 @@ The amount of data sources on your system has an impact on the amount of storage
 you will need.  You will also need to consider what rate you are polling your
 devices.  e.g. 1 minute or 5 Minute polls
 
-Here is the amount of storage you can expect to consume per data source
+Here is the approximate amount of storage you can expect to consume per data source
 
 ###### 30 second polling
 
