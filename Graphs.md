@@ -18,9 +18,9 @@ of the graph amongst other things
 ### Modifying the graph template
 
 Cacti allows you to change many aspects of the graph template.  You can
-change parameters such the title of the graph as well the size of the graphs. 
-These changes will be pushed to the graph template so other devices using the template 
-will also be updated.
+change parameters such the title of the graph as well the size of the graphs.
+These changes will be pushed to the graph template so other devices using the 
+template will also be updated.
 
 ![Graph template options](images/cacti_graph_template_options.JPG)
 

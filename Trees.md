@@ -21,7 +21,7 @@ of the graph data generated for the device.
 To create a new tree simply click the + on the top right hand corner and
 enter a name for your tree. After the tree has been created you will
 see the below page where you are able to add devices to the tree.
- 
+
 ![tree options](images/tree_options.png)
 
 To add devices to the new tree simply drag an avaliable device to the
