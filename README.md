@@ -29,8 +29,8 @@ Please see the official Cacti website for information, support, and updates.
 ## Thanks
 
 A very special thanks to Tobi Oetiker, the creator of RRDTool and the very
-popular MRTG. The users of Cacti Especially anyone who has taken the time to
-create an issue report, or otherwise help fix a Cacti related problems. Also
+popular MRTG. The users of Cacti - especially anyone who has taken the time to
+create a bug report, or otherwise help fix a Cacti related problem. Also
 to anyone who has contributed to supporting Cacti.
 
 Cacti is licensed under the GNU GPL:
