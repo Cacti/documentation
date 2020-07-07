@@ -238,6 +238,8 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 5. [RRDProxy Specific Features](RRDproxy.md)
 
+5. [Spikekill](Spikekill.md)
+
 6. [Debugging](Debugging.md)
 
 7. [Version Specific Release Notes](Version-Specific-Release-Notes.md)
