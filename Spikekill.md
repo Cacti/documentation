@@ -14,7 +14,7 @@ Spikekill is a tool used to remove spikes in a graph.  Spikes can appear in a gr
 
 ## How to use
 Spikekill is easily run on a graph with a couple mouse clicks:
-1. On Cacti's main `Graph` tab, click the Spikekill icon next to a graph.
+1. On Cacti's main `Graph` tab, click the Spikekill icon next to a graph. ![Spikekill-icon](images/spikekill.gif)
 1. In the drop-down menu that appears, review your current settings by hovering on `Settings` and reviewing each item, making changes if desired.
 1. Run Spikekill by choosing one of the four methods available in the drop-down menu. Spikekill runs immediately, and the graph may be modified, depending on your settings.  The graph is refreshed when Spikekill is finished.
 
@@ -27,3 +27,6 @@ Spikekill requires certain values to successfully calculate which data points to
 1. Kills Per RRA - Spikekill will limit the number of data points that it overwrites to the value of _Kills Per RRA_.  For reference, a single RRD file can contain multiple _data sources_ and multiple _archives_.  Therefore, the total number of data points that could be overwritten in a single RRD file will be determined by the equation: ```[number_of_RRAs] * [number_of_data_sources] * [Kills_Per_RRA]```
 
 The above settings are maintatined individually for each Cacti user.  The default values can be changed globally in the Cacti settings, found at Configuration > Settings > Spikes.  A user can change his or her individual settings by selecting different choices in the Spikekill menu which appears next to a graph.
+
+---
+Copyright (c) 2004-2020 The Cacti Group
