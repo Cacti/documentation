@@ -14,7 +14,7 @@ Spikekill is a tool used to remove spikes in a graph.  Spikes can appear in a gr
 
 ## How to use
 Spikekill is easily run on a graph with a couple mouse clicks:
-1. On Cacti's main `Graph` tab, click the Spikekill icon next to a graph. ![Spikekill-icon](images/spikekill.gif)
+1. On Cacti's main `Graph` tab, click the Spikekill icon ![Spikekill-icon](images/spikekill.gif) next to a graph.
 1. In the drop-down menu that appears, review your current settings by hovering on `Settings` and reviewing each item, making changes if desired.
 1. Run Spikekill by choosing one of the four methods available in the drop-down menu. Spikekill runs immediately, and the graph may be modified, depending on your settings.  The graph is refreshed when Spikekill is finished.
 
