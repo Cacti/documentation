@@ -86,7 +86,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 ### Known Issues
 
-[List of Known issue ](known-issues.md)
+[List of Known issues](known-issues.md)
 
 ### Cacti Installation
 
@@ -238,11 +238,11 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 5. [RRDProxy Specific Features](RRDproxy.md)
 
-5. [Spikekill](Spikekill.md)
+6. [Spikekill](Spikekill.md)
 
-6. [Debugging](Debugging.md)
+7. [Debugging](Debugging.md)
 
-7. [Version Specific Release Notes](Version-Specific-Release-Notes.md)
+8. [Version Specific Release Notes](Version-Specific-Release-Notes.md)
 
 ### Plugin Development
 
