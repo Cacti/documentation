@@ -86,7 +86,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 ### Known Issues
 
-[List of Known issue ](known-issues.md)
+[List of Known issues](known-issues.md)
 
 ### Cacti Installation
 
