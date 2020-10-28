@@ -202,6 +202,10 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    8.1. [Settings](Settings.md)
 
+      8.1.1 [Authentication](Settings-Auth.md)
+
+         8.1.1.1 [LDAP](Settings-Auth-LDAP.md)
+
    8.2. [Users](User-Management.md)
 
    8.3. [User Groups](User-Group-Management.md)
