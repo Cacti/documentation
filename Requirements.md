@@ -21,7 +21,7 @@ Cacti requires that the following software is installed on your system.
   - Optional modules:
     - snmp (falls back to NetSNMP)
 
-- MySQL 5.x or MariaDB 5.5 or greater
+- MySQL 5.6 or MariaDB 5.5 or greater
   - Timezone support must be enabled
 
   - The following are my.cnf recommendations:
@@ -38,7 +38,7 @@ Cacti requires that the following software is installed on your system.
       It is recommended that you enable InnoDB in any MySQL/MariaDB version
       greater than 5.1.
 
-    - **collation_server = utf8_general_ci**
+    - **collation_server = utf8mb4_unicode_ci**
 
       When using Cacti with languages other than English, it is important to
       use the utf8_general_ci collation type as some characters take more than
@@ -47,7 +47,8 @@ Cacti requires that the following software is installed on your system.
       in production, see the internet for instructions on converting your
       databases and tables if you plan on supporting other languages.
 
-    - **character_set_client = utf8**
+    - **character_set_client = utf8mb4
+    - **character_set_server = utf8mb4
 
       When using Cacti with languages other than English, it is important to
       use the utf8 character set as some characters take more than a single
