@@ -62,8 +62,11 @@ transformation upon the username before binding, that which is specified
 in the _Distinguished Name (DN)_ field.  This transformation is useful,
 for example, to add a fully-qualified domain name suffix, or to add a NetBIOS
 domain name prefix.  For example:
+
 ```<username>@example.com```
+
 or
+
 ```domain\<username>```
 
 2. _Anonymous Searching_ - In this routine, Cacti connects to LDAP with no
@@ -124,12 +127,14 @@ The following three settings determine the content of the compare request.
 
 1. _Group Distinguished Name (DN)_ - The DN of the group into which the
 directory server should search for attributes.  For example:
+
 ```
 CN=cacti-admins,OU=Admin_Groups,OU=Groups,DC=corp,DC=company,DC=com
 ```
 
 2. _Group Member Attribute_ - The name of the attribute into which the
 directory server should search for the user.  For example:
+
 ```
 member
 ```
@@ -152,11 +157,13 @@ users who exist in a particular location in the director heierarchy.
  Cacti will perform a substitution for the phrase `<username>` in the search
 filter, and will replace it with the username.  This field must be in
 acceptable LDAP syntax.  A useful example of a search filter would be:
+
 ```
 (sAMAccountName=<username>)
 ```
 
 But more complex filers are also permitted, such as:
+
 ```
 (&(sAMAccountName=<username>)(memberOf=CN=cacti-admins,OU=Admin_Groups,OU=Groups
 ,DC=corp,DC=company,DC=com))
