@@ -18,34 +18,34 @@ web browser for some changes to take effect.
 Before proceeding, please ensure you are familiar with the following terms:
 
 1. _LDAP_ - A communication language, or protocol.  It is a defined structure
-of how to ask questions of, and receive responses from, a directory.
-It also defines what questions there exist to be asked, and what responses
-there exist to be returned.  LDAP is not a directory; it is a way to query
-a directory.
+ of how to ask questions of, and receive responses from, a directory.
+ It also defines what questions there exist to be asked, and what responses
+ there exist to be returned.  LDAP is not a directory; it is a way to query
+ a directory.
 
 2. _Directory_ - A database of objects, accompanied with other attributes.
-Commonly, these objects are user identities, accompanied with passwords.
-Sometimes, the objects are groups, accompanied by a list of members.
-Usually the objects are stored in some type of hierarchical structure
-for organizational and management purposes.
+ Commonly, these objects are user identities, accompanied with passwords.
+ Sometimes, the objects are groups, accompanied by a list of members.
+ Usually the objects are stored in some type of hierarchical structure
+ for organizational and management purposes.
 
 3. _DN_ - Short for _distinguished name_, a string that represents a
-unique object in the directory.  There can not be two DNs alike
-in a directory.  In Microsoft's _Active Directory_, this is a string
-like 'CN=Joseph,OU=Accounting,OU=Users,DC=corp,DC=example,DC=com'.
+ unique object in the directory.  There can not be two DNs alike
+ in a directory.  In Microsoft's _Active Directory_, this is a string
+ like 'CN=Joseph,OU=Accounting,OU=Users,DC=corp,DC=example,DC=com'.
 
 4. _Search_ - A type of LDAP request, in which the client sends
-some criteria to the server in an attempt to receive back a
-list of directory objects that meet the search criteria.
+ some criteria to the server in an attempt to receive back a
+ list of directory objects that meet the search criteria.
 
 5. _Bind_ - A type of LDAP request, in which the client sends the server a
-username and a password in an attempt to confirm whether the password is
-correct for that user.
+ username and a password in an attempt to confirm whether the password is
+ correct for that user.
 
 6. _sAMAccountName_ - An attribute found in Microsoft's _Active Directory_
-directory, and is what we casually know as a _username_.  The _sAMAccountName_
-does not uniquely represent an object in the Active Directory,
-whereas the _DN_ does.
+ directory, and is what we casually know as a _username_.  The _sAMAccountName_
+ does not uniquely represent an object in the Active Directory,
+ whereas the _DN_ does.
 
 ## Configuring LDAP
 
@@ -57,45 +57,45 @@ There are three basic routines that Cacti can execute when handling an
 LDAP authentication.
 
 1. _No Searching_ - In this routine, Cacti simply binds to the LDAP server
-using the credentials that were entered during login.  Cacti performs a
-transformation upon the username before binding, that which is specified
-in the _Distinguished Name (DN)_ field.  This transformation is useful,
-for example, to add a fully-qualified domain name suffix, or to add a NetBIOS
-domain name prefix.  For example:
+ using the credentials that were entered during login.  Cacti performs a
+ transformation upon the username before binding, that which is specified
+ in the _Distinguished Name (DN)_ field.  This transformation is useful,
+ for example, to add a fully-qualified domain name suffix, or to add a NetBIOS
+ domain name prefix.  For example:
 
-```<username>@example.com```
+ ```<username>@example.com```
 
-or
+ or
 
-```domain\<username>```
+ ```domain\<username>```
 
 2. _Anonymous Searching_ - In this routine, Cacti connects to LDAP with no
-authentication and attempts to perform a search for the _username_, in an
-attempt to retrieve the specific DN associated with the username.  Once
-the specific DN of the username is found, Cacti binds to LDAP using the DN of
-the user and the password that was entered during login.  Please note, by
-default, Microsoft's Active Directory does not permit anonymous searches, and
-will refuse the search request.
+ authentication and attempts to perform a search for the _username_, in an
+ attempt to retrieve the specific DN associated with the username.  Once
+ the specific DN of the username is found, Cacti binds to LDAP using the DN of
+ the user and the password that was entered during login.  Please note, by
+ default, Microsoft's Active Directory does not permit anonymous searches, and
+ will refuse the search request.
 
 3. _Specific Searching_ - In this routine, Cacti binds to LDAP using a service
-account that was provided beforehand, then performs a search for the
-_username_, in an attempt to retrieve the specific DN associated with the
-username.  Once the specific DN of the username is found, Cacti binds to LDAP
-using the DN of the user and the password that was entered during login.
+ account that was provided beforehand, then performs a search for the
+ _username_, in an attempt to retrieve the specific DN associated with the
+ username.  Once the specific DN of the username is found, Cacti binds to LDAP
+ using the DN of the user and the password that was entered during login.
 
 #### Encryption
 
 1. _None_ - This is plain-text, normally on port tcp/389.  Passwords are
-transmitted over the network in clear text between Cacti and the directory.
+ transmitted over the network in clear text between Cacti and the directory.
 
 2. _SSL_ - Commonly known as LDAPS, this is just like LDAP, but encrypted. This
-normally runs on port tcp/636. Please note, this is not enabled by default for
-Microsoft's Active Directory because it requires an encryption key and
-certificate to be installed on the AD controller(s).
+ normally runs on port tcp/636. Please note, this is not enabled by default for
+ Microsoft's Active Directory because it requires an encryption key and
+ certificate to be installed on the AD controller(s).
 
 3. _TLS_ - This is plain LDAP, but a START_TLS command is sent by the client to
-the server to initiate encryption.  Normally runs on port tcp/389 and can be
-entered into during a regular LDAP session.
+ the server to initiate encryption.  Normally runs on port tcp/389 and can be
+ entered into during a regular LDAP session.
 
 Please note that some directories will limit the request types to which they
 respond when there is no encryption on the LDAP communication.
@@ -126,31 +126,31 @@ is `CN=Joseph,OU=Admins,DC=example,DC=com`?
 The following three settings determine the content of the compare request.
 
 1. _Group Distinguished Name (DN)_ - The DN of the group into which the
-directory server should search for attributes.  For example:
+ directory server should search for attributes.  For example:
 
 ```
 CN=cacti-admins,OU=Admin_Groups,OU=Groups,DC=corp,DC=company,DC=com
 ```
 
 2. _Group Member Attribute_ - The name of the attribute into which the
-directory server should search for the user.  For example:
+ directory server should search for the user.  For example:
 
 ```
 member
 ```
 
 3. _Group Member Type_ - The format of the text string which should represent
-the user.
+ the user.
 
 ### Specific Search Settings
 
 1. _Search Base_ - The portion of the directory hierarchy inside which the
-server should perform the search.  When the directory contains many objects,
-the time and resources required to search the directory are greater.  The
-_search base_ setting is useful to reduce the portion of the directory that is
-searched, thus increasing speed and reducing processor load on the directory
-server.  This setting is also useful if you want to restrict access to Cacti to
-users who exist in a particular location in the director heierarchy.
+ server should perform the search.  When the directory contains many objects,
+ the time and resources required to search the directory are greater.  The
+ _search base_ setting is useful to reduce the portion of the directory that is
+ searched, thus increasing speed and reducing processor load on the directory
+ server.  This setting is also useful if you want to restrict access to Cacti to
+ users who exist in a particular location in the director heierarchy.
 
 2. _Search Filter_ - The criteria for which the directory server should search.
  Any parameters that the server is capable of understanding are permitted here.
