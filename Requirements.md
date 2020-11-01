@@ -186,7 +186,7 @@ Cacti requires that the following software is installed on your system.
       older systems, like **Can't create table `cacti`.`poller_output_boost`
       (errno: 140 "Wrong create options")**.
 
-      You have more posibilities:
+      You have more possibilities:
 
       - disable appropriate strict mode - not recomended
 
@@ -196,7 +196,7 @@ Cacti requires that the following software is installed on your system.
       - before mysqldump run query:
         **ALTER TABLE `poller_output_boost` ROW_FORMAT=DYNAMIC;**
 
-To implement the above mysql recomendations you can use the below entries and
+To implement the above mysql recommendations you can use the below entries and
 paste them into my.cnf
 
 ```console
