@@ -2,14 +2,13 @@
 
 This section will describe **Automation Networks** in Cacti.
 
-Adding a network to scan in the automation plugin is easy on the main console
-click Automation once on the below page click the + on the top right of the page
+Adding a network to scan in the automation plugin is easy. On the main console
+click Automation. Once on the below page click the + on the top right of the page.
 
 ![Automation Networks](images/automation-network-main.png)
 
-You will now see the below page for example if you want to scan 192.168.1.0/24
-you would enter that in the subnet range textbox and you will need to enter the
-subnet in CIDR format
+You will now see the below page. If you want to scan 192.168.1.0/24, you would
+ enter that in the subnet range textbox then enter the subnet in CIDR format.
 
 Other important options are
 
@@ -18,7 +17,7 @@ Optiom | Descriptiom
 Schedule type | How often you want to scan this subnet for devices
 Discovery threads | How many proccessess to spawn during the scan
 Max Runtime | to prevent the scan from running indefinetly
-Automatically add to cacti | If a device is SNMP reachable and matches a rule from this subnet the device will be added
+Automatically add to Cacti | If a device is SNMP reachable and matches a rule from this subnet the device will be added
 Netbios | Attempt to resolve the hostname by netbios
 
 After you are done adding your network details, ensure you enable the rule and
