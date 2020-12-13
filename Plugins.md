@@ -41,9 +41,9 @@ you must instead disable the plugin which will not drop the SQL tables and thus 
 - backup the current plugin folder typically in cacti|_path/plugins/plugin_name
 
 ```console
-mv /var/www/html/cacti/plugin/thold /tmp
+cp -R /var/www/html/cacti/plugin/thold /tmp
 ```
-- git clone or download the new version of the plugin
+- git pull or download the new version of the plugin
 
 ```console
 git clone https://github.com/Cacti/plugin_thold.git
