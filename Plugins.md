@@ -35,7 +35,6 @@ to enable it this can be done via clicking on the green check mark
 Updating a plugin not only keep you up to date with the latest release of the code for that plugin
 it also allows you to keep all of your settings for that plugin ensure you DO NOT UNINSTALL the plugin
 you must instead disable the plugin which will not drop the SQL tables and thus save your settings
-follow the below steps to update a plugin
 
 - Disable the plugin you want to update
 
