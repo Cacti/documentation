@@ -32,7 +32,10 @@ to enable it this can be done via clicking on the green check mark
 
 ### Updating a Plugin
 
-To update a plugin simply follow the following steps
+Updating a plugin not only keep you up to date with the latest release of the code for that plugin
+it also allows you to keep all of your settings for that plugin ensure you DO NOT UNINSTALL the plugin
+you must instead disable the plugin which will not drop the SQL tables and thus save your settings
+
 - Disable the plugin you want to update
 
 - backup the current plugin folder typically in cacti|_path/plugins/plugin_name
@@ -54,7 +57,7 @@ mv plugin_thold thold
 ```console
 chown -R www-data:www-data plugin_name
 ```
-- Enable the plugin
+- Enable the plugin in the console
 
 
 
