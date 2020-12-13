@@ -30,6 +30,18 @@ to enable it this can be done via clicking on the green check mark
 
 ![thold plugin enable](images/cacti_thold_enable.JPG)
 
+### Updating a Plugin
+
+To update a plugin simply follow the following steps
+- Disable the plugin you want to update
+- backup the current plugin folder typically in cacti|_path/plugins/plugin_name
+- git clone or download the new version of the plugin
+- asign proper permissions usually either www-data for Ubuntu/debian or apache for centos/RHEL
+- Enable the plugin
+- done
+
+
+
 ### Unistall a plugin
 
 To uninstall a plugin go into the plugins page console >> configuration >>
