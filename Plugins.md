@@ -34,11 +34,18 @@ to enable it this can be done via clicking on the green check mark
 
 To update a plugin simply follow the following steps
 - Disable the plugin you want to update
+
 - backup the current plugin folder typically in cacti|_path/plugins/plugin_name
+
 ```console
 mv /var/www/html/cacti/plugin/thold /tmp
-```console
+```
 - git clone or download the new version of the plugin
+
+```console
+git clone https://github.com/Cacti/plugin_thold.git
+```
+
 - change name of plugin folder i.e plugin_thold to thold
 ```console
 mv plugin_thold thold
