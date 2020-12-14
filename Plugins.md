@@ -46,7 +46,7 @@ cp -R /var/www/html/cacti/plugin/thold /tmp
 - git pull or download the new version of the plugin
 
 ```console
-git clone https://github.com/Cacti/plugin_thold.git
+git pull
 ```
 
 - change name of plugin folder i.e plugin_thold to thold
