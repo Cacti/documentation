@@ -11,8 +11,8 @@ and then select `Create Aggregate from Template` from the Cacti Actions dropdown
 Once you have created your **Aggregate Graphs**, they behave like any other
 Cacti Graph, they can be a part of a Tree, zoomed, etc.
 
-If you wish to change settings for **Graphs** managed by the 
-**Aggregate Template**, simply make the changes there, and they will cascade to 
+If you wish to change settings for **Graphs** managed by the
+**Aggregate Template**, simply make the changes there, and they will cascade to
 all templaged **Aggregate Graphs**.
 
 The image below shows an Aggregate Template for Traffic.
