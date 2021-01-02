@@ -18,13 +18,13 @@ you are using unvalidated data.  They include:
   will validate that the variable `$_REQUEST['somevariable']` returned
   is actually an integer, if not, Cacti will block the the page
   function from continuing.
-  
+
 * get_filter_request_var('somevariable', 'options') - This version of the
   function can do all sorts of verification and sanitization.
-  
+
 * set_request_var('somevariable', 'somevalue') - This function will set
   the Cacti request variable superglobal with a value.
-  
+
 Generally speaking, you should never use either `$_GET`, `$_REQUEST` or
 `$_POST` in your Cacti code.  Use the validators.  When you do, you can
 turn on the Cacti setting `Log Input Validation Issues` when you are
