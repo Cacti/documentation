@@ -20,8 +20,8 @@ Each **Graph** and **Graph Item** has a set of parameters which control various 
 of the **Graph**. Fortunately through the use of **Graph Templates**, it is not
 necessary to understand the function of each field to create **Graphs** for your
 network. When you are ready to take on the task of creating your own **Graph
-Templates**, extensive field descriptions for both **Graphs** and **Graph Items** are
-provided in that section of the manual.
+Templates**, extensive field descriptions for both **Graphs** and
+**Graph Items** are provided in that section of the manual.
 
 Below, you can see a simple version of the Graph Management interface found
 by going to `Console > Management > Graphs`

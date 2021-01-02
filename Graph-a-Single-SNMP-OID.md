@@ -3,8 +3,8 @@
 When dealing with SNMP-enabled **Devices**, there are often times when you want to
 graph the value of a single OID. This tutorial explains how to do this in
 Cacti. It also assumes that you have the "SNMP - Generic OID Template" **Graph
-Template** which is available in the **Generic SNMP Device Package**. 
-If you do not see this **Graph Template** listed under **Graph Templates**, 
+Template** which is available in the **Generic SNMP Device Package**.
+If you do not see this **Graph Template** listed under **Graph Templates**,
 install the **Generic SNMP Device Package** using the `import_package.php`
 command line script located in Cacti's cli directory.
 
@@ -17,7 +17,7 @@ From the image below, you can see the **New Graphs** interface.
 ![Graphs New](images/graphs-new.png)
 
 In this image, only the "Graph Template Based` **Graph Templates** are displayed.
-Had the `Graph Types` been switched to any of the **Data Query** based ``Graph Types``
+Had the `Graph Types` been switched to any of the **Data Query** based `Graph Types`
 the interface would look a bit different.
 
 From that Interface, to create a `Generic SNMP OID` based Graph, you need to first
@@ -50,14 +50,13 @@ fields before the new graph can be created properly.
 When finished filling in values for these fields, click the Create button. Your
 new **Graph** can now be accessed through the `Cosole > Management > Graphs` menu pick.
 
-> **NOTE**: When comparing the Table above, to the image, you will see that the 
+> **NOTE**: When comparing the Table above, to the image, you will see that the
 > `Opacity/Alpha Channel` pick is missing from the interface.  To add it, you simply need
-> to edit the `Generic SNMP OID` **Graph Template**, add a new **Graph Item Input** 
+> to edit the `Generic SNMP OID` **Graph Template**, add a new **Graph Item Input**
 > override to the Alpha/Opacity on the Graph Template as shown below.  We will cover
 > that topic in the **Graph Template** section of the manual though.
 
 ![Graphs New](images/graphs-new-generic-oid-alpha.png)
-
 
 #### Important Note on graphing single OID's with Cacti
 

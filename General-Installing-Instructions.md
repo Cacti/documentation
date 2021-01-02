@@ -25,7 +25,8 @@ packages will vary by operating system.
 
 - dos2unix (for spine)
 
-- development packages (gcc, automake, autoconf, libtool, either mysql-devel or mariadb-devel, net-snmp-devel, help2man)
+- development packages (gcc, automake, autoconf, libtool,
+  either mysql-devel or mariadb-devel, net-snmp-devel, help2man)
 
   (for spine)
 
@@ -317,7 +318,7 @@ VALUES ('localhost', 'mysql', 'cactiuser', 'time_zone_name', 'root@localhost', '
 
    The systemd units file makes managing a highly available Cacti
    setup a bit more convenient.
-   
+
 8. During install, you will need to provide write access to the following files
    and directories:
 
