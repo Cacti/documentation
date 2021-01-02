@@ -2,18 +2,18 @@
 
 This section will describe **Aggregate Templates** in Cacti.  **Aggregate Templates**
 allow you to easily create hundreds of **Aggregate Graphs** in just minutes by
-allowing common Aggregate Types to be created enmass and managed by the 
+allowing common Aggregate Types to be created enmass and managed by the
 parent **Aggregate Template** in a less error prone way.
 
 You first create the **Aggregate Template**, and then from the Cacti **Graphs** page,
 you can select the **Graphs** that you want used as part of the **Aggregate**,
 and then select `Create Aggregate from Template` from the Cacti Actions dropdown.
-Once you have created your **Aggregate Graphs**, they behave like any other 
+Once you have created your **Aggregate Graphs**, they behave like any other
 Cacti Graph, they can be a part of a Tree, zoomed, etc.
 
-If you wish to change settings for **Graphs** managed by the **Aggregate Template**, 
-simply make the changes there, and they will cascade to all templaged 
-**Aggregate Graphs**.
+If you wish to change settings for **Graphs** managed by the 
+**Aggregate Template**, simply make the changes there, and they will cascade to 
+all templaged **Aggregate Graphs**.
 
 The image below shows an Aggregate Template for Traffic.
 
