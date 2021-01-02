@@ -32,9 +32,10 @@ to enable it this can be done via clicking on the green check mark
 
 ### Updating a Plugin
 
-Updating a plugin not only keeps you up to date with the latest release of the code for that plugin.
-It also allows you to keep all of your settings for that plugin ensure you DO NOT UNINSTALL the plugin.
-You must instead disable the plugin which will not drop the SQL tables and thus save your settings.
+Updating a plugin not only keeps you up to date with the latest release of the
+code for that plugin. It also allows you to keep all of your settings for that
+plugin ensure you DO NOT UNINSTALL the plugin.  You must instead disable the
+plugin which will not drop the SQL tables and thus save your settings.
 
 - Disable the plugin you want to update
 
@@ -51,6 +52,7 @@ git pull
 ```
 
 - change name of plugin folder i.e plugin_thold to thold
+
 ```console
 mv plugin_thold thold
 ```
