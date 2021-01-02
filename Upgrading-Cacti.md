@@ -6,7 +6,7 @@ in the Link below:
 
 [Upgrading in Windows](Upgrading-Cacti-Under-Windows.md)
 
-Before you begin, generally both your Apache/NGINX and your Crontab or 
+Before you begin, generally both your Apache/NGINX and your Crontab or
 systemd based pollers should run as the same account.  In most Linux
 operating systems these days, that'll be the `apache` account.  Under
 SLES, it'll be `www-run`.  For this guide, we will use the `apache` account

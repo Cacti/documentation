@@ -49,7 +49,8 @@ They include:
 * **None** - Always assume the device is up.  This is generally reserved for **Device**
   objects that do not have a state.
 * **SNMP Uptime** - Query the SNMP Uptime Instance OID
-* **Ping and SNMP Uptime** - Ping the device but also check the SNMP Uptime Instance OID
+* **Ping and SNMP Uptime** - Ping the device but also check the SNMP Uptime
+  Instance OID
 * **Ping** - Either ICMP, TCP at a port, or UDP as a port
 * **Ping or SNMP Uptime** - Only one needs to be working for Cacti to collect data
 * **SNMP Desc** - Query the SNMP sysDecription in cases where the SNMP Uptime OID
@@ -81,7 +82,7 @@ They include the following:
   querying information, you can increase this number to reduce the time it takes
   to collect all information.
 * **Maximum OIDs Per Get Request** - Otherwise known as MaxOID's, this SNMP option
-  will allow the SNMP client to gather more metrics per get request.  Please keep 
+  will allow the SNMP client to gather more metrics per get request.  Please keep
   in mind that the higher you make this number, the longer a SNMP respond may take.
   So, you have to be sensitive about the SNMP timeout as the number get's larger.
   Since, by default SNMP is generally collected over UDP, you will also be limited
@@ -93,7 +94,7 @@ They include the following:
   traverse VPN's to communicate with.
 * **External ID** - This field is normally used for Asset Tracking information for
   the **Device**, but it use is entirely up to the System Administrator.
-  
+
 ## Plugin Behavior
 
 Many Cacti Plugins can and do add additional columns to the Device table in Cacti.
