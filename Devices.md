@@ -2,12 +2,12 @@
 
 This section will describe **Device** management in Cacti.
 
-Adding a device to Cacti can be done in a few differnt ways  either via the GUI,Automation,CLI
+Adding a **Device** to Cacti can be done in a few different ways  either via the Web GUI, Cacti's Automation, or the Command Line Interface (CLI)
 
-## GUI option
+## Web GUI Option
 
-To add a device via the gui first click on `Console > Managment > Devices` and
-you will see the below device console window which will show exisiting devices
+To add a device via the Web GUI first click on `Console > Managment > Devices` and
+you will see the below device console window which will show existing devices
 if any
 
 ![Device Console](images/Device_console_windows.JPG)
@@ -22,13 +22,18 @@ below screen which will ask you for device specific information
 Some of the most important information about the device will be required in this
 window which includes
 
-- Device Name
-- IP/Hostname
-- Template i.e Cisco, Net-SNMP, Linux, etc
-- Site, Location
-- Availability/Reachability options
-- SNMP information
-- Device Notes
+- **Description** - The name that will appear on **Graphs** by default
+- **IP/Hostname** - The DNS or IP address of the actual **Device**
+- **Poller Association** - Defines which **Data Collector** is responsible for
+  pulling information about the **Device**
+- **Device Template** - Cisco, Net-SNMP, Linux, etc - The Cacti object that
+  holds all the **Graph Templates** and **Data Queries** to be graphed
+- **Site, Location** - Very important to performing Meta queries, or for
+  Site level Graph organization on Cacti **Graph Trees**
+- **Availability/Reachability** - Settings that describe **Device**
+  timeouts and availability methods.
+- **SNMP information** - SNMP Credentials for connecting to the **Device**
+- **Device Notes** - Arbitrary unstructured information about the **Device**
 
 ![Add Device Info Screen](images/Add_Device_screen.png)
 
@@ -46,27 +51,27 @@ it.  Before Cacti will query the **Device** for data, it first verifies that the
 **Device** is up and responding.  When doing so, you have several options.
 They include:
 
-* **None** - Always assume the device is up.  This is generally reserved for **Device**
+- **None** - Always assume the device is up.  This is generally reserved for **Device**
   objects that do not have a state.
-* **SNMP Uptime** - Query the SNMP Uptime Instance OID
-* **Ping and SNMP Uptime** - Ping the device but also check the SNMP Uptime
+- **SNMP Uptime** - Query the SNMP Uptime Instance OID
+- **Ping and SNMP Uptime** - Ping the device but also check the SNMP Uptime
   Instance OID
-* **Ping** - Either ICMP, TCP at a port, or UDP as a port
-* **Ping or SNMP Uptime** - Only one needs to be working for Cacti to collect data
-* **SNMP Desc** - Query the SNMP sysDecription in cases where the SNMP Uptime OID
+- **Ping** - Either ICMP, TCP at a port, or UDP as a port
+- **Ping or SNMP Uptime** - Only one needs to be working for Cacti to collect data
+- **SNMP Desc** - Query the SNMP sysDecription in cases where the SNMP Uptime OID
   is not available
-* **SNMP GetNext** - Query the first available OID in the OID tree for the **Device**
+- **SNMP GetNext** - Query the first available OID in the OID tree for the **Device**
   Used for certain devices that have limited SNMP support.
 
 ## SNMP Credentials
 
 When providing the SNMP credentials, Cacti currently supports the following versions:
 
-* Version 1 - Rarely used any more.  Reserved for very old hardware
-* Version 2 - Still very popular, and support 64 bit counters except on Windows
-* Version 3 - Support is provided, but there are presently limitations for example
+- **Version 1** - Rarely used any more.  Reserved for very old hardware
+- **Version 2** - Still very popular, and support 64 bit counters except on Windows
+- **Version 3** - Support is provided, but there are presently limitations for example
   at the present time only MD5, and SHA1 Auth Protocols, and DES and AES128
-  Privacy Protocols.  Higher level encryptions are currently scheduled for a future
+  Privacy Protocols.  Higher level encryption is currently scheduled for a future
   release.
 
 When providing the SNMP Credentials, Cacti will warn you if you have provided
@@ -78,10 +83,10 @@ you have specified.
 There are some additional options that you should note before starting to use Cacti.
 They include the following:
 
-* **Device Threads** - If your device is far away, and can tolerate multiple threads
+- **Device Threads** - If your device is far away, and can tolerate multiple threads
   querying information, you can increase this number to reduce the time it takes
   to collect all information.
-* **Maximum OIDs Per Get Request** - Otherwise known as MaxOID's, this SNMP option
+- **Maximum OIDs Per Get Request** - Otherwise known as MaxOID's, this SNMP option
   will allow the SNMP client to gather more metrics per get request.  Please keep
   in mind that the higher you make this number, the longer a SNMP respond may take.
   So, you have to be sensitive about the SNMP timeout as the number get's larger.
@@ -92,7 +97,7 @@ They include the following:
   be.  In some cases, it may be better to deploy a **Remote Data Collector** when
   your device is either far way from a latency perspective, or that you must
   traverse VPN's to communicate with.
-* **External ID** - This field is normally used for Asset Tracking information for
+- **External ID** - This field is normally used for Asset Tracking information for
   the **Device**, but it use is entirely up to the System Administrator.
 
 ## Plugin Behavior
@@ -101,15 +106,15 @@ Many Cacti Plugins can and do add additional columns to the Device table in Cact
 Depending on the Plugin you have installed, you will find other information that
 you can provide about the device including things like:
 
-* **Notification Settings** - Who to notify when the **Device** changes state
-* **Criticality** - How important is the device
-* **Failure and Recovery Counts** - How long till a device is treated as truely
+- **Notification Settings** - Who to notify when the **Device** changes state
+- **Criticality** - How important is the device
+- **Failure and Recovery Counts** - How long till a device is treated as truely
   down.
-* **Ping Thresholds** - What RTL is considered bad when reaching a device
+- **Ping Thresholds** - What RTL is considered bad when reaching a device
 
-## Creating devices via cli script
+## Creating devices via CLI script
 
-You can also create device by using the cli script located at /cactidir/cli/
+You can also create device by using the CLI script located at /cactidir/cli/
 
 ```console
 usage: add_device.php --description=[description] --ip=[IP] --template=[ID] [--notes="[]"] [--disable]
