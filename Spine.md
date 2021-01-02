@@ -1,28 +1,53 @@
 # Spine
 
 Spine is the fast replacement for `cmd.php`. It is written in C to ensure
-ultimate performance for device polling. Expect a decrease in polling time of
-an order of magnitude. Polling times far less than 60 seconds for about 20,000
-data sources are achievable e.g. on a dual XEON system supplied with 4 GB RAM
-and standard local disks.
+ultimate performance for device polling and is multi-threaded. Expect a 
+decrease in polling time of an order of magnitude. Polling times far 
+less than 60 seconds for about 20,000 data sources are achievable e.g. 
+on a dual XEON system supplied with 4 GB RAM and standard local disks.
 
-When using Spine, don't change crontab settings! Always use poller.php with
-crontab! To activate Spine instead of cmd.php, please visit Settings and select
-the Poller tab. Select Spine and save. Once saved, poller.php will use Spine on all
-subsequent polling cycles.
+When using Spine, don't change crontab or systemd settings! Always use 
+poller.php with crontab or cactid.php for systemd!
+
+To activate Spine instead of cmd.php, please visit 
+`Console > Configuration > Settings > Poller` and select spine and save
+as the `Poller Type`. If it's not showing as an available `Poller Type`
+this means either it has not been installed, or it's path has not
+been defined on the `Paths` tab within Settings.
+
+Once saved, poller.php will use Spine on all subsequent polling cycles.
+Before making this change, ensure that Spine runs properly from the
+command line using the following test:
+
+```console
+cd /usr/local/spine/bin
+./spine -R -V 3 -S
+```
+
+You should receive quite a bit of output depending on the size of your
+system.  To increase the number of Threads and concurrent processes,
+you must modify the setting when editing your Data Collector under
+`Console > Data Collection > Data Collectors`.
 
 While Spine is really fast, choosing the correct setup will ensure that all
 processor resources are used. Required settings for Maximum Concurrent Poller
 Processes are 1-2 times the number of CPU cores available for Spine.
 
+When using spine, you must be senstivive to the numer of connections that
+are available for MySQL or MariaDB.  Under 
+`Console > Utilities > System Utilities > General` Cacti will provide a
+recommended `max_connection` for MySQL/MariaDB.
+
 ###### Table 15-1. Spine Specific Execution Parameters
 
 Name | Description
 --- | ---
-Maximum Threads per Process | The maximum threads allowed per process. Using a higher number when using Spine will improve performance. Required settings are 10-15. Values above 50 are most often insane and may degrade performance
-Number of PHP Script Servers | The number of concurrent script server processes to run per Spine process. Settings between 1 and 10 are accepted. Script Servers will pre-load a PHP environment. Then, the Script Server Scripts are included into that environment to save the overhead of reloading PHP each and every time.
+Maximum Threads per Process | The maximum threads allowed per process. Using a higher number when using Spine will improve performance. Required settings are 10-15. Values above 50 are most often insane and may degrade performance vs. improve it.
+Number of PHP Script Servers | The number of concurrent script server processes to run per Spine process. Settings between 1 and 10 are accepted. Script Servers will pre-load a PHP environment. Then, the Script Server Scripts are included into that environment to save the overhead of reloading PHP and re-interpreting the binary for each call.
 Script and Script Server Timeout Value | The maximum time that Spine will wait on a script to complete, in units of seconds. If a Script Server Script is terminated due to timeout conditions, the value entered into the RRD file will be NaN
-The Maximum SNMP OIDs Per SNMP Get Request | The maximum number of SNMP get OIDs to issue per SNMP request. Increasing this value speeds poller performance over slow links. The maximum value is 60 OIDs. Please bear in mind, that some type of devices do not accept huge OID numbers and may fail if set above 1. That's why cacti 0.8.7 allows to define this value at device level
+The Maximum SNMP OIDs Per SNMP Get Request | The maximum number of SNMP get OIDs to issue per SNMP request. Increasing this value increases poller performance over slow links. The maximum value is 60 OIDs, but that value is highly dependent on the MTU for your links to the remote devices.  In some cases, using a **Remote Data Collector** is much more effective for polling remote **Davices**. Additionally, some **Device Types** do not handle large SNMP OID get requests.  It's best to experiment until you find the correct setting.
+Device Threads | The maximum number spine threads used to gather information from a **Device**.  When using this setting at the **Device** level, you have to ensure that you have enough threads allocated to a process so as to not block other **Devices** being polled from the same spine binary.
+
 
 ### Installing Spine
 
@@ -80,7 +105,7 @@ DB_Port       3306
 #RDB_SSL_CA
 ```
 
-### Centos
+### CentOS
 
 Install required system packages
 
