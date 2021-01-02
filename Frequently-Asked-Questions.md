@@ -172,7 +172,7 @@ Maximum Value field for all data sources used by these graphs. If the value
 being fed to the .rrd file exceeds its Maximum Value, RRDTool will insert an
 Unknown and you will see no data on the graph.
 
-*Q:** A lot of my graphs contain long ifAlias names, but they are being
+**Q:** A lot of my graphs contain long ifAlias names, but they are being
 truncated to 15 characters.
 
 **A:** Cacti does this by default to better control graph title formatting. You
