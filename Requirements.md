@@ -85,6 +85,16 @@ Cacti requires that the following software is installed on your system.
       expected consumption of the Performance Booster tables under Console ->
       System Utilities -> View Boost Status.
 
+      NOTE: If you are using a recent version of MariaDB or MySQL, using
+      memory tables is no longer a requirement.  You may choose to continue
+      to use memory tables to spare your NVMe or SSD drives excessive use
+      wear.  However, outside of that, it is no longer a requirement.
+      As such, the value of the **max_heap_table_size** is not as important
+      as in previous releases.  Additionally, if you are using Galera
+      replication with Cacti, all your tables must be in InnoDB format.  So,
+      the only feature in MariaDB or MySQL becomes temporary table space
+      which may not be dependent on the **max_heap_table_size**.
+
     - **table_cache >= 200**
 
       Keeping the table cache larger means less file open/close operations
