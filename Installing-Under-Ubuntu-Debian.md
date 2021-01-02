@@ -72,6 +72,38 @@ $database_ssl      = false;
 $database_ssl_key  = '';
 ```
 
+### Create your cron task file or systemd units file
+
+   Starting with Cacti 1.2.16, you have the option to use either the
+   legacy Crontab entry, or an optional cactid units file and server
+   to run your Cacti pollers.
+
+   For Crontab use, follow the instructions below:
+
+   Create and edit `/etc/cron.d/cacti` file.
+   Make sure to setup the correct path to poller.php
+
+   ```console
+   */5 * * * * apache php /var/www/html/cacti/poller.php &>/dev/null
+   ```
+
+   For systemd unit's file install, you will need to modify the
+   included units file to following your install location
+   and desired user and group's to run the Cacti poller as.
+   To complete the task, follow the procedure below:
+
+   ```console
+   vim /var/www/html/cacti/service/cactid.service (edit the path)
+   touch /etc/sysconfig/cactid
+   cp -p /var/www/html/cacti/service/cactid.service /etc/systemd/system
+   systemctl enable cactid
+   systemctl start cactid
+   systemctl status cactid
+   ```
+
+   The systemd units file makes managing a highly available Cacti
+   setup a bit more convenient.
+
 The system is now ready to finialise the steps by browsing to
 [http://serverip/cacti](http://serverip/cacti) to start the cacti initalization
 wizard.
