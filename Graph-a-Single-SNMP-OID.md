@@ -16,7 +16,7 @@ From the image below, you can see the **New Graphs** interface.
 
 ![Graphs New](images/graphs-new.png)
 
-In this image, only the "Graph Template Based` **Graph Templates** are displayed.
+In this image, only the **Graph Template** based **Graph Templates** are displayed.
 Had the `Graph Types` been switched to any of the **Data Query** based `Graph Types`
 the interface would look a bit different.
 
@@ -44,17 +44,20 @@ Name | Description
 (Data Source) Data Source Type [snmp_oid] | How the data from the OID should be stored by RRDTool and interpreted on the graph. If the value of the OID represents the actual data, you should use GAUGE for this field. If the OID value is a constantly incremented number, you should use COUNTER for this field. The two remaining field values, DERIVE and ABSOLUTE can be ignored in most situations.
 (Custom Data) OID | The actual SNMP OID to graph. It is typically a good idea to enter the number OID here as opposed to using MIB names. For instance, to get the number of open files on a Netware server, you would use ".1.3.6.1.4.1.23.2.28.2.7.0" as the OID.
 
-So, based upon your specific OID that you are graphing, You will need to fill out these
-fields before the new graph can be created properly.
+So, based upon your specific OID that you are graphing, You will need
+to fill out these fields before the new graph can be created properly.
 
 When finished filling in values for these fields, click the Create button. Your
-new **Graph** can now be accessed through the `Cosole > Management > Graphs` menu pick.
+new **Graph** can now be accessed through the
+`Cosole > Management > Graphs` menu pick.
 
-> **NOTE**: When comparing the Table above, to the image, you will see that the
-> `Opacity/Alpha Channel` pick is missing from the interface.  To add it, you simply need
-> to edit the `Generic SNMP OID` **Graph Template**, add a new **Graph Item Input**
-> override to the Alpha/Opacity on the Graph Template as shown below.  We will cover
-> that topic in the **Graph Template** section of the manual though.
+> **NOTE**: When comparing the Table above, to the image, you will see
+> that the `Opacity/Alpha Channel` pick is missing from the interface.
+> To add it, you simply need > to edit the `Generic SNMP OID`
+> **Graph Template**, add a new **Graph Item Input**
+> override to the Alpha/Opacity on the Graph Template as shown below.
+> That topic will be covered in the **Graph Template** section of
+> the manual though.
 
 ![Graphs New](images/graphs-new-generic-oid-alpha.png)
 
