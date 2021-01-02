@@ -3,11 +3,17 @@
 The real strength of Cacti is unleashed by using templates. There are five
 different types of templates with the basic Cacti installation:
 
-- **Data Templates**, 
-- **Graph Templates**, 
-- **Device Templates**, 
-- **Aggregate Templates**,
-- **Color Templates**
+- **Device Templates** - Define a Collection of **Graph Templates** and
+  **Data Queries** that belong to a class of **Devices**
+- **Graph Templates** - Define how to paint the Graph, it size, legend,
+  left and right Axis and it Canvas
+- **Data Templates** - Define how data is to be stored in the RRDfile and
+  how often to collect that data
+- **Aggregate Templates** - A special class of **Graph Template** that
+  allows you to combine elements from multiple **Graph** of a
+  common Template into one **Graph**
+- **Color Templates** - A collection of color rotations to use for
+  **Aggregate Graphs**
 
 While it is perfectly fine to define all **Data Sources** and **Graphs**
 without using Templates at all, the burden of this approach is high.
@@ -98,9 +104,9 @@ Data Input Method | Here is where you tell Cacti how it is supposed to fetch dat
 Data Source Profile | The **Data Source Profile** will define how often to collect data for the resulting **Data Source**, and how long to keep that data in the RRDfile.
 Data Source Active | This is a quick and easy to tell Cacti to stop gathering data for this **Data Template**. The resulting **Data Source** can still be used on **Graphs**, but no data will be fed to it until it is made active again.
 
-> **NOTE:** For most **Data Templates**, you will should not have to to check 
+> **NOTE:** For most **Data Templates**, you will should not have to to check
 > the Use Per-Graph Value checkbox for the name field.  The Templating should handle
-> this just fine.  However, the Generic SNMP OID **Data Template** has this 
+> this just fine.  However, the Generic SNMP OID **Data Template** has this
 > value checked to allow you to create Graphs and Data Sources on a piecemeal basis.
 
 When you are finished filling in values for the **Data Template**, click Create and
@@ -142,7 +148,7 @@ Source** using the **Data template**.
 ### Applying Data Templates to Data Sources
 
 > **NOTE:** When changing parameters of a **Data Template**, existing RRDfiles will
-> not be changed automatically. If this is required, you will have to apply 
+> not be changed automatically. If this is required, you will have to apply
 > `rrdtool tune` command to any related RRDfile manually.
 
 Applying a **Data Template** to a **Data Source** is a very simple process.
@@ -263,32 +269,32 @@ Vertical Label | The text to print on the left edge of the graph. Usually is the
 
 ### AutoScaling Options Explained
 
-Relative to AutoScale Options, the RRDtool graph manual says: 
+Relative to AutoScale Options, the RRDtool graph manual says:
 
 - Limits [-u|--upper-limit value] [-l|--lower-limit value] [-r|--rigid]
-  By default the graph will be autoscaling so that it will adjust the y-axis 
-  to the range of the data. You can change this behaviour by explicitly 
-  setting the limits. The displayed y-axis will then range at least from 
-  lower-limit to upper-limit. Autoscaling will still permit those boundaries 
-  to be stretched unless the rigid option is set. 
-- [-A|--alt-autoscale] Sometimes the default algorithm for selecting the 
-  y-axis scale is not satisfactory. Normally the scale is selected from a 
-  predefined set of ranges and this fails miserably when you need to graph 
-  something like "260 + 0.001 * sin(x)". This option calculates the minimum 
-  and maximum y-axis from the actual minimum and maximum data values. 
-  Our example would display slightly less than "260-0.001" to slightly more 
+  By default the graph will be autoscaling so that it will adjust the y-axis
+  to the range of the data. You can change this behaviour by explicitly
+  setting the limits. The displayed y-axis will then range at least from
+  lower-limit to upper-limit. Autoscaling will still permit those boundaries
+  to be stretched unless the rigid option is set.
+- [-A|--alt-autoscale] Sometimes the default algorithm for selecting the
+  y-axis scale is not satisfactory. Normally the scale is selected from a
+  predefined set of ranges and this fails miserably when you need to graph
+  something like "260 + 0.001 * sin(x)". This option calculates the minimum
+  and maximum y-axis from the actual minimum and maximum data values.
+  Our example would display slightly less than "260-0.001" to slightly more
   than "260+0.001".
-- [-J|--alt-autoscale-min] Where "--alt-autoscale" will modify both the 
-  absolute maximum AND minimum values, this option will only affect the 
-  minimum value. The maximum value, if not defined on the command line, 
-  will be 0. This option can be useful when graphing router traffic when 
-  the WAN line uses compression, and thus the throughput may be higher than 
-  the WAN line speed. 
-- [-M|--alt-autoscale-max] Where "--alt-autoscale" 
-  will modify both the absolute maximum AND minimum values, this option 
-  will only affect the maximum value. The minimum value, if not defined on 
-  the command line, will be 0. This option can be useful when graphing 
-  router traffic when the WAN line uses compression, and thus the 
+- [-J|--alt-autoscale-min] Where "--alt-autoscale" will modify both the
+  absolute maximum AND minimum values, this option will only affect the
+  minimum value. The maximum value, if not defined on the command line,
+  will be 0. This option can be useful when graphing router traffic when
+  the WAN line uses compression, and thus the throughput may be higher than
+  the WAN line speed.
+- [-M|--alt-autoscale-max] Where "--alt-autoscale"
+  will modify both the absolute maximum AND minimum values, this option
+  will only affect the maximum value. The minimum value, if not defined on
+  the command line, will be 0. This option can be useful when graphing
+  router traffic when the WAN line uses compression, and thus the
   throughput may be higher than the WAN line speed.
 
 When you are finished filling in values for the **Graph Template**, click Create and
