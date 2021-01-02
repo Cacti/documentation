@@ -1,28 +1,89 @@
 # Data Queries
 
-Data queries are not a replacement for data input methods in Cacti. Instead they
-provide an easy way to query, or list data based upon an index, making the data
-easier to graph. The most common use of a data query within Cacti is to retrieve
-a list of network interfaces via SNMP. If you want to graph the traffic of a
-network interface, first Cacti must retrieve a list of interfaces on the host.
-Second, Cacti can use that information to create the necessary graphs and data
-sources. Data queries are only concerned with the first step of the process,
-that is obtaining a list of network interfaces and not creating the graphs/data
-sources for them. While listing network interfaces is a common use for data
-queries, they also have other uses such as listing partitions, processors, or
-even cards in a router.
+## Overview
 
-One requirement for any data query in Cacti, is that it has some unique value
+Cacti **Data Queries** are not a replacement for **Data Input Methods** in Cacti.
+Instead they provide an easy way to extend Data Input methods to interpret
+multidimensional objects, or list data based upon an index, making the data
+easier to graph. The most common use of a **Data Query within
+Cacti is to retrieve a list of network interfaces via SNMP. If you want to
+graph the traffic of a network interface, first Cacti must retrieve a list
+of interfaces on the host.  Second, Cacti can use that information to create
+the necessary **Graphs** and **Data Sources**. **Data Queries** are only
+concerned with the first step of the process, that is obtaining a list of
+network interfaces and not creating the graphs/data sources for them. While
+listing network interfaces is a common use for **Data Queries**, they also
+have other uses such as listing partitions, processors, or even cards in
+a router.
+
+One requirement for any **Data Query** in Cacti, is that it has some unique value
 that defines each row in the list. This concept follows that of a 'primary key'
 in SQL, and makes sure that each row in the list can be uniquely referenced.
 Examples of these index values are 'ifIndex' for SNMP network interfaces or the
 device name for partitions.
 
-There are two types of data queries that you will see referred to throughout
-Cacti. They are script queries and SNMP queries. Script and SNMP queries are
-virtually identical in their functionality and only differ in how they obtain
-their information. A script query will call an external command or script and an
-SNMP query will make an SNMP call to retrieve a list of data.
+There are three types of **Data queries** that you will see referred to
+throughout Cacti. They are script queries, script server queries, and
+SNMP queries. Script, Script Server and SNMP queries are virtually identical
+in their functionality and only differ in how they obtain their information.
+Script and Script Server queries will call an external command or script
+and an SNMP query will make an SNMP call to retrieve a list of data.
+
+## User Interface
+
+Below, you can see Cacti's default **Data Queries** interface.  From the
+interface, you can see the Name, ID, Data Input Method, and other information
+about the Data Query.
+
+![Data Query Interface](images/data-queries.png)
+
+When you edit an existing Data Query, you will see an interface like the one
+below.  In that interface, you will note that there is an XML file path
+included.  The XML file is a key component of a Cacti **Data Query**.  For
+Script based **Data Queries**, there will also be a script that must be
+called to gather information about the **Data Query**, the script name is
+included in the XML file.
+
+![Data Query Edit Interface](images/data-queries-edit1.png)
+
+In this Interface, you can see the Name, Description, XML Path, and **Data
+Input Method**.  In the section below that, you have the
+`Associated Graph Templates` section which includes all the various
+**Graph Templates** that can be used for the **Data Query**.
+
+Once a **Data Query** **Graph Template** is in use, it can not longer be
+removed from Cacti.  This feature is there to prevent **Graphs** from
+becoming unrenderable if someone accidentally were to remove the **Graph
+Template** association.
+
+When you click on any of the `Associated Graph Template` name, you will be taken
+to the interface below.
+
+![Data Query Associated Graph Template Edit Interface](images/data-queries-edit2.png)
+
+From here, you map the various matching **Data Template** RRDfile Data Source
+names to Data Source names that exist in the XML file.  There can be many
+Data Source names in the XML file, but a Graph Template may only require a few
+of them, which explains the reason for having the `Associated Data Templates`
+section of the **Data Query**.  To associate the XML field with the
+**Data Templates** RRDfile Data Source, you simply select the correct
+one, and then toggle on the checkbox to the right of the XML field
+Data Source name.
+
+Below the `Associated Data Templates`, you will find two sections which are
+refered to as `Suggested Values` for both the **Data Source** and the
+**Graph** names.  When creating **Graphs** and their associated **Data Sources**
+Cacti will use the first name in the `Suggested Values` pattern that fully
+replaces all the tags that are identified by opening and closing vertical
+bars.  So, in the example above, when creating an Interface Graph, if
+that Interface does not have an ifAlias, Cacti will likely use the second
+`Suggested Value`, unless the interface does not have an IP Address, in which
+case it will use the third `Suggested Value`.
+
+Cacti also allows `Suggested Values`, to replace both **Graph** and **Data Source**
+values, as in the case above, the "rrd_maximum" column is replaced by the
+Network Interfaces maximum speed, otherwise known as the "ifSpeed" from an SNMP
+perspective.
 
 All data queries have two parts, the XML file and the definition within Cacti.
 An XML file must be created for each query, that defines where each piece of
@@ -42,7 +103,7 @@ information about the data query, described in more detail below.
 
 Name | Description
 --- | ---
-Name | Give the data query a name that you will use to identify it. This name will be used throughout Cacti when presented with a list of data queries.
+Name | Give the **Data Query** a name that you will use to identify it. This name will be used throughout Cacti when presented with a list of **Data Queries**.
 Description (Optional) | Enter a more detailed description of the data query including the information it queries or additional requirements.
 XML Path | Fill in the full path to the XML file that defines this query. You can optionally use the `path_cacti` variable that will be substituted with the full path to Cacti. On the next screen, Cacti will check to make sure that it can find the XML file.
 Data Input Method | This is how you tell Cacti to handle the data it receives from the data query. Typically, you will select `Get SNMP Data (Indexed)` for an SNMP query and `Get Script Data (Indexed)` for a script query.
@@ -71,17 +132,19 @@ Graph Template | Choose the actual graph template that you want to make the asso
 
 When you are finished filling in these fields, click the Create button. You
 will be redirected back to the same page with some additional information to
-fill in. Cacti will make a list of each data template referenced to in your
-selected graph template and display them under the Associated Data Templates
-box. For each data source item listed, you must selected the data query output
-field that corresponds with it. *Do not forget to check the checkbox to the
-right of each selection, or your settings will not be saved.*
+fill in. Cacti will make a list of each **Data Template** referenced to in your
+selected **Graph Template** and display them under the `Associated Data Templates`
+box. As previously mentioned, for each **Data Source** item listed, you
+must selected the **Data Query** output field that corresponds with it.
+*Do not forget to check the checkbox to the right of each selection, or your
+settings will not be saved.*
 
-The Suggested Values box gives you a way to control field values of data
-sources and graphs created using this data query. If you specify multiple
-suggested values for the same field, Cacti will evaluate them in order which
-you can control using the up or down arrow icons. For more information about
-valid field names and variables, read the section on suggested values.
+The `Suggested Values` form provides you a way to control field values of
+**Data Sources** and **Graphs** created using the **Data Query**. If you
+specify multiple `Suggested Values` for the same field, Cacti will evaluate
+them in order which you can control using the up or down arrow icons.
+For more information about valid field names and variables, read the
+section on `Suggested Values`.
 
 When you are finished filling in all necessary fields on this form, click the
 Save button to return to the data queries edit screen. Repeat the steps under
