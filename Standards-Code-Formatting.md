@@ -21,6 +21,10 @@ syntax standard with the following exceptions:
   - `if (expression) {`,
   - `} else {`,
   - and `} elseif {`
+  
+- Use lower case constants for things like `false`, `true`, and `null`.
+
+- Use `print` over `echo`.
 
 - Function declarations should include ending braces on the same line as
   the function.  For example:
@@ -58,7 +62,7 @@ Use the following style guidelines for control structures.
 ```php
 if ($var == 0) {
     $i++;
-} else if ($var == 1) {
+} elseif ($var == 1) {
     $i--;
 } else {
     $i = 0;
@@ -71,12 +75,15 @@ if ($var == 0) {
 switch ($var) {
     case 0:
         $var = 1;
+
         break;
     case 1:
         $var = 2;
+
         break;
     default:
         $var = 3;
+
         break;
 }
 ```
@@ -101,7 +108,7 @@ for ($i = 0; $i < 10; $i++) {
 
 ```php
 foreach ($array as $key => $value) {
-    echo "$key = $value\n";
+    print "$key = $value\n";
 }
 ```
 
@@ -304,13 +311,6 @@ function graph_unit_exponent_values_print() {
 
 Copying around large arrays in PHP can be an expensive operation. Be sure to
 return or pass arrays by reference when data corruption is not a huge concern.
-Keep in mind that call time pass by reference is deprecated in PHP.
-
-```php
-function &big_array_list() {
-    // code
-}
-```
 
 ```php
 function big_array_process(&$big_array) {
@@ -336,7 +336,8 @@ if ($i == 0) {
 
 ```php
 /* this is an extra long comment that deserves to be
- * split up into multiple lines */
+ * split up into multiple lines 
+ */
 if ($i == 0) {
     // code
 }
@@ -358,7 +359,7 @@ the file.
 ```php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2018 The Cacti Group                                 |
+ | Copyright (C) 2004-2021 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -383,7 +384,8 @@ the file.
 ### Function Comments
 
 All functions must be preceded by a comment describing the purpose, argument
-list, and return type of the function. It should be formatted as follow:
+list, and return type of the function. It should be formatted per
+PHP DocBlock specifications as follow:
 
 ```php
 /**
@@ -399,9 +401,12 @@ list, and return type of the function. It should be formatted as follow:
  * @param string $db_name the name of the database to connect to
  * @param string $db_type the type of database server to connect to, only 'mysql' is currently supported
  * @param int $retries the number a time the server should attempt to connect before failing
+ *
  * @return bool true if successful, false otherwise
  */
 ```
 
+Place a space between the `@param` and `@return`.
+
 ---
-Copyright (c) 2004-2020 The Cacti Group
+Copyright (c) 2004-2021 The Cacti Group
