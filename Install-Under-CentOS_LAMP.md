@@ -328,7 +328,10 @@ configure the basics for Cacti.
    */5 * * * * apache php /var/www/html/cacti/poller.php &>/dev/null
    ```
 
-   For systemd unit's file install, follow the procedure below:
+   For systemd unit's file install, you will need to modify the
+   included units file to following your install location
+   and desired user and group's to run the Cacti poller as.
+   To complete the task, follow the procedure below:
 
    ```console
    vim /var/www/html/cacti/service/cactid.service (edit the path)
