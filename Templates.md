@@ -1,127 +1,166 @@
 # Templates
 
-The real strength of Cacti is unleashed by using templates. There are three
-different types of templates with the basic Cacti installation: **Data
-Templates**, **Graph Templates**, **Device Templates**, **Aggregate Templates**,
-and **Color Templates**. While it is perfectly fine to define all data sources
-and graphs without using Templates at all, the burden of this approach is high.
-In most installations, there are lots of devices of the same kind. And there are
-lots of data of the same kind, e.g. traffic information is needed for almost
-every device. Therefore, the parameters needed to create a traffic RRD file are
-defined by a *Data Template*, in this case known as "Interface - Traffic". These
-definitions are used by all Traffic-related RRD files.
+The real strength of Cacti is unleashed by using templates. There are five
+different types of templates with the basic Cacti installation:
+
+- **Data Templates**, 
+- **Graph Templates**, 
+- **Device Templates**, 
+- **Aggregate Templates**,
+- **Color Templates**
+
+While it is perfectly fine to define all **Data Sources** and **Graphs**
+without using Templates at all, the burden of this approach is high.
+
+In most installations, there are hundreds if not thousands of **Devices**
+of the same kind. And there are many similar **Graph Templates**, that span
+multiple **Device Templates**.  For example: Network Traffic information
+is needed for almost every **Device**. Therefore, the parameters needed
+to create a traffic RRDfile are defined by the **Data Template**,
+in this case known as "Interface - Traffic". These
+definitions are used by all Traffic-related RRDfiles.
 
 The same approach is used for defining **Graph Templates**. This is done only
 once. And all parameters defined within such a **Graph Template** are copied to
 all **Graphs** that are created using this Template.
 
-The last type of Templates are the **Device Templates**. They are not related to
-some RRDTool stuff. The purpose of **Device Templates** is to group all **Graph
-Templates** and **Data Queries** (these are explained later) for a given device
-type.  So you will make up a **Device Template** e.g. for a specific type of
+The last type of classic Templates are the **Device Templates**.  The purpose
+of **Device Templates** is to group all **Graph Templates** and
+**Data Queries** for a given **Device Type**.  Example **Device Types**
+that you might find a **Device Template** for include:
+
+- Cisco Router
+- Net-SNMP Device
+- F5 Load Balancer
+- Windows Device
+- Local Linux Device
+- ...
+
+So you will make up a **Device Template** e.g. for a specific type of
 router, switch, host and the like. By assigning the correct **Device Template**
 to each new **Device**, you'll never forget to create all needed **Graphs**.
 
 There's no need to create all Templates on your own! Apart from the fact, that
 many common templates are provided out-of-the-box, there's a very simple
-mechanism to **Import Templates** and to **Export Templates**.
+mechanism to **Import Templates** and to **Export Templates** and more recently
+to **Import Packages**.
+
+More recent additions to the Cacti family of Templates are the **Aggregate Template**
+and **Color Template**.  The **Aggregate Template** allows you to define
+a **Graph Template** that can aggregate data from many **Graphs** sharing
+that Template.
+
+The **Color Template** defines a list of colors that are used in a Round Robin
+fashion to change the colors seen on the resulting **Aggregate Graphs**
+to better assist the user in interpreting the resulting **Graph**.
 
 ## Data Templates
 
 In Cacti, a **Data Template** provides a skeleton for an actual **Data Source**.
 If you have many **Data Sources** that share most of their characteristics,
 using a **Data Template** would probably make sense. No change of a **Data
-Template** is propagated to already existing RRD files. But most of them may be
+Template** is propagated to already existing RRDfiles. But most of them may be
 changed by using `rrdtool tune` from command line. Pay attention to not append
-new *Data Source Items* to already existing RRD files. There's no `rrdtool`
+new *Data Source Items* to already existing RRDfiles. There's no `rrdtool`
 command to achieve this!
 
 ### Creating a Data Template
 
-To create a new **Data Template**, select **Data Templates** under the **Console
-> Templates** menu heading and click Add.
+To create a new **Data Template**, select **Data Source** under
+`Console > Templates` menu selection and then click Add, which in most cases
+will be the plus sign in the upper right area of the page.
 
 The first thing you must do is give the template a name. This name has nothing
 to do with the **Data Source** name, but is what you will use to identify the
 template throughout Cacti.
 
-Second, you will notice a list of data source/data source item field names with
-Use Per-Data Source Value checkboxes next to each one. The nice thing about
-templates in Cacti is that you can choose whether to template each field on a
-per-field basis. If you leave the checkbox unchecked, every data source attached
-to the template will inherit its value from the template. If the checkbox is
-checked, every data source attached to the template will contain its own value
-for that particular field. When generating a real data source, you will be
-prompted to fill those non-templated fields.
+Second, you will notice a list of **Data Source** / **Data Source Item**
+field names with Use Per-Data Source Value checkboxes next to each one.
+The nice thing about Templates in Cacti is that you can choose whether
+to template each field on a per-field basis. If you leave the checkbox
+unchecked, every **Data Source** attached to the **Data Template**
+will inherit its value from the Template. If the checkbox is
+checked, every **Data Source** attached to the **Data Template* will
+contain its own value for that particular field. When generating a
+real **Data Source**, you will be prompted to fill those non-templated
+fields.
+
+Not however that if you are using Cacti's **Automation** feature, there is
+presently no way for you to override these values.  So, plan accordingly
+when engineering your Cacti deployment.
 
 ###### Table 13-1. Data Templates: Field Description of the Data Source Section
 
 Name | Description
 --- | ---
-Name | The name of the Data Source that will be created by using this Template. You can use the keyword |host_description| in this field, which will be automatically substituted with the current host description.
-Data Input Method | Here is where you tell cacti how it is supposed to fetch data for this data source. There are several data input sources that come with cacti, and you can add your own by going to Data Input Methods. If this RRD file is being populated outside of cacti, make sure to leave this field set to "None".
-Associated RRAs | You need to associate the data source with at least one RRA so RRDTool knows how often and for how long to keep its data. You will almost always want to select all of these values however so you can render daily, weekly, monthly, and yearly graphs.
-Step | This tells RRDTool how many seconds there will be between updates. The default is 300 seconds (5 minutes), and is sufficient for most installations.
-Data Source Active | This is a quick and easy to tell Cacti to stop gathering data for this data source. The data source can still be used on graphs, but no data will be fed to it until it is made active again.
+Name | The name of the **Data Source** that will be created by using this Template.  You can use the keyword  `host_description` enclosed by vertical bars in this field, which will be automatically substituted with the current host description of the **Device**.  There are several replacement values available to you when using a Template.
+Data Input Method | Here is where you tell Cacti how it is supposed to fetch data for this **Data Source**. There are several **Data Input Methods** that come with Cacti, and you can add your own by going to `Console > Data Collection > Data Input Methods`. If this RRDfile is being populated outside of Cacti, make sure to leave this field set to "None".
+Data Source Profile | The **Data Source Profile** will define how often to collect data for the resulting **Data Source**, and how long to keep that data in the RRDfile.
+Data Source Active | This is a quick and easy to tell Cacti to stop gathering data for this **Data Template**. The resulting **Data Source** can still be used on **Graphs**, but no data will be fed to it until it is made active again.
 
-> **Note:** For most data templates, you will want to check the Use Per-Graph
-> Value checkbox for the name field so each data source using this template
-> has its own unique name. It also makes sense to enter an initial value in
-> this field that includes the variable `|host_description|` for organizational
-> purposes.
+> **NOTE:** For most **Data Templates**, you will should not have to to check 
+> the Use Per-Graph Value checkbox for the name field.  The Templating should handle
+> this just fine.  However, the Generic SNMP OID **Data Template** has this 
+> value checked to allow you to create Graphs and Data Sources on a piecemeal basis.
 
-When you are finished filling in values for the data template, click Create and
-you will be presented with a screen similar to the data source edit screen.
+When you are finished filling in values for the **Data Template**, click Create and
+you will be presented with a screen similar to the image below.
 
 ![Adding a Data Template](images/data-template.png)
 
 #### Data Source Items
 
-Like a graph, a data source can have more than one items. This is useful in
-situations where a script returns more than piece of data at one time. This also
-applies to data queries, so you can have a single data template that contains
-both inbound and outbound traffic, rather than having to create a separate data
-template for each.
+Just like a **Graph**, a **Data Source** can have more than one item. This is
+useful in situations where a script returns more than piece of data at one time
+and both need to appear on the same **Graph**. This also applies to **Data Queries**,
+so you can have a single **Data Template** that contains both Inbound and
+Outbound Traffic, rather than having to create a separate **Data Template** for each.
 
 ###### Table 13-2. Data Templates: Field Description of the Data Source Items Section
 
 Name | Description
 --- | ---
-Internal Data Source Name | This is the name used by RRDTool to identify this particular data source within the RRD file. RRDTool places a limit of 19 alphanumeric characters (plus '_' and '-') on this field.
-Minimum Value | Here is where you specify the minimum value that is expected for this data source in the RRD file. If a value lower than the minimum is given, it will be stored as Unknown (U).
-Maximum Value | Here is where you specify the maximum value that is expected for this data source in the RRD file. If a value higher than the maximum is given, it will be stored as Unknown (U). Note: It often makes sense to define a reasonable maximum value here to avoid spikes in case of a COUNTER wrap
-Data Source Type | Cacti currently supports four types of data that RRDTool can represent for any given data source: COUNTER: is for continuous incrementing counters like the ifInOctets counter in a router. The COUNTER data source assumes that the counter never decreases, except when a counter overflows. It is always a whole INTEGER, floating point numbers are invalid. The update function takes the overflow into account. The counter is stored as a per-second rate. When the counter overflows, RRDTool checks if the overflow happened at the 32bit or 64bit border and acts accordingly by adding an appropriate value to the result. GAUGE: numbers that are not continuously incrementing, e.g. a temperature reading. Floating point numbers are accepted. ABSOLUTE: counters that are reset upon reading. DERIVE: like COUNTER but without overflow checks
-Heartbeat | As defined by RRDTool: "The maximum amount of time that can pass before data is entered as "unknown". This field is usually '600' or 2 data gathering intervals".
+Internal Data Source Name | This is the name used by RRDtool to identify this particular data source within the RRDfile. RRDtool places a limit of 19 alphanumeric characters (plus '_' and '-') on this field.
+Minimum Value | Here is where you specify the minimum value that is expected for this data source in the RRDfile. If a value lower than the minimum is given, it will be stored as Unknown (U).
+Maximum Value | Here is where you specify the maximum value that is expected for this data source in the RRDfile. If a value higher than the maximum is given, it will be stored as Unknown (U). Note: It often makes sense to define a reasonable maximum value here to avoid spikes in case of a COUNTER wrap
+Data Source Type | Cacti currently supports seven types of data that RRDtool can represent for any given data source: COUNTER: is for continuous incrementing counters like the ifInOctets counter in a router. The COUNTER data source assumes that the counter never decreases, except when a counter overflows. It is always a whole INTEGER, floating point numbers are invalid. The update function takes the overflow into account. The counter is stored as a per-second rate. When the counter overflows, RRDtool checks if the overflow happened at the 32-bit or 6-4bit border and acts accordingly by adding an appropriate value to the result. GAUGE: numbers that are not continuously incrementing, e.g. a temperature reading. Floating point numbers are accepted. ABSOLUTE: counters that are reset upon reading. DERIVE: like COUNTER but without overflow checks
+Heartbeat | As defined by RRDtool: "The maximum amount of time that can pass before data is entered as "unknown". This field is usually '600' or 2 data gathering intervals".
 
 #### Custom Data
 
-Assuming you selected a data input source on the previous screen, you should now
-be presented with a Custom Data box. It will show a single line for every single
-parameter required for that very data input method. This is how the Data Source
-glues together with the data input method to provide all run time parameters.
+Assuming you selected a **Data Input Method** on the previous screen, you should
+now be presented with a **Custom Data** form. It will show a single line for
+every single parameter required for that very **Data Input Method**. This is
+how the **Data Source** connects to the **Data Input Method**
+to provide all run time parameters.
 
-Each custom data field is per-field templatable as all of the other data source
+Each **Custom Data** field is per-field Templatable as all of the other **Data Source**
 fields are. Even if you select the Use Per-Data Source Value checkbox, it might
-be useful to specify a value that will be used as an "inital value" for any data
-source using this data template.
+be useful to specify a value that will be used as an "inital value" for any **Data
+Source** using the **Data template**.
 
 ### Applying Data Templates to Data Sources
 
-> **Note:** When changing parameters of a Data Template, existing RRD files will
-> never be changed. If this is required, you will have to apply `rrdtool tune`
-> commands to any related RRD file manually.
+> **NOTE:** When changing parameters of a **Data Template**, existing RRDfiles will
+> not be changed automatically. If this is required, you will have to apply 
+> `rrdtool tune` command to any related RRDfile manually.
 
-Applying a data template to a data source is a very simple process. The first
-thing you must do is select the data source you want to apply the template to
-under Data Sources. Under the Data Template Selection box, select the data
-template that you want to apply to the data source and click Save.
+Applying a **Data Template** to a **Data Source** is a very simple process.
+The first thing you must do is select the **Data Source** you want to apply
+the template to under **Data Sources**. Under the **Data Template** Actions dropdown,
+select the **Data Template** that you want to apply to the **Data Source**
+and click Save.  Though this should be very rare in modern Cacti instances,
+it was fairly common before Cacti's Templating system matured.
 
-Once the template is applied to the data source, you will notice that you can
+Once a Template is applied to a Data Source, you will notice that you can
 only change values for the fields that you checked Use Per-Data Source Value
 for.
 
-> **Note:** Now any time a change is made to the data template, it will be
-> automatically propagated to the data sources attached to it.
+> **NOTE:** Now any time a change is made to the **Data Template**, it will be
+> automatically propagated to the **Data Sources** attached to it.  However,
+> as previously stated, changes to a **Data Template** that involve changes
+> to the **Data Source Items**, will not be automatically applied to those same
+> **Data Sources**.
 
 #### Walkthrough: My First Data Template
 
@@ -202,17 +241,18 @@ field.
 
 Name | Description
 --- | ---
-Title | The title of the graph within Cacti and the title that will be printed on the actual graph itself. Note: You can use the keyword |host_description| in this field, which will be automatically substituted with the current host description.
-Image Format | Choose whether you would prefer to output your graph images in PNG or SVG. GIF is supported only with RRDTool 1.0.x and has been deleted from RRDTool 1.2.x and later
-Height | The height of the graph area in pixels
-Width | The width of the graph area in pixels
-Slope Mode | rrdtool graphs are composed of stair case curves by default. This is in line with the way RRDTool calculates its data. Some people favor a more "organic" look for their graphs. RRDTool version 1.2 and above support smoothing of graphs, know as slope mode.
+Title | The title of the **Graph** within Cacti and the title that will be printed on the actual **Graph** itself. **NOTE**: You can use the keyword `host_description` enclosed by vertical bars in this field, which will be automatically substituted with the current host description.
+Image Format | Choose whether you would prefer to output your graph images in PNG or SVG.
+Height | The height of the Graph Canvas in pixels.  This is not the height of the overall Graph, just the Graph Canvas.
+Width | The width of the Graph Canvas in pixels
+Base Value | Should be set to 1024 for memory values and 1000 for traffic measurements.
+Slope Mode | RRDtool graphs are composed of stair case curves by default. This is in line with the way RRDtool calculates its data. Some people favor a more "organic" look for their graphs.
 Auto Scale | Enable auto scale for the graph. This option must be check to use the next two options. Upper/Lower limit values are ignored when using autoscale since these boundaries are determined automatically.
-Auto Scale Options | Choose whether you would like to use --alt-autoscale (ignoring given limits), --alt-autoscale-max (accepting a lower limit), --alt-autoscale-min (accepting an upper limit, requires RRDTool 1.2.x) or --alt-autoscale (accepting both limits, RRDTool default) on the graph. The RRDTool's graph manual says: Limits [-u|--upper-limit value] [-l|--lower-limit value] [-r|--rigid] By default the graph will be autoscaling so that it will adjust the y-axis to the range of the data. You can change this behaviour by explicitly setting the limits. The displayed y-axis will then range at least from lower-limit to upper-limit. Autoscaling will still permit those boundaries to be stretched unless the rigid option is set. [-A|--alt-autoscale] Sometimes the default algorithm for selecting the y-axis scale is not satisfactory. Normally the scale is selected from a predefined set of ranges and this fails miserably when you need to graph something like "260 + 0.001 * sin(x)". This option calculates the minimum and maximum y-axis from the actual minimum and maximum data values. Our example would display slightly less than "260-0.001" to slightly more than "260+0.001" (this feature was contributed by Sasha Mikheev). [-J|--alt-autoscale-min] Where "--alt-autoscale" will modify both the absolute maximum AND minimum values, this option will only affect the minimum value. The maximum value, if not defined on the command line, will be 0. This option can be useful when graphing router traffic when the WAN line uses compression, and thus the throughput may be higher than the WAN line speed. [-M|--alt-autoscale-max] Where "--alt-autoscale" will modify both the absolute maximum AND minimum values, this option will only affect the maximum value. The minimum value, if not defined on the command line, will be 0. This option can be useful when graphing router traffic when the WAN line uses compression, and thus the throughput may be higher than the WAN line speed.
+Auto Scale Options | Choose whether you would like to use --alt-autoscale (ignoring given limits), --alt-autoscale-max (accepting a lower limit), --alt-autoscale-min (accepting an upper limit.
 Logarithmic Scaling | Choose if you want logarithmic y-axis scaling.
-Scientific Units for Logarithmic Scaling | This option is not available for RRDTool-1.0.x. For linear graphs, scientific units (in magnitudes of k=kilo, M=mega, ...) is default. But for logarithmic graphs, exponential notation is default. Choose if you want logarithmic y-axis scaling and scientific units.
-Rigid Boundaries Mode | From the RRDTool manual "Normally rrdgraph will automatically expand the lower and upper limit if the graph contains a value outside the valid range. With this option you can disable this behavior".
-Auto Padding | If you have ever created RRDTool-based graphs manually, you may have realized how annoying it can be to get text to line up properly. With this option Cacti will do its best to make the columns on your graph legend line up. This option works best when your graph legend has a consistent number of columns.
+Scientific Units for Logarithmic Scaling | For linear graphs, scientific units (in magnitudes of k=kilo, M=mega, ...) is default. But for logarithmic graphs, exponential notation is default. Choose if you want logarithmic y-axis scaling and scientific units.
+Rigid Boundaries Mode | From the RRDtool manual "Normally rrdgraph will automatically expand the lower and upper limit if the graph contains a value outside the valid range. With this option you can disable this behavior".
+Auto Padding | If you have ever created RRDtool based graphs manually, you may have realized how annoying it can be to get text to line up properly. With this option Cacti will do its best to make the columns on your graph legend line up. This option works best when your graph legend has a consistent number of columns.
 Allow Graph Export | If you choose to use Cacti's static HTML/image export, you can choose whether you want each individual graph to be exported.
 Upper Limit | The maximum value that will be displayed on the y-axis. This value is ignored is auto-scaling is turned on.
 Lower Limit | The minimum value that will be displayed on the y-axis. This value is ignored is auto-scaling is turned on.
@@ -221,13 +261,38 @@ Unit Grid Value | Sets the unit value for the y-axis (--y-grid). You should prob
 Unit Exponent Value | Sets the 10^e scaling of the y-axis. Valid values for this field are between -18 and 18. For example, you could use 3 to display everything in 'k' (kilo) or -6 to display everything in 'u' (micro).
 Vertical Label | The text to print on the left edge of the graph. Usually is the units the data on the graph is measured in.
 
-> *Note:* For most graph templates, you will want to check the Use Per-Graph
-> Value checkbox for the title field so each graph using this template has its
-> own unique title. It also makes sense to enter an initial value in this field
-> that includes the variable |host_description| for organizational purposes.
+### AutoScaling Options Explained
 
-When you are finished filling in values for the graph template, click Create and
-you will be presented with a page similar to the graph edit page.
+Relative to AutoScale Options, the RRDtool graph manual says: 
+
+- Limits [-u|--upper-limit value] [-l|--lower-limit value] [-r|--rigid]
+  By default the graph will be autoscaling so that it will adjust the y-axis 
+  to the range of the data. You can change this behaviour by explicitly 
+  setting the limits. The displayed y-axis will then range at least from 
+  lower-limit to upper-limit. Autoscaling will still permit those boundaries 
+  to be stretched unless the rigid option is set. 
+- [-A|--alt-autoscale] Sometimes the default algorithm for selecting the 
+  y-axis scale is not satisfactory. Normally the scale is selected from a 
+  predefined set of ranges and this fails miserably when you need to graph 
+  something like "260 + 0.001 * sin(x)". This option calculates the minimum 
+  and maximum y-axis from the actual minimum and maximum data values. 
+  Our example would display slightly less than "260-0.001" to slightly more 
+  than "260+0.001".
+- [-J|--alt-autoscale-min] Where "--alt-autoscale" will modify both the 
+  absolute maximum AND minimum values, this option will only affect the 
+  minimum value. The maximum value, if not defined on the command line, 
+  will be 0. This option can be useful when graphing router traffic when 
+  the WAN line uses compression, and thus the throughput may be higher than 
+  the WAN line speed. 
+- [-M|--alt-autoscale-max] Where "--alt-autoscale" 
+  will modify both the absolute maximum AND minimum values, this option 
+  will only affect the maximum value. The minimum value, if not defined on 
+  the command line, will be 0. This option can be useful when graphing 
+  router traffic when the WAN line uses compression, and thus the 
+  throughput may be higher than the WAN line speed.
+
+When you are finished filling in values for the **Graph Template**, click Create and
+you will be presented with a page similar to the image below.
 
 ![Adding a Graph Template](images/graph-template.png)
 
@@ -235,7 +300,7 @@ you will be presented with a page similar to the graph edit page.
 
 The first thing you should do is create graph items for this graph template,
 just like for a regular graph. One difference you will notice is that the Data
-Sources dropdown will contain a list of data template items rather than data
+Sources drop-down will contain a list of data template items rather than data
 source items. It is important that Cacti can make this association here, so that
 Cacti doesn't have to make unnecessary assumptions later.
 
