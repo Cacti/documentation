@@ -1,8 +1,21 @@
 # Aggregate Templates
 
-This section will describe **Aggregate Templates** in Cacti.
+This section will describe **Aggregate Templates** in Cacti.  Aggregate Templates
+allow you to easily create hundreds of Aggregate graphs in just minutes by
+allowing common Aggregate Types to be created enmass in a less error prone way.
+
+You first create the Aggregate Template, and then from the Cacti Graphs page,
+you can select the Graphs that you want used as Aggregates.  Once you have
+created your Aggregate Graphs, they behave like any other Cacti Graph, they
+can be a part of a Tree, zoomed, etc.
+
+The image below shows an Aggregate Template for Traffic.
 
 ![Aggregate Templates](images/aggregate-templates.png)
+
+When you edit that Template, you are presented with an interface that allows
+you to define the Graph Canvas as well as it's formatting.  You should experiment
+until you find the mechanism that works best to suite your needs.
 
 ![Aggregate Templates Edit General Options](images/aggregate-templates-edit1.png)
 
@@ -19,4 +32,4 @@ This section will describe **Aggregate Templates** in Cacti.
 ![Aggregate Templates Edit Legend Options](images/aggregate-templates-edit7.png)
 
 ---
-Copyright (c) 2004-2020 The Cacti Group
+Copyright (c) 2004-2021 The Cacti Group
