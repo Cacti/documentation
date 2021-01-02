@@ -236,6 +236,7 @@ For 1 minute intervals, this should be:
 ```console
 * * * * *
 ```
+
 ### Poller Runtime exceeded
 
 ```shell
@@ -243,12 +244,13 @@ POLLER: Poller[0] Maximum runtime of xxx seconds exceeded.
 ```
 
 This error indicates that cacti was not able to finish the polling cycle in time.
-this can be for a few reasons 
+This can be for a few reasons.
 
 * You are using spine and have not entered the correct mysql credentials in spine.conf
-* You do not have an adaquete proccess setting for cmd.php or thread/process count for spine
+* You do not have an adaquete proccess setting for cmd.php or thread/process 
+  count for spine
 * Network related issue either an network outage or a network slowdown
-* System related trouble cpu/memory exhaustion 
+* System related trouble cpu/memory exhaustion
 
 ### RRDtool reports Unknown Error
 
