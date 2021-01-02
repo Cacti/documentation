@@ -44,7 +44,7 @@ presented with text that looks like:
 <?php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2020 The Cacti Group                                 |
+ | Copyright (C) 2004-2021 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -309,4 +309,4 @@ The newly created command prompt should show the user name if you have entered
 the correct password.
 
 ---
-Copyright (c) 2004-2020 The Cacti Group
+Copyright (c) 2004-2021 The Cacti Group

@@ -7,4 +7,4 @@ This section will describe **GPRINT Presets** in Cacti.
 ![GPRINT Presets Edit](images/gprint-presets-edit.png)
 
 ---
-Copyright (c) 2004-2020 The Cacti Group
+Copyright (c) 2004-2021 The Cacti Group

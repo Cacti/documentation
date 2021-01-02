@@ -109,4 +109,4 @@ available in Cacti prior to Cacti 1.0.
 ![Legend Options](images/graph-templates-edit6.png)
 
 ---
-Copyright (c) 2004-2020 The Cacti Group
+Copyright (c) 2004-2021 The Cacti Group

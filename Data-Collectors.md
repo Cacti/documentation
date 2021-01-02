@@ -76,4 +76,4 @@ poller option
 ![remote poller setup](images/cacti_remote_poller_setup.JPG)
 
 ---
-Copyright (c) 2004-2020 The Cacti Group
+Copyright (c) 2004-2021 The Cacti Group

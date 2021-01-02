@@ -11,4 +11,4 @@ This section will describe **CDEFs** in Cacti.
 ![CDEFs Item Type Edit](images/cdefs-edit3.png)
 
 ---
-Copyright (c) 2004-2020 The Cacti Group
+Copyright (c) 2004-2021 The Cacti Group

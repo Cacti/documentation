@@ -837,4 +837,4 @@ with 8. This may be done using a CDEF Turn Bytes into Bits, applied to all
 items of the **Graph Template**. This task is left to you.
 
 ---
-Copyright (c) 2004-2020 The Cacti Group
+Copyright (c) 2004-2021 The Cacti Group

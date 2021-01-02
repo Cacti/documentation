@@ -393,4 +393,4 @@ The following changes will be required regardless of your selected Webserver.
    The start in box should say `c:\mycacti\website\cacti`.
 
 ---
-Copyright (c) 2004-2020 The Cacti Group
+Copyright (c) 2004-2021 The Cacti Group

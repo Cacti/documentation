@@ -43,4 +43,4 @@ select it from the drop down, and press the *Add* button.  There is no need to
 the right of the desired **Graph Template** or **Data Query**.
 
 ---
-Copyright (c) 2004-2020 The Cacti Group
+Copyright (c) 2004-2021 The Cacti Group

@@ -28,4 +28,4 @@ To add devices to the new tree simply drag an avaliable device to the
 tree and it will be added to the tree
 
 ---
-Copyright (c) 2004-2020 The Cacti Group
+Copyright (c) 2004-2021 The Cacti Group

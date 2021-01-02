@@ -22,4 +22,4 @@ any issues. If none are found, you can select the same file and then untick the
 preview option to import after which the template should be available.
 
 ---
-Copyright (c) 2004-2020 The Cacti Group
+Copyright (c) 2004-2021 The Cacti Group

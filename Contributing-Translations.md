@@ -86,4 +86,4 @@ As Cacti is GPL2.0+, you acknowledge, by sigining up to the Cacti Weblate
 site, that your contributions will be GPL2.0+ as well.
 
 ---
-Copyright (c) 2004-2020 The Cacti Group
+Copyright (c) 2004-2021 The Cacti Group

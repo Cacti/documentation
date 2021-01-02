@@ -1158,4 +1158,4 @@ file | introduced | retired
 include/global_form.php |  1.0.0  |
 
 ---
-Copyright (c) 2004-2020 The Cacti Group
+Copyright (c) 2004-2021 The Cacti Group
