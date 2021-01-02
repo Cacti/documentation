@@ -57,7 +57,8 @@ git pull
 mv plugin_thold thold
 ```
 
-- asign proper permissions usually either www-data for Ubuntu/debian or apache for centos/RHEL
+- asign proper permissions usually either www-data for Ubuntu/debian or
+  apache for centos/RHEL
 
 ```console
 chown -R www-data:www-data plugin_name
