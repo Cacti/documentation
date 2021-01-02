@@ -21,7 +21,7 @@ syntax standard with the following exceptions:
   - `if (expression) {`,
   - `} else {`,
   - and `} elseif {`
-  
+
 - Use lower case constants for things like `false`, `true`, and `null`.
 
 - Use `print` over `echo`.
@@ -336,7 +336,7 @@ if ($i == 0) {
 
 ```php
 /* this is an extra long comment that deserves to be
- * split up into multiple lines 
+ * split up into multiple lines
  */
 if ($i == 0) {
     // code
