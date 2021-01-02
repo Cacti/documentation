@@ -243,7 +243,7 @@ For 1 minute intervals, this should be:
 POLLER: Poller[0] Maximum runtime of xxx seconds exceeded.
 ```
 
-This error indicates that cacti was not able to finish the polling cycle in time.
+This error indicates that Cacti was unable to finish the polling cycle in time.
 This can be for a few reasons.
 
 * You are using spine and have not entered the correct mysql credentials in spine.conf
@@ -251,6 +251,7 @@ This can be for a few reasons.
   count for spine
 * Network related issue either an network outage or a network slowdown
 * System related trouble cpu/memory exhaustion
+* Insufficient MySQL connections resulting in spine failing
 
 ### RRDtool reports Unknown Error
 
