@@ -2,7 +2,8 @@
 
 This section will describe **Device** management in Cacti.
 
-Adding a **Device** to Cacti can be done in a few different ways  either via the Web GUI, Cacti's Automation, or the Command Line Interface (CLI)
+Adding a **Device** to Cacti can be done in a few different ways, either via
+the Web GUI, Cacti's Automation, or the Command Line Interface (CLI).
 
 ## Web GUI Option
 
