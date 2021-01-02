@@ -247,7 +247,7 @@ this can be for a few reasons
 
 - You are using spine and have not entered the correct mysql credentials in spine.conf
 - You do not have an adaquete proccess setting for cmd.php or thread/process count for spine
-- \Network related issue either an network outage or a network slowdown
+- Network related issue either an network outage or a network slowdown
 - System related trouble cpu/memory exhaustion 
 
 ### RRDtool reports Unknown Error
