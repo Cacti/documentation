@@ -1,15 +1,15 @@
 # Spine
 
 Spine is the fast replacement for `cmd.php`. It is written in C to ensure
-ultimate performance for device polling and is multi-threaded. Expect a 
-decrease in polling time of an order of magnitude. Polling times far 
-less than 60 seconds for about 20,000 data sources are achievable e.g. 
+ultimate performance for device polling and is multi-threaded. Expect a
+decrease in polling time of an order of magnitude. Polling times far
+less than 60 seconds for about 20,000 data sources are achievable e.g.
 on a dual XEON system supplied with 4 GB RAM and standard local disks.
 
-When using Spine, don't change crontab or systemd settings! Always use 
+When using Spine, don't change crontab or systemd settings! Always use
 poller.php with crontab or cactid.php for systemd!
 
-To activate Spine instead of cmd.php, please visit 
+To activate Spine instead of cmd.php, please visit
 `Console > Configuration > Settings > Poller` and select spine and save
 as the `Poller Type`. If it's not showing as an available `Poller Type`
 this means either it has not been installed, or it's path has not
@@ -34,10 +34,9 @@ processor resources are used. Required settings for Maximum Concurrent Poller
 Processes are 1-2 times the number of CPU cores available for Spine.
 
 When using spine, you must be senstivive to the numer of connections that
-are available for MySQL or MariaDB.  Under 
+are available for MySQL or MariaDB.  Under
 `Console > Utilities > System Utilities > General` Cacti will provide a
 recommended `max_connection` for MySQL/MariaDB.
-
 
 ###### Table 15-1. Spine Specific Execution Parameters maintained at the System Level
 
@@ -58,7 +57,6 @@ Name | Description
 --- | ---
 The Maximum SNMP OIDs Per SNMP Get Request | The maximum number of SNMP get OIDs to issue per SNMP request. Increasing this value increases poller performance over slow links. The maximum value is 60 OIDs, but that value is highly dependent on the MTU for your links to the remote devices.  In some cases, using a **Remote Data Collector** is much more effective for polling remote **Davices**. Additionally, some **Device Types** do not handle large SNMP OID get requests.  It's best to experiment until you find the correct setting.
 Device Threads | The maximum number spine threads used to gather information from a **Device**.  When using this setting at the **Device** level, you have to ensure that you have enough threads allocated to a process so as to not block other **Devices** being polled from the same spine binary.
-
 
 ### Installing Spine
 
