@@ -38,13 +38,24 @@ are available for MySQL or MariaDB.  Under
 `Console > Utilities > System Utilities > General` Cacti will provide a
 recommended `max_connection` for MySQL/MariaDB.
 
-###### Table 15-1. Spine Specific Execution Parameters
+
+###### Table 15-1. Spine Specific Execution Parameters maintained at the System Level
+
+Name | Description
+--- | ---
+Script and Script Server Timeout Value | The maximum time that Spine will wait on a script to complete, in units of seconds. If a Script Server Script is terminated due to timeout conditions, the value entered into the RRD file will be NaN
+
+###### Table 15-2. Spine Specific Execution Parameters maintained at the Data Collector Level
 
 Name | Description
 --- | ---
 Maximum Threads per Process | The maximum threads allowed per process. Using a higher number when using Spine will improve performance. Required settings are 10-15. Values above 50 are most often insane and may degrade performance vs. improve it.
 Number of PHP Script Servers | The number of concurrent script server processes to run per Spine process. Settings between 1 and 10 are accepted. Script Servers will pre-load a PHP environment. Then, the Script Server Scripts are included into that environment to save the overhead of reloading PHP and re-interpreting the binary for each call.
-Script and Script Server Timeout Value | The maximum time that Spine will wait on a script to complete, in units of seconds. If a Script Server Script is terminated due to timeout conditions, the value entered into the RRD file will be NaN
+
+###### Table 15-3. Spine Specific Execution Parameters maintained at the Device Level
+
+Name | Description
+--- | ---
 The Maximum SNMP OIDs Per SNMP Get Request | The maximum number of SNMP get OIDs to issue per SNMP request. Increasing this value increases poller performance over slow links. The maximum value is 60 OIDs, but that value is highly dependent on the MTU for your links to the remote devices.  In some cases, using a **Remote Data Collector** is much more effective for polling remote **Davices**. Additionally, some **Device Types** do not handle large SNMP OID get requests.  It's best to experiment until you find the correct setting.
 Device Threads | The maximum number spine threads used to gather information from a **Device**.  When using this setting at the **Device** level, you have to ensure that you have enough threads allocated to a process so as to not block other **Devices** being polled from the same spine binary.
 
