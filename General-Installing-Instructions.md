@@ -21,11 +21,11 @@ packages will vary by operating system.
 
 - rrdtool
 
-- help2man` (for spine)
+- help2man (for spine)
 
 - dos2unix (for spine)
 
-- development packages (gcc, automake, autoconf, libtool, help2man)
+- development packages (gcc, automake, autoconf, libtool, either mysql-devel or mariadb-devel, net-snmp-devel, help2man)
 
   (for spine)
 
@@ -286,16 +286,38 @@ VALUES ('localhost', 'mysql', 'cactiuser', 'time_zone_name', 'root@localhost', '
    (Enter a valid username for *cactiuser*, this user will also be used in the
    next step for data gathering.)
 
-7. Create a new file `/etc/cron.d/cacti` and add to it:
+7. Create your cron task file or systemd units file
 
-   ```ini
-   */5 * * * * cactiuser php <path_cacti>/poller.php > /dev/null 2>&1
+   Starting with Cacti 1.2.16, you have the option to use either the
+   legacy Crontab entry, or an optional cactid units file and server
+   to run your Cacti pollers.
+
+   For Crontab use, follow the instructions below:
+
+   Create and edit `/etc/cron.d/cacti` file.
+   Make sure to setup the correct path to poller.php
+
+   ```console
+   */5 * * * * apache php <path_cacti>/poller.php &>/dev/null
    ```
 
-   Replace *cactiuser* with the valid user specified in the previous step.
+   For systemd unit's file install, you will need to modify the
+   included units file to following your install location
+   and desired user and group's to run the Cacti poller as.
+   To complete the task, follow the procedure below:
 
-   Replace `<path_cacti>` with your full Cacti path.
+   ```console
+   vim <path_cacti>/service/cactid.service (edit the path)
+   touch /etc/sysconfig/cactid
+   cp -p <path_cacti>/service/cactid.service /etc/systemd/system
+   systemctl enable cactid
+   systemctl start cactid
+   systemctl status cactid
+   ```
 
+   The systemd units file makes managing a highly available Cacti
+   setup a bit more convenient.
+   
 8. During install, you will need to provide write access to the following files
    and directories:
 
