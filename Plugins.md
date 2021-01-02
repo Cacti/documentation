@@ -43,6 +43,7 @@ You must instead disable the plugin which will not drop the SQL tables and thus 
 ```console
 cp -R /var/www/html/cacti/plugin/thold /tmp
 ```
+
 - git pull or download the new version of the plugin
 
 ```console
@@ -53,13 +54,14 @@ git pull
 ```console
 mv plugin_thold thold
 ```
+
 - asign proper permissions usually either www-data for Ubuntu/debian or apache for centos/RHEL
+
 ```console
 chown -R www-data:www-data plugin_name
 ```
+
 - Enable the plugin in the console
-
-
 
 ### Unistall a plugin
 
