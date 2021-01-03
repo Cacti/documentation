@@ -1,6 +1,6 @@
 # Cacti (tm) Documentation
 
-![Cacti](images/logo.png)
+![Cacti](images/logo.svg)
 
 Cacti is designed to be a complete graphing solution based on the RRDTool's
 framework. Its goal is to make a network administrator's job easier by taking
@@ -204,7 +204,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
       8.1.1 [Authentication](Settings-Auth.md)
 
-         8.1.1.1 [LDAP](Settings-Auth-LDAP.md)
+      8.1.2 [LDAP Authentication](Settings-Auth-LDAP.md)
 
    8.2. [Users](User-Management.md)
 
