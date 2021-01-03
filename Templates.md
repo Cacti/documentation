@@ -206,7 +206,9 @@ the SNMP - Generic OID Template
 
 ![Data Templates](images/data-templates.png)
 
-After clicking Go, you're prompted with a new page to enter `udp/net - udp Out Datagrams` as the `Title Format` for the new **Data Template**:
+After clicking Go, you're prompted with a new page to enter
+`udp/net - udp Out Datagrams` as the `Title Format` for the
+new **Data Template**:
 
 ![Data Templates Duplicate](images/data-templates-copy.png)
 
@@ -370,7 +372,8 @@ some **Graph Item Inputs**. **Graph Item Inputs** are unique to **Graph Template
 because of the large number of items they sometimes contain. **Graph Item Inputs**
 enable you to take one **Graph Item** field, and associate it with multiple
 **Graph Items**.  **Graph Item Input** fields are generally created automatically
-as you add **Graph Items** associated with a **Data Source**, like a LINE or AREA or GPRINT.
+as you add **Graph Items** associated with a **Data Source**, like a LINE
+or AREA or GPRINT.
 
 To create a new **Graph Item Input** manually, click Add on the right of the
 **Graph Item Inputs** form. There are various fields that must be filled in for
@@ -422,13 +425,13 @@ and **Create** to see:
 
 ![Graph Template New 3](images/graph-templates-new2.png)
 
-Now let's add some **Graph Template** **Graph Items**. They will specify, 
-which **Data Sources** defined by some **Data Template** should be displayed 
+Now let's add some **Graph Template** **Graph Items**. They will specify,
+which **Data Sources** defined by some **Data Template** should be displayed
 on the **Graph**. Please click Add as shown on the last image:
 
 ![Graph Template Items 1](images/graph-templates-item1.png)
 
-Now click Save to see the resulting image below.  Not that both the 
+Now click Save to see the resulting image below.  Not that both the
 **Graph Item** and the **Graph Item Input** have been created.
 
 ![Graph Template Items 1](images/graph-templates-item1s.png)
@@ -455,14 +458,14 @@ At this point, since we only added **Graph Items** to the **Graph Template**
 there is no need to resave it at this point.  We can simply continue to the
 next step.
 
-Now, you may add this new **Graph Template** to any **Devices** that 
+Now, you may add this new **Graph Template** to any **Devices** that
 responds to the udp OID we specified in the **Data Template**. But in this
 case, please wait a moment. Let's first proceed to the **Device Template**
 and use this new **Graph Gemplate** for our first own **Device Template**.
 
 ## Device Templates
 
-**Device Templates** in Cacti, often times referred to as Host Templates 
+**Device Templates** in Cacti, often times referred to as Host Templates
 serve as a way to group a set of common **Graph Templates** and **Data Queries**
 to **Devices** of a certain class, say a Cisco Router or Linux host using
 Net-SNMP.  It really accelerates the deployment of a Cacti system across
@@ -471,11 +474,11 @@ and enterprise of Devices.
 ### Adding a Device Template
 
 To create a new **Device Template** in Cacti, select the **Device* option under
-the `Console > Templates` menu selection. Once on that page, click Add on the 
-right. Type a unique name for the **Device Template* and click the Create 
-button. You will be redirected back to the edit page with the 
-`Associated Graph Templates` and `Associated Data Queries` forms empty. 
-These two forms allow you to associate **Graph Templates** and/or 
+the `Console > Templates` menu selection. Once on that page, click Add on the
+right. Type a unique name for the **Device Template* and click the Create
+button. You will be redirected back to the edit page with the
+`Associated Graph Templates` and `Associated Data Queries` forms empty.
+These two forms allow you to associate **Graph Templates** and/or
 **Data Queries** with the **Device Template**. Simply select something
 from the drop-down menu and click Add to associate it with your
 **Device Template**.
@@ -488,7 +491,7 @@ of Graph Templates and Data Queries available for this Class of **Devices**.
 ### Walk-through: My First Device Template
 
 The next task is to create a new **Device Template**. So, select **Device**
-under `Console > Templates` and press the Add button as in previous 
+under `Console > Templates` and press the Add button as in previous
 examples.  When you do that, you will be presented with an page that
 resembles the one below.
 
@@ -498,8 +501,8 @@ and fill in the name of this new Template:
 
 ![Add Host Template New](images/device-template-new.png)
 
-Now you'll find two sections added. First, let's deal with 
-**Associated Graph Templates**. The Add **Graph template** select drop-down 
+Now you'll find two sections added. First, let's deal with
+**Associated Graph Templates**. The Add **Graph template** select drop-down
 contains all existing **Graph Templates**. In the images, you will see that
 we are creating a **Device Template** for a NetApp Filer and adding some
 common Graph Templates and Data Queries from the Cacti built-in collection.
