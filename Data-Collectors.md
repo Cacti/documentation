@@ -122,7 +122,7 @@ reference so that you understand the process.
 #$rdatabase_ssl_ca   = '';
 ```
 
-You will now need to install Cacti on the remote server selecting the 
+You will now need to install Cacti on the remote server selecting the
 **New Remote Poller** install option as shown below.
 
 ![Remote Data Collector Setup](images/data-collectors-remote-setup.png)

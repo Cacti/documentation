@@ -136,9 +136,9 @@ include/graph_arrays.php
 Functions that must be accessed globally should be stored in the ''lib/''
 directory. This is where most of the heavy lifting in Cacti occurs.
 
-Directly under the `lib/` directory, the files beginning with the `api` 
-prefix are core Cacti API's that are only to be used by third party 
-developers and should NEVER include a call to a 
+Directly under the `lib/` directory, the files beginning with the `api`
+prefix are core Cacti API's that are only to be used by third party
+developers and should NEVER include a call to a
 `$_REQUEST`, `$_POST`, or `$_GET` variable.
 
 Files that have the `html` prefix, generally invole the rendering of page

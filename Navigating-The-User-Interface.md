@@ -164,7 +164,7 @@ into separate sub-menus.  We will describe the purpose of each next.
   **CDEFs**, **VDEFs**, **GPrint Presets**, and **Colors**
 - **Import Export** - This is how you can import and export various Cacti
   Template objects.
-- **Configuration** - This is where you manage **Users**, **User Groups**, 
+- **Configuration** - This is where you manage **Users**, **User Groups**,
   **User Domains**, **Global Settings**, and **Plugins**.
 - **Utilities** - This is where Cacti includes common utilities that can be use
   in the Web Portal without having to goto the Command line.

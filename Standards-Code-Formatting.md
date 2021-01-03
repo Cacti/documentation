@@ -293,8 +293,8 @@ function that needs to use it.
 
 ```php
 $graph_unit_exponent_values = array(
-  '-18' => 'a - atto', 
-  '-15' => 'f - femto', 
+  '-18' => 'a - atto',
+  '-15' => 'f - femto',
   ...
 );
 
@@ -350,16 +350,23 @@ $vdefs = db_fetch_assoc("SELECT rs.*,
   $sql_order
   $sql_limit");
 ```
+
 1) Ensure that you use prepared statements as in the first example whenever
-you can.  
+you can.
+
 2) If you can not use prepared statements, ensure that you properly
-escape any database SQL WHERE logic properly.  
-3) Always use the term `AS` to define an alias.  
-4) Ensure that your JOINs are either INNER, LEFT, or RIGHT.  
-5) Ensure that the ON clause uses table aliases, and that each 
+escape any database SQL WHERE logic properly.
+
+3) Always use the term `AS` to define an alias.
+
+4) Ensure that your JOINs are either INNER, LEFT, or RIGHT.
+
+5) Ensure that the ON clause uses table aliases, and that each
   `AND` or `OR` expression is logically organized for easy reading
   and interpretation.
+
 6) In your SQL WHERE and SELECT, where fuctions are involved
+
     1. Ensure that there are spaces between parameter
     2. Ensure operators and variables are separated by spaces
 

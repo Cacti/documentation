@@ -1,6 +1,6 @@
 # Aggregate Templates
 
-## Why Aggregates?
+## Aggregate Overview
 
 **Aggregate Templates** are a special form of a **Graph Template**.  They
 allow you to easily create **Graphs** that combine data from multiple common

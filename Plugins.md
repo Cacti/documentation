@@ -32,8 +32,8 @@ Installing plugins on cacti is a simple procedure
   to enable it this can be done via clicking on the green check mark
 
     ![thold plugin enable](images/cacti_thold_enable.JPG)
-  
-After this, the **Plugin** is installed and enabled.  However, there 
+
+After this, the **Plugin** is installed and enabled.  However, there
 will likely be onfiguration that must take place after the **Plugin**
 is enabled.  See the **Plugin** documentation for instructions on how
 to configure and use them.
@@ -47,7 +47,7 @@ plugin which will not drop the SQL tables and thus save your settings.
 
 1) Disable the **Plugin** you want to update
 
-2) Backup the current **Plugin** folder typically in 
+2) Backup the current **Plugin** folder typically in
   `<path_cacti>/plugins/plugin_name`
 
       ```console
@@ -77,8 +77,8 @@ plugin which will not drop the SQL tables and thus save your settings.
 
 ### Unistall a Plugin
 
-To uninstall a plugin go into the plugins page 
-`Console > Configuration > Plugins` Click on the plugin to 
+To uninstall a plugin go into the plugins page
+`Console > Configuration > Plugins` Click on the plugin to
 Disable the plugin.
 
 Click on the red dot beside the plugin to uninstall the plugin a dialouge box

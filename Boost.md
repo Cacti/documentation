@@ -148,7 +148,7 @@ default is 16MBytes for the largest table (the MySQL default), you can
 calculate the number of poller intervals that you can store without
 running out of MySQL memory. So, let's take our example:
 
-```
+```console
 200k Cache Entries x 84 Bytes Per Poller Cache Row = 1,680,000 Bytes per Poll
 ```
 
@@ -170,7 +170,7 @@ So, let's call it a deal. Provided you have enough memory, and I expect
 that you do, you would edit the /etc/my.cnf.d/server.cnf and add/modify
 the following line:
 
-```
+```console
 max_heap_table_size=132M
 ```
 
