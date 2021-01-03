@@ -418,26 +418,28 @@ Now you have to fill in some global parameters:
 
 ![Graph Template New](images/graph-templates-new1.png)
 
-on the lower part of the page, please fill in:
-
-![Graph Template New 2](images/graph-templates-new2.png)
-
 and **Create** to see:
 
-![Graph Template New 3](images/graph-templates-new3.png)
+![Graph Template New 3](images/graph-templates-new2.png)
 
-Now let's add some Graph Template Items. They will specify, which Data Sources
-defined by some Data Template should be displayed on the Graph. Please click Add
-as shown on the last image:
+Now let's add some **Graph Template** **Graph Items**. They will specify, 
+which **Data Sources** defined by some **Data Template** should be displayed 
+on the **Graph**. Please click Add as shown on the last image:
 
 ![Graph Template Items 1](images/graph-templates-item1.png)
 
-Now click Save to see:
+Now click Save to see the resulting image below.  Not that both the 
+**Graph Item** and the **Graph Item Input** have been created.
 
 ![Graph Template Items 1](images/graph-templates-item1s.png)
 
-I always appreciate some nice legends to see the numbers for e.g. maximum,
-average and last value. There's a shortcut for this:
+Next, we have to add a Legend in order for people viewing the **Graph** in the
+future to obtain numeric data about the **Graph** contents.  We will create
+a very simple one, though Graph Legends can be a very complex subject.
+
+To add the Graph Legend, simply press the Add button again and fill out
+the **Graph Item** as shown in the image below.  You should note that
+for this second **Graph Item**, it remembered the previous **Data Source**.
 
 ![Graph Template Items](images/graph-templates-item2.png)
 
@@ -445,47 +447,50 @@ Press Save to see three legend items created in one step!
 
 ![Graph Template Items 2](images/graph-templates-item2s.png)
 
-Now let's turn to the second data source. This works very much the same way. So
-see all four images in sequence:
+Now we could have continued to add the UDP Datagrams In by adding a second
+RRDfile Data Source to our **Data Template**, but we will skip that for this
+exercise and continue now that our **Graph Template** is reasonably completed.
 
-![Graph Template Items 3](images/graph-templates-item3.png)
+At this point, since we only added **Graph Items** to the **Graph Template**
+there is no need to resave it at this point.  We can simply continue to the
+next step.
 
-![Graph Template Items 3s](images/graph-templates-item3s.png)
+Now, you may add this new **Graph Template** to any **Devices** that 
+responds to the udp OID we specified in the **Data Template**. But in this
+case, please wait a moment. Let's first proceed to the **Device Template**
+and use this new **Graph Gemplate** for our first own **Device Template**.
 
-![Graph Template Items 4](images/graph-templates-item4.png)
+## Device Templates
 
-![Graph Template Items 4s](images/graph-templates-item4s.png)
+**Device Templates** in Cacti, often times referred to as Host Templates 
+serve as a way to group a set of common **Graph Templates** and **Data Queries**
+to **Devices** of a certain class, say a Cisco Router or Linux host using
+Net-SNMP.  It really accelerates the deployment of a Cacti system across
+and enterprise of Devices.
 
- Please scroll down to the bottom of the page and Save your whole work.
+### Adding a Device Template
 
-Now, you may add this new Graph Template to any hosts that responds to those udp
-OIDs. But in this case, please wait a moment. Let's first proceed to the Host
-Templates and use this new Graph template for our first own Host Template.
+To create a new **Device Template** in Cacti, select the **Device* option under
+the `Console > Templates` menu selection. Once on that page, click Add on the 
+right. Type a unique name for the **Device Template* and click the Create 
+button. You will be redirected back to the edit page with the 
+`Associated Graph Templates` and `Associated Data Queries` forms empty. 
+These two forms allow you to associate **Graph Templates** and/or 
+**Data Queries** with the **Device Template**. Simply select something
+from the drop-down menu and click Add to associate it with your
+**Device Template**.
 
-## Host Templates
-
-Host templates in Cacti serve a different purpose then data and graph templates.
-Instead of abstracting the fields of a host, a host template allows you to
-associate graph templates and data queries with a given host type. This way when
-you assign a host template to a host, all of the relevant graphs to that host
-type are only one click away from the user.
-
-### Adding a Host Template
-
-To create a new host template in Cacti, select the Host Templates option under
-the Templates heading. Once on that screen, click Add on the right. Type a
-unique name for the host template and click the Create button. You will be
-redirected back to the edit page with the Associated Graph Templates and
-Associated Data Queries boxes. These two boxes allow you to associate certain
-graph templates or data queries with the host template. Simply select something
-from the dropdown menu and click Add to associate it with your host template.
+In the case below, we show the Net-SNMP **Device Template**.  Note the variety
+of Graph Templates and Data Queries available for this Class of **Devices**.
 
 ![Adding a Host Template](images/device-template.png)
 
-### Walkthrough: My First Host Template
+### Walk-through: My First Device Template
 
-The next task is creating a new **Host Template**. Switch over to **Host
-Templates** and **Add**:
+The next task is to create a new **Device Template**. So, select **Device**
+under `Console > Templates` and press the Add button as in previous 
+examples.  When you do that, you will be presented with an page that
+resembles the one below.
 
 ![Add Host Template](images/device-template-add.png)
 
@@ -493,9 +498,11 @@ and fill in the name of this new Template:
 
 ![Add Host Template New](images/device-template-new.png)
 
-Now you'll find two sections added. First, let's deal with **Associated Graph
-Templates**. The Add **Graph template** select box holds all defined Graph
-Templates. Select the one we've just created
+Now you'll find two sections added. First, let's deal with 
+**Associated Graph Templates**. The Add **Graph template** select drop-down 
+contains all existing **Graph Templates**. In the images, you will see that
+we are creating a **Device Template** for a NetApp Filer and adding some
+common Graph Templates and Data Queries from the Cacti built-in collection.
 
 ![Host Template Associate Graph Template](images/device-template-new-gt.png)
 
@@ -523,7 +530,7 @@ current version of Cacti, **Packages** are now importable as well.  When you
 import a **Package** all of the required additional file changes will also be
 accommodated.  We will discuss **Packages** later in the documentation.
 
-![Import Templates](images/import_template.png)
+![Import Templates](images/import-template.png)
 
 If the XML file was downloaded, simply select that file from the Downloads
 location on your local system.  Cacti no longer supports pasting the XML into
@@ -546,24 +553,30 @@ Cacti, you were unable to determine what would actually change.  However, in the
 current and future versions of Cacti, you will be able to see all local
 modifications when performing a `Preview` prior to `Importing`.
 
+In the image below, you can see the output of a `Preview` of the Cisco WLC 5520
+**Device Template**.  When Previewing, no changes are actually made ot your
+Cacti system.
+
+![Import Template Preview](images/import-template-preview.png)
+
 As mentioned previously, for a single OID based template, **Importing** the
 **Template** is all that will be required. However, for a script based template,
 the author will provide the script that has to be downloaded to the Cacti
 `./scripts` directory and for a **Data Query** based **Template**, a second XML
 file holding the Data Query definitions will have to be downloaded to the
-appropriate directory under `./resources`.
+appropriate directory under the `./resource` directory.
 
 When importing templates, Cacti will perform a version check. All XML templates
 hold the version of the Cacti system that generated this XML set. Cacti will
 import only, if your current Cacti version equals or is higher than the
-exporting one.
+exported one.
 
 ## Export Templates
 
 Now that you know how to import, you may want to know in which way to export as
 well. Selecting the Export Templates gives
 
-![Export Templates](images/export_template.png)
+![Export Templates](images/export-template.png)
 
 You may select to export a graph template, a data template, a **Device
 Template** or a **Data Query**. When selecting `Include Dependencies`, e.g. a
