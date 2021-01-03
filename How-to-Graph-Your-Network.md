@@ -6,15 +6,21 @@ acquisition, some which have a slight learning curve. Do not let that stop you
 however, because graphing your network is incredibly simple.
 
 The next two sections will outline the two basic steps which are typically
-required to create graphs for most devices.
+required to create **Graphs** for most **Devices** or **Device Types**.  
+
+> **NOTE**: The process described below is the Classic way for you to create and 
+> manage **Devices** and **Graphs**.  However, Cacti now allows your to 
+> Automate many of these tasks in the **Automation** section of the Console.
+> That topic is covered in the Automation Chapter.
 
 ## Creating a Device
 
-The first step to creating graphs for your network is adding a device for each
-network device that you want to create graphs for. A device specifies important
-details such as the network hostname, SNMP parameters, and host type.
+The first step to creating **Graphs** for your network is adding a **Device** for each
+network device that you want to create **Graphs** for. A **Device** contains important
+details such as the network hostname, SNMP parameters, and **Device Type** 
+(aka **Device Template**).
 
-To manage devices within Cacti, click on the Devices menu item. Clicking Add
+To manage **Devices** within Cacti, click on the Devices menu item. Clicking Add
 will bring up a new device form. The first two fields, Description and Hostname
 are the only two fields that require your input beyond the defaults. If your
 host type is defined under the host template dropdown, be sure to select it
