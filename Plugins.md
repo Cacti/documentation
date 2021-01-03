@@ -6,32 +6,32 @@ Installing plugins on cacti is a simple procedure
 
 1) Download the plugin to cactidir/cacti/plugins
 
-  ```console
-  git clone https://github.com/Cacti/plugin_thold.git
-  ```
+    ```console
+    git clone https://github.com/Cacti/plugin_thold.git
+    ```
 
-  ```console
-  mv plugin_thold /var/www/html/cacti/plugins
-  ```
+    ```console
+    mv plugin_thold /var/www/html/cacti/plugins
+    ```
 
 2) Now assign the proper permissions to the folder
 
-  ```console
-  chown -R apache:apache plugin_thold
-  ```
+    ```console
+    chown -R apache:apache plugin_thold
+    ```
 
 3) From `Console > Configuration > Plugins` Install the plugin
   by Clicking on the wrench Icon as showng below.
 
-  Below you will now see the THOLD plugin avaliable to install in this case we are
-  installing thold
+    Below you will now see the THOLD plugin avaliable to install in this case we are
+    installing thold
 
-  ![thold plugin](images/cacti_thold_plugin_install.JPG)
+    ![thold plugin](images/cacti_thold_plugin_install.JPG)
 
 4) After installing the plugin by clicking on the grey gear you will now how
   to enable it this can be done via clicking on the green check mark
 
-  ![thold plugin enable](images/cacti_thold_enable.JPG)
+    ![thold plugin enable](images/cacti_thold_enable.JPG)
   
 After this, the **Plugin** is installed and enabled.  However, there 
 will likely be onfiguration that must take place after the **Plugin**
