@@ -68,8 +68,8 @@ chown -R www-data:www-data plugin_name
 
 ### Unistall a plugin
 
-To uninstall a plugin go into the plugins page console >> configuration >>
-plugins Click on the plugin to disable the plugin
+To uninstall a plugin go into the plugins page `Console > Configuration >
+Plugins` Click on the plugin to disable the plugin
 
 Click on the red dot beside the plugin to uninstall the plugin a dialouge box
 will appear now click uninstall.
@@ -79,6 +79,11 @@ will appear now click uninstall.
 This will uninstall the plugin from cacti but will NOT remove the files from the
 server to do that you must manually remove the plugin until you remove the files
 the plugin will show to be avaliable to be installed.
+
+> **WARNING**: Uninstalling a Cacti **Plugin** generally also removes any database
+> tables that that **Plugin** created, which means your data!  Before uninstalling
+> **Plugins**, it would be wise to have a backup strategy in place in case you
+> accidentally uninstall a plugin and loose your data!
 
 ### Dependecies in plugins
 
