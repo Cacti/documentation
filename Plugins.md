@@ -4,31 +4,39 @@
 
 Installing plugins on cacti is a simple procedure
 
-Step 1 download the plugin to cactidir/cacti/plugins
+1) Download the plugin to cactidir/cacti/plugins
 
-```console
-git clone https://github.com/Cacti/plugin_thold.git
-```
+  ```console
+  git clone https://github.com/Cacti/plugin_thold.git
+  ```
 
-```console
-mv plugin_thold /var/www/html/cacti/plugins
-```
+  ```console
+  mv plugin_thold /var/www/html/cacti/plugins
+  ```
 
-Now assign the proper permissions to the folder
+2) Now assign the proper permissions to the folder
 
-```console
-chown -R www-data:www-data plugin_thold
-```
+  ```console
+  chown -R apache:apache plugin_thold
+  ```
 
-Below you will now see the THOLD plugin avaliable to install in this case we are
-installing thold
+3) From `Console > Configuration > Plugins` Install the plugin
+  by Clicking on the wrench Icon as showng below.
 
-![thold plugin](images/cacti_thold_plugin_install.JPG).
+  Below you will now see the THOLD plugin avaliable to install in this case we are
+  installing thold
 
-After installing the plugin by clicking on the grey gear you will now how
-to enable it this can be done via clicking on the green check mark
+  ![thold plugin](images/cacti_thold_plugin_install.JPG).
 
-![thold plugin enable](images/cacti_thold_enable.JPG)
+4) After installing the plugin by clicking on the grey gear you will now how
+  to enable it this can be done via clicking on the green check mark
+
+  ![thold plugin enable](images/cacti_thold_enable.JPG)
+  
+After this, the **Plugin** is installed and enabled.  However, there 
+will likely be onfiguration that must take place after the **Plugin**
+is enabled.  See the **Plugin** documentation for instructions on how
+to configure and use them.
 
 ### Updating a Plugin
 
@@ -37,39 +45,41 @@ code for that plugin. It also allows you to keep all of your settings for that
 plugin ensure you DO NOT UNINSTALL the plugin.  You must instead disable the
 plugin which will not drop the SQL tables and thus save your settings.
 
-- Disable the plugin you want to update
+1) Disable the **Plugin** you want to update
 
-- backup the current plugin folder typically in cacti|_path/plugins/plugin_name
+2) Backup the current **Plugin** folder typically in 
+  `<path_cacti>/plugins/plugin_name`
 
-```console
-cp -R /var/www/html/cacti/plugin/thold /tmp
-```
+  ```console
+  cp -R /var/www/html/cacti/plugin/thold /tmp
+  ```
 
-- git pull or download the new version of the plugin
+3) git pull or download the new version of the **Plugin**
 
-```console
-git pull
-```
+  ```console
+  git pull
+  ```
 
-- change name of plugin folder i.e plugin_thold to thold
+4) Change name of **Plugin** folder i.e plugin_thold to thold
 
-```console
-mv plugin_thold thold
-```
+  ```console
+  mv plugin_thold thold
+  ```
 
-- asign proper permissions usually either www-data for Ubuntu/debian or
-  apache for centos/RHEL
+5) Asign proper permissions usually either www-data for Ubuntu/debian or
+  apache for CentOS/RHEL
 
-```console
-chown -R www-data:www-data plugin_name
-```
+  ```console
+  chown -R apache:apache thold
+  ```
 
-- Enable the plugin in the console
+6) Re-enable the **Plugin** in the **Console**
 
-### Unistall a plugin
+### Unistall a Plugin
 
-To uninstall a plugin go into the plugins page `Console > Configuration >
-Plugins` Click on the plugin to disable the plugin
+To uninstall a plugin go into the plugins page 
+`Console > Configuration > Plugins` Click on the plugin to 
+Disable the plugin.
 
 Click on the red dot beside the plugin to uninstall the plugin a dialouge box
 will appear now click uninstall.
