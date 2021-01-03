@@ -8,23 +8,17 @@ care of all the necessary details necessary to create meaningful graphs.
 
 Please see the official Cacti website for information, support, and updates.
 
-## Developers
+## Core Developers - Both active and emeritus
 
-- Ian Berry (raX)
+- Larry Adams (TheWitness, Active)
+- Mark Brugnoli-Vinten (netniV, Avtive)
+- Jimmy Conner (cigamit, Active)
+- Andreas Braun (browniebraun, Active)
+- J.P. Pasnak, CD (Linegod, Active)
 
-- Larry Adams (TheWitness)
-
-- Tony Roman (rony)
-
-- J.P. Pasnak, CD (Linegod)
-
-- Jimmy Conner (cigamit)
-
-- Reinhard Scheck (gandalf)
-
-- Andreas Braun (browniebraun)
-
-- Mark Brugnoli-Vinten (netniV)
+- Tony Roman (rony, Emeritus)
+- Reinhard Scheck (gandalf, Emeritus)
+- Ian Berry (raX, Founder, Emeritus)
 
 ## Thanks
 
