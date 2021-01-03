@@ -292,7 +292,11 @@ that brings the variable into a global scope and returns a new copy to any
 function that needs to use it.
 
 ```php
-$graph_unit_exponent_values = array('-18' => 'a - atto', '-15' => 'f - femto', ...);
+$graph_unit_exponent_values = array(
+  '-18' => 'a - atto', 
+  '-15' => 'f - femto', 
+  ...
+);
 
 function graph_unit_exponent_values_list() {
     global $graph_unit_exponent_values;
@@ -317,6 +321,44 @@ function big_array_process(&$big_array) {
     // code
 }
 ```
+
+## Database Calls
+
+Ensure that you indent your Database calls by a single tab per indentation level
+and that you break up database calls by the various provisos.  A few well defined
+database queries can be seen in the examples below
+
+```php
+$devices = db_fetch_assoc_prepared('SELECT *
+  FROM host
+  WHERE id = ?',
+  array($device_id));
+
+$vdefs = db_fetch_assoc("SELECT rs.*,
+  SUM(CASE WHEN local_graph_id=0 THEN 1 ELSE 0 END) AS templates,
+  SUM(CASE WHEN local_graph_id>0 THEN 1 ELSE 0 END) AS graphs
+  FROM (
+    SELECT vd.*, gti.local_graph_id
+    FROM vdef AS vd
+    LEFT JOIN graph_templates_item AS gti
+    ON gti.vdef_id=vd.id
+    GROUP BY vd.id, gti.graph_template_id, gti.local_graph_id
+  ) AS rs
+  $sql_where
+  GROUP BY rs.id
+  $sql_having
+  $sql_order
+  $sql_limit");
+```
+1) Ensure that you use prepared statements as in the first example whenever
+you can.  
+2) If you can not use prepared statements, ensure that you properly
+escape any database SQL WHERE logic properly.  
+3) Always use the term `AS` to define an alias.  
+4) Ensure that your JOINs are either INNER, LEFT, or RIGHT.  
+5) Ensure that the ON clause uses table aliases, and that each 
+  `AND` or `OR` expression is logically organized for easy reading
+  and interpretation.
 
 ## Comments
 
