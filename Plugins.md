@@ -83,7 +83,7 @@ the plugin will show to be avaliable to be installed.
 > **WARNING**: Uninstalling a Cacti **Plugin** generally also removes any database
 > tables that that **Plugin** created, which means your data!  Before uninstalling
 > **Plugins**, it would be wise to have a backup strategy in place in case you
-> accidentally uninstall a plugin and loose your data!
+> accidentally uninstall a **Plugin** and loose your data!
 
 ### Dependecies in plugins
 
