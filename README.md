@@ -234,6 +234,8 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    1.4. [Command Line Scripts](Command-Line-Scripts.md)
 
+   1.5. [Performance Setting (Boost)](Boost.md)
+
 2. [Frequently Asked Questions](Frequently-Asked-Questions.md)
 
 3. [Replacement Variables](Variables.md)
