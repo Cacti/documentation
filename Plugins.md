@@ -50,28 +50,28 @@ plugin which will not drop the SQL tables and thus save your settings.
 2) Backup the current **Plugin** folder typically in 
   `<path_cacti>/plugins/plugin_name`
 
-  ```console
-  cp -R /var/www/html/cacti/plugin/thold /tmp
-  ```
+      ```console
+    cp -R /var/www/html/cacti/plugin/thold /tmp
+    ```
 
 3) git pull or download the new version of the **Plugin**
 
-  ```console
-  git pull
-  ```
+    ```console
+    git pull
+    ```
 
 4) Change name of **Plugin** folder i.e plugin_thold to thold
 
-  ```console
-  mv plugin_thold thold
-  ```
+    ```console
+    mv plugin_thold thold
+    ```
 
 5) Asign proper permissions usually either www-data for Ubuntu/debian or
   apache for CentOS/RHEL
 
-  ```console
-  chown -R apache:apache thold
-  ```
+    ```console
+    chown -R apache:apache thold
+    ```
 
 6) Re-enable the **Plugin** in the **Console**
 
