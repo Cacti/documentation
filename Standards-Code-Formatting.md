@@ -335,13 +335,13 @@ $devices = db_fetch_assoc_prepared('SELECT *
   array($device_id));
 
 $vdefs = db_fetch_assoc("SELECT rs.*,
-  SUM(CASE WHEN local_graph_id=0 THEN 1 ELSE 0 END) AS templates,
-  SUM(CASE WHEN local_graph_id>0 THEN 1 ELSE 0 END) AS graphs
+  SUM(CASE WHEN local_graph_id = 0 THEN 1 ELSE 0 END) AS templates,
+  SUM(CASE WHEN local_graph_id > 0 THEN 1 ELSE 0 END) AS graphs
   FROM (
     SELECT vd.*, gti.local_graph_id
     FROM vdef AS vd
     LEFT JOIN graph_templates_item AS gti
-    ON gti.vdef_id=vd.id
+    ON gti.vdef_id = vd.id
     GROUP BY vd.id, gti.graph_template_id, gti.local_graph_id
   ) AS rs
   $sql_where
@@ -359,6 +359,9 @@ escape any database SQL WHERE logic properly.
 5) Ensure that the ON clause uses table aliases, and that each 
   `AND` or `OR` expression is logically organized for easy reading
   and interpretation.
+6) In your SQL WHERE and SELECT, where fuctions are involved
+  a) Ensure that there are spaces between parameter
+  c) Ensure operators and variables are separated by spaces
 
 ## Comments
 
