@@ -124,7 +124,7 @@ here, only let you know that you can override them in your resulting
 As previously mentioned, there are several combinations of options that you
 can use when working with an **Aggregate Template**.  Some of these options will
 results in horrible and unexpected outcomes, so you will have to experiment
-until you come up with a desirable **Aggregate Template*..
+until you come up with a desirable **Aggregate Template**.
 
 ---
 Copyright (c) 2004-2021 The Cacti Group
