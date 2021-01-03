@@ -360,8 +360,8 @@ escape any database SQL WHERE logic properly.
   `AND` or `OR` expression is logically organized for easy reading
   and interpretation.
 6) In your SQL WHERE and SELECT, where fuctions are involved
-  a) Ensure that there are spaces between parameter
-  c) Ensure operators and variables are separated by spaces
+    1. Ensure that there are spaces between parameter
+    2. Ensure operators and variables are separated by spaces
 
 ## Comments
 
