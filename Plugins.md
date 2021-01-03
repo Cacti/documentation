@@ -26,7 +26,7 @@ Installing plugins on cacti is a simple procedure
   Below you will now see the THOLD plugin avaliable to install in this case we are
   installing thold
 
-  ![thold plugin](images/cacti_thold_plugin_install.JPG).
+  ![thold plugin](images/cacti_thold_plugin_install.JPG)
 
 4) After installing the plugin by clicking on the grey gear you will now how
   to enable it this can be done via clicking on the green check mark
