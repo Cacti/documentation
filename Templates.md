@@ -60,6 +60,14 @@ The **Color Template** defines a list of colors that are used in a Round Robin
 fashion to change the colors seen on the resulting **Aggregate Graphs**
 to better assist the user in interpreting the resulting **Graph**.
 
+In order to best follow the natural course of Template creation, the remainder
+of this chapter will explain Templating starting with **Data Templates**,
+then we will go from there to **Graph Templates**, and from there go to a
+walk-through of creating both a **Data Template** and **Graph Template**.
+
+From there, we will explain how to create a **Graph** using that newly created set
+of Templates.
+
 ## Data Templates
 
 In Cacti, a **Data Template** provides a skeleton for an actual **Data Source**.
@@ -81,11 +89,11 @@ to do with the **Data Source** name, but is what you will use to identify the
 template throughout Cacti.
 
 Second, you will notice a list of **Data Source** / **Data Source Item**
-field names with Use Per-Data Source Value checkboxes next to each one.
+field names with Use Per-Data Source Value check-boxes next to each one.
 The nice thing about Templates in Cacti is that you can choose whether
-to template each field on a per-field basis. If you leave the checkbox
+to template each field on a per-field basis. If you leave the check-box
 unchecked, every **Data Source** attached to the **Data Template**
-will inherit its value from the Template. If the checkbox is
+will inherit its value from the Template. If the check-box is
 checked, every **Data Source** attached to the **Data Template* will
 contain its own value for that particular field. When generating a
 real **Data Source**, you will be prompted to fill those non-templated
@@ -105,7 +113,7 @@ Data Source Profile | The **Data Source Profile** will define how often to colle
 Data Source Active | This is a quick and easy to tell Cacti to stop gathering data for this **Data Template**. The resulting **Data Source** can still be used on **Graphs**, but no data will be fed to it until it is made active again.
 
 > **NOTE:** For most **Data Templates**, you will should not have to to check
-> the Use Per-Graph Value checkbox for the name field.  The Templating should handle
+> the Use Per-Graph Value check-box for the name field.  The Templating should handle
 > this just fine.  However, the Generic SNMP OID **Data Template** has this
 > value checked to allow you to create Graphs and Data Sources on a piecemeal basis.
 
@@ -129,7 +137,7 @@ Name | Description
 Internal Data Source Name | This is the name used by RRDtool to identify this particular data source within the RRDfile. RRDtool places a limit of 19 alphanumeric characters (plus '_' and '-') on this field.
 Minimum Value | Here is where you specify the minimum value that is expected for this data source in the RRDfile. If a value lower than the minimum is given, it will be stored as Unknown (U).
 Maximum Value | Here is where you specify the maximum value that is expected for this data source in the RRDfile. If a value higher than the maximum is given, it will be stored as Unknown (U). Note: It often makes sense to define a reasonable maximum value here to avoid spikes in case of a COUNTER wrap
-Data Source Type | Cacti currently supports seven types of data that RRDtool can represent for any given data source: COUNTER: is for continuous incrementing counters like the ifInOctets counter in a router. The COUNTER data source assumes that the counter never decreases, except when a counter overflows. It is always a whole INTEGER, floating point numbers are invalid. The update function takes the overflow into account. The counter is stored as a per-second rate. When the counter overflows, RRDtool checks if the overflow happened at the 32-bit or 6-4bit border and acts accordingly by adding an appropriate value to the result. GAUGE: numbers that are not continuously incrementing, e.g. a temperature reading. Floating point numbers are accepted. ABSOLUTE: counters that are reset upon reading. DERIVE: like COUNTER but without overflow checks
+Data Source Type | Cacti currently supports seven types of data that RRDtool can represent for any given data source: COUNTER: is for continuous incrementing counters like the ifInOctets counter in a router. The COUNTER data source assumes that the counter never decreases, except when a counter overflows. It is always a whole INTEGER, floating point numbers are invalid. The update function takes the overflow into account. The counter is stored as a per-second rate. When the counter overflows, RRDtool checks if the overflow happened at the 32-bit or 64-bit border and acts accordingly by adding an appropriate value to the result. GAUGE: numbers that are not continuously incrementing, e.g. a temperature reading. Floating point numbers are accepted. ABSOLUTE: counters that are reset upon reading. DERIVE: like COUNTER but without overflow checks
 Heartbeat | As defined by RRDtool: "The maximum amount of time that can pass before data is entered as "unknown". This field is usually '600' or 2 data gathering intervals".
 
 #### Custom Data
@@ -141,8 +149,8 @@ how the **Data Source** connects to the **Data Input Method**
 to provide all run time parameters.
 
 Each **Custom Data** field is per-field Templatable as all of the other **Data Source**
-fields are. Even if you select the Use Per-Data Source Value checkbox, it might
-be useful to specify a value that will be used as an "inital value" for any **Data
+fields are. Even if you select the Use Per-Data Source Value check-box, it might
+be useful to specify a value that will be used as an "initial value" for any **Data
 Source** using the **Data template**.
 
 ### Applying Data Templates to Data Sources
@@ -153,7 +161,7 @@ Source** using the **Data template**.
 
 Applying a **Data Template** to a **Data Source** is a very simple process.
 The first thing you must do is select the **Data Source** you want to apply
-the template to under **Data Sources**. Under the **Data Template** Actions dropdown,
+the template to under **Data Sources**. Under the **Data Template** Actions drop-down,
 select the **Data Template** that you want to apply to the **Data Source**
 and click Save.  Though this should be very rare in modern Cacti instances,
 it was fairly common before Cacti's Templating system matured.
@@ -168,7 +176,7 @@ for.
 > to the **Data Source Items**, will not be automatically applied to those same
 > **Data Sources**.
 
-#### Walkthrough: My First Data Template
+#### Walk-through: My First Data Template
 
 For this task, let's stick to SNMP stuff. For you to be able to reproduce this
 example, I've chosen the **UDP** information of the IP MIB.
@@ -198,13 +206,12 @@ the SNMP - Generic OID Template
 
 ![Data Templates](images/data-templates.png)
 
-After clicking Go, you're prompted with a new page to enter the name for the new
-Data Template:
+After clicking Go, you're prompted with a new page to enter `udp/net - udp Out Datagrams` as the `Title Format` for the new **Data Template**:
 
 ![Data Templates Duplicate](images/data-templates-copy.png)
 
 Due to the filter defined above, you won't see the new Template at once, so
-please enter udp as a new filter to find:
+please enter `udp Out` as a new filter to find:
 
 ![Data Templates New](images/data-templates-new.png)
 
@@ -215,6 +222,8 @@ images:
 
 ![Data Templates New 2](images/data-templates-new2.png)
 
+![Data Templates New 2](images/data-templates-new3.png)
+
 for the lower one. Please pay attention to change the MAXIMUM value to 0 to
 prevent data suppression for values exceeding 100. And you saw the OID
 `.1.3.6.1.2.1.7.1.0` from above, didn't you? Please copy another one for OID
@@ -222,26 +231,29 @@ prevent data suppression for values exceeding 100. And you saw the OID
 
 ## Graph Templates
 
-In Cacti, a graph template provides a skeleton for an actual graph. If you have
-many graphs that share most of their characteristics, using a graph template
-would probably make sense. After a graph is attached to a particular graph
-template, all changes made to the graph template will propagate out to all of
-its graphs, unless Use Per-Graph Value has been checked.
+In Cacti, a **Graph Template** provides a skeleton for an actual **Graph**.
+If you have many **Graphs** that share most of their characteristics,
+using a **Graph Template** makes perfect sense. After a **Graph** is attached
+to a particular **Graph Template**, all changes made to the **Graph Template**
+will propagate out to all of its **Graphs**, unless Use Per-Graph Value has
+been checked.
 
 ### Creating a Graph Template
 
-To create a new graph template, select Graph Templates under the Templates
-heading and click Add.
+To create a new **Graph Template**, select **Graph** unser `Console > Templates`
+menu selection, then click Add normally the plus sign in the upper right
+corner of the **Graph Template** interface.
 
-The first thing you must do is give the template a name. This name has nothing
-to do with the graph title, but is what you will use to identify the template
-throughout Cacti. Second, you will notice a list of graph field names with Use
-Per-Graph Value checkboxes next to each one. The nice thing about templates in
-Cacti is that you can choose whether to template each field on a per-field
-basis. If you leave the checkbox unchecked, every graph attached to the template
-will inherit its value from the template. If the checkbox is checked, every
-graph attached to the template will contain its own value for that particular
-field.
+The first thing you must do is give the **Graph Template** a name. This
+name has nothing to do with the graph title, but is what you will use to
+identify the **Graph Template** throughout Cacti. Second, you will notice
+a list of graph field names with Use Per-Graph Value check-boxes next to
+each one. The nice thing about Templates in Cacti is that you can choose
+whether to template each field on a per-field basis. If you leave the
+check-box unchecked, every **Graph** owned by the **Graph Template**
+will inherit its value from the Template. If the check-box is checked,
+every **Graph** owned by **Graph Template** will have its own value
+for that particular field.
 
 ###### Table 13-3. Field Description: Graph Templates
 
@@ -253,7 +265,7 @@ Height | The height of the Graph Canvas in pixels.  This is not the height of th
 Width | The width of the Graph Canvas in pixels
 Base Value | Should be set to 1024 for memory values and 1000 for traffic measurements.
 Slope Mode | RRDtool graphs are composed of stair case curves by default. This is in line with the way RRDtool calculates its data. Some people favor a more "organic" look for their graphs.
-Auto Scale | Enable auto scale for the graph. This option must be check to use the next two options. Upper/Lower limit values are ignored when using autoscale since these boundaries are determined automatically.
+Auto Scale | Enable auto scale for the graph. This option must be check to use the next two options. Upper/Lower limit values are ignored when using auto-scale since these boundaries are determined automatically.
 Auto Scale Options | Choose whether you would like to use --alt-autoscale (ignoring given limits), --alt-autoscale-max (accepting a lower limit), --alt-autoscale-min (accepting an upper limit.
 Logarithmic Scaling | Choose if you want logarithmic y-axis scaling.
 Scientific Units for Logarithmic Scaling | For linear graphs, scientific units (in magnitudes of k=kilo, M=mega, ...) is default. But for logarithmic graphs, exponential notation is default. Choose if you want logarithmic y-axis scaling and scientific units.
@@ -267,15 +279,15 @@ Unit Grid Value | Sets the unit value for the y-axis (--y-grid). You should prob
 Unit Exponent Value | Sets the 10^e scaling of the y-axis. Valid values for this field are between -18 and 18. For example, you could use 3 to display everything in 'k' (kilo) or -6 to display everything in 'u' (micro).
 Vertical Label | The text to print on the left edge of the graph. Usually is the units the data on the graph is measured in.
 
-### AutoScaling Options Explained
+### Auto-scaling Options Explained
 
-Relative to AutoScale Options, the RRDtool graph manual says:
+Relative to Auto-scale Options, the RRDtool graph manual says:
 
 - Limits [-u|--upper-limit value] [-l|--lower-limit value] [-r|--rigid]
-  By default the graph will be autoscaling so that it will adjust the y-axis
-  to the range of the data. You can change this behaviour by explicitly
+  By default the graph will be auto-scaling so that it will adjust the y-axis
+  to the range of the data. You can change this behavior by explicitly
   setting the limits. The displayed y-axis will then range at least from
-  lower-limit to upper-limit. Autoscaling will still permit those boundaries
+  lower-limit to upper-limit. Auto-scaling will still permit those boundaries
   to be stretched unless the rigid option is set.
 - [-A|--alt-autoscale] Sometimes the default algorithm for selecting the
   y-axis scale is not satisfactory. Normally the scale is selected from a
@@ -297,18 +309,44 @@ Relative to AutoScale Options, the RRDtool graph manual says:
   router traffic when the WAN line uses compression, and thus the
   throughput may be higher than the WAN line speed.
 
-When you are finished filling in values for the **Graph Template**, click Create and
-you will be presented with a page similar to the image below.
+When you are finished filling in values for the **Graph Template**, click
+Create and you will be presented with a page similar to the image below.
+The example below is from a completed Traffic Graph Template.
+
+In this first image, you can see what elements will be painted on the
+**Graph** Canvas.  They are represented by **LINEX**, **AREA**
+and **STACK** elements.  The **Graph Items** listed as **GPRINT** and
+**COMMENT** appear in the Legend Area of the **Graph**.
+
+The **Graph Input Items** are the Cacti names for the Data Sources that
+appear on the **Graph** as well as other items that can be substituted
+during **Graph** Creation.
+
+The `Multiple Instances` field is a parameter to let Cacti know that it
+should allow you to create more than one **Graph** per **Device** using the
+**Graph Template**.
 
 ![Adding a Graph Template](images/graph-template.png)
 
+The **Common Options** are options that most every **Graph Template** included.
+The **Scaling Options** are also very common, but related to **Graph**
+scaling only.
+
+![Adding a Graph Template Options](images/graph-template-options1.png)
+
+The **Grid Options**, **Axis Options**, and **Legend Options** are must less
+common but are available in Cacti should you choose to use them.
+
+![Adding a Graph Template Options](images/graph-template-options2.png)
+
 #### Graph Items
 
-The first thing you should do is create graph items for this graph template,
-just like for a regular graph. One difference you will notice is that the Data
-Sources drop-down will contain a list of data template items rather than data
-source items. It is important that Cacti can make this association here, so that
-Cacti doesn't have to make unnecessary assumptions later.
+The first thing you should do is create **Graph Items** for a **Graph Template**,
+just like for a stand alone **Graph**. One difference you will notice is that
+the **Data Sources** drop-down will contain a list of **Data Template**
+items rather than **Data Source Items**. It is important that Cacti can make
+this association here, so that Cacti doesn't have to make unnecessary
+assumptions later.
 
 ###### Table 13-4. Field Description: Graph Template Items
 
@@ -318,7 +356,7 @@ Data Source | If this graph item is to represent some sort of data, you must sel
 Color | Depending on the graph item type, you can select a color for the graph item. This field only applies to the graph item types AREA, STACK, LINE1, LINE2, and LINE3.
 Opacity/Alpha Channel | For a colored graph item, you may optionally select an opacity (alpha channel). This option is not available with RRDTool-1.0.x.
 Graph Item Type | This field is important because it defines what kind of graph item this is. Types such as AREA, STACK, LINE1, LINE2, and LINE3 are used to represent data on the graph, while COMMENT and GPRINT are used put on the legend. The LEGEND type is specific to Cacti only and can be used if you want to Cacti to automatically create a GPRINT-LAST/GPRINT-AVERAGE/GPRINT-MAXIMUM graph item for you. Note: You must always put an AREA item before using STACK or your graph will not render.
-Consolidation Function | This tells RRDTool which consolidation function to use when representing this data on the graph. You will typically use AVERAGE for most things on the graph area, and LAST/MAXIMUM as well for GPRINT items.
+Consolidation Function | This tells RRDtool which consolidation function to use when representing this data on the graph. You will typically use AVERAGE for most things on the graph area, and LAST/MAXIMUM as well for GPRINT items.
 CDEF Function | If you want to apply a CDEF function to the graph item, select one here. Check out the CDEF section of the manual for more information.
 Value | This field is only used with the HRULE/VRULE graph item types. Type any valid integer to draw the line at for HRULE or the time of the day HH:MM for VRULE.
 GPRINT Type | If this item is a GPRINT, you can choose how you want the number to be formatted. You can add your own in the GPRINT Presets section of Cacti.
@@ -327,46 +365,49 @@ Hard Return | Check this box to force graph items onto the next line.
 
 #### Graph Item Inputs
 
-After creating graph items for your template, you will need to create some graph
-item inputs. Graph item inputs are unique to graph templates because of the
-large number of items they sometimes contain. Graph item inputs enable you to
-take one graph item field, and associate it with multiple graph items.
+After creating **Graph Items** for your **Graph Template**, you will need to create
+some **Graph Item Inputs**. **Graph Item Inputs** are unique to **Graph Templates**
+because of the large number of items they sometimes contain. **Graph Item Inputs**
+enable you to take one **Graph Item** field, and associate it with multiple
+**Graph Items**.  **Graph Item Input** fields are generally created automatically
+as you add **Graph Items** associated with a **Data Source**, like a LINE or AREA or GPRINT.
 
-To create a new graph item input, click Add on the right of the Graph Item
-Inputs box. There are various fields that must be filled in for every graph item
-input:
+To create a new **Graph Item Input** manually, click Add on the right of the
+**Graph Item Inputs** form. There are various fields that must be filled in for
+every graph item input:
 
 ###### Table 13-5. Field Description: Graph Template Items
 
 Name | Description
 --- | ---
-Name | This will be the name used to identify the graph item input on both the graph template and graph edit pages.
-Description | (Optional) This description will be displayed on the graph edit page of any graph using this template if specified.
-Field Type | You must choose the field that you are going to associate with one or more graph items.
-Associated Graph Items | Choose one or more graph items to associate with the field selected for "Field Type". When the user specifies a value for the field, it will be applied to all of the items you select here.
+Name | This will be the name used to identify the **Graph Item Input** on both the **Graph Template** and **Graph** edit pages.
+Description | (Optional) This description will be displayed on the **Graph** edit page of any **Graph** using this **Graph Template** if specified.
+Field Type | You must choose the field that you are going to associate with one or more **Graph Item**.
+Associated Graph Items | Choose one or more **Graph Items** to associate with the field selected for "Field Type". When the user specifies a value for the field, it will be applied to all of the items you select here.
 
 ### Applying Graph Templates to Graphs
 
-Applying a graph template to a graph is a very simple process. The first thing
-you must do is select the graph you want to apply the template to under Graph
-Management. Under the Graph Template Selection box, select the graph template
-that you want to apply to the graph and click Save. If this is a new graph or
-the graph and graph template contains an equal number of graph items, the graph
-template will be automatically applied. If number of graph items varies from the
-graph to the target graph template, you will be prompted with a warning that
-your graph will be changed.
+Applying a **Graph Template** to an existing **Graph** is a very simple process,
+though very uncommon in a modern Cacti install. The first thing you must do
+is select the **Graph** you want to apply the template to under **Graph Management**.
+Under the **Graph Template** Action drop-down, select the **Graph Template**
+that you want to apply to the **Graph** and click Save. If this is a new **Graph**
+or the **Graph** and **Graph Template** contain an equal number of **Graph Items**,
+the **Graph Template" will be automatically applied. If number of **Graph Items**
+varies from the **Graph** to the target **Graph Template**, you will be prompted
+with a warning that your **Graph** will be changed, and not always for the better.
 
-Once the template is applied to the graph, you will notice that you can only
-change values for the fields that you checked Use Per-Graph Value for. You will
-also notice a new box, called Graph Item Inputs. This is where you can specify
-values for the graph items inputs that you defined in the graph template. The
-values specified here will be applied to each graph item tied to the graph item
-input.
+Once the **Graph Template** is applied to the existing **Graph**, you will notice
+that you can only change values for the fields that you checked Use Per-Graph
+Value for. You will also notice a new box, called **Graph Item Inputs**.
+This is where you can specify values for the **Graph Item Inputs** that you
+defined in the **Graph Template**. The values specified here will be applied to
+each **Graph Item** tied to the **Graph Item Input**.
 
-> **Note:** Any time a change is made to the graph template, it will be
-> automatically propagated to the graphs attached to it.
+> **NOTE:** Any time a change is made to the **Graph Template**, it will be
+> automatically propagated to the **Graphs** associated to it.
 
-#### Walkthrough: My First Graph Template
+#### Walk-through: My First Graph Template
 
 Now let's generate the **Graph Template** for those already generated Data
 Templates. Please go to **Graph Templates** and **Add** a new one:
