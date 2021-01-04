@@ -4,12 +4,11 @@ After you initiate a scan from automation Cacti will compare devices found to th
 
 If Cacti is unable to match the device to a device template or unable to find a proper SNMP credential.
 
-It will put the Also if you have the automatically add to Cacti set to off the devices will also be put in this section.
+Also if you have the automatically add to Cacti set to off the devices will also be put in this section.
 
 The Discovered Devices section can be found by navigating to the following area.
 
 ![Discovered Devices](images/automation-discovered-devices-dropdown.JPG)
-
 
 Below you can see devices that have been found during the scan that did not meet a match criteria.
 You will see the IP that was scanned as well if avaliable the resolved hostname either via DNS or netbios.
@@ -17,7 +16,7 @@ You will see the IP that was scanned as well if avaliable the resolved hostname 
 ![Discovered Devices](images/automation-devices.png)
 
 You can then select the device you are interested in adding click the checkbox next to the device
-on the dropdown you select add device this will bring up the below menu where you will select which poller 
+on the dropdown you select add device this will bring up the below menu where you will select which poller
 you want to add the device to as well as the applicable template.
 
 ![Discovered Devices](images/discovered-device-add-menu.JPG)
