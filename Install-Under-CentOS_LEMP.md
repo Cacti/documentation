@@ -342,9 +342,9 @@ Note: **php-fpm** is only required if your Web Server is Nginx
     systemctl restart php-fpm
     ```
 
-### RRDTool
+### RRDtool
 
-RRDTool is required to store the data retrieved from devices in `.rra` files to
+RRDtool is required to store the data retrieved from devices in `.rra` files to
 produce the graphs which are shown within Cacti
 
 ```console

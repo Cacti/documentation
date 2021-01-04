@@ -2,7 +2,7 @@
 
 ![Cacti](images/logo.svg)
 
-Cacti is designed to be a complete graphing solution based on the RRDTool's
+Cacti is designed to be a complete graphing solution based on the RRDtool's
 framework. Its goal is to make a network administrator's job easier by taking
 care of all the necessary details necessary to create meaningful graphs.
 
@@ -22,7 +22,7 @@ Please see the official Cacti website for information, support, and updates.
 
 ## Thanks
 
-A very special thanks to Tobi Oetiker, the creator of RRDTool and the very
+A very special thanks to Tobi Oetiker, the creator of RRDtool and the very
 popular MRTG. The users of Cacti - especially anyone who has taken the time to
 create a bug report, or otherwise help fix a Cacti related problem. Also
 to anyone who has contributed to supporting Cacti.
@@ -234,7 +234,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 3. [Replacement Variables](Variables.md)
 
-4. [RRDTool Specific Features](RRDTool-Specific-Features.md)
+4. [RRDtool Specific Features](RRDtool-Specific-Features.md)
 
 5. [RRDProxy Specific Features](RRDproxy.md)
 

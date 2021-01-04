@@ -35,7 +35,7 @@ files holding your certificate (`.crt`) and private key (`.key`).
 
 ```console
 #
-# Cacti: An RRD based graphing tool
+# Cacti: An RRDtool based graphing web application
 #
 
 # For security reasons, the Cacti web interface is accessible only to
@@ -75,7 +75,7 @@ files holding your certificate (`.crt`) and private key (`.key`).
         # Uncomment these if you use mod_security.
         # allow POST of application/x-www-form-urlencoded during install
         #SecRuleRemoveById 960010
-        # permit the specification of the RRDTool paths during install
+        # permit the specification of the RRDtool paths during install
         #SecRuleRemoveById 900011
     </Directory>
 
@@ -259,13 +259,13 @@ PHP and various packages are all required by Cacti for successful operation
    date.timezone = Pacific/Auckland
    ```
 
-#### RRDTool
+#### RRDtool
 
-RRDTool is required to store the data retrieved from devices in `.rra` files to
+RRDtool is required to store the data retrieved from devices in `.rra` files to
 produce the graphs which are shown within Cacti
 
 ```console
-yum install -y RRDTool
+yum install -y rrdtool
 ```
 
 #### SNMP

@@ -193,7 +193,7 @@ close(PROCESS);
 $ping =~ m/(.*time=)(.*) (ms|usec)/;
 
 if ($2 == "") {
-	print "U";              # avoid cacti errors, but do not fake RRDTool stats
+	print "U";              # avoid cacti errors, but do not fake RRDtool stats
 }elsif ($3 eq "usec") {
 	print $2/1000;  # re-calculate in units of "ms"
 }else{
@@ -299,7 +299,7 @@ more nice legends, see:
 ![Graph Template Items 4](images/r-gt5.png)
 
 Notice, that the **Data Source** is filled in automagically. Select LEGEND as
-**Graph Item Type** (it is not really a **Graph Item Type** in RRDTool-speak,
+**Graph Item Type** (it is not really a **Graph Item Type** in RRDtool-speak,
 but a nice time-saver), and click **Create** to see:
 
 ![Graph Template Items 5](images/r-gt6.png)
@@ -523,7 +523,7 @@ Finally Save and be proud!
 The previous step explained how to call the script that retrieves the data. Now
 it's time to tell Cacti, how to store them in RRD files. You will need a single
 **Data Template** only, even if two different output fields will be stored. RRD
-files are able to store more than one output fields; RRDTool's name for those is
+files are able to store more than one output fields; RRDtool's name for those is
 **Data Source**. So we will create
 
 1. One single **Data Template** representing one RRDfile

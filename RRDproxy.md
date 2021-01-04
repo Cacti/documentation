@@ -1,6 +1,6 @@
 # rrdproxy
 
-Cacti RRD Proxy is a standalone proxy interface to Tobi Oetiker's great RRDTool.
+Cacti RRD Proxy is a standalone proxy interface to Tobi Oetiker's great RRDtool.
 
 The main focus of this project is to allow the relocation of RRD files, data
 replication, support of Cacti Boost and, if needed, the RRDcached daemon. It

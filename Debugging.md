@@ -172,7 +172,7 @@ for all existing RRD files belonging to that Data Template.
 At this step, it is wise to check `step` and `heartbeat` of the RRD file as
 well. For standard 300 seconds polling intervals (step=300), it is wise to set
 `minimal_heartbeat` to 600 seconds. If a single update is missing and the next
-one occurs in less than 600 seconds from the last one, RRDTool will interpolate
+one occurs in less than 600 seconds from the last one, RRDtool will interpolate
 the missing update. Thus, gaps are "filled" automatically by interpolation. Be
 aware of the fact, that this is no "real" data! Again, this must be done in the
 Data Template itself and by using `rrdtool tune` for all existing RRD files of
@@ -231,7 +231,7 @@ shell> vi /etc/cron.d/cacti
 ```
 
 This will produce a file `/var/local/log/poller.log`, which includes some
-additional informations from each poller's run, such as RRDTool errors. It
+additional informations from each poller's run, such as RRDtool errors. It
 occupies only some few bytes and will be overwritten each time.
 
 If you're using the crontab of user "cactiuser" instead, this will look like

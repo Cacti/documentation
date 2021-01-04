@@ -1,4 +1,31 @@
-# RRDTool Specific Features
+# RRDtool Specific Features
+
+Cacti supports most RRDtool features.  In this chapter, many of those features,
+and some Cacti implementation specifics around them will be discussed.  As
+RRDtool is a continually changing Times Series Database (TSDB) and **Graph**
+rendering framework, this guide may be a little behind on all the RRDtool
+features that Cacti supports.
+
+## Database Data Types
+
+There are several different Database **Data Types** that RRDfile supports.
+They include all those listed below.  Cacti claims to support all, but `COMPUTE`
+remains untested.
+
+Type | Supported | Description
+--- | --- | ---
+GUAGE | Yes | This is as the term refers to a floating point number that tracks the value reported directly.  Unlike the COUNTER, it has not comprehension of past data.
+COUNTER | Yes | This is a floating point number that tracks the different between samples to come up with effectively a rate calculation.  Used for things like Traffic Graphs where the number reported in SNMP continually increases
+DCOUNTER | Yes | This is the same as a COUNTER, but in Double Precision.
+DERIVE | Yes | This data type measures the Rate of Change of a value, otherwise known as the first derivative to the value.  As such, it relies on previous data in order to report the change.
+DDERIVE | Yes | This is the same as the DERIVE, but in Double Precision
+ABSOLUTE | Yes | Is for counters that get reset upon reading.  This is often used for fast counters.  It is also similar to the DERIVE, or acts very much like it.
+COMPUTE | Yes | Though Cacti claims to support this Data Type.  It's not clear that it's presently working.
+
+> **NOTE**: Presently `Holt-Winters Forecasting` is not supported in Cacti
+> and The Cacti Group has no plans on supporting it.  If you would like
+> `Holt-Winters Forecasting` supported in Cacti, you will need to submit a
+> pull request including documentation if you require it's functionality.
 
 ## GPRINT Presets
 
@@ -6,7 +33,8 @@ A GPRINT is a graph item type that enables you to print the values of data
 sources on a graph. They are typically used to represent legend values on the
 graph. The output format of these numbers are controlled by a printf-like
 format string. Cacti enables you to keep a global list of these strings that
-can be applied to any graph item throughout Cacti.
+can be applied to any graph item throughout Cacti.  You can see the list of
+available formats described on the [RRDtool Website](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#PRINT).
 
 ### Creating a GPRINT Preset
 
@@ -16,44 +44,96 @@ will be presented with an edit page containing two fields. Enter a name for
 your GPRINT preset, and the actual printf-like string in the GPRINT Text field.
 When you are finished, click the Create button to create your new GPRINT preset.
 
-## CDEFs
+In the image below, you can see the default GPRINT Presets included in the
+base Cacti.  These generally cover just about all use cases presently.
 
-CDEFs allow you to apply mathematical functions to graph data to alter output.
-The concept of a CDEF comes straight from RRDTool, and are written in reverse
-polish notation (RPN). For more information regarding the syntax of CDEFs,
-check out the [CDEF tutorial](http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/doc/rrdgraph_data.en.html).
+![Default Cacti GPRINT's](images/gprint-presets-default.png)
+
+## CDEF's
+
+CDEF's allow you to apply mathematical functions to graph data to alter output.
+The concept of a CDEF comes straight from RRDtool, and are written in reverse
+polish notation (RPN). For more information regarding the syntax of CDEF's,
+check out the [CDEF tutorial](https://oss.oetiker.ch/rrdtool/tut/cdeftutorial.en.html).
+
+From the image below, you can see that Cacti provides a rich set of CDEF's out
+of the box.  These CDEF's can be imported and exported and are globally assigned
+for portability.
+
+![Default Cacti CDEF's](images/cdefs-default.png)
 
 ### Creating a CDEF
 
-To create a new CDEF in Cacti, select the Graph Management option under the
-Management heading, and select CDEFs. Once at this screen, click Add to the
-right. You will be prompted for a CDEF name, for which you can type anything
-used to describe your CDEF. Click the Create button so you are redirected back
-to the edit page, now with an empty CDEF Items box. Construct your CDEF by
-adding an item for each element in the CDEF string, common types such as
-operators and functions are enumerated for your convenience. Below is a basic
-description of each CDEF item type.
+To create a new CDEF in Cacti, select CDEF's under `Console > Presets` sub-menu
+section. Once at this screen, click Add to the right. You will be prompted for
+a CDEF name, for which you can type anything used to describe your CDEF.
+Click the Create button so you are redirected back to the edit page, now with
+an empty CDEF Items box. Construct your CDEF by adding an item for each
+element in the CDEF string, common types such as operators and functions
+are enumerated for your convenience. Below is a basic description of each
+CDEF item type.  You can see from the image below that CDEF's follow a
+Reverse Polish Notation (RPN), which was a very popular way of computing
+back in the 70's and 80's when computing devices had much less memory.
+However, RPN is elegant in it's simplicity.
+
+![Default Cacti CDEF Example](images/cdefs-default-example.png)
 
 ###### Table 19-1. CDEF Item Types
 
+Cacti provides several CDEF Item Types to represent a **Data Source**
+in order to provide additional functionality.  See below for the
+documentation.  Cacti presently does not allow you to specify a VNAME for
+your DEFS, CDEF's and VDEF's, but instead uses a string pattern to assign
+them.  You will have to take note of then when creating a **Graph Template**.
+Those Special Data Source types are documented below in the next few sections.
+
 Type | Description
 --- | ---
-Function | You can choose a CDEF function to use as the item. [The RRDTool's graph manual](http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/doc/rrdgraph.en.html) describes the purpose of each CDEF function.
+Function | You can choose a CDEF function to use as the item. [The RRDtool's graph manual](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_data.en.html#CDEF) describes the purpose of each CDEF function.
 Operator | Just your standard math operators, including modulo (%).
 Special Data Source | A special data source is basically a flag to tell Cacti to do some special processing when it encounters this CDEF item. The "Current Graph Item Data Source" type basically inserts the name of the data source that is referenced by the graph item that references to this CDEF. Both of the "All Data Sources" types insert a summation of all data sources used on a graph.
 Another CDEF | You can recursively use another CDEF within this CDEF.
 Custom String | Sometimes it's just easier to type out the literal CDEF string manually. When referencing to data sources on the graph, remember that Cacti names them 'a', 'b', 'c', '...', starting with the first data source on the graph.
 
-### Special Data Source
+## VDEF's
+
+VDEF's provide greater functionality then their ancestor CDEF's and may be able to
+replace some legacy Cacti functionality like Nth Percentile **Graph Template**
+logic.  They should be used whenever possible for your **Graph Templates**.
+
+You can see from the image below, that 95th percentile and total bandwidth
+could be replace by using one of the VDEF's below.
+
+![Default Cacti VDEF's](images/vdefs-default.png)
+
+### Creating a VDEF
+
+To create a new VDEF in Cacti, select VDEF's under `Console > Presets` sub-menu
+section. Once at this screen, click Add to the right. You will be prompted
+for a VDEF name, for which you can type anything used to describe your VDEF.
+Click the Create button so you are redirected back to the edit page, now with
+an empty VDEF Items box. Construct your VDEF by adding an item for each element
+in the VDEF string, common types such as operators and functions are
+enumerated for your convenience. Below is a basic description of each
+VDEF item type.  The image below shows an example VDEF for the Bandwidth
+type VDEF.
+
+![Default Cacti VDEF Example](images/vdefs-default-example.png)
+
+For additional information on CDEF's and VDEF's see that specific section
+of the documentation.  Additionally, you can find examples on the
+[RRDtool Website](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_data.en.html#VDEF)
+
+### Special Data Sources
 
 The Special Data Source selection introduces some variables not known to plain
-vanilla RRDTool. Let's spend some few words of them to unleash their power.
+vanilla RRDtool. Let's spend some few words of them to unleash their power.
 
 ###### Table 19-2. CDEF Special Data Source
 
 Special Data Source | Description
 --- | ---
-Current Graph Item Data Source | Will be replaced by the DEF name of the RRDTool data source referred by the graph item this CDEF is associated to.
+Current Graph Item Data Source | Will be replaced by the DEF name of the RRDtool data source referred by the graph item this CDEF is associated to.
 All Data Sources (Don't Include Duplicates) | Will add up all data sources of the whole graph to form a total. A data source that appears more than once will be counted only once. Data sources that differ by consolidation functions only are NOT counted as different data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted only once). It is NOT required to associate the graph item to any data source!
 All Data Sources (Include Duplicates) | Will add up all data sources of the whole graph to form a total. A data source that appears more than once will be counted for each time of it's appearance. Data sources that differ by consolidation functions only are NOT counted as different data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted only once). It is NOT required to associate the graph item to any data source!
 Similar Data Sources (Don't Include Duplicates) | It is REQUIRED to associate the graph item to the data source that shall be totaled! Let's assume the data source is named "traffic_in". Then, cacti will add up all data sources "traffic_in" of the whole graph to form a data source specific total (e.g. Total traffic In). Data sources with different consolidation functions are counted as same data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted once)
@@ -547,7 +627,7 @@ an exercise to you :)
 
 This set of CDEFs is used to colorize the background of a graph with different
 colors for day, night and weekends. The CDEFs are created as usual, we will
-show the CDEF definition only. Examples are taken from RRDTool-users mailing
+show the CDEF definition only. Examples are taken from RRDtool-users mailing
 list courtesy Erik de Mare. Here are the definitions
 
 #### Background for Daytime

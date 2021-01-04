@@ -169,7 +169,7 @@ shell> ls -al rra/
 
 If only some of your graphs are not updating correctly, double check the
 Maximum Value field for all data sources used by these graphs. If the value
-being fed to the .rrd file exceeds its Maximum Value, RRDTool will insert an
+being fed to the .rrd file exceeds its Maximum Value, RRDtool will insert an
 Unknown and you will see no data on the graph.
 
 **Q:** A lot of my graphs contain long ifAlias names, but they are being
@@ -182,22 +182,22 @@ the Visual tab, and changing the value for Data Queries - Maximum Field Length.
 **Q:** One of my devices rebooted and now I have a huge spike on my graph!
 
 **A:** This occurs because the reboot causes SNMP counters to reset, which
-can cause a rather large spike on the graph when RRDTool tries to determine the
+can cause a rather large spike on the graph when RRDtool tries to determine the
 change between the new small counter value and the large previous value. One
 way to combat this issue is to specify realistic maximum values for your data
-sources. RRDTool will ignore any value that is larger than the maximum value.
+sources. RRDtool will ignore any value that is larger than the maximum value.
 
 If you already have a spike on one or more of your graphs, there is a really
 [useful Perl script](http://cricket.sourceforge.net/contrib/files/killspike2)
 that will remove them for you.
 
-**Q:** RRDTool Says: ERROR: unknown option '--slope-mode' or RRDTool Says:
+**Q:** RRDtool Says: ERROR: unknown option '--slope-mode' or RRDtool Says:
 ERROR: Garbage ':39:24 To 2005/10/22 16:39:24\c' after command: COMMENT:From
 2005/10/21 16:39:24 To 2005/10/22 16:39:24\c
 
-**A:** This occurs because the version of RRDTool that you are running does not
-match the RRDTool version Cacti is configured to use. Double check your Cacti
-Settings and make sure that the RRDTool version matches what version of RRDTool
+**A:** This occurs because the version of RRDtool that you are running does not
+match the RRDtool version Cacti is configured to use. Double check your Cacti
+Settings and make sure that the RRDtool version matches what version of RRDtool
 you are running.
 
 ## Windows Related

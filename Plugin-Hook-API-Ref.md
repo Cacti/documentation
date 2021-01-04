@@ -916,7 +916,7 @@ lib/export.php |  1.2.0-beta1  |
 
 This hook allows you to specify additional options or change parameters
 regarding graph image rendering. Some of the parameters will be passed to
-RRDTool.
+RRDtool.
 
 file | introduced | retired
 --- | :--- | :---

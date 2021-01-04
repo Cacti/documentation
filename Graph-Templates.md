@@ -1,7 +1,7 @@
 # Graph Templates
 
-**Graph Templates** are Cacti objects that allows you to define how RRDTool is
-to render a Cacti **Graph**.  Most RRDTool options are supported including
+**Graph Templates** are Cacti objects that allows you to define how RRDtool is
+to render a Cacti **Graph**.  Most RRDtool options are supported including
 CDEF's and VDEF's, Left and Right Axis, Ticks and Dashes, multiple Auto Scaling,
 Grid, and Legend Options.
 
@@ -47,8 +47,8 @@ Section | Description
 *Legend Options* | Defines how the Legends should be formatted
 
 Each of these sections are displayed below for reference.  For more information
-on how to use these options, please visit the [RRDTool
-Website](http://RRDTool.org).
+on how to use these options, please visit the [RRDtool
+Website](http://RRDtool.org).
 
 The *Graph Items* make up what is draw within the canvas of the Graph.  There
 are several *Graph Item* types including:
@@ -88,7 +88,7 @@ Mega integer Bytes - 1000).  Lastly, the *Slope Mode* gives the resulting
 
 The *Scaling Options* allow the Administrator to apply either *Rigid* or *Auto
 Scaling* settings to the resulting *Graph*.  These options are fairly self
-explanatory.  However, you can always view the RRDTool Documentation online for
+explanatory.  However, you can always view the RRDtool Documentation online for
 more information.
 
 ![Scaling Options](images/graph-templates-edit3.png)
@@ -103,7 +103,7 @@ The *Axis Options* allow you to define a *Right Axis* and optional *Formatters*.
 ![Axis Options](images/graph-templates-edit5.png)
 
 The *Legend* options allow you to specify how the *Legend* should be placed on
-the resulting **Graph** modern RRDTool has several options that were not
+the resulting **Graph** modern RRDtool has several options that were not
 available in Cacti prior to Cacti 1.0.
 
 ![Legend Options](images/graph-templates-edit6.png)

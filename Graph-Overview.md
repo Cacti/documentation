@@ -6,10 +6,10 @@ pick. While it is possible to manually create graphs through this interface,
 new users should follow the instructions provided in the next chapter for
 creating **New Graphs** in Cacti.
 
-For users who are familiar with [RRDTool](http://www.RRDTool.org/), you will
-immediately recognize that a **Graph** in Cacti is closely modeled after RRDTool's
+For users who are familiar with [RRDtool](http://www.RRDtool.org/), you will
+immediately recognize that a **Graph** in Cacti is closely modeled after RRDtool's
 graphs. This makes sense since Cacti provides a user friendly interface to
-RRDTool without requiring users to understand how RRDTool works. With this in
+RRDtool without requiring users to understand how RRDtool works. With this in
 mind, every **Graph** in Cacti has certain settings and at least one **Graph Item**
 associated with it. While graph settings define the overall properties of a
 **Graph**, the **Graph Items** define the data that is to be represented on the **Graph**.
