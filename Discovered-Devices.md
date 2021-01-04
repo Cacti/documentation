@@ -1,8 +1,10 @@
 # Automation Discovered Devices
 
 After you initiate a scan from automation Cacti will compare devices found to the device rules and SNMP options you set.
+
 If Cacti is unable to match the device to a device template or unable to find a proper SNMP credential.
-it will put the Also if you have the automatically add to Cacti set to off the devices will also be put in this section.
+
+It will put the Also if you have the automatically add to Cacti set to off the devices will also be put in this section.
 
 The Discovered Devices section can be found by navigating to the following area.
 
