@@ -14,9 +14,10 @@ This matches based on the system name of the Cisco IOS software
 Using this info automation would apply apropriate device template you choose if you see below we are match for a system that matches Linux once a device is found with that system name it is asigned the Net-SNMP device template.
 
 ![Automation Device Rules Edit](images/automation-device-templates-edit1.png)
+If the System/Device you are matching has a unique OID you can also match based on that.
 
 ---
 Copyright (c) 2004-2021 The Cacti Group
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNzcyNTk5NDZdfQ==
+eyJoaXN0b3J5IjpbLTcwMTM4NjIyMF19
 -->
