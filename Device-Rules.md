@@ -8,3 +8,6 @@ This section will describe **Device Rules** in Cacti.
 
 ---
 Copyright (c) 2004-2020 The Cacti Group
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE4NjQxOTQ2NjhdfQ==
+-->
