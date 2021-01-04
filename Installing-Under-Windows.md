@@ -340,7 +340,7 @@ The following changes will be required regardless of your selected Webserver.
    ```
 
    After this has ran once, you should have `cacti.log` in `/cacti/log/` and
-   RRD files in `/cacti/rra/`.
+   RRDfiles in `/cacti/rra/`.
 
 7. You are going to need to schedule a task while logged on as an Administrator.
    This task is required to you can run `poller.php` every 5 minutes. Make sure

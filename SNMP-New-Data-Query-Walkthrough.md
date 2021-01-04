@@ -289,7 +289,7 @@ definitions against the host and updates the rows/columns. You will notice the
 
 ---
 Note: Don't forget to set `<direction>output</direction>` for all
-variables/fields, that should be stored in RRD files and be graphed!. This is
+variables/fields, that should be stored in RRDfiles and be graphed!. This is
 the mistake that occurs most often.
 
 ### Defining the Data Template

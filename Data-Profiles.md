@@ -46,7 +46,7 @@ Yearly 26kb / data source
 The Cacti GUI allows you to change the averages on a specific Data source
 profile some setups require a higher resolution of data and you may want to
 change the averaging to keep the most data this will come with a cost of storage
-due to the bigger sized RRD file
+due to the bigger sized RRDfile
 
 To do this follow these steps
 

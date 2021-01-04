@@ -621,7 +621,7 @@ AREA:cdefc#FF0000FF:"% Used"
 performs the percentage calculation.
 
 You may of course add `GPRINT` legends as usual. If you do this for the "% Used"
-entry only, you will get surprising results, if your RRD file holds either
+entry only, you will get surprising results, if your RRDfile holds either
 `MAXIMUM`, `LAST` and/or `MINIMUM` consolidation function(s). This is left as
 an exercise to you :)
 

@@ -67,7 +67,7 @@ called.
 
    - Friendly Name: `Random Number`
 
-   - Update RRD file: ___Checked___
+   - Update RRDfile: ___Checked___
 
    - Click **Create**
 

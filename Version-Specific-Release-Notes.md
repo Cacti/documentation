@@ -39,7 +39,7 @@ version 1.0.0:
 | secpass     | C3 level password and site security                      |
 | logrotate   | Log management                                           |
 | realtime    | Realtime graphing                                        |
-| rrdclean    | RRD file maintenance                                     |
+| rrdclean    | RRDfile maintenance                                     |
 | nectar      | Email based graph reporting                              |
 | aggregate   | Templating, creation and management of aggregate graphs  |
 | autom8      | Graph and Tree creation automation                       |
@@ -623,7 +623,7 @@ Version | Feature/Bug | Description
 1.2.5 | feature#2805 | Merged plugins are not always upgraded correctly
 1.2.5 | feature#2823 | Enhance the splice_rrd.php to be able to merge RRDfiles of differing step
 1.2.4 | issue#2523 | Send A Test Email stops working under PHP 7.3
-1.2.4 | issue#2589 | Missing RRD file can cause DSSTATS to throw errors
+1.2.4 | issue#2589 | Missing RRDfile can cause DSSTATS to throw errors
 1.2.4 | issue#2590 | When installing, chosen language is sometimes lost
 1.2.4 | issue#2591 | Menu selection does not always match selected page/section
 1.2.4 | issue#2592 | When viewing an aggregate graph, 'Display graphs from this aggregate' option does always not work
@@ -1740,7 +1740,7 @@ Version | Feature/Bug | Description
 1.0.0 | feature | Merge Logrotate Plugin - Rotate Cacti logs
 1.0.0 | feature | Merge Realtime Plugin - Realtime graph viewing
 1.0.0 | feature | Merge Reporting (Nectar) Plugin - Reporting
-1.0.0 | feature | Merge RRDclean Plugin - RRD file cleanup and management
+1.0.0 | feature | Merge RRDclean Plugin - RRDfile cleanup and management
 1.0.0 | feature | Merge Secpass Plugin - User password policy enforcement
 1.0.0 | feature | Merge Settings Plugin - Shared settings for plugins
 1.0.0 | feature | Merge SNMP Agent Plugin - SNMP Agent for Cacti providing system statistics

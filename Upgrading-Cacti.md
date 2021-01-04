@@ -22,7 +22,7 @@ but please keep this in mind before starting.
    > MySQL username and password. This user must have permission to read from
    > Cacti's database or you will end up with an empty backup.
 
-2. Backup the old Cacti directory with the exception of the RRD files which
+2. Backup the old Cacti directory with the exception of the RRDfiles which
    should not need backup.
 
    ```sh

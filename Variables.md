@@ -110,7 +110,7 @@ aggregate | Calculates the Nth percentile by summing like data source names row 
 |sum:([0-9]|auto):(current|total):([0-9]):([0-9]+|auto)|
 ```
 
-Bandwidth summation is useful for summing up all values in an RRD file for a
+Bandwidth summation is useful for summing up all values in an RRDfile for a
 given time range. This is typically useful on traffic graphs where you can see
 a total of all traffic that has gone through an interface in a given time
 period.

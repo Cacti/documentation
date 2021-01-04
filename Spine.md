@@ -42,7 +42,7 @@ recommended `max_connection` for MySQL/MariaDB.
 
 Name | Description
 --- | ---
-Script and Script Server Timeout Value | The maximum time that Spine will wait on a script to complete, in units of seconds. If a Script Server Script is terminated due to timeout conditions, the value entered into the RRD file will be NaN
+Script and Script Server Timeout Value | The maximum time that Spine will wait on a script to complete, in units of seconds. If a Script Server Script is terminated due to timeout conditions, the value entered into the RRDfile will be NaN
 
 ###### Table 15-2. Spine Parameters maintained at the Data Collector Level
 

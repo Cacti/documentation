@@ -95,7 +95,7 @@ From debug log, find the MySQL update statement for that host concerning table
 and paste it to a MySQL session started from CLI. This may as well be done from
 some tool like phpMyAdmin. Check the SQL return code.
 
-## Check RRD file updating
+## Check RRDfile updating
 
 Down in the same log, you should find some
 
@@ -105,13 +105,13 @@ rrdtool update <filename> --template ...
 
 You should find exactly one update statement for each file.
 
-RRD files should be created by the poller. If it does not create them, it will
+RRDfiles should be created by the poller. If it does not create them, it will
 not fill them either. If it does check your `Poller Cache` from Utilities and
 search for your target. Does the query show up here?
 
-## Check RRD file ownership
+## Check RRDfile ownership
 
-If RRD files were created e.g. with root ownership, a poller running as
+If RRDfiles were created e.g. with root ownership, a poller running as
 cactiuser will not be able to update those files
 
 ```sh
@@ -130,23 +130,23 @@ Run the following command to cure this problem
 chown cactiuser:cactiuser *.rrd
 ```
 
-## Check RRD file numbers
+## Check RRDfile numbers
 
 You're perhaps wondering about this step, if the former was OK. But due to data
 sources MINIMUM and MAXIMUM definitions, it is possible, that valid updates for
-RRD files are suppressed, because MINIMUM was not reached or MAXIMUM was
+RRDfiles are suppressed, because MINIMUM was not reached or MAXIMUM was
 exceeded.
 
 Assuming, you've got some valid `rrdtool update` in step 3, perform a
 
 ```sh
-rrdtool fetch <RRD file> AVERAGE
+rrdtool fetch <RRDfile> AVERAGE
 ```
 
 and look at the last 10-20 lines. If you find NaN's there, perform
 
 ```sh
-rrdtool info <RRD file>
+rrdtool info <RRDfile>
 ```
 
 and check the `ds[...].min` and `ds[...].max` entries, e.g.
@@ -164,18 +164,18 @@ If you run into this, not only should you update the data source definition
 within the Data Template, but also perform a:
 
 ```sh
-rrdtool tune <RRD file> --maximum <ds-name>:<new ds maximum>
+rrdtool tune <RRDfile> --maximum <ds-name>:<new ds maximum>
 ```
 
-for all existing RRD files belonging to that Data Template.
+for all existing RRDfiles belonging to that Data Template.
 
-At this step, it is wise to check `step` and `heartbeat` of the RRD file as
+At this step, it is wise to check `step` and `heartbeat` of the RRDfile as
 well. For standard 300 seconds polling intervals (step=300), it is wise to set
 `minimal_heartbeat` to 600 seconds. If a single update is missing and the next
 one occurs in less than 600 seconds from the last one, RRDtool will interpolate
 the missing update. Thus, gaps are "filled" automatically by interpolation. Be
 aware of the fact, that this is no "real" data! Again, this must be done in the
-Data Template itself and by using `rrdtool tune` for all existing RRD files of
+Data Template itself and by using `rrdtool tune` for all existing RRDfiles of
 this type.
 
 ## Check `rrdtool graph` statement
@@ -183,7 +183,7 @@ this type.
 Last resort would be to check, that the correct data sources are used. Go to
 `Graph Management` and select your Graph. Enable DEBUG Mode to find the whole
 `rrdtool graph` statement. You should notice the `DEF` statements. They specify
-the RRD file and data source to be used. You may check, that all of them are as
+the RRDfile and data source to be used. You may check, that all of them are as
 wanted.
 
 ## Miscellaneous

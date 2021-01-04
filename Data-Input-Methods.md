@@ -1,6 +1,6 @@
 # Data Input Methods
 
-Data Input Methods allow Cacti to retrieve data to insert into RRD files based
+Data Input Methods allow Cacti to retrieve data to insert into RRDfiles based
 upon a mapping controlled by **Data Templates** and their corresponding **Data
 Sources**.  These resulting **Data Templates** and **Data Sources** can then be
 used to create **Graph Templates** and **Graphs**.
@@ -63,7 +63,7 @@ hostname, ip address, host id, etc. Any input fields referenced to in the input
 string must be defined here.
 
 The `Output Fields` box is used to define each field that you expect back from
-the script and will be eventually stored in both the database and RRD files.
+the script and will be eventually stored in both the database and RRDfiles.
 
 *All **Data Input Methods** must have at least one output field defined*, but
 may have more than one depending on the type.
@@ -521,7 +521,7 @@ Finally Save and be proud!
 ### The Data Template
 
 The previous step explained how to call the script that retrieves the data. Now
-it's time to tell Cacti, how to store them in RRD files. You will need a single
+it's time to tell Cacti, how to store them in RRDfiles. You will need a single
 **Data Template** only, even if two different output fields will be stored. RRD
 files are able to store more than one output fields; RRDtool's name for those is
 **Data Source**. So we will create

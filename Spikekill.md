@@ -4,7 +4,7 @@
 
 Spikekill is designed to overwrite specific data points in one or more RRD
 files. You should use great caution when running Spikekill, and you should
-always ensure you have proper backups from which to restore your RRD files if
+always ensure you have proper backups from which to restore your RRDfiles if
 Spikekill performs a modification that you did not expect.
 
 ## Overview
@@ -12,7 +12,7 @@ Spikekill performs a modification that you did not expect.
 Spikekill is a tool used to remove spikes in a graph.  Spikes can appear in a
 graph after a device reboots, or when you switch from 32-bit to 64-bit interface
 counters on a device.  Spikekill works by statistically analyzing the data
-contained inside an RRD file, and overwriting specific data points.  It offers
+contained inside an RRDfile, and overwriting specific data points.  It offers
 4 methods by which to analyze the data and selectively overwrite data points:
 
 1. _Standard Deviation_
@@ -98,9 +98,9 @@ overwrite.  The following settings are customizable:
 5. _Kills Per RRA_
 
    Spikekill will limit the number of data points that it
-   overwrites to the value of _Kills Per RRA_.  For reference, a single RRD file
+   overwrites to the value of _Kills Per RRA_.  For reference, a single RRDfile
    can contain multiple _data sources_ and multiple _archives_.  Therefore, the
-   total number of data points that could be overwritten in a single RRD file
+   total number of data points that could be overwritten in a single RRDfile
    will be determined by the formula:
 
    ```console
