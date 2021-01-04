@@ -11,7 +11,7 @@ An example regex for Cisco would be
 (Cisco Internetwork Operating System Software|IOS)
 This matches based on the system name of the Cisco IOS software
 
-Using this info automation would use 
+Using this info automation would apply apropriate device template you choose if you see below we are match for a system that matches Linux once a device is found with that system name it is asigned the Net-SNMP device template.
 
 ![Automation Device Rules Edit](images/automation-device-templates-edit1.png)
 
@@ -20,5 +20,5 @@ Using this info automation would use
 ---
 Copyright (c) 2004-2020 The Cacti Group
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI2MTAyMDIzM119
+eyJoaXN0b3J5IjpbLTEyODU0Mzg4MjldfQ==
 -->
