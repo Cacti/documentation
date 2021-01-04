@@ -12,7 +12,7 @@ also be put in this section.
 The Discovered Devices section can be found by navigating to the 
 following area.
 
-![Discovered Devices](images/automation-discovered-devices-dropdown.JPG)
+![Discovered Devices](images/automation-discovered-devices-dropdown.png)
 
 Below you can see devices that have been found during the scan that did
 not meet a match criteria.
@@ -28,6 +28,6 @@ checkbox next to the device
 on the dropdown you select add device this will bring up the below menu.
 From this Menu you will be able to fill out the details of the new device.
 
-![Discovered Devices](images/discovered-device-add-menu.JPG)
+![Discovered Devices](images/discovered-device-add-menu.png)
 ---
 Copyright (c) 2004-2021 The Cacti Group
