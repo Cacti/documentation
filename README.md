@@ -246,6 +246,14 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 8. [Version Specific Release Notes](Version-Specific-Release-Notes.md)
 
+### Cacti Group developed Plugins
+
+1. [Threshold Plugin](Threshold-Plugin.md)
+
+2. [Monitor Plugin](Monitor-Plugin.md)
+
+3. [Syslog Plugin](Syslog-Plugin.md)
+
 ### Plugin Development
 
 1. [Plugin Overview](Plugin-Development.md)
