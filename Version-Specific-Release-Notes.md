@@ -52,9 +52,9 @@ version 1.0.0:
 This is the comprehensive ChangeLog for all Cacti 1.x releases.  The issues
 are broken down as follows:
 
-- issue[issue#] - Normal issues either experienced by a Developer or 
+- issue[issue#] - Normal issues either experienced by a Developer or
   logged in GitHub and fixed
-- feature[issue#] - Features either implemented or logged in GitHub 
+- feature[issue#] - Features either implemented or logged in GitHub
   and addressed
 - security[issue#] - Security vulnerability either fixed or logged
   in GitHub and addressed
