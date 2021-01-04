@@ -137,7 +137,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 3. Data Collection
 
    3.1. [Data Collectors](Data-Collectors.md)
-   
+
    3.2. [Spine Data Collection](Spine.md)
 
    3.3. [Data Input Methods](Data-Input-Methods.md)
