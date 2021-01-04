@@ -69,6 +69,8 @@ db_execute(UPDATE host SET hostname = '$myhost' WHERE id = $id");
 
   - GROUP BY
 
+  - HAVING
+
   - prepared statement arrays
 
 - Indentation should consist of one extra tab when any of the following occur:
