@@ -12,7 +12,7 @@ portions of the [Hook API Reference](Plugin-Hook-API-Ref.md)
 
 The following files should be included in every plugin
 
-* docs/CHANGELOG
+* CHANGELOG
 * INFO
 * LICENSE
 * index.php
@@ -60,8 +60,6 @@ example below is for a plugin called 'myplugin'.
 
 ```console
 myplugin/
-    docs/
-        CHANGELOG
     images/
         myimage.png
         index.php
@@ -71,6 +69,7 @@ myplugin/
     include/
         index.php
         settings.php
+    CHANGELOG
     INFO
     LICENSE
     README.md
@@ -121,7 +120,7 @@ function plugin_myplugin_uninstall() {
 function plugin_myplugin_check_config() {
 }
 
-function plugin_myplugin_upgrade()
+function plugin_myplugin_upgrade() {
 }
 
 function plugin_myplugin_version() {
