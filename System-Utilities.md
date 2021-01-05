@@ -32,15 +32,12 @@ information.
 
 ### Technical support
 
-Cacti technical support page. Used by developers and technical support persons
-to assist with issues in Cacti. Includes checks for common configuration issues.
-There is also built in checks that help you tune your Cacti installation 
-
-For example in the technical support section under summary you will see 
-a calulation for how many mysql connections you should have (Cacti 1.2.16+)
-you  will also be show poller information such as the last polling time process
-count and more details info which can be used for a quick view of how the system
-is configured.
+Cacti technical support page. Used by developers and technical support persons to assist with issues in Cacti.
+Includes checks for common configuration issues.
+There is also built-in checks that help you tune your Cacti installation
+For example in the technical support section under the summary, you will see a calculation for how many MySQLconnections
+You should have (Cacti 1.2.16+) you will also show poller information such as the last polling time process count and more detailed
+Info that can be used for a quick view of how the system is configured.
 
 ![System Utilities](images/system-utilities-poller.PNG).
 
