@@ -16,13 +16,13 @@ use it today, is that it follows a simple Stack principle.  In other words,
 it's not broken.
 
 CDEF's can get very complex as there are several mathematical functions
-available in the RRDtool command set.  
+available in the RRDtool command set.
 
 ## CDEF Interface
 
-In the image below, you can see all the CDEF's that are included in Cacti by 
-default.  There are quite a few of them.  Many of the forulas in use are quite 
-simple.  If you want to view Tutorials on how to work with CDEF's you should 
+In the image below, you can see all the CDEF's that are included in Cacti by
+default.  There are quite a few of them.  Many of the forulas in use are quite
+simple.  If you want to view Tutorials on how to work with CDEF's you should
 go to the [RRDtool Tutorial](https://oss.oetiker.ch/rrdtool/tut/cdeftutorial.en.html).
 There is also documentation at the [RRDtool Website](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_data.en.html#CDEF).
 
@@ -35,17 +35,17 @@ but note you will not be able to Delete any CDEF that is associated with a Cacti
 When you Click on the CDEF's name, you will enter into an Edit screen.  From there
 you will see an ordered list of your Stack.  It normally will begin with something
 like the CURRENT_DATA_SOURCE which means that when you Add a **Graph Item** to
-either a **Graph Template** or **Graph**, you can select a CDEF.  The 
+either a **Graph Template** or **Graph**, you can select a CDEF.  The
 **Data Source** associated with that **Graph Items** is the CURRENT_DATA_SOURCE.
 
 After that, you may see a numeric number, followed by a math operator.  That the
-simplest form of a CDEF.  If you have drag & drop enabled, you can re-order the 
+simplest form of a CDEF.  If you have drag & drop enabled, you can re-order the
 CDEF items using drag & drop.  Otherwise you will see arrows that allow you
 to move the CDEF Items up and down.
 
 ![CDEFs Edit](images/cdefs-edit1.png)
 
-When editing a CDEF, the first decision is what Type of Data you want to put on 
+When editing a CDEF, the first decision is what Type of Data you want to put on
 the Stack, you options as shown in the image below.  They include:
 
 Name | Description
@@ -57,7 +57,7 @@ Custom String | Something like a number, a 'U' or 'Nan' for example
 
 ![CDEFs Item Type Edit](images/cdefs-edit3.png)
 
-## Special Data Sources 
+## Special Data Sources
 
 In this next Image, you will find a CDEF Item in the process of being added.  Note
 that when you pick `Special Data Source` you have a drop-down that appears with
