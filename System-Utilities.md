@@ -48,6 +48,7 @@ is configured.
 You will also see all of the system variables such as allocated php memory
 as well as mysql variables.
 
+![System Utilities](images/system-utilities-db.PNG)
 
 Any Variable appearing in red indicates a subpar setting and should be looked.
 the recomendations are dynamic in that they change when more system resources are 
@@ -59,6 +60,10 @@ to get the most out of your new hardware.
 When you delete Data Sources from Cacti, the corresponding RRDfiles are not
 removed automatically. Use this utility to facilitate the removal of
 these old files.
+RRD files can also be schedule to automatically be removed this option can 
+be configured in settings >> paths >> RRD file autoclean
+
+
 
 ---
 Copyright (c) 2004-2021 The Cacti Group
