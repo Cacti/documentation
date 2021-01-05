@@ -1,35 +1,28 @@
 # Data Source Templates
 
-This section will describe **Data Source Templates** in Cacti.
-
-Data sources serve an important role in Cacti data sources are data points
+Data sources serve an important role in Cacti data sources are data points 
 collected from the devices you monitor in Cacti.
 
 Data sources take the data that has been collected by the poller.
 
 The Data source then holds the value to be presented to the graph.
 
-The Data source template is then asociated to a graph templated.
+The Data source template is then associated with a graph template.
 
-These data sources can be for example incoming traffic on a interface.
-Cacti allows you to create data source templates to asociate to data queries
+These data sources can be for example incoming traffic on an interface. 
+Cacti allows you to create data source templates to associate to data queries
 the template allows you to describe what type of data Cacti should expect.
 
-To create a Data source you will need to select the proper data input
-there are several options but the most popular ones would be
-get SNMP data or get snmpdata indexed.
+To create a Data source you will need to select the proper data input there are several options 
+but the most popular ones would be GET SNMP data or GET SNMP data (indexed.)
 
-You would use Get SNMP data (indexed) for interfaces for example as Cacti
-would need to query the device to find the interface index.
+You would use Get SNMP data (indexed) for interfaces for example as Cacti would need to query the device to find the interface index.
+You would use Get SNMP data and put in a single OID for an OID that won't change for example CPU usage 
+generally does not have an index and the OID won't change
 
-You would use Get SNMP data and put in a single OID for a OID that wont change
-for example CPU usage generally does not have a index and the OID wont change
-
-You will also need to tell the template what the data source type is.
-The most common ones being Gauge and Counter. 
-
-These data types come from the RRDtool its self  here are the following
-supported data types and their uses 
+You will also need to tell the template what the data source type is. 
+The most common ones being Gauge and Counter.
+These data types come from the RRDtool its self here are the following supported data types and their uses
 
 (Source https://oss.oetiker.ch/rrdtool/doc/rrdcreate.en.html)
 
