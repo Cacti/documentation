@@ -1,4 +1,4 @@
-# Tree Management
+# Cacti Trees
 
 ## Trees
 
@@ -20,7 +20,7 @@ of the **Graph** data generated for the **Device**.
 
 ![Tree View](images/tree-view.png)
 
-## Creating a Graph Tree
+## Creating a Tree
 
 To create a new tree simply click the Add button (+) on the top right hand 
 corner and enter a name for your **Tree**. After the tree has been created you will
