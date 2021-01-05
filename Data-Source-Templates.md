@@ -9,7 +9,7 @@ The Data source then holds the value to be presented to the graph.
 
 The Data source template is then associated with a graph template.
 
-These data sources can be for example incoming traffic on an interface. 
+These data sources can be for example incoming traffic on an interface.
 Cacti allows you to create data source templates to associate to data queries
 the template allows you to describe what type of data Cacti should expect.
 
@@ -99,7 +99,7 @@ https://github.com/Cacti/documentation/blob/develop/Variables.md
 
 What is also an important setting is the internal data source name.
 This will be used to asociate the Data source with the Graph template.
-so be sure to name is something that is reconizable.
+so be sure to name is something that is recognizable.
 
 ![Data-Source-Templates](images/datasource-template2.PNG)
 
