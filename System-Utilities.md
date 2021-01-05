@@ -63,6 +63,7 @@ these old files.
 RRD files can also be schedule to automatically be removed this option can 
 be configured in settings >> paths >> RRD file autoclean
 
+![System Utilities](images/rrd-autoclean.PNG)
 
 
 ---
