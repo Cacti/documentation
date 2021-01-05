@@ -4,7 +4,7 @@
 
 A **Tree** can be thought of as a hierarchical way of organizing your graphs.
 Each **Tree** consists of zero or more branchs that contain
-leaf nodes such as **Graphs**, **Devices** and **Sites**. It's a very powerful 
+leaf nodes such as **Graphs**, **Devices** and **Sites**. It's a very powerful
 way of organizing your **Graphs**.
 
 Below we can see the current **Trees** we have setup on our Cacti
@@ -22,7 +22,7 @@ of the **Graph** data generated for the **Device**.
 
 ## Creating a Tree
 
-To create a new tree simply click the Add button (+) on the top right hand 
+To create a new tree simply click the Add button (+) on the top right hand
 corner and enter a name for your **Tree**. After the tree has been created you will
 see the below page where you are able to add **Devices** to the **Tree**.
 
@@ -55,8 +55,8 @@ the Tree menu.  To add a 'Root Branch', simply press the button to do so, once
 you have Root Branches, you may right click on the to create sub-branches on the
 Tree.
 
-When you single click on a **Site**, the **Devices**, and **Graphs** associated with 
-that **Site** should appear in their respective sections.  You can also type into 
+When you single click on a **Site**, the **Devices**, and **Graphs** associated with
+that **Site** should appear in their respective sections.  You can also type into
 the Search fields above the various sections to drill into them.  You can also shift-click
 and control-click on the objects within a section to drag & drop multiple objects
 at one time.
