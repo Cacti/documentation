@@ -12,13 +12,13 @@ server. To get to this screen click `Console > Managment > Trees`.
 
 From this page you can add or remove **Trees** as required.
 
-![tree screen](images/cacti_trees_screen.png)
+![Tree Management Page](images/trees.png)
 
 Below is how a **Tree** is displayed in **Graph View**.  We can see the **Device**
 that is being monitored - clicking on this **Device** will result in seeing all
 of the **Graph** data generated for the **Device**.
 
-![default tree](images/cacti_default_tree.png)
+![Tree View](images/tree-view.png)
 
 ## Creating a Graph Tree
 
@@ -26,12 +26,15 @@ To create a new tree simply click the Add button (+) on the top right hand
 corner and enter a name for your **Tree**. After the tree has been created you will
 see the below page where you are able to add **Devices** to the **Tree**.
 
-![tree options](images/tree_options.png)
+![Tree Options](images/tree-options.png)
 
 To add devices to the new tree simply drag an avaliable device to the
 tree and it will be added to the tree.  Cacti currently supports four
 `Sort Types`, which can be either inherited, of left to the author to define
-inheritance and at what level.
+inheritance and at what level.  See the image below for a visual representation
+of how Tree Sorting is accomplished.
+
+![Tree Sorting](images/tree-options-sorting.png)
 
 ###### Table 8-1. Tree Sporting Type Definitions
 
