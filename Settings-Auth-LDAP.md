@@ -4,6 +4,8 @@ Cacti supports using LDAP authentication to access the Cacti GUI.
 There are several different ways to use LDAP, which will be described in the
 following sections.
 
+![Ldap Settings Page](images/ldap-settings.PNG
+
 ## Be Aware
 
 When changing LDAP settings in Cacti, such as LDAP General Settings, LDAP Group
