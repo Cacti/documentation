@@ -59,6 +59,8 @@ feature[issue#] | Features either implemented or logged in GitHub and addressed
 security[issue#] | Security vulnerability either fixed or logged in GitHub and addressed
 bug[bug#] | Feature of Bug reported in the old Cacti Mantis system that was addressed.
 
+All Issues from Cacti 1.0.0 to the Cacti 1.2.17 release.
+
 Version | Feature/Bug | Description
 --- | --- | ---
 1.2.17 | issue#3981 | PHP ERROR: Call to undefined function api_data_source_cache_crc_update()
