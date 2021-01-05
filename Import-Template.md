@@ -13,13 +13,18 @@ template go to `Console > Import/Export > Import Templates` you will now see the
 
 ![Import Template](images/import-template.png).
 
-*Important note:* When importing the template be sure to match the data source
-profile with your polling time.
+> **Important note**: When importing the template be sure to match the data source
+> profile with your preferred **Data Source Profile**.
 
 First you must click on **Select File** and browse to where the XML file is
 located on your computer.  Cacti will default to preview the import to check for
 any issues. If none are found, you can select the same file and then untick the
 preview option to import after which the template should be available.
+
+The `Remove Orphans` option should only be used if you have Templates that have become
+damaged and the best way to correct them is to start over.  This option will
+remove any **Graph Items** from any **Graph** that do not appear in the **Graph Template**
+to be imported.  Use this option with care.
 
 ---
 Copyright (c) 2004-2021 The Cacti Group
