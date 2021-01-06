@@ -7,7 +7,7 @@ information from the following objects and use them in the context
 of a Cacti Graph:
 
 - **Cacti Device** - host information
-- **Data Query** - input data
+- **Data Query** - input query meta data
 - **Data Input** - input variables
 - **Nth Percentile** - forumlas
 
@@ -21,8 +21,9 @@ They can be used in:
 
 1) Graph and Graph Template - Titles
 2) Graph and Graph Template - Comments
-3) Data Source - Min and Max Data Source Limits
-4) Aggregate Graphs and Templates - Prefixes
+3) Data Query - Suggested names for Graphs and Data Sources
+4) Data Source - Min and Max Data Source Limits
+5) Aggregate Graphs and Templates - Prefixes
 
 All Graph Variables are enclosed by pipe characters as shown in the
 examples below.
@@ -48,7 +49,10 @@ allows the creation of generic graph templates (2-variable line graph,
 3-variable stack, etc.) which can be reused with large numbers of data sources.
 See attached examples to understand usage.
 
-![Example of a Graph Template using |data_source_title|](images/data-source-title-template.png)
+![Example of a Graph Template using |data_source_title|](images/graph-variables-data-source-title.png)
+
+The example graphs below, show how the output may look, but for a slightly
+different Case.
 
 ![Example 1 of a Graph making use of |data_source_title|](images/data-source-title-example1.png)
 
@@ -210,6 +214,20 @@ Variable Name | Description
 \|host_snmp_username\| | SNMP Username (v3)
 \|host_snmp_version\| | SNMP Version
 \|host_uptime\| | SNMP Uptime
+
+## Example Use
+
+Below you can see the example in the `SNMP - Interface Statistics` Data Query of
+how they are used for suggested names.
+
+![Suggested Names](images/graph-variables-suggested-names.png)
+
+And in Bandwidth Graph Template.
+
+![Graph Template Bandwidth](images/graph-variables-graph-template.png)
+
+In the images above, you can see both the Title of the Graph and the
+Comments showing the use of the bandwidth replacement variables.
 
 ---
 Copyright (c) 2004-2021 The Cacti Group
