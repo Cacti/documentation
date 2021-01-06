@@ -2,8 +2,30 @@
 
 ## Graph Variables
 
-The following variables can be used in the Text Format and Value graph item
-fields. Below is a description of each of these variables.
+Graphs Variables are special use replacement variables used to take
+information from the following objects and use them in the context
+of a Cacti Graph:
+
+- **Cacti Device** - host information
+- **Data Query** - input data
+- **Data Input** - input variables
+- **Nth Percentile** - forumlas
+
+It also allows you additional one single use replacement variables like:
+
+- **Data Source Name** - The name of your Data Source
+- **Date Time** - The date and time the graph was rendered.
+
+In the examples below, you will be able to see how to use these values.
+They can be used in:
+
+1) Graph and Graph Template - Titles
+2) Graph and Graph Template - Comments
+3) Data Source - Min and Max Data Source Limits
+4) Aggregate Graphs and Templates - Prefixes
+
+All Graph Variables are enclosed by pipe characters as shown in the
+examples below.
 
 ## Date/Time
 
@@ -50,6 +72,16 @@ name.
 |query_dskPath|
 ```
 
+## Data Input Arguments
+
+```regex
+|input_hostname|
+```
+
+```regex
+|input_ip_address|
+```
+
 ## Nth Percentile
 
 ```regex
@@ -61,6 +93,11 @@ their peak traffic usage while ignoring their top (100 - Nth) percent. This way
 if a customer has a fairly consistent traffic pattern and decides to download a
 huge file one day, the large spike will be ignored. Common Nth percentile is
 95, which would cut off the top 5% of the traffic.
+
+The Nth Percentile variables, when placed in Graph Comments will be detected
+and the syntax will be parsed and the reulting numeric value will replace
+the formula.  They are used in both 95th Percentile and Bandwidth
+Traffic Graphs today.
 
 In Cacti, Nth percentile works just like any other graph variable. To use this
 variable you must give it five arguments:
