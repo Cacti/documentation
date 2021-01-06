@@ -2,7 +2,7 @@
 
 Cacti operation may be divided into three different tasks:
 
-![Principles of Operation](images/principles_of_operation.png =100x)
+![Principles of Operation](images/principles_of_operation.png =100x100)
 
 ## Data Retrieval
 
