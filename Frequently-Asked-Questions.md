@@ -35,7 +35,7 @@ Now that you have working SNMP support, follow these steps.
 **Q:** When I visit the Cacti Monitoring Website, I see garbage instead of a
 login prompt.
 
-**A:** Starting iwth Cacti 1.2.x, the first thing you should always see is a
+**A:** Starting with Cacti 1.2.x, the first thing you should always see is a
 login prompt asking for your admin credentials before the installation wizard
 will be displayed.  However, if you fail to see the login prompt, you may be
 presented with text that looks like:
@@ -107,6 +107,7 @@ installation, it is not uncommon for Spine to poll about 500 items in less then
 
 **A:** The best thing to do here is to force Cacti to rebuild its poller cache.
 To do this click Utilities on the Cacti menu, and select Clear Poller Cache.
+***Beware on larger systems its best to do this via CLI via rebuild_poller_cache.php
 
 **Q:** I am using Redhat 8.0 and SNMP is not working.
 
