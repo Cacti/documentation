@@ -40,12 +40,12 @@ For example in the technical support section under the summary, you will see a c
 You should have (Cacti 1.2.16+) you will also show poller information such as the last polling time process count and more detailed
 Info that can be used for a quick view of how the system is configured.
 
-![System Utilities](images/system-utilities-poller.PNG).
+![System Utilities](images/system-utilities-poller.png).
 
 You will also see all of the system variables such as allocated php memory
 as well as mysql variables.
 
-![System Utilities](images/system-utilities-db.PNG)
+![System Utilities](images/system-utilities-db.png)
 
 Any Variable appearing in red indicates a subpar setting and should be looked.
 the recomendations are dynamic in that they change when more system resources are
@@ -60,7 +60,7 @@ these old files.
 RRD files can also be schedule to automatically be removed this option can
 be configured in settings >> paths >> RRD file autoclean
 
-![System Utilities](images/rrd-autoclean.PNG)
+![System Utilities](images/rrd-autoclean.png)
 
 ---
 Copyright (c) 2004-2021 The Cacti Group
