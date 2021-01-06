@@ -2,13 +2,21 @@
 
 Cacti operation may be divided into three different tasks:
 
-![Principles of Operation](images/principles_of_operation.png =100x100)
+- Data Retrieval
+- Data Storage
+- Graphing
 
 ## Data Retrieval
 
 First task is to retrieve data. Cacti will do so using its Poller. The Poller
 is executed from the operating system's scheduler, e.g. crontab or
-systemd for Unix flavored OSes.
+systemd for Unix flavored OSes.  It collects down to an every
+10 cycle frequency to a several hour cycle.
+
+In the image below, you can see the general flow of data from
+the device to the Cacti database.
+
+<img src="images/principles_of_operation.png" width="200"/>
 
 In enterprise installations, you're dealing with potentially
 thousands of devices of different type, e.g. servers, network
