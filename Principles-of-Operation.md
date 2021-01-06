@@ -16,7 +16,7 @@ systemd for Unix flavored OSes.  It collects down to an every
 In the image below, you can see the general flow of data from
 the device to the Cacti database.
 
--><img src="images/principles_of_operation.png" width="200"/><-
+<img src="images/principles_of_operation.png" width="200"/>
 
 In enterprise installations, you're dealing with potentially
 thousands of devices of different type, e.g. servers, network
@@ -71,11 +71,11 @@ different consolidation functions: AVERAGE, MAXIMUM, MINIMUM and LAST.
 
 One of the most appreciated features of [RRDtool](http://www.RRDtool.org/) is
 the built-in graphing function. This comes in useful when combining this with
-some commonly used webserver. Such, it is possible to access the graphs from
+some commonly used web server. Such, it is possible to access the graphs from
 merely any browser on any platform.
 
 The Graphing engine is quite flexible. It is possible, to graph one or
-many items in one graph. Autoscaling is supported and logarithmic y-axis,
+many items in one graph. Auto-scaling is supported and logarithmic y-axis,
 left and right axes, and much much more. You may stack items onto another
 and print pretty legends denoting characteristics such as minimum, 
 average, maximum and lots more.
@@ -85,8 +85,8 @@ average, maximum and lots more.
 As mentioned, scripts and Queries extend Cacti's capabilities beyond
 just SNMP. They allow for data retrieval using custom-made code.
 This is not even restricted to certain programming languages; 
-you will find php, perl, shell/batch and more. These
-scripts and queries are executed locally by Cacti's poller. But they may
+you will find PHP, Perl, Python, shell/batch 
+and more. These scripts and queries are executed locally by Cacti's Poller. But they may
 retrieve data from remote hosts by different protocols, e.g.
 
 Protocol | Description
@@ -95,9 +95,9 @@ ICMP | ping to measure round trip times and availability
 telnet | programming telnet scripts to retrieve data available to sysadmins only
 ssh | much like telnet, but more secure (and more complicated)
 http(s) | invoke remote cgi scripts to retrieve data via a web server or parse web pages for statistical data (e.g. some network printers)
-snmp | use net-snmp's exec/pass functions to call remote scripts and get data
+snmp | use Net-SNMP's exec/pass functions to call remote scripts and get data
 ldap | to retrieve statistical about your ldap server's activities
-use your own | invoke nagios agents
+use your own | invoke Nagios agents
 
 and much more...
 
@@ -120,7 +120,7 @@ multiple**, but **non-indexed** readings
 - you may even create Data Queries as scripts e.g. for querying a
  name server (index = domain) for requests per domain
 
-![Basic Principle of Operation for Data Input Method & Data Query](images/data-input-method-and-query.png)
+<img src="images/data-input-method-and-query.png" width="600"/>
 
 By using the Exporting and Importing facilities, it is possible to share your
 results with others.
@@ -131,7 +131,7 @@ Cacti is not just a Graphing platform, it's also a Network Operations
 Framework.  Thought the dozens of plugins and user contributed
 Graph Templates, the sky is the limit as to what can be done using the
 Cacti Framework.  It's stood the test of time now in it's 19th year
-of existance in the Open Source world.
+of existence in the Open Source world.
 
 ---
 Copyright (c) 2004-2021 The Cacti Group
