@@ -88,20 +88,20 @@ COMPUTE
 
 
 
-![Data-Source-Templates](images/datasource-template-create.PNG)
+![Data-Source-Templates](images/datasource-template-create.png)
 
 You are also able to use Variables to set the name for the data source.
 The avaliable Variables can be seen here 
 
 https://github.com/Cacti/documentation/blob/develop/Variables.md
 
-![Data-Source-Templates](images/datasource-template.PNG)
+![Data-Source-Templates](images/datasource-template.png)
 
 What is also an important setting is the internal data source name.
 This will be used to asociate the Data source with the Graph template.
 so be sure to name is something that is recognizable.
 
-![Data-Source-Templates](images/datasource-template2.PNG)
+![Data-Source-Templates](images/datasource-template2.png)
 
 ---
 Copyright (c) 2004-2021 The Cacti Group
