@@ -18,7 +18,7 @@ ambiguity.  See the Linux Device Template Example below.
 
 In this Template thaere are Many Components:
 
-1) The Device Template Name itselt and it's GUID
+1) The Device Template Name itself and it's GUID
 2) All the Graph Templates and their GUID's
 3) All the Graph Template inputs and their GUID's
 4) All the Data Templates and their GUID's
