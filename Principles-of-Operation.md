@@ -1,17 +1,62 @@
 # Principles of Operation
 
-Cacti operation may be divided into three different tasks:
+To understand Cacti's principal of operation, you have to start
+at the top and work down.  Cacti's operational model is 
+divided into multiple layers.  They include
 
+- Devices
+- Sites
+- Data Collectors (Pollers)
 - Data Retrieval
 - Data Storage
 - Graphing
 
+## Devices
+
+Cacti **Devices** are either physical hosts, sensors, clusters, 
+services, or any type of object with a name and that can 
+provide information about it self that should go into a
+**Graph** or could be used to provide additional information
+useful for Operations.
+
+The Cacti **Device** object serves as the center Cacti's world
+it's where stores information on how gather data about it.  You
+can have from one to tens of thousands of **Devices** monitored
+from one Cacti system.  It's very scalable.  They can be 
+discovered using Cacti's Automation sub-system, added manually,
+or gathered from a CMDB and added to Cacti using it's command
+line interface.
+
+## Sites
+
+Cacti works with **Sites**.  So, when you add a phyical **Device**
+to Cacti, you can associate it with a **Site**.  Sites are designed
+to be physical locations.  Cacti can organize **Devices** and it's
+**Graphs** by Site in a convenient fashion.
+
+## Data Collectors
+
+These are the physical or virtual hosts or containers that gather
+data about a group of devices either within a network or a site.
+They are resiliant in that if the central Cacti server is not reachable,
+they will cache data and wait for it to become available again.
+
+Cacti supports upto dozens of Data Collectors today.  Some customers
+use somethings as simple as a Rasberry Pi or Nuk for
+Data Collectors.  However, Virtual Machines are preferred as they
+can be migrated live which does not interrupt data collection.
+
 ## Data Retrieval
 
-First task is to retrieve data. Cacti will do so using its Poller. The Poller
-is executed from the operating system's scheduler, e.g. crontab or
-systemd for Unix flavored OSes.  It collects down to an every
-10 cycle frequency to a several hour cycle.
+The Data Collectors first and foremost task it to retrieve data and
+forward it to the main Cacti server for storage. Cacti will do so 
+using its poller which is a part of the Data Collector. The Poller
+is executed from the operating system's scheduler or from systemd
+depending on the OS and the version of the OS.  It collects data
+as frequently as every 10 seconds to hours dynamically in the same
+system.  So, one Cacti system can be monitoring objects at a
+10 second granularity, a 30 second granularity, 1 minute all the
+way to once per several hours.
 
 In the image below, you can see the general flow of data from
 the device to the Cacti database.
@@ -19,26 +64,30 @@ the device to the Cacti database.
 <img src="images/principles_of_operation.png" width="200"/>
 
 In enterprise installations, you're dealing with potentially
-thousands of devices of different type, e.g. servers, network
-equipment, appliances and the like. To retrieve data from remote
-targets/hosts, cacti will mainly use the Simple Network
-Management Protocol SNMP. Thus, all devices capable of using SNMP will be
-eligible to be monitored by cacti.
+thousands of devices of different type, e.g. Servers, Network
+Equipment, Appliances, Sensors, PDU's, Static Transfer Switches
+and the like. To retrieve data from remote targets/hosts, Cacti 
+will mainly use the Simple Network Management Protocol SNMP.
+Thus, all devices capable of using SNMP will be eligible to be 
+monitored by Cacti.  But that's just the simplest case.
 
-Many customers gather data using an out of band processes like the hmib
-plugin, store the data in transient tables, and then do the device
-data collection directly from those transient tables.  That design,
-since no device can be nearer in latency than the database, can
-scale to 30, 40, even 50 thousand devices with relative ease in
-Cacti depending on the size of your database and data collector
-server (sockets, cores, threads).  When using this N-Tiered
-methology, most customers will use Cacti's script server which
-is a memory resident PHP interpretor that preloads all scripts
-used to gather data, therefore, it's super fast, and parallel
-in nature.  However, most customers will use SNMP, or SSH to
-gather metrics from their Devices.
+Many customers gather data using out of band processes like
+using the Cacti hmib Plugin, which stores data in transient
+tables, and then Cacti can do device data collection directly
+from those transient tables.  That design, since no device
+can be nearer in latency than the database, can scale to 30,
+40, even 50 thousand devices with relative ease in Cacti
+depending on the size of your database and data collector
+infrastructure (sockets, cores, threads).  When using this
+N-Tiered methology, most customers will use Cacti's
+`script server` which is pool of memory resident PHP
+interpretors that preloads all scripts used to gather data,
+therefore, it's super fast, and parallel in nature.
+However, most customers will use SNMP, or SSH to gather
+metrics from their Devices.  I mean, how many companies
+have 50 thousand devices that they monitor with regularity?
 
-Once the data has been gathered, Cacti then uses eithe an 
+Once the data has been gathered, Cacti then uses either an 
 out-of-band or in-band process to store the data into Round
 Robin Archive files, which represent a flat very well performing
 Time Series Databases called RRDfiles.  See below for details
