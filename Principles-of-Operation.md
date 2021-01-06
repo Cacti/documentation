@@ -16,7 +16,7 @@ systemd for Unix flavored OSes.  It collects down to an every
 In the image below, you can see the general flow of data from
 the device to the Cacti database.
 
-<img src="images/principles_of_operation.png" width="200"/>
+<center><img src="images/principles_of_operation.png" width="200"/></center>
 
 In enterprise installations, you're dealing with potentially
 thousands of devices of different type, e.g. servers, network
