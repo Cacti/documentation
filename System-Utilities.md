@@ -32,14 +32,35 @@ information.
 
 ### Technical support
 
-Cacti technical support page. Used by developers and technical support persons
-to assist with issues in Cacti. Includes checks for common configuration issues.
+Cacti technical support page. 
+Used by developers and technical support persons to assist with issues in Cacti.
+Includes checks for common configuration issues.
+There is also built-in checks that help you tune your Cacti installation
+For example in the technical support section under the summary, you will see a calculation for how many MySQLconnections
+You should have (Cacti 1.2.16+) you will also show poller information such as the last polling time process count and more detailed
+Info that can be used for a quick view of how the system is configured.
+
+![System Utilities](images/system-utilities-poller.png).
+
+You will also see all of the system variables such as allocated php memory
+as well as mysql variables.
+
+![System Utilities](images/system-utilities-db.png)
+
+Any Variable appearing in red indicates a subpar setting and should be looked.
+the recomendations are dynamic in that they change when more system resources are
+detected so if you upgrade your server hardware be sure to check back to this page
+to get the most out of your new hardware.
 
 ### RRD cleaner
 
 When you delete Data Sources from Cacti, the corresponding RRDfiles are not
 removed automatically. Use this utility to facilitate the removal of
 these old files.
+RRD files can also be schedule to automatically be removed this option can
+be configured in settings >> paths >> RRD file autoclean
+
+![System Utilities](images/rrd-autoclean.png)
 
 ---
 Copyright (c) 2004-2021 The Cacti Group
