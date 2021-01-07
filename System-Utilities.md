@@ -62,5 +62,14 @@ be configured in settings >> paths >> RRD file autoclean
 
 ![System Utilities](images/rrd-autoclean.png)
 
+### Change log tab
+
+Starting from cacti 1.2.16 you can now see the Github changelog direct from the cacti Gui
+This is very useful for seeing what fixes are included with the version of cacti you are running
+
+
+
+
+
 ---
 Copyright (c) 2004-2021 The Cacti Group
