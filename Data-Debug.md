@@ -17,7 +17,7 @@ For a single data source, you can click the data source name which will also put
 
 ![Data Source Debug Select Data Sources](images/data-debug1.png)
 
-You can see the status of the debug along with all of the checks run\ 
+You can see the status of the debug along with all of the checks run\
  successful checks give you a green checkmark failed shows a red X\
  depending on the issue a recommendation will be provided for a failed check.
 
