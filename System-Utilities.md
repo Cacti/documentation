@@ -64,9 +64,9 @@ be configured in settings >> paths >> RRD file autoclean
 
 ### Viewing Change log from system utilities
 
-Starting from Cacti 1.2.16 you are able to view the change log of the current
-version you are using via the system utilities menu this is useful for 
-seeing what fixes are included in your version as well as new release versions
+Starting from Cacti 1.2.16 you are able to view the change log of the current\
+version you are using via the system utilities menu this is useful for\
+seeing what fixes are included in your version as well as new release versions.
 
 ![System Utilities](images/change-log-sysutils.png)
 
