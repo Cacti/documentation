@@ -11,7 +11,7 @@ Please see the official Cacti website for information, support, and updates.
 ## Core Developers - Both active and emeritus
 
 - Larry Adams (TheWitness, Active)
-- Mark Brugnoli-Vinten (netniV, Avtive)
+- Mark Brugnoli-Vinten (netniV, Active)
 - Jimmy Conner (cigamit, Active)
 - Andreas Braun (browniebraun, Active)
 - J.P. Pasnak, CD (Linegod, Active)
