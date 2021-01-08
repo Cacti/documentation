@@ -209,7 +209,17 @@ Below is an example output of Spine debug info via the log file
 
 To enable more detailed spine logging 
 
-Console >> settings >> Poller 
+Console >> settings >> Poller
+
+You can choose from Detailed,Summary or No logging for Invalid data
+
+Detailed Logging will be similar to cmd.php in that you will get a report 
+for each data source that is having an issue
+
+Summary provides a count of how many data sources are having an issue per device
+
+![spine](images/spine-parameters.png)
+
 
 
 
