@@ -25,6 +25,10 @@ depending on the issue a recomendation will be provided for a failed check
 
 ![Data Debug Tests Complete](images/data-debug3.png)
 
+A summary of the checks as well as the propertise of the data source
+can be displayed if you click on the data source name this is useful
+for a single page view of the data source and graph details.
+
 ![Data Debug Test Details](images/data-debug4.png)
 
 ---
