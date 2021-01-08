@@ -23,7 +23,7 @@ You can see the status of the debug along with all of the checks run\
 
 ![Data Source Debug Select Data Sources](images/data-debug1.png)
 
-![Data Debug Running Tests](images/data-debug2.png)
+
 
 ![Data Debug Tests Complete](images/data-debug3.png)
 
