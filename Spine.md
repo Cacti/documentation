@@ -197,6 +197,14 @@ SPINE: Using spine config file [../etc/spine.conf]
 2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] HT[1] DEBUG: HOST COMPLETE: About to Exit Device Polling Thread Function
 ```
 
+#### Spine debug via GUI
+
+You are also able to view spine debug information via the log file\
+also spine allows you to raise the level of detail it provides in the log\
+if you want to debug a specific device and see the spine output click enable device debug
+
+
+
 ### Common Spine related errors
 
 ```shell
