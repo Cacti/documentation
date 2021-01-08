@@ -27,7 +27,16 @@ You can see the status of the debug along with all of the checks run\
 
 ![Data Debug Tests Complete](images/data-debug3.png)
 
+A summary of the checks as well as the properties of the data source\
+can be displayed if you click on the data source name this is useful\
+for a single page view of the data source and graph details.
+
 ![Data Debug Test Details](images/data-debug4.png)
+
+This page also shows what the last values come from when the poller\
+This is also useful for troubleshooting as if the data comes in out of\
+Range of your data source template or Graph template this could point you\
+into the right direction
 
 ---
 Copyright (c) 2004-2021 The Cacti Group
