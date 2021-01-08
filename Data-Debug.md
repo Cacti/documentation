@@ -5,7 +5,7 @@ the Data source debug tool can help troubleshoot what information is coming into
  
 The debug tool will check the data source as well as the graph as well as permissions\
 The tool will also check for new data coming into the data source as well as graph settings\
-such as step count to ensure it matches the profile of the data source amongst other things.\
+such as step count to ensure it matches the profile of the data source amongst other things.
  
 The tool allows you to run a debug on multiple data sources or just a single data source\
 To start a debug you will select all of the applicable data sources you are interested in\
