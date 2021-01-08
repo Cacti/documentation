@@ -201,7 +201,15 @@ SPINE: Using spine config file [../etc/spine.conf]
 
 You are also able to view spine debug information via the log file\
 also spine allows you to raise the level of detail it provides in the log\
-if you want to debug a specific device and see the spine output click enable device debug
+if you want to debug a specific device and see the spine output click enable device debug.
+
+Below is an example output of Spine debug info via the log file
+
+![spine](images/spine-debug-gui.png)
+
+To enable more detailed spine logging 
+
+Console >> settings >> Poller 
 
 
 
