@@ -194,49 +194,49 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    7.2. [Export Templates](Export-Template.md)
 
-8. Configuration
+8. [Configuration - Settings](Settings.md)
 
-   8.1. [Settings](Settings.md)
+   8.1. [General](Settings-General.md)
 
-      8.1.1 [General](Settings-General.md)
+   8.2. [Paths](Settings-Paths.md)
 
-      8.1.2 [Paths](Settings-Paths.md)
+   8.3. [Device Defaults](Settings-Device-Defaults.md)
 
-      8.1.3 [Device Defaults](Settings-Device-Defaults.md)
+   8.4. [Poller](Settings-Poller.md)
 
-      8.1.4 [Poller](Settings-Poller.md)
+   8.5. [Data](Settings-Data.md)
 
-      8.1.5 [Data](Settings-Data.md)
+   8.6. [Visual](Settings-Visual.md)
 
-      8.1.6 [Visual](Settings-Visual.md)
+   8.7. [Authentication Local](Settings-Authentication.md)
 
-      8.1.7 [Authentication Local](Settings-Authentication.md)
+   8.8. [Authentication LDAP](Settings-Auth-LDAP.md)
 
-      8.1.8 [Authentication LDAP](Settings-Auth-LDAP.md)
+   8.9. [Authentication Basic](Settings-Auth-Basic.md)
 
-      8.1.9 [Authentication Basic](Settings-Auth-Basic.md)
+   8.10. [Performance](Settings-Performance.md)
 
-      8.1.10 [Performance](Settings-Performance.md)
+   8.11. [Spikes](Settings-Spikes.md)
 
-      8.1.11 [Spikes](Settings-Spikes.md)
+   8.12. [Mail/Reporting/DNS](Settings-Mail-Reporting-DNS.md)
 
-      8.1.12 [Mail/Reporting/DNS](Settings-Mail-Reporting-DNS.md)
+9. [Configuration - Users, Groups and Domains](Settings-Users-Groups-Domains.md)
 
-   8.2. [Users](User-Management.md)
+   9.1. [Users](User-Management.md)
 
-   8.3. [User Groups](User-Group-Management.md)
+   9.2. [User Groups](User-Group-Management.md)
 
-   8.4. [User Domains](User-Domains.md)
+   9.3. [User Domains](User-Domains.md)
 
-   8.5. [Plugins](Plugins.md)
+10. [Configuration - Plugins](Plugins.md)
 
-9. Utilities
+11. Utilities
 
-   9.1. [System Utilities](System-Utilities.md)
+   11.1. [System Utilities](System-Utilities.md)
 
-   9.2. [Data Debug](Data-Debug.md)
+   11.2. [Data Debug](Data-Debug.md)
 
-   9.3. [External Links](External-Links.md)
+   11.3. [External Links](External-Links.md)
 
 ### Advanced Operations
 
