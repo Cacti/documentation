@@ -174,14 +174,14 @@ Those settings include:
   at **Device** creation time and save time.
 
 - **Enable Automatic Tree Item Creation** - If you have Cacti **Tree Rules** apply
-  then at **Device** cration and save time.
+  then at **Device** creation and save time.
 
 - **Automation Notification To Email** - When Network Automation finishes, send
   a notification to this Email address.
 
 - **Automation Notification From Name** - The `From Name` on the Automation Email.
 
-- **Automation From Email** - The `From` Email such as noreply@cacti.net that
+- **Automation From Email** - The `From Email` such as noreply@cacti.net that
   will be used for Automation notifications.
 
 ## Graph Template Defaults
