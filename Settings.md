@@ -32,10 +32,10 @@ The standard Settings sub-tabs include:
 - [Authentication](Settings-Auth.md) - This is where Cacti
   defines how **Users** are managed.  There are three Classes of **Users**.
   They include: 
-  -  [Local Users](Settings-Auth-Local.md)
-  -  [Basic Users](Settings-Auth-Basic.md)
-  -  [LDAP Users](Settings-Auth-LDAP.md)
-  -  [Multiple Domains](Settings-Domains.md)
+  -  [Local Users](Settings-Auth-Local.md) - Authentication and Authorization all handled in Cacti.  This means passwords are stored locally using strong encryption
+  -  [Basic Users](Settings-Auth-Basic.md) - Authentication outside of Cacti, for example SAML2, TACACS+, NIS, etc.). Authorization remains in Cacti
+  -  [LDAP Users](Settings-Auth-LDAP.md) - Authentication outside of Cacti, either LDAP or Active Directory.  Authorization remains in Cacti
+  -  [Multiple Domains](Settings-Domains.md) - Multiple Authentication LDAP or Active Directory Templates with Authorization remains in Cacti
 - [Performance](Settings-Performance.md) - This is where Cacti's `Boost`
   functionality was moved to.  Cacti's `Boost` module allows Cacti to
   scale to systems with over a million **Graphs** and **Data Sources**.
