@@ -15,7 +15,7 @@ The standard Settings sub-tabs include:
 - [Paths](Settings-Paths.md) - Mostly, this sub-tab holds all settings
   that the Cacti administrator has control of.  It also includes some
   settings around RRDfile maintenance.
-- [Device Defaults](Device-Defaults.md) - This is where you can establish
+- [Device Defaults](Settings-Device-Defaults.md) - This is where you can establish
   presets that every new Cacti **Device** get's by default, through 
   **Automation**, the CLI or though the Web Interface.
 - [Poller](Settings-Poller.md) - Though most **Poller** settings have been
