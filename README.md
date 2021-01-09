@@ -198,9 +198,29 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    8.1. [Settings](Settings.md)
 
-      8.1.1 [Authentication](Settings-Auth.md)
+      8.1.1 [General](Settings-General.md)
+      
+      8.1.2 [Paths](Settings-Paths.md)
+      
+      8.1.3 [Device Defaults](Settings-Device-Defaults.md)
+      
+      8.1.4 [Poller](Settings-Poller.md)
+      
+      8.1.5 [Data](Settings-Data.md)
+      
+      8.1.6 [Visual](Settings-Visual.md)
+      
+      8.1.7 [Authentication Local](Settings-Authentication.md)
 
-      8.1.2 [LDAP Authentication](Settings-Auth-LDAP.md)
+      8.1.8 [Authentication LDAP](Settings-Auth-LDAP.md)
+
+      8.1.9 [Authentication Basic](Settings-Auth-LDAP.md)
+
+      8.1.10 [Performance](Settings-Performance.md)
+      
+      8.1.11 [Spikes](Settings-Spikes.md)
+      
+      8.1.12 [Mail/Reporting/DNS](Settings-Mail-Reporting-DNS.md)
 
    8.2. [Users](User-Management.md)
 
