@@ -1,4 +1,4 @@
-# LDAP
+# LDAP Authentication
 
 Cacti supports using LDAP authentication to access the Cacti GUI.
 There are several different ways to use LDAP, which will be described in the
