@@ -17,10 +17,11 @@ sub-tab is broken into the following sub-sections:
 - **RRD Cleaner** - Setting for Cacti's RRDfile disposal of removed RRDfile
   when Data Sources are removed.
 
-When using Cacti's **Remote Data Collectors** or **Remote Pollers** the settings that
-refer for a `File Path`, or `Directory Path` will be local to the **Data Collector**.
-Therefore, you can have one set of paths for your Main Cacti site, and another set of
-paths for your Remote Poller, say in the case that they are on Windows.
+When using Cacti's **Remote Data Collectors** or **Remote Pollers** the
+settings that refer for a `File Path`, or `Directory Path` will be local
+to the **Data Collector**.  Therefore, you can have one set of paths for
+your Main Cacti site, and another set of paths for your Remote Poller,
+say in the case that they are on Windows.
 
 ## Required Tools Paths
 
@@ -117,8 +118,8 @@ Those settings include:
 - **RRDfile Auto Clean Method** - This is the method to perform cleanup.  The
   options include:
 
-   - **Delete** - Simply remote the files once the **Data Source** is removed
-   - **Archive** - Archive the RRDfile to an Archive directory once it's removed.
+  - **Delete** - Simply remote the files once the **Data Source** is removed
+  - **Archive** - Archive the RRDfile to an Archive directory once it's removed.
 
 - **Archive directory** - The Archive directory to move old RRDfile to.
 
