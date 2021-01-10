@@ -96,9 +96,9 @@ Those settings include:
 - **Spine Config File Path** - This setting is optional.  If blank, Cacti will
   search the following locations for a `spine.conf` file.
 
-   - **pwd** - The same directory as spine
-   - **../etc/** - One sibling `etc` directory of the `spine` binary directory.
-   - **/etc/** - The systems /etc/ directory.
+  - **pwd** - The same directory as spine
+  - **../etc/** - One sibling `etc` directory of the `spine` binary directory.
+  - **/etc/** - The systems /etc/ directory.
 
 ## RRD Cleaner
 
@@ -115,11 +115,11 @@ Those settings include:
 - **RRDfile Auto Clean** - Denotes that you wish Cacti to manage RRDfiles from
   removed **Data Sources** potentially automatically.
 
-- **RRDfile Auto Clean Method** - This is the method to perform cleanup.  The
-  options include:
+- **RRDfile Auto Clean Method** - This is the method to perform cleanup.
+  Options include:
 
-   - **Delete** - Simply remote the files once the **Data Source** is removed
-   - **Archive** - Archive the RRDfile to an Archive directory once it's removed.
+  - **Delete** - Simply remote the files once the **Data Source** is removed
+  - **Archive** - Archive the RRDfile to an Archive directory once it's removed.
 
 - **Archive directory** - The Archive directory to move old RRDfile to.
 
