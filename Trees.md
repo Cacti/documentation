@@ -46,9 +46,10 @@ Alphabetical Ordering |  1, Ab, ab | All sub-trees are ordered alphabetically, u
 Natural Ordering | ab1, ab2, ab7, ab10, ab20 | N/A
 Numeric Ordering | 01, 02, 4, 04 | Leading zeroes are not taken into account when ordering numerically
 
-End users will not be able to view the **Tree** or it's Graphs until you publish it.
-To edit a **Tree**, you will be required to lock it for your use.  The locking is
-designed to prevent multiple users from editing a **Tree** simultaneously.
+End users will not be able to view the **Tree** or it's Graphs until you
+publish it.  To edit a **Tree**, you will be required to lock it for your use.
+The locking is designed to prevent multiple users from editing a **Tree**
+simultaneously.
 
 When a Tree is locked, you can drag & drop the **Sites**, **Devices** and
 **Graphs** over to the Tree menu.  To add a 'Root Branch', simply press the

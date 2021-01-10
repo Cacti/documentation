@@ -49,7 +49,8 @@ Percentile of the Current Data Source.  Pretty strait forward.
 
 In the next two images, you can see the VDEF Item Types and the comprehensive
 list of VDEF functions.  Again, you can reference the
-[RRDtool Documentation](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_rpn.en.html) for usage examples for more information.
+[RRDtool Documentation](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_rpn.en.html)
+for usage examples for more information.
 
 ![VDEF Item Edit](images/vdefs-edit3.png)
 

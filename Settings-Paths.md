@@ -118,8 +118,8 @@ Those settings include:
 - **RRDfile Auto Clean Method** - This is the method to perform cleanup.  The
   options include:
 
-  - **Delete** - Simply remote the files once the **Data Source** is removed
-  - **Archive** - Archive the RRDfile to an Archive directory once it's removed.
+   - **Delete** - Simply remote the files once the **Data Source** is removed
+   - **Archive** - Archive the RRDfile to an Archive directory once it's removed.
 
 - **Archive directory** - The Archive directory to move old RRDfile to.
 
