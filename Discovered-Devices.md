@@ -9,7 +9,7 @@ find a proper SNMP credential.
 Also if you have the automatically add to Cacti set to off the devices will
 also be put in this section.
 
-The Discovered Devices section can be found by navigating to the 
+The Discovered Devices section can be found by navigating to the
 following area.
 
 ![Discovered Devices](images/automation-discovered-devices-dropdown.png)
@@ -29,5 +29,6 @@ on the dropdown you select add device this will bring up the below menu.
 From this Menu you will be able to fill out the details of the new device.
 
 ![Discovered Devices](images/discovered-device-add-menu.png)
+
 ---
 Copyright (c) 2004-2021 The Cacti Group
