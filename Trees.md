@@ -50,10 +50,10 @@ End users will not be able to view the **Tree** or it's Graphs until you publish
 To edit a **Tree**, you will be required to lock it for your use.  The locking is
 designed to prevent multiple users from editing a **Tree** simultaneously.
 
-When a Tree is locked, you can drag & drop the **Sites**, **Devices** and **Graphs** over to
-the Tree menu.  To add a 'Root Branch', simply press the button to do so, once
-you have Root Branches, you may right click on the to create sub-branches on the
-Tree.
+When a Tree is locked, you can drag & drop the **Sites**, **Devices** and
+**Graphs** over to the Tree menu.  To add a 'Root Branch', simply press the
+button to do so, once you have Root Branches, you may right click on the to
+create sub-branches on the Tree.
 
 When you single click on a **Site**, the **Devices**, and **Graphs** associated with
 that **Site** should appear in their respective sections.  You can also type into

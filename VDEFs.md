@@ -14,7 +14,7 @@ Nth Percentile and Bandwidth function in Cacti with the VDEF equivalents.
 The are referenced in Cacti graphs as VNAMES.  However, as mentioned before
 Cacti automatically assigns VNAMES.  So, to perform complex operations,
 you will have to experiment to determine the VNAME of your VDEF as you
-build your **Graph Template**.  But in their simplest forms, they are 
+build your **Graph Template**.  But in their simplest forms, they are
 quite easy to use.
 
 The format of the mathematical formulas is called Reverse Polish Notation (RPN).
@@ -30,13 +30,13 @@ default.  They are included just to get you thinking about how your would use
 them.  You can see strait away the first and the last items are 95th Percentile
 and Bandwidth (or Total) VDEF's.  Other examples are pretty self explanitary.
 
-You will also note that you can Delete or Duplicate the VDEF's, but as with 
+You will also note that you can Delete or Duplicate the VDEF's, but as with
 CDEF's you can not Delete a VDEF that is being used in a **Graph**.
 
 ![VDEFS](images/vdefs.png)
 
 In the image below, you can also see that their interface very closely resembles
-the CDEF Interface.  Unlike the CDEF's, there is presently only one 
+the CDEF Interface.  Unlike the CDEF's, there is presently only one
 `Special Data Source` and that's the Current Data Source, which makes sense
 when you think about it.
 
@@ -48,7 +48,7 @@ Percentile of the Current Data Source.  Pretty strait forward.
 ![VDEF Item Edit](images/vdefs-edit2.png)
 
 In the next two images, you can see the VDEF Item Types and the comprehensive
-list of VDEF functions.  Again, you can reference the 
+list of VDEF functions.  Again, you can reference the
 [RRDtool Documentation](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_rpn.en.html) for usage examples for more information.
 
 ![VDEF Item Edit](images/vdefs-edit3.png)

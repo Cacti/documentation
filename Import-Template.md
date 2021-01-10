@@ -9,7 +9,8 @@ forums.
 
 Once you have downloaded the graph/device template you are looking for you will
 need to import the template into the cacti system. To import a device/graph
-template go to `Console > Import/Export > Import Templates` you will now see the below page
+template go to `Console > Import/Export > Import Templates` you will now see
+the below page
 
 ![Import Template](images/import-template.png)
 

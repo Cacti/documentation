@@ -36,7 +36,7 @@ Presently they are saved in XML format, but there are
 discussions with making these templates YAML formatted.
 
 ```xml
-<cacti>	
+<cacti>
 	<hash_0201022d3e47f416738c2d22c87c40218cc55e>
 		<name>Local Linux Machine</name>
 		<graph_templates>hash_0001029fe8b4da353689d376b99b2ea526cc6b|hash_000102fe5edd777a76d48fc48c11aded5211ef|hash_00010263610139d44d52b195cc375636653ebd|hash_0001026992ed4df4b44f3d5595386b8298f0ec</graph_templates>

@@ -80,8 +80,8 @@ Count of All Data Sources (With Dupes) | The total count of all Data Sources inc
 Count of Similar Data Sources (No Dupes) | The total count of Data Sources with the same RRDtool Data Source Name
 Count of Similar Data Sources (With Dupes) | The total count of Data Sources with the same RRDtool Data Source Name
 
-As you can see there is quite a bit of information that can be pulled from RRDtool for
-performing Graphical manipulation of Data.
+As you can see there is quite a bit of information that can be pulled from
+RRDtool for performing Graphical manipulation of Data.
 
 ![CDEFs Item Edit](images/cdefs-edit2.png)
 

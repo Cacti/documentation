@@ -2,7 +2,7 @@
 
 This section will describe **External Links** in Cacti.
 
-External Links allows Administrators to add tabs to external links within 
+External Links allows Administrators to add tabs to external links within
 the Cacti GUI. This can be for example to google.ca
 
 When the user clicks on the Tab an Iframe will display the webpage.

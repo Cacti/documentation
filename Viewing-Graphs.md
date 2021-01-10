@@ -37,7 +37,7 @@ the various **Graph View** modes.
 In this first image, we see the way the **Graph View** options are displayed to
 the end user.  This is the layout of the Classic, Modern and Dark themes.
 
-![Graph View Classic](images/graph-view-classic-mode.png) 
+![Graph View Classic](images/graph-view-classic-mode.png)
 
 In this second image, you can see the way the **Graph View** page will appear for
 users of the Paw, Paper-Plane, and Sunrise themes.
@@ -87,8 +87,8 @@ Add to QuickTree | Allow you to select Graphs to add to Trees by simply tooling 
 
 ## Graph Zooming
 
-Cacti also has a powerful Graph Zoom interface built in.  You can discover 
-what it allows you to do by simply right clicking in the Graph area.  When 
+Cacti also has a powerful Graph Zoom interface built in.  You can discover
+what it allows you to do by simply right clicking in the Graph area.  When
 zooming, you will zoom all the **Graphs** on a page.  It's quite powerful.
 
 ![Graph Zoom Context Menu](images/graph-view-zoom-context-menu.png)

@@ -9,7 +9,7 @@ There are presently to sub-sections for these settings.
 
 ## Data Source Statistics
 
-Cacti has the ability to store peak and average data for all your 
+Cacti has the ability to store peak and average data for all your
 **Data Sources**.  You can then use that data to easily build
 dashboards using third party plugins including plugins like
 Superlinks from Howard Jones.

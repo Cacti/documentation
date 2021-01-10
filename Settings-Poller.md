@@ -29,18 +29,18 @@ Those settings include:
 - **Poller Type** - This is where you define either Cacti's built in poller
   `cmd.php`, or use the more robust poller `spine`.  You will not see the
   `spine` drop-down option unless it has first been installed, and the
-  `spine` binary path defined from 
+  `spine` binary path defined from
   `Console > Configuration > Settings > Paths` settings sub-tab.
 
 - **Poller Sync Interval** - When creating a Cacti **Data Collector**
   this is the default `Full Sync` interval it will use.  In the current
   Cacti design, a `Full Sync` should only be required when attempting
-  to replicate local authentication or authorization data to 
+  to replicate local authentication or authorization data to
   **Remote Data Collectors**, of if you have made changes that would
   otherwise impact the behavior of a **Remote Data Collector** when it
   was offline.
 
-- **Poller Interval** - This setting must align with the highest frequency 
+- **Poller Interval** - This setting must align with the highest frequency
   **Data Source Profile** polling interval.
 
 > **NOTE**: This only applies to the **Data Source Profiles** that are in
@@ -58,11 +58,11 @@ Those settings include:
 
 - **Debug Output Width** - This is a diagnostic settings that you would only
   enable from time to time if you wish to check if the output from your
-  **Data Collector** scripts exceeded the output width in the various 
+  **Data Collector** scripts exceeded the output width in the various
   Poller tables.  Since checking this have a very negative impact on
   polling performance, it's disabled by default.
 
-- **Disable Decreasing OID Check** - This setting is for performing 
+- **Disable Decreasing OID Check** - This setting is for performing
   **Data Query** `Re-index` activities for tables whose OID's are not
   structured in an orderly way where the suffix for the OID increases
   in a known way.  Though, in most cases enabling this setting will
@@ -91,7 +91,7 @@ Those settings include:
   and Plugins.
 
 - **Disable Resource Cache Replication** - By default Cacti will
-  continually replicate it's Website content with it's 
+  continually replicate it's Website content with it's
   **Remote Data Collectors**.  So, essentially, they are self
   upgradable.  However there are some cases where customers wish
   to upgrade the Central system before allowing the remotes
