@@ -58,7 +58,8 @@ Those settings include:
 
 - **Timeout** - The default SNMP Timeout (SNMP v1, v2, v3)
 
-- **Retries** - The default number of times to retry a query if SNMP times out (SNMP v1, v2, v3)
+- **Retries** - The default number of times to retry a query if SNMP times out
+  (SNMP v1, v2, v3)
 
 - **Security Level** - The default Security Level (SNMP v3)
 
@@ -94,16 +95,15 @@ Those options include:
 - **Downed Device Detection** - The method by which Cacti should `ping` the
   **Device**, SNMP `pings` involve querying a specific OID.  Options include:
 
-   - **None** - Only used for devices having their data collected through a
-     back-end agent
-   - **Ping and SNMP uptime** - Perform a TCP/UDP/ICMP ping and then check
-     uptime through SNMP.  Both methods must work for the device to be **Up**
-   - **Ping or SNMP Uptime** - If either method works, consider the **Device Up**
-   - **SNMP Uptime** - Only check the SNMP sysUptimeInstance of the **Device**
-   - **SNMP Desc** - Only check the SNMP sysDescription of the **Device**
-   - **SNMP getNext** - Only perform a basic `getnext` query for the **Device**
-   - **Ping** - Either TCP, UDP, or ICMP pings
-
+  - **None** - Only used for devices having their data collected through a
+    back-end agent
+  - **Ping and SNMP uptime** - Perform a TCP/UDP/ICMP ping and then check
+    uptime through SNMP.  Both methods must work for the device to be **Up**
+  - **Ping or SNMP Uptime** - If either method works, consider the **Device Up**
+  - **SNMP Uptime** - Only check the SNMP sysUptimeInstance of the **Device**
+  - **SNMP Desc** - Only check the SNMP sysDescription of the **Device**
+  - **SNMP getNext** - Only perform a basic `getnext` query for the **Device**
+  - **Ping** - Either TCP, UDP, or ICMP pings
 
 - **Ping Type** - When using an options that leverages **Ping** above, which method
 

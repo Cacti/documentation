@@ -31,7 +31,8 @@ Those settings include:
   This setting is quite self explanatory, when it comes to what type of messages are sent
   to the System log facility, see the `Syslog/Eventlog Item Selection` section below.
 
-- **General Log Level** - This is the level of logging that Cacti will use.  Options include:
+- **General Log Level** - This is the level of logging that Cacti will use.
+  Options include:
 
    - **NONE** - Don't perform any logging, not recommended.
    - **LOW** - Statistics and Errors
@@ -48,11 +49,11 @@ Those settings include:
   request variables that have not been validated through Cacti's validation
   functions.
 
-- **Data Source Tracing** - This is a debug options for logging of program 
+- **Data Source Tracing** - This is a debug options for logging of program
   flow around the creation of **Data Sources**.
 
 - **Selective File Debug** - A Multi-select setting that allows you to place
-  any Cacti file to be placed into debug mode.  This prevents the cacti.log 
+  any Cacti file to be placed into debug mode.  This prevents the cacti.log
   file from being flooded with messages as is common in a general debug
   context.
 
@@ -75,13 +76,14 @@ referred to as i18n.
 
 Those settings include:
 
-- **Language Support** - Whether or not to allow selecting other languages for Cacti
+- **Language Support** - Whether or not to allow selecting other languages for
+  Cacti
 
-- **Language** - The default language to use at login time, or by default when the
-  user has not specified a language.
+- **Language** - The default language to use at login time, or by default
+  when the user has not specified a language.
 
-- **Auto Language Detection** - Whether or not Cacti should read the language from the
-  browser and use that language by default.
+- **Auto Language Detection** - Whether or not Cacti should read the language
+  from the browser and use that language by default.
 
 - **Date Display Format** - The default Date/Time display format.
 
@@ -153,12 +155,12 @@ Those settings include:
   their browsers to HTTPS.
 
 - **Content-Security Allow Unsafe JavaScript eval() calls** - Allow plugins to use
-  the JavaScript `eval()` function call, which is historically unsafe.  However, some
-  older plugins require it.
+  the JavaScript `eval()` function call, which is historically unsafe.  However,
+  some older plugins require it.
 
-- **Content-Security Alternate Sources** - If for some reason your Cacti site requires
-  content from a CDN or a third party site, you can include a space delimited list of URLs
-  that will be able to be traversed for Cacti content.
+- **Content-Security Alternate Sources** - If for some reason your Cacti site
+  requires content from a CDN or a third party site, you can include a space
+  delimited list of URLs that will be able to be traversed for Cacti content.
 
 ## Automation Settings
 
@@ -196,9 +198,11 @@ This is where Cacti obtains defaults for **Graph Templates**.
      - **SVG** - Scalable Vector Graphs (preferred, though larger size)
      - **PNG** - Petri Net Graphs (backup, smaller but loose resolution when scaled)
 
-- **Graph Template Height** - The height in pixels of the Graph Canvas for new **Graph Templates**
+- **Graph Template Height** - The height in pixels of the Graph Canvas for new
+  **Graph Templates**
 
-- **Graph Template Width** - The width in pixels of the Graph Canvas for new **Graph Templates**
+- **Graph Template Width** - The width in pixels of the Graph Canvas for new
+  **Graph Templates**
 
 ---
 Copyright (c) 2004-2021 The Cacti Group

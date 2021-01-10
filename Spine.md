@@ -207,9 +207,8 @@ Below is an example output of Spine debug info via the log file
 
 ![spine](images/spine-debug-gui.png)
 
-To enable more detailed spine logging
-
-Console >> settings >> Poller
+To enable more detailed spine logging go to
+`Console > Configuration > Settings > Poller`
 
 You can choose from Detailed,Summary or No logging for Invalid data
 
@@ -227,16 +226,15 @@ Summary provides a count of how many data sources are having an issue per device
 ```
 Ensure that you have spine.conf in /usr/local/spine/etc on first install spine.conf may be spine.conf.dist
 
-```
-
+```shell
 DEBUG Falling back to UDP Ping Due to SetUID Issues
-
 ```
+
 This is a permissions issue with spine ensure you have give spine the proper permissions
+
 ```shell
 chmod u+s /usr/local/spine/bin/spine
 ```
-
 
 ---
 Copyright (c) 2004-2021 The Cacti Group
