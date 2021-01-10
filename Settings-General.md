@@ -3,9 +3,11 @@
 General Settings in Cacti consist of the following categories:
 
 - **Log Settings** - This is where you setup Cacti's logging
-- **Internationalization (i18n)** - Settings around how Cacti handles languages other than English
+- **Internationalization (i18n)** - Settings around how Cacti handles languages
+  other than English
 - **Other Settings** - Other not object settings in Cacti
-- **Site Security** - Web Site Security settings such as `Content-Security-Policy`, use of external JavaScript API's for plugins like Google Maps, forcing https, etc.
+- **Site Security** - Web Site Security settings such as `Content-Security-Policy`,
+  use of external JavaScript API's for plugins like Google Maps, forcing https, etc.
 - **Automation** - Miscellaneous settings around Cacti's Automation
 - **Graph Template Defaults** - Defaults for **Graph Templates**
 
@@ -25,11 +27,13 @@ Those settings include:
 - **Log Destination** - You have the following options:
 
    - **Logfile Only** - Only send log data to the Cacti log file
-   - **Logfile and Syslog** - Send log data to both the Cacti log file and the System log facility
+   - **Logfile and Syslog** - Send log data to both the Cacti log file and the
+     System log facility
    - **Syslog Only** - Send select log data to just the System log facility
 
-  This setting is quite self explanatory, when it comes to what type of messages are sent
-  to the System log facility, see the `Syslog/Eventlog Item Selection` section below.
+  This setting is quite self explanatory, when it comes to what type of messages
+  are sent to the System log facility, see the `Syslog/Eventlog Item Selection`
+  section below.
 
 - **General Log Level** - This is the level of logging that Cacti will use.
   Options include:

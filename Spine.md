@@ -135,12 +135,14 @@ chmod u+s /usr/local/spine/bin/spine
 
 ### Testing/Debugging spine via command line
 
-spine offer a a few differnt ways at the command line to test its functionality\
-Here are a few examples of some tests you can run by exectuing spine
+spine offer a a few differnt ways at the command line to test its functionality.
+Here are a few examples of some tests you can run by exectuing spine.
 
 #### Test Spine without writing results to database
-This test allows you to run spine and display the results to the console\
-This will not commit any of the data to the database by specifying the -R option
+
+This test allows you to run spine and display the results to the console.
+This will not commit any of the data to the database by specifying the -R
+option.
 
 ```shell
 /usr/local/spine/bin# ./spine -R -V 5
@@ -169,9 +171,10 @@ SPINE: Using spine config file [../etc/spine.conf]
 2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] DEBUG: The Value of Active Threads is 0 for Device ID 38
 2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] POLLER: Active Threads is 0, Pending is 0
 ```
-
 ####  Running spine for a specifc host
-If you want to run spine for a specifc host you are able to do that with the following command\
+
+If you want to run spine for a specifc host you are able to do that with the
+following command:
 
 ```shell
 /usr/local/spine/bin# ./spine -R -f 42 -l 42 -V 5
@@ -201,7 +204,8 @@ SPINE: Using spine config file [../etc/spine.conf]
 
 You are also able to view spine debug information via the log file
 also spine allows you to raise the level of detail it provides in the log
-if you want to debug a specific device and see the spine output click enable device debug.
+if you want to debug a specific device and see the spine output click enable
+device debug.
 
 Below is an example output of Spine debug info via the log file
 
@@ -224,7 +228,9 @@ Summary provides a count of how many data sources are having an issue per device
 ```shell
 2021/01/08 14:38:44 - SPINE: Poller[1] PID[14838] FATAL: Unable to read configuration file! (Spine init)
 ```
-Ensure that you have spine.conf in /usr/local/spine/etc on first install spine.conf may be spine.conf.dist
+
+Ensure that you have spine.conf in /usr/local/spine/etc on first install
+`spine.conf` may be `spine.conf.dist`.
 
 ```shell
 DEBUG Falling back to UDP Ping Due to SetUID Issues
