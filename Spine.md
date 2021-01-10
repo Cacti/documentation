@@ -133,5 +133,110 @@ chown root:root /usr/local/spine/bin/spine
 chmod u+s /usr/local/spine/bin/spine
 ```
 
+### Testing/Debugging spine via command line
+
+spine offer a a few differnt ways at the command line to test its functionality\
+Here are a few examples of some tests you can run by exectuing spine
+
+#### Test Spine without writing results to database
+This test allows you to run spine and display the results to the console\
+This will not commit any of the data to the database by specifying the -R option
+
+```shell
+/usr/local/spine/bin# ./spine -R -V 5
+SPINE: Using spine config file [../etc/spine.conf]
+2021-01-08 14:26:25 - SPINE: Poller[1] PID[13482] DEBUG: The path_php_server variable is /var/www/html/cacti/script_server.php
+2021-01-08 14:26:25 - SPINE: Poller[1] PID[13482] DEBUG: The path_cactilog variable is /var/www/html/cacti/log/cacti.log
+2021-01-08 14:26:25 - SPINE: Poller[1] PID[13482] DEBUG: The log_destination variable is 1 (FILE)
+2021-01-08 14:26:25 - SPINE: Poller[1] PID[13482] DEBUG: The path_php variable is /usr/bin/php
+2021-01-08 14:26:25 - SPINE: Poller[1] PID[13482] DEBUG: The availability_method variable is 2
+2021-01-08 14:26:25 - SPINE: Poller[1] PID[13482] DEBUG: The ping_recovery_count variable is 3
+2021-01-08 14:26:25 - SPINE: Poller[1] PID[13482] DEBUG: The ping_failure_count variable is 2
+2021-01-08 14:26:25 - SPINE: Poller[1] PID[13482] DEBUG: The ping_method variable is 2
+2021-01-08 14:26:25 - SPINE: Poller[1] PID[13482] DEBUG: The ping_retries variable is 1
+2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] POLLER: Active Threads is 1, Pending is 1
+2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] DEBUG: Entering ICMP Ping
+2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] DEBUG: Attempting to ping 192.168.1.5, seq 9 (Retry 0 of 1)
+2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] DEBUG: Attempting to ping 192.168.1.5, seq 9 (Retry 0 of 1)
+2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] DEBUG: ICMP Device Alive, Try Count:1, Time:0.4990 ms
+2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] PING: Result ICMP: Device is Alive
+2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] HT[1] Device has no information for recache.
+2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] HT[1] NOTE: There are '1' Polling Items for this Device
+2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] DEBUG: The NIFTY POPEN returned the following File Descriptor 5
+2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] HT[1] DS[64] TT[9.95] SCRIPT: perl /var/www/html/cacti/scripts/ping.pl '192.168.1.5', output: 0.047
+2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] HT[1] Total Time: 0.018 Seconds
+2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] HT[1] DEBUG: HOST COMPLETE: About to Exit Device Polling Thread Function
+2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] DEBUG: The Value of Active Threads is 0 for Device ID 38
+2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] POLLER: Active Threads is 0, Pending is 0
+```
+
+####  Running spine for a specifc host
+If you want to run spine for a specifc host you are able to do that with the following command\
+
+```shell
+/usr/local/spine/bin# ./spine -R -f 42 -l 42 -V 5
+SPINE: Using spine config file [../etc/spine.conf]
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] DEBUG: The path_php_server variable is /var/www/html/cacti/script_server.php
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] DEBUG: The path_cactilog variable is /var/www/html/cacti/log/cacti.log
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] DEBUG: The log_destination variable is 1 (FILE)
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] DEBUG: The path_php variable is /usr/bin/php
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] DEBUG: The Value of Active Threads is 1 for Device ID 0
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] POLLER: Active Threads is 1, Pending is 0
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] SPINE: Active Threads is 1, Pending is 1
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] DEBUG: In Poller, About to Start Polling of Device for Device ID 42
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] IPv4 address 1.1.1.30 (1.1.1.30)
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] DEBUG: Entering ICMP Ping
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] DEBUG: Attempting to ping 1.1.1.30, seq 0 (Retry 0 of 1)
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] DEBUG: ICMP Device Alive, Try Count:1, Time:26.5849 ms
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] PING: Result ICMP: Device is Alive
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] HT[1] Device has no information for recache.
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] HT[1] NOTE: There are '1' Polling Items for this Device
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] DEBUG: The NIFTY POPEN returned the following File Descriptor 7
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] HT[1] DS[68] TT[42.86] SCRIPT: perl /var/www/html/cacti/scripts/ping.pl '1.1.1.30', output: 26.9
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] HT[1] Total Time: 0.077 Seconds
+2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] HT[1] DEBUG: HOST COMPLETE: About to Exit Device Polling Thread Function
+```
+
+#### Spine debug via GUI
+
+You are also able to view spine debug information via the log file
+also spine allows you to raise the level of detail it provides in the log
+if you want to debug a specific device and see the spine output click enable device debug.
+
+Below is an example output of Spine debug info via the log file
+
+![spine](images/spine-debug-gui.png)
+
+To enable more detailed spine logging
+
+Console >> settings >> Poller
+
+You can choose from Detailed,Summary or No logging for Invalid data
+
+Detailed Logging will be similar to cmd.php in that you will get a report
+for each data source that is having an issue
+
+Summary provides a count of how many data sources are having an issue per device
+
+![spine](images/spine-parameters.png)
+
+### Common Spine related errors
+
+```shell
+2021/01/08 14:38:44 - SPINE: Poller[1] PID[14838] FATAL: Unable to read configuration file! (Spine init)
+```
+Ensure that you have spine.conf in /usr/local/spine/etc on first install spine.conf may be spine.conf.dist
+
+```
+
+DEBUG Falling back to UDP Ping Due to SetUID Issues
+
+```
+This is a permissions issue with spine ensure you have give spine the proper permissions
+```shell
+chmod u+s /usr/local/spine/bin/spine
+```
+
+
 ---
 Copyright (c) 2004-2021 The Cacti Group
