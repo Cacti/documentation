@@ -19,7 +19,7 @@ The standard Settings sub-tabs include:
   presets that every new Cacti **Device** get's by default, through
   **Automation**, the CLI or though the Web Interface.
 - [Poller](Settings-Poller.md) - Though most **Poller** settings have been
-  moved to the Data Collectors**, some are still managed at the system
+  moved to the **Data Collectors**, some are still managed at the system
   level including the poller type to use, script server and a number
   of additional settings.
 - [Data](Settings-Data.md) - This is where you can enable the RRDproxy
