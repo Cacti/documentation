@@ -27,10 +27,10 @@ Those settings include:
 - **Log Destination** - Where to place Cacti log output.
   Options include:
 
-   - **Logfile Only** - Only send log data to the Cacti log file
-   - **Logfile and Syslog** - Send log data to both the Cacti log file and the
-     System log facility
-   - **Syslog Only** - Send select log data to just the System log facility
+  - **Logfile Only** - Only send log data to the Cacti log file
+  - **Logfile and Syslog** - Send log data to both the Cacti log file and the
+    System log facility
+  - **Syslog Only** - Send select log data to just the System log facility
 
   This setting is quite self explanatory, when it comes to what type of messages
   are sent to the System log facility, see the `Syslog/Eventlog Item Selection`

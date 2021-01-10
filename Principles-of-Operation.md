@@ -61,7 +61,7 @@ way to once per several hours.
 In the image below, you can see the general flow of data from
 the device to the Cacti database.
 
-<img src="images/principles_of_operation.png" width="200"/>
+![Principles of Operation](images/principles-of-operation.png)
 
 In enterprise installations, you're dealing with potentially
 thousands of devices of different type, e.g. Servers, Network
@@ -169,7 +169,7 @@ multiple**, but **non-indexed** readings
 - you may even create Data Queries as scripts e.g. for querying a
  name server (index = domain) for requests per domain
 
-<img src="images/data-input-method-and-query.png" width="600"/>
+![Data Input Methods](images/data-input-method-and-query.png)
 
 By using the Exporting and Importing facilities, it is possible to share your
 results with others.
