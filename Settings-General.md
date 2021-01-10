@@ -36,7 +36,7 @@ Those settings include:
   section below.
 
 - **General Log Level** - This is the level of logging that Cacti will use.
-  Options include:
+Options include:
 
    - **NONE** - Don't perform any logging, not recommended.
    - **LOW** - Statistics and Errors
@@ -199,8 +199,8 @@ This is where Cacti obtains defaults for **Graph Templates**.
 - **Graph Template Image Format** - When creating a new **Graph Template**
   what `Image Format` should be used.  There is either:
 
-  - **SVG** - Scalable Vector Graphs (preferred, though larger size)
-  - **PNG** - Petri Net Graphs (backup, smaller but loose resolution when scaled)
+   - **SVG** - Scalable Vector Graphs (preferred, though larger size)
+   - **PNG** - Petri Net Graphs (backup, smaller but loose resolution when scaled)
 
 - **Graph Template Height** - The height in pixels of the Graph Canvas for new
   **Graph Templates**

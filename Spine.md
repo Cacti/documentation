@@ -172,7 +172,7 @@ SPINE: Using spine config file [../etc/spine.conf]
 2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] POLLER: Active Threads is 0, Pending is 0
 ```
 
-####  Running spine for a specifc host
+#### Running spine for a specifc host
 
 If you want to run spine for a specifc host you are able to do that with the
 following command:
