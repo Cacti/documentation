@@ -138,7 +138,7 @@ chmod u+s /usr/local/spine/bin/spine
 spine offer a a few differnt ways at the command line to test its functionality\
 Here are a few examples of some tests you can run by exectuing spine
 
-#### Test Spine without writing results to database 
+#### Test Spine without writing results to database
 This test allows you to run spine and display the results to the console\
 This will not commit any of the data to the database by specifying the -R option
 
@@ -207,21 +207,18 @@ Below is an example output of Spine debug info via the log file
 
 ![spine](images/spine-debug-gui.png)
 
-To enable more detailed spine logging 
+To enable more detailed spine logging
 
 Console >> settings >> Poller
 
 You can choose from Detailed,Summary or No logging for Invalid data
 
-Detailed Logging will be similar to cmd.php in that you will get a report 
+Detailed Logging will be similar to cmd.php in that you will get a report
 for each data source that is having an issue
 
 Summary provides a count of how many data sources are having an issue per device
 
 ![spine](images/spine-parameters.png)
-
-
-
 
 ### Common Spine related errors
 
@@ -231,7 +228,9 @@ Summary provides a count of how many data sources are having an issue per device
 Ensure that you have spine.conf in /usr/local/spine/etc on first install spine.conf may be spine.conf.dist
 
 ```
+
 DEBUG Falling back to UDP Ping Due to SetUID Issues
+
 ```
 This is a permissions issue with spine ensure you have give spine the proper permissions
 ```shell
