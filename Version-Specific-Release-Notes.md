@@ -1431,7 +1431,7 @@ Version | Feature/Bug | Description
 1.1.8 | feature | For themes other than classic, make color id selection autocomplete
 1.1.8 | feature | CLOG timestamp is now formatted as defined in settings
 1.1.8 | feature | CLOG can show loginformation from rotated logfiles
-1.1.7 | issue#470 | Enhance Cacti's SNMP function and Data Query XML, add <output_format>hex|string|guess</output_format>
+1.1.7 | issue#470 | Enhance Cacti's SNMP function and Data Query XML, add &lt;output_format&gt;hex|string|guess&lt;/output_format&gt;
 1.1.7 | issue#653 | Devices with empty sysNames are not added to discovered devices
 1.1.7 | issue#655 | Data source not displaying device name
 1.1.7 | issue#658 | Scheduled Reports (type "tree") not working
@@ -1479,7 +1479,7 @@ Version | Feature/Bug | Description
 1.1.6 | feature | Updating Tablesorter to v2.28.9, adding widgets and pager
 1.1.5 | issue#580 | Data collection warnings when using cmd.php
 1.1.5 | issue#592 | Incorrectly formatted HTML
-1.1.5 | issue#606 | Replace <path_php_binary> in data input methods
+1.1.5 | issue#606 | Replace &lt;path_php_binary&gt; in data input methods
 1.1.5 | issue#607 | Allow draw_menu to specify multiple actions for the same URL
 1.1.5 | issue#608 | Spaces adjacent to double quotes are eliminated during data input method import
 1.1.5 | issue#609 | Honor the column setting in graph tree view mode

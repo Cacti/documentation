@@ -26,12 +26,15 @@ Edit page has multiple Sub-tabs.  They include:
 
 - **General** - General settings about the User Group
 - **Members** - A list of User Group members
-- **Permissions** - Roles and Realms that provide group member access to Cacti components
-- **Graph Perms** - Effective Graph Permissions, rolling up Device and Template permissions
+- **Permissions** - Roles and Realms that provide group member access to Cacti
+  components
+- **Graph Perms** - Effective Graph Permissions, rolling up Device and Template
+  permissions
 - **Device Perms** - User Group Device Permissions
 - **Template Perms** - Graph Template Permissions
 - **Tree Perms** - Tree Permissions
-- **User Settings** - Settings for the User of the Group if they can not manage settings on their own
+- **User Settings** - Settings for the User of the Group if they can not manage
+  settings on their own
 
 The first form elements are pretty self explanitory.  The Tree,
 Graph List, and Preview rights speak to Cacti three Graph Viewing modes
