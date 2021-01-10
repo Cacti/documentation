@@ -32,7 +32,7 @@ information.
 
 ### Technical support
 
-Cacti technical support page. 
+Cacti technical support page.
 Used by developers and technical support persons to assist with issues in Cacti.
 Includes checks for common configuration issues.
 There is also built-in checks that help you tune your Cacti installation
@@ -57,15 +57,17 @@ to get the most out of your new hardware.
 When you delete Data Sources from Cacti, the corresponding RRDfiles are not
 removed automatically. Use this utility to facilitate the removal of
 these old files.
-RRD files can also be schedule to automatically be removed this option can
-be configured in settings >> paths >> RRD file autoclean
+
+RRDfiles can also be schedule to automatically be removed this option can
+be configured in `Console > Configuration > Settings > Paths` by selecting
+the RRDfile autoclean selection.
 
 ![System Utilities](images/rrd-autoclean.png)
 
 ### Viewing Change log from system utilities
 
 Starting from Cacti 1.2.16 you are able to view the change log of the current
-version you are using via the system utilities menu this is useful for 
+version you are using via the system utilities menu this is useful for
 seeing what fixes are included in your version as well as new release versions
 
 ![System Utilities](images/change-log-sysutils.png)
