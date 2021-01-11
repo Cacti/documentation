@@ -194,7 +194,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    7.2. [Export Templates](Export-Template.md)
 
-8. [Configuration - Settings](Settings.md)
+8. [Settings (w/o Auth)](Settings.md)
 
    8.1. [General](Settings-General.md)
 
@@ -208,35 +208,39 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    8.6. [Visual](Settings-Visual.md)
 
-   8.7. [Authentication Local](Settings-Authentication.md)
+   8.7. [Performance](Settings-Performance.md)
 
-   8.8. [Authentication LDAP](Settings-Auth-LDAP.md)
+   8.8. [Spikes](Settings-Spikes.md)
 
-   8.9. [Authentication Basic](Settings-Auth-Basic.md)
+   8.9. [Mail/Reporting/DNS](Settings-Mail-Reporting-DNS.md)
 
-   8.10. [Performance](Settings-Performance.md)
+9. [Settings - Auth](Settings-Auth.md)
 
-   8.11. [Spikes](Settings-Spikes.md)
+   9.1. [Local Auth](Settings-Auth-Local.md)
 
-   8.12. [Mail/Reporting/DNS](Settings-Mail-Reporting-DNS.md)
+   9.2. [LDAP Auth](Settings-Auth-LDAP.md)
 
-9. [Configuration - Users, Groups and Domains](Settings-Users-Groups-Domains.md)
+   9.3. [Basic Auth](Settings-Auth-Basic.md)
 
-   9.1. [Users](User-Management.md)
+   9.4. [Domains Auth](Settings-Domains.md)
 
-   9.2. [User Groups](User-Group-Management.md)
+10. [Configuration - Users, Groups and Domains](Settings-Users-Groups-Domains.md)
 
-   9.3. [User Domains](User-Domains.md)
+   10.1. [Users](User-Management.md)
 
-10. [Configuration - Plugins](Plugins.md)
+   10.2. [User Groups](User-Group-Management.md)
 
-11. Utilities
+   10.3. [User Domains](User-Domains.md)
 
-   11.1. [System Utilities](System-Utilities.md)
+11. [Configuration - Plugins](Plugins.md)
 
-   11.2. [Data Debug](Data-Debug.md)
+12. Utilities
 
-   11.3. [External Links](External-Links.md)
+   12.1. [System Utilities](System-Utilities.md)
+
+   12.2. [Data Debug](Data-Debug.md)
+
+   12.3. [External Links](External-Links.md)
 
 ### Advanced Operations
 
