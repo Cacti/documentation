@@ -226,21 +226,21 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 10. [Configuration - Users, Groups and Domains](Settings-Users-Groups-Domains.md)
 
-   10.1. [Users](User-Management.md)
+    10.1. [Users](User-Management.md)
 
-   10.2. [User Groups](User-Group-Management.md)
+    10.2. [User Groups](User-Group-Management.md)
 
-   10.3. [User Domains](User-Domains.md)
+    10.3. [User Domains](User-Domains.md)
 
 11. [Configuration - Plugins](Plugins.md)
 
 12. Utilities
 
-   12.1. [System Utilities](System-Utilities.md)
+    12.1. [System Utilities](System-Utilities.md)
 
-   12.2. [Data Debug](Data-Debug.md)
+    12.2. [Data Debug](Data-Debug.md)
 
-   12.3. [External Links](External-Links.md)
+    12.3. [External Links](External-Links.md)
 
 ### Advanced Operations
 
