@@ -69,9 +69,10 @@ the RRDfile autoclean selection.
 
 ### Viewing Change log from system utilities
 
-Starting from Cacti 1.2.16 you are able to view the change log of the current
-version you are using via the system utilities menu this is useful for
-seeing what fixes are included in your version as well as new release versions
+With Cacti 1.2.16+, you are now able to view the CHANGELOG information up to the
+version your server is currently running.  This is available via the system
+utilities menu which is useful for seeing what fixes and occasional features are
+included in your version.
 
 ![System Utilities](images/change-log-sysutils.png)
 
