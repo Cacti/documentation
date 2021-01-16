@@ -36,7 +36,7 @@ window which includes
 - **SNMP information** - SNMP Credentials for connecting to the **Device**
 - **Device Notes** - Arbitrary unstructured information about the **Device**
 
-![Add Device Info Screen](images/Add_Device_screen.png)
+![Add Device Info Screen](images/add-device-screen.png)
 
 Cacti requires this basic information to be able to monitor the device and once
 entered, click save on the bottom right corner. With the device created you will
