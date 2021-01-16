@@ -10,7 +10,7 @@ The URL Linking settings provide the Cacti administrator a URL prefix
 that will point properly to the main Cacti site for both core Cacti
 functions and Plugins to create URL for their use.  Generally this
 URL should include the full DNS name of the Cacti server, and the
-correct protocol, for example https.  The image below show an example
+correct protocol, for example HTTPS.  The image below show an example
 of how this might be setup.
 
 ![PHP Mail Function](images/settings-mrd-urls.png)
@@ -19,13 +19,13 @@ of how this might be setup.
 
 Not only Cacti, but several plugins today are still leveraging Email
 for end user and administrative notification.  Cacti uses the very
-popular PHP-Mailer 3rd party compomponent to facilitate Email 
+popular PHP-Mailer 3rd party component to facilitate Email 
 notification service.  In this section, you will pick the method
 that you wish to provide Email notification an it's settings.  Cacti
 actually provides three methods.  They include:
 
 - **PHP Mail Function** - PHP has a built-in mail facility where
-  PHP will communicate with the localhosts mail facilities to send
+  PHP will communicate with the localhost mail facilities to send
   mail.  This is useful if your Cacti system is setup as an
   anonymous forwarder to a corporate mail system.
 - **Sendmail Binary** - This method relies on the `sendmail` binary
@@ -117,7 +117,7 @@ Those options include:
 
 Cacti Reporting can generate very large Email attachments.  Therefore
 the **Reporting Presets** allow you to control the traffic associated
-with reporting.  From here, you can also set preset's for the image type
+with reporting.  From here, you can also set presets for the image type
 and logging.  You can see the settings from the image below.
 
 ![Reporting Presets](images/settings-mrd-report-presets.png)
