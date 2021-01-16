@@ -7,13 +7,10 @@ settings is important, especially for debugging issues.  Cacti's Paths
 sub-tab is broken into the following sub-sections:
 
 - **Required Tool Paths** - Paths that are essential for Cacti's operation
-
 - **Logging** - Settings associated with Cacti's logging facilities
   including log rotation
-
 - **Alternate Poller Path** - Locations for Cacti's spine binary and spine
   config file if not in the established default locations
-
 - **RRD Cleaner** - Setting for Cacti's RRDfile disposal of removed RRDfile
   when Data Sources are removed.
 

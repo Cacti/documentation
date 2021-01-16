@@ -51,7 +51,7 @@ Before proceeding, please ensure you are familiar with the following terms:
 
 ### LDAP General Settings
 
-![Ldap Settings Page](images/ldap-settings.PNG)
+![LDAP Settings Page](images/ldap-settings.png)
 
 #### Mode
 
