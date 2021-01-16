@@ -9,9 +9,9 @@ for graphing, though is just the surface of what is achievable:
 - A 24 port switch and you poll the device via snmp and graph all of
   the ports then there will be 24 data sources
 
-Note: if you add more graphs that base their data on the original data source
-that would not count as another data source since it uses the already existing
-source.
+> **Note**: if you add more graphs that base their data on the original 
+> **Data source** that would not count as another **Data Source** since
+> it uses the already existing source.
 
 For example, if you have a 24 port switch that you create an **In/Out Bits**
 graph for each interface, and you then add the **In/Out Bits with 95th
