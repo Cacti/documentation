@@ -114,6 +114,7 @@ and don't forget to choose **Get SNMP Data (indexed)**. **Create** to see
 
 ![SNMP Table 3 - Data Query](images/dq-03.preview.png)
 
+
 It has now **Successfully located XML file**. But this does not mean that there
 are no errors. So lets go on with that. Turn to the **Device** you want to
 query and add the new **Data Query** as shown:
@@ -303,8 +304,7 @@ Common Tasks. Please go to **Data Templates** and **Add**:
 Define the **Name** of the Data Template. When defining the Name of the **Data
 Source**, do not forget to check the **Use Per-Data Source Value (Ignore this
 Value)** checkbox. This will come in useful later. Data Input Method will read
-**Get SNMP Data (Indexed)**. Select **Associated RRAs** as usual (don't bother
-with my settings):
+**Get SNMP Data (Indexed)**. Select the **Data Source Profile** as usual:
 
 ![SNMP Table 2 - Data Template](images/dt-02.preview.png)
 
@@ -313,18 +313,18 @@ see:
 
 ![SNMP Table 3 - Data Template](images/dt-03.preview.png)
 
-and **Create**. Now enter the second **Data Source Item**:
+and **New** or the plus sign on the **Data Source Item** panel. 
+Now enter the second **Data Source Item**:
 
 ![SNMP Table 4 - Data Template](images/dt-04.preview.png)
 
-Please pay attention to setting the **Maximum Value** to 0 (zero). Else, all
-values exceeding the pre-defined value of 100 would be stored as **NaN**. Now
-scroll down to the bottom of the page and check **Index Type, Index Value and
-Output Type Id**
+Please pay attention to setting the **Maximum Value** to 'U' (no limit). Else, all
+values exceeding the pre-defined as **NaN**. Now scroll down to the bottom 
+of the page and check **Index Type, Index Value and Output Type Id**
 
 ![SNMP Table 5 - Data Template](images/dt-05.preview.png)
 
-**Save** and the Data Template is done.
+**Save** and the **Data Template** is finished.
 
 ### Defining the Graph Template
 
