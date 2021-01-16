@@ -13,7 +13,7 @@ cacti from this page you can do the following
 
 - View the user log for audits.
 
-![System Utilities](images/cacti_system_utilities.JPG).
+![System Utilities](images/system-utilities.png).
 
 Some of the most important tools are listed below
 
