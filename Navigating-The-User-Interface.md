@@ -131,7 +131,7 @@ Area** to the left, and in the **Cacti Content Area**, you can see the
 returned.  You can *Search* the Tree View from the *Search* area above the
 **Tree Navigation Area**.
 
-![Cacti Tree View Page](images/cacti-tree-view-page.png)
+![Cacti Tree View Page](images/tree-view-page.png)
 
 ## The Cacti Console
 
