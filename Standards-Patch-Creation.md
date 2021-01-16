@@ -59,7 +59,7 @@ git config --global user.email "email@example.com"
 1. Fork cacti on github.com using the Fork button that appears top right of the
    code area.
 
-   ![create fork](images/patch_creation_clone.png)
+   ![create fork](images/patch-creation-clone.png)
 
 2. Clone the source to your local machine, you can use one of the following two
    lines.  The second allows you to clone into a directory of your own naming,
@@ -93,7 +93,7 @@ git config --global user.email "email@example.com"
    the new name of a branch before hitting return.  GitHub will then create and
    switch to that branch but your local repo will know nothing of this yet.
 
-   ![image](images/patch_creation_branch.png)
+   ![image](images/patch-creation-branch.png)
 
 To checkout the newly created branch, you need to pull down the latest GitHub
 information using `git fetch` before perform the checkout.  It will as follows:
@@ -249,7 +249,7 @@ your issue/fix/enhancement, you will need to let the cacti group know that these
 changes are available.  To do this, you can browse to your code and then click
 on pull request
 
-![cacti - create pull request 1](images/patch_creation_pull_request_1.png)
+![cacti - create pull request 1](images/patch-creation-pull-request-1.png)
 
 This will then switch you automatically over to the cacti repo, create a pull
 request and fill in details as much as possible.  You will then have the
@@ -257,14 +257,14 @@ opportunity to edit the title and enter a description.  It would be wise to put
 as much detail as possible, and if you referring back to a previous issue, place
 a link to that too.
 
-![cacti - create pull request 2](images/patch_creation_pull_request_2.png)
+![cacti - create pull request 2](images/patch-creation-pull-request-2.png)
 
 After you have entered the details above, double check the changes that follow
 and make sure you have no conflicts again.  It is normal to have conflicts here
 if you have no been updating your local repo with the changes from the upstream
 (cacti) repo.  If not, everything will look OK.
 
-![cacti - create pull request 3](images/patch_creation_pull_request_3.png)
+![cacti - create pull request 3](images/patch-creation-pull-request-3.png)
 
 If you are positive that you have everything in order, click Create Pull Request
 and this will be submitted to the cacti repo. Once the developers there have
