@@ -75,7 +75,7 @@ interfaces.xml XML file.
 
 Go to **Data Queries** and click the plus (+) glyph to see:
 
-![Add new Data Query](images/r-dq1_0.png)
+![Add new Data Query](images/r-dq1-0.png)
 
 Here, we are using the already existing interface.xml file. Select **Get SNMP
 Data (Indexed)** as **Data Input Method**. Press **Create** to see:
@@ -136,7 +136,7 @@ and select *Interface - Traffic (bits/second)* from the drop down as shown
 below.  Press **Create** to initialize the association of this **Graph
 Template** with out new **Data Query**.
 
-![Add new associated Graph Template](images/r-dq3_0.png)
+![Add new associated Graph Template](images/r-dq3-0.png)
 
 Once we press the **Create** button, we should get an image like the one below.
 From here, it's important that we associate the *Data Sources* to the XML file
@@ -177,7 +177,7 @@ the **Data Query** page for our Example **Data Query** as shown below.
 
 Now go to your **Device** to add the **Associated Data Query**:
 
-![Apply Data Query to your Device](images/r-dq-dev1_0.png)
+![Apply Data Query to your Device](images/r-dq-dev1-0.png)
 
 Click **Add** and then **Create Graphs for this Host** to see:
 

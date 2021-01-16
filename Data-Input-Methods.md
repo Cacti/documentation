@@ -204,7 +204,7 @@ if ($2 == "") {
 To define this script as a **Data Input Method** to Cacti, please go to **Data
 Input Methods** and click **Add**. You should see:
 
-![Data Input Methods New](images/r-dim1_0.png)
+![Data Input Methods New](images/r-dim1-0.png)
 
 Please fill in **Name**, select **Script/Command** as Input Type and provide the
 command that should be used to retrieve the data. You may use `<path_cacti>` as
@@ -234,7 +234,7 @@ At least, define the **Output Fields**. Again, click **Add** as described above:
 Provide a short **Field [Output]** name and a more meaningful **Friendly Name**.
 As you will want to save those data, select **Update RRDfile**. Create to see:
 
-![Output Fields 3](images/r-dim6_0.png)
+![Output Fields 3](images/r-dim6-0.png)
 
 Click **Save** and you're done.
 
@@ -351,7 +351,7 @@ Find your **Graph** by going to **Graph Management**, filtering for your host
 and selecting the appropriate **Graph** (there are other methods as well). This
 may look like:
 
-![Newly Graph after a few polling cycles](images/router_ping_graph.png)
+![Newly Graph after a few polling cycles](images/router-ping-graph.png)
 
 ## Walkthrough: Script with more Output Parameters
 
