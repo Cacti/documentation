@@ -686,7 +686,7 @@ and fill in the values as usual:
 
 Now **Save**. Next, fill in the **Graph Items**
 
-![Script Data Query - Graph Template 04](images/dev-gt-04_0.preview.png)
+![Script Data Query - Graph Template 04](images/dev-gt-04-0.preview.png)
 
 Select the Data Source from our Data Template, take the color and select AREA,
 enter some text
@@ -808,7 +808,7 @@ Query. **Create Graphs for this Host**
 
 to see
 
-![Script Data Query - Devices 02](images/dev-dev-11_0.preview.png)
+![Script Data Query - Devices 02](images/dev-dev-11-0.preview.png)
 
 I've left the standard Interface Statistics in the screenshot. So you may
 compare both Queries. Our PHP Interface Traffic stuff has two more header

@@ -27,11 +27,11 @@ Lets have an example: standard Interface MIB with the corresponding part of the
 `<path_cacti>/resources/snmp_queries/interfaces.xml` file are displayed using
 the following table:
 
-![SNMP Table 1](images/snmp_dqw_table1.png)
+![SNMP Table 1](images/snmp-dqw-table1.png)
 
-![SNMP Table 2](images/snmp_dqw_table2.png)
+![SNMP Table 2](images/snmp-dqw-table2.png)
 
-![SNMP Table 3](images/snmp_dqw_table3.png)
+![SNMP Table 3](images/snmp-dqw-table3.png)
 
 and see the corresponding table structure when defining **New Graphs** for that
 **Device** (my laptop):
