@@ -246,15 +246,13 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 1. Data Collection
 
-   1.1. [How to Graph a Custom Collection Script](How-to-Graph-a-Custom-Collection-Script.md)
+   1.1. [Command Line Scripts](Command-Line-Scripts.md)
 
    1.2. [PHP Script Server](PHP-Script-Server.md)
 
    1.3. [Spine Data Collection](Spine.md)
 
-   1.4. [Command Line Scripts](Command-Line-Scripts.md)
-
-   1.5. [Performance Setting (Boost)](Boost.md)
+   1.4. [Performance Setting (Boost)](Boost.md)
 
 2. [Frequently Asked Questions](Frequently-Asked-Questions.md)
 
@@ -290,9 +288,11 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 3. [How To Setup Remote Pollers](How-To-Setup-Remote-Pollers.md)
 
-4. [How To Determine Template Version](How-To-Determine-Template-Version.md)
+4. [How to Graph a Custom Collection Script](How-to-Graph-a-Custom-Collection-Script.md)
 
-5. [How To Setup SSH Tunnels](How-To-SSH-Tunnels.md)
+5. [How To Determine Template Version](How-To-Determine-Template-Version.md)
+
+6. [How To Setup SSH Tunnels](How-To-SSH-Tunnels.md)
 
 ### Contributing
 
