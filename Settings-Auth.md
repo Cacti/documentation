@@ -15,7 +15,7 @@ today in the industry.  Those Authentication method include:
 - **Web Basic Authentication** - With this method, the Web Server itself
   controls the Authentication.  Using this method, Cacti can support protocols
   such as SAML2 via OpenITC, NIS, LDAP, local password, TACAC+, etc.
-- **LDAP Authentication** - Cacti supports direct communications with LDAP
+- **LDAP/AD Authentication** - Cacti supports direct communications with LDAP
   and Active Directory servers as well.  When using this method, Cacti
   can limit what User Group may access Cacti based upon more detailed
   settings.
