@@ -1,12 +1,12 @@
 # Local Authentication
 
-##Overview
+## Overview
 
 Cacti's Built-in Authentication is sufficient for most small work-group Cacti
 installs.  All users and their passwords are stored on the local Cacti
 database, and are stored in a method where they are not easily compromised.
 
-##Local Account Complexity Requirements
+## Local Account Complexity Requirements
 
 Additionally, Cacti has the ability to remember password history, force 
 complexity rules, minimum lengths, force change frequency, etc. on new 
@@ -31,7 +31,7 @@ Those options include:
   do not allow a user to use one of those prior passwords during
   their password changes.
 
-##Account Locking
+## Account Locking
 
 If a user attempts to use an incorrect password more than a certain
 number of times without a successful login, Cacti can automatically
