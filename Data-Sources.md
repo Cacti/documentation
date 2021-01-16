@@ -24,7 +24,7 @@ to your server.
 You can see how many data sources are associated with a single device by going
 to managment then clicking on devices.
 
-![device datasources](images/cacti_device_datasource.JPG)
+![device datasources](images/device-datasource.png)
 
 You can also see the total amount of data sources by checking the poller stats
 on the system. Click the log tab and filter by stats and lookout for the below

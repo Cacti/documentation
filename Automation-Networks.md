@@ -37,7 +37,7 @@ Now" this will start the discovery
 
 Here is the flow of the automation scan
 
-![Automation Flow](images/cacti_automation_flow3.JPG)
+![Automation Flow](images/automation-flow3.png)
 
 ---
 Copyright (c) 2004-2021 The Cacti Group
