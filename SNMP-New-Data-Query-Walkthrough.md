@@ -476,9 +476,9 @@ them to *.txt. Please save them as pure *.xml files. Save hrStorageTable.xml
 into ./resource/snmp/queries and import all templates from
 cacti_graph_template_host_mib_hrstoragetable.xml.
 
-[Cacti Graph Template Host MIB hrStorageTable](resource/xml/cacti_graph_template_host_mib_hrstoragetable.xml_.txt)
+[Cacti Graph Template Host MIB hrStorageTable](resource/xml/cacti_graph_template_host_mib_hrstoragetable.xml)
 
-[hrStorageTable](resource/xml/hrStorageTable.xml.gz) Unzip and store into resource/snmp_queries.
+[hrStorageTable](resource/xml/hrStorageTable.xml) Unzip and store into resource/snmp_queries.
 
 ---
 Copyright (c) 2004-2021 The Cacti Group
