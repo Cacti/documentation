@@ -30,7 +30,7 @@ the host template you choose will not lock you into any particular
 configuration, it will just provide more intelligent defaults for that type of
 host.
 
-![Adding a New Device](images/new_device.png)
+![Adding a New Device](images/new-device.png)
 
 ### Device Field Definitions
 
@@ -292,7 +292,7 @@ devices. To do this, select the New Graphs menu option under the Create
 heading. If you're still at the device edit screen, select Create Graphs for
 this Host to see a screen similar to the image pictured below.
 
-![Creating New Graphs](images/new_graphs.png)
+![Creating New Graphs](images/new-graphs.png)
 
 The dropdown menu that contains each device should be used to select the host
 that you want to create new graphs for. The basic concept to this page is
