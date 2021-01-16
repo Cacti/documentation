@@ -1,6 +1,6 @@
 # Basic Authentication
 
-##Overview
+## Overview
 
 Basic Auth settings leverage both Apache's and NGINX Authentication modules
 to grant a user access to the Cacti Website.  The various configuration steps
@@ -16,7 +16,7 @@ method into production.
 > when you enable Basic Authentication, you can lock yourself out of the
 > Cacti Website.
 
-##Special Users
+## Special Users
 
 The image below shows the settings for **Web Basic Authentication** which
 includes the `Special Users` sub-section.
@@ -35,7 +35,7 @@ Those settings include:
 - **Basic Auth Mapfile** - If your basic users do not match OS users
   you can force a basic account to login with an alternate account.
 
-##Basic Auth Mapfile
+## Basic Auth Mapfile
 
 This settings is important for plugins that grant certain features
 to accounts, but those accounts do not match the login account.  For
