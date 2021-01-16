@@ -25,6 +25,30 @@ today in the industry.  Those Authentication method include:
   and you wish to restrict who can login as who, this Authentication
   method allows you to setup that type of security system.
 
+For most of these `Authentication Methods`, there are some common settings
+showing in the image below.
+
+![Common Authentication Options](images/settings-auth-common.png)
+
+Those options include:
+
+- **Authentication Method** - One of the options below.
+- **Support Authentication Cookies** - Provide Remember me that will keep a user
+  logged in from a single browser instance for up-to 90 days without
+  requesting that they re-validate their passwords.
+- **Primary Admin** - This is the Primary Cacti Admin account.  This user
+  account will receive all Cacti Administrative notification like when
+  the Cacti system is experiencing issues.
+- **Guest User** - If you select a **Guest User**, people within an organization
+  will be able to access certain Cacti pages without first authenticating.
+  This setting is good for the pages like the **Graph Page** where you may
+  with to embed live Cacti **Graphs** in other corporate websites.
+- **User Template**, when creating new accounts, either LDAP, Web Basic,
+  or new Cacti local accounts, Cacti will pull the users default Authorization
+  from this Template User account.  For some Cacti **Authentication Methods**,
+  you can have more than one Template User, for example: 
+  **Multiple LDAP/AD Domains**.
+
 In the sections below, we will go over these various 
 **Authentication Methods** and their settings.
 
