@@ -1,6 +1,6 @@
 # Authentication
 
-##Overview
+## Overview
 
 Cacti provides four Authentication methods that can be leveraged to provide
 Authentication services.  When combined with the variety of Apache and NGINX 
