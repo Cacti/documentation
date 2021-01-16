@@ -284,13 +284,15 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 ### How Tos
 
-1. [Determine template version](How-To-Determine-Template-Version.md)
+1. [How To Work with Templates](How-To-Work-With-Templates.md)
 
-2. [Using SSH Tunnels](How-To-SSH-Tunnels.md)
+2. [How To Work with Data Queries](How-To-Data-Queries.md)
 
-3. [Data Query Templates](How-To-Data-Query-Templates.md)
+3. [How To Setup Remote Pollers](How-To-Setup-Remote-Pollers.md)
 
-4. [How To Setup Remote Pollers](How-To-Setup-Remote-Pollers.md)
+4. [How To Determine Template Version](How-To-Determine-Template-Version.md)
+
+5. [How To Setup SSH Tunnels](How-To-SSH-Tunnels.md)
 
 ### Contributing
 

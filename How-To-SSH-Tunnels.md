@@ -1,4 +1,4 @@
-# Using SSH tunnels to graph a remote Unix server
+# How To Setup SSH Tunnels to graph a remote Unix server
 
 Howto created by `fmangeant` at [Cacti
 Forum](http://forums.cacti.net/viewtopic.php?t=24960)

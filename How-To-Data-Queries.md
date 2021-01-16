@@ -1,4 +1,4 @@
-# Data Query Templates
+# How To Work with Data Queries
 
 During the past few weeks as I've made various SNMP Data Query templates, I've
 ran into a few 'tricks' (which existing user scripts use) to make them work

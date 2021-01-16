@@ -1,4 +1,4 @@
-# How to determine a Cacti template version
+# How To Determine a Cacti Template Version
 
 Users are often bewildered when they are unable to import templates found on
 the forum and presented with the error, **Error: XML: Hash version does not

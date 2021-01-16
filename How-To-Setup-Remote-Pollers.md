@@ -1,4 +1,4 @@
-# Remote Poller setup
+# Remote Poller Setup
 
 Remote Pollers add complexity to your cacti setup while also massivley extended
 the scalability of it.  Remote Pollers allow system admins to distribute
@@ -9,7 +9,7 @@ For example you may have a device in toronto but if your pollers are in Newyork
 the network latency may causes issues with your metrics having a remote poller
 in Toronto in this case will help with that issue
 
-## Setup instructions
+## Setup Instructions
 
 With this setup the following layout is assumed
 
@@ -19,7 +19,7 @@ With this setup the following layout is assumed
 
 - Remote poller 2 servers Ip is 192.168.1.20
 
-## Database configurations
+## Database Configuration
 
 Each server will have its own local database however the remote pollers will
 need to talk back to the main poller so we must allow the remote servers user
