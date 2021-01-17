@@ -23,13 +23,15 @@ this is done via a REGEX any perl based REGEX can be used.
 To test this REGEX on existing devices you can click the show eligible Objects
 this will check the Devices currently in cacti for a match.
 
+![Tree Rules Preview](images/automation-tree-rules-edit4.png)
+
 Once a device is a match it will be placed on the default tree.
 To change which tree the device will be placed on simply select the tree name
 from the dropdown list.
 
 ![Tree Rules Item Edit](images/automation-tree-rules-edit3.png)
 
-![Tree Rules Preview](images/automation-tree-rules-edit4.png)
+
 
 ---
 Copyright (c) 2004-2021 The Cacti Group
