@@ -104,5 +104,21 @@ Information such as when the last time boost started, How long it ran for, The a
 
 ![System Utilities](images/system-utilities-boost2.png)
 
+### Viewing the Data Source Query Cache
+
+Console -> Utilities -> System Utilities -> View Data Source Query cache
+
+The Data Query Cache stores information gathered from Data Query input types. 
+The values from these fields can be used in the text area of Graphs for Legends, Vertical Labels, and GPRINTS as well as in CDEF's.
+
+![System Utilities](images/system-utilities-viewdqcache.png)
+
+### Viewing the Poller Cache 
+Console -> Utilities -> System Utilities -> View Poller cache
+
+This is the data that is being passed to the poller each time it runs.
+
+![System Utilities](images/system-utilities-viewpcache.png)
+
 ---
 Copyright (c) 2004-2021 The Cacti Group
