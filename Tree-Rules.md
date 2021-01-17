@@ -32,6 +32,8 @@ from the dropdown list.
 ![Tree Rules Item Edit](images/automation-tree-rules-edit3.png)
 
 
+We also have the option to auto create a tree based on our rule in this case a new tree
+Named Linux will be created if it does not already exist.
 
 ---
 Copyright (c) 2004-2021 The Cacti Group
