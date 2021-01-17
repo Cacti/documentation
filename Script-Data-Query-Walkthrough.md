@@ -47,85 +47,75 @@ each one on a separate line.
 ```php
 <?php
 
-/* do NOT run this script through a web browser */
-if (!isset($_SERVER["argv"][0]) || isset($_SERVER['REQUEST_METHOD'])  || isset($_SERVER['REMOTE_ADDR'])) {
-   die("<br><strong>This script is only meant to run at the command line.</strong>");
-}
-
-# deactivate http headers
-$no_http_headers = true;
 # include some cacti files for ease of use
-include(dirname(__FILE__) . "/../include/global.php");
-include(dirname(__FILE__) . "/../lib/snmp.php");
+include(dirname(__FILE__) . '/../include/cli_check.php');
+include(dirname(__FILE__) . '/../lib/snmp.php');
 
 # define all OIDs we need for further processing
 $oids = array(
-        "index"         => ".1.3.6.1.2.1.2.2.1.1",
-        );
-$xml_delimiter          =  "!";
+	'index' => '.1.3.6.1.2.1.2.2.1.1',
+);
+
+$xml_delimiter  =  '!';
 
 # all required input parms
-$hostname       = $_SERVER["argv"][1];        # hostname/IP@
-$cmd            = $_SERVER["argv"][2];        # one of: index/query/get
+$hostname        = $_SERVER['argv'][1];        # hostname/IP@
+$cmd             = $_SERVER['argv'][2];        # one of: index/query/get
 
 # put your own community string here
-$snmp_community  = "public";            # community string
+$snmp_community  = 'public';            # community string
 $snmp_version    = 1;                # snmp version
 $snmp_port       = 161;              # snmp port
 $snmp_timeout    = 500;              # snmp timeout
 $snmp_retries    = 3;                # snmp retries
 $max_oids        = 1;                # max oids for V2/V3 hosts
 # required for SNMP V3
-$snmp_auth_username       = "";
-$snmp_auth_password       = "";
-$snmp_auth_protocol       = "";
-$snmp_priv_passphrase     = "";
-$snmp_priv_protocol       = "";
-$snmp_context             = "";
+$snmp_auth_username       = '';
+$snmp_auth_password       = '';
+$snmp_auth_protocol       = '';
+$snmp_priv_passphrase     = '';
+$snmp_priv_protocol       = '';
+$snmp_context             = '';
 
 # -------------------------------------------------------------------------
 # main code starts here
 # -------------------------------------------------------------------------
 
-
 # -------------------------------------------------------------------------
 # script MUST respond to index queries
 #       the command for this is defined within the XML file as
 #       <arg_index>index</arg_index>
-#       you may replace the string "index" both in the XML and here
+#       you may replace the string 'index' both in the XML and here
 # -------------------------------------------------------------------------
 #       php -q <script> <parms> index
 # will list all indices of the target values
 # e.g. in case of interfaces
 #      it has to respond with the list of interface indices
 # -------------------------------------------------------------------------
-if ($cmd == "index") {
-        # retrieve all indices from target
-        $return_arr = reindex(cacti_snmp_walk($hostname, $snmp_community,
-        $oids["index"], $snmp_version, $snmp_auth_username,
-        $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol,
-        $snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, $max_oids, SNMP_POLLER));
+if ($cmd == 'index') {
+	# retrieve all indices from target
+	$return_arr = reindex(cacti_snmp_walk($hostname, $snmp_community,
+	$oids['index'], $snmp_version, $snmp_auth_username,
+	$snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol,
+	$snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, $max_oids, SNMP_POLLER));
 
-        # and print each index as a separate line
-        for ($i=0;($i<sizeof($return_arr));$i++) {
-                print $return_arr[$i] . "\n";
-        }
-
-# -------------------------------------------------------------------------
-# -------------------------------------------------------------------------
+	# and print each index as a separate line
+	for ($i=0;($i<sizeof($return_arr));$i++) {
+		print $return_arr[$i] . "\n";
+	}
 } else {
-        print "Invalid use of script query, required parameters:\n\n";
-        print "    <hostname> <cmd>\n";
+	print "Invalid use of script query, required parameters:\n\n";
+	print "    <hostname> <cmd>\n";
 }
 
 function reindex($arr) {
-        $return_arr = array();
+	$return_arr = array();
 
-        for ($i=0;($i<sizeof($arr));$i++) {
-                $return_arr[$i] = $arr[$i]["value"];
-        }
+	for ($i=0;($i<sizeof($arr));$i++) {
+		$return_arr[$i] = $arr[$i]['value'];
+	}
 
-        return $return_arr;
+	return $return_arr;
 }
 ```
 
