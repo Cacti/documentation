@@ -144,12 +144,6 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    3.4. [Data Queries](Data-Queries.md)
 
-      3.4.1. [SNMP Data Queries Walkthrough](SNMP-Data-Queries-Walkthrough.md)
-
-      3.4.2. [SNMP New Data Query Walkthrough](SNMP-New-Data-Query-Walkthrough.md)
-
-      3.4.3. [Script Data Query Walkthrough](Script-Data-Query-Walkthrough.md)
-
 4. [Templates](Templates.md)
 
    4.1. [Device](Device-Templates.md)
@@ -286,13 +280,19 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 2. [How To Work with Data Queries](How-To-Data-Queries.md)
 
-3. [How To Setup Remote Pollers](How-To-Setup-Remote-Pollers.md)
+3. [How To Work with Existing SNMP Data Queries](How-To-Existing-SNMP-Data-Queries.md)
 
-4. [How to Graph a Custom Collection Script](How-to-Graph-a-Custom-Collection-Script.md)
+4. [How To Work with New SNMP Data Queries](How-To-New-SNMP-Data-Queries.md)
 
-5. [How To Determine Template Version](How-To-Determine-Template-Version.md)
+5. [How To Work with Script Data Queries](How-To-Script-Data-Queries.md)
 
-6. [How To Setup SSH Tunnels](How-To-SSH-Tunnels.md)
+6. [How To Setup Remote Pollers](How-To-Setup-Remote-Pollers.md)
+
+7. [How to Graph a Custom Collection Script](How-to-Graph-a-Custom-Collection-Script.md)
+
+8. [How To Determine Template Version](How-To-Determine-Template-Version.md)
+
+9. [How To Setup SSH Tunnels](How-To-SSH-Tunnels.md)
 
 ### Contributing
 
