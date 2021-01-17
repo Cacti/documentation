@@ -313,13 +313,13 @@ see:
 
 ![SNMP Table 3 - Data Template](images/dt-03.preview.png)
 
-and **New** or the plus sign on the **Data Source Item** panel. 
+and **New** or the plus sign on the **Data Source Item** panel.
 Now enter the second **Data Source Item**:
 
 ![SNMP Table 4 - Data Template](images/dt-04.preview.png)
 
 Please pay attention to setting the **Maximum Value** to 'U' (no limit). Else, all
-values exceeding the pre-defined as **NaN**. Now scroll down to the bottom 
+values exceeding the pre-defined as **NaN**. Now scroll down to the bottom
 of the page and check **Index Type, Index Value and Output Type Id**
 
 ![SNMP Table 5 - Data Template](images/dt-05.preview.png)
@@ -471,14 +471,13 @@ Now the Graph looks like
 
 ![Graph image](images/graph-10.png)
 
-Please find the resources attached. Due to upload limitations, I had to rename
-them to *.txt. Please save them as pure *.xml files. Save hrStorageTable.xml
-into ./resource/snmp/queries and import all templates from
-cacti_graph_template_host_mib_hrstoragetable.xml.
+Please find the example resources below.  Save `hrStorageTable.xml`
+into `./resource/snmp_queries` and import the Graph Template from
+`cacti_graph_template_host_mib_hrstoragetable.xml`.
 
 [Cacti Graph Template Host MIB hrStorageTable](resource/xml/cacti_graph_template_host_mib_hrstoragetable.xml)
 
-[hrStorageTable](resource/xml/hrStorageTable.xml) download and store into resource/snmp_queries.
+[hrStorageTable](resource/xml/hrStorageTable.xml) download and store into `resource/snmp_queries`.
 
 ---
 Copyright (c) 2004-2021 The Cacti Group

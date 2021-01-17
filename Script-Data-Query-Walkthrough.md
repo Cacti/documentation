@@ -783,7 +783,7 @@ Click **Save**, and find the new Graph Template added to the list of
 You may continue to add more **Graph Templates**, each of them may be related
 to other output field of the XML file. Find, as an example, lots of graph
 templates associated to the standard `Interface Statistics` Data Query to get
-an idea what I'm talking about
+an idea what I'm talking about.
 
 ![Script Data Query - Edit](images/dev-dq-26.preview.png)
 
@@ -825,6 +825,17 @@ please compare the units used. The first graph uses **Bytes**, the latter one
 uses **Bits**. For comparison, it would be necessary to multiply the first one
 with 8. This may be done using a CDEF Turn Bytes into Bits, applied to all
 items of the **Graph Template**. This task is left to you.
+
+Please find the example resource, script, and Data Query below.  Save
+`ifTraffic.xml` into `./resource/script_queries`, and `query_interface_traffic.php`
+into the `./scripts` directory and import the Data Query
+`cacti_data_query_php_interface_traffic.xml`.
+
+[Cacti Data Query for PHP Interface Traffic](resource/xml/cacti_data_query_php_interface_traffic.xml)
+
+[ifTraffic.xml](resource/xml/ifTraffic.xml) download and store into `resource/script_queries`.
+
+[query_interface_traffic.php](resource/xml/query_interface_traffic.php) download and store into `scripts`.
 
 ---
 Copyright (c) 2004-2021 The Cacti Group
