@@ -2,7 +2,7 @@
 
 This section will describe **Tree Rules** in Cacti.
 
-Tree rules allows Automation to bunch up devices based on matches
+Tree rules allow Automation to bunch up devices based on matches
 on rules we come up with you can say bunch all Cisco devices on to a Cisco tree.
 Or if you have a site where all of the hostnames start with siteb you can 
 have a site b tree etc see below for some examples.
@@ -20,7 +20,7 @@ We need a way to tell automation what device we are looking for
 in the example above we are looking for a device with the hostname Linux
 this is done via a REGEX any perl based REGEX can be used.
 
-To test this REGEX on exisiting devices you can click the show eligable Objects
+To test this REGEX on existing devices you can click the show eligible Objects
 this will check the Devices currently in cacti for a match.
 
 Once a device is a match it will be placed on the default tree.
