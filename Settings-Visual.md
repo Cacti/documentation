@@ -25,15 +25,15 @@ Those settings include:
 - **Theme** - The default theme that users logging into Cacti receive
 - **Rows Per Page** - For all standard Cacti tables, the number of rows to
   show per page.
-- **Autocomplete Enabled** - Many drop-downs do not scale well with thousands
+- **Auto-complete Enabled** - Many drop-downs do not scale well with thousands
   of items.  In those cases, Cacti has enabled a drop-down auto-complete feature
   most large installs should leverage it.  However, if you are a small install
   you can choose to disable auto-complete.
-- **Autocomplete Rows** - The maximum rows to show in an auto-complete response.
+- **Auto-complete Rows** - The maximum rows to show in an auto-complete response.
 - **Minimum Tree Width** - The minimum width of the Tree panel in Cacti
 - **Maximum Tree Width** - The maximum width of the Tree panel in Cacti.  Above
   this width, tree items will scroll into the panel.
-- **Strip Domains from Device Dropdowns** - Strip domain names from Device
+- **Strip Domains from Device Drop-downs** - Strip domain names from Device
   drop-downs to save horizontal filter space.
 
 ## Graph, Data Source, Data Query, Log Settings
@@ -59,7 +59,7 @@ Those settings include:
 - **Maximum number of rows per page** - The maximum number of regular expression
   search matches to display, when searching.
 - **Log Tail Refresh** - The frequency that the log pages should auto-refresh.
-- **Exclusion Regex** - This setting allows you to exclude certain log messages
+- **Exclusion Reg-ex** - This setting allows you to exclude certain log messages
   by regular expression from normal users.  Expressions that include login
   log entries are common here to mask the login accounts of users.
 
@@ -72,13 +72,13 @@ The image below shows the default layout for these sub-sections.
 Those settings include:
 
 - **Enable Real-time Graphing** - Allow Realtime graphs to be used in Cacti.
-- **Graph Timespan** - The default system level `Graph Timespan` use use
+- **Graph Time-span** - The default system level `Graph Timespan` use use
   when a user opens a Realtime **Graph** for the first time.
 - **Refresh Interval** - The default system level `Refresh Interval` for
   the Realtime interface when a user first opens a Realtime **Graph**.
-- **Cacti Directory** - Where should Cacti cache realtime PNG's and
+- **Cacti Directory** - Where should Cacti cache Realtime PNG's and
   RRDfiles.
-- **Custom Wartermark** - A watermark that will appear on every Cacti
+- **Custom Watermark** - A watermark that will appear on every Cacti
   **Graph**
 - **Disable RRDtool Watermark** - Every RRDtool Graph includes a vertical
   watermark.  This option allows you to disable that.
@@ -88,7 +88,7 @@ Those settings include:
   choosing `System`, your settings page will expand where you will
   then have additional control.
 
-> **NOTE**: The RRDtool Wathermark control requires a recent version of
+> **NOTE**: The RRDtool Watermark control requires a recent version of
 > RRDtool, such as the 1.7 release.  If you attempt to use this setting
 > and your **Graphs** break, then upgrade RRDtool.
 
