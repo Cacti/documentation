@@ -120,5 +120,13 @@ This is the data that is being passed to the poller each time it runs.
 
 ![System Utilities](images/system-utilities-viewpcache.png)
 
+### Viewing System log via System Utilities
+
+You are able to view the system log via the System utilities page this will show the RAW log
+this slightly differs from the view log tab as the device names will show the device ID rather than 
+the Device name this is the same view as you reading the log in the OS
+
+![System Utilities](images/system-utilities-viewclog.png)
+
 ---
 Copyright (c) 2004-2021 The Cacti Group
