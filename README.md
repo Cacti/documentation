@@ -296,9 +296,9 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 ### Contributing
 
-1. [Contributing](Contributing.md)
+1. [Open Source Code](Contributing.md)
 
-2. [Translations](Contributing-Translations.md)
+2. [Language Translations](Contributing-Translations.md)
 
 ### Development Standards
 
