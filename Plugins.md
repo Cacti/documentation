@@ -2,6 +2,8 @@
 
 ### Installing Plugins
 
+![plugin dashboard](images/plugins.png)
+
 Installing plugins on cacti is a simple procedure
 
 1) Download the plugin to cactidir/cacti/plugins
