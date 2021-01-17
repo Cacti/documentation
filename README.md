@@ -278,19 +278,21 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 1. [How To Work with Templates](How-To-Work-With-Templates.md)
 
-2. [How To Work with Data Queries](How-To-Data-Queries.md)
+2. [How To Create a Data Input Method](How-To-Create-Data-Input-Method.md)
 
-3. [How To Work with Existing SNMP Data Queries](How-To-Existing-SNMP-Data-Queries.md)
+3. [How To Work with Data Queries](How-To-Data-Queries.md)
 
-4. [How To Work with New SNMP Data Queries](How-To-New-SNMP-Data-Queries.md)
+4. [How To Work with Existing SNMP Data Queries](How-To-Existing-SNMP-Data-Queries.md)
 
-5. [How To Work with Script Data Queries](How-To-Script-Data-Queries.md)
+5. [How To Work with New SNMP Data Queries](How-To-New-SNMP-Data-Queries.md)
 
-6. [How To Setup Remote Pollers](How-To-Setup-Remote-Pollers.md)
+6. [How To Work with Script Data Queries](How-To-Script-Data-Queries.md)
 
-7. [How To Determine Template Version](How-To-Determine-Template-Version.md)
+7. [How To Setup Remote Pollers](How-To-Setup-Remote-Pollers.md)
 
-8. [How To Setup SSH Tunnels](How-To-SSH-Tunnels.md)
+8. [How To Determine Template Version](How-To-Determine-Template-Version.md)
+
+9. [How To Setup SSH Tunnels](How-To-SSH-Tunnels.md)
 
 ### Contributing
 
