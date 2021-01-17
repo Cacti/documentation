@@ -65,7 +65,7 @@ myplugin/
         index.php
     lib/
         index.php
-        function2s.php
+        functions.php
     include/
         index.php
         settings.php
