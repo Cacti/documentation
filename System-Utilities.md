@@ -61,6 +61,11 @@ When you delete Data Sources from Cacti, the corresponding RRDfiles are not
 removed automatically. Use this utility to facilitate the removal of
 these old files.
 
+In system utilities you can manually start the RRD cleaning procedure 
+You can either archive the selected RRD's to have them deleted in the next polling cycle
+
+![System Utilities](images/system-utilities-rrdcleaner.png)
+
 RRDfiles can also be schedule to automatically be removed this option can
 be configured in `Console > Configuration > Settings > Paths` by selecting
 the RRDfile autoclean selection.
@@ -78,9 +83,14 @@ included in your version.
 
 ### View user login history
 
+Console -> utilities -> System Utilities -> View user Log
+
 In system utilities you are able to view a log of user logins both successful and failures
+The Log will also show what Client IP address the login originated from along with info 
+if the login was based on password or token based login
 
 ![System Utilities](images/system-utilities-viewulog.png)
+
 
 ---
 Copyright (c) 2004-2021 The Cacti Group
