@@ -57,9 +57,16 @@ to get the most out of your new hardware.
 
 ### RRD cleaner
 
+`Console > utilities > System Utilities > RRDfile Cleaner`
+
 When you delete Data Sources from Cacti, the corresponding RRDfiles are not
 removed automatically. Use this utility to facilitate the removal of
 these old files.
+
+In system utilities you can manually start the RRD cleaning procedure 
+You can either archive the selected RRD's to have them deleted in the next polling cycle
+
+![System Utilities](images/system-utilities-rrdcleaner.png)
 
 RRDfiles can also be schedule to automatically be removed this option can
 be configured in `Console > Configuration > Settings > Paths` by selecting
@@ -75,6 +82,53 @@ utilities menu which is useful for seeing what fixes and occasional features are
 included in your version.
 
 ![System Utilities](images/change-log-sysutils.png)
+
+### View user login history
+
+`Console > utilities > System Utilities > View user Log`
+
+In system utilities you are able to view a log of user logins both successful and failures
+The Log will also show what Client IP address the login originated from along with info 
+if the login was based on password or token based login
+
+![System Utilities](images/system-utilities-viewulog.png)
+
+### View boost update status and stats
+
+`Console > Utilities > System Utilities > View Boost Status`
+
+In this view you can see statistics on how Boost is running you will be able to see 
+Information such as when the last time boost started, How long it ran for, The average boost record size
+
+![System Utilities](images/system-utilities-boost1.png)
+
+
+![System Utilities](images/system-utilities-boost2.png)
+
+### Viewing the Data Source Query Cache
+
+`Console > Utilities > System Utilities > View Data Source Query Cache`
+
+The Data Query Cache stores information gathered from Data Query input types. 
+The values from these fields can be used in the text area of Graphs for Legends, Vertical Labels, and GPRINTS as well as in CDEF's.
+
+![System Utilities](images/system-utilities-viewdqcache.png)
+
+### Viewing the Poller Cache 
+
+`Console > Utilities > System Utilities > View Poller Cache`
+
+This is the data that is being passed to the poller each time it runs.
+
+![System Utilities](images/system-utilities-viewpcache.png)
+
+### Viewing System log via System Utilities
+
+You are able to view the system log via the System utilities page this will show the RAW log
+this slightly differs from the view log tab as the device names will show the device ID rather than 
+the Device name this is the same view as you reading the log in the OS
+
+![System Utilities](images/system-utilities-viewclog.png)
 
 ---
 Copyright (c) 2004-2021 The Cacti Group

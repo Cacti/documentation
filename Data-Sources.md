@@ -71,5 +71,15 @@ Weekly | 22kb
 Monthly | 25kb
 Yearly | 26kb
 
+### Viewing all Data sources by device 
+
+You are able to check the data sources asociated to a specific device in the Console -> Managment -> Data sources
+You can then search based on a device you may be interested in to view the Data sources in use 
+
+![device datasources](images/data-sources-per-device.png)
+
+You can also view Orphaned data sources in this view by setting Orphaned from All to Orphaned
+Orphaned data sources are where the graph has been deleted but the data source was not deleted
+
 ---
 Copyright (c) 2004-2021 The Cacti Group

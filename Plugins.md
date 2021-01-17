@@ -75,6 +75,10 @@ plugin which will not drop the SQL tables and thus save your settings.
 
 6) Re-enable the **Plugin** in the **Console**
 
+#### Video Walkthrough
+
+[![Video Tutorial ](http://img.youtube.com/vi/TPKu-2XYKok/0.jpg)](https://youtu.be/TPKu-2XYKok "Video Tutorial")
+
 ### Unistall a Plugin
 
 To uninstall a plugin go into the plugins page
