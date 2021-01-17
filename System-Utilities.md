@@ -95,7 +95,7 @@ if the login was based on password or token based login
 
 ### View boost update status and stats
 
-Console -> Utilities -> System Utilities -> View Boost Status
+`Console > Utilities > System Utilities > View Boost Status`
 
 In this view you can see statistics on how Boost is running you will be able to see 
 Information such as when the last time boost started, How long it ran for, The average boost record size
