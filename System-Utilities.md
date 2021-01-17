@@ -56,6 +56,7 @@ detected so if you upgrade your server hardware be sure to check back to this pa
 to get the most out of your new hardware.
 
 ### RRD cleaner
+Console -> utilities -> System Utilities -> RRDfile Cleaner
 
 When you delete Data Sources from Cacti, the corresponding RRDfiles are not
 removed automatically. Use this utility to facilitate the removal of
