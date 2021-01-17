@@ -634,24 +634,24 @@ and find:
 
 ![Script Data Query - Data Template 02](images/dev-dt-02.preview.png)
 
-fill in **Data Template Name**, **Data Source Name**, and, most important,
-select **Data Input Method** to read **Get Script Data (Indexed)**. Leave
-**Associated RRAs** as is.
+Fill in **Data Template Name**, **Data Source Name**, and, most important,
+select **Data Input Method** to read **Get Script Data (Indexed)**,
+and **Data Source Profile**.
 
-When creating the data template and graph template, you SHOULD check the “Use
-Per Data Source Value” checkbox for name & title. When you first create
-graphs using the data query, it will use the “Suggested Values” to name the
-templates. But then if you ever edit the templates and leave the “Use Per Data
-Source Value” unchecked, then saving will overwrite all the data source and
-graph names.
+When creating the **Data Template** and **Graph Template**, you SHOULD
+check the `Use Per Data Source Value` checkbox for name & title.
+When you first create graphs using the data query, it will use the
+`Suggested Values` to name the templates. But then if you ever edit
+the templates and leave the `Use Per Data Source Value` unchecked,
+then saving will overwrite all the data source and graph names.
 
-Now, please proceed to the lower half
-
-![Script Data Query - Data Template 03](images/dev-dt-03.png)
-
-enter the **Internal Data Source Name**. You may select this name freely.
-There's no need to match it to any of the XML field names. As the OID is a
-**COUNTER**, the **Data Source Type** must be selected appropriately. **Save**.
+Now, before you press the `Create` button als oplease proceed to the
+lower half of the form and complete the first RRDfile Data Source.
+Enter the **Internal Data Source Name**. You may select this name freely,
+though note your are limited to only 19 characters and spaces are not
+allowed.  There's no need to match it to any of the XML field names.
+As the OID is a **COUNTER**, the **Data Source Type** must be selected
+appropriately. `Create`.
 
 ![Script Data Query - Data Template 04](images/dev-dt-04.preview.png)
 
