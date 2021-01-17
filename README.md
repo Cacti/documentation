@@ -288,11 +288,9 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 6. [How To Setup Remote Pollers](How-To-Setup-Remote-Pollers.md)
 
-7. [How to Graph a Custom Collection Script](How-to-Graph-a-Custom-Collection-Script.md)
+7. [How To Determine Template Version](How-To-Determine-Template-Version.md)
 
-8. [How To Determine Template Version](How-To-Determine-Template-Version.md)
-
-9. [How To Setup SSH Tunnels](How-To-SSH-Tunnels.md)
+8. [How To Setup SSH Tunnels](How-To-SSH-Tunnels.md)
 
 ### Contributing
 
