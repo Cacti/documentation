@@ -65,11 +65,11 @@ upgrade_database.php | Install/Upgrade | Utility to upgrade a Cacti database fro
 > **NOTE**: Package maintainers may wish to utilize the CLI methods of install_cacti.php and
 > upgrade_database.php to perform in place installations and upgrades.
 
-> **Caution**
->
-> In the following examples, several numbers are shown as output from various
+> **Caution**: In the following examples, several numbers are shown as output from various
 > scripts. They will vary between different installations. So don't bother, if
-> your numbers will vary
+> your numbers will vary.
+
+In the sub-sections below, we will demonstrate the use of a few of these CLI scripts.
 
 ## Rebuild Poller Cache
 
