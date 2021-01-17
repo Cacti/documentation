@@ -11,7 +11,7 @@ To add a device via the Web GUI first click on `Console > Managment > Devices` a
 you will see the below device console window which will show existing devices
 if any
 
-![Device Console](images/device-console-windows.png)
+![Device Console](images/device-console-window.png)
 
 You will now select the + on the top right hand corner
 
