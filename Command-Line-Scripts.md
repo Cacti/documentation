@@ -3,14 +3,16 @@
 Cacti supports a number of command line scripts. You will find them in the
 `./cli` directory.  The CLI scripts fall into multiple categories, they include:
 
-- **Automation** - Automate adding objects to cacti
-- **Migration** - Utilities to help with migrations
-- **Maintenance** - Help keeping Cacti healthy
-- **Repair** - Repair things as best as possible
-- **Install** - Help with installing Cacti
+- **Automation** - Utilities to help automate adding objects to Cacti
+- **Maintenance** - Utilities to help keep Cacti healthy
+- **Repair** - Utilities to help with repairing Cacti database components
+- **Repair/Migration** - Utilities to help with repairing or migrating Cacti components
+- **Install/Upgrade** - Utilities to help with installing and upgrading Cacti
 
 In the table below, each of the CLI scripts are categories and explained
 briefly.
+
+## Automation Scripts
 
 Script | Category | Description
 --- | --- | ---
@@ -21,32 +23,53 @@ add_graphs.php | Automation | Allows adding a Graph to Cacti.
 add_perms.php | Automation | Allows adding permissions to Cacti.
 add_tree.php | Automation | Allows adding tree's tree branches and objects to Cacti Trees.
 copy_user.php | Maintenance | Allows creating new users from Templates
+
+## Maintenance Scripts
+
+Script | Category | Description
+--- | --- | ---
 input_whitelist.php | Maintenance | To to onboard new Data Input Methods when using Cacti in a high security environment where new Data Input Methods must always be vetted before enabling for general use.
 poller_graphs_reapply_names.php | Maintenance | Allows selecting re-running of Cacti's suggested values engine for Graphs
-poller_output_empty.php | Repair | Removes bad entries from Cacti's poller output table.
 poller_reindex_hosts.php | Maintenance | Batch method to re-index Cacti Devices
-rebuild_poller_cache.php | Repair | Batch process to re-populate Cacti's poller cache.  NOTE: This script can run for a very long time on large systems.
 analyze_database.php | Maintenance | Analyzes all Cacti tables rebuilding their index cardinality.  Important to run after having added large numbers of Devices and Graphs to Cacti.
-audit_database.php | Repair/Migration | Script to audit your Cacti schema, and repair any tables that don't match the stock Cacti schema.  It will also upgrade the Cacti schema and run plugin upgrade functions.  This is a good migration tool to move database from old versions of Cacti.
-convert_tables.php | Repair/Migration | Convert all tables from their current form to the Cacti preferred table type, collation and charset
-install_cacti.php | Installation | Script to install Cacti from a raw schema.  Used primarily by distribution maintainers.
-md5sum.php | Install | Utility to verify the MD5SUM of a file.
+
+## Repair Scripts
+
+Script | Category | Description
+--- | --- | ---
+poller_output_empty.php | Repair | Removes bad entries from Cacti's poller output table.
+rebuild_poller_cache.php | Repair | Batch process to re-populate Cacti's poller cache.  NOTE: This script can run for a very long time on large systems.
 repair_database.php | Repair | Utility to look for common problems with old Cacti databases where objects were removed while still in use.  Also rapairs all tables after a system crash.
 repair_graphs.php | Repair | Utility to repair Cacti Graphs whose structure is damaged due to legacy Cacti behavior.
 repair_templates.php | Repair | Utility to repair Cacti Templates whose structure was damaged due to legacy Cacti behavior.
+
+## Repair/Migration Scripts
+
+Script | Category | Description
+--- | --- | ---
+audit_database.php | Repair/Migration | Script to audit your Cacti schema, and repair any tables that don't match the stock Cacti schema.  It will also upgrade the Cacti schema and run plugin upgrade functions.  This is a good migration tool to move database from old versions of Cacti.
+convert_tables.php | Repair/Migration | Convert all tables from their current form to the Cacti preferred table type, collation and charset
 splice_rra.php | Migration | Utility that allows two RRDfiles to be merged, and also assists with resampling an old RRDfile to a new RRA configuration, for example moving a Cacti system from 5 minute polling to 1 minute polling.
-sqltable_to_php.php | Install | Utility for Plugin Developers to create an object for creating tables in plugins.
-structure_rra_paths.php | Install | Utility to convert a system from a flat directory path to a heirarchial one.  Important for certain file systems that don't perform well when there are tens or hundreds of thousands of files in a single directory.
-upgrade_database.php | Install | Utility to upgrade a Cacti database from a point in time to the current release.  Or even rerun the database upgrade from a point in the past to catch up with changes.  This script should be used in conjunction with the `audit_database.php --repair --upgrade` option.
 
-Package maintainers may wish to utilize the CLI methods of install_cacti.php and
-upgrade_database.php to perform in place installations and upgrades.
+## Install/Upgrade Scripts
 
-> **Caution**
->
-> In the following examples, several numbers are shown as output from various
+Script | Category | Description
+--- | --- | ---
+import_package.php | Install/Upgrade | Import a Cacti package from a tgz file.
+install_cacti.php | Install/Upgrade | Script to install Cacti from a raw schema.  Used primarily by distribution maintainers.
+md5sum.php | Install/Upgrade | Utility to verify the MD5SUM of a file.
+sqltable_to_php.php | Install/Upgrade | Utility for Plugin Developers to create an object for creating tables in plugins.
+structure_rra_paths.php | Install/Upgrade | Utility to convert a system from a flat directory path to a heirarchial one.  Important for certain file systems that don't perform well when there are tens or hundreds of thousands of files in a single directory.
+upgrade_database.php | Install/Upgrade | Utility to upgrade a Cacti database from a point in time to the current release.  Or even rerun the database upgrade from a point in the past to catch up with changes.  This script should be used in conjunction with the `audit_database.php --repair --upgrade` option.
+
+> **NOTE**: Package maintainers may wish to utilize the CLI methods of install_cacti.php and
+> upgrade_database.php to perform in place installations and upgrades.
+
+> **Caution**: In the following examples, several numbers are shown as output from various
 > scripts. They will vary between different installations. So don't bother, if
-> your numbers will vary
+> your numbers will vary.
+
+In the sub-sections below, we will demonstrate the use of a few of these CLI scripts.
 
 ## Rebuild Poller Cache
 
