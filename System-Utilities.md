@@ -76,5 +76,11 @@ included in your version.
 
 ![System Utilities](images/change-log-sysutils.png)
 
+### View user login history
+
+In system utilities you are able to view a log of user logins both successful and failures
+
+![System Utilities](images/system-utilities-viewulog.png)
+
 ---
 Copyright (c) 2004-2021 The Cacti Group
