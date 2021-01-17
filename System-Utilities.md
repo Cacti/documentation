@@ -56,7 +56,8 @@ detected so if you upgrade your server hardware be sure to check back to this pa
 to get the most out of your new hardware.
 
 ### RRD cleaner
-Console -> utilities -> System Utilities -> RRDfile Cleaner
+
+`Console > utilities > System Utilities > RRDfile Cleaner`
 
 When you delete Data Sources from Cacti, the corresponding RRDfiles are not
 removed automatically. Use this utility to facilitate the removal of
@@ -84,7 +85,7 @@ included in your version.
 
 ### View user login history
 
-Console -> utilities -> System Utilities -> View user Log
+`Console > utilities > System Utilities > View user Log`
 
 In system utilities you are able to view a log of user logins both successful and failures
 The Log will also show what Client IP address the login originated from along with info 
@@ -106,7 +107,7 @@ Information such as when the last time boost started, How long it ran for, The a
 
 ### Viewing the Data Source Query Cache
 
-Console -> Utilities -> System Utilities -> View Data Source Query cache
+`Console > Utilities > System Utilities > View Data Source Query Cache`
 
 The Data Query Cache stores information gathered from Data Query input types. 
 The values from these fields can be used in the text area of Graphs for Legends, Vertical Labels, and GPRINTS as well as in CDEF's.
@@ -114,7 +115,8 @@ The values from these fields can be used in the text area of Graphs for Legends,
 ![System Utilities](images/system-utilities-viewdqcache.png)
 
 ### Viewing the Poller Cache 
-Console -> Utilities -> System Utilities -> View Poller cache
+
+`Console > Utilities > System Utilities > View Poller Cache`
 
 This is the data that is being passed to the poller each time it runs.
 
