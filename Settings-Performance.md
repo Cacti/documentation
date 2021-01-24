@@ -38,8 +38,11 @@ The settings include:
   frequency/interval is say 5 minutes, you may want to cache
   a few hours of updates.
 
-- **Number of Boost Processes** - This setting is as of yet
-  not implemented.
+- **Number of Boost Processes** - For systems with shared disk
+  where I/O performance is impacted by file system
+  overhead or latency, the concurrent boost process
+  setting comes in handy.  Cacti will spawn the number
+  of collectors specified by this setting.
 
 - **Maximum Records** - This is a threshold in cache records
   that if that number is exceeded, the cache will immediately
