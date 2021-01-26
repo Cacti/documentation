@@ -14,46 +14,47 @@ with maintaining a consistent run-time, and minimizing the user experience
 disruption from all that blocking Disk I/O.
 
 In the modern Data Center, where we find an abundance of NVMe, Flash,
-and SSD's, the impact of all that I/O has been reduced, however, Boost now
+and SSD's, the impact of all that I/O has been reduced. However, Boost now
 serves as a way to extend the life of your Flash media and therefore increase
 the availability of your Cacti server over its lifetime.
 
 The Boost function in Cacti has several features that can be enabled or
 disabled on demand by the Cacti Administrator.  They include:
 
-- **On Demand RRD Updates** - Require in ALL multiple **Data Collector**
+- **On Demand RRD Updates** - Required in ALL multiple **Data Collector**
   installs and control the mass update of RRDfiles through periodic dumping
   of Cacti's Boost cache.
-- **Image Caching** - Which will cache PNG and SVG representations of the
+- **Image Caching** - caches PNG and SVG representations of the
   Cacti **Graphs** to reduce the overall CPU utilization of the Cacti server
   infrastructure.
 
 ## Prerequisites
 
-In it's initial design the Boost process leveraged MySQL Memory Tables to
-increase overall performance, and to reduce writing data to Disk.  This is
+In its initial design the Boost process leveraged MySQL Memory Tables to
+increase overall performance, and to reduce writing data to disk.  This is
 still a valid case however, with improvements in InnoDB performance over the
-years, combined with Flash storage, the need for using MySQL Memory Tables
-has diminshed, and in some cases, for example when using MariaDB Galera, or
-MySQL Master/Slave replication, can not be used.
+years combined with Flash storage, the need for using MySQL Memory Tables
+has diminshed.  In some cases, for example when using MariaDB Galera, or
+MySQL Master/Slave replication, it can not be used.
 
-However, if you wish to use Memory, you have to pay close attention to the
-amount of data that will be cached in your design, and you should periodically
+If you do wish to use Memory you have to pay close attention to the
+amount of data that will be cached in your design.  You should periodically
 check that you have sufficient memory available to cache all the data in the
 Boost cache.  The MySQL/MariaDB setting that controls the maximum size of a
 memory table is the `max_heap_table_size` setting in your
 `/etc/my.cnf.d/server.cnf` file.
 
-To change it requires that you restart MySQL/MariaDB.  So, you won't want
-to make these changes often, as some systems have little time between mass
-updates to perform a restart.  If you restart MySQL/MariaDB when the cache
-is full, you will loose those updates upon restart unless you first change
-the ENGINE of the Boost cache table to InnoDB or MyISAM before restarting.
+To change the `max_heap_table_size` setting you require a restart of 
+MySQL/MariaDB.  So you won't want to make these changes often, 
+as some systems have little time between mass updates to perform a restart.  
+If you restart MySQL/MariaDB when the cache is full, you will lose those 
+updates upon restart unless you first change the ENGINE of the Boost cache 
+table to InnoDB or MyISAM before restarting.
 
-Also, when using Memory Tables, you have to be cognizant of the maximum output
-width of the Cache table, called `poller_output_boost`.  By default, it's set
+When using Memory Tables you have to be cognizant of the maximum output
+width of the Cache table called `poller_output_boost`.  By default, it's set
 to 512 bytes, which allows for very wide output from your **Data Collectors**.
-However, MySQL Memory Tables do not allow for variable sized columns in memory
+MySQL Memory Tables do not allow for variable sized columns in memory - 
 which means if you write one byte to it, it will take 512 bytes.  So, tuning
 this width is very important.  That will be explained in more detail later on
 in this chapter.

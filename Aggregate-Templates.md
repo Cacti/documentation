@@ -9,19 +9,19 @@ resulting **Aggregate Graphs** to add and remove elements from other
 common **Graphs**.
 
 To create **Aggregate Graphs** that are managed through a Template, you first
-must create the **Aggregate Template**, and then from the Cacti
+must create the **Aggregate Template**. Then from the Cacti
 **Graphs** page, you can select the **Graphs** that you want used as part of
-the **Aggregate**, and then select `Create Aggregate from Template` from the
+the **Aggregate**. You then select `Create Aggregate from Template` from the
 Cacti Actions drop-down.
 
 Once you have created your **Aggregate Graphs**, they behave like any other
-Cacti Graph, they can be a part of a Tree, zoomed, etc.  They have an added
-bonus, that you can add and remove **Graphs** from there in a very controlled
+Cacti Graph.  They can be a part of a Tree, zoomed, etc.  They have an added
+bonus - you can add and remove **Graphs** from aggregate in a very controlled
 way, reducing the effort to maintain them during their life-cycle.
 
 If you wish to change settings for **Graphs** managed by the
-**Aggregate Template**, simply make the changes there, and they will cascade to
-**Aggregate Graphs** managed by the Template.
+**Aggregate Template**, simply make the changes in the **Aggregate Template**,
+and they will cascade to **Aggregate Graphs** managed by the Template.
 
 ## Aggregate Template Interface
 
@@ -92,9 +92,9 @@ order.  The options include:
 ![Aggregate Templates Edit General Options](images/aggregate-templates-edit1.png)
 
 The `Graph Template Items` section allows you to either Skip or Total (aka include)
-The **Graph Items** in the resulting **Aggregate Graphs**.  When you think about
+the **Graph Items** in the resulting **Aggregate Graphs**.  When you think about
 how a resulting **Aggregate** graph will look, there are some elements that simply
-will not result in a very well looking **Graph**.  So, in those cases, you will
+will not result in a good looking **Graph**.  In those cases you will
 want to remove them from the resulting **Aggregate Graphs**.
 
 The `Color Template` option allows you to use differing Color rotations when
@@ -121,7 +121,7 @@ here, only let you know that you can override them in your resulting
 
 ## Summary
 
-As previously mentioned, there are several combinations of options that you
+There are several combinations of options that you
 can use when working with an **Aggregate Template**.  Some of these options will
 results in horrible and unexpected outcomes, so you will have to experiment
 until you come up with a desirable **Aggregate Template**.
