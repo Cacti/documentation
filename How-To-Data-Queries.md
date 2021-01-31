@@ -1,11 +1,11 @@
 # How To Work with Data Queries
 
-During the past few weeks as I've made various SNMP Data Query templates, I've
+During the past few weeks as I've made various SNMP Data Query templates I've
 ran into a few 'tricks' (which existing user scripts use) to make them work
 with most devices. It'd probably be beneficial to publish these in some manner
 on the documentation site so others don't have to stumble.
 
-As you already know, getting an index is the hardest thing users struggle with.
+As you already know getting an index is the hardest thing users struggle with.
 I've ran across three scenarios and their solutions:
 
 ## SNMP index is present
@@ -70,7 +70,7 @@ A verbose query from inside Cacti shows the following:
 ## SNMP Index is a STRING
 
 Some devices (like on a F5 BigIP) use a STRING to represent the Index due to
-the fact it is user configurable. In this case, we need Cacti to parse out the
+the fact it is user configurable. In this case we need Cacti to parse out the
 variable length Index.
 
 Sample of a STRING Index:
@@ -89,7 +89,7 @@ F5-BIGIP-LOCAL-MIB::ltmVirtualServStatName."LXWEB" = STRING: LXWEB
 F5-BIGIP-LOCAL-MIB::ltmVirtualServStatName."EPXWEB" = STRING: EPXWEB
 ```
 
-Next, we need to define a OID/REGEXP that will look for the start of the STRING
+Next we need to define a OID/REGEXP that will look for the start of the STRING
 and create the Index.  In this case the regexp "^.{32}" matches the first 32
 characters beginning at the start of the OID -- this is the length of the OID
 from the leading dot up to the start of the index. Then the capturing parens
@@ -114,7 +114,7 @@ XML script:
 </interface>
 ```
 
-After creating the Data Query, Data & Graph templates in Cacti, a verbose query
+After creating the Data Query Data & Graph templates in Cacti a verbose query
 will spit out the following:
 
 ```shell
@@ -158,7 +158,7 @@ UDP-MIB::udpOutDatagrams.0 = Counter32: 64471
 ```
 
 Consulting the MIB file for these OIDs, we know that the associated index will
-always be "0" for each OID.  Therefor, we'll want to split this off with the
+always be "0" for each OID.  We'll want to split this off with the
 REGEX.
 
 Create the following SNMP XML file:
@@ -199,7 +199,7 @@ Cacti results in the following:
 ## A note on Textual SNMP MIBS and SPINE
 
 Please be aware the SPINE does not parse out textual Mibs.  This means that if
-you were to use an OID that contained a string reference, rather than numerical,
+you were to use an OID that contained a string reference rather than numerical
 this will cause Graphs to fail as they will not be generated due to spine not
 reciving a value at each poll
 

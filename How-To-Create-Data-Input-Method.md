@@ -1,14 +1,14 @@
 # Data Input Methods - From Script Output to Complete Graph
 
-In this How-To, we will take you through the process of creating a script
-and then from the scripts output, generate a complete **Graph Template**
+In this How-To we will take you through the process of creating a script
+and then from the scripts output generate a complete **Graph Template**
 that you can apply to your Cacti system.  You should be able to reproduce
 this process regardless of the script type in question.
 
 ## Data Input Method returning a single value
 
-Lets start with a simple script, that takes a hostname or IP address as input
-parameter, returning a single value. You may find this one as
+Lets start with a simple script that takes a hostname or IP address as input
+parameter returning a single value. 
 
 `<path_cacti>/scripts/ping.pl`:
 
@@ -35,7 +35,7 @@ if ($2 == "") {
 }
 ```
 
-To define this script as a **Data Input Method** to Cacti, please go to **Data
+To define this script as a **Data Input Method** to Cacti go to **Data
 Input Methods** and click **Add**. You should see:
 
 ![Data Input Methods New](images/r-dim1-0.png)
@@ -80,7 +80,7 @@ Please go to **Data Templates** and click Add. You should see:
 ![Data Templates New](images/r-dt1.png)
 
 Fill in the **Data Templates Name** with a reasonable text. This name will be
-used to find this Template among others. Then, please fill in the **Data Source
+used to find this Template among others. Then fill in the **Data Source
 Name**. This is the name given to the host-specific **Data Source**. The
 variable **|host_description|** is taken from the actual **Device**. This is to
 distinguish **Data Sources** for different devices. The **Data Input Method** is
@@ -233,7 +233,7 @@ my ($session, $error) = Net::SNMP->session(
 	-port          => $in_port,
 	-version       => $in_version,
 	-community     => $in_community,
-	# please add more parameters if there's a need for them:
+	# add more parameters if there's a need for them:
 	#   [-localaddr     => $localaddr,]
 	#   [-localport     => $localport,]
 	#   [-nonblocking   => $boolean,]
@@ -294,7 +294,7 @@ form of nameA:valueA nameB:valueB ...
 
 ## The Data Input Method
 
-To define this script as a **Data Input Method** to Cacti, please go to **Data
+To define this script as a **Data Input Method** to Cacti go to **Data
 Input Methods** and click the plus (+) glyph.
 
 ![More Scripts dim 1](images/dim-add01.preview.png)
