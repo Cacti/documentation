@@ -118,7 +118,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    1.5. [Viewing Graphs](Viewing-Graphs.md)
 
-   1.6. [Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
+  
 
 2. Management
 
@@ -293,6 +293,8 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 8. [How To Determine Template Version](How-To-Determine-Template-Version.md)
 
 9. [How To Setup SSH Tunnels](How-To-SSH-Tunnels.md)
+
+10.[Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
 
 ### Contributing
 
