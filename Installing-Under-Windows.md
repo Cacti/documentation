@@ -142,9 +142,9 @@ The following changes will be required regardless of your selected Webserver.
          - libgcrypt20
          - libgd3
          - libglib2.0_0
-         - libmysqlclient-devel
+         - libmariadb-devel
          - libmysqlclient18
-         - libopenssl100
+         - libssl1.0
          - libpango1.0_0
          - libpng16
          - libreadline7
@@ -163,12 +163,11 @@ The following changes will be required regardless of your selected Webserver.
          - libltdl7
          - libtool
          - net-snmp-devel
-         - textinfo
+         - patch
+         - texinfo
          - w32api-headers
          - w32api-runtime
          - windows-default-manifest
-       - Utils
-         - patch
        - Web
          - wget
 
