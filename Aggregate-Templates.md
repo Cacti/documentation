@@ -127,4 +127,4 @@ results in horrible and unexpected outcomes, so you will have to experiment
 until you come up with a desirable **Aggregate Template**.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2021 The Cacti Group</copy>

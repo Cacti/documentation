@@ -186,4 +186,4 @@ function plugin_PLUGINNAME_install () {
 ```
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2021 The Cacti Group</copy>

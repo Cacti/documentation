@@ -29,4 +29,4 @@ particular site.
 ![cacti sites automation](images/site-automation.png).
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2021 The Cacti Group</copy>

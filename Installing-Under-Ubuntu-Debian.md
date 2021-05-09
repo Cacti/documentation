@@ -109,4 +109,4 @@ The system is now ready to finialise the steps by browsing to
 wizard.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2021 The Cacti Group</copy>

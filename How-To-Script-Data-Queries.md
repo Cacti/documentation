@@ -838,4 +838,4 @@ into the `./scripts` directory and import the Data Query
 [query_interface_traffic.php](resource/xml/query_interface_traffic.php) download and store into `scripts`.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2021 The Cacti Group</copy>

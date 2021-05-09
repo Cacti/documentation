@@ -82,4 +82,4 @@ You can also view Orphaned data sources in this view by setting Orphaned from Al
 Orphaned data sources are where the graph has been deleted but the data source was not deleted
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2021 The Cacti Group</copy>

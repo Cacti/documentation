@@ -99,4 +99,4 @@ fairly self explanatory.
 ![Image Caching](images/settings-boost-image-cache.png)
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2021 The Cacti Group</copy>

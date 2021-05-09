@@ -111,4 +111,4 @@ plugin.
 ![plugin dependencies](images/plugins-dependencies.png)
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2021 The Cacti Group</copy>

@@ -176,4 +176,4 @@ Cacti documentation.  For now, it's important just to know that these pages
 exist.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2021 The Cacti Group</copy>

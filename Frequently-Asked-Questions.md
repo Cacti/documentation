@@ -326,4 +326,4 @@ The newly created command prompt should show the user name if you have entered
 the correct password.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2021 The Cacti Group</copy>

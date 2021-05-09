@@ -288,4 +288,4 @@ also set `Email` to the directory attribute that contains the user's email
 address, such as 'mail'.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2021 The Cacti Group</copy>

@@ -327,4 +327,4 @@ If you would have any ideas for videos or would like to contibute let us know !
 7. [Security](Standards-Security.md)
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2021 The Cacti Group</copy>

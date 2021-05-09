@@ -58,4 +58,4 @@ will be covered in the **Graph Template** section of the manual and not
 covered here.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2021 The Cacti Group</copy>

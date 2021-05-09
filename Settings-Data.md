@@ -99,4 +99,4 @@ The settings above include:
   connection to the RRD Proxy service.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2021 The Cacti Group</copy>

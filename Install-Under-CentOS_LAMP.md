@@ -434,4 +434,4 @@ documentation on how to make your SELinux policy right.
 all SELinux context and permissions.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2021 The Cacti Group</copy>

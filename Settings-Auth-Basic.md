@@ -50,4 +50,4 @@ administrator to manage and update this file per their local
 site practices.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2021 The Cacti Group</copy>

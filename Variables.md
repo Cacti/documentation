@@ -230,4 +230,4 @@ In the images above, you can see both the Title of the Graph and the
 Comments showing the use of the bandwidth replacement variables.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2021 The Cacti Group</copy>

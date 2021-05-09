@@ -139,4 +139,4 @@ Success - new device-id: (45)
 ```
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2021 The Cacti Group</copy>
