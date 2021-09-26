@@ -57,16 +57,16 @@ Type | Description
 --- | ---
 *AREA* | Place an *Area Fill* on the canvas
 *AREA:STACK* | The second item of an *Area Fill* to be stacked upon the first
-*COMMENT* | A written comment.  Can include: |host_*|, |query_*|, |input_*| *Replacement Variables*
+*COMMENT* | A written comment.  Can include: &#124;host_*&#124;, &#124;query_*&#124;, &#124;input_*&#124; *Replacement Variables*
 *GPRINT* | Print a numeric value from the RRDfile with an optional **CDEF** or **VDEF** and formatted using a **GPRINT Preset**.
 *GPRINT:AVERAGE* | Print a numeric value from the RRDfile from the *AVERAGE* *Consolidation Function* within the RRA, modified by an optional **CDEF**, or **VDEF**, and formatted using a **GPRINT Preset**.
 *GPRINT:LAST* | Print a numeric value from the RRDfile from the *LAST* *Consolidation Function* within the RRA, modified by an optional **CDEF**, or **VDEF**, and formatted using a **GPRINT Preset**.
 *GPRINT:MAX* | Print a numeric value from the RRDfile from the *MAX* *Consolidation Function* within the RRA, modified by an optional **CDEF**, or **VDEF**, and formatted using a **GPRINT Preset**.
 *GPRINT:MIN* | Print a numeric value from the RRDfile from the *MIN* *Consolidation Function* within the RRA, modified by an optional **CDEF**, or **VDEF**, and formatted using a **GPRINT Preset**.
-*HRULE* | Draw an *Horizontal Rule* at the given point on the canvas.  You can NOT use any Data Source element or an optional **CDEF** or **VDEF**, but may be able to use either a |query_*|, or |input_*| *Replacement Variable*.
+*HRULE* | Draw an *Horizontal Rule* at the given point on the canvas.  You can NOT use any Data Source element or an optional **CDEF** or **VDEF**, but may be able to use either a &#124;query_*&#124;, or &#124;input_*&#124; *Replacement Variable*.
 *LEGEND* | Draw a *Legend* from three *GPRINTS* using the same **GPRINT Preset**, and **VDEF** or **CDEF**.  The *Current*, *Average*, and *Max* *Consolidation Functions* are used.
 *LEGEND_CAMM* | Draw a *Legend* from four *GPRINTS* using the same **GPRINT_Preset**, and **VDEF** or **CDEF**.  The *Current*, *Average*, "Min*, and "Max" functions are used for this *Legend*.
-*LINE[1|2|3]* | Draw a 1, 2, 3 or used defined thickness pixel *Line* from the RRDfile onto the canvas, modified by an optional **CDEF**, or **VDEF**.
+*LINE[1,2,3]* | Draw a 1, 2, 3 or used defined thickness pixel *Line* from the RRDfile onto the canvas, modified by an optional **CDEF**, or **VDEF**.
 *LINE:STACK* | Stack a Line of a user defined thickness on top of another *Line*, modified by an optional **CDEF**, or **VDEF**.
 *TEXTALIGN* | Modify future text using the alignment provided.
 *VRULE* | Place a *Vertical Rule* on the canvas of a specific color and time position.
