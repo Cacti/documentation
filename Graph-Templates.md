@@ -39,7 +39,7 @@ Section | Description
 --- | ---
 *Graph Template Items* | These items paint inside the canvas of the **Graph**
 *Graph Item Inputs* | This list is created automatically when you add **Data Sources** to a **Graph Template**.  However, you can also override certain **Data Template** and **Graph Template** fields by adding specifically named objects to this section as well.
-*Graph Template* | Allows you to name the **Graph Template**, and whether or not you will allow multiple instances of this **Graph Template** to be used for a **Device**.
+*Graph Template* | Allows you to name the **Graph Template**, and whether or not you will allow multiple instances of this **Graph Template** to be used for a **Device**, and whether or not to test for valid data before allowing the creation of **Graphs**.  The *Test Data Source* option is useful when you want to leverage a complex **Device Template** that contains **Graph Templates** that may not be applicable for all classes of **Devices** using the **Graph Template**.
 *Common Options* | Things like Title, Vertical Label, Image Format, Height and Width, Base Value and Slope Mode
 *Scaling Options* | Which determine if the Graph is auto-scaled and by what means.  Determines if the Graph will have fixed upper and lower limits
 *Grid Options* | Defines how the Graph canvas grid is rendered
