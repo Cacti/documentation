@@ -132,7 +132,7 @@ The menus are located at the top of the page ...
 
 ```
 
-###### Example 4. Incorrect Markdown for Title Spacing
+###### Example 4. Correct Markdown for Title Spacing
 
 ```markdown
 
