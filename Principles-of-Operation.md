@@ -80,8 +80,8 @@ can be nearer in latency than the database, can scale to 30,
 depending on the size of your database and data collector
 infrastructure (sockets, cores, threads).  When using this
 N-Tiered methology, most customers will use Cacti's
-`script server` which is pool of memory resident PHP
-interpretors that preloads all scripts used to gather data,
+`script server` which is a pool of memory resident PHP
+interpreters that preloads all scripts used to gather data,
 therefore, it's super fast, and parallel in nature.
 However, most customers will use SNMP, or SSH to gather
 metrics from their Devices.  I mean, how many companies
@@ -95,11 +95,11 @@ on that storage mechanism.
 
 ## Data Storage
 
-In the industry, storage of the resulting data can take meny forms.
+In the industry, storage of the resulting data can take many forms.
 In Cacti, the RRDfile has been the tool of choice for many years.
 There are only so many ways to make a hammer, and RRDtool's a great
 hammer.  Other approaches in the industry use SQL database,
-others flat files or document stores like Elastic Search, Splunk,
+others flat files or document stores like ElasticSearch, Splunk,
 Mongo DB, InfluxDB.  There are a number of options out there.
 You can get more information about RRDfile from the
 [RRDtool Website](http://www.RRDtool.org/).
