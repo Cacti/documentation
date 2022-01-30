@@ -90,6 +90,11 @@ Those settings include:
 - **Auto Language Detection** - Whether or not Cacti should read the language
   from the browser and use that language by default.
 
+- **Preferred Language Processor** - Some PHP distributions doe not come with
+  the php-gettext module.  In those cases, the various Linux distributions
+  come with alternate GetText processors.  You can select the one that works
+  best for your environment here.
+
 - **Date Display Format** - The default Date/Time display format.
 
 - **Date Separator** - The default Data/Time separator character.
