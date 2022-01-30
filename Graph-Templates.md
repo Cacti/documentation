@@ -77,14 +77,33 @@ mind when creating a **Graph Template**.
 
 ![Graph Items and Item Inputs](images/graph-templates-edit1.png)
 
-Under the *Common Options*, you will create a template for the *Graph Name*,
-assign it's *Veritcal Label*, specify the *Width* and *Height*, and *Image
-Format* for the resulting **Graph**.  The *Base Value* is important as some
+## Graph Template - General and Common Options
+
+- **Name** - This is the name that you provide to the **Graph Template**.  Since Cacti
+does not presently have the concept of **Graph Template Class** many authors will
+prefix the **Name** with a **Class** prefix like *Net-SNMP* for example.
+
+- **Multiple Instances** - This setting tells Cacti that a device can have more
+than one instance of the Template.  This will allow you to select the **Graph Template**
+from the **Create** option of **New Graphs** interface more than once.
+
+- **Test Data Sources** - This option will test that the **Data Source** returns good
+data before allowing the creation of the **Graph**.  You should be aware that if
+your **Data Source** calls a script that runs for a long time, selecting this option
+can really slow the **Graph** creation process.  However, it's quite useful if
+you have a hybrid **Device Template** that includes a myriad of **Graph Templates**
+that may not work with all **Devices** that you create using the **Device Template**.
+
+Under the *Common Options*, for each **Graph Template** you will specify patterns
+for the *Graph Name*, assign it's *Veritcal Label*, specify the *Width* and *Height*, 
+and *Image Format* for the resulting **Graph**.  The *Base Value* is important as some
 units of measure can be for example: MB (for Mega Bytes - 1024) and MiB (for
 Mega integer Bytes - 1000).  Lastly, the *Slope Mode* gives the resulting
 **Graphs** a smoother look.
 
 ![Graph Name and Common Options](images/graph-templates-edit2.png)
+
+## Graph Template - Scaling Options
 
 The *Scaling Options* allow the Administrator to apply either *Rigid* or *Auto
 Scaling* settings to the resulting *Graph*.  These options are fairly self
@@ -93,14 +112,20 @@ more information.
 
 ![Scaling Options](images/graph-templates-edit3.png)
 
+## Graph Template - Grid Options
+
 The *Grid Options* are rarely necessary unless you have specific requirements to
 render the resulting **Graphs** with some exotic unit.
 
 ![Grid Options](images/graph-templates-edit4.png)
 
+## Graph Template - Axis Options
+
 The *Axis Options* allow you to define a *Right Axis* and optional *Formatters*.
 
 ![Axis Options](images/graph-templates-edit5.png)
+
+## Graph Template - Legend Options
 
 The *Legend* options allow you to specify how the *Legend* should be placed on
 the resulting **Graph** modern RRDtool has several options that were not
