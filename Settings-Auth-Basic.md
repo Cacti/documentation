@@ -32,6 +32,9 @@ Those settings include:
   Setting to `None`, disables this feature.
 - **User Template** - All new users who login for the first time will
   have their initial settings based upon this **User Template**.
+- **Basic Auth Login Failure Message** - This textbox can be customized
+  in order to provide a useful message to users who have no access to
+  Cacti via Basic Authentication and how to resolve the issue.
 - **Basic Auth Mapfile** - If your basic users do not match OS users
   you can force a basic account to login with an alternate account.
 
