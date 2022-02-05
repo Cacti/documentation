@@ -9,7 +9,7 @@ for graphing, though is just the surface of what is achievable:
 - A 24 port switch and you poll the device via snmp and graph all of
   the ports then there will be 24 data sources
 
-> **Note**: if you add more graphs that base their data on the original 
+> **Note**: if you add more graphs that base their data on the original
 > **Data source** that would not count as another **Data Source** since
 > it uses the already existing source.
 
@@ -71,10 +71,10 @@ Weekly | 22kb
 Monthly | 25kb
 Yearly | 26kb
 
-### Viewing all Data sources by device 
+### Viewing all Data sources by device
 
 You are able to check the data sources asociated to a specific device in the Console -> Managment -> Data sources
-You can then search based on a device you may be interested in to view the Data sources in use 
+You can then search based on a device you may be interested in to view the Data sources in use
 
 ![device datasources](images/data-sources-per-device.png)
 
@@ -82,4 +82,4 @@ You can also view Orphaned data sources in this view by setting Orphaned from Al
 Orphaned data sources are where the graph has been deleted but the data source was not deleted
 
 ---
-<copy>Copyright (c) 2004-2021 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

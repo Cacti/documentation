@@ -37,4 +37,4 @@ This page also shows what the last values where when last polled. This is also
 useful for troubleshooting as if the data comes in out of range of your Data
 Source template, or Graph template, this could point you into the right direction.
 
---- <copy>Copyright (c) 2004-2021 The Cacti Group</copy>
+--- <copy>Copyright (c) 2004-2022 The Cacti Group</copy>

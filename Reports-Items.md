@@ -1,4 +1,4 @@
-# Reports Items
+# Report Items
 
 This section will describe the **Report Edit Items** Sub-Tab.
 

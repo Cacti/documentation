@@ -44,17 +44,17 @@ Boost cache.  The MySQL/MariaDB setting that controls the maximum size of a
 memory table is the `max_heap_table_size` setting in your
 `/etc/my.cnf.d/server.cnf` file.
 
-To change the `max_heap_table_size` setting you require a restart of 
-MySQL/MariaDB.  So you won't want to make these changes often, 
-as some systems have little time between mass updates to perform a restart.  
-If you restart MySQL/MariaDB when the cache is full, you will lose those 
-updates upon restart unless you first change the ENGINE of the Boost cache 
+To change the `max_heap_table_size` setting you require a restart of
+MySQL/MariaDB.  So you won't want to make these changes often,
+as some systems have little time between mass updates to perform a restart.
+If you restart MySQL/MariaDB when the cache is full, you will lose those
+updates upon restart unless you first change the ENGINE of the Boost cache
 table to InnoDB or MyISAM before restarting.
 
 When using Memory Tables you have to be cognizant of the maximum output
 width of the Cache table called `poller_output_boost`.  By default, it's set
 to 512 bytes, which allows for very wide output from your **Data Collectors**.
-MySQL Memory Tables do not allow for variable sized columns in memory - 
+MySQL Memory Tables do not allow for variable sized columns in memory -
 which means if you write one byte to it, it will take 512 bytes.  So, tuning
 this width is very important.  That will be explained in more detail later on
 in this chapter.
@@ -196,3 +196,6 @@ might be better that after the `poller_boost.php` process is complete,
 to modify the `poller_output_boost` table to InnoDB before reboot,
 and then convert it back to memory after they system maintenance is
 complete.
+
+---
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

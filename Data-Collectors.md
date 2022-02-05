@@ -128,4 +128,4 @@ You will now need to install Cacti on the remote server selecting the
 ![Remote Data Collector Setup](images/data-collectors-remote-setup.png)
 
 ---
-<copy>Copyright (c) 2004-2021 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

@@ -44,7 +44,7 @@ presented with text that looks like:
 <?php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2021 The Cacti Group                                 |
+ | Copyright (C) 2004-2022 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -135,39 +135,39 @@ If this doesn't work a very simple config file is:
 
     # disk monitoring
     disk /
-    
+
     # Don't monitor NFS
     skipNFSInHostResources true
-    
+
     # Allow for real big disk volumes
     realStorageUnits 0
- 
+
  After you have made the changes to the net-snmp configuration file, you should
  restart the service using the following command:
- 
+
  ```sh
  shell> systemctl enable snmpd
  shell> systemctl restart snmpd
  ```
- 
+
  Though there are many more advanced settings available in net-snmp, it generally
- recommended to keep a simpler configuration unless your information security 
+ recommended to keep a simpler configuration unless your information security
  policies require more stringent settings.
- 
+
  **Q:** I've installed Cacti, and scheduled a network discovery, but nothing
  is happening.  Where should I go to see the issue?
- 
+
  **A:** You should click the **Log** tab at the top of the page.  When you get
  to the **Log** tab, you should search for an entry "SYSTEM STATS:".  If you
  do not find that entry, it means that you Cacti Data Collector, otherwise known
  as the Cacti Poller is not running.
- 
- This can happen if you have neglected to create either a CRON entry for the 
- Cacti Poller, or registered and started the `cactid` service available in 
+
+ This can happen if you have neglected to create either a CRON entry for the
+ Cacti Poller, or registered and started the `cactid` service available in
  the latest Cacti.  If you find that the CRON entry is there, you should look
- at your systems CRON log for entries like **permission denied**.  Sometimes 
- the user accounts you have selected to run the CRON are not permitted to do 
- so.  We strongly recommend that you use the `cactid` service with Cacti 1.x 
+ at your systems CRON log for entries like **permission denied**.  Sometimes
+ the user accounts you have selected to run the CRON are not permitted to do
+ so.  We strongly recommend that you use the `cactid` service with Cacti 1.x
  though and avoid CRON based Data Collection though.
 
 ## Graphs
@@ -177,7 +177,7 @@ If this doesn't work a very simple config file is:
 **A:** For you to actually get graph images, poller.php must run at least once
 so it can create .rrd files in Cacti's 'rra/' directory. Double check that you
 configured your `/etc/crontab` file or the `cactid` service to execute poller.php
-at the desired frequency, normally either every 1 or 5 minutes.  Also make sure 
+at the desired frequency, normally either every 1 or 5 minutes.  Also make sure
 that the user poller.php runs as has permission to create new files in Cacti's 'rra/'
 directory.  In the modern Cacti, both the Web Server account and Cacti's Poller
 account must have write access.
@@ -365,4 +365,4 @@ The newly created command prompt should show the user name if you have entered
 the correct password.
 
 ---
-<copy>Copyright (c) 2004-2021 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

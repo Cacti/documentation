@@ -254,4 +254,4 @@ User "criggie" reported an issue with running smartctl. It was complaining "you
 are not root" so a quick `chmod +s` on the script fixed that problem.
 
 ---
-<copy>Copyright (c) 2004-2021 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>
