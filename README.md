@@ -118,8 +118,6 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    1.5. [Viewing Graphs](Viewing-Graphs.md)
 
-  
-
 2. Management
 
    2.1. [Devices](Devices.md)
@@ -235,6 +233,20 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
     12.2. [Data Debug](Data-Debug.md)
 
     12.3. [External Links](External-Links.md)
+
+13. Reporting
+
+    13.1. [Reports Admistrative Interface](Reports-Admin.md)
+
+    13.2. [Reports User Interface](Reports-User.md)
+
+    13.3. [Report Items Page](Reports-Items.md)
+
+    13.4. [Report Preview Page](Reports-Preview.md)
+
+    13.5. [Report Events Page](Reports-Events.md)
+
+    13.6. [Other Options for Adding Report Items](Reports-Other-Options.md)
 
 ### Advanced Operations
 
