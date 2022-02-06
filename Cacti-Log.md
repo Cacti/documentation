@@ -63,4 +63,4 @@ will not include the *Purge* button, and can have some information hidden from p
 whereas the Administrative view includes all Log messages and a *Purge** button.
 
 ---
-<copy>Copyright (c) 2004-2021 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>
