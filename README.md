@@ -248,6 +248,8 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
     13.6. [Other Options for Adding Report Items](Reports-Other-Options.md)
 
+14. [The Cacti Log](Cacti-Log.md)
+
 ### Advanced Operations
 
 1. Data Collection
