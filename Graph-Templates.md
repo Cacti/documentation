@@ -134,4 +134,4 @@ available in Cacti prior to Cacti 1.0.
 ![Legend Options](images/graph-templates-edit6.png)
 
 ---
-<copy>Copyright (c) 2004-2021 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

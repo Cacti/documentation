@@ -57,4 +57,4 @@ for usage examples for more information.
 ![VDEF Item Edit](images/vdefs-edit4.png)
 
 ---
-<copy>Copyright (c) 2004-2021 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

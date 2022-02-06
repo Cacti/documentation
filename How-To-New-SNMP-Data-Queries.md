@@ -480,4 +480,4 @@ into `./resource/snmp_queries` and import the Graph Template from
 [hrStorageTable](resource/xml/hrStorageTable.xml) download and store into `resource/snmp_queries`.
 
 ---
-<copy>Copyright (c) 2004-2021 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

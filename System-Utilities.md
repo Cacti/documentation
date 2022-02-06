@@ -131,4 +131,4 @@ the Device name this is the same view as you reading the log in the OS
 ![System Utilities](images/system-utilities-viewclog.png)
 
 ---
-<copy>Copyright (c) 2004-2021 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

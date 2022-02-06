@@ -137,4 +137,4 @@ The image below shows the two settings.
 ![DNS Options](images/settings-mrd-dns-options.png)
 
 ---
-<copy>Copyright (c) 2004-2021 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

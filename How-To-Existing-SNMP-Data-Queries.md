@@ -197,4 +197,4 @@ Pressing the *Set Default* button will set the selected *Graph Type* to be the
 default for this **Data Query**.
 
 ---
-<copy>Copyright (c) 2004-2021 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

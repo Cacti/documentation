@@ -665,4 +665,4 @@ items to the top. I've chosen opacity of `20%` for Item numbers 1 to 3.
 | Item # 7   | (proc): Maximum:          | GPRINT          | MAX     |            |
 
 ---
-<copy>Copyright (c) 2004-2021 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

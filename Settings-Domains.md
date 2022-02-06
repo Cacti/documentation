@@ -32,4 +32,4 @@ The reason that it shows settings for `Built-in` accounts is that
 you can still login as a local account when you choose this setting.
 
 ---
-<copy>Copyright (c) 2004-2021 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

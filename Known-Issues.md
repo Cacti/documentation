@@ -22,4 +22,4 @@ and other popular search engines regularily scan the Cacti Forums, so using
 those services will help.
 
 ---
-<copy>Copyright (c) 2004-2021 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

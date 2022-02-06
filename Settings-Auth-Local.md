@@ -46,4 +46,4 @@ The settings are fairly self explanatory, so additional detail is no
 provided here.
 
 ---
-<copy>Copyright (c) 2004-2021 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>
