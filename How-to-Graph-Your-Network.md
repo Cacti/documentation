@@ -54,14 +54,19 @@ host.
 
 - **Downed Device Detection**
   - ___NONE___ - Deactivate downed host detection
-  - ___SNMP___ - verify SNMP check on OID .1 and .1.3
-  - ___ICMP___ - perform a ping test, see below
-  - ___PING and SNMP___ - perform both tests
+  - ___PING and SNMP Uptime___ - Ping and then also check SNMP Uptime
+  - ___PING or SNMP Uptime___ - Ping and if successful, move on, if not check SNMP Uptime
+  - ___SNMP Uptime___ - verify the SNMP Uptime only
+  - ___SNMP Desc___ - verify the SNMP System Description
+  - ___SNMP GetNext___ - verify the very next SNMP OID after .1.3
+  - ___PING___ - perform a ping test, see below
+
 
 - **Ping Method** - Available only for ***PING and SNMP*** or ***PING***
   - ___ICMP___ - perform ICMP tests. Requires permissions
   - ___UDP___ - perform a UDP test
   - ___TCP___ - perform a TCP test
+
 
 - **Ping Port** - Available only for UDP/TCP PING test types. Please define the
   port to be tested here. Make sure, that no firewall
@@ -81,6 +86,7 @@ host.
   - ___Version 2___ - Referred to as SNMP V2c in most SNMP documentations
   - ___Version 3___ - SNMP V3, supporting authentication and encryption
 
+
 - **SNMP Community** - SNMP read community for this device
 
 - **SNMP Port** - UDP port number to use for SNMP (default is 161).
@@ -92,7 +98,7 @@ host.
   the number of OID's that can be obtained in a single SNMP Get request.
   ***WARNING***: This feature only works when using Spine.
   ***WARNING*** Some devices do not support values greater than `1` and/or may
-  crash if this value is to high.
+  reports as unknown data if this value is too high.
 
 ### Security Options for SNMP V3
 
@@ -111,8 +117,10 @@ host.
 
 - ***SNMP Privacy Protocol*** - The `privacy protocol` of an SNMP V3
   `createUser` statement or equivalent. Select DES (if available), AES-128,
-  AES-192, or AES-256. Defaults to DES.  Though note that spine may not
-  support DES today as some Net-SNMP repository managers have disabled it.
+  AES-192, or AES-256. Defaults to DES.
+
+  **NOTE** Spine may not support DES today as some Net-SNMP distributions 
+  have disabled it.
 
 - ***SNMP Context*** - When using the View-Based Access Control Model (VACM),
   it is possible to specify an SNMP Context when mapping a community name to
