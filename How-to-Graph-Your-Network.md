@@ -76,8 +76,8 @@ host.
 ### SNMP Options
 
 - **SNMP Version**
-  - ___Version 1___ - Use SNMP Version 1. Be aware, that 64bit counters are not
-                      supported in this SNMP version.
+  - ___Version 1___ - Use SNMP Version 1. Be aware, that 64bit counters are not 
+  supported in this SNMP version.
   - ___Version 2___ - Referred to as SNMP V2c in most SNMP documentations
   - ___Version 3___ - SNMP V3, supporting authentication and encryption
 
@@ -103,14 +103,16 @@ host.
   or equivalent
 
 - ***SNMP Auth Protocol*** - Authentication type of an SNMP V3 `createUser`
-  statement or equivalent. Select either MD5 or SHA. Defaults to MD5.
+  statement or equivalent. Select either MD5, SHA, SHA-224, SHA-256, SHA-392,
+  or SHA-512. Defaults to MD5.
 
 - ***SNMP Privacy Passphrase*** - The `privacy passphrase` of an SNMP V3
   `createUser` statement or equivalent.
 
 - ***SNMP Privacy Protocol*** - The `privacy protocol` of an SNMP V3
-  `createUser` statement or equivalent. Select either DES or AES. Defaults to
-  DES.
+  `createUser` statement or equivalent. Select DES (if available), AES-128,
+  AES-192, or AES-256. Defaults to DES.  Though note that spine may not
+  support DES today as some Net-SNMP repository managers have disabled it.
 
 - ***SNMP Context*** - When using the View-Based Access Control Model (VACM),
   it is possible to specify an SNMP Context when mapping a community name to
