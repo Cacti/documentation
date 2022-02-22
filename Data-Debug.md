@@ -42,6 +42,7 @@ and issue that it knows how to correct.  It will offer you a link to make that
 correction.
 
 **Note** Devices that are down for long periods of time will report as having errors
-since there RRDfiles will not be updated as expected for a properly monitored Device.
+since the RRDfiles associated with them will not be updated as expected for with an
+available Device.
 
 --- <copy>Copyright (c) 2004-2022 The Cacti Group</copy>
