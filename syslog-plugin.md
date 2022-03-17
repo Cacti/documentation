@@ -240,11 +240,7 @@ mode = daemon
 
 6.) use the snmptt cacti connector
 
-By default since snmptt resides on the syslog server all of the IP information will appear as if its coming from localhost to fix this there is a cacti snmptt connector which will format the trap to be ingested to the syslog db
-
-it is located here in the official snmptt repo
-
-https://github.com/snmptt/snmptt/tree/master/snmptt/contrib
+By default since snmptt resides on the syslog server all of the IP information will appear as if its coming from localhost to fix this there is a cacti snmptt connector which will format the trap to be ingested to the syslog db it is located in the contrib folder in this Repo
 
 
 
