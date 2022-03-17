@@ -240,24 +240,24 @@ The syslog plugin can be deployed on each poller or select pollers each poller w
 There are a few deployment approches
 
 
-1.) multiple Pollers with a load balancer for syslog
+1.) Multiple Pollers with a load balancer for syslog
 
 ![multiple Pollers lb](images/syslog-multi-poller-lb.PNG)
 
 
 
 
-2.) multiple pollers no balancer but devices send syslog to multiple pollers
+2.) Multiple pollers no balancer but devices send syslog to multiple pollers
 
 
 ![multiple Pollers no lb](images/syslog-multi-poller-no-lb.PNG)
 
 
 
-3.)multiple pollers but devices are asiged to send syslog to a specific poller for example poller a and device a are at one location
+3.) Multiple pollers but devices are asiged to send syslog to a specific poller for example poller a and device a are at one location
 
 
-![device per poller](images/syslog-device-per-poller.PNG.PNG)
+![device per poller](images/syslog-device-per-poller.PNG)
 
 
 ## Possible Bugs and Feature Enhancements
