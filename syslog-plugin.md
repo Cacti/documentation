@@ -196,9 +196,9 @@ chown -R apache:apache syslog
 4.) You will be presented with the plugin install wizard with options on how you would like the syslog
 plugin to be installed options include DB arch and retention time 
 
- retention settings can be changed after install but db archtecture will require a reinstall of the plugin 
+### Note retention settings can be changed after install but db archtecture will require a reinstall of the plugin 
 
-![multiple Pollers lb](images/syslog_install_advisor.PNG)
+![install advisor](images/syslog_install_advisor.PNG)
 
 
 
