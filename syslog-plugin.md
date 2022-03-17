@@ -46,6 +46,8 @@ Syslog also provides multipoller support which allows for scalability and reduda
 
 * Custom column mappings between Remote Log Server and required Syslog columns
 
+* Remote poller support
+
 ## Installation
 
 To install the syslog plugin, simply copy the plugin_sylog directory to Cacti's
@@ -258,6 +260,56 @@ There are a few deployment approches
 
 
 ![device per poller](images/syslog-device-per-poller.PNG)
+
+
+## Remote poller setup
+
+To setup each remote poller you will need to enable and configure rsyslog with the following steps
+
+1.) decide if you will use the cacti db or a seperate DB 
+### Note on using the cacti db
+For large installations syslog can add a significant amount of data to your database if you have more than 100 devices 
+it may be best to use a seperate database to store the syslog messeges
+
+2.) If you decide to use the cacti database simply leave config_local.php with the defaults
+
+```console
+$use_cacti_db = true; 
+to 
+$use_cacti_db = false;
+```
+3.) If  you device to use a seperate DB fill out the database details in config_local.php
+
+4.) create a cacti.conf file in /etc/rsyslog.d and fill out either your seperate DB details or your main cacti DB details
+
+```console
+$ModLoad imudp
+$UDPServerRun 514
+$ModLoad ommysql
+
+$template cacti_syslog,"INSERT INTO syslog_incoming(facility_id, priority_id, program, date, time, host, message) \
+  values (%syslogfacility%, %syslogpriority%, '%programname%', '%timereported:::date-mysql%', '%timereported:::date-mysql%', '%HOSTNAME%', TRIM('%msg%'))", SQL
+
+*.* >localhost,my_database,my_user,my_password;cacti_syslog
+```
+
+5.) install rsyslog-mysql package to allow rsyslog to write to mysql
+```console
+yum install rsyslog-mysql
+```
+
+6.) restart rsyslog
+```console
+systemctl restart rsyslog
+```
+
+7.) if you would like for rules to be replicated from the main poller to the remotes you will need to enable
+the following syslog settings found in configuration >> settings >> syslog
+
+![syslog settings ](images/syslog-multipoller-settings.PNG)
+
+### note rules will be replicated within one polling cycle from the main poller to the remotes
+if you wish to have each poller operate independently there is no need to enable these options.
 
 
 ## Possible Bugs and Feature Enhancements
