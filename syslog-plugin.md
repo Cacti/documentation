@@ -56,10 +56,11 @@ goto Cacti's Plugin Management page, and Install and Enable the plugin. Once
 this is complete, you can grant users permission to view syslog messages, as
 well as create Alert, Removal and Report Rules.
 
-Note: You must rename config.php.dist in the syslog plugin directory to
-config.php and make changes there for the location of the database, user,
+Note: For the Main poller You must rename config.php.dist in the syslog plugin 
+directory to config.php and make changes there for the location of the database, user,
 password, and host.  This is especially important if you are using a remote
 logging database server.
+For remote pollers please see the remote poller installation portion of this doc.
 
 If you are upgrading to 2.0 from a prior install, you must first uninstall
 syslog and insure both the syslog, syslog_removal, and syslog_incoming tables
@@ -139,6 +140,18 @@ column for searching and storage and alert generation.
 To setup log forwarding from your network switches and routers, and from your
 various Linux, UNIX, and other operating system devices, please see their
 respective documentation.
+
+For Cisco routers switches configuration may look something like this 
+
+```console
+SW-3750#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+SW-3750(config)#logging host 192.168.1.194
+SW-3750(config)#logging facility local7
+SW-3750(config)#logging rate-limit 100
+SW-3750(config)#
+
+```
 
 Finally, it's important, especially in more recent versions of MySQL and MariaDB
 to set a correct SQL Mode.  These more recent SQL's prevent certain previously
@@ -237,7 +250,8 @@ https://github.com/snmptt/snmptt/tree/master/snmptt/contrib
 
 ## Remote poller deployment options
 
-The syslog plugin can be deployed on each poller or select pollers each poller will need to be configured with rsyslog and each poller will need to be configured with a syslog config_local file
+The syslog plugin can be deployed on each poller or select pollers each poller will need to be configured with rsyslog
+each poller will need to be configured with a syslog config_local file
 
 There are a few deployment approches
 
@@ -267,9 +281,17 @@ There are a few deployment approches
 To setup each remote poller you will need to enable and configure rsyslog with the following steps
 
 1.) decide if you will use the cacti db or a seperate DB 
-### Note on using the cacti db
-For large installations syslog can add a significant amount of data to your database if you have more than 100 devices 
-it may be best to use a seperate database to store the syslog messeges
+### Note on using the cacti db as mentioned earlier
+You have two options for storing syslog information you can either use the exisiting
+Cacti Database or use a dedicated database for syslog as syslog databases especially
+for large networks can grow pretty quick it may be wise to create a dedicated database.
+To use a dedicated DB first create a database in mysql and assign a user you will then change
+```console
+$use_cacti_db = true; 
+to 
+$use_cacti_db = false;
+```
+
 
 2.) If you decide to use the cacti database simply leave config_local.php with the defaults
 
@@ -311,6 +333,11 @@ the following syslog settings found in configuration >> settings >> syslog
 ### note rules will be replicated within one polling cycle from the main poller to the remotes
 if you wish to have each poller operate independently there is no need to enable these options.
 
+
+### Syslog Alert Rules
+
+
+### Syslog Removal Rules
 
 ## Possible Bugs and Feature Enhancements
 
