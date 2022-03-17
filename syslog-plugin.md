@@ -48,7 +48,7 @@ Syslog also provides multipoller support which allows for scalability and reduda
 
 * Remote poller support
 
-## Installation
+## Preparing for Installation
 
 To install the syslog plugin, simply copy the plugin_sylog directory to Cacti's
 plugins directory and rename it to simply 'syslog'. Once you have done this,
@@ -85,6 +85,9 @@ You will also need to ensure the cacti user is granted select on the syslog data
 ```shell
 GRANT SELECT  ON syslog.* TO  'cacti'@'localhost';
 ```
+
+
+
 
 
 ### Cacti Configuration for RSYSLOG
@@ -177,6 +180,28 @@ And ensure that it matches the setting that you placed in the database
 configuration.  If it does not, please search for the configuration that is
 making this SQL mode other than what you required.  More recent versions of
 MySQL and MariaDB will source multiple database configuration files.
+
+## Installing the plugin
+
+1.) Copy the syslog files over to /var/www/html/cacti/plugins
+
+2.) ensure permissions are correct the files should typically be owned by the webserver user
+
+```shell
+chown -R apache:apache syslog
+```
+
+3.) install the plugin in the plugins tab located in Console >> configuration >> plugins
+
+4.) You will be presented with the plugin install wizard with options on how you would like the syslog
+plugin to be installed options include DB arch and retention time 
+
+ retention settings can be changed after install but db archtecture will require a reinstall of the plugin 
+
+![multiple Pollers lb](images/syslog_install_advisor.PNG)
+
+
+
 
 
 ## SNMP Trap configuration
@@ -338,6 +363,10 @@ to send out email alerts and command execution to cut tickets to upstream ticket
 systems or perform inital troubleshooting scripts can also be leveraged to call on 
 services such as slack or trello for alerting teams.
 
+you can leverage the built in variable substitution to format the input to the script
+
+
+![Alert Rules](images/syslog-alert-messeges.PNG)
 
 
 
