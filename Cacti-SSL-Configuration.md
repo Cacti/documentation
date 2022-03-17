@@ -17,9 +17,11 @@ cp ca.csr /etc/pki/tls/private/ca.csr
 
 Then we need to update the Apache SSL configuration file
 
+```console
 vi +/SSLCertificateFile /etc/httpd/conf.d/ssl.conf
 SSLCertificateFile /etc/pki/tls/certs/ca.crt
 SSLCertificateKeyFile /etc/pki/tls/private/ca.key
+```
 
 restart the httpd service
 
