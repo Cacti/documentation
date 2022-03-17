@@ -22,7 +22,10 @@ For log events that continue to be generated frequently on a device, such as
 smartd's feature to notify every 15 minutes of an impending drive failure, can
 be quieted using syslog's 'Re-Alert' setting.
 
-Syslog also provides multipoller support which allows for scalability and redudancy by leveraging multiple servers rules can be created on the main poller and pushed to the remotes for ease of managment or each server can work indepedntley
+Syslog also provides multipoller support which allows for scalability and redundancy by leveraging 
+multiple servers rules can be created on the main poller and pushed to the remotes for ease of management 
+or each server can work independently
+
 
 ## Features
 
@@ -193,7 +196,8 @@ the file is located in /etc/sysconfig/snmptrapd and should look like this after 
 OPTIONS="-on"
 ```
 
-4.) Now you need to modify the snmptrapd config file to recive snmptraps by default snmptrapd will not process any traps until you configure it to do so you will also need to tell snmptrapd to forward the recived traps over to snmptt
+4.) Now you need to modify the snmptrapd config file to recive snmptraps by default snmptrapd will not process
+any traps until you configure it to do so you will also need to tell snmptrapd to forward the recived traps over to snmptt
 
 Here is an example of configuring snmptrapd to recive snmptraps from a device using the public snmp string and forwarding it over to snmptt
 
@@ -225,16 +229,14 @@ mode = daemon
 
 6.) use the snmptt cacti connector
 
-By default since snmptt resides on the syslog server all of the IP information will appear as if its coming from localhost to fix this there is a cacti snmptt connector which will format the trap to be ingested to the syslog db
+By default since snmptt resides on the syslog server all of the IP information will appear as if its coming from localhost 
+to fix this there is a cacti snmptt connector which will format the trap to be ingested to the syslog db
 
 it is located here in the official snmptt repo
 
 https://github.com/snmptt/snmptt/tree/master/snmptt/contrib
 
-
-
-
-
+### For more information on SNMPTT check out their documentation http://www.snmptt.org/
 
 
 ## Possible Bugs and Feature Enhancements
