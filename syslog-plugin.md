@@ -280,6 +280,7 @@ There are a few deployment approches
 
 To setup each remote poller you will need to enable and configure rsyslog with the following steps
 
+
 1.) decide if you will use the cacti db or a seperate DB 
 ### Note on using the cacti db as mentioned earlier
 You have two options for storing syslog information you can either use the exisiting
@@ -336,6 +337,13 @@ if you wish to have each poller operate independently there is no need to enable
 
 ### Syslog Alert Rules
 
+Alert rules are used to generate alerts in the cacti log they are also used
+to send out email alerts and command execution to cut tickets to upstream ticketing
+systems or perform inital troubleshooting scripts can also be leveraged to call on 
+services such as slack or trello for alerting teams.
+
+
+
 
 ### Syslog Removal Rules
 
@@ -346,6 +354,8 @@ you may add a rule to delete the messege when its recived.
 to do this click on the Syslog settings tab in the console then click removal rules
 
 ![Removal Rules](images/syslog-remove-messeges.PNG)
+
+
 
 
 ## Possible Bugs and Feature Enhancements
