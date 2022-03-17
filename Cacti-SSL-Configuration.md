@@ -29,6 +29,6 @@ systemctl restart httpd
 
 After you have configured the web server to accept https you can force https in the Cacti GUI
 
-
+![cacti-ssl](images/cacti-https.PNG)
 
 ### Warning if you are using multiple pollers ensure all pollers have HTTPS enabled or remote polling feature will not work
