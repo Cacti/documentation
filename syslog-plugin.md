@@ -233,7 +233,7 @@ https://github.com/snmptt/snmptt/tree/master/snmptt/contrib
 
 
 
-## Remote poller setup
+## Remote poller deployment options
 
 The syslog plugin can be deployed on each poller or select pollers each poller will need to be configured with rsyslog and each poller will need to be configured with a syslog config_local file
 
