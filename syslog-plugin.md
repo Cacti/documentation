@@ -196,11 +196,9 @@ chown -R apache:apache syslog
 4.) You will be presented with the plugin install wizard with options on how you would like the syslog
 plugin to be installed options include DB arch and retention time 
 
-### Note retention settings can be changed after install but db archtecture will require a reinstall of the plugin 
+### Note retention settings can be changed after install but db architecture will require a reinstall of the plugin 
 
 ![install advisor](images/syslog_install_advisor.PNG)
-
-
 
 
 
@@ -222,8 +220,7 @@ systemctl start snmptt
 systemctl start snmptrapd
 ```
 
-3.)
-Now that snmptt and snmptrapd are started and enabled you will first need to modify the snmptrapd systemd file to include -on in the startup options
+3.) Now that snmptt and snmptrapd are started and enabled you will first need to modify the snmptrapd systemd file to include -on in the startup options
 
 the file is located in /etc/sysconfig/snmptrapd and should look like this after you make the change
 
@@ -265,8 +262,8 @@ mode = daemon
 
 6.) use the snmptt cacti connector
 
-By default since snmptt resides on the syslog server all of the IP information will appear as if its coming from localhost to fix this there is a cacti snmptt connector which will format the trap to be ingested to the syslog db it is located in the contrib folder in this Repo
-
+By default since snmptt resides on the syslog server all of the IP information will appear as if its coming from localhost 
+to fix this there is a cacti snmptt connector which will format the trap to be ingested to the syslog db it is located in the contrib folder
 
 
 ## Remote poller deployment options
@@ -308,6 +305,7 @@ You have two options for storing syslog information you can either use the exisi
 Cacti Database or use a dedicated database for syslog as syslog databases especially
 for large networks can grow pretty quick it may be wise to create a dedicated database.
 To use a dedicated DB first create a database in mysql and assign a user you will then change
+
 ```console
 $use_cacti_db = true; 
 to 
@@ -319,10 +317,9 @@ $use_cacti_db = false;
 
 ```console
 $use_cacti_db = true; 
-to 
-$use_cacti_db = false;
 ```
-3.) If  you device to use a seperate DB fill out the database details in config_local.php
+
+3.) If you decide to use a seperate DB fill out the Database detailing config_local.php
 
 4.) create a cacti.conf file in /etc/rsyslog.d and fill out either your seperate DB details or your main cacti DB details
 
