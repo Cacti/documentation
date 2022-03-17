@@ -274,6 +274,13 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 5. [Hook API Reference](Plugin-Hook-API-Ref.md)
 
+### Plugin Documentation
+
+1.[Syslog Plugin](syslog-plugin.md)
+
+
+
+
 ### How Tos
 
 1. [How To Work with Templates](How-To-Work-With-Templates.md)
@@ -293,6 +300,9 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 8. [How To Determine Template Version](How-To-Determine-Template-Version.md)
 
 9. [How To Setup SSH Tunnels](How-To-SSH-Tunnels.md)
+
+10.[Enable SSL for Cacrti](Cacti-SSL-Configuration.md)
+
 
 ### Contributing
 
