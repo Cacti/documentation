@@ -339,6 +339,15 @@ if you wish to have each poller operate independently there is no need to enable
 
 ### Syslog Removal Rules
 
+The syslog plugin allows administrators to delete incoming messeges so they are not stored in the DB.
+For example if you are not interested in seeing syslog messeges everytime a user logs into a device
+you may add a rule to delete the messege when its recived.
+
+to do this click on the Syslog settings tab in the console then click removal rules
+
+![Removal Rules](images/syslog-remove-messeges.PNG)
+
+
 ## Possible Bugs and Feature Enhancements
 
 Bug and feature enhancements for the syslog plugin are handled in GitHub. If you
