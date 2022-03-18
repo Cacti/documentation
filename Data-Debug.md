@@ -37,4 +37,12 @@ This page also shows what the last values where when last polled. This is also
 useful for troubleshooting as if the data comes in out of range of your Data
 Source template, or Graph template, this could point you into the right direction.
 
---- Copyright (c) 2004-2021 The Cacti Group
+If the Web Server has write access to Cacti's RRA folder, if the Data Debug finds
+and issue that it knows how to correct.  It will offer you a link to make that
+correction.
+
+> **NOTE**: Devices that are down for long periods of time will report as having errors
+> since the RRDfiles associated with them will not be updated as expected for with an
+> available Device.
+
+--- <copy>Copyright (c) 2004-2022 The Cacti Group</copy>

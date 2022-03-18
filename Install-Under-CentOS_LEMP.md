@@ -526,4 +526,4 @@ setenforce 1
 up all SELinux context and permissions.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

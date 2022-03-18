@@ -121,4 +121,4 @@ Those settings include:
 - **Archive directory** - The Archive directory to move old RRDfile to.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

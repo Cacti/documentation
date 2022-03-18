@@ -133,7 +133,7 @@ Several JavaScript based HTML5 Charting packages have been included in Cacti in
 an effort to assist plugin developers who wish to use graphing API's in their
 plugins other than RRDtool.
 
-- [C3](http://c3js.org/)
+- [Billboard.js](https://naver.github.io/billboard.js/)
 - [D3](https://d3js.org/)
 - [Chart.js](http://www.chartjs.org/)
 - [DyGraphs](http://dygraphs.com/)
@@ -147,4 +147,4 @@ controlled at not only a global level, but now per plugin, per device and even
 per file.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

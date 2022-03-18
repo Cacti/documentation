@@ -184,4 +184,4 @@ function api_graph_item_save($graph_item_id, &$_fields_graph_item) {
 ```
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

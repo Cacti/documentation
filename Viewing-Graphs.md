@@ -97,4 +97,4 @@ There are many options for the Zoom menu.  Instead of explaining them here
 try them out for yourself.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

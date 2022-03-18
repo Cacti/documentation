@@ -411,7 +411,7 @@ the file.
 ```php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2021 The Cacti Group                                 |
+ | Copyright (C) 2004-2022 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -461,4 +461,4 @@ PHP DocBlock specifications as follow:
 Place a space between the `@param` and `@return`.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

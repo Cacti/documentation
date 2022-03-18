@@ -92,4 +92,4 @@ Example
 (Aggregate level)60 * 72 ( 72 hours) = 4,320
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

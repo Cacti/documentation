@@ -102,4 +102,4 @@ so be sure to name is something that is recognizable.
 ![Data-Source-Templates](images/datasource-template2.png)
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

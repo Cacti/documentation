@@ -101,4 +101,4 @@ include($config['base_path'] . '/lib/database.php');
 ```
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

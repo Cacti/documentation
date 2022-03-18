@@ -118,8 +118,6 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    1.5. [Viewing Graphs](Viewing-Graphs.md)
 
-   1.6. [Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
-
 2. Management
 
    2.1. [Devices](Devices.md)
@@ -236,6 +234,22 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
     12.3. [External Links](External-Links.md)
 
+13. Reporting
+
+    13.1. [Reports Admistrative Interface](Reports-Admin.md)
+
+    13.2. [Reports User Interface](Reports-User.md)
+
+    13.3. [Report Items Page](Reports-Items.md)
+
+    13.4. [Report Preview Page](Reports-Preview.md)
+
+    13.5. [Report Events Page](Reports-Events.md)
+
+    13.6. [Other Options for Adding Report Items](Reports-Other-Options.md)
+
+14. [The Cacti Log](Cacti-Log.md)
+
 ### Advanced Operations
 
 1. Data Collection
@@ -303,6 +317,15 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 10.[Enable SSL for Cacrti](Cacti-SSL-Configuration.md)
 
+11.[Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
+
+## Watch Howto's and Tutorials on the Cacti Official YouTube page!.
+
+If you prefer to see some video based tutorials visit the Official Cacti YouTube channel.
+
+If you would have any ideas for videos or would like to contibute let us know !
+
+[Cacti Official Youtube Channel](https://www.youtube.com/channel/UC6ROmUGuuLa9BdHWzvGSY1w)
 
 ### Contributing
 
@@ -327,4 +350,4 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 7. [Security](Standards-Security.md)
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

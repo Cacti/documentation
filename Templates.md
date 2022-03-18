@@ -457,4 +457,4 @@ Template** or a **Data Query**. When selecting `Include Dependencies`, e.g. a
 browser or to a file for uploading.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

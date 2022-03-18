@@ -25,7 +25,7 @@ page (including the blank line):
 ```markdown
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>
 ```
 
 ## Titles
@@ -132,7 +132,7 @@ The menus are located at the top of the page ...
 
 ```
 
-###### Example 4. Incorrect Markdown for Title Spacing
+###### Example 4. Correct Markdown for Title Spacing
 
 ```markdown
 
@@ -396,4 +396,4 @@ Documentation-Standards.md:240: MD033 Inline HTML
 ```
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

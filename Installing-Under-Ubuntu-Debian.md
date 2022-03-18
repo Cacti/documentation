@@ -13,7 +13,7 @@ Once the OS packages are installed, you will need to download the Cacti files
 you can do this by using the git command
 
 ```console
-git clone https://github.com/Cacti/cacti.git
+git clone -b 1.2.x  https://github.com/Cacti/cacti.git
 Cloning into 'cacti'...
 remote: Enumerating objects: 81, done.
 remote: Counting objects: 100% (81/81), done.
@@ -109,4 +109,4 @@ The system is now ready to finialise the steps by browsing to
 wizard.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

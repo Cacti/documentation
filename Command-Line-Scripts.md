@@ -1289,4 +1289,4 @@ error message will be printed. No output is produced on successful
 operations.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

@@ -23,6 +23,12 @@ Those settings include:
 - **Enable Data Source Statistics Collection** - This is setting
   will either enable or disable the statistics collection.
 
+- **Number of DSStats Processes** - For very large Cacti installs
+  the **Data Source Statistics** can take quite a long time to complete.
+  This setting allows Cacti to perform the statistics calculation
+  at orders of magnitude faster.  You can allocate as many as 20
+  concurrent processes to perform all the updates.
+
 - **Daily Update Frequency** - This setting determines how often
   daily averages and peaks should be calculated.  You can set
   it to run hourly, upto every 6 hours, or after Cacti's boost
@@ -99,4 +105,4 @@ The settings above include:
   connection to the RRD Proxy service.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

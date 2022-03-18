@@ -66,4 +66,4 @@ It is also worth noting that only **Data Query** type **Graph Templates**
 are supported as of the current Cacti version.
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>

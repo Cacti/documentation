@@ -11,3 +11,5 @@ manual/*
 # Ignore any CertBot files
 .well-known
 .well-known/*
+# Ignore any Git/GitHub files
+.git*

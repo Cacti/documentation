@@ -70,10 +70,10 @@ When providing the SNMP credentials, Cacti currently supports the following vers
 
 - **Version 1** - Rarely used any more.  Reserved for very old hardware
 - **Version 2** - Still very popular, and support 64 bit counters except on Windows
-- **Version 3** - Support is provided, but there are presently limitations for example
-  at the present time only MD5, and SHA1 Auth Protocols, and DES and AES128
-  Privacy Protocols.  Higher level encryption is currently scheduled for a future
-  release.
+- **Version 3** - Support is provided, but there are presently a limitation.  If you
+  are using advanced settings such as SHA224+ or AES192+ with SNMPv3, you must
+  uninstall the php-snmp module if it's in use in php and leverage the Net-SNMP
+  binaries instead.
 
 When providing the SNMP Credentials, Cacti will warn you if you have provided
 incomplete information depending on the SNMP Version and SNMP Security Level
@@ -139,4 +139,4 @@ Success - new device-id: (45)
 ```
 
 ---
-Copyright (c) 2004-2021 The Cacti Group
+<copy>Copyright (c) 2004-2022 The Cacti Group</copy>
