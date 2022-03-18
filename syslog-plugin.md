@@ -294,12 +294,12 @@ There are a few deployment approaches
 To setup each remote poller you will need to enable and configure rsyslog with the following steps
 
 
-1.) decide if you will use the cacti db or a seperate DB 
-### Note on using the cacti db as mentioned earlier
-You have two options for storing syslog information you can either use the exisiting
-Cacti Database or use a dedicated database for syslog as syslog databases especially
-for large networks can grow pretty quick it may be wise to create a dedicated database.
-To use a dedicated DB first create a database in mysql and assign a user you will then change
+1.) decide if you will use the cacti DB or a separate DB 
+### Note on using the cacti DB as mentioned earlier
+You have two options for storing Syslog information you can either use the existing
+Cacti Database or use a dedicated database for Syslog as Syslog databases especially
+for large networks can grow pretty quickly it may be wise to create a dedicated database.
+To use a dedicated DB first create a database in MySQL and assign a user you will then change
 
 ```console
 $use_cacti_db = true; 
