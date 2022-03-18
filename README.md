@@ -288,6 +288,13 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 5. [Hook API Reference](Plugin-Hook-API-Ref.md)
 
+### Plugin Documentation
+
+1.[Syslog Plugin](syslog-plugin.md)
+
+
+
+
 ### How Tos
 
 1. [How To Work with Templates](How-To-Work-With-Templates.md)
@@ -308,7 +315,9 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 9. [How To Setup SSH Tunnels](How-To-SSH-Tunnels.md)
 
-10.[Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
+10.[Enable SSL for Cacrti](Cacti-SSL-Configuration.md)
+
+11.[Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
 
 ## Watch Howto's and Tutorials on the Cacti Official YouTube page!.
 
