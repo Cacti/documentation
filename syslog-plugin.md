@@ -16,8 +16,9 @@ For log events that continue to be generated frequently on a device, such as
 smartd's feature to notify every 15 minutes of an impending drive failure, can
 be quieted using syslog's 'Re-Alert' setting.
 
-Syslog also provides multipoller support which allows for scalability and redudancy by leveraging multiple servers rules can be created on the main poller 
-and pushed to the remotes for ease of managment or each server can work indepedntley
+Syslog also provides multipoller support which allows for scalability and redundancy by leveraging multiple
+servers rules can be created on the main poller and pushed to the remotes for ease of management or each server can work independently
+
 
 ## Features
 
@@ -93,7 +94,7 @@ systemctl resatrt rsyslog
 
 
 If you are upgrading to version 2.5 from an earlier version, make sure that you
-update this template format and restart rsyslog.  You may loose some syslog
+update this template format and restart rsyslog.  You may lose some syslog
 data, but doing this in a timely fashion, will minimize data loss.
 
 Ensure you restart rsyslog after these changes are completed.  Other logging
@@ -179,7 +180,7 @@ if you intend to use the cacti DB leave config.php as default
 
 6.) install the plugin in the plugins tab located in Console >> configuration >> plugins
 
-7.) You will be presented with the plugin install wizard with options on how you would like the syslog
+7.) You will be presented with the plugin install wizard with options on how you would like the Syslog
 plugin to be installed options include DB arch and retention time 
 
 ### Note retention settings can be changed after install but db architecture will require a reinstall of the plugin 
@@ -187,7 +188,7 @@ plugin to be installed options include DB arch and retention time
 ![install advisor](images/syslog_install_advisor.PNG)
 
 
-You will also need to ensure the cacti user is granted select on the syslog database
+You will also need to ensure the cacti user is granted select on the Syslog database
 
 ```shell
 GRANT SELECT  ON syslog.* TO  'cacti'@'localhost';
@@ -199,7 +200,7 @@ GRANT SELECT  ON syslog.* TO  'cacti'@'localhost';
 ## SNMP Trap configuration
 
 To leverage SNMP traps as mentioned you will need to install SNMPTT.
-SNMPTT is used to translate OID information passed from the device to a readable format SNMPTT will then write that data into syslog for the syslog plugin to ingest.
+SNMPTT is used to translate OID information passed from the device to a readable format SNMPTT will then write that data into syslog for the Syslog plugin to ingest.
 
 Follow these steps to complete the setup 
 
@@ -351,7 +352,7 @@ if you wish to have each poller operate independently there is no need to enable
 
 Alert rules are used to generate alerts in the cacti log they are also used
 to send out email alerts and command execution to cut tickets to upstream ticketing
-systems or perform inital troubleshooting scripts can also be leveraged to call on 
+systems or perform initial troubleshooting scripts can also be leveraged to call on 
 services such as slack or trello for alerting teams.
 
 you can leverage the built in variable substitution to format the input to the script
@@ -363,9 +364,9 @@ you can leverage the built in variable substitution to format the input to the s
 
 ### Syslog Removal Rules
 
-The syslog plugin allows administrators to delete incoming messeges so they are not stored in the DB.
-For example if you are not interested in seeing syslog messeges everytime a user logs into a device
-you may add a rule to delete the messege when its recived.
+The Syslog plugin allows administrators to delete incoming messages so they are not stored in the DB.
+For example, if you are not interested in seeing Syslog messages everytime a user logs into a device
+you may add a rule to delete the message when it's received.
 
 to do this click on the Syslog settings tab in the console then click removal rules
 
