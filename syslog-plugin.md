@@ -266,7 +266,7 @@ to fix this there is a cacti snmptt connector which will format the trap to be i
 The syslog plugin can be deployed on each poller or select pollers each poller will need to be configured with rsyslog
 each poller will need to be configured with a syslog config_local file
 
-There are a few deployment approches
+There are a few deployment approaches
 
 
 1.) Multiple Pollers with a load balancer for syslog
