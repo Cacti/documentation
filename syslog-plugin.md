@@ -283,7 +283,7 @@ There are a few deployment approaches
 
 
 
-3.) Multiple pollers but devices are asiged to send syslog to a specific poller for example poller a and device a are at one location
+3.) Multiple pollers but devices are assigned to send Syslog to a specific poller for example poller A and device A is at one location
 
 
 ![device per poller](images/syslog-device-per-poller.PNG)
