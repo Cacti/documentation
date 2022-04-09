@@ -6,12 +6,8 @@ following sections.
 
 ## Be Aware
 
-When changing LDAP settings in Cacti, such as LDAP General Settings, LDAP Group
-Settings, and LDAP Specific Search Settings, you may notice that changes
-do not take effect immediately. You may need to close and reopen your
-web browser for some changes to take effect.
-
-!! It would be good if someone could elaborate here on why this happens. !!
+New authentication settings may not take effect immediately. We recommend to
+open a **new** private browser window to test configuration changes.
 
 ## Defining some terms
 
@@ -65,11 +61,11 @@ LDAP authentication.
  for example, to add a fully-qualified domain name suffix, or to add a NetBIOS
  domain name prefix.  For example:
 
- ```{username}@example.com```
+ ```<username>@example.com```
 
  or
 
- ```domain\{username}```
+ ```domain\<username>```
 
 2. _Anonymous Searching_ - In this routine, Cacti connects to LDAP with no
  authentication and attempts to perform a search for the _username_, in an
@@ -156,18 +152,18 @@ member
 
 2. _Search Filter_ - The criteria for which the directory server should search.
  Any parameters that the server is capable of understanding are permitted here.
- Cacti will perform a substitution for the phrase `{username}` in the search
+ Cacti will perform a substitution for the phrase `<username>` in the search
  filter, and will replace it with the username.  This field must be in
  acceptable LDAP syntax.  A useful example of a search filter would be:
 
 ```bash
-(sAMAccountName={username})
+(sAMAccountName=<username>)
 ```
 
 But more complex filers are also permitted, such as:
 
 ```bash
-(&(sAMAccountName={username})(memberOf=CN=cacti-admins,OU=Admin_Groups,OU=Groups
+(&(sAMAccountName=<username>)(memberOf=CN=cacti-admins,OU=Admin_Groups,OU=Groups
 ,DC=corp,DC=company,DC=com))
 ```
 
@@ -239,7 +235,7 @@ To handle this scenario, start by creating a new local user in Cacti with
 read-only permissions.  Name the user 'MyLdapTemplate'.  Next, in Cacti's
 Authentication settings, set the `User Template` field to 'MyLdapTemplate'.
 Set the `Mode` to 'No Searching'.  Set the `Distinguished Name (DN)` field to
-'{username}@example.com', where 'example.com' is the name of your domain.  When
+'<username>@example.com', where 'example.com' is the name of your domain.  When
 any user logs in to Cacti, their password will be checked against the LDAP
 directory and they'll be granted access to Cacti with read-only access (from
 the LDAP template user).  Once a new user logs in, Cacti will create a local
@@ -259,7 +255,7 @@ authorized users.
 To handle this scenario by manually authorizing users within Cacti, navigate to
 the Authentication settings, and set the `User Template` field to 'No User'.
 Set the `Mode` to 'No Searching'.  Set the `Distinguished Name (DN)` field to
-'{username}@example.com', where 'example.com' is the name of your domain.
+'<username>@example.com', where 'example.com' is the name of your domain.
 Next, navigate to the `Users` page and create a new user where the username
 matches the username in the directory.  Set the user's `Realm` to 'LDAP'.
 Grant your desired permissions to the user.  When that user logs in to Cacti,
@@ -280,7 +276,7 @@ Name (DN)` to the name of the group.  Set `Group Member Attribute` to 'member'.
  Set `Group Member Type` to 'Distinguished Name'.  Set `Search Base` to the DN
 of the hierarchical structure in the directory which contains all the users,
 such as 'OU=Users,DC=example,DC=com'.  Set `Search Filter` to
-'sAMAccountName={username}'.  Set `Search Distinguished Name (DN)` to the
+'sAMAccountName=<username>'.  Set `Search Distinguished Name (DN)` to the
 username of the service account you created in the directory.  Set `Search
 Password` to the password for the service account.  Optionally, set `Full Name`
 to the directory attribute that contains the user's name, such as 'cn', and
