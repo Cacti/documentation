@@ -197,6 +197,10 @@ directory.
 2. _Email_ - The LDAP attribute name which contains a user's email address.
  One common example is 'mail'.
 
+**Always user lower case**. No matter if the directory's attribute name contains
+uppercase characters (e.g. `fullName`), the respective field must be filled
+out in lower-case (`fullname`).
+
 ## A few notes
 
 ### Certificate verification
