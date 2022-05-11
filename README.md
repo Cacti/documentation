@@ -349,5 +349,9 @@ If you would have any ideas for videos or would like to contibute let us know !
 
 7. [Security](Standards-Security.md)
 
+### Template Specific Documentation
+
+This section will be for template specific configuration requriments
+
 ---
 <copy>Copyright (c) 2004-2022 The Cacti Group</copy>
