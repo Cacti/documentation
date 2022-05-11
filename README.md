@@ -353,5 +353,7 @@ If you would have any ideas for videos or would like to contibute let us know !
 
 This section will be for template specific configuration requriments
 
+1. [Apache Server Template](apache_template_config.md)
+
 ---
 <copy>Copyright (c) 2004-2022 The Cacti Group</copy>
