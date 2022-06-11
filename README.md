@@ -154,7 +154,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    4.5. [Color](Color-Templates.md)
 
-5. [Automation](Automation.md)
+5. Automation
 
    5.1. [Networks](Automation-Networks.md)
 
