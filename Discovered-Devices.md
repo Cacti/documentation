@@ -17,7 +17,7 @@ following area.
 Below you can see devices that have been found during the scan that did
 not meet a match criteria.
 
-You will see the IP that was scanned as well if avaliable the resolved
+You will see the IP that was scanned as well if available the resolved
 hostname either via DNS or netbios.
 
 ![Discovered Devices](images/automation-devices.png)

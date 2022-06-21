@@ -4,7 +4,7 @@ This template leverages the mod_status module in apache in order to pull the kpi
 
 ![apache template view](images/apache-template-preview.png)
 
-For Centos/Redhat implimentations the config will look as follows
+For Centos/Redhat implementations the config will look as follows
 
 Place the below config in  /etc/httpd/conf/httpd.conf
 

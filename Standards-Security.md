@@ -59,7 +59,7 @@ $somevalue = db_fetch_cell_prepared('SELECT COUNT(*)
 ## Output Escaping
 
 Cacti provides an escaping function to reduce the likelihood of XSS
-vulnerabilities in Cacti leading to expliotation of other Web Sites.
+vulnerabilities in Cacti leading to exploitation of other Web Sites.
 Cacti itself has a very restrictive XSS mitigation policy in affect
 by default, but following proper output escaping minimizes problems.
 

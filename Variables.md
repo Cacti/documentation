@@ -9,7 +9,7 @@ of a Cacti Graph:
 - **Cacti Device** - host information
 - **Data Query** - input query meta data
 - **Data Input** - input variables
-- **Nth Percentile** - forumlas
+- **Nth Percentile** - formulas
 
 It also allows you additional one single use replacement variables like:
 

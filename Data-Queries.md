@@ -71,7 +71,7 @@ one, and then toggle on the checkbox to the right of the XML field
 Data Source name.
 
 Below the `Associated Data Templates`, you will find two sections which are
-refered to as `Suggested Values` for both the **Data Source** and the
+referred to as `Suggested Values` for both the **Data Source** and the
 **Graph** names.  When creating **Graphs** and their associated **Data Sources**
 Cacti will use the first name in the `Suggested Values` pattern that fully
 replaces all the tags that are identified by opening and closing vertical

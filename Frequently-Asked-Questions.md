@@ -287,7 +287,7 @@ This error indicates that Cacti was unable to finish the polling cycle in time.
 This can be for a few reasons.
 
 * You are using spine and have not entered the correct mysql credentials in spine.conf
-* You do not have an adaquete proccess setting for cmd.php or thread/process
+* You do not have an adaquete process setting for cmd.php or thread/process
   count for spine
 * Network related issue either an network outage or a network slowdown
 * System related trouble cpu/memory exhaustion

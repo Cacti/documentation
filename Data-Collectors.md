@@ -32,7 +32,7 @@ fully replicated File system for the Web Server, the logs, and the RRDfiles
 using MariaDB Galera as the fully fault tolerant database server.
 
 Then, either using keepalived to a load balancer, you could load balance
-the connections accross all three **Main Data Collectors**, using the
+the connections across all three **Main Data Collectors**, using the
 MariaDB Galera database to maintain login session data.  There are many
 good articles on setting up and using MariaDB Galera along with HAProxy
 or load balancers from Citrix and others to direct read and write traffic

@@ -16,7 +16,7 @@ Optiom | Descriptiom
 --- | ---
 Schedule type | How often you want to scan this subnet for devices
 Discovery threads | How many proccessess to spawn during the scan
-Max Runtime | to prevent the scan from running indefinetly
+Max Runtime | to prevent the scan from running indefinitely
 Automatically add to Cacti | If a device is SNMP reachable and matches a rule from this subnet the device will be added
 Netbios | Attempt to resolve the hostname by netbios
 

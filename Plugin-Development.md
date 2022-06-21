@@ -18,7 +18,7 @@ There are a number of popular plugins including:
 - **Monitor** - A plugin that provides a Device Dashboard highlighting
   Cacti Devices that are experiencing faults.
 - **Intropage** - A plugin that provides a replacement to the Cacti console
-  showing key performance metrics accross all of Cacti from a single page.
+  showing key performance metrics across all of Cacti from a single page.
 - **Weathermap** - A plugin that allows you to create architectural 
   diagrams of your network and to animate them with status data.
 

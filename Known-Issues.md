@@ -18,7 +18,7 @@ experienced Cacti user, go directly to the Cacti issue tracker and submit your
 issue.  If you are new to Cacti, it's best to go to the Cacti [Forums](https://forums.cacti.net)
 first as you will likely find answers to your questions there.  Generally
 using either [Google](https://www.google.com), [DuckDuckGo](https://duckduckgo.com)
-and other popular search engines regularily scan the Cacti Forums, so using
+and other popular search engines regularly scan the Cacti Forums, so using
 those services will help.
 
 ---

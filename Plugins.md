@@ -25,7 +25,7 @@ Installing plugins on cacti is a simple procedure
 3) From `Console > Configuration > Plugins` Install the plugin
   by Clicking on the wrench Icon as showng below.
 
-    Below you will now see the THOLD plugin avaliable to install in this case we are
+    Below you will now see the THOLD plugin available to install in this case we are
     installing thold
 
     ![thold plugin](images/thold-install.png)
@@ -68,7 +68,7 @@ plugin which will not drop the SQL tables and thus save your settings.
     mv plugin_thold thold
     ```
 
-5) Asign proper permissions usually either www-data for Ubuntu/debian or
+5) Assign proper permissions usually either www-data for Ubuntu/debian or
   apache for CentOS/RHEL
 
     ```console
@@ -87,14 +87,14 @@ To uninstall a plugin go into the plugins page
 `Console > Configuration > Plugins` Click on the plugin to
 Disable the plugin.
 
-Click on the red dot beside the plugin to uninstall the plugin a dialouge box
+Click on the red dot beside the plugin to uninstall the plugin a dialogue box
 will appear now click uninstall.
 
 ![uninstall plugin](images/plugins-uninstall.png)
 
 This will uninstall the plugin from cacti but will NOT remove the files from the
 server to do that you must manually remove the plugin until you remove the files
-the plugin will show to be avaliable to be installed.
+the plugin will show to be available to be installed.
 
 > **WARNING**: Uninstalling a Cacti **Plugin** generally also removes any database
 > tables that that **Plugin** created, which means your data!  Before uninstalling

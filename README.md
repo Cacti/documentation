@@ -323,7 +323,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 If you prefer to see some video based tutorials visit the Official Cacti YouTube channel.
 
-If you would have any ideas for videos or would like to contibute let us know !
+If you would have any ideas for videos or would like to contribute let us know !
 
 [Cacti Official Youtube Channel](https://www.youtube.com/channel/UC6ROmUGuuLa9BdHWzvGSY1w)
 

@@ -8,7 +8,7 @@ leaf nodes such as **Graphs**, **Devices** and **Sites**. It's a very powerful
 way of organizing your **Graphs**.
 
 Below we can see the current **Trees** we have setup on our Cacti
-server. To get to this screen click `Console > Managment > Trees`.
+server. To get to this screen click `Console > Management > Trees`.
 
 From this page you can add or remove **Trees** as required.
 
@@ -28,7 +28,7 @@ see the below page where you are able to add **Devices** to the **Tree**.
 
 ![Tree Options](images/tree-options.png)
 
-To add devices to the new tree simply drag an avaliable device to the
+To add devices to the new tree simply drag an available device to the
 tree and it will be added to the tree.  Cacti currently supports four
 `Sort Types`, which can be either inherited, of left to the author to define
 inheritance and at what level.  See the image below for a visual representation

@@ -5,7 +5,7 @@ experiences to differing groups of users and using LDAP
 or Active Directory Group Permissions to limit who
 can login using those customer permissions.
 
-Once a user login in for the first time, thier permissions
+Once a user login in for the first time, their permissions
 will enherit the Template accounts permission settings
 including User Group's and their permissions.
 

@@ -35,4 +35,4 @@ After you have configured the web server to accept https you can force https in 
 ![cacti-ssl](images/cacti-https.PNG)
 
 
-#### Note: If your Cacti system is public it is recomended to get a certificate from a trusted certificate provider
+#### Note: If your Cacti system is public it is recommended to get a certificate from a trusted certificate provider

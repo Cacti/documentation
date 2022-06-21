@@ -978,7 +978,7 @@ id      sort method                     name
 
 ### List Nodes
 
-Listing all existend node of a given tree is done by
+Listing all existed node of a given tree is done by
 
 ```console
 shell>php -q add_tree.php --list-nodes --tree-id=1

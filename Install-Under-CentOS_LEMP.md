@@ -51,7 +51,7 @@ server {
 
    # Compression increases performance0
    gzip on;
-   gzip_types      text/plain text/html text/xml text/css application/xml application/javascript application/x-javascript application/rss+xml applicaiton/xhtml+xml;
+   gzip_types      text/plain text/html text/xml text/css application/xml application/javascript application/x-javascript application/rss+xml application/xhtml+xml;
    gzip_proxied    no-cache no-store private expired auth;
    gzip_min_length 1000;
 

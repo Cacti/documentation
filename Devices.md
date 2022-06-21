@@ -7,7 +7,7 @@ the Web GUI, Cacti's Automation, or the Command Line Interface (CLI).
 
 ## Web GUI Option
 
-To add a device via the Web GUI first click on `Console > Managment > Devices` and
+To add a device via the Web GUI first click on `Console > Management > Devices` and
 you will see the below device console window which will show existing devices
 if any
 
@@ -109,7 +109,7 @@ you can provide about the device including things like:
 
 - **Notification Settings** - Who to notify when the **Device** changes state
 - **Criticality** - How important is the device
-- **Failure and Recovery Counts** - How long till a device is treated as truely
+- **Failure and Recovery Counts** - How long till a device is treated as truly
   down.
 - **Ping Thresholds** - What RTL is considered bad when reaching a device
 

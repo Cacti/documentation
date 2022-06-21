@@ -14,7 +14,7 @@ remains untested.
 
 Type | Supported | Description
 --- | --- | ---
-GUAGE | Yes | This is as the term refers to a floating point number that tracks the value reported directly.  Unlike the COUNTER, it has not comprehension of past data.
+GAUGE | Yes | This is as the term refers to a floating point number that tracks the value reported directly.  Unlike the COUNTER, it has not comprehension of past data.
 COUNTER | Yes | This is a floating point number that tracks the different between samples to come up with effectively a rate calculation.  Used for things like Traffic Graphs where the number reported in SNMP continually increases
 DCOUNTER | Yes | This is the same as a COUNTER, but in Double Precision.
 DERIVE | Yes | This data type measures the Rate of Change of a value, otherwise known as the first derivative to the value.  As such, it relies on previous data in order to report the change.

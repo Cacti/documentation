@@ -51,7 +51,7 @@ If you are upgrading to 2.0 from a prior install, you must first uninstall
 syslog and ensure both the syslog, syslog_removal, and syslog_incoming tables
 are removed, and recreated at install time.
 
-In addtion, the rsyslog configuration has changed in 2.5.  So, for example, to
+In addition, the rsyslog configuration has changed in 2.5.  So, for example, to
 configure modern rsyslog for Cacti, you MUST create a file called cacti.conf in
 the /etc/rsyslog.d/ directory:
 
@@ -225,7 +225,7 @@ the file is located in /etc/sysconfig/snmptrapd and should look like this after 
 OPTIONS="-on"
 ```
 
-4.) Now you need to modify the snmptrapd config file to recive snmptraps by default snmptrapd will not process any traps until you configure it to do so you will also need to tell snmptrapd to forward the recived traps over to snmptt
+4.) Now you need to modify the snmptrapd config file to recive snmptraps by default snmptrapd will not process any traps until you configure it to do so you will also need to tell snmptrapd to forward the received traps over to snmptt
 
 Here is an example of configuring snmptrapd to recive snmptraps from a device using the public snmp string and forwarding it over to snmptt
 
@@ -314,9 +314,9 @@ $use_cacti_db = false;
 $use_cacti_db = true; 
 ```
 
-3.) If you decide to use a seperate DB fill out the Database detailing config_local.php
+3.) If you decide to use a separate DB fill out the Database detailing config_local.php
 
-4.) create a cacti.conf file in /etc/rsyslog.d and fill out either your seperate DB details or your main cacti DB details
+4.) create a cacti.conf file in /etc/rsyslog.d and fill out either your separate DB details or your main cacti DB details
 
 ```console
 $ModLoad imudp

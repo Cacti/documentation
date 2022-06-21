@@ -89,7 +89,7 @@ COMPUTE
 ![Data-Source-Templates](images/datasource-template-create.png)
 
 You are also able to use Variables to set the name for the data source.
-The avaliable Variables can be seen here
+The available Variables can be seen here
 
 https://github.com/Cacti/documentation/blob/develop/Variables.md
 

@@ -198,7 +198,7 @@ Cacti requires that the following software is installed on your system.
 
       You have more possibilities:
 
-      - disable appropriate strict mode - not recomended
+      - disable appropriate strict mode - not recommended
 
       - change mysqldump file - remove **ROW_FORMAT=FIXED** from table
         definition

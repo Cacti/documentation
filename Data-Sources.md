@@ -15,14 +15,14 @@ for graphing, though is just the surface of what is achievable:
 
 For example, if you have a 24 port switch that you create an **In/Out Bits**
 graph for each interface, and you then add the **In/Out Bits with 95th
-Percential** for each interface, you would still only have 24 data sources.
+Percentile** for each interface, you would still only have 24 data sources.
 
 Keeping on top of the amount of data sources you have is important as the more
 data sources you have the more resources you will need to allocate
 to your server.
 
 You can see how many data sources are associated with a single device by going
-to managment then clicking on devices.
+to management then clicking on devices.
 
 ![device datasources](images/device-datasource.png)
 
@@ -73,7 +73,7 @@ Yearly | 26kb
 
 ### Viewing all Data sources by device
 
-You are able to check the data sources asociated to a specific device in the Console -> Managment -> Data sources
+You are able to check the data sources associated to a specific device in the Console -> Management -> Data sources
 You can then search based on a device you may be interested in to view the Data sources in use
 
 ![device datasources](images/data-sources-per-device.png)

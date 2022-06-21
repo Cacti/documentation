@@ -122,7 +122,7 @@ Install required system packages
 yum install -y gcc mysql-devel net-snmp-devel autoconf automake libtool dos2unix help2man
 ```
 
-Then compile using the folowing commands
+Then compile using the following commands
 
 ```console
 ./bootstrap
@@ -135,8 +135,8 @@ chmod u+s /usr/local/spine/bin/spine
 
 ### Testing/Debugging spine via command line
 
-spine offer a a few differnt ways at the command line to test its functionality.
-Here are a few examples of some tests you can run by exectuing spine.
+spine offer a a few different ways at the command line to test its functionality.
+Here are a few examples of some tests you can run by executing spine.
 
 #### Test Spine without writing results to database
 

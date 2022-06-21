@@ -105,7 +105,7 @@ $database_ssl_key  = '';
    setup a bit more convenient.
 
 The system is now ready to finialise the steps by browsing to
-[http://serverip/cacti](http://serverip/cacti) to start the cacti initalization
+[http://serverip/cacti](http://serverip/cacti) to start the cacti initialization
 wizard.
 
 ---
