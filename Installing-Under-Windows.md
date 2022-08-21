@@ -219,10 +219,11 @@ The following changes will be required regardless of your selected Webserver.
    ```
 
    ```sql
-   MySQL> CREATE USER cactiuser@localhost IDENTIFIED BY 'somepassword';
-   MySQL> GRANT ALL ON cacti.* TO cactiuser@localhost;
-   MySQL> GRANT SELECT ON mysql.time_zone_name TO cactiuser@localhost
-   MySQL> flush privileges;
+   MySQL> CREATE USER 'cactiuser'@'localhost' IDENTIFIED BY 'cactiuser';
+   MySQL> GRANT ALL ON cacti.* TO 'cactiuser'@'localhost';
+   MySQL> GRANT SELECT ON mysql.time_zone_name TO 'cactiuser'@'localhost';
+   MySQL> ALTER DATABASE cacti CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+   MySQL> FLUSH PRIVILEGES;
    ```
 
 ## Net-SNMP Installation
