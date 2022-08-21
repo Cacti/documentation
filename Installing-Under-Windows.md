@@ -248,7 +248,7 @@ The following changes will be required regardless of your selected Webserver.
    DB_Host  127.0.0.1 or hostname (not localhost)
    DB_Database cacti
    DB_User     cactiuser
-   DB_Password cacti
+   DB_Password cactiuser
    DB_Port     3306
    ```
 
@@ -267,7 +267,7 @@ The following changes will be required regardless of your selected Webserver.
    $database_default = "cacti";
    $database_hostname = "localhost";
    $database_username = "cactiuser";
-   $database_password = "cacti";
+   $database_password = "cactiuser";
    $database_port = "3306";
    ```
 
