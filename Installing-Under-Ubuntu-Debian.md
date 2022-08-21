@@ -37,8 +37,9 @@ Next we will create a database for the cacti installation to use
 ```console
 mysql -u root -p
 CREATE DATABASE cacti DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
-GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'localhost' IDENTIFIED BY 'cacti';
-GRANT SELECT ON mysql.time_zone_name TO cacti@localhost;
+CREATE USER 'cactiuser'@'localhost' IDENTIFIED BY 'cactiuser';
+GRANT ALL ON cacti.* TO 'cactiuser'@'localhost';
+GRANT SELECT ON mysql.time_zone_name TO 'cactiuser'@'localhost';
 ALTER DATABASE cacti CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 FLUSH PRIVILEGES;
 ```
