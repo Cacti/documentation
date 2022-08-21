@@ -219,8 +219,9 @@ The following changes will be required regardless of your selected Webserver.
    ```
 
    ```sql
-   MySQL> GRANT ALL ON cacti.* TO cactiuser@localhost IDENTIFIED BY 'somepassword';
-   MySQL> GRANT SELECT ON mysql.time_zone_name TO cactiuser@localhost IDENTIFIED BY 'somepassword';
+   MySQL> CREATE USER cactiuser@localhost IDENTIFIED BY 'somepassword';
+   MySQL> GRANT ALL ON cacti.* TO cactiuser@localhost;
+   MySQL> GRANT SELECT ON mysql.time_zone_name TO cactiuser@localhost
    MySQL> flush privileges;
    ```
 
