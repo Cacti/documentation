@@ -235,7 +235,7 @@ during the installation.
    Query OK, 0 rows affected (0.00 sec)
    ```
    
-5. Save the Database Collation
+5. Save the Database Charset and Collation
 
    ```sql
    MariaDB [(none)]> ALTER DATABASE cacti CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
