@@ -271,6 +271,13 @@ tailored to your environment.
     MariaDB [(none)]> FLUSH PRIVILEGES;
     Query OK, 0 rows affected (0.00 sec)
     ```
+    
+5. Save the Database Charset and Collation
+
+   ```sql
+   MariaDB [(none)]> ALTER DATABASE cacti CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+   MariaDB [(none)]> FLUSH PRIVILEGES;
+   ```
 
 ### Common PHP packages
 
