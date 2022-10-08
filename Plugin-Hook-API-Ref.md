@@ -38,18 +38,19 @@ hook | hook | hook
 [nav\_login\_before](Plugin-Hook-API-Ref.md#nav_login_before) | [page\_bottom](Plugin-Hook-API-Ref.md#page_bottom) | [page\_buttons](Plugin-Hook-API-Ref.md#page_buttons)
 [page\_head](Plugin-Hook-API-Ref.md#page_head) | [page\_title](Plugin-Hook-API-Ref.md#page_title) | [poller\_bottom](Plugin-Hook-API-Ref.md#poller_bottom)
 [poller\_command\_args](Plugin-Hook-API-Ref.md#poller_command_args) | [poller\_exiting](Plugin-Hook-API-Ref.md#poller_exiting) | [poller\_finishing](Plugin-Hook-API-Ref.md#poller_finishing)
-[poller\_output](Plugin-Hook-API-Ref.md#poller_output) | [poller\_top](Plugin-Hook-API-Ref.md#poller_top) | [remote\_agent](Plugin-Hook-API-Ref.md#remote_agent)
-[replicate\_in](Plugin-Hook-API-Ref.md#replicate_in) | [replicate\_out](Plugin-Hook-API-Ref.md#replicate_out) | [report\_filters](Plugin-Hook-API-Ref.md#report_filters)
-[resolve\_dependencies](Plugin-Hook-API-Ref.md#resolve_dependencies) | [rrd\_graph\_graph\_options](Plugin-Hook-API-Ref.md#rrd_graph_graph_options) | [run\_data\_query](Plugin-Hook-API-Ref.md#run_data_query)
-[snmpagent\_cache\_install](Plugin-Hook-API-Ref.md#snmpagent_cache_install) | [substitute\_host\_data](Plugin-Hook-API-Ref.md#substitute_host_data) | [top\_graph\_header](Plugin-Hook-API-Ref.md#top_graph_header)
-[top\_graph\_header\_tabs](Plugin-Hook-API-Ref.md#top_graph_header_tabs) | [top\_graph\_jquery\_function](Plugin-Hook-API-Ref.md#top_graph_jquery_function) | [top\_graph\_refresh](Plugin-Hook-API-Ref.md#top_graph_refresh)
-[top\_header](Plugin-Hook-API-Ref.md#top_header) | [tree\_after](Plugin-Hook-API-Ref.md#tree_after) | [tree\_view\_page\_end](Plugin-Hook-API-Ref.md#tree_view_page_end)
-[ugroup\_tabs](Plugin-Hook-API-Ref.md#ugroup_tabs) | [update\_data\_source\_title\_cache](Plugin-Hook-API-Ref.md#update_data_source_title_cache) | [user\_admin\_action](Plugin-Hook-API-Ref.md#user_admin_action)
-[user\_admin\_edit](Plugin-Hook-API-Ref.md#user_admin_edit) | [user\_admin\_run\_action](Plugin-Hook-API-Ref.md#user_admin_run_action) | [user\_admin\_setup\_sql\_save](Plugin-Hook-API-Ref.md#user_admin_setup_sql_save)
-[user\_admin\_tab](Plugin-Hook-API-Ref.md#user_admin_tab) | [user\_admin\_user\_save](Plugin-Hook-API-Ref.md#user_admin_user_save) | [user\_group\_admin\_action](Plugin-Hook-API-Ref.md#user_group_admin_action)
-[user\_group\_admin\_edit](Plugin-Hook-API-Ref.md#user_group_admin_edit) | [user\_group\_admin\_save](Plugin-Hook-API-Ref.md#user_group_admin_save) | [user\_group\_admin\_setup\_sql\_save](Plugin-Hook-API-Ref.md#user_group_admin_setup_sql_save)
-[user\_remove](Plugin-Hook-API-Ref.md#user_remove) | [utilities\_action](Plugin-Hook-API-Ref.md#utilities_action) | [utilities\_array](Plugin-Hook-API-Ref.md#utilities_array)
-[utilities\_list](Plugin-Hook-API-Ref.md#utilities_list) | [utilities\_tab](Plugin-Hook-API-Ref.md#utilities_tab) | [valid\_host\_fields](Plugin-Hook-API-Ref.md#valid_host_fields)
+[poller\_output](Plugin-Hook-API-Ref.md#poller_output) | [poller\_remote\_maint](Plugin-Hook-API-Ref.md#poller_remote_maint) | [poller\_top](Plugin-Hook-API-Ref.md#poller_top) 
+[remote\_agent](Plugin-Hook-API-Ref.md#remote_agent) | [replicate\_in](Plugin-Hook-API-Ref.md#replicate_in) | [replicate\_out](Plugin-Hook-API-Ref.md#replicate_out) 
+[report\_filters](Plugin-Hook-API-Ref.md#report_filters) | [resolve\_dependencies](Plugin-Hook-API-Ref.md#resolve_dependencies) | [rrd\_graph\_graph\_options](Plugin-Hook-API-Ref.md#rrd_graph_graph_options) 
+[run\_data\_query](Plugin-Hook-API-Ref.md#run_data_query) | [snmpagent\_cache\_install](Plugin-Hook-API-Ref.md#snmpagent_cache_install) | [substitute\_host\_data](Plugin-Hook-API-Ref.md#substitute_host_data)
+[top\_graph\_header](Plugin-Hook-API-Ref.md#top_graph_header) | [top\_graph\_header\_tabs](Plugin-Hook-API-Ref.md#top_graph_header_tabs) | [top\_graph\_jquery\_function](Plugin-Hook-API-Ref.md#top_graph_jquery_function)
+[top\_graph\_refresh](Plugin-Hook-API-Ref.md#top_graph_refresh) | [top\_header](Plugin-Hook-API-Ref.md#top_header) | [tree\_after](Plugin-Hook-API-Ref.md#tree_after)
+[tree\_view\_page\_end](Plugin-Hook-API-Ref.md#tree_view_page_end) | [ugroup\_tabs](Plugin-Hook-API-Ref.md#ugroup_tabs) | [update\_data\_source\_title\_cache](Plugin-Hook-API-Ref.md#update_data_source_title_cache)
+[user\_admin\_action](Plugin-Hook-API-Ref.md#user_admin_action) | [user\_admin\_edit](Plugin-Hook-API-Ref.md#user_admin_edit) | [user\_admin\_run\_action](Plugin-Hook-API-Ref.md#user_admin_run_action)
+[user\_admin\_setup\_sql\_save](Plugin-Hook-API-Ref.md#user_admin_setup_sql_save) | [user\_admin\_tab](Plugin-Hook-API-Ref.md#user_admin_tab) | [user\_admin\_user\_save](Plugin-Hook-API-Ref.md#user_admin_user_save)
+[user\_group\_admin\_action](Plugin-Hook-API-Ref.md#user_group_admin_action) | [user\_group\_admin\_edit](Plugin-Hook-API-Ref.md#user_group_admin_edit) | [user\_group\_admin\_save](Plugin-Hook-API-Ref.md#user_group_admin_save)
+[user\_group\_admin\_setup\_sql\_save](Plugin-Hook-API-Ref.md#user_group_admin_setup_sql_save) | [user\_remove](Plugin-Hook-API-Ref.md#user_remove) | [utilities\_action](Plugin-Hook-API-Ref.md#utilities_action)
+[utilities\_array](Plugin-Hook-API-Ref.md#utilities_array) | [utilities\_list](Plugin-Hook-API-Ref.md#utilities_list) | [utilities\_tab](Plugin-Hook-API-Ref.md#utilities_tab)
+[valid\_host\_fields](Plugin-Hook-API-Ref.md#valid_host_fields) |
 
 ## add\_graph\_template\_to\_host
 
@@ -877,6 +878,15 @@ they can leverage the pollers output directly.
 file | introduced | retired
 --- | :--- | :---
 lib/poller.php |  1.0.0  |
+
+## poller\_remote\_maint
+
+This hook will fire for plugins that need to perform remote maintenance.  It
+will only fire on the Remote Data Collectors.
+
+file | introduced | retired
+--- | :--- | :---
+poller_maintenance.php |  1.2.23 |
 
 ## poller\_top
 
