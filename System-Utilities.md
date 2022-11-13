@@ -74,6 +74,19 @@ the RRDfile autoclean selection.
 
 ![System Utilities](images/rrd-autoclean.png)
 
+### RRD checker
+
+`Console > utilities > System Utilities > RRDfile Checker`
+
+The RRd checker is a tool that scans all RRD files at a scheduled time and tests the stored data:
+- Stale values for 1 or 24 hours
+- whether the file is updated regularly
+- missing files/write access
+- whether the DS objects in the database and RRD files match
+
+For very large Cacti installs the **RRD checker** can take quite a long time to complete. 
+You can set number of concurrent parallel processes in `Console > Configuration > Settings > Data`
+
 ### Viewing Change log from system utilities
 
 With Cacti 1.2.16+, you are now able to view the CHANGELOG information up to the
