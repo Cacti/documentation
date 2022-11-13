@@ -48,17 +48,17 @@ Those settings include:
   will be allowed to use.  Most systems can work fine using the
   default 1GByte setting.
 
-## RRD checker
+## RRDfile Checker
 
-RRD checker scans RRD files and try to find problems like stale values.
+RRDfile checker scans RRDfiles and try to find problems like stale values.
 
 Those settings include:
 
-- **Enable RRD checker** - This is setting
+- **Enable RRDfile Checker** - This setting
   will either enable or disable the RRD checker.
 
-- **Number of RRD checker Processes** - For very large Cacti installs
-  the **RRD checker** can take quite a long time to complete.
+- **Number of RRDfile Checker Processes** - For very large Cacti installs
+  the **RRDfile Checker** can take quite a long time to complete.
   This setting allows Cacti to perform the checks at orders of magnitude faster. 
 
 - **Check Frequency** - This setting determines how often
