@@ -14,11 +14,11 @@
 
 ### For RHEL/ROCKY/CENTOS 8+
 
-```console
-  dnf module reset php
-  dnf module enable php:8.0
+    ```console
+     dnf module reset php
+     dnf module enable php:8.0
 
-```
+    ```
 
 
 2. Install Apache
