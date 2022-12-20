@@ -1,10 +1,10 @@
-# Installing on CentOS 7
+# Installing on CentOS/RHEL/ROCKY
 
 ## LAMP (Linux, Apache, MySQL/MariaDB, PHP) Required packages
 
 ### Web Server (Apache)
 
-1. Enable Epel repo to enable PHP 7.2 package download
+1. Enable Epel repo to enable PHP 7.2 package download ( 7.x and Below)
 
    ```console
    yum install <http://rpms.remirepo.net/enterprise/remi-release-7.rpm> -y
@@ -364,6 +364,13 @@ configure the basics for Cacti.
 #### Spine
 
 1. Install the necessary packages to compile and install spine
+
+##### for RHEL/CENTOS/ROCKY 8+
+if using RHEL 8+ you must enable the powertools repo first before downloading the below packages
+```console
+   yum config-manager --set-enabled powertools
+   ```
+
 
    ```console
    yum install -y autoconf automake libtool dos2unix help2man \
