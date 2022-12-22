@@ -12,7 +12,7 @@
    yum-config-manager --enable remi-php72
    ```
 
-### For Centos/RHEL/ROCKY 8+
+1.1 For Centos/RHEL/ROCKY 8+
 
    ```console
      dnf module reset php
@@ -365,13 +365,13 @@ configure the basics for Cacti.
 
 1. Install the necessary packages to compile and install spine
 
-##### for RHEL/CENTOS/ROCKY 8+
+1.1 for RHEL/CENTOS/ROCKY 8+
 if using RHEL 8+ you must enable the powertools repo first before downloading the below packages
 ```console
    yum config-manager --set-enabled powertools
    ```
 
-
+1.2 For RHEL/CENTOS/ROCKY 7.x and below
    ```console
    yum install -y autoconf automake libtool dos2unix help2man \
    openssl-devel mariadb-devel net-snmp-devel
