@@ -458,7 +458,7 @@ documentation on how to make your SELinux policy right.
 In the config.php file you will have an option to allow/deny proxies based on IP or Headder
 this can be set by editing the following section of config.php 
 
-
+```
  * Allow the use of Proxy IPs when searching for client
  * IP to be used
  *
@@ -483,7 +483,7 @@ this can be set by editing the following section of config.php
  *		'REMOTE_ADDR',
  */
 $proxy_headers = null;
-
+```
 
 **Note:** If you installed Cacti out of `/var/www/html` make sure you fix up
 all SELinux context and permissions.
