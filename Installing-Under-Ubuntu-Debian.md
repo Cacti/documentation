@@ -114,7 +114,7 @@ wizard.
 In the config.php file you will have an option to allow/deny proxies based on IP or Headder
 this can be set by editing the following section of config.php 
 
-
+```
  * Allow the use of Proxy IPs when searching for client
  * IP to be used
  *
@@ -139,6 +139,6 @@ this can be set by editing the following section of config.php
  *		'REMOTE_ADDR',
  */
 $proxy_headers = null;
-
+```
 ---
 <copy>Copyright (c) 2004-2022 The Cacti Group</copy>
