@@ -6,33 +6,33 @@
 
 1. Enable Epel repo to enable PHP 7.2 package download ( 7.x and Below)
 
-   ```console
-   yum install <http://rpms.remirepo.net/enterprise/remi-release-7.rpm> -y
-   yum install yum-utils -y
-   yum-config-manager --enable remi-php72
-   ```
+ ```console
+ yum install <http://rpms.remirepo.net/enterprise/remi-release-7.rpm> -y
+ yum install yum-utils -y
+ yum-config-manager --enable remi-php72
+ ```
 
 1.1.  For Centos/RHEL/ROCKY 8+
 
    ```console
-     dnf module reset php
-     dnf module enable php:8.0
+  dnf module reset php
+  dnf module enable php:8.0
    ```
 
 
 
 2. Install Apache
 
-   ```console
-   yum install -y httpd
-   ```
+ ```console
+ yum install -y httpd
+ ```
 
 3. Enable and start the service to ensure it starts when the system reboots
 
-   ```console
-   systemctl start httpd
-   systemctl enable httpd
-   ```
+ ```console
+ systemctl start httpd
+ systemctl enable httpd
+ ```
 
 ### Example configuration file for Apache 2.4 and SSL
 
