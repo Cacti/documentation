@@ -12,7 +12,7 @@
    yum-config-manager --enable remi-php72
    ```
 
-1.1 For Centos/RHEL/ROCKY 8+
+1.1.  For Centos/RHEL/ROCKY 8+
 
    ```console
      dnf module reset php
@@ -453,7 +453,7 @@ documentation on how to make your SELinux policy right.
    setenforce 1
    ```
    
-### Considerations when using Proxys in front of Cacti (Cacti 1.2.23+)
+### Considerations when using Proxies in front of Cacti (Cacti 1.2.23+)
 
 In the config.php file you will have an option to allow/deny proxies based on IP or Headder
 this can be set by editing the following section of config.php 
