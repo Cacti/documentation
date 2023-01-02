@@ -75,39 +75,69 @@ $database_ssl_key  = '';
 
 ### Create your cron task file or systemd units file
 
-   Starting with Cacti 1.2.16, you have the option to use either the
-   legacy Crontab entry, or an optional cactid units file and server
-   to run your Cacti pollers.
+Starting with Cacti 1.2.16, you have the option to use either the
+legacy Crontab entry, or an optional cactid units file and server
+to run your Cacti pollers.
 
-   For Crontab use, follow the instructions below:
+For Crontab use, follow the instructions below:
 
-   Create and edit `/etc/cron.d/cacti` file.
-   Make sure to setup the correct path to poller.php
+Create and edit `/etc/cron.d/cacti` file.
+Make sure to setup the correct path to poller.php
 
-   ```console
-   */5 * * * * apache php /var/www/html/cacti/poller.php &>/dev/null
-   ```
+```console
+*/5 * * * * apache php /var/www/html/cacti/poller.php &>/dev/null
+```
 
-   For systemd unit's file install, you will need to modify the
-   included units file to following your install location
-   and desired user and group's to run the Cacti poller as.
-   To complete the task, follow the procedure below:
+For systemd unit's file install, you will need to modify the
+included units file to following your install location
+and desired user and group's to run the Cacti poller as.
+To complete the task, follow the procedure below:
 
-   ```console
-   vim /var/www/html/cacti/service/cactid.service (edit the path)
-   touch /etc/sysconfig/cactid
-   cp -p /var/www/html/cacti/service/cactid.service /etc/systemd/system
-   systemctl enable cactid
-   systemctl start cactid
-   systemctl status cactid
-   ```
+```console
+vim /var/www/html/cacti/service/cactid.service (edit the path)
+touch /etc/sysconfig/cactid
+cp -p /var/www/html/cacti/service/cactid.service /etc/systemd/system
+systemctl enable cactid
+systemctl start cactid
+systemctl status cactid
+```
 
-   The systemd units file makes managing a highly available Cacti
-   setup a bit more convenient.
+The systemd units file makes managing a highly available Cacti
+setup a bit more convenient.
 
 The system is now ready to finialise the steps by browsing to
 [http://serverip/cacti](http://serverip/cacti) to start the cacti initialization
 wizard.
 
+### Considerations when using Proxys in front of Cacti (Cacti 1.2.23+)
+
+For optimal security, only specify the HTTP headers that are set by your proxy software to prevent unauthorized access.  These can be set by editing the following section of config.php
+
+```
+ * Allow the use of Proxy IPs when searching for client
+ * IP to be used
+ *
+ * This can be set to one of the following:
+ *   - false: to use only REMOTE_ADDR
+ *   - true: to use all allowed headers (not advised)
+ *   - array of one or more the following:
+ *		'X-Forwarded-For',
+ *		'X-Client-IP',
+ *		'X-Real-IP',
+ *		'X-ProxyUser-Ip',
+ *		'CF-Connecting-IP',
+ *		'True-Client-IP',
+ *		'HTTP_X_FORWARDED',
+ *		'HTTP_X_FORWARDED_FOR',
+ *		'HTTP_X_CLUSTER_CLIENT_IP',
+ *		'HTTP_FORWARDED_FOR',
+ *		'HTTP_FORWARDED',
+ *		'HTTP_CLIENT_IP',
+ *
+ * NOTE: The following will always be checked:
+ *		'REMOTE_ADDR',
+ */
+$proxy_headers = null;
+```
 ---
 <copy>Copyright (c) 2004-2022 The Cacti Group</copy>

@@ -1,16 +1,24 @@
-# Installing on CentOS 7
+# Installing on CentOS/RHEL/ROCKY
 
 ## LAMP (Linux, Apache, MySQL/MariaDB, PHP) Required packages
 
 ### Web Server (Apache)
 
-1. Enable Epel repo to enable PHP 7.2 package download
+1. Enable Epel repo to enable PHP 7.2 package download ( 7.x and Below)
 
    ```console
-   yum install <http://rpms.remirepo.net/enterprise/remi-release-7.rpm> -y
+   yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
    yum install yum-utils -y
    yum-config-manager --enable remi-php72
    ```
+
+   For Centos/RHEL/ROCKY 8+
+
+   ```console
+   dnf module reset php
+   dnf module enable php:8.0
+   ```
+
 
 2. Install Apache
 
@@ -234,7 +242,7 @@ during the installation.
    MariaDB [(none)]> FLUSH PRIVILEGES;
    Query OK, 0 rows affected (0.00 sec)
    ```
-   
+
 5. Save the Database Charset and Collation
 
    ```sql
@@ -356,6 +364,13 @@ configure the basics for Cacti.
 
 1. Install the necessary packages to compile and install spine
 
+   For RHEL/CENTOS/ROCKY 8+, you must enable the powertools repo first before downloading the below packages
+
+   ```console
+   yum config-manager --set-enabled powertools
+   ```
+
+   For RHEL/CENTOS/ROCKY 7.x and below
    ```console
    yum install -y autoconf automake libtool dos2unix help2man \
    openssl-devel mariadb-devel net-snmp-devel
@@ -436,6 +451,37 @@ documentation on how to make your SELinux policy right.
    ```console
    setenforce 1
    ```
+
+### Considerations when using Proxies in front of Cacti (Cacti 1.2.23+)
+
+For optimal security, only specify the HTTP headers that are set by your proxy software to prevent unauthorized access.  These can be set by editing the following section of config.php
+
+```
+ * Allow the use of Proxy IPs when searching for client
+ * IP to be used
+ *
+ * This can be set to one of the following:
+ *   - false: to use only REMOTE_ADDR
+ *   - true: to use all allowed headers (not advised)
+ *   - array of one or more the following:
+ *		'X-Forwarded-For',
+ *		'X-Client-IP',
+ *		'X-Real-IP',
+ *		'X-ProxyUser-Ip',
+ *		'CF-Connecting-IP',
+ *		'True-Client-IP',
+ *		'HTTP_X_FORWARDED',
+ *		'HTTP_X_FORWARDED_FOR',
+ *		'HTTP_X_CLUSTER_CLIENT_IP',
+ *		'HTTP_FORWARDED_FOR',
+ *		'HTTP_FORWARDED',
+ *		'HTTP_CLIENT_IP',
+ *
+ * NOTE: The following will always be checked:
+ *		'REMOTE_ADDR',
+ */
+$proxy_headers = null;
+```
 
 **Note:** If you installed Cacti out of `/var/www/html` make sure you fix up
 all SELinux context and permissions.

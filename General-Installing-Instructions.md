@@ -256,14 +256,14 @@ back into rotation.
    MySQL> flush privileges;
    ```
 
-Note that if your `root` (or equivalent) user does not have `SUPER` permissions,
-it may still be possible to `GRANT SELECT` privileges to the Cacti user via an
-`INSERT INTO mysql.tables_priv`.
+    Note that if your `root` (or equivalent) user does not have `SUPER` permissions,
+    it may still be possible to `GRANT SELECT` privileges to the Cacti user via an
+    `INSERT INTO mysql.tables_priv`.
 
-```sql
-INSERT INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Table_priv)
-VALUES ('localhost', 'mysql', 'cactiuser', 'time_zone_name', 'root@localhost', 'Select');
-```
+    ```sql
+    INSERT INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Table_priv)
+    VALUES ('localhost', 'mysql', 'cactiuser', 'time_zone_name', 'root@localhost', 'Select');
+    ```
 
 5. Edit `include/config.php` and specify the database type, name, host, user
    and password for your Cacti configuration.
@@ -366,6 +366,37 @@ DB_Database cacti
 DB_User     cactiuser
 DB_Password cacti
 DB_Port     3306
+```
+
+### Considerations when using Proxys in front of Cacti (Cacti 1.2.23+)
+
+For optimal security, only specify the HTTP headers that are set by your proxy software to prevent unauthorized access.  These can be set by editing the following section of config.php
+
+```
+ * Allow the use of Proxy IPs when searching for client
+ * IP to be used
+ *
+ * This can be set to one of the following:
+ *   - false: to use only REMOTE_ADDR
+ *   - true: to use all allowed headers (not advised)
+ *   - array of one or more the following:
+ *		'X-Forwarded-For',
+ *		'X-Client-IP',
+ *		'X-Real-IP',
+ *		'X-ProxyUser-Ip',
+ *		'CF-Connecting-IP',
+ *		'True-Client-IP',
+ *		'HTTP_X_FORWARDED',
+ *		'HTTP_X_FORWARDED_FOR',
+ *		'HTTP_X_CLUSTER_CLIENT_IP',
+ *		'HTTP_FORWARDED_FOR',
+ *		'HTTP_FORWARDED',
+ *		'HTTP_CLIENT_IP',
+ *
+ * NOTE: The following will always be checked:
+ *		'REMOTE_ADDR',
+ */
+$proxy_headers = null;
 ```
 
 ---
