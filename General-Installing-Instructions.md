@@ -256,14 +256,14 @@ back into rotation.
    MySQL> flush privileges;
    ```
 
-Note that if your `root` (or equivalent) user does not have `SUPER` permissions,
-it may still be possible to `GRANT SELECT` privileges to the Cacti user via an
-`INSERT INTO mysql.tables_priv`.
+    Note that if your `root` (or equivalent) user does not have `SUPER` permissions,
+    it may still be possible to `GRANT SELECT` privileges to the Cacti user via an
+    `INSERT INTO mysql.tables_priv`.
 
-```sql
-INSERT INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Table_priv)
-VALUES ('localhost', 'mysql', 'cactiuser', 'time_zone_name', 'root@localhost', 'Select');
-```
+    ```sql
+    INSERT INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Table_priv)
+    VALUES ('localhost', 'mysql', 'cactiuser', 'time_zone_name', 'root@localhost', 'Select');
+    ```
 
 5. Edit `include/config.php` and specify the database type, name, host, user
    and password for your Cacti configuration.
@@ -370,8 +370,7 @@ DB_Port     3306
 
 ### Considerations when using Proxys in front of Cacti (Cacti 1.2.23+)
 
-In the config.php file you will have an option to allow/deny proxies based on IP or Headder
-this can be set by editing the following section of config.php 
+For optimal security, only specify the HTTP headers that are set by your proxy software to prevent unauthorized access.  These can be set by editing the following section of config.php
 
 ```
  * Allow the use of Proxy IPs when searching for client

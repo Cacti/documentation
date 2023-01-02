@@ -6,33 +6,32 @@
 
 1. Enable Epel repo to enable PHP 7.2 package download ( 7.x and Below)
 
- ```console
- yum install <http://rpms.remirepo.net/enterprise/remi-release-7.rpm> -y
- yum install yum-utils -y
- yum-config-manager --enable remi-php72
- ```
-
-1.1.  For Centos/RHEL/ROCKY 8+
-
    ```console
-  dnf module reset php
-  dnf module enable php:8.0
+   yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
+   yum install yum-utils -y
+   yum-config-manager --enable remi-php72
    ```
 
+   For Centos/RHEL/ROCKY 8+
+
+   ```console
+   dnf module reset php
+   dnf module enable php:8.0
+   ```
 
 
 2. Install Apache
 
- ```console
- yum install -y httpd
- ```
+   ```console
+   yum install -y httpd
+   ```
 
 3. Enable and start the service to ensure it starts when the system reboots
 
- ```console
- systemctl start httpd
- systemctl enable httpd
- ```
+   ```console
+   systemctl start httpd
+   systemctl enable httpd
+   ```
 
 ### Example configuration file for Apache 2.4 and SSL
 
@@ -243,7 +242,7 @@ during the installation.
    MariaDB [(none)]> FLUSH PRIVILEGES;
    Query OK, 0 rows affected (0.00 sec)
    ```
-   
+
 5. Save the Database Charset and Collation
 
    ```sql
@@ -365,13 +364,13 @@ configure the basics for Cacti.
 
 1. Install the necessary packages to compile and install spine
 
-1.1 for RHEL/CENTOS/ROCKY 8+
-if using RHEL 8+ you must enable the powertools repo first before downloading the below packages
-```console
+   For RHEL/CENTOS/ROCKY 8+, you must enable the powertools repo first before downloading the below packages
+
+   ```console
    yum config-manager --set-enabled powertools
    ```
 
-1.2 For RHEL/CENTOS/ROCKY 7.x and below
+   For RHEL/CENTOS/ROCKY 7.x and below
    ```console
    yum install -y autoconf automake libtool dos2unix help2man \
    openssl-devel mariadb-devel net-snmp-devel
@@ -452,11 +451,10 @@ documentation on how to make your SELinux policy right.
    ```console
    setenforce 1
    ```
-   
+
 ### Considerations when using Proxies in front of Cacti (Cacti 1.2.23+)
 
-In the config.php file you will have an option to allow/deny proxies based on IP or Headder
-this can be set by editing the following section of config.php 
+For optimal security, only specify the HTTP headers that are set by your proxy software to prevent unauthorized access.  These can be set by editing the following section of config.php
 
 ```
  * Allow the use of Proxy IPs when searching for client
