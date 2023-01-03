@@ -198,4 +198,4 @@ and then convert it back to memory after they system maintenance is
 complete.
 
 ---
-<copy>Copyright (c) 2004-2022 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

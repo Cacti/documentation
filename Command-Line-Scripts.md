@@ -104,7 +104,7 @@ Calling the script with the parameter `--help` yields
 
 ```console
 shell>php -q rebuild_poller_cache.php --help
-Cacti Rebuild Poller Cache Script 1.0, Copyright 2004-2018 - The Cacti Group
+Cacti Rebuild Poller Cache Script 1.0, Copyright 2004-2023 - The Cacti Group
 
 usage: rebuild_poller_cache.php [-d] [-h] [--help] [-v] [--version]
 
@@ -178,7 +178,7 @@ the script with the parameter `--help` yields
 
 ```console
 shell>php -q poller_reindex_hosts.php --help
-Cacti Reindex Host Script 1.2, Copyright 2004-2018 - The Cacti Group
+Cacti Reindex Host Script 1.2, Copyright 2004-2023 - The Cacti Group
 
 usage: poller_reindex_hosts.php --id=[host_id|All] [--qid=[ID|All]] [--host-descr=[description]]
                            [-d] [-h] [--help] [-v] [--version]
@@ -259,7 +259,7 @@ parameter `--help` yields
 
 ```console
 shell>php -q poller_output_empty.php --help
-Cacti Empty Poller Output Table Script 1.0, Copyright 2004-2018 - The Cacti Group
+Cacti Empty Poller Output Table Script 1.0, Copyright 2004-2023 - The Cacti Group
 
 usage: poller_output_empty.php [-h] [--help] [-v] [--version]
 
@@ -319,7 +319,7 @@ script with the parameter `--help` yields
 
 ```console
 shell>php -q poller_graphs_reapply_names.php --help
-Cacti Reapply Graph Names Script 1.0, Copyright 2004-2018 - The Cacti Group
+Cacti Reapply Graph Names Script 1.0, Copyright 2004-2023 - The Cacti Group
 
 usage: poller_graphs_reapply_names.php -id=[host_id|All][host_id1|host_id2|...] [-s=[search_string] [-d] [-h] [--help] [-v] [--version]
 
@@ -364,7 +364,7 @@ Calling the script with the parameter `--help` yields
 
 ```console
 shell>php -q copy_user.php --help
-Cacti Copy User Utility, Version 1.2.0, Copyright (C) 2004-2018 The Cacti Group
+Cacti Copy User Utility, Version 1.2.0, Copyright (C) 2004-2023 The Cacti Group
 usage: copy_cacti_user.php <template user> <new user>
 
 A utility to copy on local Cacti user and their settings to a new one.
@@ -402,7 +402,7 @@ whole list of features it provides. Calling the script with the parameter
 
 ```console
 shell>php -q add_device.php --help
-Add Device Script 1.0, Copyright 2004-2018 - The Cacti Group
+Add Device Script 1.0, Copyright 2004-2023 - The Cacti Group
 
 A simple command line utility to add a device in Cacti
 
@@ -524,7 +524,7 @@ with the parameter `--help` yields
 ```console
 shell>php -q add_data_query.php --help
 
-Add Data Query Script 1.0, Copyright 2004-2018 - The Cacti Group
+Add Data Query Script 1.0, Copyright 2004-2023 - The Cacti Group
 
 A simple command line utility to add a data query to an existing device in Cacti
 
@@ -602,7 +602,7 @@ the whole list of features it provides. Calling the script with the parameter
 ```console
 shell>php -q add_graph_template.php --help
 
-Add Graph Template Script 1.0, Copyright 2004-2018 - The Cacti Group
+Add Graph Template Script 1.0, Copyright 2004-2023 - The Cacti Group
 
 A simple command line utility to associate a graph template with a host in Cacti
 
@@ -913,7 +913,7 @@ parameter `--help` yields
 ```console
 shell>php -q add_tree.php --help
 
-Add Tree Script 1.0, Copyright 2004-2018 - The Cacti Group
+Add Tree Script 1.0, Copyright 2004-2023 - The Cacti Group
 
 A simple command line utility to add objects to a tree in Cacti
 
@@ -1148,7 +1148,7 @@ parameter `--help`
 ```console
 shell>php -q add_perms.php --help
 
-Add Permissions Script 1.0, Copyright 2004-2018 - The Cacti Group
+Add Permissions Script 1.0, Copyright 2004-2023 - The Cacti Group
 
 A simple command line utility to add permissions to tree items in Cacti
 
@@ -1289,4 +1289,4 @@ error message will be printed. No output is produced on successful
 operations.
 
 ---
-<copy>Copyright (c) 2004-2022 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

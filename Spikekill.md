@@ -159,4 +159,4 @@ before older spikes in a different RRA, since the thresholds are different per
 RRA:DS pair.
 
 ---
-<copy>Copyright (c) 2004-2022 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

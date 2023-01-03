@@ -42,3 +42,5 @@ ExtendedStatus On
 
 
 #### The require local directive will restrict access to the server-status page to only local
+---
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

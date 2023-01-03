@@ -19,4 +19,4 @@ Important: When performing a network scan ensure that you select the SNMP
 options that contain the SNMP strings you want to use
 
 ---
-<copy>Copyright (c) 2004-2022 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

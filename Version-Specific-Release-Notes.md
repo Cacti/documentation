@@ -1805,4 +1805,4 @@ Version | Feature/Bug | Description
 1.0.0 | bug#0002725 | Changing graph template does not mark correct interfaces disabled on data query generated list
 
 ---
-<copy>Copyright (c) 2004-2022 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

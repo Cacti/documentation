@@ -28,4 +28,4 @@ remove any **Graph Items** from any **Graph** that do not appear in the **Graph 
 to be imported.  Use this option with care.
 
 ---
-<copy>Copyright (c) 2004-2022 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

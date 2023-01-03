@@ -403,4 +403,4 @@ After you have created your **Graph Template** you can proceed to Add the
 the **Graph** for you, or to manually add it from the **New Graphs** menu pick.
 
 ---
-<copy>Copyright (c) 2004-2022 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

@@ -50,4 +50,4 @@ Cacti wrapper account when it's first created.
 ![User Domains Edit](images/user-domains-edit2.png)
 
 ---
-<copy>Copyright (c) 2004-2022 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

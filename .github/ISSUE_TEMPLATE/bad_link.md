@@ -6,7 +6,11 @@ labels: 'old link,unverified'
 assignees: ''
 
 ---
-
+<!--
+ #
+ # Copyright (C) 2004-2023 The Cacti Group
+ #
+-->
 # Describe the link
 
 Please describe what the old link was for use for and if possible what the new link should be.

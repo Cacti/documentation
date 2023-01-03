@@ -7,7 +7,7 @@ for Http is as follows
 ```console
 yum install -y mod_ssl -y
 
-openssl genrsa -out ca.key 2048 
+openssl genrsa -out ca.key 2048
 openssl req -new -key ca.key -out ca.csr
 openssl x509 -req -days 700 -in ca.csr -signkey ca.key -out ca.crt
 cp ca.crt /etc/pki/tls/certs
@@ -36,3 +36,6 @@ After you have configured the web server to accept https you can force https in 
 
 
 #### Note: If your Cacti system is public it is recommended to get a certificate from a trusted certificate provider
+
+---
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

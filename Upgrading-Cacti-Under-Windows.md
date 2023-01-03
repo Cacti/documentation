@@ -96,4 +96,4 @@ of Cacti which is referred to as `cacti-xxx.zip` in this document.
    - check Data Collection Enabled and Save
 
 ---
-<copy>Copyright (c) 2004-2022 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

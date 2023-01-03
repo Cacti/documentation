@@ -61,4 +61,4 @@ that it uses, the Cacti Group has recommended a sub-tab called
 conform to that guideline.
 
 ---
-<copy>Copyright (c) 2004-2022 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

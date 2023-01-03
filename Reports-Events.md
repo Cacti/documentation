@@ -11,4 +11,4 @@ Currently Cacti does not record past events in a Database table or store the pub
 report in either PDF or other document format in a Database for historical reference.
 
 ---
-<copy>Copyright (c) 2004-2022 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

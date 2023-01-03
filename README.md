@@ -356,4 +356,4 @@ This section will be for template specific configuration requriments
 1. [Apache Server Template](apache_template_config.md)
 
 ---
-<copy>Copyright (c) 2004-2022 The Cacti Group</copy>
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

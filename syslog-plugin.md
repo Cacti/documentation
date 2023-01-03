@@ -113,7 +113,7 @@ To setup log forwarding from your network switches and routers, and from your
 various Linux, UNIX, and other operating system devices, please see their
 respective documentation.
 
-For Cisco routers switches configuration may look something like this 
+For Cisco routers switches configuration may look something like this
 
 ```console
 SW-3750#conf t
@@ -170,8 +170,8 @@ Cacti Database or use a dedicated database for syslog as syslog databases especi
 for large networks can grow pretty quick it may be wise to create a dedicated database.
 To use a dedicated DB first create a database in mysql and assign a user you will then change
 ```console
-$use_cacti_db = true; 
-to 
+$use_cacti_db = true;
+to
 $use_cacti_db = false;
 ```
 
@@ -181,9 +181,9 @@ if you intend to use the cacti DB leave config.php as default
 6.) install the plugin in the plugins tab located in Console >> configuration >> plugins
 
 7.) You will be presented with the plugin install wizard with options on how you would like the Syslog
-plugin to be installed options include DB arch and retention time 
+plugin to be installed options include DB arch and retention time
 
-### Note retention settings can be changed after install but db architecture will require a reinstall of the plugin 
+### Note retention settings can be changed after install but db architecture will require a reinstall of the plugin
 
 ![install advisor](images/syslog_install_advisor.PNG)
 
@@ -202,7 +202,7 @@ GRANT SELECT  ON syslog.* TO  'cacti'@'localhost';
 To leverage SNMP traps as mentioned you will need to install SNMPTT.
 SNMPTT is used to translate OID information passed from the device to a readable format SNMPTT will then write that data into syslog for the Syslog plugin to ingest.
 
-Follow these steps to complete the setup 
+Follow these steps to complete the setup
 
 1.) yum install snmptt
 
@@ -257,7 +257,7 @@ mode = daemon
 
 6.) use the snmptt cacti connector
 
-By default since snmptt resides on the syslog server all of the IP information will appear as if its coming from localhost 
+By default since snmptt resides on the syslog server all of the IP information will appear as if its coming from localhost
 to fix this there is a cacti snmptt connector which will format the trap to be ingested to the syslog db it is located in the contrib folder
 
 
@@ -294,7 +294,7 @@ There are a few deployment approaches
 To setup each remote poller you will need to enable and configure rsyslog with the following steps
 
 
-1.) decide if you will use the cacti DB or a separate DB 
+1.) decide if you will use the cacti DB or a separate DB
 ### Note on using the cacti DB as mentioned earlier
 You have two options for storing Syslog information you can either use the existing
 Cacti Database or use a dedicated database for Syslog as Syslog databases especially
@@ -302,8 +302,8 @@ for large networks can grow pretty quickly it may be wise to create a dedicated 
 To use a dedicated DB first create a database in MySQL and assign a user you will then change
 
 ```console
-$use_cacti_db = true; 
-to 
+$use_cacti_db = true;
+to
 $use_cacti_db = false;
 ```
 
@@ -311,7 +311,7 @@ $use_cacti_db = false;
 2.) If you decide to use the cacti database simply leave config_local.php with the defaults
 
 ```console
-$use_cacti_db = true; 
+$use_cacti_db = true;
 ```
 
 3.) If you decide to use a separate DB fill out the Database detailing config_local.php
@@ -352,7 +352,7 @@ if you wish to have each poller operate independently there is no need to enable
 
 Alert rules are used to generate alerts in the cacti log they are also used
 to send out email alerts and command execution to cut tickets to upstream ticketing
-systems or perform initial troubleshooting scripts can also be leveraged to call on 
+systems or perform initial troubleshooting scripts can also be leveraged to call on
 services such as slack or trello for alerting teams.
 
 you can leverage the built in variable substitution to format the input to the script
@@ -391,3 +391,5 @@ stable and robust versions of syslog ever published. We are always looking for
 new ideas. So, this won't be the last release of syslog, you can rest assured of
 that.
 
+---
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
