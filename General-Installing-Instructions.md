@@ -251,9 +251,12 @@ back into rotation.
 
    ```sql
    shell> mysql --user=root mysql
-   MySQL> GRANT ALL ON cacti.* TO cactiuser@localhost IDENTIFIED BY 'somepassword';
-   MySQL> GRANT SELECT ON mysql.time_zone_name TO cactiuser@localhost IDENTIFIED BY 'somepassword';
-   MySQL> flush privileges;
+   mysql> CREATE DATABASE cacti
+   mysql> CREATE USER 'cacti'@'localhost';
+   mysql> ALTER USER 'cacti'@'localhost' IDENTIFIED BY 'somepassword';
+   mysql> GRANT ALL PRIVILEGES ON cacti.* to 'cacti'@'localhost';
+   mysql> GRANT SELECT ON mysql.time_zone_name TO 'cacti'@'localhost';
+   mysql> FLUSH PRIVILEGES;
    ```
 
     Note that if your `root` (or equivalent) user does not have `SUPER` permissions,
