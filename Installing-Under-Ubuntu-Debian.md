@@ -7,6 +7,14 @@ apt-get update
 apt-get install -y apache2 rrdtool mariadb-server snmp snmpd php7.0 php-mysql php7.0-snmp php7.0-xml php7.0-mbstring php7.0-json php7.0-gd php7.0-gmp php7.0-zip php7.0-ldap php7.0-mc
 ```
 
+### A special note for systems using PHP-FPM
+ Prior to starting the setup process of Cacti you should restart the PHP-FPM
+ Daemon to rebuild the Cache or you may recived a HTTP 500 Error
+   
+   ```console
+   systemctl restart php-fpm
+   ```
+
 ### Downloading the Cacti software
 
 Once the OS packages are installed, you will need to download the Cacti files
