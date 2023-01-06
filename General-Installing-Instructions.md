@@ -89,6 +89,14 @@ The following modules are optional, but preferred to be installed.
 
 - com or dotnet (windows only)
 
+### A special note for systems using PHP-FPM
+ Prior to starting the setup process of Cacti you should restart the PHP-FPM
+ Daemon to rebuild the Cache or you may recived a HTTP 500 Error
+   
+  ```console
+  systemctl restart php-fpm
+  ```
+
 ## FreeBSD
 
 When installing on FreeBSD you can use two ways. For both ways, cacti has a lot
