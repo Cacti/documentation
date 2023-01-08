@@ -22,10 +22,10 @@
 ### A special note for systems using PHP-FPM
 Prior to starting the setup process of Cacti you should restart the PHP-FPM
 Daemon to rebuild the Cache or you may recive a HTTP 500 Error
-   
-```console
- systemctl restart php-fpm
-```
+   ```console
+   systemctl restart php-fpm
+   ```
+
 
 2. Install Apache
 
