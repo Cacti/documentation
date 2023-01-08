@@ -11,9 +11,9 @@ apt-get install -y apache2 rrdtool mariadb-server snmp snmpd php7.0 php-mysql ph
  Prior to starting the setup process of Cacti you should restart the PHP-FPM
  Daemon to rebuild the Cache or you may recived a HTTP 500 Error
    
-   ```console
-   systemctl restart php-fpm
-   ```
+```console
+systemctl restart php-fpm
+```
 
 ### Downloading the Cacti software
 
