@@ -8,9 +8,10 @@ apt-get install -y apache2 rrdtool mariadb-server snmp snmpd php7.0 php-mysql ph
 ```
 
 ### A special note for systems using PHP-FPM
+
  Prior to starting the setup process of Cacti you should restart the PHP-FPM
  Daemon to rebuild the Cache or you may recived a HTTP 500 Error
-   
+
 ```console
 systemctl restart php-fpm
 ```
@@ -119,9 +120,11 @@ wizard.
 
 ### Considerations when using Proxys in front of Cacti (Cacti 1.2.23+)
 
-For optimal security, only specify the HTTP headers that are set by your proxy software to prevent unauthorized access.  These can be set by editing the following section of config.php
+For optimal security, only specify the HTTP headers that are set by your proxy software to prevent unauthorized access.
+These can be set by editing the following section of config.php
 
-```
+
+```ini
  * Allow the use of Proxy IPs when searching for client
  * IP to be used
  *
@@ -147,5 +150,6 @@ For optimal security, only specify the HTTP headers that are set by your proxy s
  */
 $proxy_headers = null;
 ```
+
 ---
 <copy>Copyright (c) 2004-2023 The Cacti Group</copy>
