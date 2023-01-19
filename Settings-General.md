@@ -39,12 +39,12 @@ Those settings include:
 - **General Log Level** - This is the level of logging that Cacti will use.
   Options include:
 
-   - **NONE** - Don't perform any logging, not recommended.
-   - **LOW** - Statistics and Errors
-   - **MEDIUM** - Statistics, Errors and Results
-   - **HIGH** - Statistics, Errors, Results and Major I/O Events
-   - **DEBUG** - Statistics, Errors, Results, I/O and Program Flow
-   - **DEVEL** - Developer level messages, mainly **SQL Queries**
+  - **NONE** - Don't perform any logging, not recommended.
+  - **LOW** - Statistics and Errors
+  - **MEDIUM** - Statistics, Errors and Results
+  - **HIGH** - Statistics, Errors, Results and Major I/O Events
+  - **DEBUG** - Statistics, Errors, Results, I/O and Program Flow
+  - **DEVEL** - Developer level messages, mainly **SQL Queries**
 
   Select the log level that works best for your logging needs.  Be advised that
   **DEBUG** generates a large amount of log data.  **DEVEL** should only log
@@ -215,4 +215,4 @@ This is where Cacti obtains defaults for **Graph Templates**.
   **Graph Templates**
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group
