@@ -90,8 +90,10 @@ The following modules are optional, but preferred to be installed.
 - com or dotnet (windows only)
 
 ### A special note for systems using PHP-FPM
+
 Prior to starting the setup process of Cacti you should restart the PHP-FPM
 Daemon to rebuild the Cache or you may recive a HTTP 500 Error
+
  ```console
    systemctl restart php-fpm
  ```
@@ -380,9 +382,10 @@ DB_Port     3306
 
 ### Considerations when using Proxys in front of Cacti (Cacti 1.2.23+)
 
-For optimal security, only specify the HTTP headers that are set by your proxy software to prevent unauthorized access.  These can be set by editing the following section of config.php
+For optimal security, only specify the HTTP headers that are set by your proxy software.
+to prevent unauthorized access, These can be set by editing the following section of config.php
 
-```
+```ini
  * Allow the use of Proxy IPs when searching for client
  * IP to be used
  *
@@ -407,6 +410,7 @@ For optimal security, only specify the HTTP headers that are set by your proxy s
  *		'REMOTE_ADDR',
  */
 $proxy_headers = null;
+
 ```
 
 ---
