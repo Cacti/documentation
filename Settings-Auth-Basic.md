@@ -9,7 +9,7 @@ if you wish to use this authentication method, it is recommended that
 you test your configuration on a development server before putting this
 method into production.
 
-> **NOTE**: Before enabling the **Basic Authentication Method**, you must 
+> **NOTE**: Before enabling the **Basic Authentication Method**, you must
 > always verify that you are prompted for a password before getting the
 > normal Cacti login prompt, and that you have setup a new user account
 > with Admin privileges that matches your login account.  Otherwise
@@ -47,10 +47,10 @@ UNIX login account may be `jschmoe`, which grants you certain
 plugin permissions, like controlling your own workload.
 
 The mapfile is a file in CSV format, with the first column
-being the Basic account (aka joe.schmoe@company.com), and the second 
-column being the login account (jschmoe).  It is up-to the Cacti 
-administrator to manage and update this file per their local 
+being the Basic account (aka joe.schmoe@company.com), and the second
+column being the login account (jschmoe).  It is up-to the Cacti
+administrator to manage and update this file per their local
 site practices.
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group
