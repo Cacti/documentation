@@ -20,20 +20,21 @@
    ```
 
 ### A special note for systems using PHP-FPM
+
 Prior to starting the setup process of Cacti you should restart the PHP-FPM
 Daemon to rebuild the Cache or you may recive a HTTP 500 Error
+
    ```console
    systemctl restart php-fpm
    ```
 
-
-2. Install Apache
+2.Install Apache
 
    ```console
    yum install -y httpd
    ```
 
-3. Enable and start the service to ensure it starts when the system reboots
+3.Enable and start the service to ensure it starts when the system reboots
 
    ```console
    systemctl start httpd
@@ -235,7 +236,8 @@ during the installation.
    and `your_cacti_password` with your own details.
 
    ```sql
-   MariaDB [(none)]> CREATE USER 'your_cacti_username'@'localhost' IDENTIFIED BY 'your_cacti_password';
+   MariaDB [(none)]> CREATE USER 'your_cacti_username'@'localhost' 
+   IDENTIFIED BY 'your_cacti_password';
    Query OK, 0 rows affected (0.00 sec)
    MariaDB [(none)]> GRANT ALL PRIVILEGES ON cacti.* TO 'your_cacti_username'@'localhost';
    Query OK, 0 rows affected (0.00 sec)
@@ -371,13 +373,15 @@ configure the basics for Cacti.
 
 1. Install the necessary packages to compile and install spine
 
-   For RHEL/CENTOS/ROCKY 8+, you must enable the powertools repo first before downloading the below packages
+   For RHEL/CENTOS/ROCKY 8+, you must enable the powertools repo first before
+    downloading the below packages
 
    ```console
    yum config-manager --set-enabled powertools
    ```
 
    For RHEL/CENTOS/ROCKY 7.x and below
+
    ```console
    yum install -y autoconf automake libtool dos2unix help2man \
    openssl-devel mariadb-devel net-snmp-devel
@@ -461,9 +465,11 @@ documentation on how to make your SELinux policy right.
 
 ### Considerations when using Proxies in front of Cacti (Cacti 1.2.23+)
 
-For optimal security, only specify the HTTP headers that are set by your proxy software to prevent unauthorized access.  These can be set by editing the following section of config.php
+For optimal security, only specify the HTTP headers that are set by your proxy
+software to prevent unauthorized access.  
+These can be set by editing the following section of config.php
 
-```
+```ini
  * Allow the use of Proxy IPs when searching for client
  * IP to be used
  *
@@ -471,21 +477,21 @@ For optimal security, only specify the HTTP headers that are set by your proxy s
  *   - false: to use only REMOTE_ADDR
  *   - true: to use all allowed headers (not advised)
  *   - array of one or more the following:
- *		'X-Forwarded-For',
- *		'X-Client-IP',
- *		'X-Real-IP',
- *		'X-ProxyUser-Ip',
- *		'CF-Connecting-IP',
- *		'True-Client-IP',
- *		'HTTP_X_FORWARDED',
- *		'HTTP_X_FORWARDED_FOR',
- *		'HTTP_X_CLUSTER_CLIENT_IP',
- *		'HTTP_FORWARDED_FOR',
- *		'HTTP_FORWARDED',
- *		'HTTP_CLIENT_IP',
+ *'X-Forwarded-For',
+ *'X-Client-IP',
+ *'X-Real-IP',
+ *'X-ProxyUser-Ip',
+ *'CF-Connecting-IP',
+ *'True-Client-IP',
+ *'HTTP_X_FORWARDED',
+ *'HTTP_X_FORWARDED_FOR',
+ *'HTTP_X_CLUSTER_CLIENT_IP',
+ *'HTTP_FORWARDED_FOR',
+ *'HTTP_FORWARDED',
+ *'HTTP_CLIENT_IP',
  *
  * NOTE: The following will always be checked:
- *		'REMOTE_ADDR',
+ *'REMOTE_ADDR',
  */
 $proxy_headers = null;
 ```
@@ -494,4 +500,4 @@ $proxy_headers = null;
 all SELinux context and permissions.
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group
