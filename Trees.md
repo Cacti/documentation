@@ -36,15 +36,19 @@ of how Tree Sorting is accomplished.
 
 ![Tree Sorting](images/tree-options-sorting.png)
 
-###### Table 8-1. Tree Sporting Type Definitions
+### Table 8-1. Tree Sporting Type Definitions
 
 Field | Value | Description
 --- | --- | ---
-Name | Name of the tree entry. | The sort order of all trees themselves is always alphabetical
-Sorting Type | Manual Ordering (No Sorting) | You may chance the sequence at your will
-Alphabetical Ordering |  1, Ab, ab | All sub-trees are ordered alphabetically, unless specifies otherwise (you may chance sort options at sub-tree label)
+Name | Name of the tree entry. | The sort order of all trees themselves is
+always alphabetical
+Sorting Type | Manual Ordering (No Sorting) | Y
+ou may chance the sequence at your will
+Alphabetical Ordering |  1, Ab, ab | All sub-trees are ordered alphabetically,
+unless specifies otherwise (you may chance sort options at sub-tree label)
 Natural Ordering | ab1, ab2, ab7, ab10, ab20 | N/A
-Numeric Ordering | 01, 02, 4, 04 | Leading zeroes are not taken into account when ordering numerically
+Numeric Ordering | 01, 02, 4, 04 | Leading zeroes are not taken into account
+when ordering numerically
 
 End users will not be able to view the **Tree** or it's Graphs until you
 publish it.  To edit a **Tree**, you will be required to lock it for your use.
@@ -65,4 +69,4 @@ at one time.
 Don't forget to unlock your **Tree** before finishing your editing session.
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group
