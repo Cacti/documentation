@@ -29,13 +29,13 @@ systemctl restart httpd
 
 After configuring the web server to accept https, you can enable https in the GUI
 
-### Note, if using multiple pollers
+#### Note, if using multiple pollers
 
 all must have HTTPS enabled for the remote polling feature to work properly.
 
 cacti-ssl
 
-### Note: If your Cacti system is public
+#### Note: If your Cacti system is public
 
 it is recommended to get a certificate from a trusted certificate provider.
 
