@@ -64,8 +64,10 @@ $ModLoad imudp
 $UDPServerRun 514
 $ModLoad ommysql
 
-$template cacti_syslog,"INSERT INTO syslog_incoming(facility_id, priority_id, program, logtime, host, message) \
-  values (%syslogfacility%, %syslogpriority%, '%programname%', '%timegenerated:::date-mysql%', '%HOSTNAME%', TRIM('%msg%'))", SQL
+$template cacti_syslog,"INSERT INTO syslog_incoming(facility_id, priority_id,
+  program, logtime, host, message) \
+  values (%syslogfacility%, %syslogpriority%, '%programname%',
+  '%timegenerated:::date-mysql%', '%HOSTNAME%', TRIM('%msg%'))", SQL
 
 *.* >localhost,my_database,my_user,my_password;cacti_syslog
 ```
@@ -79,8 +81,11 @@ $UDPServerRun 514
 $ModLoad ommysql
 ```
 
-$template cacti_syslog,"INSERT INTO syslog_incoming(facility_id, priority_id, program, date, time, host, message) \
-  values (%syslogfacility%, %syslogpriority%, '%programname%', '%timereported:::date-mysql%', '%timereported:::date-mysql%', '%HOSTNAME%', TRIM('%msg%'))", SQL
+$template cacti_syslog,"INSERT INTO syslog_incoming(facility_id, priority_id,
+  program, date, time, host, message) \
+  values (%syslogfacility%, %syslogpriority%, '%programname%',
+  '%timereported:::date-mysql%', '%timereported:::date-mysql%', '%HOSTNAME%',
+   TRIM('%msg%'))", SQL
 
 *.* >localhost,my_database,my_user,my_password;cacti_syslog
 
@@ -154,7 +159,8 @@ MySQL and MariaDB will source multiple database configuration files.
 
 1.) Copy the syslog files over to /var/www/html/cacti/plugins
 
-2.) ensure permissions are correct the files should typically be owned by the webserver user
+2.) ensure permissions are correct the files
+     should typically be owned by the webserver user
 
 ```shell
 chown -R apache:apache syslog
@@ -165,7 +171,8 @@ chown -R apache:apache syslog
 5.) You have two options for storing syslog information you can either use the exisiting
 Cacti Database or use a dedicated database for syslog as syslog databases especially
 for large networks can grow pretty quick it may be wise to create a dedicated database.
-To use a dedicated DB first create a database in mysql and assign a user you will then change
+To use a dedicated DB first create a database
+in mysql and assign a user you will then change
 
 ```console
 $use_cacti_db = true;
@@ -175,9 +182,12 @@ $use_cacti_db = false;
 
 if you intend to use the cacti DB leave config.php as default
 
-6.) install the plugin in the plugins tab located in Console >> configuration >> plugins
+6.) install the plugin in the plugins tab located
+    in Console >> configuration >> plugins
 
-7.) You will be presented with the plugin install wizard with options on how you would like the Syslog plugin to be installed options include DB arch and retention time
+7.) You will be presented with the plugin install wizard with options on how
+   you would like the Syslog plugin to be installed options
+   include DB arch and retention time
 
 ### Note retention settings can be changed after install but db architecture will require a reinstall of the plugin
 
@@ -283,7 +293,8 @@ There are a few deployment approaches
 
 ## Remote poller setup
 
-To setup each remote poller you will need to enable and configure rsyslog with the following steps
+To setup each remote poller you will need to enable and configure
+ rsyslog with the following steps
 
 1.) decide if you will use the cacti DB or a separate DB
 
@@ -300,7 +311,7 @@ to
 $use_cacti_db = false;
 ```
 
-2.) If you decide to use the cacti database simply leave config_local.php with the defaults
+2.) If you decide to use the cacti database simply leave config_local.php default
 
 ```console
 $use_cacti_db = true;
@@ -316,8 +327,10 @@ $ModLoad imudp
 $UDPServerRun 514
 $ModLoad ommysql
 
-$template cacti_syslog,"INSERT INTO syslog_incoming(facility_id, priority_id, program, date, time, host, message) \
-  values (%syslogfacility%, %syslogpriority%, '%programname%', '%timereported:::date-mysql%', '%timereported:::date-mysql%', '%HOSTNAME%', TRIM('%msg%'))", SQL
+$template cacti_syslog,"INSERT INTO syslog_incoming(facility_id, priority_id,
+  program, date, time, host, message) \
+  values (%syslogfacility%, %syslogpriority%, '%programname%', '%timereported:::date-mysql%',
+  '%timereported:::date-mysql%', '%HOSTNAME%', TRIM('%msg%'))", SQL
 
 *.* >localhost,my_database,my_user,my_password;cacti_syslog
 ```
@@ -340,9 +353,10 @@ found in configuration >> settings >> syslog
 
 ![syslog settings ](images/syslog-multipoller-settings.PNG)
 
-### note rules will be replicated within one polling cycle from the main poller to the remotes
+### note rules will be replicated within one polling cycle  to the remote pollers
 
-if you wish to have each poller operate independently there is no need to enable these options.
+if you wish to have each poller operate independently there is no need to enable
+these options.
 
 ### Syslog Alert Rules
 

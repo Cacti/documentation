@@ -4,7 +4,9 @@
 
 ```console
 apt-get update
-apt-get install -y apache2 rrdtool mariadb-server snmp snmpd php7.0 php-mysql php7.0-snmp php7.0-xml php7.0-mbstring php7.0-json php7.0-gd php7.0-gmp php7.0-zip php7.0-ldap php7.0-mc
+apt-get install -y apache2 rrdtool mariadb-server snmp snmpd php7.0 php-mysql 
+php7.0-snmp php7.0-xml php7.0-mbstring php7.0-json php7.0-gd php7.0-gmp php7.0-zip
+php7.0-ldap php7.0-mc
 ```
 
 ### A special note for systems using PHP-FPM
@@ -120,9 +122,9 @@ wizard.
 
 ### Considerations when using Proxys in front of Cacti (Cacti 1.2.23+)
 
-For optimal security, only specify the HTTP headers that are set by your proxy software to prevent unauthorized access.
+For optimal security, only specify the HTTP headers that are set by your proxy
+software to prevent unauthorized access.
 These can be set by editing the following section of config.php
-
 
 ```ini
  * Allow the use of Proxy IPs when searching for client
@@ -132,24 +134,24 @@ These can be set by editing the following section of config.php
  *   - false: to use only REMOTE_ADDR
  *   - true: to use all allowed headers (not advised)
  *   - array of one or more the following:
- *		'X-Forwarded-For',
- *		'X-Client-IP',
- *		'X-Real-IP',
- *		'X-ProxyUser-Ip',
- *		'CF-Connecting-IP',
- *		'True-Client-IP',
- *		'HTTP_X_FORWARDED',
- *		'HTTP_X_FORWARDED_FOR',
- *		'HTTP_X_CLUSTER_CLIENT_IP',
- *		'HTTP_FORWARDED_FOR',
- *		'HTTP_FORWARDED',
- *		'HTTP_CLIENT_IP',
+ *'X-Forwarded-For',
+ *'X-Client-IP',
+ *'X-Real-IP',
+ *'X-ProxyUser-Ip',
+ *'CF-Connecting-IP',
+ *'True-Client-IP',
+ *'HTTP_X_FORWARDED',
+ *'HTTP_X_FORWARDED_FOR',
+ *'HTTP_X_CLUSTER_CLIENT_IP',
+ *'HTTP_FORWARDED_FOR',
+ *'HTTP_FORWARDED',
+ *'HTTP_CLIENT_IP',
  *
  * NOTE: The following will always be checked:
- *		'REMOTE_ADDR',
+ *'REMOTE_ADDR',
  */
 $proxy_headers = null;
 ```
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group
