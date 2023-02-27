@@ -32,7 +32,7 @@ then
 	fi
 	exit ${LINES};
 else
-	LINES=`find -name \*.md ! -name README.md -exec "$0" "{}" \;`
+	LINES=`find -not \( -path ./.github/\* \) -name \*.md ! -name README.md -exec "$0" "{}" \;`
 	COUNT=`echo "${LINES}" | grep "Not Linked:" | wc -l`
 
 	if [[ -n "${CHECK_SHOW_LINKED}" || ${COUNT} -gt 0 ]]; then
