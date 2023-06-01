@@ -231,6 +231,13 @@ If you already have a spike on one or more of your graphs, there is a really
 [useful Perl script](http://cricket.sourceforge.net/contrib/files/killspike2)
 that will remove them for you.
 
+
+**Q:** I have a remote poller that is timing out but SNMP timing to the devices is fine
+
+**A:** Check that the network connection between the Remote poller and Main poller is working ok
+if the link has very high latency this can cause the polling times to increase as the data being 
+transfered from the remote poller will be slowed causing the poll not to finish in time
+
 **Q:** RRDtool Says: ERROR: unknown option '--slope-mode' or RRDtool Says:
 ERROR: Garbage ':39:24 To 2005/10/22 16:39:24\c' after command: COMMENT:From
 2005/10/21 16:39:24 To 2005/10/22 16:39:24\c
