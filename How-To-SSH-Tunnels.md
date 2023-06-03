@@ -1,4 +1,4 @@
-# Using SSH tunnels to graph a remote Unix server
+# How To Setup SSH Tunnels to graph a remote Unix server
 
 Howto created by `fmangeant` at [Cacti
 Forum](http://forums.cacti.net/viewtopic.php?t=24960)
@@ -106,4 +106,4 @@ In Cacti, create a new device like that :
 Voila ! Your target server is graphed by Cacti :)
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

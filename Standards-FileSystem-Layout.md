@@ -11,9 +11,12 @@ files where applicable. All files must begin with the name of category (ie. its
 parent directory name). Valid token names are
 
 * auth
-* data_input (maybe rename to script)
+* automation
+* color_template
+* data_input
 * data_query
 * data_source
+* data_source_profile
 * data_template
 * device (rename from host)
 * device_template
@@ -24,8 +27,7 @@ parent directory name). Valid token names are
 * package
 * plugin
 * poller
-* preset (colors, cdefs, etc, better than data_preset)
-* rra
+* preset (colors, cdefs, vdefs, gprints, etc)
 * site
 * user
 
@@ -134,16 +136,20 @@ include/graph_arrays.php
 Functions that must be accessed globally should be stored in the ''lib/''
 directory. This is where most of the heavy lifting in Cacti occurs.
 
-Directly under the `lib/` directory, the files beginning with `api` are generic
-wrappers that are only to be used by third party developers. These files simply
-include the contents of the various subdirectories under `lib/` to make
-developers lives easier. Also under the `lib/` directory is a directory for
-each category (graph, device, etc), where functions specific to that category
-are to be stored. The `lib/sys/` directory is a special category that is meant
-to store Cacti internal functions that are not to be made available directly
-within the API.
+Directly under the `lib/` directory, the files beginning with the `api`
+prefix are core Cacti API's that are only to be used by third party
+developers and should NEVER include a call to a
+`$_REQUEST`, `$_POST`, or `$_GET` variable.
 
-API wrapper for graph-related functions
+Files that have the `html` prefix, generally invole the rendering of page
+content, for example the `html_form.php` library draws forms and
+`html_validate.php` includes functions to validate page variables there
+are other various files in the current cacti `lib/` directory that will
+over time be changing with the migration to the next major version of
+Cacti.  So, these rules may change over time.
+
+Here is the core API for the Cacti `graphs.php` page, and that deals with
+the manipulation of **Graphs**.
 
 ```console
 lib/api_graph.php
@@ -178,5 +184,4 @@ function api_graph_item_save($graph_item_id, &$_fields_graph_item) {
 ```
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
-
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

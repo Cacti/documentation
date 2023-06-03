@@ -1,6 +1,6 @@
 #!/bin/bash
 #  +-------------------------------------------------------------------------+
-#  | Copyright (C) 2004-2018 The Cacti Group                                 |
+#  | Copyright (C) 2004-2023 The Cacti Group                                 |
 #  |                                                                         |
 #  | This program is free software; you can redistribute it and/or           |
 #  | modify it under the terms of the GNU General Public License             |
@@ -32,7 +32,7 @@ then
 	fi
 	exit ${LINES};
 else
-	LINES=`find -name \*.md ! -name README.md -exec "$0" "{}" \;`
+	LINES=`find -not \( -path ./.github/\* \) -name \*.md ! -name README.md -exec "$0" "{}" \;`
 	COUNT=`echo "${LINES}" | grep "Not Linked:" | wc -l`
 
 	if [[ -n "${CHECK_SHOW_LINKED}" || ${COUNT} -gt 0 ]]; then

@@ -2,8 +2,31 @@
 
 ## Graph Variables
 
-The following variables can be used in the Text Format and Value graph item
-fields. Below is a description of each of these variables.
+Graphs Variables are special use replacement variables used to take
+information from the following objects and use them in the context
+of a Cacti Graph:
+
+- **Cacti Device** - host information
+- **Data Query** - input query meta data
+- **Data Input** - input variables
+- **Nth Percentile** - formulas
+
+It also allows you additional one single use replacement variables like:
+
+- **Data Source Name** - The name of your Data Source
+- **Date Time** - The date and time the graph was rendered.
+
+In the examples below, you will be able to see how to use these values.
+They can be used in:
+
+1) Graph and Graph Template - Titles
+2) Graph and Graph Template - Comments
+3) Data Query - Suggested names for Graphs and Data Sources
+4) Data Source - Min and Max Data Source Limits
+5) Aggregate Graphs and Templates - Prefixes
+
+All Graph Variables are enclosed by pipe characters as shown in the
+examples below.
 
 ## Date/Time
 
@@ -26,7 +49,10 @@ allows the creation of generic graph templates (2-variable line graph,
 3-variable stack, etc.) which can be reused with large numbers of data sources.
 See attached examples to understand usage.
 
-![Example of a Graph Template using |data_source_title|](images/data-source-title-template.png)
+![Example of a Graph Template using |data_source_title|](images/graph-variables-data-source-title.png)
+
+The example graphs below, show how the output may look, but for a slightly
+different Case.
 
 ![Example 1 of a Graph making use of |data_source_title|](images/data-source-title-example1.png)
 
@@ -50,6 +76,16 @@ name.
 |query_dskPath|
 ```
 
+## Data Input Arguments
+
+```regex
+|input_hostname|
+```
+
+```regex
+|input_ip_address|
+```
+
 ## Nth Percentile
 
 ```regex
@@ -61,6 +97,11 @@ their peak traffic usage while ignoring their top (100 - Nth) percent. This way
 if a customer has a fairly consistent traffic pattern and decides to download a
 huge file one day, the large spike will be ignored. Common Nth percentile is
 95, which would cut off the top 5% of the traffic.
+
+The Nth Percentile variables, when placed in Graph Comments will be detected
+and the syntax will be parsed and the reulting numeric value will replace
+the formula.  They are used in both 95th Percentile and Bandwidth
+Traffic Graphs today.
 
 In Cacti, Nth percentile works just like any other graph variable. To use this
 variable you must give it five arguments:
@@ -81,10 +122,10 @@ Type | Description
 --- | ---
 current | Calculates the Nth percentile based off the selected data source on the graph item which the variable is used. This type requires a selected Data Source Item in the graph item in which it is defined.
 total | Calculates the Nth percentile based off the selected data source on the graph item which the variable is used. But unlike current, this function totals the Nth percentile results of all same named data source names on the graph. Example, all traffic_in would have their Nth percentile calculated and then totaled. This type requires a selected Data Source Item in the graph item in which it is defined.
-max | Calculates the Nth percentile based off the selected data source on the graph item which the variable is used, but it is important to note that it selects the higher of the values for each row in data source and then uses the resulting set to calculate the Nth percentile. Example, you have selected a interface data source for traffic_in, this will evaluate traffic_out and traffic_in for that selected data source (RRDTool file) and select the higher of the two values for each row of data. The resulting max values are used to calculate the Nth percentile value. This type requires a selected Data Source Item in the graph item in which it is defined.
-total_peak | Calculates the Nth percentile based on the max for each data source defined on the graph. Example, the max is taken for each data source defined on the graph, but it\'s the max of traffic_in or traffic_out for that data source (RRDTool file). The resulting max values are summed and returned.
+max | Calculates the Nth percentile based off the selected data source on the graph item which the variable is used, but it is important to note that it selects the higher of the values for each row in data source and then uses the resulting set to calculate the Nth percentile. Example, you have selected a interface data source for traffic_in, this will evaluate traffic_out and traffic_in for that selected data source (RRDtool file) and select the higher of the two values for each row of data. The resulting max values are used to calculate the Nth percentile value. This type requires a selected Data Source Item in the graph item in which it is defined.
+total_peak | Calculates the Nth percentile based on the max for each data source defined on the graph. Example, the max is taken for each data source defined on the graph, but it\'s the max of traffic_in or traffic_out for that data source (RRDtool file). The resulting max values are summed and returned.
 all_max_current | Calculates the Nth percentile based off the selected data source on the graph item which the variable is used, but it only selects the highest (max) value of all the data source items on the graph. Example, there are 3 data sources defined on the graph, the selected data source is traffic_in, all data sources for traffic_in will be compared against each other and the highest Nth value of all graph items will be selected as the result. This type requires a selected Data Source Item in the graph item in which it is defined.
-all_max_peak | Calculates the Nth percentile by selecting the highest (max) calculated max Nth percentile value for each data source (RRDTool file) selected on the graph. Example, 3 data sources are defined on the graph, for each data source, the max Nth percentile is calculated, and out of the resulting set of values, the highest value is selected and returned.
+all_max_peak | Calculates the Nth percentile by selecting the highest (max) calculated max Nth percentile value for each data source (RRDtool file) selected on the graph. Example, 3 data sources are defined on the graph, for each data source, the max Nth percentile is calculated, and out of the resulting set of values, the highest value is selected and returned.
 aggregate_max | Calculates the Nth percentile by selecting the highest value for each summed value of like data sources and selecting the maximum value of that set to calculate the Nth percentile value. Example, you have a graph with 5 traffic_in and 18 traffic_out data sources. The traffic_in rows are summed together, then the traffic_out rows are summed together, then for each row, the higher of the 2 values is selected. The Nth percentile is calculated from the resulting maximum values.
 aggregate_sum | Calculates the Nth percentile by summing all data sources on the graph row for row and calculates the Nth value on the resulting summed data. Example, you have a graph with 4 traffic_in and 3 traffic_out data sources defined. All the defined traffic_in and traffic_out are summed together and then the Nth percentile value is calculated from that set.
 aggregate | Calculates the Nth percentile by summing like data source names row for row from each data source defined on the graph and then returning the highest Nth percent value calculated for like data source names. Example, you have a graph with 3 traffic_out and 5 traffic_in data sources defined. The traffic_in and traffic_out are summed then the Nth value is calculated and the higher of the 2 values is returned as the variable.
@@ -110,7 +151,7 @@ aggregate | Calculates the Nth percentile by summing like data source names row 
 |sum:([0-9]|auto):(current|total):([0-9]):([0-9]+|auto)|
 ```
 
-Bandwidth summation is useful for summing up all values in an RRD file for a
+Bandwidth summation is useful for summing up all values in an RRDfile for a
 given time range. This is typically useful on traffic graphs where you can see
 a total of all traffic that has gone through an interface in a given time
 period.
@@ -172,6 +213,21 @@ Variable Name | Description
 \|host_snmp_timeout\| | SNMP Timeout
 \|host_snmp_username\| | SNMP Username (v3)
 \|host_snmp_version\| | SNMP Version
+\|host_uptime\| | SNMP Uptime
+
+## Example Use
+
+Below you can see the example in the `SNMP - Interface Statistics` Data Query of
+how they are used for suggested names.
+
+![Suggested Names](images/graph-variables-suggested-names.png)
+
+And in Bandwidth Graph Template.
+
+![Graph Template Bandwidth](images/graph-variables-graph-template.png)
+
+In the images above, you can see both the Title of the Graph and the
+Comments showing the use of the bandwidth replacement variables.
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

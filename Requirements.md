@@ -7,7 +7,7 @@ Cacti requires that the following software is installed on your system.
 - Build environment when using spine (gcc, automake, autoconf, libtool,
   help2man)
 
-- RRDTool 1.3 or greater, 1.5+ recommended
+- RRDtool 1.3 or greater, 1.5+ recommended
 
 - PHP 5.4 or greater, 5.5+ recommended
   - Required modules:
@@ -21,7 +21,7 @@ Cacti requires that the following software is installed on your system.
   - Optional modules:
     - snmp (falls back to NetSNMP)
 
-- MySQL 5.x or MariaDB 5.5 or greater
+- MySQL 5.6 or MariaDB 5.5 or greater
   - Timezone support must be enabled
 
   - The following are my.cnf recommendations:
@@ -38,7 +38,7 @@ Cacti requires that the following software is installed on your system.
       It is recommended that you enable InnoDB in any MySQL/MariaDB version
       greater than 5.1.
 
-    - **collation_server = utf8_general_ci**
+    - **collation_server = utf8mb4_unicode_ci**
 
       When using Cacti with languages other than English, it is important to
       use the utf8_general_ci collation type as some characters take more than
@@ -47,7 +47,8 @@ Cacti requires that the following software is installed on your system.
       in production, see the internet for instructions on converting your
       databases and tables if you plan on supporting other languages.
 
-    - **character_set_client = utf8**
+    - **character_set_client = utf8mb4
+    - **character_set_server = utf8mb4
 
       When using Cacti with languages other than English, it is important to
       use the utf8 character set as some characters take more than a single
@@ -83,6 +84,16 @@ Cacti requires that the following software is installed on your system.
       recommendation or choose a different storage engine.  You may see the
       expected consumption of the Performance Booster tables under Console ->
       System Utilities -> View Boost Status.
+
+      NOTE: If you are using a recent version of MariaDB or MySQL, using
+      memory tables is no longer a requirement.  You may choose to continue
+      to use memory tables to spare your NVMe or SSD drives excessive use
+      wear.  However, outside of that, it is no longer a requirement.
+      As such, the value of the **max_heap_table_size** is not as important
+      as in previous releases.  Additionally, if you are using Galera
+      replication with Cacti, all your tables must be in InnoDB format.  So,
+      the only feature in MariaDB or MySQL becomes temporary table space
+      which may not be dependent on the **max_heap_table_size**.
 
     - **table_cache >= 200**
 
@@ -173,11 +184,30 @@ Cacti requires that the following software is installed on your system.
       divided by 128MB. Continue to use this equation up to the max of 64.
 
     Note:
+
     - Some of these recommendations may not be applicable depending on the
       version of MySQL/MariaDB you are running.
+
     - Some of these recommendations should be scaled where appropriate
 
-To implement the above mysql recomendations you can use the below entries and paste them into my.cnf
+    - Newer MySQL/MariaDB software are using [strict
+      modes](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html) and it can
+      cause unexpected problems when importing dumps of Cacti databases from
+      older systems, like **Can't create table `cacti`.`poller_output_boost`
+      (errno: 140 "Wrong create options")**.
+
+      You have more possibilities:
+
+      - disable appropriate strict mode - not recommended
+
+      - change mysqldump file - remove **ROW_FORMAT=FIXED** from table
+        definition
+
+      - before mysqldump run query:
+        **ALTER TABLE `poller_output_boost` ROW_FORMAT=DYNAMIC;**
+
+To implement the above mysql recommendations you can use the below entries and
+paste them into my.cnf
 
 ```console
  innodb_flush_log_at_timeout = 4
@@ -194,4 +224,4 @@ To implement the above mysql recomendations you can use the below entries and pa
  ```
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

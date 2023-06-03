@@ -1,0 +1,45 @@
+<interface>
+	<name>Get hrStoragedTable Information</name>
+	<description>Get SNMP based Partition Information out of hrStorageTable</description>
+	<index_order>hrStorageDescr:hrStorageIndex</index_order>
+	<index_order_type>numeric</index_order_type>
+	<oid_index>.1.3.6.1.2.1.25.2.3.1.1</oid_index>
+
+	<fields>
+		<hrStorageIndex>
+			<name>Index</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>input</direction>
+			<oid>.1.3.6.1.2.1.25.2.3.1.1</oid>
+		</hrStorageIndex>
+		<hrStorageDescr>
+			<name>Description</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>input</direction>
+			<oid>.1.3.6.1.2.1.25.2.3.1.3</oid>
+		</hrStorageDescr>
+		<hrStorageAllocationUnits>
+			<name>Allocation Units (Bytes)</name>
+			<method>walk</method>
+			<source>VALUE/REGEXP:([0-9]*) Bytes</source>
+			<direction>input</direction>
+			<oid>.1.3.6.1.2.1.25.2.3.1.4</oid>
+		</hrStorageAllocationUnits>
+		<hrStorageSize>
+			<name>Total Size (Units)</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>.1.3.6.1.2.1.25.2.3.1.5</oid>
+		</hrStorageSize>
+		<hrStorageUsed>
+			<name>Used Space (Units)</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>.1.3.6.1.2.1.25.2.3.1.6</oid>
+		</hrStorageUsed>
+	</fields>
+</interface>

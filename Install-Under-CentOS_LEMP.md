@@ -26,103 +26,117 @@ Replace `YourOwnCertFile.crt` and `YourOwnCertFile.key` with the names of the
 files holding your certificate (`.crt`) and private key (`.key`).
 
 ```console
+/etc/nginx/conf.d/cacti.conf
+```
+
+```console
 # Advanced config for NGINX
-        #server_tokens off;
-        add_header X-XSS-Protection "1; mode=block";
-        add_header X-Content-Type-Options nosniff;
+#server_tokens off;
+add_header X-XSS-Protection "1; mode=block";
+add_header X-Content-Type-Options nosniff;
 
 # Redirect all HTTP traffic to HTTPS
 server {
    listen 80;
-        server_name cacti.yourdomain.com; #No one likes unencrypted web servers
-        return 301 https://$host$request_uri;
+   server_name cacti.yourdomain.com; #No one likes unencrypted web servers
+   #return 301 https://$host$request_uri; # some nginx do not support 'return';
 }
 
 # SSL configuration
 server {
    listen 443 ssl default deferred;
-   server_name cacti.domain.com;
-        root /usr/share/nginx/html/cacti;
-        index index.php index.html index.htm;
+   server_name cacti.yourdomain.com;
+   root /usr/share/nginx/html/cacti;
+   index index.php index.html index.htm;
 
-        location / {
-                try_files $uri $uri/ /index.php$query_string;
-        }
+   # Compression increases performance0
+   gzip on;
+   gzip_types      text/plain text/html text/xml text/css application/xml application/javascript application/x-javascript application/rss+xml application/xhtml+xml;
+   gzip_proxied    no-cache no-store private expired auth;
+   gzip_min_length 1000;
 
-        error_page 404 /404.html;
-        error_page 500 502 503 504 /50x.html;
-        location = /50x.html {
-                root /usr/share/nginx/html/;
-        }
+   location / {
+      try_files $uri $uri/ /index.php$query_string;
+   }
 
-        location ~ \.php$ {
-                alias /usr/share/nginx/html/cacti;
-                index index.php
-                try_files $uri $uri/ =404;
-                fastcgi_split_path_info ^(.+\.php)(/.+)$;
-                fastcgi_pass unix:/var/run/php7.0-fpm.sock;
-                fastcgi_index index.php;
-                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-                include /etc/nginx/fastcgi_params;
-        }
+   error_page 404 /404.html;
+   error_page 500 502 503 504 /50x.html;
+   location = /50x.html {
+      root /usr/share/nginx/html/;
+   }
 
-        location /cacti {
-           root /usr/share/nginx/html/;
-           index index.php index.html index.htm;
-           location ~ ^/cacti/(.+\.php)$ {
-                   try_files $uri =404;
-                   root /usr/share/nginx/html;
-                   fastcgi_pass unix:/var/run/php7.0-fpm.sock;
-                   fastcgi_index index.php;
-                   fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-                   include /etc/nginx/fastcgi_params;
-           }
+   location ~ \.php$ {
+      alias /usr/share/nginx/html/cacti;
+      index index.php
+      try_files $uri $uri/ =404;
+      fastcgi_split_path_info ^(.+\.php)(/.+)$;
 
-           location ~* ^/cacti/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt))$ {
-                expires max;
-                log_not_found off;
-           }
-        }
+      # you may have to change the path here for your OS
+      fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+      fastcgi_index index.php;
+      fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      include /etc/nginx/fastcgi_params;
+   }
 
-        location /doc/ {
-            alias /usr/share/nginx/html/cacti/doc/;
-                location ~* ^/docs/(.+\.(html|md|txt))$ {
-                        root /usr/share/nginx/html/cacti/;
-            autoindex on;
-            allow 127.0.0.1; # Change this to allow your local networks
-            allow ::1;
-            deny all;
-                }
-        }
+   location /cacti {
+      root /usr/share/nginx/html/;
+      index index.php index.html index.htm;
+      location ~ ^/cacti/(.+\.php)$ {
+         try_files $uri =404;
+         root /usr/share/nginx/html;
 
-        location /cacti/rra/ {
-            deny all;
-        }
+         # you may have to change the path here for your OS
+         fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+         fastcgi_index index.php;
+         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+         include /etc/nginx/fastcgi_params;
+      }
 
-        ## Access and error logs.
-        access_log /var/log/nginx/cacti_access.log;
-        error_log  /var/log/nginx/cacti_error.log info;
+      location ~* ^/cacti/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt))$ {
+         expires max;
+         log_not_found off;
+      }
+   }
 
-        ssl_certificate      /etc/ssl/private/YourOwnCertFile.crt;
-        ssl_certificate_key  /etc/ssl/private/YourOwnCertKey.key;
+   location /doc/ {
+      alias /usr/share/nginx/html/cacti/doc/;
+      location ~* ^/docs/(.+\.(html|md|txt))$ {
+         root /usr/share/nginx/html/cacti/;
+         autoindex on;
+         allow 127.0.0.1; # Change this to allow your local networks
+         allow ::1;
+         deny all;
+      }
+   }
 
-        # Improve HTTPS performance with session resumption
-        ssl_session_cache shared:SSL:10m;
-        ssl_session_timeout 5m;
+   location /cacti/rra/ {
+      deny all;
+   }
 
-        # Enable server-side protection against BEAST attacks
-        #ssl_prefer_server_ciphers on;
-        ssl_ciphers ECDH+AESGCM:ECDH+AES256:ECDH+AES128:DH+3DES:!ADH:!AECDH:!MD5;
+   ## Access and error logs.
+   access_log /var/log/nginx/cacti_access.log;
+   error_log  /var/log/nginx/cacti_error.log info;
 
-        # Disable SSLv3
-        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+   ssl_certificate      /etc/ssl/certs/YourOwnCertFile.crt;
+   ssl_certificate_key  /etc/ssl/private/YourOwnCertKey.key;
 
-        # Diffie-Hellman parameter for DHE cipher suites
-        # $ sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 4096
-        ssl_dhparam /etc/ssl/certs/dhparam.pem;
+   # Improve HTTPS performance with session resumption
+   ssl_session_cache shared:SSL:10m;
+   ssl_session_timeout 5m;
 
-        # Enable HSTS (https://developer.mozilla.org/en-US/docs/Security/HTTP_Strict_Transport_Security)
-        add_header Strict-Transport-Security "max-age=63072000; includeSubdomains";
+   # Enable server-side protection against BEAST attacks
+   #ssl_prefer_server_ciphers on;
+   ssl_ciphers ECDH+AESGCM:ECDH+AES256:ECDH+AES128:DH+3DES:!ADH:!AECDH:!MD5;
+
+   # Disable SSLv3
+   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+
+   # Diffie-Hellman parameter for DHE cipher suites
+   # $ sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 4096
+   ssl_dhparam /etc/ssl/certs/dhparam.pem;
+
+   # Enable HSTS (https://developer.mozilla.org/en-US/docs/Security/HTTP_Strict_Transport_Security)
+   add_header Strict-Transport-Security "max-age=63072000; includeSubdomains";
 }
 ```
 
@@ -257,6 +271,13 @@ tailored to your environment.
     MariaDB [(none)]> FLUSH PRIVILEGES;
     Query OK, 0 rows affected (0.00 sec)
     ```
+    
+5. Save the Database Charset and Collation
+
+   ```sql
+   MariaDB [(none)]> ALTER DATABASE cacti CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+   MariaDB [(none)]> FLUSH PRIVILEGES;
+   ```
 
 ### Common PHP packages
 
@@ -305,7 +326,7 @@ Note: **php-fpm** is only required if your Web Server is Nginx
     Find `listen = 127.0.0.1:9000` and add the following line below
 
     ```console
-    listen = /var/run/php7.0-fpm.sock
+    listen = /var/run/php-fpm/php-fpm.sock
     ```
 
     Find `listen.owner` and `listen.group` and set them to nginx
@@ -328,9 +349,9 @@ Note: **php-fpm** is only required if your Web Server is Nginx
     systemctl restart php-fpm
     ```
 
-### RRDTool
+### RRDtool
 
-RRDTool is required to store the data retrieved from devices in `.rra` files to
+RRDtool is required to store the data retrieved from devices in `.rra` files to
 produce the graphs which are shown within Cacti
 
 ```console
@@ -343,6 +364,9 @@ SNMP is used to query most devices for information.
 
 ```console
 yum install -y net-snmp net-snmp-utils
+echo "rocommunity public" > /etc/snmp/snmpd.conf
+systemctl enable snmpd
+systemctl start snmpd
 ```
 
 ### Cacti
@@ -382,14 +406,43 @@ configure the basics for Cacti.
     $database_ssl_ca   = '';
     ```
 
-4. Create your cron task file
+4. Set your cookie domain to match your web site domain name
 
-Create and edit `/etc/cron.d/cacti` file.
-Make sure to setup the correct path to poller.php
+    ```console
+    $cacti_cookie_domain = 'cacti.yourdomain.com';
+    ```
 
-```console
-*/5 * * * * nginx php /usr/share/nginx/html/cacti/poller.php &>/dev/null
-```
+5. Create your cron task file or systemd units file
+
+   Starting with Cacti 1.2.16, you have the option to use either the
+   legacy Crontab entry, or an optional cactid units file and server
+   to run your Cacti pollers.
+
+   For Crontab use, follow the instructions below:
+
+   Create and edit `/etc/cron.d/cacti` file.
+   Make sure to setup the correct path to poller.php
+
+   ```console
+   */5 * * * * nginx php /var/www/html/cacti/poller.php &>/dev/null
+   ```
+
+   For systemd unit's file install, you will need to modify the
+   included units file to following your install location
+   and desired user and group's to run the Cacti poller as.
+   To complete the task, follow the procedure below:
+
+   ```console
+   vim /var/www/html/cacti/service/cactid.service (edit the path)
+   touch /etc/sysconfig/cactid
+   cp -p /var/www/html/cacti/service/cactid.service /etc/systemd/system
+   systemctl enable cactid
+   systemctl start cactid
+   systemctl status cactid
+   ```
+
+   The systemd units file makes managing a highly available Cacti
+   setup a bit more convenient.
 
 #### Spine
 
@@ -480,4 +533,4 @@ setenforce 1
 up all SELinux context and permissions.
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

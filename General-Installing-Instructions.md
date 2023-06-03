@@ -21,11 +21,12 @@ packages will vary by operating system.
 
 - rrdtool
 
-- help2man` (for spine)
+- help2man (for spine)
 
 - dos2unix (for spine)
 
-- development packages (gcc, automake, autoconf, libtool, help2man)
+- development packages (gcc, automake, autoconf, libtool,
+  either mysql-devel or mariadb-devel, net-snmp-devel, help2man)
 
   (for spine)
 
@@ -250,19 +251,22 @@ back into rotation.
 
    ```sql
    shell> mysql --user=root mysql
-   MySQL> GRANT ALL ON cacti.* TO cactiuser@localhost IDENTIFIED BY 'somepassword';
-   MySQL> GRANT SELECT ON mysql.time_zone_name TO cactiuser@localhost IDENTIFIED BY 'somepassword';
-   MySQL> flush privileges;
+   mysql> CREATE DATABASE cacti
+   mysql> CREATE USER 'cacti'@'localhost';
+   mysql> ALTER USER 'cacti'@'localhost' IDENTIFIED BY 'somepassword';
+   mysql> GRANT ALL PRIVILEGES ON cacti.* to 'cacti'@'localhost';
+   mysql> GRANT SELECT ON mysql.time_zone_name TO 'cacti'@'localhost';
+   mysql> FLUSH PRIVILEGES;
    ```
 
-Note that if your `root` (or equivalent) user does not have `SUPER` permissions,
-it may still be possible to `GRANT SELECT` privileges to the Cacti user via an
-`INSERT INTO mysql.tables_priv`.
+    Note that if your `root` (or equivalent) user does not have `SUPER` permissions,
+    it may still be possible to `GRANT SELECT` privileges to the Cacti user via an
+    `INSERT INTO mysql.tables_priv`.
 
-```sql
-INSERT INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Table_priv)
-VALUES ('localhost', 'mysql', 'cactiuser', 'time_zone_name', 'root@localhost', 'Select');
-```
+    ```sql
+    INSERT INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Table_priv)
+    VALUES ('localhost', 'mysql', 'cactiuser', 'time_zone_name', 'root@localhost', 'Select');
+    ```
 
 5. Edit `include/config.php` and specify the database type, name, host, user
    and password for your Cacti configuration.
@@ -286,15 +290,37 @@ VALUES ('localhost', 'mysql', 'cactiuser', 'time_zone_name', 'root@localhost', '
    (Enter a valid username for *cactiuser*, this user will also be used in the
    next step for data gathering.)
 
-7. Create a new file `/etc/cron.d/cacti` and add to it:
+7. Create your cron task file or systemd units file
 
-   ```ini
-   */5 * * * * cactiuser php <path_cacti>/poller.php > /dev/null 2>&1
+   Starting with Cacti 1.2.16, you have the option to use either the
+   legacy Crontab entry, or an optional cactid units file and server
+   to run your Cacti pollers.
+
+   For Crontab use, follow the instructions below:
+
+   Create and edit `/etc/cron.d/cacti` file.
+   Make sure to setup the correct path to poller.php
+
+   ```console
+   */5 * * * * apache php <path_cacti>/poller.php &>/dev/null
    ```
 
-   Replace *cactiuser* with the valid user specified in the previous step.
+   For systemd unit's file install, you will need to modify the
+   included units file to following your install location
+   and desired user and group's to run the Cacti poller as.
+   To complete the task, follow the procedure below:
 
-   Replace `<path_cacti>` with your full Cacti path.
+   ```console
+   vim <path_cacti>/service/cactid.service (edit the path)
+   touch /etc/sysconfig/cactid
+   cp -p <path_cacti>/service/cactid.service /etc/systemd/system
+   systemctl enable cactid
+   systemctl start cactid
+   systemctl status cactid
+   ```
+
+   The systemd units file makes managing a highly available Cacti
+   setup a bit more convenient.
 
 8. During install, you will need to provide write access to the following files
    and directories:
@@ -345,5 +371,36 @@ DB_Password cacti
 DB_Port     3306
 ```
 
+### Considerations when using Proxys in front of Cacti (Cacti 1.2.23+)
+
+For optimal security, only specify the HTTP headers that are set by your proxy software to prevent unauthorized access.  These can be set by editing the following section of config.php
+
+```
+ * Allow the use of Proxy IPs when searching for client
+ * IP to be used
+ *
+ * This can be set to one of the following:
+ *   - false: to use only REMOTE_ADDR
+ *   - true: to use all allowed headers (not advised)
+ *   - array of one or more the following:
+ *		'X-Forwarded-For',
+ *		'X-Client-IP',
+ *		'X-Real-IP',
+ *		'X-ProxyUser-Ip',
+ *		'CF-Connecting-IP',
+ *		'True-Client-IP',
+ *		'HTTP_X_FORWARDED',
+ *		'HTTP_X_FORWARDED_FOR',
+ *		'HTTP_X_CLUSTER_CLIENT_IP',
+ *		'HTTP_FORWARDED_FOR',
+ *		'HTTP_FORWARDED',
+ *		'HTTP_CLIENT_IP',
+ *
+ * NOTE: The following will always be checked:
+ *		'REMOTE_ADDR',
+ */
+$proxy_headers = null;
+```
+
 ---
-Copyright (c) 2004-2019 The Cacti Group
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

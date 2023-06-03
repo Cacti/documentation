@@ -22,6 +22,10 @@ syntax standard with the following exceptions:
   - `} else {`,
   - and `} elseif {`
 
+- Use lower case constants for things like `false`, `true`, and `null`.
+
+- Use `print` over `echo`.
+
 - Function declarations should include ending braces on the same line as
   the function.  For example:
   - `function name($params ...) {`
@@ -58,7 +62,7 @@ Use the following style guidelines for control structures.
 ```php
 if ($var == 0) {
     $i++;
-} else if ($var == 1) {
+} elseif ($var == 1) {
     $i--;
 } else {
     $i = 0;
@@ -71,12 +75,15 @@ if ($var == 0) {
 switch ($var) {
     case 0:
         $var = 1;
+
         break;
     case 1:
         $var = 2;
+
         break;
     default:
         $var = 3;
+
         break;
 }
 ```
@@ -101,7 +108,7 @@ for ($i = 0; $i < 10; $i++) {
 
 ```php
 foreach ($array as $key => $value) {
-    echo "$key = $value\n";
+    print "$key = $value\n";
 }
 ```
 
@@ -285,7 +292,11 @@ that brings the variable into a global scope and returns a new copy to any
 function that needs to use it.
 
 ```php
-$graph_unit_exponent_values = array('-18' => 'a - atto', '-15' => 'f - femto', ...);
+$graph_unit_exponent_values = array(
+  '-18' => 'a - atto',
+  '-15' => 'f - femto',
+  ...
+);
 
 function graph_unit_exponent_values_list() {
     global $graph_unit_exponent_values;
@@ -304,19 +315,60 @@ function graph_unit_exponent_values_print() {
 
 Copying around large arrays in PHP can be an expensive operation. Be sure to
 return or pass arrays by reference when data corruption is not a huge concern.
-Keep in mind that call time pass by reference is deprecated in PHP.
-
-```php
-function &big_array_list() {
-    // code
-}
-```
 
 ```php
 function big_array_process(&$big_array) {
     // code
 }
 ```
+
+## Database Calls
+
+Ensure that you indent your Database calls by a single tab per indentation level
+and that you break up database calls by the various provisos.  A few well defined
+database queries can be seen in the examples below
+
+```php
+$devices = db_fetch_assoc_prepared('SELECT *
+  FROM host
+  WHERE id = ?',
+  array($device_id));
+
+$vdefs = db_fetch_assoc("SELECT rs.*,
+  SUM(CASE WHEN local_graph_id = 0 THEN 1 ELSE 0 END) AS templates,
+  SUM(CASE WHEN local_graph_id > 0 THEN 1 ELSE 0 END) AS graphs
+  FROM (
+    SELECT vd.*, gti.local_graph_id
+    FROM vdef AS vd
+    LEFT JOIN graph_templates_item AS gti
+    ON gti.vdef_id = vd.id
+    GROUP BY vd.id, gti.graph_template_id, gti.local_graph_id
+  ) AS rs
+  $sql_where
+  GROUP BY rs.id
+  $sql_having
+  $sql_order
+  $sql_limit");
+```
+
+1) Ensure that you use prepared statements as in the first example whenever
+you can.
+
+2) If you can not use prepared statements, ensure that you properly
+escape any database SQL WHERE logic properly.
+
+3) Always use the term `AS` to define an alias.
+
+4) Ensure that your JOINs are either INNER, LEFT, or RIGHT.
+
+5) Ensure that the ON clause uses table aliases, and that each
+  `AND` or `OR` expression is logically organized for easy reading
+  and interpretation.
+
+6) In your SQL WHERE and SELECT, where fuctions are involved
+
+    1. Ensure that there are spaces between parameter
+    2. Ensure operators and variables are separated by spaces
 
 ## Comments
 
@@ -336,7 +388,8 @@ if ($i == 0) {
 
 ```php
 /* this is an extra long comment that deserves to be
- * split up into multiple lines */
+ * split up into multiple lines
+ */
 if ($i == 0) {
     // code
 }
@@ -358,7 +411,7 @@ the file.
 ```php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2018 The Cacti Group                                 |
+ | Copyright (C) 2004-2023 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -370,7 +423,7 @@ the file.
  | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           |
  | GNU General Public License for more details.                            |
  +-------------------------------------------------------------------------+
- | Cacti: The Complete RRDTool-based Graphing Solution                     |
+ | Cacti: The Complete RRDtool-based Graphing Solution                     |
  +-------------------------------------------------------------------------+
  | This code is designed, written, and maintained by the Cacti Group. See  |
  | about.php and/or the AUTHORS file for specific developer information.   |
@@ -383,7 +436,8 @@ the file.
 ### Function Comments
 
 All functions must be preceded by a comment describing the purpose, argument
-list, and return type of the function. It should be formatted as follow:
+list, and return type of the function. It should be formatted per
+PHP DocBlock specifications as follow:
 
 ```php
 /**
@@ -399,9 +453,12 @@ list, and return type of the function. It should be formatted as follow:
  * @param string $db_name the name of the database to connect to
  * @param string $db_type the type of database server to connect to, only 'mysql' is currently supported
  * @param int $retries the number a time the server should attempt to connect before failing
+ *
  * @return bool true if successful, false otherwise
  */
 ```
 
+Place a space between the `@param` and `@return`.
+
 ---
-Copyright (c) 2004-2019 The Cacti Group
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

@@ -1,4 +1,5 @@
 before_install:
+  - gem install chef-utils -v 16.6.14
   - gem install mdl
 
 script:

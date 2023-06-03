@@ -3,44 +3,56 @@
 ## Internationalization of Cacti and its Plugins
 
 If you wish to help with the development of translations of Cacti from English
-to other languages, here is your one source for starting and completing this
-activity.  There are several steps, but if you follow them closely, you have a
-chance to change the world and add to the Cacti community.
+to other languages, the Cacti Group has simplified the process for you.
 
-## Steps
+You simply have to goto the following Web Site and create an account.
+[Cacti Translation Site](https://translate.cacti.net).  From there, you
+can simply select what you want translated, and the push the "translate"
+button on your language of choice, and the beauty of the translation is
+that if the string that you tranlate is in another plugin, it can also
+be automatically translated at the same time.
 
-1. In Cacti's base directory, there is a directory called `locales`.
+If you make a change to the translations, they are automatically committed
+back to GitHub programatically.  To install the new language strings,
+you simply have to update the `locales` directory from the latest
+GitHub branch that you were translating.
 
-   ```console
-   # ls locales/
-   LC_MESSAGES  po
-   ```
-
-   Inside of that directory, you will find a shell script called
-   `build_gettext.sh`. If you run this script, a special file called a pot
-   file will be created. It will be located in the 'po' directory.
-
-   ```console
-   # ls locales/po/
-   bulgarian_bulgaria.po        dutch_netherlands.po  japanese_japan.po swedish_sweden.po
-   cacti.pot                    french_france.po      russian_russia.po
-   chinese_china_simplified.po  german_germany.po     spanish_spain.po
-   ```
-
-2. If when you run the `update-pot.sh` script you receive warnings about `\r`
-   being included in some files, simply run dos2unix on those files, and rerun
-   the script.
+The `locales` directory has two separate subdirectories.  They are:
 
    ```console
-   dos2unix somefile.xyz
-   dos2unix: converting file somefile.xyz to Unix format ...
+   # ls -1 locales/
+   LC_MESSAGES
+   po
    ```
 
-3. Download a PO Editor.  If using Windows, a good solution would be Poedit.
-   You can download it from [Poedit Pro](https://poedit.net/pro).  If you
-   donate approximately $20 USD to the author, he enables other features to
-   allow auto-translation of several phrases using multiple online translation
-   databases to save you time.
+The LC_MESSAGES includes the compiled language files, and the po
+directory includes not only the base Cacti translation file
+`cacti.pot`, but all currently supported languages as well.
+
+## Pull Requests
+
+If you are making changes to the core Cacti code that involve new
+strings to be translated, you have to ensure that your Pull Request
+includes an updated `cacti.pot` file.  To update the `cacti.pot`
+file, you simply open a shell and change to the `locales`
+directory and run the script `build_gettext.sh`.  It will scan
+the Cacti source code for all strings to be internationalized
+and update the `cacti.pot` file.
+
+If you include the updated file in your pull request, it will
+keep the development engine running smooth.
+
+## Translating using other tools
+
+You may use other tools to Translate Cacti as well.  One popular
+tool is PO Editor, you can download it here:
+[Poedit Pro](https://poedit.net/pro).  The tool does work well and also run
+machine translations for you at an added cost.
+
+If you choose to use that route, you will need to still have a Cacti Translation
+account.  From there, you can upload your modified `language.po` files into
+the interface directly.  See the Weblate documentation on how to upload your
+modified `language.po` files.
 
 4. Once Poedit is installed, open it, and select File -> New from POT/PO file,
    and select the cacti.pot file.  When you click 'Open', it will ask you for
@@ -62,42 +74,16 @@ chance to change the world and add to the Cacti community.
 
 ## Editing PO Files
 
-The PO Editor will create both a PO and MO file every time you save the file.d
+The PO Editor will create both a PO and MO file every time you save the file.
 The final name of the file will have to be changed to Cacti's standard naming.
 For example, Poedit saves the file from the example above as `fr_FR.po`, but
-Cacti will need these files name in their long format of `french_france.po` and
-`french_france.mo`.
-
-```console
-# ls locales/LC_MESSAGES/
-bulgarian_bulgaria.mo        french_france.mo   russian_russia.mo
-chinese_china_simplified.mo  german_germany.mo  spanish_spain.mo
-dutch_netherlands.mo         japanese_japan.mo  swedish_sweden.mo
-```
-
-```console
-# ls locales/po/
-bulgarian_bulgaria.po        dutch_netherlands.po  japanese_japan.po  swedish_sweden.po
-cacti.pot                    french_france.po      russian_russia.po
-chinese_china_simplified.po  german_germany.po     spanish_spain.po
-```
-
-Once you have completed your translation, you will need to open a pull request
-in GitHub including your final PO and MO files.  Please ensure that in the PO
-file that you assign copyright to the Cacti Group. You will find that
-information in the header of the PO file.
+Cacti will need these files name in hyphenated format, so: `fr_FR.po`, becomes
+`fr-FR.po`.  Make that note especially if you are starting a new language.
 
 ## Considerations
 
-We can only accept translations from people who are willing to turn over their
-rights to The Cacti Group, though you will be recognized as its original
-author.
-
-You can repeat this process for every Cacti Group supported plugin. Right now,
-all of our plugins include a `locales` directory with the `update-pot.sh` or
-`build_gettext.sh` file included.
-
-It's really just that easy!
+As Cacti is GPL2.0+, you acknowledge, by sigining up to the Cacti Weblate
+site, that your contributions will be GPL2.0+ as well.
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

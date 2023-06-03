@@ -1,16 +1,24 @@
-# Installing on CentOS 7
+# Installing on CentOS/RHEL/ROCKY
 
-## LAMP (Linux, Apache, MySQL, PHP) Required packages
+## LAMP (Linux, Apache, MySQL/MariaDB, PHP) Required packages
 
 ### Web Server (Apache)
 
-1. Enable Epel repo to enable PHP 7.2 package download
+1. Enable Epel repo to enable PHP 7.2 package download ( 7.x and Below)
 
    ```console
-   yum install <http://rpms.remirepo.net/enterprise/remi-release-7.rpm> -y
+   yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
    yum install yum-utils -y
    yum-config-manager --enable remi-php72
-```
+   ```
+
+   For Centos/RHEL/ROCKY 8+
+
+   ```console
+   dnf module reset php
+   dnf module enable php:8.0
+   ```
+
 
 2. Install Apache
 
@@ -35,7 +43,7 @@ files holding your certificate (`.crt`) and private key (`.key`).
 
 ```console
 #
-# Cacti: An RRD based graphing tool
+# Cacti: An RRDtool based graphing web application
 #
 
 # For security reasons, the Cacti web interface is accessible only to
@@ -48,13 +56,13 @@ files holding your certificate (`.crt`) and private key (`.key`).
 <VirtualHost *:443>
     LogLevel warn
 
-    ServerName cacti.domain.com
-    ServerAdmin  admin@domain.com
+    ServerName cacti.yourdomain.com
+    ServerAdmin  admin@yourdomain.com
 
     DocumentRoot "/var/www/html/cacti"
     Alias /cacti    /var/www/html/cacti
     SSLEngine On
-    SSLCertificateFile /etc/ssl/private/YourOwnCertFile.crt
+    SSLCertificateFile /etc/ssl/certs/YourOwnCertFile.crt
     SSLCertificateKeyFile /etc/ssl/private/YourOwnCertKey.key
 
     <Directory /var/www/html/cacti/>
@@ -75,7 +83,7 @@ files holding your certificate (`.crt`) and private key (`.key`).
         # Uncomment these if you use mod_security.
         # allow POST of application/x-www-form-urlencoded during install
         #SecRuleRemoveById 960010
-        # permit the specification of the RRDTool paths during install
+        # permit the specification of the RRDtool paths during install
         #SecRuleRemoveById 900011
     </Directory>
 
@@ -165,8 +173,8 @@ during the installation.
    ```
 
    The following `[mysqld]` section is a base configuration.  The installer
-will provide recommendations based on the actual system which will be more
-tailored to your environment.
+   will provide recommendations based on the actual system which will be more
+   tailored to your environment.
 
    ```shell
    [mysqld]
@@ -217,20 +225,29 @@ tailored to your environment.
    ```
 
 3. Grant Cacti username access to Cacti database. Replace `your_cacti_username`
- and `your_cacti_password` with your own details.
+   and `your_cacti_password` with your own details.
 
    ```sql
-   MariaDB [(none)]> GRANT ALL PRIVILEGES ON cacti.* TO 'your_cacti_username'@'localhost' IDENTIFIED BY 'your_cacti_password';
+   MariaDB [(none)]> CREATE USER 'your_cacti_username'@'localhost' IDENTIFIED BY 'your_cacti_password';
+   Query OK, 0 rows affected (0.00 sec)
+   MariaDB [(none)]> GRANT ALL PRIVILEGES ON cacti.* TO 'your_cacti_username'@'localhost';
    Query OK, 0 rows affected (0.00 sec)
    ```
 
 4. Grant cacti username to MySQL timezone table
 
    ```sql
-   MariaDB [(none)]> GRANT SELECT ON mysql.time_zone_name TO 'cacti'@'localhost';
+   MariaDB [(none)]> GRANT SELECT ON mysql.time_zone_name TO 'your_cacti_username'@'localhost';
    Query OK, 0 rows affected (0.00 sec)
-  MariaDB [(none)]> FLUSH PRIVILEGES;
+   MariaDB [(none)]> FLUSH PRIVILEGES;
    Query OK, 0 rows affected (0.00 sec)
+   ```
+
+5. Save the Database Charset and Collation
+
+   ```sql
+   MariaDB [(none)]> ALTER DATABASE cacti CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+   MariaDB [(none)]> FLUSH PRIVILEGES;
    ```
 
 ### Common packages
@@ -257,13 +274,13 @@ PHP and various packages are all required by Cacti for successful operation
    date.timezone = Pacific/Auckland
    ```
 
-#### RRDTool
+#### RRDtool
 
-RRDTool is required to store the data retrieved from devices in `.rra` files to
+RRDtool is required to store the data retrieved from devices in `.rra` files to
 produce the graphs which are shown within Cacti
 
 ```console
-yum install -y RRDTool
+yum install -y rrdtool
 ```
 
 #### SNMP
@@ -280,7 +297,7 @@ The following steps will show you how to manually download, install and
 configure the basics for Cacti.
 
 1. Download Cacti source code from [Cacti Web
- Site](https://www.cacti.net/download_cacti.php)
+   Site](https://www.cacti.net/download_cacti.php)
 
    ```console
    cd /tmp
@@ -311,26 +328,56 @@ configure the basics for Cacti.
     $database_ssl_ca   = '';
     ```
 
-4. Create your cron task file
+4. Create your cron task file or systemd units file
 
-Create and edit `/etc/cron.d/cacti` file.
-Make sure to setup the correct path to poller.php
+   Starting with Cacti 1.2.16, you have the option to use either the
+   legacy Crontab entry, or an optional cactid units file and server
+   to run your Cacti pollers.
 
-```console
-*/5 * * * * nginx php /usr/share/nginx/html/cacti/poller.php &>/dev/null
-```
+   For Crontab use, follow the instructions below:
+
+   Create and edit `/etc/cron.d/cacti` file.
+   Make sure to setup the correct path to poller.php
+
+   ```console
+   */5 * * * * apache php /var/www/html/cacti/poller.php &>/dev/null
+   ```
+
+   For systemd unit's file install, you will need to modify the
+   included units file to following your install location
+   and desired user and group's to run the Cacti poller as.
+   To complete the task, follow the procedure below:
+
+   ```console
+   vim /var/www/html/cacti/service/cactid.service (edit the path)
+   touch /etc/sysconfig/cactid
+   cp -p /var/www/html/cacti/service/cactid.service /etc/systemd/system
+   systemctl enable cactid
+   systemctl start cactid
+   systemctl status cactid
+   ```
+
+   The systemd units file makes managing a highly available Cacti
+   setup a bit more convenient.
 
 #### Spine
 
 1. Install the necessary packages to compile and install spine
 
+   For RHEL/CENTOS/ROCKY 8+, you must enable the powertools repo first before downloading the below packages
+
+   ```console
+   yum config-manager --set-enabled powertools
+   ```
+
+   For RHEL/CENTOS/ROCKY 7.x and below
    ```console
    yum install -y autoconf automake libtool dos2unix help2man \
    openssl-devel mariadb-devel net-snmp-devel
    ```
 
 2. Download spine source code from [Cacti Web
- Site](https://www.cacti.net/spine_download.php)
+   Site](https://www.cacti.net/spine_download.php)
 
    Go to /tmp to download the source code and extract it
 
@@ -349,10 +396,10 @@ Make sure to setup the correct path to poller.php
    config/install-sh -c -d '/usr/local/spine/bin'
    /bin/sh ./libtool   --mode=install /usr/bin/install -c spine '/usr/local/spine/bin'
    libtool: install: /usr/bin/install -c spine /usr/local/spine/bin/spine
- config/install-sh -c -d '/usr/local/spine/etc'
+   config/install-sh -c -d '/usr/local/spine/etc'
    /usr/bin/install -c -m 644 spine.conf.dist '/usr/local/spine/etc'
    config/install-sh -c -d '/usr/local/spine/share/man/man1'
- /usr/bin/install -c -m 644 spine.1 '/usr/local/spine/share/man/man1'
+   /usr/bin/install -c -m 644 spine.1 '/usr/local/spine/share/man/man1'
    ```
 
 4. Edit spine.conf
@@ -405,15 +452,39 @@ documentation on how to make your SELinux policy right.
    setenforce 1
    ```
 
+### Considerations when using Proxies in front of Cacti (Cacti 1.2.23+)
+
+For optimal security, only specify the HTTP headers that are set by your proxy software to prevent unauthorized access.  These can be set by editing the following section of config.php
+
+```
+ * Allow the use of Proxy IPs when searching for client
+ * IP to be used
+ *
+ * This can be set to one of the following:
+ *   - false: to use only REMOTE_ADDR
+ *   - true: to use all allowed headers (not advised)
+ *   - array of one or more the following:
+ *		'X-Forwarded-For',
+ *		'X-Client-IP',
+ *		'X-Real-IP',
+ *		'X-ProxyUser-Ip',
+ *		'CF-Connecting-IP',
+ *		'True-Client-IP',
+ *		'HTTP_X_FORWARDED',
+ *		'HTTP_X_FORWARDED_FOR',
+ *		'HTTP_X_CLUSTER_CLIENT_IP',
+ *		'HTTP_FORWARDED_FOR',
+ *		'HTTP_FORWARDED',
+ *		'HTTP_CLIENT_IP',
+ *
+ * NOTE: The following will always be checked:
+ *		'REMOTE_ADDR',
+ */
+$proxy_headers = null;
+```
+
 **Note:** If you installed Cacti out of `/var/www/html` make sure you fix up
 all SELinux context and permissions.
 
-### Use setup wizard script for an interactive installation
-
-<https://github.com/bmfmancini/cacti-install-wizard>
-
-This script written by BMFMANCINI (Sean Mancini) will interactivley walk you through the installation proccess without having to worry about missing something along the way! The script will also help with plugin installation
-(This script is not part of the official cacti project)
-
 ---
-Copyright (c) 2004-2019 The Cacti Group
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

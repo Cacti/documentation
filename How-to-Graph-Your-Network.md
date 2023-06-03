@@ -6,15 +6,21 @@ acquisition, some which have a slight learning curve. Do not let that stop you
 however, because graphing your network is incredibly simple.
 
 The next two sections will outline the two basic steps which are typically
-required to create graphs for most devices.
+required to create **Graphs** for most **Devices** or **Device Types**.
+
+> **NOTE**: The process described below is the Classic way for you to
+> create and manage **Devices** and **Graphs**.  However, Cacti now
+> allows your to Automate many of these tasks in the **Automation**
+> section of the Console.  That topic is covered in the Automation Chapter.
 
 ## Creating a Device
 
-The first step to creating graphs for your network is adding a device for each
-network device that you want to create graphs for. A device specifies important
-details such as the network hostname, SNMP parameters, and host type.
+The first step to creating **Graphs** for your network is adding a **Device**
+for each network device that you want to create **Graphs** for. A **Device**
+contains important details such as the network hostname, SNMP parameters,
+and **Device Type** (aka **Device Template**).
 
-To manage devices within Cacti, click on the Devices menu item. Clicking Add
+To manage **Devices** within Cacti, click on the Devices menu item. Clicking Add
 will bring up a new device form. The first two fields, Description and Hostname
 are the only two fields that require your input beyond the defaults. If your
 host type is defined under the host template dropdown, be sure to select it
@@ -24,7 +30,7 @@ the host template you choose will not lock you into any particular
 configuration, it will just provide more intelligent defaults for that type of
 host.
 
-![Adding a New Device](images/new_device.png)
+![Adding a New Device](images/new-device.png)
 
 ### Device Field Definitions
 
@@ -48,14 +54,19 @@ host.
 
 - **Downed Device Detection**
   - ___NONE___ - Deactivate downed host detection
-  - ___SNMP___ - verify SNMP check on OID .1 and .1.3
-  - ___ICMP___ - perform a ping test, see below
-  - ___PING and SNMP___ - perform both tests
+  - ___PING and SNMP Uptime___ - Ping and then also check SNMP Uptime
+  - ___PING or SNMP Uptime___ - Ping and if successful, move on, if not check SNMP Uptime
+  - ___SNMP Uptime___ - verify the SNMP Uptime only
+  - ___SNMP Desc___ - verify the SNMP System Description
+  - ___SNMP GetNext___ - verify the very next SNMP OID after .1.3
+  - ___PING___ - perform a ping test, see below
+
 
 - **Ping Method** - Available only for ***PING and SNMP*** or ***PING***
   - ___ICMP___ - perform ICMP tests. Requires permissions
   - ___UDP___ - perform a UDP test
   - ___TCP___ - perform a TCP test
+
 
 - **Ping Port** - Available only for UDP/TCP PING test types. Please define the
   port to be tested here. Make sure, that no firewall
@@ -70,10 +81,11 @@ host.
 ### SNMP Options
 
 - **SNMP Version**
-  - ___Version 1___ - Use SNMP Version 1. Be aware, that 64bit counters are not
-                      supported in this SNMP version.
+  - ___Version 1___ - Use SNMP Version 1. Be aware, that 64bit counters are not 
+  supported in this SNMP version.
   - ___Version 2___ - Referred to as SNMP V2c in most SNMP documentations
   - ___Version 3___ - SNMP V3, supporting authentication and encryption
+
 
 - **SNMP Community** - SNMP read community for this device
 
@@ -86,7 +98,7 @@ host.
   the number of OID's that can be obtained in a single SNMP Get request.
   ***WARNING***: This feature only works when using Spine.
   ***WARNING*** Some devices do not support values greater than `1` and/or may
-  crash if this value is to high.
+  reports as unknown data if this value is too high.
 
 ### Security Options for SNMP V3
 
@@ -97,14 +109,18 @@ host.
   or equivalent
 
 - ***SNMP Auth Protocol*** - Authentication type of an SNMP V3 `createUser`
-  statement or equivalent. Select either MD5 or SHA. Defaults to MD5.
+  statement or equivalent. Select either MD5, SHA, SHA-224, SHA-256, SHA-392,
+  or SHA-512. Defaults to MD5.
 
 - ***SNMP Privacy Passphrase*** - The `privacy passphrase` of an SNMP V3
   `createUser` statement or equivalent.
 
 - ***SNMP Privacy Protocol*** - The `privacy protocol` of an SNMP V3
-  `createUser` statement or equivalent. Select either DES or AES. Defaults to
-  DES.
+  `createUser` statement or equivalent. Select DES (if available), AES-128,
+  AES-192, or AES-256. Defaults to DES.
+
+  **NOTE** Spine may not support DES today as some Net-SNMP distributions 
+  have disabled it.
 
 - ***SNMP Context*** - When using the View-Based Access Control Model (VACM),
   it is possible to specify an SNMP Context when mapping a community name to
@@ -286,7 +302,7 @@ devices. To do this, select the New Graphs menu option under the Create
 heading. If you're still at the device edit screen, select Create Graphs for
 this Host to see a screen similar to the image pictured below.
 
-![Creating New Graphs](images/new_graphs.png)
+![Creating New Graphs](images/new-graphs.png)
 
 The dropdown menu that contains each device should be used to select the host
 that you want to create new graphs for. The basic concept to this page is
@@ -316,4 +332,4 @@ use the Graph Management item on the menu. Likewise, the Data Source menu item
 allows you to manage your data sources in Cacti.
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

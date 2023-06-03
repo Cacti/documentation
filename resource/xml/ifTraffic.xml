@@ -1,0 +1,73 @@
+<interface>
+	<name>Get Interface Traffic Information</name>
+        <script_path>|path_php_binary| -q |path_cacti|/scripts/query_interface_traffic.php</script_path>
+        <arg_prepend>|host_hostname| |host_snmp_community| |host_snmp_version| |host_snmp_port| |host_snmp_timeout| |host_max_oids| "|host_snmp_username|" "|host_snmp_password|" "|host_snmp_auth_protocol|" "|host_snmp_priv_passphrase|" "|host_snmp_priv_protocol|" "|host_snmp_context|"</arg_prepend>
+        <arg_index>index</arg_index>
+        <arg_query>query</arg_query>
+        <arg_get>get</arg_get>
+        <output_delimeter>!</output_delimeter>
+        <index_order>ifIndex</index_order>
+        <index_order_type>numeric</index_order_type>
+	<index_title_format>|chosen_order_field|</index_title_format>
+
+        <fields>
+                <ifIndex>
+                        <name>Index</name>
+                        <direction>input</direction>
+                        <query_name>index</query_name>
+                </ifIndex>
+                <ifstatus>
+                        <name>Status</name>
+                        <direction>input</direction>
+                        <query_name>ifstatus</query_name>
+                </ifstatus>
+
+                <ifdescription>
+                        <name>Description</name>
+                        <direction>input</direction>
+                        <query_name>ifdescription</query_name>
+                </ifdescription>
+
+                <ifname>
+                        <name>Name</name>
+                        <direction>input</direction>
+                        <query_name>ifname</query_name>
+                </ifname>
+
+                <ifalias>
+                        <name>Alias</name>
+                        <direction>input</direction>
+                        <query_name>ifalias</query_name>
+                </ifalias>
+
+                <iftype>
+                        <name>Type</name>
+                        <direction>input</direction>
+                        <query_name>iftype</query_name>
+                </iftype>
+
+                <ifspeed>
+                        <name>Speed</name>
+                        <direction>input</direction>
+                        <query_name>ifspeed</query_name>
+                </ifspeed>
+
+                <ifHWaddress>
+                        <name>HWaddress</name>
+                        <direction>input</direction>
+                        <query_name>ifHWaddress</query_name>
+                </ifHWaddress>
+
+                <ifInOctets>
+                        <name>InOctets</name>
+                        <direction>output</direction>
+                        <query_name>ifInOctets</query_name>
+                </ifInOctets>
+
+                <ifOutOctets>
+                        <name>OutOctets</name>
+                        <direction>output</direction>
+                        <query_name>ifOutOctets</query_name>
+                </ifOutOctets>
+        </fields>
+</interface>

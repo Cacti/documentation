@@ -1,4 +1,4 @@
-# How to determine a Cacti template version
+# How To Determine a Cacti Template Version
 
 Users are often bewildered when they are unable to import templates found on
 the forum and presented with the error, **Error: XML: Hash version does not
@@ -46,4 +46,4 @@ The next 32 digits are a random number.
 For the example above, this template was exported with Cacti 0.8.7d.
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

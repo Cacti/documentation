@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Cacti Forums
+    url: https://forums.cacti.net/
+    about: Please ask and answer questions here.
+  - name: Confidential issues / Security notices
+    url: developers@cacti.net
+    about: Please report security vulnerabilities here.

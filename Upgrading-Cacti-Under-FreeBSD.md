@@ -52,4 +52,4 @@
 > do not, upgrade them one at a time.
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

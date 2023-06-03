@@ -1,36 +1,30 @@
 # Cacti (tm) Documentation
 
-![Cacti](images/logo.png)
+![Cacti](images/logo.svg)
 
-Cacti is designed to be a complete graphing solution based on the RRDTool's
+Cacti is designed to be a complete graphing solution based on the RRDtool's
 framework. Its goal is to make a network administrator's job easier by taking
 care of all the necessary details necessary to create meaningful graphs.
 
 Please see the official Cacti website for information, support, and updates.
 
-## Developers
+## Core Developers - Both active and emeritus
 
-- Ian Berry (raX)
+- Larry Adams (TheWitness, Active)
+- Mark Brugnoli-Vinten (netniV, Active)
+- Jimmy Conner (cigamit, Active)
+- Andreas Braun (browniebraun, Active)
+- J.P. Pasnak, CD (Linegod, Active)
 
-- Larry Adams (TheWitness)
-
-- Tony Roman (rony)
-
-- J.P. Pasnak, CD (Linegod)
-
-- Jimmy Conner (cigamit)
-
-- Reinhard Scheck (gandalf)
-
-- Andreas Braun (browniebraun)
-
-- Mark Brugnoli-Vinten (netniV)
+- Tony Roman (rony, Emeritus)
+- Reinhard Scheck (gandalf, Emeritus)
+- Ian Berry (raX, Founder, Emeritus)
 
 ## Thanks
 
-A very special thanks to Tobi Oetiker, the creator of RRDTool and the very
-popular MRTG. The users of Cacti Especially anyone who has taken the time to
-create an issue report, or otherwise help fix a Cacti related problems. Also
+A very special thanks to Tobi Oetiker, the creator of RRDtool and the very
+popular MRTG. The users of Cacti - especially anyone who has taken the time to
+create a bug report, or otherwise help fix a Cacti related problem. Also
 to anyone who has contributed to supporting Cacti.
 
 Cacti is licensed under the GNU GPL:
@@ -54,15 +48,20 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 2. [Cacti Overview](README.md#cacti-overview)
 
-   This section describes Cacti components and their purpose as well as providing examples including on how to create **Templates** in Cacti.
+   This section describes Cacti components and their purpose as well as
+   providing examples including on how to create **Templates** in Cacti.
 
 3. [Advanced Operations](README.md#advanced-operations)
 
-   This section covers more advanced material such as using a advanced data collection and replacement variables that can be used within **Templates**, etc.
+   This section covers more advanced material such as using a advanced data
+   collection and replacement variables that can be used within **Templates**,
+   etc.
 
-4. [Plugins](README.md#plugins)
+4. [Plugin Development](README.md#plugin-development)
 
-   This section contains all Plugin related information.  Guidelines, hooks, references, etc.  More information can be found on the [Cacti Forums](https://forums.cacti.net/viewforum.php?f=6).
+   This section contains all Plugin development related information.
+   Guidelines, hooks, references, etc.  More information can be found on
+   the [Cacti Forums](https://forums.cacti.net/viewforum.php?f=6).
 
 5. [How To's](README.md#how-tos)
 
@@ -74,7 +73,14 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 7. [Development Standards](README.md#development-standards)
 
-   This section contains the relevant information on how to ensure that any contribution is kept to the same standards that are applied for the Cacti Group.  It should be noted that non-compliance does not mean automatically exclusion of proposed changes.
+   This section contains the relevant information on how to ensure that any
+   contribution is kept to the same standards that are applied for the Cacti
+   Group. It should be noted that non-compliance does not mean automatically
+   exclusion of proposed changes.
+
+### Known Issues
+
+[List of Known issues](Known-Issues.md)
 
 ### Cacti Installation
 
@@ -84,9 +90,11 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 3. Installing Cacti on Linux
 
-    3.1.  [Installation Under CentOS 7 - LAMP Stack](Install-Under-CentOS_LAMP.md)
-    3.2.  [Installation Under CentOS 7 - LEMP Stack](Install-Under-CentOS_LEMP.md)
-    3.3. [Installation Under Ubuntu/Debian - LAMP Stack](Installing-Under-Ubuntu-Debian.md)
+   3.1. [Installation Under CentOS 7 - LAMP Stack](Install-Under-CentOS_LAMP.md)
+
+   3.2. [Installation Under CentOS 7 - LEMP Stack](Install-Under-CentOS_LEMP.md)
+
+   3.3. [Installation Under Ubuntu/Debian - LAMP Stack](Installing-Under-Ubuntu-Debian.md)
 
 4. [Installing Under Windows](Installing-Under-Windows.md)
 
@@ -100,17 +108,15 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 1. Overview
 
-    1.1. [Navigating the User Interface](Navigating-The-User-Interface.md)
+   1.1. [Navigating the User Interface](Navigating-The-User-Interface.md)
 
-    1.2. [Principles of Operation](Principles-of-Operation.md)
+   1.2. [Principles of Operation](Principles-of-Operation.md)
 
-    1.3. [Graph Overview](Graph-Overview.md)
+   1.3. [Graph Overview](Graph-Overview.md)
 
-    1.4. [How to Graph Your Network](How-to-Graph-Your-Network.md)
+   1.4. [How to Graph Your Network](How-to-Graph-Your-Network.md)
 
-    1.5. [Viewing Graphs](Viewing-Graphs.md)
-
-    1.6. [Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
+   1.5. [Viewing Graphs](Viewing-Graphs.md)
 
 2. Management
 
@@ -130,15 +136,11 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    3.1. [Data Collectors](Data-Collectors.md)
 
-   3.2. [Data Input Methods](Data-Input-Methods.md)
+   3.2. [Spine Data Collection](Spine.md)
 
-   3.3. [Data Queries](Data-Queries.md)
+   3.3. [Data Input Methods](Data-Input-Methods.md)
 
-    3.3.1. [SNMP Data Queries Walkthrough](SNMP-Data-Queries-Walkthrough.md)
-
-    3.3.2. [SNMP New Data Query Walkthrough](SNMP-New-Data-Query-Walkthrough.md)
-
-    3.3.3 [Script Data Query Walkthrough](Script-Data-Query-Walkthrough.md)
+   3.4. [Data Queries](Data-Queries.md)
 
 4. [Templates](Templates.md)
 
@@ -152,7 +154,7 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    4.5. [Color](Color-Templates.md)
 
-5. [Automation](Automation.md)
+5. Automation
 
    5.1. [Networks](Automation-Networks.md)
 
@@ -184,47 +186,95 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    7.2. [Export Templates](Export-Template.md)
 
-8. Configuration
+8. [Settings (w/o Auth)](Settings.md)
 
-   8.1. [Settings](Settings.md)
+   8.1. [General](Settings-General.md)
 
-   8.2. [Users](User-Management.md)
+   8.2. [Paths](Settings-Paths.md)
 
-   8.3. [User Groups](User-Group-Management.md)
+   8.3. [Device Defaults](Settings-Device-Defaults.md)
 
-   8.4. [User Domains](User-Domains.md)
+   8.4. [Poller](Settings-Poller.md)
 
-   8.5. [Plugins](Plugins.md)
+   8.5. [Data](Settings-Data.md)
 
-9. Utilities
+   8.6. [Visual](Settings-Visual.md)
 
-   9.1. [System Utilities](System-Utilities.md)
+   8.7. [Performance](Settings-Performance.md)
 
-   9.2. [Data Debug](Data-Debug.md)
+   8.8. [Spikes](Settings-Spikes.md)
 
-   9.3. [External Links](External-Links.md)
+   8.9. [Mail/Reporting/DNS](Settings-Mail-Reporting-DNS.md)
+
+9. [Settings - Auth](Settings-Auth.md)
+
+   9.1. [Local Auth](Settings-Auth-Local.md)
+
+   9.2. [LDAP Auth](Settings-Auth-LDAP.md)
+
+   9.3. [Basic Auth](Settings-Auth-Basic.md)
+
+   9.4. [Domains Auth](Settings-Domains.md)
+
+10. [Configuration - Users, Groups and Domains](Settings-Users-Groups-Domains.md)
+
+    10.1. [Users](User-Management.md)
+
+    10.2. [User Groups](User-Group-Management.md)
+
+    10.3. [User Domains](User-Domains.md)
+
+11. [Configuration - Plugins](Plugins.md)
+
+12. Utilities
+
+    12.1. [System Utilities](System-Utilities.md)
+
+    12.2. [Data Debug](Data-Debug.md)
+
+    12.3. [External Links](External-Links.md)
+
+13. Reporting
+
+    13.1. [Reports Admistrative Interface](Reports-Admin.md)
+
+    13.2. [Reports User Interface](Reports-User.md)
+
+    13.3. [Report Items Page](Reports-Items.md)
+
+    13.4. [Report Preview Page](Reports-Preview.md)
+
+    13.5. [Report Events Page](Reports-Events.md)
+
+    13.6. [Other Options for Adding Report Items](Reports-Other-Options.md)
+
+14. [The Cacti Log](Cacti-Log.md)
 
 ### Advanced Operations
 
 1. Data Collection
 
-   1.1. [How to Graph a Custom Collection Script](How-to-Graph-a-Custom-Collection-Script.md)
+   1.1. [Command Line Scripts](Command-Line-Scripts.md)
 
    1.2. [PHP Script Server](PHP-Script-Server.md)
 
    1.3. [Spine Data Collection](Spine.md)
 
-   1.4. [Command Line Scripts](Command-Line-Scripts.md)
+   1.4. [Performance Setting (Boost)](Boost.md)
 
 2. [Frequently Asked Questions](Frequently-Asked-Questions.md)
 
 3. [Replacement Variables](Variables.md)
 
-4. [RRDTool Specific Features](RRDTool-Specific-Features.md)
+4. [RRDtool Specific Features](RRDtool-Specific-Features.md)
 
-6. [Debugging](Debugging.md)
+5. [RRDProxy Specific Features](RRDproxy.md)
 
-7. [Version Specific Release Notes](Version-Specific-Release-Notes.md)
+6. [Spikekill](Spikekill.md)
+
+7. [Debugging](Debugging.md)
+
+8. [Version Specific Release Notes](Version-Specific-Release-Notes.md)
 
 ### Plugin Development
 
@@ -238,19 +288,50 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 5. [Hook API Reference](Plugin-Hook-API-Ref.md)
 
+### Plugin Documentation
+
+1.[Syslog Plugin](syslog-plugin.md)
+
+
+
+
 ### How Tos
 
-1. [Determine template version](How-To-Determine-Template-Version.md)
+1. [How To Work with Templates](How-To-Work-With-Templates.md)
 
-2. [Using SSH Tunnels](How-To-SSH-Tunnels.md)
+2. [How To Create a Data Input Method](How-To-Create-Data-Input-Method.md)
 
-3. [Data Query Templates](How-To-Data-Query-Templates.md)
+3. [How To Work with Data Queries](How-To-Data-Queries.md)
+
+4. [How To Work with Existing SNMP Data Queries](How-To-Existing-SNMP-Data-Queries.md)
+
+5. [How To Work with New SNMP Data Queries](How-To-New-SNMP-Data-Queries.md)
+
+6. [How To Work with Script Data Queries](How-To-Script-Data-Queries.md)
+
+7. [How To Setup Remote Pollers](How-To-Setup-Remote-Pollers.md)
+
+8. [How To Determine Template Version](How-To-Determine-Template-Version.md)
+
+9. [How To Setup SSH Tunnels](How-To-SSH-Tunnels.md)
+
+10.[Enable SSL for Cacti](Cacti-SSL-Configuration.md)
+
+11.[Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
+
+## Watch Howto's and Tutorials on the Cacti Official YouTube page!.
+
+If you prefer to see some video based tutorials visit the Official Cacti YouTube channel.
+
+If you would have any ideas for videos or would like to contribute let us know !
+
+[Cacti Official Youtube Channel](https://www.youtube.com/channel/UC6ROmUGuuLa9BdHWzvGSY1w)
 
 ### Contributing
 
-1. [Contributing](Contributing.md)
+1. [Open Source Code](Contributing.md)
 
-2. [Translations](Contributing-Translations.md)
+2. [Language Translations](Contributing-Translations.md)
 
 ### Development Standards
 
@@ -268,5 +349,11 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 7. [Security](Standards-Security.md)
 
+### Template Specific Documentation
+
+This section will be for template specific configuration requriments
+
+1. [Apache Server Template](apache_template_config.md)
+
 ---
-Copyright (c) 2004-2019 The Cacti Group
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

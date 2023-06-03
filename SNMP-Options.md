@@ -2,8 +2,10 @@
 
 This section will describe **SNMP Options** in Cacti.
 
-The SNMP options page is used to enter your SNMP Strings and Credentials to be used for the automation plugin in Cacti
-cacti support SNMP V1/V2/V3 below you will enter your networks specific SNMP details for the devices you will be polling
+The SNMP options page is used to enter your SNMP Strings and Credentials to be
+used for the automation plugin in Cacti cacti support SNMP V1/V2/V3 below you
+will enter your networks specific SNMP details for the devices you will be
+polling
 
 ![SNMP Options](images/automation-snmp-options.png).
 
@@ -13,7 +15,8 @@ cacti support SNMP V1/V2/V3 below you will enter your networks specific SNMP det
 
 ![SNMP Options Item Edit SNMPv3](images/automation-snmp-options-edit3.png).
 
-!!! Important When performing a network scan ensure that you select the SNMP options that contain the SNMP strings you want to use
+Important: When performing a network scan ensure that you select the SNMP
+options that contain the SNMP strings you want to use
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>

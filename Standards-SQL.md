@@ -39,7 +39,7 @@ $graphs   = db_fetch_assoc('SELECT * FROM graph_local WHERE host_id = ?', array(
 db_execute_prepared('UPDATE host SET description = ? WHERE id = ?', array('Local Machines', $id));
 
 // Escape strings if using legacy functions
-$hostname = db_escape('myhost.com');
+$hostname = db_qstr('myhost.com');
 db_execute(UPDATE host SET hostname = '$myhost' WHERE id = $id");
 
 ```
@@ -68,6 +68,10 @@ db_execute(UPDATE host SET hostname = '$myhost' WHERE id = $id");
   - ORDER
 
   - GROUP BY
+
+  - HAVING
+
+  - LIMIT
 
   - prepared statement arrays
 
@@ -132,4 +136,4 @@ $user_realms = db_fetch_assoc('SELECT ua.id, uar.realm_id
 ```
 
 ---
-Copyright (c) 2004-2019 The Cacti Group
+<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
