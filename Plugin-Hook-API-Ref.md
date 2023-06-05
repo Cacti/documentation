@@ -48,9 +48,9 @@ hook | hook | hook
 [user\_admin\_action](Plugin-Hook-API-Ref.md#user_admin_action) | [user\_admin\_edit](Plugin-Hook-API-Ref.md#user_admin_edit) | [user\_admin\_run\_action](Plugin-Hook-API-Ref.md#user_admin_run_action)
 [user\_admin\_setup\_sql\_save](Plugin-Hook-API-Ref.md#user_admin_setup_sql_save) | [user\_admin\_tab](Plugin-Hook-API-Ref.md#user_admin_tab) | [user\_admin\_user\_save](Plugin-Hook-API-Ref.md#user_admin_user_save)
 [user\_group\_admin\_action](Plugin-Hook-API-Ref.md#user_group_admin_action) | [user\_group\_admin\_edit](Plugin-Hook-API-Ref.md#user_group_admin_edit) | [user\_group\_admin\_save](Plugin-Hook-API-Ref.md#user_group_admin_save)
-[user\_group\_admin\_setup\_sql\_save](Plugin-Hook-API-Ref.md#user_group_admin_setup_sql_save) | [user\_remove](Plugin-Hook-API-Ref.md#user_remove) | [utilities\_action](Plugin-Hook-API-Ref.md#utilities_action)
-[utilities\_array](Plugin-Hook-API-Ref.md#utilities_array) | [utilities\_list](Plugin-Hook-API-Ref.md#utilities_list) | [utilities\_tab](Plugin-Hook-API-Ref.md#utilities_tab)
-[valid\_host\_fields](Plugin-Hook-API-Ref.md#valid_host_fields) |
+[user\_group\_admin\_setup\_sql\_save](Plugin-Hook-API-Ref.md#user_group_admin_setup_sql_save) | [user\_group\_admin\_run\_action] (Plugin-Hook-API-Ref.md#user_group_admin_run_action) | [user\_group\_admin\_tab] (Plugin-Hook-API-Ref.md#user_group_admin_tab)
+[user\_group\_remove] (Plugin-Hook-API-Ref.md#user_group_remove) | [user\_remove](Plugin-Hook-API-Ref.md#user_remove) | [utilities\_action](Plugin-Hook-API-Ref.md#utilities_action)
+[utilities\_array](Plugin-Hook-API-Ref.md#utilities_array) | [utilities\_list](Plugin-Hook-API-Ref.md#utilities_list) | [valid\_host\_fields](Plugin-Hook-API-Ref.md#valid_host_fields)
 
 ## add\_graph\_template\_to\_host
 
@@ -1087,6 +1087,30 @@ See the explanation on `user_admin_action`
 file | introduced | retired
 --- | :--- | :---
 user_admin.php |  1.0.0  |
+
+## user\_group\_admin\_action
+
+Similar to `user_admin_action`
+
+file | introduced | retired
+--- | :--- | :---
+user_group_admin.php |  1.0.0  |
+
+## user\_group\_admin\_edit
+
+See the explanation on `user_admin_action`
+
+file | introduced | retired
+--- | :--- | :---
+user_group_admin.php |  1.0.0  |
+
+## user\_group\_admin\_save
+
+See the explanation on `user_admin_action`
+
+file | introduced | retired
+--- | :--- | :---
+user_group_admin.php |  1.0.0  |
 
 ## user\_group\_admin\_action
 
