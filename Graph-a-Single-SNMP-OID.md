@@ -9,7 +9,7 @@ install the **Generic SNMP Device Package** using the `import_package.php`
 command line script located in Cacti's cli directory.
 
 To start the process of creating a new graph for your OID, click go to
-`Cosnole > Create > New Graphs`, and from there find the **Device**
+`Console > Create > New Graphs`, and from there find the **Device**
 you would like to add the **Graph** to.
 
 From the image below, you can see the **New Graphs** interface.
