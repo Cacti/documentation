@@ -14,11 +14,11 @@
 #  +-------------------------------------------------------------------------+
 #  | http://www.cacti.net/                                                   |
 #  +-------------------------------------------------------------------------+
-# 
+#
 # Helper shell script to run documentation markdown style validation
 
 # Confirm mdl (markdownlint) is installed
-MDL_PATH=`which mdl`
+MDL_PATH=$(which mdl)
 if [ $? -gt 0 ]
 then
 	echo "ERROR: mdl (markdownlint) not installed"
@@ -36,7 +36,7 @@ else
 fi
 
 # Run mdl with documentation repository configuration
-MDL_OUTPUT=`${MDL_PATH} -c .mdlrc ${ARGV}`
+MDL_OUTPUT=$(${MDL_PATH} -c .mdlrc ${ARGV})
 MDL_RESULT=$?
 echo "${MDL_OUTPUT}" | grep -v "RULES.md"
 if [ $MDL_RESULT -gt 0 ]

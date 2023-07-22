@@ -21,19 +21,19 @@
 if [ -n "${*}" ]
 then
 
-	FILENAME=`basename $1`
-	LINES=`grep "${FILENAME}" README.md | wc -l`
+	FILENAME=$(basename "$1")
+	LINES=$(grep -c "${FILENAME}" README.md)
 	if [[ ${LINES} -gt 0 ]]; then
-		if [ ! -z ${CHECK_SHOW_LINKED} ]; then
+		if [ -n "${CHECK_SHOW_LINKED}" ]; then
 			echo "Linked....: ${FILENAME}";
 		fi
 	else
 		echo "Not Linked: ${FILENAME}"
 	fi
-	exit ${LINES};
+	exit "${LINES}";
 else
-	LINES=`find -not \( -path ./.github/\* \) -name \*.md ! -name README.md -exec "$0" "{}" \;`
-	COUNT=`echo "${LINES}" | grep "Not Linked:" | wc -l`
+	LINES=$(find . -not \( -path ./.github/\* \) -name \*.md ! -name README.md -exec "$0" "{}" \;)
+	COUNT=$(echo "${LINES}" | grep -c "Not Linked:")
 
 	if [[ -n "${CHECK_SHOW_LINKED}" || ${COUNT} -gt 0 ]]; then
 		if [[ -n "$LINES" ]]; then
@@ -42,5 +42,5 @@ else
 		fi;
 		echo "$COUNT unlinked files";
 	fi
-	exit $COUNT;
+	exit "$COUNT";
 fi

@@ -20,8 +20,8 @@
 #  | http://www.cacti.net/                                                   |
 #  +-------------------------------------------------------------------------+
 
-for file in `ls -1 ../images/*.png`;do
+for file in $(ls -1 ../images/*.png);do
   echo -n "$file - ";
-  file=`basename $file`
-  grep $file ../* 2>/dev/null | wc -l;
+  file=$(basename "$file")
+  grep -c "$file" ../* 2>/dev/null
 done | grep " - 0"

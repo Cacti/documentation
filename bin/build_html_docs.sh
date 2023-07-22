@@ -25,8 +25,7 @@ ODIR="html"
 ERROR=""
 for UTIL in ${UTILS}
 do
-	which ${UTIL} 1>/dev/null 2>&1
-	if [ ${?} -gt 0 ]
+	if ! which "${UTIL}" 1>/dev/null 2>&1
 	then
 		ERROR="${ERROR} - ${UTIL}\n"
 	fi
@@ -42,8 +41,8 @@ then
 fi
 
 # make sure pandoc has lua support
-pandoc --help | grep 'lua-filter' 1>/dev/null 2>&1
-if [ ${?} -gt 0 ]
+
+if ! pandoc --help | grep 'lua-filter' 1>/dev/null 2>&1
 then
 	echo "ERROR: Required LUA Filter support not found in Pandoc utility"
 	echo "       Make sure you have version 2.3.1 or higher installed"
@@ -54,10 +53,10 @@ fi
 BASE_PATH="$( cd "$(dirname "$0")" ; pwd -P | sed 's/\/bin//')"
 
 # create output directory if needed
-if [ ! -d ${BASE_PATH}/${ODIR}/images ]
+if [ ! -d "${BASE_PATH}/${ODIR}/images" ]
 then
-	mkdir -p ${BASE_PATH}/${ODIR}/images
-	if [ ${?} -gt 0 ]
+
+	if ! mkdir -p "${BASE_PATH}/${ODIR}/images"
 	then
 		echo "ERROR: Unable to create output directory: ${ODIR}"
 		exit 1
@@ -66,8 +65,8 @@ fi
 
 # copy image resources
 echo "Copying images..."
-cp -r ${BASE_PATH}/images/* ${BASE_PATH}/${ODIR}/images/
-if [ ${?} -gt 0 ]
+
+if ! cp -r "${BASE_PATH}/images/*" "${BASE_PATH}/${ODIR}/images/"
 then
 	echo "ERROR: Failed to copy images"
 	exit 1
@@ -75,8 +74,8 @@ fi
 
 # copy css resourse
 echo "Copying css..."
-cp -r ${BASE_PATH}/resources/css/* ${BASE_PATH}/${ODIR}/
-if [ ${?} -gt 0 ]
+
+if ! cp -r "${BASE_PATH}/resources/css/*" "${BASE_PATH}/${ODIR}/"
 then
 	echo "ERROR: Failed to copy images"
 	exit 1
@@ -84,11 +83,11 @@ fi
 
 # process markdown files into html
 echo "Converting files..."
-for FILE in `find ${BASE_PATH} -name "*.md"`
+for FILE in $(find "${BASE_PATH}" -name "*.md")
 do
 	IFILE=${FILE//$BASE_PATH\/}
 	OFILE=${ODIR}/${IFILE//.md/.html}
-	TITLE=$(grep "^# " $FILE | head -1 | sed 's/# //')
+	TITLE=$(grep "^# " "$FILE" | head -1 | sed 's/# //')
 
 	# handle special case for table of contents
 	if [ "${IFILE}" = "README.md" ]
@@ -97,10 +96,10 @@ do
 	fi
 	echo "  '${IFILE}' => '${OFILE}'"
 
-	pandoc --from=gfm --to=html5 ${IFILE} \
+	pandoc --from=gfm --to=html5 "${IFILE}" \
 	        --standalone \
-		--output=${BASE_PATH}/${OFILE} \
-		--lua-filter=${BASE_PATH}/resources/build/pandoc_links_to_html.lua \
+		--output="${BASE_PATH}/${OFILE}" \
+		--lua-filter="${BASE_PATH}/resources/build/pandoc_links_to_html.lua" \
 		--css=Cacti-Github.css \
 		--metadata=pagetitle:"$TITLE" \
 		-T "Cacti"

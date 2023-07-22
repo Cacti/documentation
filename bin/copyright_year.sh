@@ -32,13 +32,11 @@ update_copyright() {
 	old_reg="20[0-9][0-9][ ]*-[ ]*20[0-9][0-9]"
 	old_data=$(grep -c -e "$old_reg" "$1" 2>/dev/null)
 	new_reg="2004-$YEAR"
-	result=$?
 
 	if [[ $old_data -eq 0 ]]; then
 		old_reg="(Copyright.*) 20[0-9][0-9] "
 		old_data=$(grep -c -e "$old_reg" "$1" 2>/dev/null)
 		new_reg="\1 2004-$YEAR"
-		result=$?
 	fi
 
 	if [[ $old_data -gt 0 ]]; then
@@ -53,12 +51,11 @@ update_copyright() {
 			printf "%60s %s\n" "==============================" "===================="
 			printf "%60s %s\n" "$old_data" "=>"
 			printf "%60s %s\n" "$new_data" ""
-			sed -i -r s/"$old_reg"/"$new_reg"/g $1
+			sed -i -r s/"$old_reg"/"$new_reg"/g "$1"
 			printf "%60s %s\n" "==============================" "===================="
 		fi
 	else
 		echo "$line  Copyright not found!"
-		SCRIPT_ERR=1
 	fi
 }
 
@@ -71,7 +68,6 @@ for f in $BAD_FOLDERS; do
 	SCRIPT_EXCLUSION="$SCRIPT_EXCLUSION -not -path ${SCRIPT_BASE}$f/\* "
 done
 
-SCRIPT_ERR=0
 YEAR=$(date +"%Y")
 EXT="sh sql php js md conf"
 ERRORS_ONLY=1
