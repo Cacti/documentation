@@ -29,4 +29,4 @@ If the System/Device you are matching has a unique OID you can also match based
 on that.
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

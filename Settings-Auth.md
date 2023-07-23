@@ -3,7 +3,7 @@
 ## Overview
 
 Cacti provides four Authentication methods that can be leveraged to provide
-Authentication services.  When combined with the variety of Apache and NGINX 
+Authentication services.  When combined with the variety of Apache and NGINX
 Modules, Cacti can support just about every Authentication method available
 today in the industry.  Those Authentication method include:
 
@@ -46,10 +46,10 @@ Those options include:
 - **User Template**, when creating new accounts, either LDAP, Web Basic,
   or new Cacti local accounts, Cacti will pull the users default Authorization
   from this Template User account.  For some Cacti **Authentication Methods**,
-  you can have more than one Template User, for example: 
+  you can have more than one Template User, for example:
   **Multiple LDAP/AD Domains**.
 
-In the sections below, we will go over these various 
+In the sections below, we will go over these various
 **Authentication Methods** and their settings.
 
 [Built-in Authentication](Settings-Auth-Local.md)
@@ -61,4 +61,4 @@ In the sections below, we will go over these various
 [Multiple LDAP/AD Authentication](Settings-Domains.md)
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

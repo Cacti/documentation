@@ -23,4 +23,4 @@ An example plugin is provided here [Example Plugin](resources/example.tgz).
 GitHub is the best place to publish your plugins.  Learn to use it.
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

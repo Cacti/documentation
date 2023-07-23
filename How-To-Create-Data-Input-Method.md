@@ -1,14 +1,14 @@
 # Data Input Methods - From Script Output to Complete Graph
 
-In this How-To we will take you through the process of creating a script
-and then from the scripts output generate a complete **Graph Template**
-that you can apply to your Cacti system.  You should be able to reproduce
-this process regardless of the script type in question.
+In this How-To we will take you through the process of creating a script and
+then from the scripts output generate a complete **Graph Template** that you can
+apply to your Cacti system. You should be able to reproduce this process
+regardless of the script type in question.
 
 ## Data Input Method returning a single value
 
 Lets start with a simple script that takes a hostname or IP address as input
-parameter returning a single value. 
+parameter returning a single value.
 
 `<path_cacti>/scripts/ping.pl`:
 
@@ -27,16 +27,16 @@ close(PROCESS);
 $ping =~ m/(.*time=)(.*) (ms|usec)/;
 
 if ($2 == "") {
-	print "U";              # avoid cacti errors, but do not fake RRDtool stats
+    print "U";              # avoid cacti errors, but do not fake RRDtool stats
 }elsif ($3 eq "usec") {
-	print $2/1000;  # re-calculate in units of "ms"
+    print $2/1000;  # re-calculate in units of "ms"
 }else{
-	print $2;
+    print $2;
 }
 ```
 
-To define this script as a **Data Input Method** to Cacti go to **Data
-Input Methods** and click **Add**. You should see:
+To define this script as a **Data Input Method** to Cacti go to **Data Input
+Methods** and click **Add**. You should see:
 
 ![Data Input Methods New](images/r-dim1-0.png)
 
@@ -80,9 +80,9 @@ Please go to **Data Templates** and click Add. You should see:
 ![Data Templates New](images/r-dt1.png)
 
 Fill in the **Data Templates Name** with a reasonable text. This name will be
-used to find this Template among others. Then fill in the **Data Source
-Name**. This is the name given to the host-specific **Data Source**. The
-variable **|host_description|** is taken from the actual **Device**. This is to
+used to find this Template among others. Then fill in the **Data Source Name**.
+This is the name given to the host-specific **Data Source**. The variable
+**|host_description|** is taken from the actual **Device**. This is to
 distinguish **Data Sources** for different devices. The **Data Input Method** is
 a drop down containing all known scripts and the like. Select the **Data Input
 Method** you just created. The **Associated RRA's** is filled by default. At the
@@ -154,7 +154,7 @@ drop down. Click the plus (+) glyph to see:
 
 By default, the **Graph Template** is added and shown as **Is Being Graphed**.
 The reason for this is that Cacti now automatically creates **Graphs**
-automatically, unless disabled.  If the **Graph Template** shows **Not Being
+automatically, unless disabled. If the **Graph Template** shows **Not Being
 Graphed**, you can create the **Graph** by pressing the **Create Graphs** at the
 top of the **Devices** page. Click this link to see:
 
@@ -173,7 +173,7 @@ This will automatically
 - Create the needed **Data Source Description** from the **Data Template**.
   Again, you will find the Hosts name replaced for |host_description|
 
-- Create the needed RRDfile with definitions from the **Data Template**.  The
+- Create the needed RRDfile with definitions from the **Data Template**. The
   name of this file is derived from the Host and the **Data Template** in
   conjunction with an auto-incrementing number.
 
@@ -189,7 +189,7 @@ may look like:
 
 ## Walkthrough: Script with more Output Parameters
 
-The script below will be implemented in perl.  Please note that any supported
+The script below will be implemented in perl. Please note that any supported
 language is supported using Cacti from direct command execution to scripts
 written in perl, python, php, bash, etc.
 
@@ -212,14 +212,14 @@ my $in_version          = $ARGV[3] if defined $ARGV[3];
 
 # usage notes
 if (
-	( ! defined $in_hostname ) ||
-	( ! defined $in_port ) ||
-	( ! defined $in_community ) ||
-	( ! defined $in_version )
+    ( ! defined $in_hostname ) ||
+    ( ! defined $in_port ) ||
+    ( ! defined $in_community ) ||
+    ( ! defined $in_version )
 ) {
-	print "usage:\n\n
-		$0 &lt;host&gt; &lt;port&gt; &lt;community&gt; &lt;version&gt;\n\n";
-	exit;
+    print "usage:\n\n
+        $0 &lt;host&gt; &lt;port&gt; &lt;community&gt; &lt;version&gt;\n\n";
+    exit;
 }
 
 # list all OIDs to be queried
@@ -229,51 +229,51 @@ my $udpOutDatagrams     = ".1.3.6.1.2.1.7.4.0";
 # get information via SNMP
 # create session object
 my ($session, $error) = Net::SNMP->session(
-	-hostname      => $in_hostname,
-	-port          => $in_port,
-	-version       => $in_version,
-	-community     => $in_community,
-	# add more parameters if there's a need for them:
-	#   [-localaddr     => $localaddr,]
-	#   [-localport     => $localport,]
-	#   [-nonblocking   => $boolean,]
-	#   [-domain        => $domain,]
-	#   [-timeout       => $seconds,]
-	#   [-retries       => $count,]
-	#   [-maxmsgsize    => $octets,]
-	#   [-translate     => $translate,]
-	#   [-debug         => $bitmask,]
-	#   [-username      => $username,]    # v3
-	#   [-authkey       => $authkey,]     # v3
-	#   [-authpassword  => $authpasswd,]  # v3
-	#   [-authprotocol  => $authproto,]   # v3
-	#   [-privkey       => $privkey,]     # v3
-	#   [-privpassword  => $privpasswd,]  # v3
-	#   [-privprotocol  => $privproto,]   # v3
+    -hostname      => $in_hostname,
+    -port          => $in_port,
+    -version       => $in_version,
+    -community     => $in_community,
+    # add more parameters if there's a need for them:
+    #   [-localaddr     => $localaddr,]
+    #   [-localport     => $localport,]
+    #   [-nonblocking   => $boolean,]
+    #   [-domain        => $domain,]
+    #   [-timeout       => $seconds,]
+    #   [-retries       => $count,]
+    #   [-maxmsgsize    => $octets,]
+    #   [-translate     => $translate,]
+    #   [-debug         => $bitmask,]
+    #   [-username      => $username,]    # v3
+    #   [-authkey       => $authkey,]     # v3
+    #   [-authpassword  => $authpasswd,]  # v3
+    #   [-authprotocol  => $authproto,]   # v3
+    #   [-privkey       => $privkey,]     # v3
+    #   [-privpassword  => $privpasswd,]  # v3
+    #   [-privprotocol  => $privproto,]   # v3
 );
 
 # on error: exit
 if (!defined($session)) {
-	printf("ERROR: %s.\n", $error);
-	exit 1;
+    printf("ERROR: %s.\n", $error);
+    exit 1;
 }
 
 # perform get requests for all wanted OIDs
 my $result = $session->get_request(
-	-varbindlist      => [$udpInDatagrams, $udpOutDatagrams]
+    -varbindlist      => [$udpInDatagrams, $udpOutDatagrams]
 );
 
 # on error: exit
 if (!defined($result)) {
-	printf("ERROR: %s.\n", $session->error);
-	$session->close;
-	exit 1;
+    printf("ERROR: %s.\n", $session->error);
+    $session->close;
+    exit 1;
 }
 
 # print results
 printf("udpInDatagrams:%s udpOutDatagrams:%s", # <<< cacti requires this format!
-	$result->{$udpInDatagrams},
-	$result->{$udpOutDatagrams},
+    $result->{$udpInDatagrams},
+    $result->{$udpOutDatagrams},
 );
 
 $session->close;
@@ -286,16 +286,16 @@ It should produce following output, when executed from command line:
 udpInDatagrams:10121 udpOutDatagrams:11102
 ```
 
-Where “public” would be replaced by your community string.  Those input
+Where “public” would be replaced by your community string. Those input
 parameters again are controlled by the `Input Fields` in Cacti and the output
-from the script will be mapped to `Output Fields`.  If you wish to return
+from the script will be mapped to `Output Fields`. If you wish to return
 multiple output values, they must be space delimited name value pairs in the
 form of nameA:valueA nameB:valueB ...
 
 ## The Data Input Method
 
-To define this script as a **Data Input Method** to Cacti go to **Data
-Input Methods** and click the plus (+) glyph.
+To define this script as a **Data Input Method** to Cacti go to **Data Input
+Methods** and click the plus (+) glyph.
 
 ![More Scripts dim 1](images/dim-add01.preview.png)
 
@@ -372,29 +372,29 @@ But we now provide the name of **udpInPackets**, enter a **Maximum value** of
 
 ![Data Template - Two DS, Step1](images/dim-add13.preview.png)
 
-Then save and find with the exception that the *Output Field* will be set to
-*None Selected*.  Therefore, before adding the second *Data Source Item*, make
-sure you select the *Output Field* of *udpInDatagrams* and press the Save button
+Then save and find with the exception that the _Output Field_ will be set to
+_None Selected_. Therefore, before adding the second _Data Source Item_, make
+sure you select the _Output Field_ of _udpInDatagrams_ and press the Save button
 to create the association.
 
 ![Data Template - Two DS, Step2](images/dim-add14.preview.png)
 
 Then, add the second **Data Source** by pressing the plus (+) glyph and
-providing data for *udpOutPackets*. Pay attention to select the correct *Output
-Field* defined by the **Data Input Method** as we did with the *udpInDatagrams*.
+providing data for _udpOutPackets_. Pay attention to select the correct _Output
+Field_ defined by the **Data Input Method** as we did with the _udpInDatagrams_.
 
 ![Data Template - Two DS, Step3](images/dim-add15.preview.png)
 
 To deactivate maximum checking, enter 'U', else the desired number. Do not
-forget to select the correct *Data Source Type* and the *Output Field* as
+forget to select the correct _Data Source Type_ and the _Output Field_ as
 before.
 
 ## The Graph Template
 
 Most of this task of creating a **Graph Template** has already been covered in
-our example.  You will basically create a new **Graph Template**, provide a
-*Line* or an *Area Fill* followed by a *Legend* for both the *udpInDatagrams*
-and *udpOutDatagrams*.  The result of those actions will be the image below:
+our example. You will basically create a new **Graph Template**, provide a
+_Line_ or an _Area Fill_ followed by a _Legend_ for both the _udpInDatagrams_
+and _udpOutDatagrams_. The result of those actions will be the image below:
 
 ![Graph Template - Two DS, Step4](images/dim-add16.preview.png)
 
@@ -403,4 +403,5 @@ After you have created your **Graph Template** you can proceed to Add the
 the **Graph** for you, or to manually add it from the **New Graphs** menu pick.
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+
+Copyright (c) 2004-2023 The Cacti Group

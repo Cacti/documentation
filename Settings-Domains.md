@@ -3,7 +3,7 @@
 ## Summary
 
 This Authentication method enables the Cacti Administrator to
-have multiple login level templates for their accounts.  This 
+have multiple login level templates for their accounts.  This
 could be used to grant users say for the following three login
 levels controlled by an LDAP or AD User Group:
 
@@ -32,4 +32,4 @@ The reason that it shows settings for `Built-in` accounts is that
 you can still login as a local account when you choose this setting.
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

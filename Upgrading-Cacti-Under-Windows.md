@@ -19,7 +19,8 @@ of Cacti which is referred to as `cacti-xxx.zip` in this document.
 
    ```sh
    shell> cd Documents
-   shell> "\Program Files\MySQL\MySQL Server 5.7\bin\mysqldump.exe" -uroot -p -l --add-drop-table cacti > cacti-version-YYYYMMDD.sql
+   shell> "\Program Files\MySQL\MySQL Server 5.7\bin\mysqldump.exe" -uroot -p -l
+   --add-drop-table cacti > cacti-version-YYYYMMDD.sql
    ```
 
 1. Backup the old Cacti directory.
@@ -96,4 +97,4 @@ of Cacti which is referred to as `cacti-xxx.zip` in this document.
    - check Data Collection Enabled and Save
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

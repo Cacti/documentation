@@ -24,8 +24,8 @@ Please see the official Cacti website for information, support, and updates.
 
 A very special thanks to Tobi Oetiker, the creator of RRDtool and the very
 popular MRTG. The users of Cacti - especially anyone who has taken the time to
-create a bug report, or otherwise help fix a Cacti related problem. Also
-to anyone who has contributed to supporting Cacti.
+create a bug report, or otherwise help fix a Cacti related problem. Also to
+anyone who has contributed to supporting Cacti.
 
 Cacti is licensed under the GNU GPL:
 
@@ -34,17 +34,17 @@ the terms of the GNU General Public License as published by the Free Software
 Foundation; either version 2 of the License, or (at your option) any later
 version.
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 ## Table of Contents
 
 1. [Cacti Installation](README.md#cacti-installation)
 
-   This section contains information on how to install and/or upgrade the
-   Cacti system.  It covers requirements, different platforms and the steps
-   needed to get your system working under normal circumstances.
+   This section contains information on how to install and/or upgrade the Cacti
+   system. It covers requirements, different platforms and the steps needed to
+   get your system working under normal circumstances.
 
 2. [Cacti Overview](README.md#cacti-overview)
 
@@ -59,9 +59,9 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 4. [Plugin Development](README.md#plugin-development)
 
-   This section contains all Plugin development related information.
-   Guidelines, hooks, references, etc.  More information can be found on
-   the [Cacti Forums](https://forums.cacti.net/viewforum.php?f=6).
+   This section contains all Plugin development related information. Guidelines,
+   hooks, references, etc. More information can be found on the
+   [Cacti Forums](https://forums.cacti.net/viewforum.php?f=6).
 
 5. [How To's](README.md#how-tos)
 
@@ -94,7 +94,8 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    3.2. [Installation Under CentOS 7 - LEMP Stack](Install-Under-CentOS_LEMP.md)
 
-   3.3. [Installation Under Ubuntu/Debian - LAMP Stack](Installing-Under-Ubuntu-Debian.md)
+   3.3.
+   [Installation Under Ubuntu/Debian - LAMP Stack](Installing-Under-Ubuntu-Debian.md)
 
 4. [Installing Under Windows](Installing-Under-Windows.md)
 
@@ -292,9 +293,6 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 1.[Syslog Plugin](syslog-plugin.md)
 
-
-
-
 ### How Tos
 
 1. [How To Work with Templates](How-To-Work-With-Templates.md)
@@ -315,15 +313,13 @@ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 9. [How To Setup SSH Tunnels](How-To-SSH-Tunnels.md)
 
-10.[Enable SSL for Cacti](Cacti-SSL-Configuration.md)
+   10.[Enable SSL for Cacti](Cacti-SSL-Configuration.md)
 
-11.[Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
+   11.[Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
 
-## Watch Howto's and Tutorials on the Cacti Official YouTube page!.
+### Video Tutorials
 
-If you prefer to see some video based tutorials visit the Official Cacti YouTube channel.
-
-If you would have any ideas for videos or would like to contribute let us know !
+Watch Howto's and Tutorials on the Cacti Official YouTube page if you prefer. If you would have any ideas for videos or would like to contribute let us know !
 
 [Cacti Official Youtube Channel](https://www.youtube.com/channel/UC6ROmUGuuLa9BdHWzvGSY1w)
 
@@ -356,4 +352,5 @@ This section will be for template specific configuration requriments
 1. [Apache Server Template](apache_template_config.md)
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+
+Copyright (c) 2004-2023 The Cacti Group

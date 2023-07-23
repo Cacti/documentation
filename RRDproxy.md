@@ -158,4 +158,4 @@ rrdp#
   available through SNMP
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

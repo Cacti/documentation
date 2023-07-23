@@ -183,4 +183,4 @@ Cacti Framework.  It's stood the test of time now in it's 19th year
 of existence in the Open Source world.
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

@@ -45,4 +45,4 @@ on the graph rules.
 ![Automation Graph Rules Matching Objects](images/automation-graph-rules-edit5.png)
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

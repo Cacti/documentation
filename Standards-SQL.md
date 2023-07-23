@@ -4,9 +4,9 @@ Special care must be taken for Cacti to properly support multiple DBMS's.
 
 ## Quotes
 
-When writing queries do not use quotes around numeric values. While MySQL is
-not strict about types, most DBMS's assume that any value contained within
-quotes is a string.
+When writing queries do not use quotes around numeric values. While MySQL is not
+strict about types, most DBMS's assume that any value contained within quotes is
+a string.
 
 As well, single quotes are used unless a variable is referenced
 
@@ -26,9 +26,9 @@ DBMS's. Common examples of such functions are `MD5()`, `CONCAT()`, and `NOW()`.
 
 ## SQL Injection
 
-Cacti provides support for prepared statements.  You should use these prepared
+Cacti provides support for prepared statements. You should use these prepared
 statement functions as much as possible to avoid the risk of SQL Injection
-attacks from the Cacti website.  Examples include:
+attacks from the Cacti website. Examples include:
 
 ```php
 // Example prepared statements
@@ -52,11 +52,11 @@ db_execute(UPDATE host SET hostname = '$myhost' WHERE id = $id");
   should be wrapped onto a continuation line for ease of use and readability.
   The following keywords should also be placed at the start of a new line:
 
-  - joins statements (excluding JOIN itself which should not be used)
-    (eg, INNER JOIN, LEFT JOIN, RIGHT JOIN, OUTER JOIN, CROSS JOIN)
+  - joins statements (excluding JOIN itself which should not be used) (eg, INNER
+    JOIN, LEFT JOIN, RIGHT JOIN, OUTER JOIN, CROSS JOIN)
 
-    **Note:** *Any implicit join or JOIN without one of the modifiers should be
-    converted to an explicit join with a modifier.  When converting the implicit
+    **Note:** \*Any implicit join or JOIN without one of the modifiers should be
+    converted to an explicit join with a modifier. When converting the implicit
     join statement, remember to remove the WHERE joining clause.
 
   - AND / OR
@@ -88,52 +88,53 @@ db_execute(UPDATE host SET hostname = '$myhost' WHERE id = $id");
 
 ### Example of single line SQL
 
-###### Before formatting
+#### Before formatting
 
 ```php
 $templates = db_fetch_assoc('SELECT DISTINCT gt.id, gt.name FROM graph_templates AS gt INNER JOIN graph_templates_graph AS gtg ON gt.id = gtg.graph_template_id INNER JOIN graph_templates_item AS gti ON gtg.graph_template_id=gti.graph_template_id INNER JOIN data_template_rrd AS dtr ON gti.task_item_id=dtr.id INNER JOIN data_template_data AS dtd ON dtd.data_template_id=dtr.data_template_id AND dtd.local_data_id = 0 WHERE gtg.local_graph_id=0 AND dtr.local_data_id = 0 AND dtd.local_data_id = 0 AND dtd.data_input_id in (2,11,12) ORDER BY gt.name;'
 ```
 
-###### Corrected formatting with prepared usage
+#### Corrected formatting with prepared usage
 
 ```php
 $templates = db_fetch_assoc_prepared('SELECT DISTINCT gt.id, gt.name
-	FROM graph_templates AS gt
-	INNER JOIN graph_templates_graph AS gtg
-	ON gt.id = gtg.graph_template_id
-	INNER JOIN graph_templates_item AS gti
-	ON gtg.graph_template_id=gti.graph_template_id
-	INNER JOIN data_template_rrd AS dtr
-	ON gti.task_item_id=dtr.id
-	INNER JOIN data_template_data AS dtd
-	ON dtd.data_template_id=dtr.data_template_id
-	AND dtd.local_data_id = 0
-	WHERE gtg.local_graph_id=0
-	AND dtr.local_data_id = 0
-	AND dtd.local_data_id = 0
-	AND dtd.data_input_id in (?,?,?)
-	ORDER BY gt.name',
-	array(2,11,12));
+    FROM graph_templates AS gt
+    INNER JOIN graph_templates_graph AS gtg
+    ON gt.id = gtg.graph_template_id
+    INNER JOIN graph_templates_item AS gti
+    ON gtg.graph_template_id=gti.graph_template_id
+    INNER JOIN data_template_rrd AS dtr
+    ON gti.task_item_id=dtr.id
+    INNER JOIN data_template_data AS dtd
+    ON dtd.data_template_id=dtr.data_template_id
+    AND dtd.local_data_id = 0
+    WHERE gtg.local_graph_id=0
+    AND dtr.local_data_id = 0
+    AND dtd.local_data_id = 0
+    AND dtd.data_input_id in (?,?,?)
+    ORDER BY gt.name',
+    array(2,11,12));
 ```
 
 ### Example of implicit join
 
-###### Before formatting
+#### Before formatting
 
 ```php
 $user_realms = db_fetch_assoc('SELECT ua.id, uar.realm_id
-	FROM user_auth ua, user_auth_realms uar
-	WHERE ua.id = uar.user_id');
+    FROM user_auth ua, user_auth_realms uar
+    WHERE ua.id = uar.user_id');
 ```
 
-###### Corrected formatting
+#### Corrected formatting
 
 ```php
 $user_realms = db_fetch_assoc('SELECT ua.id, uar.realm_id
-	FROM user_auth ua
-	INNER JOIN user_auth_realms uar
-	ON ua.id = uar.user_id');
+    FROM user_auth ua
+    INNER JOIN user_auth_realms uar
+    ON ua.id = uar.user_id');
 ```
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+
+Copyright (c) 2004-2023 The Cacti Group

@@ -1,16 +1,16 @@
 # General Installing Instructions
 
 Make sure the following packages are installed according to your operating
-systems requirements. Verify, that httpd/apache and MySQL/MariaDB are started
-at system startup.
+systems requirements. Verify, that httpd/apache and MySQL/MariaDB are started at
+system startup.
 
 ## Required Packages for Most Operating Systems
 
 Depending on your operating system and PHP version, certain packages are
-required for Cacti.  The largest variable in these requirements come with
-regard to PHP and MySQL/MariaDB.
+required for Cacti. The largest variable in these requirements come with regard
+to PHP and MySQL/MariaDB.
 
-Installation requirements include the packages below.  The installation of these
+Installation requirements include the packages below. The installation of these
 packages will vary by operating system.
 
 ### Base OS
@@ -25,14 +25,14 @@ packages will vary by operating system.
 
 - dos2unix (for spine)
 
-- development packages (gcc, automake, autoconf, libtool,
-  either mysql-devel or mariadb-devel, net-snmp-devel, help2man)
+- development packages (gcc, automake, autoconf, libtool, either mysql-devel or
+  mariadb-devel, net-snmp-devel, help2man)
 
   (for spine)
 
 ### Database
 
-MySQL versions to 5.7 are supported.  MariaDB to 10.2 is also supported.
+MySQL versions to 5.7 are supported. MariaDB to 10.2 is also supported.
 
 - mysql
 
@@ -50,8 +50,8 @@ or
 
 ### PHP Modules
 
-The installation of these modules vary by OS.  Use the `php -m` command to
-verify that they are installed.
+The installation of these modules vary by OS. Use the `php -m` command to verify
+that they are installed.
 
 - posix
 
@@ -89,6 +89,15 @@ The following modules are optional, but preferred to be installed.
 
 - com or dotnet (windows only)
 
+### A special note for systems using PHP-FPM
+
+Prior to starting the setup process of Cacti you should restart the PHP-FPM
+Daemon to rebuild the Cache or you may recive a HTTP 500 Error
+
+```console
+systemctl restart php-fpm
+```
+
 ## FreeBSD
 
 When installing on FreeBSD you can use two ways. For both ways, cacti has a lot
@@ -104,8 +113,8 @@ prepared. Both ways have few pros and cons:
   ```
 
 - FreeBSD ports - compilation could last long time, but without invariant
-  dependencies (See [Howto use
-  ports](https://www.freebsd.org/doc/handbook/ports-using.html))
+  dependencies (See
+  [Howto use ports](https://www.freebsd.org/doc/handbook/ports-using.html))
 
   ```sh
   portsnap fetch extract
@@ -134,12 +143,12 @@ chmod +s /usr/local/bin/spine
 ## Configure PHP
 
 Verify that the modules are installed and configured correctly. There are
-several ways to do so - consult [PHP configuration
-instructions](http://www.php.net/manual/en/configuration.php) for a complete
-description.
+several ways to do so - consult
+[PHP configuration instructions](http://www.php.net/manual/en/configuration.php)
+for a complete description.
 
 It is imperative that you set the `date.timezone` in your `/etc/php.ini`, or
-`/etc/phpX/apache/php.ini` and `/etc/phpX/cli/php.ini` files.  Failure to do so
+`/etc/phpX/apache/php.ini` and `/etc/phpX/cli/php.ini` files. Failure to do so
 will result in errors after the install is complete.
 
 Most other PHP configuration is done automatically by the base OS, so there is
@@ -148,10 +157,10 @@ no need to discuss that here.
 ## Configure the Webserver (Apache)
 
 Most Linux/UNIX OS' automatically configure the Web Server to allow PHP content.
-So there should be no need to provide additional configuration.  However, the
+So there should be no need to provide additional configuration. However, the
 following section is included below for reference in the case that you are
 running a UNIX version that does not properly configure the Webserver properly.
-The documentation below is written specifically for RHEL and variants.  So, the
+The documentation below is written specifically for RHEL and variants. So, the
 instructions may vary.
 
 Find the file `/etc/httpd/conf/httpd.conf` or its equivalent and make the
@@ -180,17 +189,17 @@ DirectoryIndex index.php
 
 ## Configure MySQL/MariaDB
 
-Set a password for the root user, and record this password.  If you loose
-control of this password, you may have to re-install your database server in the
-case of any system disaster or recovering from a crash.
+Set a password for the root user, and record this password. If you loose control
+of this password, you may have to re-install your database server in the case of
+any system disaster or recovering from a crash.
 
 ```sh
 shell> mysqladmin --user=root password somepassword
 shell> mysqladmin --user=root --password reload
 ```
 
-You must also load timezone information into the database.  This is required for
-various plugin use.  Later, you will be required to grant access to the
+You must also load timezone information into the database. This is required for
+various plugin use. Later, you will be required to grant access to the
 `time_zone_name` table during the final installation steps.
 
 ```sh
@@ -198,8 +207,8 @@ shell> mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql
 ```
 
 Since Cacti 1.x is supporting internationalization (i18n), it is important that
-the default character set for MySQL/MariaDB be i18n compatible.  The Cacti
-installer will make specific recommendations on MySQL/MariaDB settings.  Follow
+the default character set for MySQL/MariaDB be i18n compatible. The Cacti
+installer will make specific recommendations on MySQL/MariaDB settings. Follow
 those as applicable for your OS.
 
 Galera clustering: There are several tables which are set to use the MEMORY
@@ -259,17 +268,17 @@ back into rotation.
    mysql> FLUSH PRIVILEGES;
    ```
 
-    Note that if your `root` (or equivalent) user does not have `SUPER` permissions,
-    it may still be possible to `GRANT SELECT` privileges to the Cacti user via an
-    `INSERT INTO mysql.tables_priv`.
+   Note that if your `root` (or equivalent) user does not have `SUPER`
+   permissions, it may still be possible to `GRANT SELECT` privileges to the
+   Cacti user via an `INSERT INTO mysql.tables_priv`.
 
-    ```sql
-    INSERT INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Table_priv)
-    VALUES ('localhost', 'mysql', 'cactiuser', 'time_zone_name', 'root@localhost', 'Select');
-    ```
+   ```sql
+   INSERT INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Table_priv)
+   VALUES ('localhost', 'mysql', 'cactiuser', 'time_zone_name', 'root@localhost', 'Select');
+   ```
 
-5. Edit `include/config.php` and specify the database type, name, host, user
-   and password for your Cacti configuration.
+5. Edit `include/config.php` and specify the database type, name, host, user and
+   password for your Cacti configuration.
 
    ```php
    $database_type = "mysql";
@@ -287,28 +296,27 @@ back into rotation.
    shell> chown -R cactiuser rra/ log/ cache/
    ```
 
-   (Enter a valid username for *cactiuser*, this user will also be used in the
+   (Enter a valid username for _cactiuser_, this user will also be used in the
    next step for data gathering.)
 
 7. Create your cron task file or systemd units file
 
-   Starting with Cacti 1.2.16, you have the option to use either the
-   legacy Crontab entry, or an optional cactid units file and server
-   to run your Cacti pollers.
+   Starting with Cacti 1.2.16, you have the option to use either the legacy
+   Crontab entry, or an optional cactid units file and server to run your Cacti
+   pollers.
 
    For Crontab use, follow the instructions below:
 
-   Create and edit `/etc/cron.d/cacti` file.
-   Make sure to setup the correct path to poller.php
+   Create and edit `/etc/cron.d/cacti` file. Make sure to setup the correct path
+   to poller.php
 
    ```console
    */5 * * * * apache php <path_cacti>/poller.php &>/dev/null
    ```
 
-   For systemd unit's file install, you will need to modify the
-   included units file to following your install location
-   and desired user and group's to run the Cacti poller as.
-   To complete the task, follow the procedure below:
+   For systemd unit's file install, you will need to modify the included units
+   file to following your install location and desired user and group's to run
+   the Cacti poller as. To complete the task, follow the procedure below:
 
    ```console
    vim <path_cacti>/service/cactid.service (edit the path)
@@ -319,8 +327,8 @@ back into rotation.
    systemctl status cactid
    ```
 
-   The systemd units file makes managing a highly available Cacti
-   setup a bit more convenient.
+   The systemd units file makes managing a highly available Cacti setup a bit
+   more convenient.
 
 8. During install, you will need to provide write access to the following files
    and directories:
@@ -336,7 +344,7 @@ back into rotation.
 
    `http://<your-server>/cacti/`
 
-   Log in the with a username/password of *admin*. You will be required to
+   Log in the with a username/password of _admin_. You will be required to
    change this password immediately. Make sure to fill in all of the path
    variables carefully and correctly on the following screen.
 
@@ -364,7 +372,7 @@ it. The configuration file may be placed in the same directory as spine itself
 or at /etc/spine.conf.
 
 ```ini
-DB_Host  127.0.0.1 or hostname (not localhost)
+DB_Host     127.0.0.1 or hostname (not localhost)
 DB_Database cacti
 DB_User     cactiuser
 DB_Password cacti
@@ -373,9 +381,12 @@ DB_Port     3306
 
 ### Considerations when using Proxys in front of Cacti (Cacti 1.2.23+)
 
-For optimal security, only specify the HTTP headers that are set by your proxy software to prevent unauthorized access.  These can be set by editing the following section of config.php
+For optimal security, only specify the HTTP headers that are set by your proxy
+software. to prevent unauthorized access, These can be set by editing the
+following section of config.php
 
-```
+```php
+/*
  * Allow the use of Proxy IPs when searching for client
  * IP to be used
  *
@@ -400,7 +411,9 @@ For optimal security, only specify the HTTP headers that are set by your proxy s
  *		'REMOTE_ADDR',
  */
 $proxy_headers = null;
+
 ```
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+
+Copyright (c) 2004-2023 The Cacti Group

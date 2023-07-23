@@ -186,4 +186,4 @@ Those settings include:
   exceeds this timeout, it will generate a log message.
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

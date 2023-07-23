@@ -106,4 +106,4 @@ In Cacti, create a new device like that :
 Voila ! Your target server is graphed by Cacti :)
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

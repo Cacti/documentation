@@ -45,4 +45,4 @@ correction.
 > since the RRDfiles associated with them will not be updated as expected for with an
 > available Device.
 
---- <copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+--- Copyright (c) 2004-2023 The Cacti Group

@@ -53,20 +53,18 @@ host.
 ### Availability/Reachability Options
 
 - **Downed Device Detection**
-  - ___NONE___ - Deactivate downed host detection
-  - ___PING and SNMP Uptime___ - Ping and then also check SNMP Uptime
-  - ___PING or SNMP Uptime___ - Ping and if successful, move on, if not check SNMP Uptime
-  - ___SNMP Uptime___ - verify the SNMP Uptime only
-  - ___SNMP Desc___ - verify the SNMP System Description
-  - ___SNMP GetNext___ - verify the very next SNMP OID after .1.3
-  - ___PING___ - perform a ping test, see below
+  - _**NONE**_ - Deactivate downed host detection
+  - _**PING and SNMP Uptime**_ - Ping and then also check SNMP Uptime
+  - _**PING or SNMP Uptime**_ - Ping and if successful, move on, if not check SNMP Uptime
+  - _**SNMP Uptime**_ - verify the SNMP Uptime only
+  - _**SNMP Desc**_ - verify the SNMP System Description
+  - _**SNMP GetNext**_ - verify the very next SNMP OID after .1.3
+  - _**PING**_ - perform a ping test, see below
 
-
-- **Ping Method** - Available only for ***PING and SNMP*** or ***PING***
-  - ___ICMP___ - perform ICMP tests. Requires permissions
-  - ___UDP___ - perform a UDP test
-  - ___TCP___ - perform a TCP test
-
+- **Ping Method** - Available only for _**PING and SNMP**_ or _**PING**_
+  - _**ICMP**_ - perform ICMP tests. Requires permissions
+  - _**UDP**_ - perform a UDP test
+  - _**TCP**_ - perform a TCP test
 
 - **Ping Port** - Available only for UDP/TCP PING test types. Please define the
   port to be tested here. Make sure, that no firewall
@@ -81,11 +79,10 @@ host.
 ### SNMP Options
 
 - **SNMP Version**
-  - ___Version 1___ - Use SNMP Version 1. Be aware, that 64bit counters are not 
+  - _**Version 1**_ - Use SNMP Version 1. Be aware, that 64bit counters are not
   supported in this SNMP version.
-  - ___Version 2___ - Referred to as SNMP V2c in most SNMP documentations
-  - ___Version 3___ - SNMP V3, supporting authentication and encryption
-
+  - _**Version 2**_ - Referred to as SNMP V2c in most SNMP documentations
+  - _**Version 3**_ - SNMP V3, supporting authentication and encryption
 
 - **SNMP Community** - SNMP read community for this device
 
@@ -96,33 +93,33 @@ host.
 
 - **Maximum OID's Per Get Request** - This is a performance feature. Specifies
   the number of OID's that can be obtained in a single SNMP Get request.
-  ***WARNING***: This feature only works when using Spine.
-  ***WARNING*** Some devices do not support values greater than `1` and/or may
+  _**WARNING**_: This feature only works when using Spine.
+  _**WARNING**_ Some devices do not support values greater than `1` and/or may
   reports as unknown data if this value is too high.
 
 ### Security Options for SNMP V3
 
-- ***SNMP Username*** - `username` of an SNMP V3 `createUser` statement or
+- _**SNMP Username**_ - `username` of an SNMP V3 `createUser` statement or
   equivalent
 
-- ***SNMP Password*** - `authpassphrase` of an SNMP V3 `createUser` statement
+- _**SNMP Password**_ - `authpassphrase` of an SNMP V3 `createUser` statement
   or equivalent
 
-- ***SNMP Auth Protocol*** - Authentication type of an SNMP V3 `createUser`
+- _**SNMP Auth Protocol**_ - Authentication type of an SNMP V3 `createUser`
   statement or equivalent. Select either MD5, SHA, SHA-224, SHA-256, SHA-392,
   or SHA-512. Defaults to MD5.
 
-- ***SNMP Privacy Passphrase*** - The `privacy passphrase` of an SNMP V3
+- _**SNMP Privacy Passphrase**_ - The `privacy passphrase` of an SNMP V3
   `createUser` statement or equivalent.
 
-- ***SNMP Privacy Protocol*** - The `privacy protocol` of an SNMP V3
+- _**SNMP Privacy Protocol**_ - The `privacy protocol` of an SNMP V3
   `createUser` statement or equivalent. Select DES (if available), AES-128,
   AES-192, or AES-256. Defaults to DES.
 
-  **NOTE** Spine may not support DES today as some Net-SNMP distributions 
+  **NOTE** Spine may not support DES today as some Net-SNMP distributions
   have disabled it.
 
-- ***SNMP Context*** - When using the View-Based Access Control Model (VACM),
+- _**SNMP Context**_ - When using the View-Based Access Control Model (VACM),
   it is possible to specify an SNMP Context when mapping a community name to
   a security name with a `com2sec` directive, with the `group` directive and
   the `access` directive. This allows for defining special access models. If
@@ -167,7 +164,7 @@ SNMP retrieval methods in Cacti and are outlined below.
 ### SNMP V3 Options Explained
 
 SNMP supports authentication and encryption features when using SNMP protocol
-version 3 known as *View-Based Access Control Model (VACM)*. This requires,
+version 3 known as **View-Based Access Control Model (VACM)**. This requires,
 that the target device in question supports and is configured for SNMP V3 use.
 In general, configuration of V3 options is target type dependent. The following
 is cited from `man snmpd.conf` concerning user definitions
@@ -332,4 +329,4 @@ use the Graph Management item on the menu. Likewise, the Data Source menu item
 allows you to manage your data sources in Cacti.
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group
