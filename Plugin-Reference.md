@@ -141,4 +141,4 @@ Cacti page loads fast.  Including too much in the setup.php slows Cacti and
 should be avoided.
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

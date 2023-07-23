@@ -23,4 +23,4 @@ Below you can see the GPrint Preset edit screeen.
 ![GPRINT Presets Edit](images/gprint-presets-edit.png)
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

@@ -224,4 +224,4 @@ paste them into my.cnf
  ```
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

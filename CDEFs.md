@@ -93,4 +93,4 @@ and examples of their use.  Cacti supports all of them, if you find one that is 
 supported, open an [Issue on Github](https://github.com/Cacti/cacti/issues).
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

@@ -19,7 +19,7 @@ There are a number of popular plugins including:
   Cacti Devices that are experiencing faults.
 - **Intropage** - A plugin that provides a replacement to the Cacti console
   showing key performance metrics across all of Cacti from a single page.
-- **Weathermap** - A plugin that allows you to create architectural 
+- **Weathermap** - A plugin that allows you to create architectural
   diagrams of your network and to animate them with status data.
 
 In theory, these plugins can be integrated into Cacti very simply, and removed
@@ -28,8 +28,8 @@ plugins documentation before you start to use it.
 
 ## Legacy Plugins Notice
 
-Plugins written for Cacti 0.8.x require modifications in order to be compatible 
-with Cacti 1.x.  There are several changes that all plugin developers need to 
+Plugins written for Cacti 0.8.x require modifications in order to be compatible
+with Cacti 1.x.  There are several changes that all plugin developers need to
 be aware of. Any of the Cacti Group maintained plugin can be
 used as reference plugins for driving your plugin migration to the 1.x
 framework and are available on [Github](https://github.com/Cacti/).
@@ -147,4 +147,4 @@ controlled at not only a global level, but now per plugin, per device and even
 per file.
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

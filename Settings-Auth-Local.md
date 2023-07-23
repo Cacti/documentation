@@ -8,8 +8,8 @@ database, and are stored in a method where they are not easily compromised.
 
 ## Local Account Complexity Requirements
 
-Additionally, Cacti has the ability to remember password history, force 
-complexity rules, minimum lengths, force change frequency, etc. on new 
+Additionally, Cacti has the ability to remember password history, force
+complexity rules, minimum lengths, force change frequency, etc. on new
 passwords.  These settings are configurable as well.  The image below
 shows the local complexity settings available in Cacti.
 
@@ -46,4 +46,4 @@ The settings are fairly self explanatory, so additional detail is no
 provided here.
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

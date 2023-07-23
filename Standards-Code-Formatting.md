@@ -461,4 +461,4 @@ PHP DocBlock specifications as follow:
 Place a space between the `@param` and `@return`.
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

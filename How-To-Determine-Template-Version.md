@@ -46,4 +46,4 @@ The next 32 digits are a random number.
 For the example above, this template was exported with Cacti 0.8.7d.
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

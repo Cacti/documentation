@@ -61,7 +61,7 @@ Those settings include:
 
 - **Number of RRDfile Checker Processes** - For very large Cacti installs
   the **RRDfile Checker** can take quite a long time to complete.
-  This setting allows Cacti to perform the checks at orders of magnitude faster. 
+  This setting allows Cacti to perform the checks at orders of magnitude faster.
 
 - **Check Frequency** - This setting determines how often
   checks should be executed.  You can set
@@ -125,4 +125,4 @@ The settings above include:
   connection to the RRD Proxy service.
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

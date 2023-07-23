@@ -1,39 +1,37 @@
 # Template Exporting
 
-Cacti allows **Device**, **Graph**, and **Data** Templates to be
-exported in XML format.  You can access the screen below by going
-to `Console > Import / Export > Template Export`.  When you get
-to this page, the most popular option is to export the
-**Device Template**, but the discretion is upto the user.  Once
-you pick the object type, the list of available templates
-is presented.  The most popular option is to save to a file,
-but you have additional options.
+Cacti allows **Device**, **Graph**, and **Data** Templates to be exported in XML
+format. You can access the screen below by going to
+`Console > Import / Export > Template Export`. When you get to this page, the
+most popular option is to export the **Device Template**, but the discretion is
+upto the user. Once you pick the object type, the list of available templates is
+presented. The most popular option is to save to a file, but you have additional
+options.
 
 ![Import Template](images/export-template.png)
 
-Inside of the Template, Cacti uses a **hash** Global Uniqueue ID (GUID)
-to uniquely identify every Template component.  So, any Template
-that you export can be shared with anyone around the globe without
-ambiguity.  See the Linux Device Template Example below.
+Inside of the Template, Cacti uses a **hash** Global Uniqueue ID (GUID) to
+uniquely identify every Template component. So, any Template that you export can
+be shared with anyone around the globe without ambiguity. See the Linux Device
+Template Example below.
 
 In this Template thaere are Many Components:
 
-1) The Device Template Name itself and it's GUID
-2) All the Graph Templates and their GUID's
-3) All the Graph Template inputs and their GUID's
-4) All the Data Templates and their GUID's
-5) All the Data Input Method's and their GUID's
-6) All the GPrint Presets and their GUID's
-7) All the CDEF's and VDEF's and their GUID's
-8) All the Data Source Profiles and their GUID's
+1. The Device Template Name itself and it's GUID
+2. All the Graph Templates and their GUID's
+3. All the Graph Template inputs and their GUID's
+4. All the Data Templates and their GUID's
+5. All the Data Input Method's and their GUID's
+6. All the GPrint Presets and their GUID's
+7. All the CDEF's and VDEF's and their GUID's
+8. All the Data Source Profiles and their GUID's
 
-Although the output is human readable, some columns are encoded
-so as to not cause problems with the XML output format.
-To read them, you must base64_decode them in PHP or some
-other language.
+Although the output is human readable, some columns are encoded so as to not
+cause problems with the XML output format. To read them, you must base64_decode
+them in PHP or some other language.
 
-Presently they are saved in XML format, but there are
-discussions with making these templates YAML formatted.
+Presently they are saved in XML format, but there are discussions with making
+these templates YAML formatted.
 
 ```xml
 <cacti>
@@ -539,4 +537,5 @@ discussions with making these templates YAML formatted.
 ```
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+
+Copyright (c) 2004-2023 The Cacti Group

@@ -16,4 +16,4 @@ This feature can be very useful to create a single UI for helpdesk/NOC.
 ![External Links Example](images/external-links-example1.png)
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

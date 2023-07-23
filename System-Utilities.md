@@ -17,7 +17,7 @@ cacti from this page you can do the following
 
 Some of the most important tools are listed below
 
-### Rebuild poller cache
+## Rebuild poller cache
 
 The Poller Cache will be re-generated if you select this option. Use this
 option only in the event of a database crash if you are experiencing issues
@@ -63,8 +63,9 @@ When you delete Data Sources from Cacti, the corresponding RRDfiles are not
 removed automatically. Use this utility to facilitate the removal of
 these old files.
 
-In system utilities you can manually start the RRD cleaning procedure 
-You can either archive the selected RRD's to have them deleted in the next polling cycle
+In system utilities you can manually start the RRD cleaning procedure
+You can either archive the selected RRD's
+to have them deleted in the next polling cycle
 
 ![System Utilities](images/system-utilities-rrdcleaner.png)
 
@@ -78,13 +79,16 @@ the RRDfile autoclean selection.
 
 `Console > utilities > System Utilities > RRDfile Checker`
 
-The RRDfile checker is a tool that scans all RRDfiles at a scheduled time and tests the stored data:
+The RRDfile checker is a tool that scans all RRDfiles at a
+scheduled time and tests the stored data:
+
 - Stale values for 1 or 24 hours
 - Whether the file is updated regularly
 - Incorrect file read/write access
 - Whether the Database Data Source objects match the RRDfiles Data Sources
 
-For very large Cacti installs the **RRDfile checker** can take quite a long time to complete. 
+For very large Cacti installs the **RRDfile checker** can take quite
+a long time to complete.
 You can set number of concurrent parallel processes in `Console > Configuration > Settings > Data`
 
 ### Viewing Change log from system utilities
@@ -100,8 +104,9 @@ included in your version.
 
 `Console > utilities > System Utilities > View user Log`
 
-In system utilities you are able to view a log of user logins both successful and failures
-The Log will also show what Client IP address the login originated from along with info 
+In system utilities you are able to view a log of user logins
+both successful and failures The Log will also show what Client IP address
+the login originated from along with info
 if the login was based on password or token based login
 
 ![System Utilities](images/system-utilities-viewulog.png)
@@ -110,11 +115,11 @@ if the login was based on password or token based login
 
 `Console > Utilities > System Utilities > View Boost Status`
 
-In this view you can see statistics on how Boost is running you will be able to see 
-Information such as when the last time boost started, How long it ran for, The average boost record size
+In this view you can see statistics on how Boost is running you will be able to see
+Information such as when the last time boost started, How long it ran for,
+The average boost record size
 
 ![System Utilities](images/system-utilities-boost1.png)
-
 
 ![System Utilities](images/system-utilities-boost2.png)
 
@@ -122,12 +127,13 @@ Information such as when the last time boost started, How long it ran for, The a
 
 `Console > Utilities > System Utilities > View Data Source Query Cache`
 
-The Data Query Cache stores information gathered from Data Query input types. 
-The values from these fields can be used in the text area of Graphs for Legends, Vertical Labels, and GPRINTS as well as in CDEF's.
+The Data Query Cache stores information gathered from Data Query input types.
+The values from these fields can be used in the text area of Graphs for Legends,
+Vertical Labels, and GPRINTS as well as in CDEF's.
 
 ![System Utilities](images/system-utilities-viewdqcache.png)
 
-### Viewing the Poller Cache 
+### Viewing the Poller Cache
 
 `Console > Utilities > System Utilities > View Poller Cache`
 
@@ -137,11 +143,13 @@ This is the data that is being passed to the poller each time it runs.
 
 ### Viewing System log via System Utilities
 
-You are able to view the system log via the System utilities page this will show the RAW log
-this slightly differs from the view log tab as the device names will show the device ID rather than 
+You are able to view the system log via the System utilities
+page this will show the RAW log
+this slightly differs from the view log tab as the device names
+will show the device ID rather than
 the Device name this is the same view as you reading the log in the OS
 
 ![System Utilities](images/system-utilities-viewclog.png)
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+Copyright (c) 2004-2023 The Cacti Group

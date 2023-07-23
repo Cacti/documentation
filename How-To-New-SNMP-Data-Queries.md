@@ -1,7 +1,7 @@
 # SNMP Data Query Walkthrough
 
-This walkthrough will show you how to implement a new SNMP Data Query.
-Assuming, you know the SNMP table, the next steps show how to proceed.
+This walkthrough will show you how to implement a new SNMP Data Query. Assuming,
+you know the SNMP table, the next steps show how to proceed.
 
 ## Building Raw XML File
 
@@ -11,26 +11,26 @@ The starting point will be snmptable for a well know table of the HOSTS MIB:
 snmptable -c <community> -v 1 <host> HOST-RESOURCES-MIB::hrStorageTable
 SNMP table: HOST-RESOURCES-MIB::hrStorageTable
 
- hrStorageIndex                                hrStorageType hrStorageDescr hrStorageAllocationUnits hrStorageSize hrStorageUsed hrStorageAllocationFailures
-              1         HOST-RESOURCES-TYPES::hrStorageOther Memory Buffers               1024 Bytes       1035356         59532                           ?
-              2           HOST-RESOURCES-TYPES::hrStorageRam    Real Memory               1024 Bytes       1035356        767448                           ?
-              3 HOST-RESOURCES-TYPES::hrStorageVirtualMemory     Swap Space               1024 Bytes       1048568   0                           ?
-              4     HOST-RESOURCES-TYPES::hrStorageFixedDisk              /               4096 Bytes       2209331        826154                           ?
-              5     HOST-RESOURCES-TYPES::hrStorageFixedDisk           /sys               4096 Bytes             0   0                           ?
-              6     HOST-RESOURCES-TYPES::hrStorageFixedDisk  /proc/bus/usb               4096 Bytes             0   0                           ?
-              7     HOST-RESOURCES-TYPES::hrStorageFixedDisk          /boot               1024 Bytes        102454          9029                           ?
-              8     HOST-RESOURCES-TYPES::hrStorageFixedDisk          /home               4096 Bytes        507988        446407                           ?
-              9     HOST-RESOURCES-TYPES::hrStorageFixedDisk     /usr/local               4096 Bytes        507988         17133                           ?
-             10     HOST-RESOURCES-TYPES::hrStorageFixedDisk           /var               4096 Bytes        507988        129429                           ?
-             11     HOST-RESOURCES-TYPES::hrStorageFixedDisk /var/lib/nfs/rpc_pipefs               4096 Bytes             0            0                           ?**
+ hrStorageIndex                hrStorageType hrStorageDescr hrStorageAllocationUnits hrStorageSize hrStorageUsed hrStorageAllocationFailures
+          1     HOST-RESOURCES-TYPES::hrStorageOther Memory Buffers           1024 Bytes       1035356     59532               ?
+          2       HOST-RESOURCES-TYPES::hrStorageRam    Real Memory           1024 Bytes       1035356    767448               ?
+          3 HOST-RESOURCES-TYPES::hrStorageVirtualMemory     Swap Space           1024 Bytes       1048568   0               ?
+          4     HOST-RESOURCES-TYPES::hrStorageFixedDisk          /           4096 Bytes       2209331    826154               ?
+          5     HOST-RESOURCES-TYPES::hrStorageFixedDisk       /sys           4096 Bytes         0   0               ?
+          6     HOST-RESOURCES-TYPES::hrStorageFixedDisk  /proc/bus/usb           4096 Bytes         0   0               ?
+          7     HOST-RESOURCES-TYPES::hrStorageFixedDisk      /boot           1024 Bytes    102454      9029               ?
+          8     HOST-RESOURCES-TYPES::hrStorageFixedDisk      /home           4096 Bytes    507988    446407               ?
+          9     HOST-RESOURCES-TYPES::hrStorageFixedDisk     /usr/local           4096 Bytes    507988     17133               ?
+         10     HOST-RESOURCES-TYPES::hrStorageFixedDisk       /var           4096 Bytes    507988    129429               ?
+         11     HOST-RESOURCES-TYPES::hrStorageFixedDisk /var/lib/nfs/rpc_pipefs           4096 Bytes         0        0               ?**
 ```
 
 This given, the first step will be the definition of an XML file based on those
 OIDs. So change to your `<path_cacti>/resources/snmp_queries` directory and
 create a file named **hrStorageTable.xml**. You may of course choose your own
-name, but for me it seems appropriate to take the name of the SNMP Table
-itself. Before doing so, it is necessary to identify the Index of that table.
-Without looking at the MIB file, simply perform
+name, but for me it seems appropriate to take the name of the SNMP Table itself.
+Before doing so, it is necessary to identify the Index of that table. Without
+looking at the MIB file, simply perform
 
 ```console
 snmpwalk -c <community> -v 1 -On <host> HOST-RESOURCES-MIB::hrStorageTable|more
@@ -54,33 +54,33 @@ The first index is `.1.3.6.1.2.1.25.2.3.1.1.1`, but the Index Base is
 
 ```xml
 <interface>
-        <name>Get hrStoragedTable Information</name>
-        <description>Get SNMP based Partition Information out of hrStorageTable</description>
-        <index_order>hrStorageDescr:hrStorageIndex</index_order>
-        <index_order_type>numeric</index_order_type>
-        <oid_index>.1.3.6.1.2.1.25.2.3.1.1</oid_index>
+    <name>Get hrStoragedTable Information</name>
+    <description>Get SNMP based Partition Information out of hrStorageTable</description>
+    <index_order>hrStorageDescr:hrStorageIndex</index_order>
+    <index_order_type>numeric</index_order_type>
+    <oid_index>.1.3.6.1.2.1.25.2.3.1.1</oid_index>
 
-        <fields>
-                <hrStorageIndex>
-                        <name>Index</name>
-                        <method>walk</method>
-                        <source>value</source>
-                        <direction>input</direction>
-                        <oid>.1.3.6.1.2.1.25.2.3.1.1</oid>
-                </hrStorageIndex>
-        </fields>
+    <fields>
+        <hrStorageIndex>
+            <name>Index</name>
+            <method>walk</method>
+            <source>value</source>
+            <direction>input</direction>
+            <oid>.1.3.6.1.2.1.25.2.3.1.1</oid>
+        </hrStorageIndex>
+    </fields>
 </interface>
 ```
 
 Lets talk about the header elements
 
-Field | Description
---- | ---
-Name | Short Name; choose your own one if you want
-Description | Long Name
-index_order | tells us, which field shall be selected to index on; evaluated from left to right
-index_order_type | numeric instead of alphabetic sorting
-oid_index | the index of the table
+| Field            | Description                                                                       |
+| ---------------- | --------------------------------------------------------------------------------- |
+| Name             | Short Name; choose your own one if you want                                       |
+| Description      | Long Name                                                                         |
+| index_order      | tells us, which field shall be selected to index on; evaluated from left to right |
+| index_order_type | numeric instead of alphabetic sorting                                             |
+| oid_index        | the index of the table                                                            |
 
 There are more header elements, but for sake of simplification, we'll stick to
 that for now.
@@ -92,13 +92,13 @@ more fields, each beginning with `<field_description>` and ending with
 `</field_description>`. It is recommended but not necessary to take the textual
 representation of the OID or an abbreviation of that.
 
-Field | Description
---- | ---
-Name | Short Name
-Method | Walk or get (representing snmpwalk or snmpget to fetch the values)
-Source | Value = take the value of that OID as the requested value. Sounds ugly, but there are more options that we won't need for the purpose of this example
-Direction | Input (for values that may be printed as COMMENTs or the like). Output (for values that shall be graphed, e.g. COUNTERs or GAUGEs).
-OID | the real OID as numeric representation
+| Field     | Description                                                                                                                                           |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name      | Short Name                                                                                                                                            |
+| Method    | Walk or get (representing snmpwalk or snmpget to fetch the values)                                                                                    |
+| Source    | Value = take the value of that OID as the requested value. Sounds ugly, but there are more options that we won't need for the purpose of this example |
+| Direction | Input (for values that may be printed as COMMENTs or the like). Output (for values that shall be graphed, e.g. COUNTERs or GAUGEs).                   |
+| OID       | the real OID as numeric representation                                                                                                                |
 
 Now save this file and lets turn to cacti to implement this one. First, go to
 **Data Queries** to see
@@ -114,16 +114,15 @@ and don't forget to choose **Get SNMP Data (indexed)**. **Create** to see
 
 ![SNMP Table 3 - Data Query](images/dq-03.preview.png)
 
-
 It has now **Successfully located XML file**. But this does not mean that there
-are no errors. So lets go on with that. Turn to the **Device** you want to
-query and add the new **Data Query** as shown:
+are no errors. So lets go on with that. Turn to the **Device** you want to query
+and add the new **Data Query** as shown:
 
 ![SNMP Table 1 - Device](images/dev-01.preview.png)
 
-**Index Count Changed** was chosen on purpose to tell cacti to re-index not
-only on reboot but each time the Index Count (e.g. number of partitions)
-changed. When done, see the results as
+**Index Count Changed** was chosen on purpose to tell cacti to re-index not only
+on reboot but each time the Index Count (e.g. number of partitions) changed.
+When done, see the results as
 
 ![SNMP Table 2 - Device](images/dev-02.preview.png)
 
@@ -148,43 +147,43 @@ must.
 
 ```xml
 <interface>
-        <name>Get hrStoragedTable Information</name>
-        <description>Get SNMP based Partition Information out of hrStorageTable</description>
-        <index_order>hrStorageDescr:hrStorageIndex</index_order>
-        <index_order_type>numeric</index_order_type>
-        <oid_index>.1.3.6.1.2.1.25.2.3.1.1</oid_index>
+    <name>Get hrStoragedTable Information</name>
+    <description>Get SNMP based Partition Information out of hrStorageTable</description>
+    <index_order>hrStorageDescr:hrStorageIndex</index_order>
+    <index_order_type>numeric</index_order_type>
+    <oid_index>.1.3.6.1.2.1.25.2.3.1.1</oid_index>
 
-        <fields>
-                <hrStorageIndex>
-                        <name>Index</name>
-                        <method>walk</method>
-                        <source>value</source>
-                        <direction>input</direction>
-                        <oid>.1.3.6.1.2.1.25.2.3.1.1</oid>
-                </hrStorageIndex>
-                <hrStorageType>
-                        <name>Type</name>
-                        <method>walk</method>
-                        <source>value</source>
-                        <direction>input</direction>
-                        <oid>.1.3.6.1.2.1.25.2.3.1.2</oid>
+    <fields>
+        <hrStorageIndex>
+            <name>Index</name>
+            <method>walk</method>
+            <source>value</source>
+            <direction>input</direction>
+            <oid>.1.3.6.1.2.1.25.2.3.1.1</oid>
+        </hrStorageIndex>
+        <hrStorageType>
+            <name>Type</name>
+            <method>walk</method>
+            <source>value</source>
+            <direction>input</direction>
+            <oid>.1.3.6.1.2.1.25.2.3.1.2</oid>
 
-                </hrStorageType>
-                <hrStorageDescr>
-                        <name>Description</name>
-                        <method>walk</method>
-                        <source>value</source>
-                        <direction>input</direction>
-                        <oid>.1.3.6.1.2.1.25.2.3.1.3</oid>
-                </hrStorageDescr>
-                <hrStorageAllocationUnits>
-                        <name>Allocation Units (Bytes)</name>
-                        <method>walk</method>
-                        <source>value</source>
-                        <direction>input</direction>
-                        <oid>.1.3.6.1.2.1.25.2.3.1.4</oid>
-                </hrStorageAllocationUnits>
-        </fields>
+        </hrStorageType>
+        <hrStorageDescr>
+            <name>Description</name>
+            <method>walk</method>
+            <source>value</source>
+            <direction>input</direction>
+            <oid>.1.3.6.1.2.1.25.2.3.1.3</oid>
+        </hrStorageDescr>
+        <hrStorageAllocationUnits>
+            <name>Allocation Units (Bytes)</name>
+            <method>walk</method>
+            <source>value</source>
+            <direction>input</direction>
+            <oid>.1.3.6.1.2.1.25.2.3.1.4</oid>
+        </hrStorageAllocationUnits>
+    </fields>
 </interface>
 ```
 
@@ -198,13 +197,13 @@ complete OID `.1.3.6.1.2.1.25.2.3.1.3.1.`
 Please notice, that all fields that will yield descriptive columns only take
 `<direction>input</direction>`
 
-If you have completed your work, turn to the cacti web interface and select
-your host from the **Devices** list to see:
+If you have completed your work, turn to the cacti web interface and select your
+host from the **Devices** list to see:
 
 ![SNMP Table 3 - Devices](images/dev-10.preview.png)
 
-Select the little green circle next to our SNMP XML to update your last
-changes. Then you'll see something like:
+Select the little green circle next to our SNMP XML to update your last changes.
+Then you'll see something like:
 
 ![SNMP Table 4 - Devices](images/dev-11.preview.png)
 
@@ -216,9 +215,9 @@ And clicking **Create Graphs for this host** will result in
 
 ![SNMP Table 6 - Devices](images/dev-13.preview.png)
 
-You're not supposed to really create graphs at this moment, cause the XML is
-not yet complete. And you'll notice, that the second column does not present
-very useful information. So it may be omitted in later steps.
+You're not supposed to really create graphs at this moment, cause the XML is not
+yet complete. And you'll notice, that the second column does not present very
+useful information. So it may be omitted in later steps.
 
 ## Getting the Output Values
 
@@ -228,49 +227,49 @@ XML field descriptions, see:
 
 ```xml
 <interface>
-        <name>Get hrStoragedTable Information</name>
-        <description>Get SNMP based Partition Information out of hrStorageTable</description>
-        <index_order>hrStorageDescr:hrStorageIndex</index_order>
-        <index_order_type>numeric</index_order_type>
-        <oid_index>.1.3.6.1.2.1.25.2.3.1.1</oid_index>
+    <name>Get hrStoragedTable Information</name>
+    <description>Get SNMP based Partition Information out of hrStorageTable</description>
+    <index_order>hrStorageDescr:hrStorageIndex</index_order>
+    <index_order_type>numeric</index_order_type>
+    <oid_index>.1.3.6.1.2.1.25.2.3.1.1</oid_index>
 
-        <fields>
-                <hrStorageIndex>
-                        <name>Index</name>
-                        <method>walk</method>
-                        <source>value</source>
-                        <direction>input</direction>
-                        <oid>.1.3.6.1.2.1.25.2.3.1.1</oid>
-                </hrStorageIndex>
-                <hrStorageDescr>
-                        <name>Description</name>
-                        <method>walk</method>
-                        <source>value</source>
-                        <direction>input</direction>
-                        <oid>.1.3.6.1.2.1.25.2.3.1.3</oid>
-                </hrStorageDescr>
-                <hrStorageAllocationUnits>
-                        <name>Allocation Units (Bytes)</name>
-                        <method>walk</method>
-                        <source>value</source>
-                        <direction>input</direction>
-                        <oid>.1.3.6.1.2.1.25.2.3.1.4</oid>
-                </hrStorageAllocationUnits>
-                <hrStorageSize>
-                        <name>Total Size (Units)</name>
-                        <method>walk</method>
-                        <source>value</source>
-                        <direction>output</direction>
-                        <oid>.1.3.6.1.2.1.25.2.3.1.5</oid>
-                </hrStorageSize>
-                <hrStorageUsed>
-                        <name>Used Space (Units)</name>
-                        <method>walk</method>
-                        <source>value</source>
-                        <direction>output</direction>
-                        <oid>.1.3.6.1.2.1.25.2.3.1.6</oid>
-                </hrStorageUsed>
-        </fields>
+    <fields>
+        <hrStorageIndex>
+            <name>Index</name>
+            <method>walk</method>
+            <source>value</source>
+            <direction>input</direction>
+            <oid>.1.3.6.1.2.1.25.2.3.1.1</oid>
+        </hrStorageIndex>
+        <hrStorageDescr>
+            <name>Description</name>
+            <method>walk</method>
+            <source>value</source>
+            <direction>input</direction>
+            <oid>.1.3.6.1.2.1.25.2.3.1.3</oid>
+        </hrStorageDescr>
+        <hrStorageAllocationUnits>
+            <name>Allocation Units (Bytes)</name>
+            <method>walk</method>
+            <source>value</source>
+            <direction>input</direction>
+            <oid>.1.3.6.1.2.1.25.2.3.1.4</oid>
+        </hrStorageAllocationUnits>
+        <hrStorageSize>
+            <name>Total Size (Units)</name>
+            <method>walk</method>
+            <source>value</source>
+            <direction>output</direction>
+            <oid>.1.3.6.1.2.1.25.2.3.1.5</oid>
+        </hrStorageSize>
+        <hrStorageUsed>
+            <name>Used Space (Units)</name>
+            <method>walk</method>
+            <source>value</source>
+            <direction>output</direction>
+            <oid>.1.3.6.1.2.1.25.2.3.1.6</oid>
+        </hrStorageUsed>
+    </fields>
 </interface>
 ```
 
@@ -289,15 +288,16 @@ definitions against the host and updates the rows/columns. You will notice the
 “missing” second column only when Create Graphs for this Host is selected.
 
 ---
+
 Note: Don't forget to set `<direction>output</direction>` for all
-variables/fields, that should be stored in RRDfiles and be graphed!. This is
-the mistake that occurs most often.
+variables/fields, that should be stored in RRDfiles and be graphed!. This is the
+mistake that occurs most often.
 
 ### Defining the Data Template
 
 The Data Template will define, how the data is retrieved by the XML Query is
-saved. For more information about the principles of operation, please see
-Common Tasks. Please go to **Data Templates** and **Add**:
+saved. For more information about the principles of operation, please see Common
+Tasks. Please go to **Data Templates** and **Add**:
 
 ![SNMP Table 1 - Data Template](images/dt-01.preview.png)
 
@@ -313,13 +313,13 @@ see:
 
 ![SNMP Table 3 - Data Template](images/dt-03.preview.png)
 
-and **New** or the plus sign on the **Data Source Item** panel.
-Now enter the second **Data Source Item**:
+and **New** or the plus sign on the **Data Source Item** panel. Now enter the
+second **Data Source Item**:
 
 ![SNMP Table 4 - Data Template](images/dt-04.preview.png)
 
-Please pay attention to setting the **Maximum Value** to 'U' (no limit). Else, all
-values exceeding the pre-defined as **NaN**. Now scroll down to the bottom
+Please pay attention to setting the **Maximum Value** to 'U' (no limit). Else,
+all values exceeding the pre-defined as **NaN**. Now scroll down to the bottom
 of the page and check **Index Type, Index Value and Output Type Id**
 
 ![SNMP Table 5 - Data Template](images/dt-05.preview.png)
@@ -443,7 +443,8 @@ By
 </hrStorageAllocationUnits>
 ```
 
-To prove this, go to your device and again **Verbose Query** our Data Query to see:
+To prove this, go to your device and again **Verbose Query** our Data Query to
+see:
 
 ![Data Query Debug Info](images/dev-30.png)
 
@@ -471,13 +472,15 @@ Now the Graph looks like
 
 ![Graph image](images/graph-10.png)
 
-Please find the example resources below.  Save `hrStorageTable.xml`
-into `./resource/snmp_queries` and import the Graph Template from
+Please find the example resources below. Save `hrStorageTable.xml` into
+`./resource/snmp_queries` and import the Graph Template from
 `cacti_graph_template_host_mib_hrstoragetable.xml`.
 
 [Cacti Graph Template Host MIB hrStorageTable](resource/xml/cacti_graph_template_host_mib_hrstoragetable.xml)
 
-[hrStorageTable](resource/xml/hrStorageTable.xml) download and store into `resource/snmp_queries`.
+[hrStorageTable](resource/xml/hrStorageTable.xml) download and store into
+`resource/snmp_queries`.
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+
+Copyright (c) 2004-2023 The Cacti Group

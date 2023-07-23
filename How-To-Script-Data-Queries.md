@@ -1,36 +1,36 @@
 # Script Data Query Walkthrough
 
-Goal of this HowTo will be to show the **principles of writing a Script
-Query**, including script, xml and all needed templates. Why should you create
-such a thing? Suppose, your target features some indexed readings, that are
-**not** available via SNMP but by some other method (e.g. wget/cgi, ssh, NRPE,
-…). Writing a Script Data Queries works very much the same way as SNMP Data
-Queries. But nevertheless, I'll take you through all of the steps now.
+Goal of this HowTo will be to show the **principles of writing a Script Query**,
+including script, xml and all needed templates. Why should you create such a
+thing? Suppose, your target features some indexed readings, that are **not**
+available via SNMP but by some other method (e.g. wget/cgi, ssh, NRPE, …).
+Writing a Script Data Queries works very much the same way as SNMP Data Queries.
+But nevertheless, I'll take you through all of the steps now.
 
 The example uses PHP. Why PHP? First, it's easier to copy stuff from already
 existing PHP scripts. Second, it would be possible to use cacti functions. It
 should be possible to imagine, how this works with other programming languages.
 Strictly speaking, I'm not that PHP expert. So be patient with me.
 
-Please pay attention. This HowTo will not explain how to write a **Script
-Server Data Query** (yes, there is such a thing!). It would not introduce that
-many changes. But this will be left to some other HowTo.
+Please pay attention. This HowTo will not explain how to write a **Script Server
+Data Query** (yes, there is such a thing!). It would not introduce that many
+changes. But this will be left to some other HowTo.
 
-Personally, my primary goal was to use an example, that all users should be
-able to copy to execute each and every step on its own. Unfortunately, there
-seems to be no example, that is common enough and interesting at the same time.
-So I'm sorry to announce, that this HowTo will show “Interface Traffic Data
-Gathering”. Yes, I know, this is not that new. And surely, it will not be as
-fast as pure SNMP. So, to my shame, I suppose that this will never make it into
-any production environment. But, again, this is not the primary goal.
+Personally, my primary goal was to use an example, that all users should be able
+to copy to execute each and every step on its own. Unfortunately, there seems to
+be no example, that is common enough and interesting at the same time. So I'm
+sorry to announce, that this HowTo will show “Interface Traffic Data Gathering”.
+Yes, I know, this is not that new. And surely, it will not be as fast as pure
+SNMP. So, to my shame, I suppose that this will never make it into any
+production environment. But, again, this is not the primary goal.
 
 Before starting the work, I feel encouraged to point out a drawback of this
 approach. Cacti will start a PHP instance, each time it has to fetch a value
 from the target device. This is not that fast, obviously. And it will not
-prosper from the performance boost when switching over from cmd.php to Spine.
-Of course, even Spine will need to start php! And that's exactly, where the
-thingy called **Script Server Data Query** drops in. But let's leave this for
-the next main chapter.
+prosper from the performance boost when switching over from cmd.php to Spine. Of
+course, even Spine will need to start php! And that's exactly, where the thingy
+called **Script Server Data Query** drops in. But let's leave this for the next
+main chapter.
 
 The code runs on Cacti 0.8.7 versions.
 
@@ -53,7 +53,7 @@ include(dirname(__FILE__) . '/../lib/snmp.php');
 
 # define all OIDs we need for further processing
 $oids = array(
-	'index' => '.1.3.6.1.2.1.2.2.1.1',
+    'index' => '.1.3.6.1.2.1.2.2.1.1',
 );
 
 $xml_delimiter  =  '!';
@@ -93,29 +93,29 @@ $snmp_context             = '';
 #      it has to respond with the list of interface indices
 # -------------------------------------------------------------------------
 if ($cmd == 'index') {
-	# retrieve all indices from target
-	$return_arr = reindex(cacti_snmp_walk($hostname, $snmp_community,
-	$oids['index'], $snmp_version, $snmp_auth_username,
-	$snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol,
-	$snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, $max_oids, SNMP_POLLER));
+    # retrieve all indices from target
+    $return_arr = reindex(cacti_snmp_walk($hostname, $snmp_community,
+    $oids['index'], $snmp_version, $snmp_auth_username,
+    $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol,
+    $snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, $max_oids, SNMP_POLLER));
 
-	# and print each index as a separate line
-	for ($i=0;($i<sizeof($return_arr));$i++) {
-		print $return_arr[$i] . "\n";
-	}
+    # and print each index as a separate line
+    for ($i=0;($i<sizeof($return_arr));$i++) {
+        print $return_arr[$i] . "\n";
+    }
 } else {
-	print "Invalid use of script query, required parameters:\n\n";
-	print "    <hostname> <cmd>\n";
+    print "Invalid use of script query, required parameters:\n\n";
+    print "    <hostname> <cmd>\n";
 }
 
 function reindex($arr) {
-	$return_arr = array();
+    $return_arr = array();
 
-	for ($i=0;($i<sizeof($arr));$i++) {
-		$return_arr[$i] = $arr[$i]['value'];
-	}
+    for ($i=0;($i<sizeof($arr));$i++) {
+        $return_arr[$i] = $arr[$i]['value'];
+    }
 
-	return $return_arr;
+    return $return_arr;
 }
 ```
 
@@ -167,49 +167,49 @@ Array
 )
 ```
 
-The values of interest are stored in `$return_arr[$i] = $arr[$i][“value”];`.
-The **function_reindex** gets them all.
+The values of interest are stored in `$return_arr[$i] = $arr[$i][“value”];`. The
+**function_reindex** gets them all.
 
 ## XML File
 
 This given, the first step will be the xml file defining how to access index
-values only. So change to your `<path_cacti>/resources/script_queries`
-directory and create a file named **ifTraffic.xml**. You may of course choose
-your own name.
+values only. So change to your `<path_cacti>/resources/script_queries` directory
+and create a file named **ifTraffic.xml**. You may of course choose your own
+name.
 
 ```xml
 <interface>
-        <name>Get Interface Traffic Information</name>
-        <script_path>|path_php_binary| -q |path_cacti|/scripts/query_interface_traffic.php</script_path>
-        <arg_prepend>|host_hostname|</arg_prepend>
-        <arg_index>index</arg_index>
+    <name>Get Interface Traffic Information</name>
+    <script_path>|path_php_binary| -q |path_cacti|/scripts/query_interface_traffic.php</script_path>
+    <arg_prepend>|host_hostname|</arg_prepend>
+    <arg_index>index</arg_index>
 
-        <fields>
-                <ifIndex>
-                        <name>Index</name>
-                        <direction>input</direction>
-                        <query_name>index</query_name>
-                </ifIndex>
-        </fields>
+    <fields>
+        <ifIndex>
+            <name>Index</name>
+            <direction>input</direction>
+            <query_name>index</query_name>
+        </ifIndex>
+    </fields>
 </interface>
 ```
 
 Lets talk about the header elements
 
-Field | Description
---- | ---
-name | Short Name; chose your own one if you want
-script_path | Whole command to execute the script from cli. `|path_php_binary|` is a cacti builtin variable for `/the/full/path/to/php`. `|path_cacti|` in turn gives the path of the current cacti installation directory.
-arg_prepend | All arguments passed to the script go here. There are some builtin variables, again. |host_hostname| represents the hostname of the device this query will be associated to.
-arg_index | The string given here will be passed just after all `<arg_prepend>` to the script for indexing requests. Up to now, this is the only method our script will answer to.
-fields | All fields will be defined in this section. Up to now, only the index field is defined
-name | The name of this very field
-query_name | Name of this field when performing a query or a get request (will be shown later, don't worry now).
+| field       | description                                                                                                                                                                                             |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name        | Short Name; chose your own one if you want                                                                                                                                                              |
+| script_path | Whole command to execute the script from cli. `path_php_binary`is a cacti builtin variable for`/the/full/path/to/php`. `path_cacti` in turn gives the path of the current cacti installation directory. |
+| arg_prepend | All arguments passed to the script go here. There are some builtin variables, again. `host_hostname` represents the hostname of the device this query will be associated to.                            |
+| arg_index   | The string given here will be passed just after all `<arg_prepend>` to the script for indexing requests. Up to now, this is the only method our script will answer to.                                  |
+| fields      | All fields will be defined in this section. Up to now, only the index field is defined                                                                                                                  |
+| name        | The name of this very field                                                                                                                                                                             |
+| query_name  | Name of this field when performing a query or a get request (will be shown later, don't worry now).                                                                                                     |
 
-direction | Description
---- | ---
-input | defines all fields that serve as a descriptive information to a specific table index. These values will not be graphed but may be printed in e.g.graph titles by means of `|query_<name>|`
-output | defines all fields that will yield a number that should be stored in some RRDfile
+| direction | Description                                                                                                                                                                               |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| input     | defines all fields that serve as a descriptive information to a specific table index. These values will not be graphed but may be printed in e.g.graph titles by means of `query\_<name>` |
+| output    | defines all fields that will yield a number that should be stored in some RRDfile                                                                                                         |
 
 Now save this file and lets turn to cacti to implement this one. First, go to
 **Data Queries** to see
@@ -226,14 +226,14 @@ and don't forget to choose **Get Script Data (indexed)**. **Create** to see
 ![Script Data Query - Add 03](images/dq-add-03.preview.png)
 
 It has now **Successfully located XML file**. But this does not mean that there
-are no errors. So lets go on with that. Turn to the **Device** you want to
-query and add the new **Data Query** as shown:
+are no errors. So lets go on with that. Turn to the **Device** you want to query
+and add the new **Data Query** as shown:
 
 ![Script Data Query - Associate 01](images/dev-dq-01.preview.png)
 
-**Index Count Changed** was chosen on purpose to tell cacti to re-index not
-only on reboot but each time the Index Count (e.g. number of interfaces)
-changed. When done, see the results as
+**Index Count Changed** was chosen on purpose to tell cacti to re-index not only
+on reboot but each time the Index Count (e.g. number of interfaces) changed.
+When done, see the results as
 
 ![Script Data Query - Associate 02](images/dev-dq-02.preview.png)
 
@@ -243,15 +243,15 @@ To see your script at work, select **Verbose Query** to see:
 
 ## Completing the Script
 
-Now, lets improve our basic script. First, lets define all the variables
-(OIDs), this script should ask for.
+Now, lets improve our basic script. First, lets define all the variables (OIDs),
+this script should ask for.
 
 ```php
 <?php
 
 /* do NOT run this script through a web browser */
 if (!isset($_SERVER["argv"][0]) || isset($_SERVER['REQUEST_METHOD'])  || isset($_SERVER['REMOTE_ADDR'])) {
-   die("<br><strong>This script is only meant to run at the command line.</strong>");
+    die("<br><strong>This script is only meant to run at the command line.</strong>");
 }
 
 # deactivate http headers
@@ -262,17 +262,17 @@ include(dirname(__FILE__) . "/../lib/snmp.php");
 
 # define all OIDs we need for further processing
 $oids = array(
-        "index"         => ".1.3.6.1.2.1.2.2.1.1",
-        "ifstatus"      => ".1.3.6.1.2.1.2.2.1.8",
-        "ifdescription" => ".1.3.6.1.2.1.2.2.1.2",
-        "ifname"        => ".1.3.6.1.2.1.31.1.1.1.1",
-        "ifalias"       => ".1.3.6.1.2.1.31.1.1.1.18",
-        "iftype"        => ".1.3.6.1.2.1.2.2.1.3",
-        "ifspeed"       => ".1.3.6.1.2.1.2.2.1.5",
-        "ifHWaddress"   => ".1.3.6.1.2.1.2.2.1.6",
-        "ifInOctets"    => ".1.3.6.1.2.1.2.2.1.10",
-        "ifOutOctets"   => ".1.3.6.1.2.1.2.2.1.16",
-        );
+    "index"         => ".1.3.6.1.2.1.2.2.1.1",
+    "ifstatus"      => ".1.3.6.1.2.1.2.2.1.8",
+    "ifdescription" => ".1.3.6.1.2.1.2.2.1.2",
+    "ifname"        => ".1.3.6.1.2.1.31.1.1.1.1",
+    "ifalias"       => ".1.3.6.1.2.1.31.1.1.1.18",
+    "iftype"        => ".1.3.6.1.2.1.2.2.1.3",
+    "ifspeed"       => ".1.3.6.1.2.1.2.2.1.5",
+    "ifHWaddress"   => ".1.3.6.1.2.1.2.2.1.6",
+    "ifInOctets"    => ".1.3.6.1.2.1.2.2.1.10",
+    "ifOutOctets"   => ".1.3.6.1.2.1.2.2.1.16",
+    );
 $xml_delimiter          =  "!";
 ```
 
@@ -318,16 +318,16 @@ The code responsible for the “index” option is left unchanged:
 #      it has to respond with the list of interface indices
 # -------------------------------------------------------------------------
 if ($cmd == "index") {
-        # retrieve all indices from target
-        $return_arr = reindex(cacti_snmp_walk($hostname, $snmp_community,
-        $oids["index"], $snmp_version, $snmp_auth_username,
-        $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol,
-        $snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, $max_oids, SNMP_POLLER));
+    # retrieve all indices from target
+    $return_arr = reindex(cacti_snmp_walk($hostname, $snmp_community,
+    $oids["index"], $snmp_version, $snmp_auth_username,
+    $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol,
+    $snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, $max_oids, SNMP_POLLER));
 
-        # and print each index as a separate line
-        for ($i=0;($i<sizeof($return_arr));$i++) {
-                print $return_arr[$i] . "\n";
-        }
+    # and print each index as a separate line
+    for ($i=0;($i<sizeof($return_arr));$i++) {
+        print $return_arr[$i] . "\n";
+    }
 ```
 
 The new code implements the **query** function as follows
@@ -347,8 +347,8 @@ The new code implements the **query** function as follows
 #      it has to respond with the list of
 #      interface indices along with the description of the interface
 # -------------------------------------------------------------------------
-}elseif ($cmd == "query" && isset($query_field)) {
-        $arr_index = reindex(cacti_snmp_walk($hostname, $snmp_community,
+} elseif ($cmd == "query" && isset($query_field)) {
+    $arr_index = reindex(cacti_snmp_walk($hostname, $snmp_community,
         $oids["index"], $snmp_version, $snmp_auth_username,
         $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol,
         $snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, $max_oids, SNMP_POLLER));
@@ -357,9 +357,9 @@ The new code implements the **query** function as follows
         $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol,
         $snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, $max_oids, SNMP_POLLER));
 
-        for ($i=0;($i<sizeof($arr_index));$i++) {
-                print $arr_index[$i] . $xml_delimiter . $arr[$i] . "\n";
-        }
+    for ($i=0;($i<sizeof($arr_index));$i++) {
+        print $arr_index[$i] . $xml_delimiter . $arr[$i] . "\n";
+    }
 ```
 
 Last option is the **get** function
@@ -381,8 +381,8 @@ Last option is the **get** function
 #      it has to respond with
 #      the description of the interface for interface #1
 # -------------------------------------------------------------------------
-}elseif ($cmd == "get" $$ isset($query_field) && isset($query_index)) {
-        print (cacti_snmp_get($hostname, $snmp_community,
+} elseif ($cmd == "get" $$ isset($query_field) && isset($query_index)) {
+    print (cacti_snmp_get($hostname, $snmp_community,
         $oids[$query_field] . ".$query_index", $snmp_version, $snmp_auth_username,
         $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol,
         $snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, $max_oids, SNMP_POLLER));
@@ -394,20 +394,20 @@ The rest of it is left unchanged. For sake of completeness, I repeat it here
 # -------------------------------------------------------------------------
 # -------------------------------------------------------------------------
 } else {
-        print "Invalid use of script query, required parameters:\n\n";
-        print "    <hostname> <community> <version> <snmp_port> <timeout>
-                   <max_oids> <auth_user> <auth_passphrase> <auth_proto>
-                   <priv_passphrase> <priv_proto> <context> <cmd>\n";
+    print "Invalid use of script query, required parameters:\n\n";
+    print "    <hostname> <community> <version> <snmp_port> <timeout>
+        <max_oids> <auth_user> <auth_passphrase> <auth_proto>
+        <priv_passphrase> <priv_proto> <context> <cmd>\n";
 }
 
 function reindex($arr) {
-        $return_arr = array();
+    $return_arr = array();
 
-        for ($i=0;($i<sizeof($arr));$i++) {
-                $return_arr[$i] = $arr[$i]["value"];
-        }
+    for ($i=0;($i<sizeof($arr));$i++) {
+        $return_arr[$i] = $arr[$i]["value"];
+    }
 
-        return $return_arr;
+    return $return_arr;
 }
 
 ?>
@@ -432,107 +432,107 @@ it at `<path_cacti>/resources/script_queries/ifTraffic.xml`.
 
 ```xml
 <interface>
-        <name>Get Interface Traffic Information</name>
-        <script_path>|path_php_binary| -q |path_cacti|/scripts/query_interface_traffic.php</script_path>
-        <arg_prepend>|host_hostname| |host_snmp_community| |host_snmp_version| |host_snmp_port| |host_snmp_timeout| |host_max_oids| "|host_snmp_username|" "|host_snmp_password|" "|host_snmp_auth_protocol|" "|host_snmp_priv_passphrase|" "|host_snmp_priv_protocol|" "|host_snmp_context|"</arg_prepend>
-        <arg_index>index</arg_index>
-        <arg_query>query</arg_query>
-        <arg_get>get</arg_get>
-        <output_delimeter>!</output_delimeter>
-        <index_order>ifIndex</index_order>
-        <index_order_type>numeric</index_order_type>
-        <index_title_format>|chosen_order_field|</index_title_format>
+    <name>Get Interface Traffic Information</name>
+    <script_path>|path_php_binary| -q |path_cacti|/scripts/query_interface_traffic.php</script_path>
+    <arg_prepend>|host_hostname| |host_snmp_community| |host_snmp_version| |host_snmp_port| |host_snmp_timeout| |host_max_oids| "|host_snmp_username|" "|host_snmp_password|" "|host_snmp_auth_protocol|" "|host_snmp_priv_passphrase|" "|host_snmp_priv_protocol|" "|host_snmp_context|"</arg_prepend>
+    <arg_index>index</arg_index>
+    <arg_query>query</arg_query>
+    <arg_get>get</arg_get>
+    <output_delimeter>!</output_delimeter>
+    <index_order>ifIndex</index_order>
+    <index_order_type>numeric</index_order_type>
+    <index_title_format>|chosen_order_field|</index_title_format>
 ```
 
 Let's discuss the changes
 
-Field | Description
---- | ---
-arg_prepend | some more parameters were added to provide all necessary values for the script. They are position-dependent. You may notice the strange tics I've added to e.g. host_snmp_username and host_snmp_password. If you're not using those SNMP V3 parameters, they must be quoted, else the script would fail because two parameters would be missing.
-arg_query | The string passed to the query to perform query requests is given here. So you may modify it to your liking (in this case, the script has to be modified accordingly).
-arg_get | Some as above for get requests
-output_delimiter | The delimiter used for query requests to separate index and value
-index_order (optional) | Cacti will attempt to find the best field to index off of based on whether each row in the query is unique and non-null. If specified, Cacti will perform this check on the fields listed here in the order specified. Only input fields can be specified and multiple fields should be delimited with a comma.
-index_title_format (optional) | Specify the title format to use when representing an index to the user. Any input field name can be used as a variable if enclosed in pipes (|). The variable |chosen_order_field| will be substituted with the field chosen by Cacti to index off of (see index_order above). Text constants are allowed as well
-index_order_type (optional) | For sorting purposes, specify whether the index is numeric or alphanumeric.
+| Field                         | Description                                                                                                                                                                                                                                                                                                                                       |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| arg_prepend                   | some more parameters were added to provide all necessary values for the script. They are position-dependent. You may notice the strange tics I've added to e.g. host_snmp_username and host_snmp_password. If you're not using those SNMP V3 parameters, they must be quoted, else the script would fail because two parameters would be missing. |
+| arg_query                     | The string passed to the query to perform query requests is given here. So you may modify it to your liking (in this case, the script has to be modified accordingly).                                                                                                                                                                            |
+| arg_get                       | Some as above for get requests                                                                                                                                                                                                                                                                                                                    |
+| output_delimiter              | The delimiter used for query requests to separate index and value                                                                                                                                                                                                                                                                                 |
+| index_order (optional)        | Cacti will attempt to find the best field to index off of based on whether each row in the query is unique and non-null. If specified, Cacti will perform this check on the fields listed here in the order specified. Only input fields can be specified and multiple fields should be delimited with a comma.                                   |
+| index_title_format (optional) | Specify the title format to use when representing an index to the user. Any input field name can be used as a variable if enclosed in pipes ( ). The variable `chosen_order_field` will be substituted with the field chosen by Cacti to index off of (see index_order above). Text constants are allowed as well                                 |
+| index_order_type (optional)   | For sorting purposes, specify whether the index is numeric or alphanumeric.                                                                                                                                                                                                                                                                       |
 
-Type | Description
---- | ---
-numeric | The indexes in this script query are to be sorted numerically (ie. 1,2,3,10,20,31)
-alphabetic | The indexes in this script query are to be sorted alphabetically (1,10,2,20,3,31)
+| Type       | Description                                                                        |
+| ---------- | ---------------------------------------------------------------------------------- |
+| numeric    | The indexes in this script query are to be sorted numerically (ie. 1,2,3,10,20,31) |
+| alphabetic | The indexes in this script query are to be sorted alphabetically (1,10,2,20,3,31)  |
 
 Now lets turn to the fields section:
 
 ```xml
- <fields>
-                <ifIndex>
-                        <name>Index</name>
-                        <direction>input</direction>
-                        <query_name>index</query_name>
-                </ifIndex>
+    ....
+    <fields>
+        <ifIndex>
+            <name>Index</name>
+            <direction>input</direction>
+            <query_name>index</query_name>
+        </ifIndex>
 
-                <ifstatus>
-                        <name>Status</name>
-                        <direction>input</direction>
-                        <query_name>ifstatus</query_name>
-                </ifstatus>
+        <ifstatus>
+            <name>Status</name>
+            <direction>input</direction>
+            <query_name>ifstatus</query_name>
+        </ifstatus>
 
-                <ifdescription>
-                        <name>Description</name>
-                        <direction>input</direction>
-                        <query_name>ifdescription</query_name>
-                </ifdescription>
+        <ifdescription>
+            <name>Description</name>
+            <direction>input</direction>
+            <query_name>ifdescription</query_name>
+        </ifdescription>
 
-                <ifname>
-                        <name>Name</name>
-                        <direction>input</direction>
-                        <query_name>ifname</query_name>
-                </ifname>
+        <ifname>
+            <name>Name</name>
+            <direction>input</direction>
+            <query_name>ifname</query_name>
+        </ifname>
 
-                <ifalias>
-                        <name>Alias</name>
-                        <direction>input</direction>
-                        <query_name>ifalias</query_name>
-                </ifalias>
+        <ifalias>
+            <name>Alias</name>
+            <direction>input</direction>
+            <query_name>ifalias</query_name>
+        </ifalias>
 
-                <iftype>
-                        <name>Type</name>
-                        <direction>input</direction>
-                        <query_name>iftype</query_name>
-                </iftype>
+        <iftype>
+            <name>Type</name>
+            <direction>input</direction>
+            <query_name>iftype</query_name>
+        </iftype>
 
-                <ifspeed>
-                        <name>Speed</name>
-                        <direction>input</direction>
-                        <query_name>ifspeed</query_name>
-                </ifspeed>
+        <ifspeed>
+            <name>Speed</name>
+            <direction>input</direction>
+            <query_name>ifspeed</query_name>
+        </ifspeed>
 
-                <ifHWaddress>
-                        <name>HWaddress</name>
-                        <direction>input</direction>
-                        <query_name>ifHWaddress</query_name>
-                </ifHWaddress>
+        <ifHWaddress>
+            <name>HWaddress</name>
+            <direction>input</direction>
+            <query_name>ifHWaddress</query_name>
+        </ifHWaddress>
 
-                <ifInOctets>
-                        <name>InOctets</name>
-                        <direction>output</direction>
-                        <query_name>ifInOctets</query_name>
-                </ifInOctets>
+        <ifInOctets>
+            <name>InOctets</name>
+            <direction>output</direction>
+            <query_name>ifInOctets</query_name>
+        </ifInOctets>
 
-                <ifOutOctets>
-                        <name>OutOctets</name>
-                        <direction>output</direction>
-                        <query_name>ifOutOctets</query_name>
-                </ifOutOctets>
-        </fields>
+        <ifOutOctets>
+            <name>OutOctets</name>
+            <direction>output</direction>
+            <query_name>ifOutOctets</query_name>
+        </ifOutOctets>
+    </fields>
 </interface>
 ```
 
 These fields are related to the **OID** array of the script. **Attention**: The
-**query_name** strings must match the OID names **exactly!** Please notice,
-that all but the last two fields use **direction input**. All variables
-representing numeric values to be graphed must be defined as **direction
-output** instead.
+**query_name** strings must match the OID names **exactly!** Please notice, that
+all but the last two fields use **direction input**. All variables representing
+numeric values to be graphed must be defined as **direction output** instead.
 
 Now, lets test the “query” option. The keyword “query” must be given along with
 the variable, that should be queried. The script now will scan all indices and
@@ -620,8 +620,8 @@ is as follows
 Of course, snmp_username and snmp_user_password and more may differ from your
 installation defaults. Read it carefully, and you'll notice, that all XML
 **fields** were scanned and the output shown. All? No, not all. The **direction
-output** fields are missing! But this is on purpose as those won't make sense
-as header fields but will be written to RRDfiles.
+output** fields are missing! But this is on purpose as those won't make sense as
+header fields but will be written to RRDfiles.
 
 ## Create the Data Template
 
@@ -635,23 +635,22 @@ and find:
 ![Script Data Query - Data Template 02](images/dev-dt-02.preview.png)
 
 Fill in **Data Template Name**, **Data Source Name**, and, most important,
-select **Data Input Method** to read **Get Script Data (Indexed)**,
-and **Data Source Profile**.
+select **Data Input Method** to read **Get Script Data (Indexed)**, and **Data
+Source Profile**.
 
-When creating the **Data Template** and **Graph Template**, you SHOULD
-check the `Use Per Data Source Value` checkbox for name & title.
-When you first create graphs using the data query, it will use the
-`Suggested Values` to name the templates. But then if you ever edit
-the templates and leave the `Use Per Data Source Value` unchecked,
-then saving will overwrite all the data source and graph names.
+When creating the **Data Template** and **Graph Template**, you SHOULD check the
+`Use Per Data Source Value` checkbox for name & title. When you first create
+graphs using the data query, it will use the `Suggested Values` to name the
+templates. But then if you ever edit the templates and leave the
+`Use Per Data Source Value` unchecked, then saving will overwrite all the data
+source and graph names.
 
-Now, before you press the `Create` button als oplease proceed to the
-lower half of the form and complete the first RRDfile Data Source.
-Enter the **Internal Data Source Name**. You may select this name freely,
-though note your are limited to only 19 characters and spaces are not
-allowed.  There's no need to match it to any of the XML field names.
-As the OID is a **COUNTER**, the **Data Source Type** must be selected
-appropriately. `Create`.
+Now, before you press the `Create` button als oplease proceed to the lower half
+of the form and complete the first RRDfile Data Source. Enter the **Internal
+Data Source Name**. You may select this name freely, though note your are
+limited to only 19 characters and spaces are not allowed. There's no need to
+match it to any of the XML field names. As the OID is a **COUNTER**, the **Data
+Source Type** must be selected appropriately. `Create`.
 
 ![Script Data Query - Data Template 04](images/dev-dt-04.preview.png)
 
@@ -659,10 +658,10 @@ For the second data source item, please select **New**.
 
 ![Script Data Query - Data Template 05](images/dev-dt-05.png)
 
-Again, fill in the Data Source Name. Pay attention to set the maximum value to
-0 to avoid clipping it off during updating of the RRDfile. COUNTER has to be
-set as done above. **Important!** You have to select the marked Index fields!
-Now, save again and you're done.
+Again, fill in the Data Source Name. Pay attention to set the maximum value to 0
+to avoid clipping it off during updating of the RRDfile. COUNTER has to be set
+as done above. **Important!** You have to select the marked Index fields! Now,
+save again and you're done.
 
 ## Create the Graph Template
 
@@ -683,8 +682,8 @@ enter some text
 
 ![Script Data Query - Graph Template 05](images/dev-gt-05.preview.png)
 
-Save and add the next graph item. Now, we're going to use the “LEGEND”
-time saver again:
+Save and add the next graph item. Now, we're going to use the “LEGEND” time
+saver again:
 
 ![Script Data Query - Graph Template 06](images/dev-gt-06.preview.png)
 
@@ -697,8 +696,8 @@ and remove the newline by deselecting the checkbox
 
 ![Script Data Query - Graph Template 08](images/dev-gt-08.png)
 
-Now lets add the same data source again, but as a LINE1, MAXimum with a
-slightly changed color. Newline is checked this time
+Now lets add the same data source again, but as a LINE1, MAXimum with a slightly
+changed color. Newline is checked this time
 
 ![Script Data Query - Graph Template 09](images/dev-gt-09.preview.png)
 
@@ -726,18 +725,18 @@ newline
 
 ![Script Data Query - Graph Template 14](images/dev-gt-14.preview.png)
 
-Hoping, you've got all those steps correctly, finally **Save** your work. Take
-a cup of coffee to get your brains free again, kiss your wife, hug your
-children and/or pet your dog; sequence is arbitrary.
+Hoping, you've got all those steps correctly, finally **Save** your work. Take a
+cup of coffee to get your brains free again, kiss your wife, hug your children
+and/or pet your dog; sequence is arbitrary.
 
 ## Associate Graph Template with Data Query
 
-Huh, that sound complicated. Why would it be necessary to do so? Let me
-explain: You remember the **Data Template**, do you? The names of the data
-source item was chosen arbitrary. The Graph Items were associated with those
-data source items, but those in turn were not related to anything in the XML
-file. Not related? Not yet! So, let's revisit the **Data Query**. Remember the
-lower part on **Associated Graph Templates**. Click **Add**
+Huh, that sound complicated. Why would it be necessary to do so? Let me explain:
+You remember the **Data Template**, do you? The names of the data source item
+was chosen arbitrary. The Graph Items were associated with those data source
+items, but those in turn were not related to anything in the XML file. Not
+related? Not yet! So, let's revisit the **Data Query**. Remember the lower part
+on **Associated Graph Templates**. Click **Add**
 
 ![Script Data Query - Graph Template 15](images/dev-dq-20.preview.png)
 
@@ -761,9 +760,9 @@ denoted **Suggested Values**
 
 ![Script Data Query - Suggested Value 01](images/dev-dq-23.png)
 
-The example shows `|host_description| - Traffic - |query_ifdescription|`
-entered both for **name** of the Data Template and **title** of the Graph
-Template. Click **Add**, one by one
+The example shows `|host_description| - Traffic - |query_ifdescription|` entered
+both for **name** of the Data Template and **title** of the Graph Template.
+Click **Add**, one by one
 
 ![Script Data Query - Suggested Value 02](images/dev-dq-24.preview.png)
 
@@ -780,10 +779,10 @@ Click **Save**, and find the new Graph Template added to the list of
 
 ![Script Data Query - Suggested Value 03](images/dev-dq-25.preview.png)
 
-You may continue to add more **Graph Templates**, each of them may be related
-to other output field of the XML file. Find, as an example, lots of graph
-templates associated to the standard `Interface Statistics` Data Query to get
-an idea what I'm talking about.
+You may continue to add more **Graph Templates**, each of them may be related to
+other output field of the XML file. Find, as an example, lots of graph templates
+associated to the standard `Interface Statistics` Data Query to get an idea what
+I'm talking about.
 
 ![Script Data Query - Edit](images/dev-dq-26.preview.png)
 
@@ -801,9 +800,9 @@ to see
 ![Script Data Query - Devices 02](images/dev-dev-11-0.preview.png)
 
 I've left the standard Interface Statistics in the screenshot. So you may
-compare both Queries. Our PHP Interface Traffic stuff has two more header
-items, Name and Alias. But all data seen equals the standard SNMP Data Query;
-not that bad, eh?
+compare both Queries. Our PHP Interface Traffic stuff has two more header items,
+Name and Alias. But all data seen equals the standard SNMP Data Query; not that
+bad, eh?
 
 Now, select one item
 
@@ -823,19 +822,22 @@ this example, don't worry about that.
 Having a closer view, you may notice a difference in magnitude (y-axis). But
 please compare the units used. The first graph uses **Bytes**, the latter one
 uses **Bits**. For comparison, it would be necessary to multiply the first one
-with 8. This may be done using a CDEF Turn Bytes into Bits, applied to all
-items of the **Graph Template**. This task is left to you.
+with 8. This may be done using a CDEF Turn Bytes into Bits, applied to all items
+of the **Graph Template**. This task is left to you.
 
-Please find the example resource, script, and Data Query below.  Save
-`ifTraffic.xml` into `./resource/script_queries`, and `query_interface_traffic.php`
-into the `./scripts` directory and import the Data Query
-`cacti_data_query_php_interface_traffic.xml`.
+Please find the example resource, script, and Data Query below. Save
+`ifTraffic.xml` into `./resource/script_queries`, and
+`query_interface_traffic.php` into the `./scripts` directory and import the Data
+Query `cacti_data_query_php_interface_traffic.xml`.
 
 [Cacti Data Query for PHP Interface Traffic](resource/xml/cacti_data_query_php_interface_traffic.xml)
 
-[ifTraffic.xml](resource/xml/ifTraffic.xml) download and store into `resource/script_queries`.
+[ifTraffic.xml](resource/xml/ifTraffic.xml) download and store into
+`resource/script_queries`.
 
-[query_interface_traffic.php](resource/xml/query_interface_traffic.php) download and store into `scripts`.
+[query_interface_traffic.php](resource/xml/query_interface_traffic.php) download
+and store into `scripts`.
 
 ---
-<copy>Copyright (c) 2004-2023 The Cacti Group</copy>
+
+Copyright (c) 2004-2023 The Cacti Group
