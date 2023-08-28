@@ -184,6 +184,10 @@ during the installation.
    will provide recommendations based on the actual system which will be more
    tailored to your environment.
 
+   If using MariaDB less than version 11.1 or MySQL use the settings below.
+   Note that you should revise up or down your settings depending on
+   the Cacti recommendation that you see once you start the installer.
+
    ```shell
    [mysqld]
    character-set-server=utf8mb4
@@ -202,13 +206,30 @@ during the installation.
    slow-query-log-file            = /var/log/mysql/mysql-slow.log
    ```
 
-2. Restart MySQL/MariaDB service to pick up the changes
+   If using MariaDB 11.0 or higher, use the settings below:
+
+   ```shell
+   [mariadb]
+   max_heap_table_size=500M
+   character_set_client=utf8mb4
+   character_set_server=utf8mb4
+   collation_server=utf8mb4_unicode_ci
+   innodb_buffer_pool_size=8G
+   innodb_doublewrite=OFF
+   tmp_table_size=500M
+   log-error                      = /var/log/mysql/mysql-error.log
+   log-queries-not-using-indexes  = 1
+   slow-query-log                 = 1
+   slow-query-log-file            = /var/log/mysql/mysql-slow.log
+   ```
+
+3. Restart MySQL/MariaDB service to pick up the changes
 
    ```console
    systemctl restart mysql
    ```
 
-3. Populate timezone table with available timezones
+4. Populate timezone table with available timezones
 
    ```console
    mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
