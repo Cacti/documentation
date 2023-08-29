@@ -210,37 +210,40 @@ during the installation.
 
    ```shell
    [mysqld]
-   character-set-server=utf8mb4
-   collation-server=utf8mb4_unicode_ci
-   innodb_file_format = Barracuda
-   max_allowed_packet = 16777777
-   join_buffer_size = 32M
-   innodb_file_per_table = ON
-   innodb_large_prefix = 1
-   innodb_buffer_pool_size = 250M
+   character_set_client            = utf8mb4
+   character-set-server            = utf8mb4
+   collation-server                = utf8mb4_unicode_ci
+   innodb_file_format              = Barracuda
+   max_allowed_packet              = 16777777
+   max_heap_table_size             = 500M
+   join_buffer_size                = 32M
+   innodb_file_per_table           = ON
+   innodb_large_prefix             = 1
+   innodb_buffer_pool_size         = 500M
    innodb_additional_mem_pool_size = 90M
-   innodb_flush_log_at_trx_commit = 2
-   log-error                      = /var/log/mysql/mysql-error.log
-   log-queries-not-using-indexes  = 1
-   slow-query-log                 = 1
-   slow-query-log-file            = /var/log/mysql/mysql-slow.log
+   innodb_flush_log_at_trx_commit  = 2
+   log-error                       = /var/log/mysql/mysql-error.log
+   log-queries-not-using-indexes   = 1
+   slow-query-log                  = 1
+   slow-query-log-file             = /var/log/mysql/mysql-slow.log
    ```
 
    If using MariaDB 11.0 or higher, use the settings below:
 
    ```shell
    [mariadb]
-   max_heap_table_size=500M
-   character_set_client=utf8mb4
-   character_set_server=utf8mb4
-   collation_server=utf8mb4_unicode_ci
-   innodb_buffer_pool_size=8G
-   innodb_doublewrite=OFF
-   tmp_table_size=500M
-   log-error                      = /var/log/mysql/mysql-error.log
-   log-queries-not-using-indexes  = 1
-   slow-query-log                 = 1
-   slow-query-log-file            = /var/log/mysql/mysql-slow.log
+   character_set_client            = utf8mb4
+   character_set_server            = utf8mb4
+   collation_server                = utf8mb4_unicode_ci
+   max_heap_table_size             = 500M
+   join_buffer_size                = 32M
+   innodb_buffer_pool_size         = 8G
+   innodb_doublewrite              = OFF
+   tmp_table_size                  = 500M
+   log-error                       = /var/log/mysql/mysql-error.log
+   log-queries-not-using-indexes   = 1
+   slow-query-log                  = 1
+   slow-query-log-file             = /var/log/mysql/mysql-slow.log
    ```
    
 2. Restart MySQL/MariaDB service to pick up the changes
