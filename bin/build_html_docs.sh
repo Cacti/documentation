@@ -63,19 +63,22 @@ then
 	fi
 fi
 
+set -x
 # copy image resources
 echo "Copying images..."
 
-if ! cp -r "${BASE_PATH}/images/*" "${BASE_PATH}/${ODIR}/images/"
+if ! cp -r "${BASE_PATH}/images/"* "${BASE_PATH}/${ODIR}/images/"
 then
 	echo "ERROR: Failed to copy images"
 	exit 1
 fi
 
+set +x
+
 # copy css resourse
 echo "Copying css..."
 
-if ! cp -r "${BASE_PATH}/resources/css/*" "${BASE_PATH}/${ODIR}/"
+if ! cp -r "${BASE_PATH}/resources/css/"* "${BASE_PATH}/${ODIR}/"
 then
 	echo "ERROR: Failed to copy images"
 	exit 1
