@@ -63,7 +63,6 @@ then
 	fi
 fi
 
-set -x
 # copy image resources
 echo "Copying images..."
 
@@ -72,8 +71,6 @@ then
 	echo "ERROR: Failed to copy images"
 	exit 1
 fi
-
-set +x
 
 # copy css resourse
 echo "Copying css..."
