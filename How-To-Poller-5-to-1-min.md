@@ -4,11 +4,11 @@ This howto describes all steps for convert everything to 1 minute poller interva
 There will be only one gap during the convert.
 
 ## Prerequisites and default values used in this howto
-Cacti installation directory is **/usr/local/share/cacti/**
-PHP binary is **/usr/local/bin/php**
-RRD files are in **/usr/local/share/cacti/rra**
-Poller is running by user **cacti**
-Crontab row looks like 
+- Cacti installation directory is **/usr/local/share/cacti/**
+- PHP binary is **/usr/local/bin/php**
+- RRD files are in **/usr/local/share/cacti/rra**
+- Poller is running by user **cacti**
+- Crontab row looks like 
 ```shell
 */5    *       *       *       *       cacti   /usr/local/bin/php /usr/local/share/cacti/poller.php 2>&1
 ```
