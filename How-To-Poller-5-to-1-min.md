@@ -1,14 +1,13 @@
 # Change poller interval from 5 minutes to 1 minute 
 
-This howto describes all steps for convert everything to 1 minute poller interval.
-There will be only one gap during the convert.
+This howto describes all necessary steps for convert your cacti  to 1 minute poller interval. This cause one gap in graphs during the convert. Gap size depends on count of your rrd files.
 
 ## Prerequisites and default values used in this howto
 - Cacti installation directory is **/usr/local/share/cacti/**
 - PHP binary is **/usr/local/bin/php**
 - RRD files are in **/usr/local/share/cacti/rra**
 - Poller is running by user **cacti**
-- **Not structured RRDfile paths** (Configuration->Settings-> Data -> Structured RRDfile Paths). With structured path you will have more works with splice rrd files. You need change splice script.
+- **Not structured RRDfile paths** (`Configuration->Settings-> Data` -> Structured RRDfile Paths). With structured path you will have more works with splice rrd files. You need change splice script.
 - Crontab row looks like
 ```shell
 */5    *       *       *       *       cacti   /usr/local/bin/php /usr/local/share/cacti/poller.php 2>&1
@@ -21,7 +20,7 @@ Before this operation, backup Cacti database and all data in rra folder
 
 
 ## RRDCleaner (optional step)
-You can run rrdcleaner and delete already deleted RRD files. It can decrease converting time.
+You can run rrdcleaner and delete unused RRD files. It can decrease converting time.
 [System Utilities](System-Utilities.md)
 
 
@@ -35,6 +34,8 @@ mkdir -p /tmp/cacti/rrd_old
 mkdir -p /tmp/cacti/rrd_new
 mkdir -p /tmp/cacti/rrd_fin
 ```
+Make sure that you have enought space on temporary disk. You need more than twice of rra directory size.
+
 
 ## Move rrd files
 ```shell
@@ -85,15 +86,16 @@ Select all -> Change Profile
 
 ## Run the poller once
 New rrd files with correct 1 min profile will be created in **/usr/local/share/cacti/rra** directory.
-Log shouldn't contain errors.
+Cacti log shouldn't contain errors.
 
-## move new rrd files to temporary folder
+## Move new rrd files to temporary folder
 ```shell
 mv /usr/local/share/cacti/rra/* /tmp/cacti/rrd_new/
 ```
 
 ## Run splice
 You need run splice command for each rrd file. This could be time consuming, depends on number of files. You can use some tool for parallel tasks.
+The splice_rrd.php file is designed to allow two RRDfiles to be merged. This utility can effectively change the resolution/step of an RRDfile so long as the new RRDfile already has the correct step.
 
 Basic script:
 ```shell
@@ -122,7 +124,7 @@ NOTE: Time:0.88, RUsage:18 MB
 ```shell
 mv /tmp/cacti/rrd_fin/* /usr/local/share/cacti/rra/
 ```
-File owner should be cacti.
+File owner should be cacti
 ```shell
 chown cacti /usr/local/share/cacti/rra/*
 ```
