@@ -8,13 +8,12 @@ There will be only one gap during the convert.
 - PHP binary is **/usr/local/bin/php**
 - RRD files are in **/usr/local/share/cacti/rra**
 - Poller is running by user **cacti**
-- Crontab row looks like 
+- **Not structured RRDfile paths** (Configuration->Settings-> Data -> Structured RRDfile Paths). With structured path you will have more works with splice rrd files. You need change splice script.
+- Crontab row looks like
 ```shell
 */5    *       *       *       *       cacti   /usr/local/bin/php /usr/local/share/cacti/poller.php 2>&1
 ```
 
-Expecting **Not structured RRDfile paths** (Configuration->Settings-> Data -> Structured RRDfile Paths).
-With structured path you will have more works with splice rrd files. You need change splice script.
 
 
 ## Backup your Cacti
@@ -23,7 +22,7 @@ Before this operation, backup Cacti database and all data in rra folder
 
 ## RRDCleaner (optional step)
 You can run rrdcleaner and delete already deleted RRD files. It can decrease converting time.
-(System-Utilities.md)
+[System Utilities](System-Utilities.md)
 
 
 ## Stop poller
@@ -47,14 +46,13 @@ Go to `Console -> Presets -> Data Profiles`. Here should be at least 5 Minute Co
 If the second is missing, create it.
 ![Presets](images/poller-5-1-preset-1min.png)
 
-Remember Data profile ID - Edit your 1 minute collection again and in URL will be .../data_source_profiles.php?action=edit&id=3
-id=**3** is important.
+Remember Data profile ID - Edit your 1 minute collection again and in URL will be .../data_source_profiles.php?action=edit&**id=3**
 
 
 ## Switch to 1 min 
 `Console -> Configuration -> Settings -> Poller tab`
-Poller interval = Every minute
-Cron/Daemon interval = Every minute
+- Poller interval = Every minute
+- Cron/Daemon interval = Every minute
 
 
 ## Update database records
@@ -63,7 +61,7 @@ Run these SQL queries:
 UPDATE data_template_data SET rrd_step=60 WHERE rrd_step=300;
 UPDATE data_template_rrd SET rrd_heartbeat=600;
 ```
-Here replace X with id from Step 5:
+Here replace X with ID from Step "Check or create Presets -> Data profiles":
 ```shell
 UPDATE data_template_data SET data_source_profile_id=X;
 ```
@@ -72,11 +70,17 @@ UPDATE data_template_data SET data_source_profile_id=X;
 `Console -> Utilities -> System utilities -> Rebuild Poller Cache`
 
 ## Set 1 min Data Profile as default
-`Console -> Presets -> Data Profiles` Edit profile **1 min Collection**, checkbox default.
+`Console -> Presets -> Data Profiles`
+
+Edit profile **1 min Collection**, checkbox default.
+
 ![Presets](images/poller-5-1-preset-default.png)
 
 ## Change profile for all Data templates
-`Console -> Templates -> Data Source` Select all -> Change Profile
+`Console -> Templates -> Data Source`
+
+Select all -> Change Profile
+
 ![Presets](images/poller-5-1-change-profile.png)
 
 ## Run the poller once
@@ -123,9 +127,8 @@ File owner should be cacti.
 chown cacti /usr/local/share/cacti/rra/*
 ```
 
-## Cron
-Change your cron settings from 5 minutes to 1 minute and enable (uncomment). 
-Old row
+## Enable poller in Cron again
+Change your cron settings from 5 minutes to 1 minute and enable (uncomment). Old row:
 ```shell
 #*/5    *       *       *       *       cacti   /usr/local/bin/php /usr/local/share/cacti/poller.php 2>&1
 ```
