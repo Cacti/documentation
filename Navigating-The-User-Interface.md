@@ -12,7 +12,7 @@ common panels are:
   are currently pointed to
 - **Content Area** - This is where you present tables, charts, forms, etc.  It is
   where your main Content resides
-- **Footer** - This section is left for Theme Developers to insert conten
+- **Footer** - This section is left for Theme Developers to insert content
   that belongs at the bottom of the screen.
 
 You can see the default Cacti layout with its various panels in the image below.

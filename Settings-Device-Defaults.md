@@ -40,7 +40,7 @@ Those settings include:
 ## SNMP Defaults
 
 Similar to the `General Defaults`, the `SNMP Defaults` control what SNMP
-settings to use for new \*_Devicess_ if the user does not specify any. The image
+settings to use for new \*_Devices_ if the user does not specify any. The image
 below shows the settings when using first SNMP v2 and then SNMP v3. If you are
 using SNMP v1 or v2, you will have much less required settings.
 

@@ -42,7 +42,7 @@ They are resiliant in that if the central Cacti server is not reachable,
 they will cache data and wait for it to become available again.
 
 Cacti supports upto dozens of Data Collectors today.  Some customers
-use somethings as simple as a Rasberry Pi or Nuk for
+use somethings as simple as a Raspberry Pi or Nuk for
 Data Collectors.  However, Virtual Machines are preferred as they
 can be migrated live which does not interrupt data collection.
 

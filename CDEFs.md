@@ -21,7 +21,7 @@ available in the RRDtool command set.
 ## CDEF Interface
 
 In the image below, you can see all the CDEF's that are included in Cacti by
-default.  There are quite a few of them.  Many of the forulas in use are quite
+default.  There are quite a few of them.  Many of the formulas in use are quite
 simple.  If you want to view Tutorials on how to work with CDEF's you should
 go to the [RRDtool Tutorial](https://oss.oetiker.ch/rrdtool/tut/cdeftutorial.en.html).
 There is also documentation at the [RRDtool Website](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_data.en.html#CDEF).
@@ -50,7 +50,7 @@ the Stack, you options as shown in the image below.  They include:
 
 Name | Description
 --- | ---
-Function | A mathmatical function that we will describe below
+Function | A mathematical function that we will describe below
 Operator | Common mathematical operators including (+, -, *, /, and %)
 Another CDEF | Another Cacti CDEF.  That could be confusing
 Custom String | Something like a number, a 'U' or 'Nan' for example

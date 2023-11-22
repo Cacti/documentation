@@ -201,7 +201,7 @@ Cacti results in the following:
 Please be aware the SPINE does not parse out textual Mibs.  This means that if
 you were to use an OID that contained a string reference rather than numerical
 this will cause Graphs to fail as they will not be generated due to spine not
-reciving a value at each poll
+receiving a value at each poll
 
 Example of a bad OID reference for spine:
 

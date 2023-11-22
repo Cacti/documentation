@@ -9,11 +9,11 @@ You simply have to goto the following Web Site and create an account.
 [Cacti Translation Site](https://translate.cacti.net). From there, you can
 simply select what you want translated, and the push the "translate" button on
 your language of choice, and the beauty of the translation is that if the string
-that you tranlate is in another plugin, it can also be automatically translated
+that you translate is in another plugin, it can also be automatically translated
 at the same time.
 
 If you make a change to the translations, they are automatically committed back
-to GitHub programatically. To install the new language strings, you simply have
+to GitHub programmatically. To install the new language strings, you simply have
 to update the `locales` directory from the latest GitHub branch that you were
 translating.
 
