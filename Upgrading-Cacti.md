@@ -1,7 +1,7 @@
 # Upgrading Cacti Under UNIX Compatible Operating Systems
 
-To upgrade Cacti under UNIX style operating systems is very strait
-forward.  To upgrade Cacti on Windows, you should use the instructions
+To upgrade Cacti under UNIX style operating systems is very straightforward.
+  To upgrade Cacti on Windows, you should use the instructions
 in the Link below:
 
 [Upgrading in Windows](Upgrading-Cacti-Under-Windows.md)

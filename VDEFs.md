@@ -27,7 +27,7 @@ it's not broken.
 
 In the image below, you can see all the VDEF's that are included in Cacti by
 default.  They are included just to get you thinking about how your would use
-them.  You can see strait away the first and the last items are 95th Percentile
+them.  You can see straight away the first and the last items are 95th Percentile
 and Bandwidth (or Total) VDEF's.  Other examples are pretty self explanatory.
 
 You will also note that you can Delete or Duplicate the VDEF's, but as with
