@@ -123,7 +123,7 @@ You can see the settings from the image below.
 
 ![Reporting Presets](images/settings-mrd-report-presets.png)
 
-Since these settings are strait forward, no further explanation is given here.
+Since these settings are straightforward, no further explanation is given here.
 
 ## DNS Options
 

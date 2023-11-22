@@ -43,7 +43,7 @@ when you think about it.
 ![VDEF Edit](images/vdefs-edit1.png)
 
 In the image below, you can see an example of a Single completed VDEF for 95th
-Percentile of the Current Data Source.  Pretty strait forward.
+Percentile of the Current Data Source.  Pretty straightforward.
 
 ![VDEF Item Edit](images/vdefs-edit2.png)
 
