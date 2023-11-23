@@ -168,7 +168,7 @@ chown -R apache:apache syslog
 
 3.) copy config.php.dist to config.php
 
-5.) You have two options for storing syslog information you can either use the exisiting
+5.) You have two options for storing syslog information you can either use the existing
 Cacti Database or use a dedicated database for syslog as syslog databases especially
 for large networks can grow pretty quick it may be wise to create a dedicated database.
 To use a dedicated DB first create a database
@@ -229,11 +229,11 @@ the file is located in /etc/sysconfig/snmptrapd and should look like this after
 OPTIONS="-on"
 ```
 
-4.) Now you need to modify the snmptrapd config file to recive snmptraps by
+4.) Now you need to modify the snmptrapd config file to receive snmptraps by
     default snmptrapd will not process any traps until you configure it to do so
     you will also need to tell snmptrapd to forward the received traps over to snmptt
 
-Here is an example of configuring snmptrapd to recive snmptraps from a device
+Here is an example of configuring snmptrapd to receive snmptraps from a device
 using the public snmp string and forwarding it over to snmptt
 
 ```console
@@ -388,9 +388,9 @@ GitHub.
 
 ## Authors
 
-The sylog plugin has been in development for well over a decade with increasing
+The syslog plugin has been in development for well over a decade with increasing
 functionality and stibility over that time. There have been several contributors
-to thold over the years. Chief amonst them are Jimmy Conner, Larry Adams,
+to thold over the years. Chief amongst them are Jimmy Conner, Larry Adams,
 SideWinder, and Harlequin. We hope that version 2.0 and beyond are the most
 stable and robust versions of syslog ever published. We are always looking for
 new ideas. So, this won't be the last release of syslog, you can rest assured of

@@ -196,7 +196,7 @@ checked.
 
 ### Creating a Graph Template
 
-To create a new **Graph Template**, select **Graph** unser `Console > Templates`
+To create a new **Graph Template**, select **Graph** under `Console > Templates`
 menu selection, then click Add normally the plus sign in the upper right corner
 of the **Graph Template** interface.
 
@@ -429,7 +429,7 @@ current and future versions of Cacti, you will be able to see all local
 modifications when performing a `Preview` prior to `Importing`.
 
 In the image below, you can see the output of a `Preview` of the Cisco WLC 5520
-**Device Template**. When Previewing, no changes are actually made ot your Cacti
+**Device Template**. When Previewing, no changes are actually made to your Cacti
 system.
 
 ![Import Template Preview](images/import-template-preview.png)

@@ -293,7 +293,7 @@ between the cron file that runs the poller.php and the settings within Cacti
 itself. Browse to **Console > Configuration > Settings > Poller** _(tab)_ and
 check that the Cron Interval is defined as either 1 minute or 5 minutes.
 
-If the cron inteval is 5 minutes, then the schedule within the cron
+If the cron interval is 5 minutes, then the schedule within the cron
 configuration file (normally /etc/cron.d/cacti) should be set to:
 
 ```console

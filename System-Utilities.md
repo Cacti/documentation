@@ -51,7 +51,7 @@ as well as mysql variables.
 ![System Utilities](images/system-utilities-db.png)
 
 Any Variable appearing in red indicates a subpar setting and should be looked.
-the recomendations are dynamic in that they change when more system resources are
+the recommendations are dynamic in that they change when more system resources are
 detected so if you upgrade your server hardware be sure to check back to this page
 to get the most out of your new hardware.
 

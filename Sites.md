@@ -5,7 +5,7 @@ This section will describe **Site** management in Cacti.
 Sites in Cacti can be used to separate different parts of your company
 with the respective location devices. For example, you can have a site
 called **123 main street** in which you can associate all of the devices
-that are in tha physical location to the Cacti site.  This could also
+that are in the physical location to the Cacti site.  This could also
 be a customer site or data center location
 
 ![Cacti Sites page](images/sites.png).

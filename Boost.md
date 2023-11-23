@@ -35,7 +35,7 @@ In its initial design the Boost process leveraged MySQL Memory Tables to
 increase overall performance, and to reduce writing data to disk. This is still
 a valid case however, with improvements in InnoDB performance over the years
 combined with Flash storage, the need for using MySQL Memory Tables has
-diminshed. In some cases, for example when using MariaDB Galera, or MySQL
+diminished. In some cases, for example when using MariaDB Galera, or MySQL
 Master/Slave replication, it can not be used.
 
 If you do wish to use Memory you have to pay close attention to the amount of

@@ -5,7 +5,7 @@ many aspects of **Data Collection** in Cacti, you control various base
 collection frequencies, communication timeouts, and other settings that
 impact how Cacti's **Data Collection** works.
 
-## Genral Settings
+## General Settings
 
 The **General Settings** are a broad collection of settings into
 multiple categories.  The image below shows Cacti's **General Settings**

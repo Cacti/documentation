@@ -73,7 +73,7 @@ Older files will be removed automatically.
 
 > **NOTE**: Some package maintainers control log rotation and therefore the log
 > rotation settings may be missing from certain version of Cacti if you install
-> through a packaing tool such as `apt-get`, `yum` or `dnf`
+> through a packaging tool such as `apt-get`, `yum` or `dnf`
 
 ## Alternate Poller Path
 

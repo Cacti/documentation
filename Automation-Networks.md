@@ -13,7 +13,7 @@ enter that in the subnet range textbox then enter the subnet in CIDR format.
 
 Other important options are
 
-| Optiom                     | Descriptiom                                                                                |
+| Option                     | Description                                                                                |
 | -------------------------- | ------------------------------------------------------------------------------------------ |
 | Schedule type              | How often you want to scan this subnet for devices                                         |
 | Discovery threads          | How many proccessess to spawn during the scan                                              |

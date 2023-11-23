@@ -117,7 +117,7 @@ The settings above include:
 
 - **Proxy Server** - The secondary Proxy server IP or DNS name.
 
-- **Proxy Port Numer** - The port number on the secondary RRD Proxy
+- **Proxy Port Number** - The port number on the secondary RRD Proxy
   to talk to.
 
 - **RSA Fingerprint** - The fingerprint of the current public RSA

@@ -645,7 +645,7 @@ templates. But then if you ever edit the templates and leave the
 `Use Per Data Source Value` unchecked, then saving will overwrite all the data
 source and graph names.
 
-Now, before you press the `Create` button als oplease proceed to the lower half
+Now, before you press the `Create` button also please proceed to the lower half
 of the form and complete the first RRDfile Data Source. Enter the **Internal
 Data Source Name**. You may select this name freely, though note your are
 limited to only 19 characters and spaces are not allowed. There's no need to

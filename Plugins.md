@@ -99,7 +99,7 @@ the plugin will show to be available to be installed.
 > uninstalling **Plugins**, it would be wise to have a backup strategy in place
 > in case you accidentally uninstall a **Plugin** and loose your data!
 
-### Dependecies in plugins
+### Dependencies in plugins
 
 Some dependencies such as THOLD aka Thresholds rely on another plugin in this
 case thold reliese on the monitor plugin which is missing in this case you will
