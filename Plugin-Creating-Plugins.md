@@ -40,7 +40,7 @@ setting | description
 *compat* | The minimum version of Cacti that is required to use this plugin.
 *depends* | A space delimited list of plugins:version that are required to use this plugin.
 *capabilities* | A comma delimited list of capabilities for define what capabilities the plugin has primarily remotely.
-*nosync* | A comma delimited list of relative paths that should not be syncronized with the remote data collectors, for example transient folders that may contain quite a bit of data that changes often.
+*nosync* | A comma delimited list of relative paths that should not be synchronized with the remote data collectors, for example transient folders that may contain quite a bit of data that changes often.
 
 ## Functions
 

@@ -92,7 +92,7 @@ The following modules are optional, but preferred to be installed.
 ### A special note for systems using PHP-FPM
 
 Prior to starting the setup process of Cacti you should restart the PHP-FPM
-Daemon to rebuild the Cache or you may recive a HTTP 500 Error
+Daemon to rebuild the Cache or you may receive a HTTP 500 Error
 
 ```console
 systemctl restart php-fpm
@@ -364,7 +364,7 @@ the downloaded directory following commands
 shell>./bootstrap
 ```
 
-If the `boostrap` script is successful, you then will follow the instructions it
+If the `bootstrap` script is successful, you then will follow the instructions it
 provides to compile and install.
 
 Assuming, you've managed to install spine correctly, you will have to configure

@@ -6,10 +6,10 @@ The Cacti Log is where all Cacti statistics, warnings, errors and other log mess
 are sent to. Cacti can optionally log some information to your syslog or event log
 depending on your OS type.
 
-The Cacti Log is by default ordered from newest event to oldest event, a
-nd the Cacti Log is rotated by Cacti itself once a day.
+The Cacti Log is by default ordered from newest event to oldest event, and
+the Cacti Log is rotated by Cacti itself once a day.
 
-If you have the User Level permission, you can view any available Cacti Stadard
+If you have the User Level permission, you can view any available Cacti Standard
 Output or Standard Error log. If you have the Administrative level access,
 you may additionally purge information from the logs.
 

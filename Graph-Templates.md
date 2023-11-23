@@ -126,7 +126,7 @@ for a long time, selecting this option can really slow the **Graph** creation pr
  that you create using the **Device Template**.
 
 Under the *Common Options*, for each **Graph Template** you will specify patterns
-for the *Graph Name*, assign it's *Veritcal Label*, specify the *Width* and *Height*,
+for the *Graph Name*, assign it's *Vertical Label*, specify the *Width* and *Height*,
 and *Image Format* for the resulting **Graph**.  The *Base Value* is important
 as some units of measure can be for example: MB (for Mega Bytes - 1024) and MiB (for
 Mega integer Bytes - 1000).  Lastly, the *Slope Mode* gives the resulting

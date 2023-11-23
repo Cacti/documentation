@@ -255,7 +255,7 @@ is fine
 
 **A:** Check that the network connection between the Remote poller and Main
 poller is working ok if the link has very high latency this can cause the
-polling times to increase as the data being transfered from the remote poller
+polling times to increase as the data being transferred from the remote poller
 will be slowed causing the poll not to finish in time
 
 ---

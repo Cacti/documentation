@@ -48,7 +48,7 @@ So, based upon your specific OID that you are graphing, You will need to fill
 out these fields before the new graph can be created properly.
 
 When finished filling in values for these fields, click the Create button. Your
-new **Graph** can now be accessed through the `Cosole > Management > Graphs`
+new **Graph** can now be accessed through the `Console > Management > Graphs`
 menu pick.
 
 > **NOTE**: When comparing the Table above, to the image, you will see that the

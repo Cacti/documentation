@@ -9,7 +9,7 @@ The best place to go for discovering what Bugs or Issue exist in Cacti is
 to goto [GitHub](https://www.github.com/Cacti/cacti).  From there, you can
 view not only the Cacti repo, but a collection of Cacti Group mainteined
 **Plugins**.  For the Core Cacti and for every Plugin, there is an issue
-tracker site the coresponds to it.  Issues are generally broken into
+tracker site the corresponds to it.  Issues are generally broken into
 [Enhancements](https://github.com/Cacti/cacti/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)
 and [Bugs](https://github.com/Cacti/cacti/issues?q=is%3Aopen+is%3Aissue+label%3Abug).
 

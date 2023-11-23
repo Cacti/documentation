@@ -59,7 +59,7 @@ They include:
   Instance OID
 - **Ping** - Either ICMP, TCP at a port, or UDP as a port
 - **Ping or SNMP Uptime** - Only one needs to be working for Cacti to collect data
-- **SNMP Desc** - Query the SNMP sysDecription in cases where the SNMP Uptime OID
+- **SNMP Desc** - Query the SNMP sysDescription in cases where the SNMP Uptime OID
   is not available
 - **SNMP GetNext** - Query the first available OID in the OID tree for the **Device**
   Used for certain devices that have limited SNMP support.

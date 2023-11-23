@@ -231,7 +231,7 @@ shell> vi /etc/cron.d/cacti
 ```
 
 This will produce a file `/var/local/log/poller.log`, which includes some
-additional informations from each poller's run, such as RRDtool errors. It
+additional information from each poller's run, such as RRDtool errors. It
 occupies only some few bytes and will be overwritten each time.
 
 If you're using the crontab of user "cactiuser" instead, this will look like
