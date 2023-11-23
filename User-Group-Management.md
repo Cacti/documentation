@@ -59,7 +59,7 @@ Cacti using Plugins, you may find additional Roles.
 ![User Groups Realm Permissions](images/user-groups-edit-permissions.png)
 
 In this last image on the page, you can see every **Graph** in the Cacti
-system and wether or not the User Group has permission to view it.  This
+system and whether or not the User Group has permission to view it.  This
 permission can granted by giving the Group permission to a **Device**
 or the **Graph Template** in the **Permissive** permission mode,
 or in the **Restrictive** permission mode, they have to have both **Device**

@@ -28,7 +28,7 @@ you are using unvalidated data.  They include:
 Generally speaking, you should never use either `$_GET`, `$_REQUEST` or
 `$_POST` in your Cacti code.  Use the validators.  When you do, you can
 turn on the Cacti setting `Log Input Validation Issues` when you are
-developing, and you Cacti log will include warnings when an unvalidate
+developing, and you Cacti log will include warnings when an invalidate
 variable has been encountered.
 
 ## Prepared Statements
@@ -70,7 +70,7 @@ print "<tr><td>" . $some_variable . "</td></tr>";
 ```
 
 Using the print statement above, for values that come from the database
-can lead to Stored XSS vunerabilities in your code.  So, it's better
+can lead to Stored XSS vulnerabilities in your code.  So, it's better
 to use the following:
 
 ```php

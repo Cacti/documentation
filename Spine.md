@@ -33,7 +33,7 @@ While Spine is really fast, choosing the correct setup will ensure that all
 processor resources are used. Required settings for Maximum Concurrent Poller
 Processes are 1-2 times the number of CPU cores available for Spine.
 
-When using spine, you must be senstivive to the numer of connections that are
+When using spine, you must be senstivive to the number of connections that are
 available for MySQL or MariaDB. Under
 `Console > Utilities > System Utilities > General` Cacti will provide a
 recommended `max_connection` for MySQL/MariaDB.
@@ -172,9 +172,9 @@ SPINE: Using spine config file [../etc/spine.conf]
 2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] POLLER: Active Threads is 0, Pending is 0
 ```
 
-#### Running spine for a specifc host
+#### Running spine for a specific host
 
-If you want to run spine for a specifc host you are able to do that with the
+If you want to run spine for a specific host you are able to do that with the
 following command:
 
 ```shell

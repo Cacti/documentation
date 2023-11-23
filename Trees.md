@@ -3,7 +3,7 @@
 ## Trees
 
 A **Tree** can be thought of as a hierarchical way of organizing your graphs.
-Each **Tree** consists of zero or more branchs that contain
+Each **Tree** consists of zero or more branches that contain
 leaf nodes such as **Graphs**, **Devices** and **Sites**. It's a very powerful
 way of organizing your **Graphs**.
 

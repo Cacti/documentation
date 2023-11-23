@@ -17,7 +17,7 @@ contained inside an RRDfile, and overwriting specific data points.  It offers
 
 1. _Standard Deviation_
 
-   Calulates the [standard
+   Calculates the [standard
    deviation](https://en.wikipedia.org/wiki/Standard_deviation) of the data, and
    overwrites data points that are _N_ times higher than the standard deviation.
 
