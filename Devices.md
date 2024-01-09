@@ -24,7 +24,7 @@ Some of the most important information about the device will be required in this
 window which includes
 
 - **Description** - The name that will appear on **Graphs** by default
-- **IP/Hostname** - The DNS or IP address of the actual **Device**
+- **IP/Hostname** - The DNS or IP address of the actual **Device**. IPv6 address insert into brackets (example: [2001:abcd:1234::1])
 - **Poller Association** - Defines which **Data Collector** is responsible for
   pulling information about the **Device**
 - **Device Template** - Cisco, Net-SNMP, Linux, etc - The Cacti object that
