@@ -117,9 +117,10 @@ prepared. Both ways have few pros and cons:
   [Howto use ports](https://www.freebsd.org/doc/handbook/ports-using.html))
 
   ```sh
-  portsnap fetch extract
-  portsnap fetch update
-  cd /usr/ports/databases/mariadb102-server (or mysql57-server)
+  pkg install git
+  git clone https://git.FreeBSD.org/ports.git /usr/ports
+  git -C /usr/ports pull
+  cd /usr/ports/databases/mariadb106-server (or mysql80-server)
   make install
   cd /usr/ports/net-mgmt/cacti
   make install
