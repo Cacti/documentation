@@ -27,7 +27,9 @@
    or
 
    ```sh
-   shell> portsnap fetch update
+   shell> pkg install git
+   shell> git clone https://git.FreeBSD.org/ports.git /usr/ports
+   shell> git -C /usr/ports pull
    shell> cd /usr/ports/net-mgmt/cacti
    shell> make deinstall clean install
    ```
@@ -36,6 +38,7 @@
    recreate the folder and correct the permissions.
 
    ```sh
+   shell> cd /usr/local/share/cacti
    shell> mkdir cache
    shell> chown -R cacti cache
    ```

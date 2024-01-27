@@ -21,6 +21,12 @@ Cacti requires that the following software is installed on your system.
   - Optional modules:
     - snmp (falls back to NetSNMP)
 
+- Problematic software and configuration
+  - On Linux OS do not turn on SELinux
+  - On web server do not turn on ModSecurity
+
+    SELinux and ModSecurity can cause problem with ICMP ping, socket connections, ...
+
 - MySQL 5.6 or MariaDB 5.5 or greater
   - Timezone support must be enabled
 
