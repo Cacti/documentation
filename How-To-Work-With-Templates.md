@@ -148,4 +148,4 @@ as **Data Queries**, **Data Input Methods**, and **Script Server** add a few
 steps to the Template creation process.
 
 ---
-Copyright (c) 2004-2023 The Cacti Group
+Copyright (c) 2004-2024 The Cacti Group

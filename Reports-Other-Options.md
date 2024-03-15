@@ -22,4 +22,4 @@ Regardless of the page type, when you select this option, upon clicking the *Go*
 From there, select your destination Report, Timespan, and Alignment.
 
 ---
-Copyright (c) 2004-2023 The Cacti Group
+Copyright (c) 2004-2024 The Cacti Group

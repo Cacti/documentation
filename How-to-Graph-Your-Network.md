@@ -329,4 +329,4 @@ use the Graph Management item on the menu. Likewise, the Data Source menu item
 allows you to manage your data sources in Cacti.
 
 ---
-Copyright (c) 2004-2023 The Cacti Group
+Copyright (c) 2004-2024 The Cacti Group

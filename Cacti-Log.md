@@ -66,4 +66,4 @@ and can have some information hidden from public view
 whereas the Administrative view includes all Log messages and a *Purge** button.
 
 ---
-Copyright (c) 2004-2023 The Cacti Group
+Copyright (c) 2004-2024 The Cacti Group

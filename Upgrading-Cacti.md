@@ -72,4 +72,4 @@ but please keep this in mind before starting.
 > do not, upgrade them one at a time using the procedure above.
 
 ---
-Copyright (c) 2004-2023 The Cacti Group
+Copyright (c) 2004-2024 The Cacti Group

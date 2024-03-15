@@ -31,4 +31,4 @@ From this Menu you will be able to fill out the details of the new device.
 ![Discovered Devices](images/discovered-device-add-menu.png)
 
 ---
-Copyright (c) 2004-2023 The Cacti Group
+Copyright (c) 2004-2024 The Cacti Group

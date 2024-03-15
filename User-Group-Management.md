@@ -75,4 +75,4 @@ not covered the **Device**, **Template**, **Tree** or **Settings** sub-tabs
 here.  If you would like more information on them, see the User documentation.
 
 ---
-Copyright (c) 2004-2023 The Cacti Group
+Copyright (c) 2004-2024 The Cacti Group

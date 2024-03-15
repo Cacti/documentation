@@ -667,4 +667,4 @@ items to the top. I've chosen opacity of `20%` for Item numbers 1 to 3.
 
 ---
 
-Copyright (c) 2004-2023 The Cacti Group
+Copyright (c) 2004-2024 The Cacti Group

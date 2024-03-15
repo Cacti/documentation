@@ -101,4 +101,4 @@ Expression of Graph Names to include in the Report.
 - **Sequence**  - The Graph Items Sequence number.  This is a Read Only variable.
 
 ---
-Copyright (c) 2004-2023 The Cacti Group
+Copyright (c) 2004-2024 The Cacti Group

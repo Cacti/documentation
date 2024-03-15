@@ -65,7 +65,7 @@ which can be run at any point using the -w parameter.
  php rrdtool-proxy.php --help
 
  RRDtool Proxy v1.2.7
- Copyright (C) 2004-2023 The Cacti Group
+ Copyright (C) 2004-2024 The Cacti Group
  usage: rrdtool-proxy.php [--wizard] [-w] [--version] [-v]
  Optional:
  -v --version   - Display this help message
@@ -135,7 +135,7 @@ rrdp#sh version
 #                                                                   |___/
 
  RRDtool Proxy v1.2.7
- Copyright (C) 2004-2023 The Cacti Group
+ Copyright (C) 2004-2024 The Cacti Group
  rrdp uptime is 14 days, 0 hours, 4 minutes, 14 seconds
  Memory usage 0.18872917 % (2026464/1073741824 in bytes)
  a8:29:6a:b7:5d:be:c3:8a:be:13:7a:61:ee:0c:8b:d3
@@ -158,4 +158,4 @@ rrdp#
   available through SNMP
 
 ---
-Copyright (c) 2004-2023 The Cacti Group
+Copyright (c) 2004-2024 The Cacti Group

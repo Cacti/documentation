@@ -147,4 +147,4 @@ controlled at not only a global level, but now per plugin, per device and even
 per file.
 
 ---
-Copyright (c) 2004-2023 The Cacti Group
+Copyright (c) 2004-2024 The Cacti Group

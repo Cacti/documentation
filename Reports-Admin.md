@@ -98,4 +98,4 @@ Once you save a new **Report** additional Tabs will show up.  Those tabs are:
 This helps interpret the idiosyncrasies of the scheduler design.
 
 ---
-Copyright (c) 2004-2023 The Cacti Group
+Copyright (c) 2004-2024 The Cacti Group
