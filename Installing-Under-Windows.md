@@ -174,6 +174,8 @@ The following changes will be required regardless of your selected Webserver.
    icacls "C:\inetpub\wwwroot\cacti\scripts" /grant "IUSR:(OI)(CI)(RX,W)"
    icacls "C:\inetpub\wwwroot\cacti\rra" /grant "IUSR:(OI)(CI)(RX,W)"
    icacls "C:\inetpub\wwwroot\cacti\log" /grant "IUSR:(OI)(CI)(RX,W)"
+   icacls "C:\inetpub\wwwroot\cacti\cache" /grant "IUSR:(OI)(CI)(RX,W)"
+   icacls "C:\inetpub\wwwroot\cacti\include\config.php" /grant "IUSR:(RX,W)"
    copy /b NUL "C:\inetpub\wwwroot\cacti\include\vendor\csrf\csrf-secret.php"
    icacls "C:\inetpub\wwwroot\cacti\include\vendor\csrf\csrf-secret.php" /grant "IUSR:(RX,W)"
    ```
