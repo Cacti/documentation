@@ -53,8 +53,8 @@ Cacti requires that the following software is installed on your system.
       in production, see the internet for instructions on converting your
       databases and tables if you plan on supporting other languages.
 
-    - **character_set_client = utf8mb4
-    - **character_set_server = utf8mb4
+    - **character_set_client = utf8mb4**
+    - **character_set_server = utf8mb4**
 
       When using Cacti with languages other than English, it is important to
       use the utf8 character set as some characters take more than a single
