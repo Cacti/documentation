@@ -70,6 +70,6 @@ Before you begin, ensure that both your Apache/NGINX and your Crontab or systemd
 
 12. If Remote Pollers Fail to Update:
 
-    Try to rebuild the Resource Cache by going to Console >> Utilities.
+    Try to rebuild the Resource Cache by going to Console >> Utilities and wait 2 polling cycles.
 
     If that fails, update the remote pollers that have failed to update.
