@@ -319,6 +319,8 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 12.[Change poller interval from 5 minutes to 1 minute ](How-To-Poller-5-to-1-min.md)
 
+13.[Convert from Package based install to source on Ubuntu/Debian](convert-from-package-to-source-debian-ubuntu.md)
+
 ### Video Tutorials
 
 Watch Howto's and Tutorials on the Cacti Official YouTube page if you prefer. If you would have any ideas for videos or would like to contribute let us know !
