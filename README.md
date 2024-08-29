@@ -13,42 +13,29 @@ Active Developers
 
 ### Developers working on Cacti, its Architecture, Documentation and Future Releases.
 
-Larry Adams (TheWitness)
-
-Mark Brugnoli-Vinten (netniV)
-
-Jimmy Conner (cigamit)
-
-Petr Macek (xmacan)
-
-Andreas Braun (browniebraun)
-
-Thomas Urban (phalek)
-
-Jing Chen (ddb4github)
+- Larry Adams (TheWitness)
+- Mark Brugnoli-Vinten (netniV)
+- Jimmy Conner (cigamit)
+- Petr Macek (xmacan)
+- Andreas Braun (browniebraun)
+- Thomas Urban (phalek)
+- Jing Chen (ddb4github)
 
 ### Contributors to Docuemntation, QA, Packaging, the Forums and our YouTube page.
 
-Sean Mancini (bmfmancini)
-
-J.P. Pasnak, CD (Linegod)
-
-Chris Bell (Windows) (BSOD2600)
-
-Paul Gevers (Debian) (paulgevers)
-
-Morten Stevens (Fedora) (mortenstevens)
+- Sean Mancini (bmfmancini)
+- J.P. Pasnak, CD (Linegod)
+- Chris Bell (Windows) (BSOD2600)
+- Paul Gevers (Debian) (paulgevers)
+- Morten Stevens (Fedora) (mortenstevens)
 
 ### Members of the original Cacti Group that have since moved on in their careers.
 ### We continue to wish them the best.
 
-Ian Berry (raX)
-
-Reinhard Scheck (gandalf)
-
-Tony Roman (rony)
-
-Andy Blyler (ablyler)
+- Ian Berry (raX)
+- Reinhard Scheck (gandalf)
+- Tony Roman (rony)
+- Andy Blyler (ablyler)
 
 
 ## Thanks
