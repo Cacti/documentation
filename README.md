@@ -9,18 +9,50 @@ care of all the necessary details necessary to create meaningful graphs.
 Please see the official Cacti website for information, support, and updates.
 
 ## Core Developers - Both active and emeritus
+Active Developers
 
-- Larry Adams (TheWitness, Active)
-- Mark Brugnoli-Vinten (netniV, Active)
-- Jimmy Conner (cigamit, Active)
-- Andreas Braun (browniebraun, Active)
-- J.P. Pasnak, CD (Linegod, Active)
+### Developers working on Cacti, its Architecture, Documentation and Future Releases.
 
-- Tony Roman (rony, Emeritus)
-- Reinhard Scheck (gandalf, Emeritus)
-- Ian Berry (raX, Founder, Emeritus)
+Larry Adams (TheWitness)
+
+Mark Brugnoli-Vinten (netniV)
+
+Jimmy Conner (cigamit)
+
+Petr Macek (xmacan)
+
+Andreas Braun (browniebraun)
+
+Thomas Urban (phalek)
+
+Jing Chen (ddb4github)
+
+### Contributors to Docuemntation, QA, Packaging, the Forums and our YouTube page.
+
+Sean Mancini (bmfmancini)
+
+J.P. Pasnak, CD (Linegod)
+
+Chris Bell (Windows) (BSOD2600)
+
+Paul Gevers (Debian) (paulgevers)
+
+Morten Stevens (Fedora) (mortenstevens)
+
+### Members of the original Cacti Group that have since moved on in their careers.
+### We continue to wish them the best.
+
+Ian Berry (raX)
+
+Reinhard Scheck (gandalf)
+
+Tony Roman (rony)
+
+Andy Blyler (ablyler)
+
 
 ## Thanks
+
 
 A very special thanks to Tobi Oetiker, the creator of RRDtool and the very
 popular MRTG. The users of Cacti - especially anyone who has taken the time to
