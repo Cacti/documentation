@@ -18,6 +18,7 @@ briefly.
 | Script                 | Category    | Description                                                                                     |
 | ---------------------- | ----------- | ----------------------------------------------------------------------------------------------- |
 | add_device.php         | Automation  | Allows adding a Device to Cacti. Most device options are included. Some plugin options may not. |
+| change_device.php      | Automation  | Alllows editing device details such as IP/Poller association                                    |
 | add_data_query.php     | Automation  | Allows adding a Data Query to Cacti.                                                            |
 | add_graph_template.php | Automation  | Allows adding a Graph Template to Cacti.                                                        |
 | add_graphs.php         | Automation  | Allows adding a Graph to Cacti.                                                                 |
