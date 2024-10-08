@@ -21,6 +21,8 @@ Here is a list of the plugins we support and a short description of them.
   - Ability to Generate Tickets to Ticketing Systems through Script Execution
   - Acknowledgment levels
 
+  [Thold plugin homepage](https://github.com/Cacti/plugin_thold)
+
 - **Intropage**
 
   User defined dashboards for Cacti. Each user can create own dashboards.
@@ -30,10 +32,14 @@ Here is a list of the plugins we support and a short description of them.
   - Share dashboards between users
   - Respects Cacti's user permissions
 
+  [Intropage plugin homepage](https://github.com/Cacti/plugin_intropage)
+
 - **Maint**
 
   Plugin is for the scheduling of maintenance so that Thold/Servcheck and other plugins will not alert during that time period.
   - One time or Recurring schedule
+
+  [Maint plugin homepage](https://github.com/Cacti/plugin_maint)
 
 - **Monitor**
 
@@ -44,6 +50,8 @@ Here is a list of the plugins we support and a short description of them.
   - Respects Cacti's user permissions
   - Monitoring can be enabled or disabled at the Device level
   - Supports Monitoring Devices by Criticality
+
+  [Monitor plugin homepage](https://github.com/Cacti/plugin_monitor)
 
 - **Mikrotik**
 
@@ -57,11 +65,15 @@ Here is a list of the plugins we support and a short description of them.
   - Graphs of MikroTik environmental data such as temperature and voltage
   - Viewing of Devices and summary statistics, Users, Queue Trees, Access Points, HotSpots, Interfaces, and Wireless Station information
 
+  [Mikrotik plugin homepage](https://github.com/Cacti/plugin_mikrotik)
+
 - **Routerconfigs**
 
   The routerconfigs plugin is designed to receive and create backups from your network devices.
   It also provides the ability to view and diff those router configurations as they change over time.
   It is designed primarily for Cisco device types, but may work with other device types.
+
+  [Routerconfigs plugin homepage](https://github.com/Cacti/plugin_routerconfigs)
 
 - **ReportIt**
 
@@ -73,6 +85,8 @@ Here is a list of the plugins we support and a short description of them.
   - Different ways of connecting RRDtool
   - Scheduled reports via email
 
+  [Reportit plugin homepage](https://github.com/Cacti/plugin_reportit)
+
 - **Evidence**
 
   Plugin provides information about device serial numbers, software/firmware versions
@@ -81,6 +95,8 @@ Here is a list of the plugins we support and a short description of them.
   - Email notification when changes
   - Saves past configurations, ability to view changes in time
   - Vendor specific information
+
+  [Evidence plugin homepage](https://github.com/Cacti/plugin_evidence)
 
 - **Mactrack**
 
@@ -92,6 +108,8 @@ Here is a list of the plugins we support and a short description of them.
   - Finds Stolen/Lost PC's
   - Tells you when someone is connected who shouldn't be
 
+  [Mactrack plugin homepage](https://github.com/Cacti/plugin_mactrack)
+
 - **FlowView**
 
   This plugin allows you to view NetFlow data from inside of Cacti
@@ -101,6 +119,8 @@ Here is a list of the plugins we support and a short description of them.
   - Support for Shard Query and Horizontal Scaling through use of technologies such as MariaDB MaxScale
   - Tracking of IP addresses that do not resolve through DNS by using ARIN's whois service
   - Customizable Scheduled Reports
+
+  [Flowview plugin homepage](https://github.com/Cacti/plugin_flowview)
 
 - **Servcheck**
 
@@ -114,17 +134,23 @@ Here is a list of the plugins we support and a short description of them.
    - notify about soon certificate expiration
    - notify when last result is different
 
+  [Servcheck plugin homepage](https://github.com/Cacti/plugin_servcheck)
+
 - **HMIB**
 
   The hmib plugin is designed to collect SNMP information from Cacti Devices that support the
   SNMP Host Resources Mib structure. This SNMP information includes performance metrics like
   CPU utilization, running processes and applications, hardware details, ...
 
+  [Hmib plugin homepage](https://github.com/Cacti/plugin_hmib)
+
 - **Weathermap**
 
   Weathermap is one of many implementations of the same basic idea - take data from
   your network devices and use it to provide a single-page overview of the current
   state of network, like the one to the right.
+
+  [Weathermap plugin homepage](https://github.com/Cacti/plugin_weathermap)
 
 - **Syslog**
 
@@ -143,12 +169,16 @@ Here is a list of the plugins we support and a short description of them.
   - Ability to Generate Tickets to Ticketing Systems through Script Execution
   - Ability to run alert specific commands at Alert and Re-alert times
 
+  [Syslog plugin homepage](https://github.com/Cacti/plugin_syslog)
+
 - **Slowlog**
 
   The plugin will allow a Cacti Administrator to import their slow
   Query log and perform analysis of that slow log.
 
-- **APCUPSD**
+  [Slowlog plugin homepage](https://github.com/Cacti/plugin_slowlog)
+
+- **Apcupsd**
 
   This plugin is to be used to track UPS status from the apcupsd daemon
   as well as SNMP enabled UPS.  The apcupsd daemon is able to provide information
@@ -159,6 +189,9 @@ Here is a list of the plugins we support and a short description of them.
   - Track UPS status
   - Log information to Cacti database
 
+  [Apcupsd plugin homepage](https://github.com/Cacti/plugin_apcupsd)
+
+
 - **WMI**
 
   The WMI Plugin provides data collection services for devices that support the
@@ -167,3 +200,4 @@ Here is a list of the plugins we support and a short description of them.
   then be used to generate graphs, thresholds and alerts. It relies on the 'wmic'
   command in Linux, and WMI services via Microsofts COM protocol from Windows Cacti servers.
 
+  [WMI plugin homepage](https://github.com/Cacti/plugin_wmi)
