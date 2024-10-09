@@ -289,9 +289,11 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 5. [Hook API Reference](Plugin-Hook-API-Ref.md)
 
-### Plugin Documentation
+### Plugins
 
-1.[Syslog Plugin](syslog-plugin.md)
+1.[Supported Plugins](supported-plugins.md)
+
+2.[Syslog Plugin documentation](syslog-plugin.md)
 
 ### How Tos
 
