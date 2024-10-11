@@ -1,10 +1,14 @@
 # Plugin Management
 
+Installing or updating plugins on cacti is a simple procedure.
+For most of the plugins a few basic steps are enough, which are described below.
+Each plugin directory should contain a README.md file. We recommend to study
+this file. It may contain important installation information.
+
 ## Installing Plugins
 
 ![plugins](images/plugins.png)
 
-Installing plugins on cacti is a simple procedure
 
 1. Download the plugin to cactidir/cacti/plugins
 

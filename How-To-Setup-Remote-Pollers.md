@@ -2,14 +2,18 @@
 
 Remote Pollers add complexity to your cacti setup while also massively extended
 the scalability of it.  Remote Pollers allow system admins to distribute
-the load of polling between different servers as well as provideanother source
-of polling close to a device
+the load of polling between different servers as well as provide another source
+of polling close to a device.
 
-For example you may have a device in toronto but if your pollers are in Newyork
+For example you may have a device in Toronto but if your pollers are in New York
 the network latency may causes issues with your metrics having a remote poller
-in Toronto in this case will help with that issue
+in Toronto in this case will help with that issue.
 
 ## Setup Instructions
+
+The process of remote poller installation is similar to cacti installation.
+In the wizard, select the installation type for Remote poller. For the remote poller
+you must use the same version of cacti as the main poller installation.
 
 With this setup the following layout is assumed
 
