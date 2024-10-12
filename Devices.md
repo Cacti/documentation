@@ -57,7 +57,7 @@ They include:
 - **SNMP Uptime** - Query the SNMP Uptime Instance OID
 - **Ping and SNMP Uptime** - Ping the device but also check the SNMP Uptime
   Instance OID
-- **Ping** - Either ICMP, TCP at a port, or UDP as a port. Newer version has an aditional method TCP Ping Closed. 
+- **Ping** - Either ICMP, TCP at a port, or UDP as a port. Newer version has an additional method TCP Ping Closed. 
 The device is considered UP even if the tcp ping returns closed 
 - **Ping or SNMP Uptime** - Only one needs to be working for Cacti to collect data
 - **SNMP Desc** - Query the SNMP sysDescription in cases where the SNMP Uptime OID
