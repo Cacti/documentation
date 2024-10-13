@@ -316,6 +316,8 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 3. [Mactrack Plugin documentation](Plugin-Mactrack.md)
 
+4. [ReportIt Plugin documentation](resource/pdf/manual_reportit.pdf) Older version, pdf format
+
 ### How Tos
 
 1. [How To Work with Templates](How-To-Work-With-Templates.md)
