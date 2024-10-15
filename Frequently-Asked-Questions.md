@@ -280,6 +280,17 @@ like `include_path = C:/Apache2/htdocs/cacti`.
 
 ## Common Problems
 
+### I see "MySQL server has gone away" in cacti log and cacti does not work as expected
+
+Check the following in MySQL/MariaDB
+```
+SHOW GLOBAL VARIABLES LIKE 'max_connections';
+SHOW GLOBAL STATUS LIKE 'max_used_connections';
+```
+
+If they are close, increase the max_connections in the server.cnf (mysql.cnf, my.cnf) 
+and restart MariaDB/MySQL.
+
 ### Cron is out of sync with the Poller Interval
 
 ```shell
