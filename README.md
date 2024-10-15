@@ -310,9 +310,13 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 ### Plugins
 
-1.[Supported Plugins](supported-plugins.md)
+1. [Supported Plugins](supported-plugins.md)
 
-2.[Syslog Plugin documentation](syslog-plugin.md)
+2. [Syslog Plugin documentation](Plugin-Syslog.md)
+
+3. [Mactrack Plugin documentation](Plugin-Mactrack.md)
+
+4. [ReportIt Plugin documentation](resource/pdf/manual_reportit.pdf) Older version, pdf format
 
 ### How Tos
 
