@@ -112,6 +112,11 @@ plugin.
 
 ![plugin dependencies](images/plugins-dependencies.png)
 
+### Delete plugin data and settings
+Some plugins have new functionality and allow you to delete data and plugin
+settings and start from scratcg. This can be done with the trash can icon in
+Console > Configuration > Plugins
+
 ---
 
 Copyright (c) 2004-2024 The Cacti Group
