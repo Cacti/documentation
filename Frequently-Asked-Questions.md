@@ -280,8 +280,7 @@ like `include_path = C:/Apache2/htdocs/cacti`.
 
 ## Common Problems
 
-### I see "MySQL server has gone away" in cacti log and cacti does not work 
-as expected.
+### I see "MySQL server has gone away" in cacti log and cacti does not work as expected
 
 Check the following in MySQL/MariaDB
 ``
