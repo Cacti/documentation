@@ -42,7 +42,7 @@ setting | description
 *capabilities* | A comma delimited list of capabilities for define what capabilities the plugin has primarily remotely.
 *nosync* | A comma delimited list of relative paths that should not be synchronized with the remote data collectors, for example transient folders that may contain quite a bit of data that changes often.
 
-## Functions
+## Mandatory functions
 
 Inside the setup file, there are several functions that are mandatory in order
 for your plugin to properly be detected, and to properly function.
@@ -111,6 +111,25 @@ function plugin_PLUGINNAME_check_config () {
      }
 
      return false;
+}
+```
+
+## Optional functions
+Some plugins delete all your data and settings when you uninstall them.
+However, some plugins preserve the data and can be used again in the future.
+The following 2 functions allow you to delete all data and settings without
+uninstalling the plugin or manually deleting them.
+If the plugin does not contain the function, the delete icon will not appear
+in the settings (console -> configuration -> plugins).
+These functions are used in version 1.3 and higher.
+
+```php
+function plugin_PLUGINNAME_has_data() {
+    return true;
+}
+
+function plugin_PLUGINNAME_remove_data() {
+    return false;
 }
 ```
 
