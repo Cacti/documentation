@@ -380,7 +380,9 @@ Watch Howto's and Tutorials on the Cacti Official YouTube page if you prefer. If
 
 This section will be for template specific configuration requriments
 
-1. [Apache Server Template](apache_template_config.md)
+1. [Apache Server Template](template_apache_config.md)
+
+2. [ESXi/VMWare Template](template_esxi_config.md)
 
 ---
 
