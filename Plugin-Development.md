@@ -110,7 +110,13 @@ includes the following sections:
 
 - **homepage** - A link to the plugin authors homepage
 
-- **compat** - The minimum supported Cacti version
+- **compat** - Prior to Cacti 1.3, the minimum version of Cacti to support the
+  plugin.  After Cacti 1.3, it will represent the range of Cacti versions
+  supported.
+
+- **requires** - The list of plugins and versions that the current plugin needs
+  in order to operate.  This is a comma delimited list of Plugins with version
+  attributes similar to the **compat** section.
 
 - **capabilities** - a comma delimited string of capabilities defining how the
   plugin works with remote data collectors
@@ -120,6 +126,56 @@ includes the following sections:
   formatted as `*.extension` and only are relevant in the base directory of the
   plugin.  The following extensions are automatically excluded regardless of
   directory: 'tar', 'gz', 'zip', 'tgz', 'ttf', 'z', 'exe', 'pack', 'swp', 'swo'.
+
+### Example INFO Files
+
+From the Monitor plugin, we can see the following format:
+
+```
+[info]
+name = monitor
+version = 2.8
+longname = Device Monitoring
+author = The Cacti Group
+email =
+homepage = http://www.cacti.net
+compat = 1.2.15
+requires = thold:1.2.1
+capabilities = online_view:1, online_mgmt:1, offline_view:0, offline_mgmt:0, remote_collect:0
+```
+
+From the Syslog plugin, we can see a slightly different format.
+
+```
+[info]
+name = syslog
+version = 4.2
+longname = Syslog Monitoring
+author = The Cacti Group
+email =
+homepage = http://www.cacti.net
+compat = 1.2.23
+nosync = config.php
+capabilities = online_view:1, online_mgmt:1, offline_view:1, offline_mgmt:1, remote_collect:0, remote_poller:1
+```
+
+Here we can see that the config.php file in the plugin directory will not be copied over to remove 
+pollers, and we can see that syslog allow for remote data collection. using the 
+**remote_poller:1** capabilities attribute.
+
+### Changes in Cacti 1.3+
+
+Starting with Cacti 1.3 and beyond, the **compat** and **requires** lines can 
+include ranges of support.  For example, the following will be supported:
+
+```
+compat = >=1.2.15 <1.3.0
+requires = thold:>1.2.1 <=2.0, monitor:>2.0 
+```
+
+Before Cacti 1.3, the **compat** and **requires** attributes assumed always >=
+there were never provisions for < or <= to for any plugin.  Due to changes in the
+Plugin Architecture, this will change starting with Cacti 1.3.
 
 As mentioned, there are some very good examples of how to create or migrate
 plugins in the various Cacti plugins included on The Cacti Groups GitHub site.
