@@ -34,7 +34,7 @@ mkdir -p /tmp/cacti/rrd_old
 mkdir -p /tmp/cacti/rrd_new
 mkdir -p /tmp/cacti/rrd_fin
 ```
-Make sure that you have enought space on temporary disk. You need more than twice of rra directory size.
+Make sure that you have enough space on temporary disk. You need more than twice of rra directory size.
 
 
 ## Move rrd files
