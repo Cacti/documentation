@@ -16,6 +16,29 @@ apt-get install -y apache2 rrdtool mariadb-server snmp snmpd php8.0 php8.0-mysql
 systemctl restart php-fpm
 ```
 
+### A special Note on installing Cacti in LXC Containers such as the ones found on Proxmox
+
+It is recomended to create a privileged container  you may need to update your containers config file with
+
+```console
+lxc.apparmor.profile: unconfined
+```
+This will allow for ICMP ping and other functions to work
+
+A tested configuration file like below should be good however tune to your needs/standards
+
+```console
+arch: amd64
+cores: 2
+hostname: cacti
+memory: 2048
+net0: name=eth0,bridge=vmbr0,firewall=1,hwaddr=mac-id,ip=dhcp,type=v>
+ostype: ubuntu
+rootfs: local-lvm:vm-110-disk-0,size=8G
+swap: 2048
+lxc.apparmor.profile: unconfined
+```
+
 ### Downloading the Cacti software
 
 Once the OS packages are installed, you will need to download the Cacti files

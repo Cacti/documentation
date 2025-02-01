@@ -19,6 +19,30 @@
    dnf module enable php:8.0
    ```
 
+### A special Note on installing Cacti in LXC Containers such as the ones found on Proxmox
+
+It is recomended to create a privileged container  you may need to update your containers config file with
+
+```console
+lxc.apparmor.profile: unconfined
+```
+This will allow for ICMP ping and other functions to work
+
+A tested configuration file like below should be good however tune to your needs/standards
+
+```console
+arch: amd64
+cores: 2
+hostname: cacti
+memory: 2048
+net0: name=eth0,bridge=vmbr0,firewall=1,hwaddr=mac-id,ip=dhcp,type=v>
+ostype: ubuntu
+rootfs: local-lvm:vm-110-disk-0,size=8G
+swap: 2048
+lxc.apparmor.profile: unconfined
+```
+
+
 ### A special note for systems using PHP-FPM
 
 Prior to starting the setup process of Cacti you should restart the PHP-FPM
