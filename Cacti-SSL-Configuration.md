@@ -1,7 +1,7 @@
 # Configuring and enabling SSL for Cacti with a self signed certificate
 
 Enabling SSL for Cacti is mostly done at the webserver level. An example SSL
-config for Http is as follows:
+config for HTTP is as follows:
 
 ```bash
 yum install -y mod_ssl -y
