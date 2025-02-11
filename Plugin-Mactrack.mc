@@ -85,7 +85,7 @@ For import Device Types you can use button "Import" on the same page.
 
 This function will download and install the latest OUI database from the 
 IEEE Website. Each Network Interface Card (NIC) has a MAC Address. 
-The MAC Address can be broken into two parts. The first part of the MAC Addess 
+The MAC Address can be broken into two parts. The first part of the MAC Address 
 contains the Vendor MAC. The Vendor MAC identifies who has manufactured the part. 
 This will be helpful to check for rogue devices on your network.
 
