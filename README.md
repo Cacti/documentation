@@ -224,7 +224,7 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    8.8. [Spikes](Settings-Spikes.md)
 
-   8.9. [Mail/Reporting/DNS](Settings-Mail-Reporting-DNS.md)
+   8.9. [Mail/Reporting/DNS/Proxy](Settings-Mail-Reporting-DNS.md)
 
 9. [Settings - Auth](Settings-Auth.md)
 

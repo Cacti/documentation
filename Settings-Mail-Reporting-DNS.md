@@ -1,4 +1,4 @@
-# Mail/Reporting/DNS Settings
+# Mail/Reporting/DNS Settings/Proxy
 
 This area of Cacti is where you configure core notification settings as well as
 settings to using alternate DNS' servers associated with certain Cacti plugins.
@@ -19,7 +19,7 @@ Not only Cacti, but several plugins today are still leveraging Email for end
 user and administrative notification. Cacti uses the very popular PHP-Mailer 3rd
 party component to facilitate Email notification service. In this section, you
 will pick the method that you wish to provide Email notification an it's
-settings. Cacti actually provides three methods. They include:
+settings. Cacti actually provides more methods. They include:
 
 - **PHP Mail Function** - PHP has a built-in mail facility where PHP will
   communicate with the localhost mail facilities to send mail. This is useful if
@@ -33,6 +33,9 @@ settings. Cacti actually provides three methods. They include:
 
 - **Simple Mail Transfer Protocol (SMTP)** - This is the most configurable
   option where Cacti can send Emails directly to the Email server.
+
+- **SMTP with OAuth2** - For emailing you can use a mail provider
+  (Google, Microsoft, ...) that requires oauth2 authentication.
 
 In the sections below, we will document each of these options in more details.
 
@@ -113,6 +116,36 @@ Those options include:
   all the security issues with the other protocols.
 - **SMTP Timeout** - How long to wait before abandoning connection attempts to
   the SMTP Server.
+
+### SMTP with OAuth2
+
+You can use your email service provider that uses Oauth2. There are ready-made
+profiles for Google, Microsoft, Yahoo, Azure. Configuration (create 
+an application with offline parameter) may also be required on the email service
+provider side.
+
+![SMTP OAuth2](images/settings-mrd-oauth2.png)
+
+Those options include:
+- **OAuth2 Provider** - Select you email provider
+- **Email Address** - Email address connected with your OAuth2
+- **OAuth2 Client ID** - Client ID of your OAuth2 application
+- **OAuth2 Client Secret** - Password for your Client ID
+- **Azure Tenant ID** - Used only with Azure
+- **OAuth2 Redirect URI** - The Refresh token from the OAuth2 provider is returned
+  to this url. So the url must be accessible from your OAuth2 provider.
+- **OAuth2 Refresh Token** - If you know it from your OAuth2 provider, paste it
+  here. If not, you can use the wizard here to get the token. After successful
+  authorization, the token will be received via the OAuth2 redirect URI.
+
+- **SMTP Hostname** - The hostname or DNS name of the SMTP Server
+- **SMTP Port** - The TCP Port to use to communicate with the SMTP Server
+- **SMTP Security** - The security protocol to use for SMTP communications. The
+  options include: None, SSL, and TLS. The most popular being TLS today due to
+  all the security issues with the other protocols.
+- **SMTP Timeout** - How long to wait before abandoning connection attempts to
+  the SMTP Server.
+
 
 ## Reporting Presets
 
