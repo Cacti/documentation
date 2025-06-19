@@ -21,7 +21,7 @@ Active Developers
 - Thomas Urban (phalek)
 - Jing Chen (ddb4github)
 
-### Contributors to Docuemntation, QA, Packaging, the Forums and our YouTube page.
+### Contributors to Documentation, QA, Packaging, the Forums and our YouTube page.
 
 - Sean Mancini (bmfmancini)
 - J.P. Pasnak, CD (Linegod)
