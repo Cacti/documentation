@@ -1,5 +1,8 @@
 # General Installing Instructions
 
+> **Note**: As of Cacti 1.2.31, PHP 8.1 is required and PHP Composer is required. 
+> Composer will be used to ensure all of the libraries are installed and are up to date.
+
 Make sure the following packages are installed according to your operating
 systems requirements. Verify, that httpd/apache and MySQL/MariaDB are started at
 system startup.

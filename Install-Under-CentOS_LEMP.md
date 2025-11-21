@@ -1,5 +1,8 @@
 # Installing on CentOS 7
 
+> **Note**: As of Cacti 1.2.31, PHP 8.1 is required and PHP Composer is required. 
+> Composer will be used to ensure all of the libraries are installed and are up to date.
+
 ## LEMP (Linux, Nginx, MySQL, PHP) Required packages
 
 ### Web Server
@@ -313,7 +316,7 @@ PHP and various packages are all required by Cacti for successful operation
    php-mysqlnd php-gd php-gmp php-intl \
    php-json php-ldap php-mbstring \
    php-pdo php-pear php-snmp php-process \
-   php-xml php-zip php-fpm
+   php-xml php-zip php-fpm composer
    ```
 
 ---

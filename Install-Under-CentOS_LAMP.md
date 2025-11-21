@@ -1,22 +1,17 @@
 # Installing on CentOS/RHEL/ROCKY
 
+> **Note**: As of Cacti 1.2.31, PHP 8.1 is required and PHP Composer is required. 
+> Composer will be used to ensure all of the libraries are installed and are up to date.
+
 ## LAMP (Linux, Apache, MySQL/MariaDB, PHP) Required packages
 
 ### Web Server (Apache)
 
-1. Enable Epel repo to enable PHP 7.2 package download ( 7.x and Below)
-
-   ```console
-   yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
-   yum install yum-utils -y
-   yum-config-manager --enable remi-php72
-   ```
-
-   For Centos/RHEL/ROCKY 8+
+1. For Centos/RHEL/ROCKY 8+
 
    ```console
    dnf module reset php
-   dnf module enable php:8.0
+   dnf module enable php:8.1
    ```
 
 ### A special Note on installing Cacti in LXC Containers such as the ones found on Proxmox
@@ -317,7 +312,7 @@ PHP and various packages are all required by Cacti for successful operation
    php-mysqlnd php-gd php-gmp php-intl \
    php-json php-ldap php-mbstring \
    php-pdo php-pear php-snmp php-process \
-   php-xml php-zip
+   php-xml php-zip composer
    ```
 
 2. Set a timezone to your PHP.INI configuration

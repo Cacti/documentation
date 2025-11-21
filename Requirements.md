@@ -2,6 +2,9 @@
 
 Cacti requires that the following software is installed on your system.
 
+> **Note**: As of Cacti 1.2.31, PHP 8.1 is required and PHP Composer is required. 
+> Composer will be used to ensure all of the libraries are installed and are up to date.
+
 - Web Server that supports PHP e.g. Apache, Nginx, or IIS
 
 - Build environment when using spine (gcc, automake, autoconf, libtool,
