@@ -1,10 +1,13 @@
 # Installing Cacti 1.x  in Ubuntu/Debian LAMP stack
 
+> **Note**: As of Cacti 1.2.31, PHP 8.1 is required and PHP Composer is required. 
+> Composer will be used to ensure all of the libraries are installed and are up to date.
+
 ## Installing the required packages needed for the LAMP stack
 
 ```console
 apt-get update
-apt-get install -y apache2 rrdtool mariadb-server snmp snmpd php8.0 php8.0-mysql php8.0-snmp php8.0-xml php8.0-mbstring php8.0-json php8.0-gd php8.0-gmp php8.0-zip php8.0-ldap php8.0-mbstring
+apt-get install -y apache2 rrdtool mariadb-server snmp snmpd php8.1 php8.1-mysql php8.1-snmp php8.1-xml php8.1-mbstring php8.1-json php8.1-gd php8.1-gmp php8.1-zip php8.1-ldap php8.1-mbstring composer
 ```
 
 ### A special note for systems using PHP-FPM

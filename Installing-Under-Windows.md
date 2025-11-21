@@ -1,5 +1,8 @@
 # Installing Under Windows
 
+> **Note**: As of Cacti 1.2.31, PHP 8.1 is required and PHP Composer is required. 
+> Composer will be used to ensure all of the libraries are installed and are up to date.
+
 BSOD2600, one of the long term users of Cacti, provides an Installer on Windows.
 We recommend you use that installer for Cacti. You can obtain that installer
 under the Windows section of the Cacti forums. However, if you wish to install
