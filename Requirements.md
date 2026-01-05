@@ -11,7 +11,7 @@ Cacti requires that the following software is installed on your system.
 
 - PHP 5.4 or greater, 5.5+ recommended
   - Required modules:
-    - ctype, date, filter, gettext, gd, gmp
+    - ctype, date, filter, gettext, gd, gmp, intl
     - hash, json, ldap, mbstring, openssl, pcre
     - PDO, pdo_mysql, session, simplexml, sockets, spl
     - standard, xml, zlib
@@ -22,7 +22,7 @@ Cacti requires that the following software is installed on your system.
     - snmp (falls back to NetSNMP)
 
 - Problematic software and configuration
-  - On Linux OS do not turn on SELinux
+  - On Linux OS do not turn on SELinux or APPArmor
   - On web server do not turn on ModSecurity
 
     SELinux and ModSecurity can cause problem with ICMP ping, socket connections, ...
