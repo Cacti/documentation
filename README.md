@@ -384,6 +384,12 @@ This section will be for template specific configuration requriments
 
 2. [ESXi/VMWare Template](template_esxi_config.md)
 
+### Device Template Specific Documentation
+
+This section will be for device template specific configuration requriments
+
+1. [Proxmox External Storage Usage with Linux Device Template](device-template-specific-proxmox.md)
+
 ---
 
 Copyright (c) 2004-2025 The Cacti Group
