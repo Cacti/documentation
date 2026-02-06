@@ -191,7 +191,7 @@ if you intend to use the cacti DB leave config.php as default
 
 ### Note retention settings can be changed after install but db architecture will require a reinstall of the plugin
 
-![install advisor](images/syslog_install_advisor.PNG)
+![install advisor](images/syslog_install_advisor.png)
 
 You will also need to ensure the cacti user is granted select on the Syslog database
 
@@ -280,16 +280,16 @@ There are a few deployment approaches
 
 1.) Multiple Pollers with a load balancer for syslog
 
-![multiple Pollers lb](images/syslog-multi-poller-lb.PNG)
+![multiple Pollers lb](images/syslog-multi-poller-lb.png)
 
 2.) Multiple pollers no balancer but devices send syslog to multiple pollers
 
-![multiple Pollers no lb](images/syslog-multi-poller-no-lb.PNG)
+![multiple Pollers no lb](images/syslog-multi-poller-no-lb.png)
 
 3.) Multiple pollers but devices are assigned to send Syslog to a specific poller
     for example poller A and device A is at one location
 
-![device per poller](images/syslog-device-per-poller.PNG)
+![device per poller](images/syslog-device-per-poller.png)
 
 ## Remote poller setup
 
@@ -351,7 +351,7 @@ systemctl restart rsyslog
 to the remotes you will need to enable the following syslog settings
 found in configuration >> settings >> syslog
 
-![syslog settings ](images/syslog-multipoller-settings.PNG)
+![syslog settings ](images/syslog-multipoller-settings.png)
 
 ### note rules will be replicated within one polling cycle  to the remote pollers
 
@@ -367,7 +367,7 @@ to call on services such as slack or trello for alerting teams.
 
 you can leverage the built in variable substitution to format the input to the script
 
-![Alert Rules](images/syslog-alert-messeges.PNG)
+![Alert Rules](images/syslog-alert-messeges.png)
 
 ### Syslog Removal Rules
 
@@ -378,7 +378,7 @@ everytime a user logs into a device you may add a rule to delete the message.
 
 to do this click on the Syslog settings tab in the console then click removal rules
 
-![Removal Rules](images/syslog-remove-messeges.PNG)
+![Removal Rules](images/syslog-remove-messeges.png)
 
 ## Possible Bugs and Feature Enhancements
 

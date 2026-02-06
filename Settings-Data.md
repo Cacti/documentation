@@ -50,7 +50,7 @@ Those settings include:
 
 ## RRDfile Checker
 
-![RRD Checker](images/rrd_check.PNG)
+![RRD Checker](images/rrd_check.png)
 
 RRDfile checker scans RRDfiles and try to find problems like stale values.
 
