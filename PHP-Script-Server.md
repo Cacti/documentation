@@ -219,4 +219,4 @@ Script Server** command line to exit the script server.
    > server before your retest your code.
 
 ---
-Copyright (c) 2004-2025 The Cacti Group
+Copyright (c) 2004-2026 The Cacti Group

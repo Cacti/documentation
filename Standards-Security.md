@@ -87,4 +87,4 @@ for others to use and will more easily pass internal security and
 pen tests.
 
 ---
-Copyright (c) 2004-2025 The Cacti Group
+Copyright (c) 2004-2026 The Cacti Group

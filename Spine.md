@@ -245,4 +245,4 @@ chmod u+s /usr/local/spine/bin/spine
 
 ---
 
-Copyright (c) 2004-2025 The Cacti Group
+Copyright (c) 2004-2026 The Cacti Group
