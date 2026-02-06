@@ -50,7 +50,7 @@ Those settings include:
 
 ## RRDfile Checker
 
-![RRD Checker](images/rrd_check.PNG)
+![RRD Checker](images/rrd_check.png)
 
 RRDfile checker scans RRDfiles and try to find problems like stale values.
 
@@ -125,4 +125,4 @@ The settings above include:
   connection to the RRD Proxy service.
 
 ---
-Copyright (c) 2004-2025 The Cacti Group
+Copyright (c) 2004-2026 The Cacti Group

@@ -176,4 +176,4 @@ simple command output in the following example
 [How To Create a Data Input Method](How-To-Create-Data-Input-Method.md).
 
 ---
-Copyright (c) 2004-2025 The Cacti Group
+Copyright (c) 2004-2026 The Cacti Group

@@ -200,11 +200,19 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    6.5. [GPRINTs](GPRINTs.md)
 
-7. Import/Export
+7. Packaging/Import/Export
 
-   7.1. [Import Templates](Import-Template.md)
+   7.1. [Import Packages](Import-Packages.md)
 
-   7.2. [Export Templates](Export-Template.md)
+   7.2. [Import Templates](Import-Template.md)
+
+   7.3. [Export Templates](Export-Template.md)
+
+   7.4. [Create Packages](Create-Packages.md)
+
+   7.5. [Package Repositories](Package-Repositories.md)
+
+   7.6. [Public Keys](Public-Keys.md)
 
 8. [Settings (w/o Auth)](Settings.md)
 
@@ -392,4 +400,4 @@ This section will be for device template specific configuration requriments
 
 ---
 
-Copyright (c) 2004-2025 The Cacti Group
+Copyright (c) 2004-2026 The Cacti Group
