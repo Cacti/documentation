@@ -137,4 +137,4 @@ $user_realms = db_fetch_assoc('SELECT ua.id, uar.realm_id
 
 ---
 
-Copyright (c) 2004-2025 The Cacti Group
+Copyright (c) 2004-2026 The Cacti Group

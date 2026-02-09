@@ -397,4 +397,4 @@ new ideas. So, this won't be the last release of syslog, you can rest assured of
 that.
 
 ---
-Copyright (c) 2004-2025 The Cacti Group
+Copyright (c) 2004-2026 The Cacti Group

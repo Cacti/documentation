@@ -25,4 +25,4 @@ template will also be updated.
 ![Graph template options](images/graph-template-options.png)
 
 ---
-Copyright (c) 2004-2025 The Cacti Group
+Copyright (c) 2004-2026 The Cacti Group

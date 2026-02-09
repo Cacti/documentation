@@ -72,4 +72,4 @@ Below are a few examples of the version, type and description that can be found 
 
 ---
 
-Copyright (c) 2004-2025 The Cacti Group
+Copyright (c) 2004-2026 The Cacti Group

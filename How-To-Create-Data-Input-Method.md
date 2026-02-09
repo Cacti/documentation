@@ -404,4 +404,4 @@ the **Graph** for you, or to manually add it from the **New Graphs** menu pick.
 
 ---
 
-Copyright (c) 2004-2025 The Cacti Group
+Copyright (c) 2004-2026 The Cacti Group
