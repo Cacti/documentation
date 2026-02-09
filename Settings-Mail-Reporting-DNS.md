@@ -138,4 +138,4 @@ The image below shows the two settings.
 
 ---
 
-Copyright (c) 2004-2025 The Cacti Group
+Copyright (c) 2004-2026 The Cacti Group
