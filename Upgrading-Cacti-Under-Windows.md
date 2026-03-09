@@ -1,100 +1,77 @@
-# Upgrading Cacti under Windows
+# Upgrading Cacti Under Windows
 
-Download [latest stable version](https://www.cacti.net/download_cacti.php)
-of Cacti which is referred to as `cacti-xxx.zip` in this document.
+Download the [latest stable version](https://www.cacti.net/download_cacti.php)
+of Cacti, referred to as `cacti-xxx.zip` in this document.
 
-1. Stop poller.
+1. Stop the poller:
+   - Cacti Console → Configuration → Settings → Poller
+   - Uncheck **Data Collection Enabled** and save.
 
-   - Cacti Console
-
-   - Configuration
-
-   - Settings
-
-   - Poller
-
-   - uncheck Data Collection Enabled and Save
-
-1. Run Command Prompt as administrator and backup database.
+2. Run Command Prompt as Administrator and back up the database:
 
    ```sh
    shell> cd Documents
-   shell> "\Program Files\MySQL\MySQL Server 5.7\bin\mysqldump.exe" -uroot -p -l
-   --add-drop-table cacti > cacti-version-YYYYMMDD.sql
+   shell> mysqldump.exe -uroot -p --single-transaction --add-drop-table cacti > cacti-version-YYYYMMDD.sql
    ```
 
-1. Backup the old Cacti directory.
+   > **Note**: `mysqldump.exe` is located under your MySQL/MariaDB installation
+   > bin directory, e.g. `%PROGRAMFILES%\MySQL\MySQL Server X.Y\bin\`.
+
+3. Back up the old Cacti directory:
 
    ```sh
    shell> cd \inetpub\wwwroot
    shell> robocopy cacti cacti-version-YYYYMMDD /s /b /copyall
    ```
 
-1. Windows Update
+4. Run **Windows Update**.
 
-1. MySQL
+5. Upgrade MySQL/MariaDB:
+   - Open **MySQL Installer - Community** (or the MariaDB upgrade tool)
+   - Update the catalog
+   - Upgrade the server
 
-   - Open `MySQL Installer - Community`
+6. Upgrade PHP:
+   - Back up the `C:\php\` folder
+   - Download a [supported PHP version](https://www.php.net/supported-versions.php)
+     from [PHP for Windows](https://windows.php.net/download/) using the
+     appropriate build for IIS (Non-Thread Safe + FastCGI) or Apache
+   - Overwrite `C:\php\` with the contents of the new zip file
 
-   - update Catalog
+7. Install the new Cacti version:
+   Extract the contents of the `cacti-xxx` folder from `cacti-xxx.zip` to
+   `C:\inetpub\wwwroot\cacti\`, replacing existing files.
 
-   - upgrade MySQL Server
-
-1. PHP
-
-   - Backup `C:\php\` folder
-
-   - Download a [supported version](https://www.php.net/supported-versions.php) of
-   [PHP for Windows](https://windows.php.net/download/) using the appropriate
-   build for IIS or Apache. If missing, install the appropriate VC build.
-
-   - Overwrite `C:\php\` folder contents from zip file.
-
-1. Overwrite new Cacti version to production folder.
-   Extract contents of `cacti-xxx` folder in `cacti-xxx.zip` to
-   `C:\inetpub\wwwroot\cacti\` and replace files.
-
-1. Edit `include/config.php` and specify the MySQL user, password and database
-   for your Cacti configuration.
+8. Edit `include/config.php` and verify the database connection details:
 
    ```sh
    shell> notepad cacti/include/config.php
    ```
 
    ```php
-   $database_type = "mysql";
-   $database_default = "cacti";
+   $database_type     = "mysql";
+   $database_default  = "cacti";
    $database_hostname = "localhost";
    $database_username = "cactiuser";
    $database_password = "cacti";
    ```
 
-1. Point your web browser to: `http://localhost/cacti/`
+9. Browse to `http://localhost/cacti/` and follow the on-screen instructions
+   to update the database schema to the new version.
 
-   Follow the on-screen instructions so your database can be updated to the
-   new version.
+   If any session variables need adjustment, set them from the MySQL/MariaDB
+   command-line client:
 
-   Open "MySQL 5.7 Command Line Client" and set variables as needed in
-   following format:
-
-   ```sh
-   set global max_allowed_packet = 16777216;
-   set global tmp_table_size = 67108864;
-   set global join_buffer_size = 67108864;
-   set global innodb_flush_log_at_timeout = 3;
+   ```sql
+   SET GLOBAL max_allowed_packet = 16777216;
+   SET GLOBAL tmp_table_size = 67108864;
+   SET GLOBAL join_buffer_size = 67108864;
+   SET GLOBAL innodb_flush_log_at_timeout = 3;
    ```
 
-1. Start poller
-
-   - Cacti Console
-
-   - Configuration
-
-   - Settings
-
-   - Poller
-
-   - check Data Collection Enabled and Save
+10. Re-enable the poller:
+    - Cacti Console → Configuration → Settings → Poller
+    - Check **Data Collection Enabled** and save.
 
 ---
 Copyright (c) 2004-2026 The Cacti Group

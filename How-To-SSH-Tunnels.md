@@ -1,108 +1,142 @@
-# How To Setup SSH Tunnels to graph a remote Unix server
+# How To Set Up SSH Tunnels to Graph a Remote Unix Server
 
-Howto created by `fmangeant` at [Cacti
-Forum](https://forums.cacti.net/viewtopic.php?t=24960)
+Howto created by `fmangeant` at the
+[Cacti Forum](https://forums.cacti.net/viewtopic.php?t=24960)
 
-This HowTo will explain how to use SSH tunnels to graph a Unix server that
-isn't directly reachable by your Cacti server :
+This guide explains how to use SSH tunnels to graph a Unix server that is not
+directly reachable by your Cacti server.
 
 ![Overview](images/device-templates-ssh-tunnel.png)
 
 In this example, the Cacti server can reach the Gateway, which can reach the
 target server.
 
+> **Important — TCP vs UDP**: SSH port forwarding (`-L`) is TCP-only. Standard
+> SNMP uses UDP port 161 and **cannot** be tunneled this way. This guide works
+> only when the target's `snmpd` is explicitly configured to accept TCP
+> transport (as shown below). It is **not** suitable for most network devices
+> (routers, switches, etc.), which support UDP SNMP only. For UDP SNMP across
+> untrusted networks, use a VPN instead.
+
 ## Configuring the SSH tunnel
 
-On Gateway, create a "cactiuser" user :
+On the Gateway, create a `cactiuser` account:
 
 ```console
 # useradd -d /home/cactiuser -m cactiuser
 ```
 
-Then you have to generate SSH keys (without passphrase) :
+Generate an SSH key pair (no passphrase, so the tunnel can start
+unattended). The modern recommendation is ed25519:
 
 ```console
 # su - cactiuser
-$ ssh-keygen -t rsa
-Generating public/private rsa key pair.
-Enter file in which to save the key (/home/cactiuser/.ssh/id_rsa):
+$ ssh-keygen -t ed25519
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/cactiuser/.ssh/id_ed25519):
 Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
-Your identification has been saved in /home/cactiuser/.ssh/id_rsa.
-Your public key has been saved in /home/cactiuser/.ssh/id_rsa.pub.
-The key fingerprint is:
-40:f6:91:a1:2d:d1:46:d4:76:e3:d8:c6:3f:c2:cf:f2 cactiuser@gateway
-```console
+Your identification has been saved in /home/cactiuser/.ssh/id_ed25519.
+Your public key has been saved in /home/cactiuser/.ssh/id_ed25519.pub.
+```
 
-The public key of the "cactiuser" user has then to be authorized as an input key :
+Authorize the public key for login:
 
 ```console
 $ cd $HOME/.ssh
-$ cp -p id_rsa.pub authorized_keys
+$ cp -p id_ed25519.pub authorized_keys
 ```
 
-Finally, create the SSH tunnel :
+Create the SSH tunnel:
 
 ```console
 # su - cactiuser -c "ssh -f -N -g -L 192.168.0.2:10000:192.168.1.2:161 cactiuser@localhost"
 ```
 
-This SSH tunnel will forward all packets sent to 192.168.0.2 on TCP port 10000,
-to 192.168.1.2 on port TCP 161.
+This forwards all TCP traffic sent to `192.168.0.2:10000` on the Gateway to
+`192.168.1.2:161` on the target server.
 
-The options that are used are the following :
+Option summary:
 
-```shell
--f : requests SSH to go to background just before command execution
--N : do not execute a remote command
--g : allows remote hosts to connect to local forwarded ports
--L : specifies that the given port on the local (client) host is to be forwarded to the given host and port on the remote side.
+```
+-f  Go to background before executing the command
+-N  Do not execute a remote command
+-g  Allow remote hosts to connect to locally forwarded ports
+-L  Forward the given local port to the given host and port on the remote side
 ```
 
-You can add this command to `/etc/rc.local`, so it will be executed at boot time.
+### Making the tunnel persistent (systemd)
 
-## Configuring Net-SNMP
+On systemd-based hosts (Ubuntu 16.04+, Debian 9+, most current distros),
+`/etc/rc.local` is deprecated and disabled by default. Use a systemd service
+instead.
 
-By default, the Net-SNMP agent listens on UDP port 161; we'll modify its
-configuration to listen on TCP port 161.
+Create `/etc/systemd/system/cacti-ssh-tunnel.service`:
 
-To do so, use that in `snmpd.conf` on the target server :
+```ini
+[Unit]
+Description=SSH tunnel for Cacti SNMP polling
+After=network.target
+
+[Service]
+User=cactiuser
+ExecStart=/usr/bin/ssh -N -g -L 192.168.0.2:10000:192.168.1.2:161 cactiuser@localhost
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Enable and start it:
+
+```console
+# systemctl daemon-reload
+# systemctl enable cacti-ssh-tunnel
+# systemctl start cacti-ssh-tunnel
+```
+
+## Configuring Net-SNMP on the target server
+
+By default, the Net-SNMP agent listens on **UDP** port 161. For this SSH
+tunnel approach you must configure it to listen on **TCP** port 161 instead.
+
+In `snmpd.conf` on the target server:
 
 ```ini
 agentaddress tcp:161
 rocommunity mycommunity
 ```
 
-For a more detailed configuration of snmpd.conf, refer to the
-[Net-SNMP snmpd.conf man page](https://net-snmp.sourceforge.io/docs/man/snmpd.conf.html)
+For a more detailed `snmpd.conf` reference, see the
+[Net-SNMP snmpd.conf man page](https://net-snmp.sourceforge.io/docs/man/snmpd.conf.html).
 
-### Testing the SNMP connectivity
+### Testing SNMP connectivity
 
-From the Gateway host, run this command :
+From the Gateway host:
 
 ```console
 $ snmpwalk -v 1 -c mycommunity tcp:192.168.1.2 sysname
 SNMPv2-MIB::sysName.0 = STRING: target_server
 ```
 
-From the Cacti server, run this command :
+From the Cacti server:
 
 ```console
 $ snmpwalk -v 1 -c mycommunity tcp:192.168.0.2:10000 sysname
 SNMPv2-MIB::sysName.0 = STRING: target_server
 ```
 
-If everything works fine, your host is then ready to be added to Cacti.
-
-If not, review your network configuration (firewall rules, especially).
+If these succeed, the host is ready to be added to Cacti. If not, review
+your firewall rules and verify `snmpd` is listening on TCP.
 
 ## Adding the device to Cacti
 
-In Cacti, create a new device like that :
+In Cacti, create a new device as shown:
 
 ![Add device](images/device-templates-ssh-add-device.png)
 
-Voila ! Your target server is graphed by Cacti :)
+Your target server is now graphed by Cacti.
 
 ---
 Copyright (c) 2004-2026 The Cacti Group
