@@ -222,7 +222,7 @@ during the installation.
    join_buffer_size                = 32M
    innodb_file_per_table           = ON
    innodb_buffer_pool_size         = 500M
-   innodb_additional_mem_pool_size = 90M
+   # innodb_additional_mem_pool_size removed in MySQL 5.7.4 / MariaDB 10.0; omit on newer releases
    innodb_flush_log_at_trx_commit  = 2
    log-error                       = /var/log/mysql/mysql-error.log
    log-queries-not-using-indexes   = 1

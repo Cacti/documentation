@@ -78,7 +78,7 @@ Cacti requires that the following software is installed on your system.
       then you must leave headroom for user connections, which will change
       depending on the number of concurrent login accounts.
 
-    - **max_heap_table_size >= 5**
+    - **max_heap_table_size >= 5% of system RAM**
 
       If using the Cacti Performance Booster and choosing a memory storage
       engine, you have to be careful to flush your Performance Booster buffer
@@ -135,7 +135,7 @@ Cacti requires that the following software is installed on your system.
       migrate to the per file storage by enabling the feature, and then
       running an alter statement on all InnoDB tables.
 
-    - **innodb_buffer_pool_size >= 25**
+    - **innodb_buffer_pool_size >= 25% of system RAM**
 
       InnoDB will hold as much tables and indexes in system memory as is
       possible.  Therefore, you should make the innodb_buffer_pool large
@@ -149,10 +149,10 @@ Cacti requires that the following software is installed on your system.
       With modern SSD type storage, this operation actually degrades the disk
       more rapidly and adds a 50% overhead on all write operations.
 
-    - **innodb_additional_mem_pool_size >= 80M**
+    - ~~**innodb_additional_mem_pool_size**~~ (removed in MySQL 5.7.4 / MariaDB 10.0)
 
-      This is where metadata is stored. If you had a lot of tables, it would
-      be useful to increase this.
+      This setting no longer exists. MySQL/MariaDB manages metadata memory
+      internally. Remove it from my.cnf if present; MySQL 8.0+ will error on startup.
 
     - **innodb_lock_wait_timeout >= 50**
 
