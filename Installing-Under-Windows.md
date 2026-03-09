@@ -55,9 +55,7 @@ Cacti yourself, please follow the instructions below.
 
    innodb_buffer_pool_size = 4500M # Adjust for your OS memory size
    
-   # for very large indexes
-   innodb_file_format = Barracuda
-   innodb_large_prefix = 1
+   # innodb_file_format and innodb_large_prefix removed in MySQL 8.0 / MariaDB 10.3+; omit on newer releases
 
    # for SSD's on a 64 core server
    innodb_doublewrite = OFF

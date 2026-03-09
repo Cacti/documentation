@@ -216,12 +216,11 @@ during the installation.
    character_set_client            = utf8mb4
    character-set-server            = utf8mb4
    collation-server                = utf8mb4_unicode_ci
-   innodb_file_format              = Barracuda
+   # innodb_file_format and innodb_large_prefix removed in MySQL 8.0 / MariaDB 10.3+; omit on newer releases
    max_allowed_packet              = 16777777
    max_heap_table_size             = 500M
    join_buffer_size                = 32M
    innodb_file_per_table           = ON
-   innodb_large_prefix             = 1
    innodb_buffer_pool_size         = 500M
    innodb_additional_mem_pool_size = 90M
    innodb_flush_log_at_trx_commit  = 2

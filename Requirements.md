@@ -12,7 +12,7 @@ Cacti requires that the following software is installed on your system.
 
 - RRDtool 1.3 or greater, 1.5+ recommended
 
-- PHP 5.4 or greater, 5.5+ recommended
+- PHP 8.1 or greater
   - Required modules:
     - ctype, date, filter, gettext, gd, gmp, intl
     - hash, json, ldap, mbstring, openssl, pcre
@@ -30,17 +30,17 @@ Cacti requires that the following software is installed on your system.
 
     SELinux and ModSecurity can cause problem with ICMP ping, socket connections, ...
 
-- MySQL 5.6 or MariaDB 5.5 or greater
+- MySQL 5.7 or MariaDB 10.2 or greater
   - Timezone support must be enabled
 
   - The following are my.cnf recommendations:
 
-    - **version >= 5.6**
+    - **version >= 5.7 (MySQL) / 10.2 (MariaDB)**
 
-      MySQL 5.6+ and MariaDB 10.0+ are great releases, and are very good
-      versions to choose. Make sure you run the very latest release though
-      which fixes a long standing low level networking issue that was causing
-      spine many issues with reliability.
+      MySQL 5.7+ and MariaDB 10.2+ are the minimum supported versions.
+      Make sure you run the very latest release though, which fixes a long
+      standing low level networking issue that was causing spine many issues
+      with reliability.
 
     - **innodb = ON**
 
@@ -225,8 +225,7 @@ paste them into my.cnf
  innodb_buffer_pool_size = 250M
  innodb_io_capacity = 5000
  innodb_io_capacity_max = 10000
- innodb_file_format = Barracuda
- innodb_large_prefix = 1
+ # innodb_file_format and innodb_large_prefix are removed in MySQL 8.0; omit on MySQL 8.0+ / MariaDB 10.3+
  ```
 
 ---
