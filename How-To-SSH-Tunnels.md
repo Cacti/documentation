@@ -1,7 +1,7 @@
 # How To Setup SSH Tunnels to graph a remote Unix server
 
 Howto created by `fmangeant` at [Cacti
-Forum](http://forums.cacti.net/viewtopic.php?t=24960)
+Forum](https://forums.cacti.net/viewtopic.php?t=24960)
 
 This HowTo will explain how to use SSH tunnels to graph a Unix server that
 isn't directly reachable by your Cacti server :
@@ -73,9 +73,8 @@ agentaddress tcp:161
 rocommunity mycommunity
 ```
 
-For a more detailed configuration of snmpd.conf, follow the [Net-SNMP guide in
-the
-manual](https://docs.cacti.net/manual:087:1_installation.1_install_unix.4_configure_snmp)
+For a more detailed configuration of snmpd.conf, refer to the
+[Net-SNMP snmpd.conf man page](https://net-snmp.sourceforge.io/docs/man/snmpd.conf.html)
 
 ### Testing the SNMP connectivity
 

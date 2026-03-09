@@ -102,8 +102,7 @@ data, but doing this in a timely fashion, will minimize data loss.
 
 Ensure you restart rsyslog after these changes are completed.  Other logging
 servers such as Syslog-NG are also supported with this plugin.  Please see some
-additional documentation here: [Cacti Documentation
-Site](https://docs.cacti.net/plugin:syslog.config)
+additional documentation in the [plugin_syslog repository](https://github.com/Cacti/plugin_syslog)
 
 We are using the pure integer values that rsyslog provides to both the priority
 and facility in this version syslog, which makes the data collection must less

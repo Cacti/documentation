@@ -173,7 +173,7 @@ chmod +s /usr/local/bin/spine
 
 Verify that the modules are installed and configured correctly. There are
 several ways to do so - consult
-[PHP configuration instructions](http://www.php.net/manual/en/configuration.php)
+[PHP configuration instructions](https://www.php.net/manual/en/configuration.php)
 for a complete description.
 
 It is imperative that you set the `date.timezone` in your `/etc/php.ini`, or

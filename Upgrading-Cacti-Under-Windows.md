@@ -44,7 +44,7 @@ of Cacti which is referred to as `cacti-xxx.zip` in this document.
 
    - Backup `C:\php\` folder
 
-   - Download a [supported version](http://php.net/supported-versions.php) of
+   - Download a [supported version](https://www.php.net/supported-versions.php) of
    [PHP for Windows](https://windows.php.net/download/) using the appropriate
    build for IIS or Apache. If missing, install the appropriate VC build.
 

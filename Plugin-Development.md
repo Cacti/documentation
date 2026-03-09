@@ -138,7 +138,7 @@ version = 2.8
 longname = Device Monitoring
 author = The Cacti Group
 email =
-homepage = http://www.cacti.net
+homepage = https://www.cacti.net
 compat = 1.2.15
 requires = thold:1.2.1
 capabilities = online_view:1, online_mgmt:1, offline_view:0, offline_mgmt:0, remote_collect:0
@@ -153,7 +153,7 @@ version = 4.2
 longname = Syslog Monitoring
 author = The Cacti Group
 email =
-homepage = http://www.cacti.net
+homepage = https://www.cacti.net
 compat = 1.2.23
 nosync = config.php
 capabilities = online_view:1, online_mgmt:1, offline_view:1, offline_mgmt:1, remote_collect:0, remote_poller:1
@@ -192,7 +192,7 @@ plugins other than RRDtool.
 - [Billboard.js](https://naver.github.io/billboard.js/)
 - [D3](https://d3js.org/)
 - [Chart.js](http://www.chartjs.org/)
-- [DyGraphs](http://dygraphs.com/)
+- [DyGraphs](https://dygraphs.com/)
 - [jQuery Sparklines](http://omnipotent.net/jquery.sparkline/)
 
 ## Logging
