@@ -14,12 +14,12 @@ Cacti requires that the following software is installed on your system.
 
 - PHP 8.1 or greater
   - Required modules:
-    - ctype, date, filter, gettext, gd, gmp, intl
-    - hash, json, ldap, mbstring, openssl, pcre
-    - PDO, pdo_mysql, session, simplexml, sockets, spl
-    - standard, xml, zlib
+    - ctype, date, dom, filter, gettext, gd, gmp, intl
+    - hash, json, ldap, mbstring, mysqlnd, openssl, pcre
+    - PDO, pdo_mysql, Phar, session, simplexml, sockets, spl
+    - sqlite3, standard, xml, zlib
     - com_dotnet (windows only)
-    - posix (linux only)
+    - pcntl, posix (linux only)
 
   - Optional modules:
     - snmp (falls back to NetSNMP)
