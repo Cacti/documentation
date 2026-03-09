@@ -82,7 +82,7 @@ you have specified.
 
 ## Additional Important Options
 
-There are some additional options that you should note before starting to use Cacti.
+There are some additional options to be aware of before starting to use Cacti.
 They include the following:
 
 - **Device Threads** - If your device is far away, and can tolerate multiple threads

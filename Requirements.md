@@ -44,8 +44,7 @@ Cacti requires that the following software is installed on your system.
 
     - **innodb = ON**
 
-      It is recommended that you enable InnoDB in any MySQL/MariaDB version
-      greater than 5.1.
+      Enable InnoDB in any MySQL/MariaDB version greater than 5.1.
 
     - **collation_server = utf8mb4_unicode_ci**
 
@@ -94,15 +93,15 @@ Cacti requires that the following software is installed on your system.
       expected consumption of the Performance Booster tables under Console ->
       System Utilities -> View Boost Status.
 
-      NOTE: If you are using a recent version of MariaDB or MySQL, using
-      memory tables is no longer a requirement.  You may choose to continue
-      to use memory tables to spare your NVMe or SSD drives excessive use
-      wear.  However, outside of that, it is no longer a requirement.
-      As such, the value of the **max_heap_table_size** is not as important
-      as in previous releases.  Additionally, if you are using Galera
-      replication with Cacti, all your tables must be in InnoDB format.  So,
-      the only feature in MariaDB or MySQL becomes temporary table space
-      which may not be dependent on the **max_heap_table_size**.
+      > **Note**: If you are using a recent version of MariaDB or MySQL, using
+      > memory tables is no longer a requirement.  You may choose to continue
+      > to use memory tables to spare your NVMe or SSD drives excessive use
+      > wear.  However, outside of that, it is no longer a requirement.
+      > As such, the value of the **max_heap_table_size** is not as important
+      > as in previous releases.  If you are using Galera
+      > replication with Cacti, all your tables must be in InnoDB format, and
+      > the only benefit of MariaDB or MySQL memory tables becomes temporary
+      > table space, which may not be dependent on **max_heap_table_size**.
 
     - **table_open_cache >= 200**
 
@@ -189,12 +188,9 @@ Cacti requires that the following software is installed on your system.
       innodb_buffer_pool is less than 1GB, you should use the pool size
       divided by 128MB. Continue to use this equation up to the max of 64.
 
-    Note:
-
-    - Some of these recommendations may not be applicable depending on the
-      version of MySQL/MariaDB you are running.
-
-    - Some of these recommendations should be scaled where appropriate
+    > **Note**: Some of these recommendations may not be applicable depending
+    > on the version of MySQL/MariaDB you are running, and some should be
+    > scaled where appropriate.
 
     - Newer MySQL/MariaDB software are using [strict
       modes](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html) and it can

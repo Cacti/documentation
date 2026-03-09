@@ -43,7 +43,7 @@ Those settings include:
 - **Poller Interval** - This setting must align with the highest frequency
   **Data Source Profile** polling interval.
 
-> **NOTE**: This only applies to the **Data Source Profiles** that are in
+> **Note**: This only applies to the **Data Source Profiles** that are in
 > use.  If you only plan on polling every minute and therefore only using
 > the `1 Minute` **Data Source Profile**, then your **Poller Interval**
 > should be `1 Minute` as well.
@@ -81,7 +81,7 @@ Those settings include:
   returned per UDP turn when obtaining `snmpwalk` data from an
   SNMP enabled **Device**.
 
-> **NOTE**: This only works with SNMP v2 and v3.  It is not supported
+> **Note**: This only works with SNMP v2 and v3.  It is not supported
 > on older SNMP v1 **Devices**.
 
 - **SNMP Get OID Limit** - The default maximum number of SNMP Get
@@ -158,7 +158,7 @@ Those settings include:
 - **Threads per Process** - The default number of `spine` threads
   per Concurrent Poller Process above.
 
-> **NOTE**: The Thread setting only applies if you are using the
+> **Note**: The Thread setting only applies if you are using the
 > `spine` poller.  It does not apply to the `cmd.php` poller.
 
 ## Additional Spine Parameters

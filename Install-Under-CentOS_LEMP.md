@@ -187,7 +187,7 @@ a drop-in alternative until there is a major divergence that can not be bridged.
 
 ### MySQL/MariaDB common tasks and recommendations
 
-**IMPORTANT**: Secure your MySQL installation before doing any more changes
+> **Note**: Secure your MySQL installation before doing any more changes.
 
 ```console
 /usr/bin/mysql_secure_installation
@@ -527,9 +527,9 @@ configure the basics for Cacti.
 
 ### Security Enhanced Linux (SELinux)
 
-If you are having issues to access the web page, disable SELinux temporarily to
-prove that the issues come from the SELinux policy. It is NOT recommended to
-disable SELinux permanently.
+If you are having issues accessing the web page, disable SELinux temporarily to
+prove that the issues come from the SELinux policy. Do not disable SELinux
+permanently.
 
 [CentOS](https:////wiki.centos.org/es/HowTos/SELinux) has a lot of documentation
 on how to make your SELinux policy right.

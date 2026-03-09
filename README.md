@@ -94,8 +94,8 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    This section contains the relevant information on how to ensure that any
    contribution is kept to the same standards that are applied for the Cacti
-   Group. It should be noted that non-compliance does not mean automatically
-   exclusion of proposed changes.
+   Group. Non-compliance does not automatically mean exclusion of proposed
+   changes.
 
 ### Known Issues
 

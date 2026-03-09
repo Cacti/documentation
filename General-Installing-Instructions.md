@@ -10,7 +10,7 @@ system startup.
 
 ### A special Note on installing Cacti in LXC Containers such as the ones found on Proxmox
 
-It is recommended to create a privileged container  you may need to update your containers config file with
+We recommend creating a privileged container. You may need to update your container's config file with
 
 ```console
 lxc.apparmor.profile: unconfined
