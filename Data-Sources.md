@@ -45,14 +45,20 @@ devices. e.g. 1 minute or 5 Minute polls
 Here is the approximate amount of storage you can expect to consume per data
 source
 
-| Polling time | Retention | File size | Polling time | Retention | File size |
-| -----------: | --------- | --------: | -----------: | --------- | --------: |
-|    30 second | Daily     |      48kb |    30 second | Weekly    |      43kb |
-|    30 second | Monthly   |      46kb |    30 second | Yearly    |     140kb |
-|     1 minute | Daily     |      93kb |     1 minute | Weekly    |      45kb |
-|     1 minute | Monthly   |      47kb |     1 minute | Yearly    |     140kb |
-|     5 minute | Daily     |       19b |     5 minute | Weekly    |      22kb |
-|     5 minute | Monthly   |      25kb |     5 minute | Yearly    |      26kb |
+| Polling time | Retention | File size |
+| -----------: | --------- | --------: |
+|    30 second | Daily     |      48kb |
+|    30 second | Weekly    |      43kb |
+|    30 second | Monthly   |      46kb |
+|    30 second | Yearly    |     140kb |
+|     1 minute | Daily     |      93kb |
+|     1 minute | Weekly    |      45kb |
+|     1 minute | Monthly   |      47kb |
+|     1 minute | Yearly    |     140kb |
+|     5 minute | Daily     |      19kb |
+|     5 minute | Weekly    |      22kb |
+|     5 minute | Monthly   |      25kb |
+|     5 minute | Yearly    |      26kb |
 
 ### Viewing all Data sources by device
 

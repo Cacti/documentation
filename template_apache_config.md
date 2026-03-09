@@ -26,7 +26,7 @@ ExtendedStatus On
 
 ## Debian Specific Configuration
 
-Enable the apcache2 `status` module:
+Enable the apache2 `status` module:
 
 Place the below config into a new file (eg, 80-server-status.conf) within
 `/etc/apache2/conf-available`

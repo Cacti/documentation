@@ -2,15 +2,16 @@
 
 Cacti requires that the following software is installed on your system.
 
-> **Note**: As of Cacti 1.2.31, PHP 8.1 is required and PHP Composer is required. 
-> Composer will be used to ensure all of the libraries are installed and are up to date.
+> **Note**: As of Cacti 1.2.31, PHP 8.1 is required. When installing from source or
+> the develop branch, PHP Composer is required to install vendor dependencies. Pre-packaged
+> releases include the required vendor files, so Composer is not needed for standard installs.
 
 - Web Server that supports PHP e.g. Apache, Nginx, or IIS
 
 - Build environment when using spine (gcc, automake, autoconf, libtool,
   help2man)
 
-- RRDtool 1.3 or greater, 1.5+ recommended
+- RRDtool 1.5 or greater (1.8+ required for Cacti 1.3.x / develop branch)
 
 - PHP 8.1 or greater
   - Required modules:
@@ -22,13 +23,17 @@ Cacti requires that the following software is installed on your system.
     - pcntl, posix (linux only)
 
   - Optional modules:
-    - snmp (falls back to NetSNMP)
+    - snmp - The PHP SNMP extension is optional. Cacti selectively bypasses it in
+      favor of Net-SNMP binaries for SNMPv3 queries, IPv6 targets, bulkwalk, and
+      hex-string output. You do not need to remove php-snmp; Cacti handles the
+      fallback automatically based on query type and device configuration.
 
 - Problematic software and configuration
-  - On Linux OS do not turn on SELinux or APPArmor
-  - On web server do not turn on ModSecurity
-
-    SELinux and ModSecurity can cause problem with ICMP ping, socket connections, ...
+  - SELinux, AppArmor, and ModSecurity can interfere with ICMP ping, socket
+    connections, and RRDtool file writes. Configure appropriate policies or
+    exceptions rather than disabling these protections entirely. Disabling
+    SELinux or AppArmor system-wide is a security regression and is not
+    recommended for production systems.
 
 - MySQL 5.7 or MariaDB 10.2 or greater
   - Timezone support must be enabled

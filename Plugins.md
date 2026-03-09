@@ -40,7 +40,7 @@ this file. It may contain important installation information.
    ![thold plugin enable](images/thold-enable.png)
 
 After this, the **Plugin** is installed and enabled. However, there will likely
-be onfiguration that must take place after the **Plugin** is enabled. See the
+be configuration that must take place after the **Plugin** is enabled. See the
 **Plugin** documentation for instructions on how to configure and use them.
 
 ## Updating a Plugin
@@ -82,7 +82,7 @@ plugin which will not drop the SQL tables and thus save your settings.
 
 ### Video Walkthrough
 
-[![Video Tuturial](http://img.youtube.com/vi/TPKu-2XYKok/0.jpg)](https://youtu.be/TPKu-2XYKok)
+[![Video Tutorial](https://img.youtube.com/vi/TPKu-2XYKok/0.jpg)](https://youtu.be/TPKu-2XYKok)
 
 ## Uninstall a Plugin
 
