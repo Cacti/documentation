@@ -109,7 +109,7 @@ do
 done
 ```
 
-Run script and wait. My experience - 5200 files took 100 minutes without paralelisation. Script will be output sometning like:
+Run script and wait. My experience - 5200 files took 100 minutes without parallelization. Script will be output sometning like:
 ```console
 fortigate_1_-_fg200e4q17911506_traffic_in_7317.rrd
 NOTE: Using Native Arrays due to lack of SQLite.

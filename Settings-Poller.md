@@ -179,7 +179,7 @@ Those settings include:
   is it's ability to create a pool of memory resident PHP
   interpreters for running PHP scripts, making spine very powerful.
   Every concurrent process will have this many memory resident
-  PHP interpreters pooled fro running scripts.
+  PHP interpreters pooled for running scripts.
 
 - **Script and Script Server Timeout Value** - This is the timeout
   to stop run-on script from blocking poller performance.  If a script

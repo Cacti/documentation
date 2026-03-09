@@ -408,7 +408,7 @@ DB_Password cacti
 DB_Port     3306
 ```
 
-### Considerations when using Proxys in front of Cacti (Cacti 1.2.23+)
+### Considerations when using Proxies in front of Cacti (Cacti 1.2.23+)
 
 For optimal security, only specify the HTTP headers that are set by your proxy
 software. to prevent unauthorized access, These can be set by editing the

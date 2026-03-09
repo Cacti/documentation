@@ -373,7 +373,7 @@ you can leverage the built in variable substitution to format the input to the s
 The Syslog plugin allows administrators to delete incoming messages
 so they are not stored in the DB.
 For example, if you are not interested in seeing Syslog messages
-everytime a user logs into a device you may add a rule to delete the message.
+every time a user logs into a device you may add a rule to delete the message.
 
 to do this click on the Syslog settings tab in the console then click removal rules
 

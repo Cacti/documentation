@@ -1,7 +1,7 @@
 # ESXi/VMWare Template
 
 The ESXi template uses snmp, so ESXi must have SNMP configured correctly.
-You can use ESXCLI commands directly on tge host using the ESXi Shell
+You can use ESXCLI commands directly on the host using the ESXi Shell
 or via ssh.
 
 ```console

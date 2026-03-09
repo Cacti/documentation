@@ -140,11 +140,11 @@ systemctl status cactid
 The systemd units file makes managing a highly available Cacti
 setup a bit more convenient.
 
-The system is now ready to finialise the steps by browsing to
+The system is now ready to finalise the steps by browsing to
 [http://serverip/cacti](http://serverip/cacti) to start the cacti initialization
 wizard.
 
-### Considerations when using Proxys in front of Cacti (Cacti 1.2.23+)
+### Considerations when using Proxies in front of Cacti (Cacti 1.2.23+)
 
 For optimal security, only specify the HTTP headers that are set by your proxy
 software to prevent unauthorized access.
