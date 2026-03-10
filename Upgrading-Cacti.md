@@ -32,43 +32,60 @@ Before you begin, ensure that both your Apache/NGINX and your Crontab or systemd
    
    You will probably have to specify the -u and -p flags for the MySQL username and password. This user must have permission to read from Cacti's database or you will end up with an empty backup.
 
-5. Backup the Old Cacti Directory:
+4. Backup the Old Cacti Directory:
 
    Backup the old Cacti directory with the exception of the RRD files, which should not need backup.
    ```shell
    shell> tar --exclude=*.rrd -zcf cacti_backup_YYYYMMDD.tgz cacti
    ```
-6. Extract the Distribution Tarball:
+5. Extract the Distribution Tarball:
    ```shell
    shell> tar -xzvf cacti-version.tar.gz
    ```
-7. Copy the Distribution Tarball Over the Existing Installation:
+6. Copy the Distribution Tarball Over the Existing Installation:
    ```shell
    shell> /bin/cp -rpf cacti-version cacti
    ```
-8. Set Appropriate Permissions:
+7. Set Appropriate Permissions:
 
    Set the appropriate permissions on Cacti's directories for graph/log generation. Execute these commands from inside Cacti's directory to change the permissions.
+
+   On RHEL/Rocky Linux/AlmaLinux (Apache runs as `apache`):
    ```shell
    shell> chown -R apache:apache rra/ log/
    ```
-9. Recreate the Cache Folder (Optional):
+
+   On Ubuntu/Debian (Apache runs as `www-data`):
+   ```shell
+   shell> chown -R www-data:www-data rra/ log/
+   ```
+
+8. Recreate the Cache Folder (Optional):
 
    If you are using Performance > Image Caching or Realtime Graphing, recreate the cache folder and correct the permissions.
    ```shell
    shell> mkdir cache
+   ```
+
+   On RHEL/Rocky Linux/AlmaLinux:
+   ```shell
    shell> chown -R apache:apache cache
-    ```
+   ```
+
+   On Ubuntu/Debian:
+   ```shell
+   shell> chown -R www-data:www-data cache
+   ```
    
-10. Point Your Browser:
+9. Point Your Browser:
 
    Point your web browser to http://your-server/cacti/ and follow the on-screen instructions to update your database to the new version.
 
-11. Re-enable Polling:
+10. Re-enable Polling:
 
     Go to the console and re-enable the poller. It will take two polling cycles to update the remote pollers.
 
-12. If Remote Pollers Fail to Update:
+11. If Remote Pollers Fail to Update:
 
     Try to rebuild the Resource Cache by going to Console >> Utilities and wait 2 polling cycles.
 

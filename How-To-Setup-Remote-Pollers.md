@@ -25,6 +25,11 @@ With this setup the following layout is assumed
 
 ## Database Configuration
 
+> **Security**: The username `cacti` and password `cacti` shown in the examples
+> below are placeholders. Use a strong, randomly generated password in
+> production. Never use the literal string `cacti` as a database password on
+> any reachable system.
+
 Each server will have its own local database however the remote pollers will
 need to talk back to the main poller so we must allow the remote servers user
 account to connect back to the main pollers database via the network
@@ -32,20 +37,27 @@ account to connect back to the main pollers database via the network
 Main server database config
 
 ```sql
-GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'192.168.1.10' IDENTIFIED BY 'cacti';
-GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'192.168.1.20' IDENTIFIED BY 'cacti';
+CREATE USER 'cacti'@'192.168.1.10' IDENTIFIED BY 'strongpassword';
+GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'192.168.1.10';
+CREATE USER 'cacti'@'192.168.1.20' IDENTIFIED BY 'strongpassword';
+GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'192.168.1.20';
+FLUSH PRIVILEGES;
 ```
 
 Remote poller 1 database configuration
 
 ```sql
-GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'192.168.1.5' IDENTIFIED BY 'cacti';
+CREATE USER 'cacti'@'192.168.1.5' IDENTIFIED BY 'strongpassword';
+GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'192.168.1.5';
+FLUSH PRIVILEGES;
 ```
 
 Remote poller 2 database configuration
 
 ```sql
-GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'192.168.1.5' IDENTIFIED BY 'cacti';
+CREATE USER 'cacti'@'192.168.1.5' IDENTIFIED BY 'strongpassword';
+GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'192.168.1.5';
+FLUSH PRIVILEGES;
 ```
 
 We have also let the main poller talk to the remote pollers to keep in sync
@@ -58,15 +70,21 @@ configure the spine.conf file to connect to the remote database as well.
 Be sure to remove the # next to the below entries
 
 ```console
-RDB_Host 192.168.1.5
+RDB_Host     192.168.1.5
 RDB_Database cacti
-RDB_User cacti
-RDB_Pass cacti
-RDB_Port 3306
-#RDB_UseSSL 0
-#RDB_SSL_Key
-#RDB_SSL_Cert
-#RDB_SSL_CA
+RDB_User     cacti
+RDB_Pass     strongpassword
+RDB_Port     3306
+```
+
+If the network between pollers and the main server is not fully trusted,
+enable SSL for the remote database connection:
+
+```console
+RDB_UseSSL 1
+RDB_SSL_Key  /etc/cacti/ssl/client.key
+RDB_SSL_Cert /etc/cacti/ssl/client.crt
+RDB_SSL_CA   /etc/cacti/ssl/ca.crt
 ```
 
 ## Spine poller and max connections
@@ -90,7 +108,7 @@ the remote poller to talk to the main server be sure to remove the hash sign (#)
 ```console
 $rdatabase_type = 'mysql';
 $rdatabase_default = 'cacti';
-$rdatabase_hostname = '192.168.1.5;
+$rdatabase_hostname = '192.168.1.5';
 $rdatabase_username = 'cacti';
 $rdatabase_password = 'cacti';
 $rdatabase_port = '3306';

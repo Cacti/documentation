@@ -120,7 +120,7 @@ Create and edit `/etc/cron.d/cacti` file.
 Make sure to setup the correct path to poller.php
 
 ```console
-*/5 * * * * apache php /var/www/html/cacti/poller.php &>/dev/null
+*/5 * * * * www-data php /var/www/html/cacti/poller.php >/dev/null 2>&1
 ```
 
 For systemd unit's file install, you will need to modify the
