@@ -264,7 +264,7 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 13. Reporting
 
-    13.1. [Reports Admistrative Interface](Reports-Admin.md)
+    13.1. [Reports Administrative Interface](Reports-Admin.md)
 
     13.2. [Reports User Interface](Reports-User.md)
 
@@ -386,7 +386,7 @@ Watch Howto's and Tutorials on the Cacti Official YouTube page if you prefer. If
 
 ### Template Specific Documentation
 
-This section will be for template specific configuration requriments
+This section will be for template specific configuration requirements
 
 1. [Apache Server Template](template_apache_config.md)
 
@@ -394,7 +394,7 @@ This section will be for template specific configuration requriments
 
 ### Device Template Specific Documentation
 
-This section will be for device template specific configuration requriments
+This section will be for device template specific configuration requirements
 
 1. [Proxmox External Storage Usage with Linux Device Template](device-template-specific-proxmox.md)
 

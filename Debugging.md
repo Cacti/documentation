@@ -186,40 +186,39 @@ Last resort would be to check, that the correct data sources are used. Go to
 the RRDfile and data source to be used. You may check, that all of them are as
 wanted.
 
-## RPM Installation
+## Duplicate Poller Entries
 
-Most rpm installations will setup the crontab entry now. If you've followed the
-installation instructions to the letter (which you should always do ;-) ), you
-may now have two poller running. That's not a good thing, though. Most rpm
-installations will setup cron in `/etc/cron.d/cacti`
+If you installed Cacti from a package (RPM, DEB, etc.), the package may have
+created both a cron entry in `/etc/cron.d/cacti` and enabled the `cactid`
+systemd service. Running two pollers simultaneously causes data corruption.
 
-Now check all your crontab, especially `/etc/crontab` and crontab of users root
-and cactiuser. Leave only one poller entry for all of them. Personally, I've
-chosen `/etc/cron.d/cacti` to avoid problems when updating RPM's. Most often,
-you won't remember this item when updating lots of RPM's, so I felt more secure
-to put it here. And I've made some slight modifications, see
+Check for duplicate entries:
 
 ```sh
-shell> vi /etc/cron.d/cacti
+systemctl status cactid
+cat /etc/cron.d/cacti
+cat /etc/crontab
+crontab -l -u cactiuser 2>/dev/null
+crontab -l -u root 2>/dev/null
 ```
 
-```ini
-*/5 * * * *     cactiuser       /usr/bin/php -q /var/www/html/cacti/poller.php > /var/local/log/poller.log 2>&1
-```
-
-This will produce a file `/var/local/log/poller.log`, which includes some
-additional information from each poller's run, such as RRDtool errors. It
-occupies only some few bytes and will be overwritten each time.
-
-If you're using the crontab of user "cactiuser" instead, this will look like
+The recommended approach is to use the `cactid` systemd service and remove any
+cron-based poller entries:
 
 ```sh
-shell> crontab -e -u cactiuser
+systemctl enable --now cactid
+# Then remove or comment out any poller.php line in /etc/cron.d/cacti
 ```
 
+If you need to keep cron-based polling, disable the service and leave a single
+cron entry:
+
 ```ini
-*/5 * * * *     /usr/bin/php -q /var/www/html/cacti/poller.php > /var/local/log/poller.log 2>&1
+*/5 * * * *  cactiuser  /usr/bin/php -q /var/www/html/cacti/poller.php > /dev/null 2>&1
 ```
+
+Replace `cactiuser` with the user your web server runs as (e.g. `www-data` on
+Debian/Ubuntu, `apache` on RHEL-compatible systems).
 
 ## Not NaN, but 0 (zero) values
 
