@@ -1,4 +1,6 @@
-# Installing on CentOS 7
+# Installing on CentOS/RHEL/Rocky Linux/AlmaLinux (LEMP)
+
+> **Note:** CentOS Linux reached end-of-life on June 30, 2024 (CentOS 7) and December 31, 2021 (CentOS 8). New installations should use [Rocky Linux](https://rockylinux.org/) or [AlmaLinux](https://almalinux.org/), which are binary-compatible RHEL rebuilds. The commands in this guide apply to both.
 
 > **Note**: As of Cacti 1.2.31, PHP 8.1 is required and PHP Composer is required. 
 > Composer will be used to ensure all of the libraries are installed and are up to date.
@@ -10,7 +12,7 @@
 1. Install Nginx
 
    ```console
-   yum install -y nginx
+   dnf install -y nginx
    ```
 
 2. Enable and start the service to ensure it starts when the system reboots
@@ -41,8 +43,8 @@ add_header X-Content-Type-Options nosniff;
 # Redirect all HTTP traffic to HTTPS
 server {
    listen 80;
-   server_name cacti.yourdomain.com; #No one likes unencrypted web servers
-   #return 301 https://$host$request_uri; # some nginx do not support 'return';
+   server_name cacti.yourdomain.com;
+   return 301 https://$host$request_uri;
 }
 
 # SSL configuration
@@ -127,12 +129,11 @@ server {
    ssl_session_cache shared:SSL:10m;
    ssl_session_timeout 5m;
 
-   # Enable server-side protection against BEAST attacks
-   #ssl_prefer_server_ciphers on;
-   ssl_ciphers ECDH+AESGCM:ECDH+AES256:ECDH+AES128:DH+3DES:!ADH:!AECDH:!MD5;
+   # Prefer server cipher order; use only TLS 1.2+ (TLS 1.0/1.1 prohibited by RFC 8996)
+   ssl_prefer_server_ciphers on;
+   ssl_ciphers ECDH+AESGCM:ECDH+AES256:ECDH+AES128:!ADH:!AECDH:!MD5;
 
-   # Disable SSLv3
-   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+   ssl_protocols TLSv1.2 TLSv1.3;
 
    # Diffie-Hellman parameter for DHE cipher suites
    # $ sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 4096
@@ -160,7 +161,7 @@ a drop-in alternative until there is a major divergence that can not be bridged.
 1. Install MySQL server
 
    ```console
-   yum install -y mysql mysql-server
+   dnf install -y mysql mysql-server
    ```
 
 2. Enable and start the service to ensure it starts when the system reboots
@@ -175,7 +176,7 @@ a drop-in alternative until there is a major divergence that can not be bridged.
 1. Install MariaDB server
 
    ```console
-   yum install -y MariaDB-server MariaDB-client
+   dnf install -y MariaDB-server MariaDB-client
    ```
 
 2. Enable and start the service to ensure it starts when the system reboots
@@ -216,14 +217,11 @@ during the installation.
    character_set_client            = utf8mb4
    character-set-server            = utf8mb4
    collation-server                = utf8mb4_unicode_ci
-   innodb_file_format              = Barracuda
    max_allowed_packet              = 16777777
    max_heap_table_size             = 500M
    join_buffer_size                = 32M
    innodb_file_per_table           = ON
-   innodb_large_prefix             = 1
    innodb_buffer_pool_size         = 500M
-   innodb_additional_mem_pool_size = 90M
    innodb_flush_log_at_trx_commit  = 2
    log-error                       = /var/log/mysql/mysql-error.log
    log-queries-not-using-indexes   = 1
@@ -276,7 +274,7 @@ during the installation.
    ```sql
    MariaDB [(none)]> use cacti;
    Database changed
-   MariaDB [(cacti)]> source /var/www/html/cacti/cacti.sql
+   MariaDB [(cacti)]> source /usr/share/nginx/html/cacti/cacti.sql
    ```
 
 3. Grant Cacti username access to Cacti database. Replace `your_cacti_username`
@@ -312,7 +310,7 @@ PHP and various packages are all required by Cacti for successful operation
 1. Install PHP and required packages.
 
    ```console
-   yum install -y php php-common php-bcmath php-cli \
+   dnf install -y php php-common php-bcmath php-cli \
    php-mysqlnd php-gd php-gmp php-intl \
    php-json php-ldap php-mbstring \
    php-pdo php-pear php-snmp php-process \
@@ -380,7 +378,7 @@ RRDtool is required to store the data retrieved from devices in `.rra` files to
 produce the graphs which are shown within Cacti
 
 ```console
-yum install -y rrdtool
+dnf install -y rrdtool
 ```
 
 ### SNMP
@@ -388,7 +386,7 @@ yum install -y rrdtool
 SNMP is used to query most devices for information.
 
 ```console
-yum install -y net-snmp net-snmp-utils
+dnf install -y net-snmp net-snmp-utils
 echo "rocommunity public" > /etc/snmp/snmpd.conf
 systemctl enable snmpd
 systemctl start snmpd
@@ -449,7 +447,7 @@ configure the basics for Cacti.
    to poller.php
 
    ```console
-   */5 * * * * nginx php /var/www/html/cacti/poller.php &>/dev/null
+   */5 * * * * nginx php /usr/share/nginx/html/cacti/poller.php &>/dev/null
    ```
 
    For systemd unit's file install, you will need to modify the included units
@@ -473,7 +471,7 @@ configure the basics for Cacti.
 1. Install the necessary packages to compile and install spine
 
    ```console
-   yum install -y autoconf automake libtool dos2unix help2man \
+   dnf install -y autoconf automake libtool dos2unix help2man \
    openssl-devel mariadb-devel net-snmp-devel
    ```
 
@@ -528,33 +526,55 @@ configure the basics for Cacti.
 
 ### Security Enhanced Linux (SELinux)
 
-If you are having issues to access the web page, disable SELinux temporarily to
-prove that the issues come from the SELinux policy. It is NOT recommended to
-disable SELinux permanently.
+If you suspect SELinux is blocking Cacti, disable it temporarily to confirm, then re-enable it and apply the correct policy rather than leaving it disabled.
 
-[CentOS](https:////wiki.centos.org/es/HowTos/SELinux) has a lot of documentation
-on how to make your SELinux policy right.
+The [RHEL SELinux documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/using_selinux/) covers policy management in depth and applies equally to Rocky Linux and AlmaLinux.
 
-Check SELinux status
+1. Check SELinux status
 
-```console
-getenforce
-```
+   ```console
+   getenforce
+   ```
 
-Disable SELinux temporarily
+2. Disable SELinux temporarily for testing
 
-```console
-setenforce 0
-```
+   ```console
+   setenforce 0
+   ```
 
-Enable SELinux back
+3. Re-enable SELinux
 
-```console
-setenforce 1
-```
+   ```console
+   setenforce 1
+   ```
 
-**Note:** If you installed Cacti out of `/usr/share/nginx/html` make sure you
-fix up all SELinux context and permissions.
+4. Configure SELinux booleans for Cacti
+
+   Cacti requires two booleans so Nginx/PHP-FPM can reach the database and make outbound SNMP connections during polling:
+
+   ```console
+   setsebool -P httpd_can_network_connect 1
+   setsebool -P httpd_can_network_connect_db 1
+   ```
+
+5. Set file contexts (only needed if Cacti is outside `/usr/share/nginx/html`)
+
+   If you installed Cacti to a non-default path, apply the correct SELinux file contexts. The `semanage` command is provided by `policycoreutils-python-utils`; install it first if not already present:
+
+   ```console
+   dnf install -y policycoreutils-python-utils
+   ```
+
+   Replace `/path/to/cacti` with your actual install path:
+
+   ```console
+   semanage fcontext -a -t httpd_sys_content_t "/path/to/cacti(/.*)?"
+   semanage fcontext -a -t httpd_sys_rw_content_t "/path/to/cacti/rra(/.*)?"
+   semanage fcontext -a -t httpd_sys_rw_content_t "/path/to/cacti/log(/.*)?"
+   restorecon -Rv /path/to/cacti
+   ```
+
+   These labels grant the web server read access to Cacti's files and write access to the RRD and log directories. Without `httpd_sys_rw_content_t` on `rra/` and `log/`, graph generation silently fails even when UNIX permissions appear correct.
 
 ---
 

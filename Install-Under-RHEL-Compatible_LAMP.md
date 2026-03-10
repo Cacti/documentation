@@ -1,4 +1,6 @@
-# Installing on CentOS/RHEL/ROCKY
+# Installing on CentOS/RHEL/Rocky Linux/AlmaLinux
+
+> **Note:** CentOS Linux reached end-of-life on June 30, 2024 (CentOS 7) and December 31, 2021 (CentOS 8). New installations should use [Rocky Linux](https://rockylinux.org/) or [AlmaLinux](https://almalinux.org/), which are binary-compatible RHEL rebuilds. The commands in this guide apply to both.
 
 > **Note**: As of Cacti 1.2.31, PHP 8.1 is required and PHP Composer is required. 
 > Composer will be used to ensure all of the libraries are installed and are up to date.
@@ -7,7 +9,7 @@
 
 ### Web Server (Apache)
 
-1. For Centos/RHEL/ROCKY 8+
+1. For RHEL/Rocky Linux/AlmaLinux 8+
 
    ```console
    dnf module reset php
@@ -47,13 +49,13 @@ Daemon to rebuild the Cache or you may receive a HTTP 500 Error
    systemctl restart php-fpm
    ```
 
-2.Install Apache
+2. Install Apache
 
    ```console
-   yum install -y httpd
+   dnf install -y httpd
    ```
 
-3.Enable and start the service to ensure it starts when the system reboots
+3. Enable and start the service to ensure it starts when the system reboots
 
    ```console
    systemctl start httpd
@@ -156,7 +158,7 @@ bridged.
 1. Install MySQL server
 
    ```console
-   yum install -y mysql mysql-server
+   dnf install -y mysql mysql-server
    ```
 
 2. Enable and start the service to ensure it starts when the system reboots
@@ -171,7 +173,7 @@ bridged.
 1. Install MariaDB server
 
    ```console
-   yum install -y MariaDB-server MariaDB-client
+   dnf install -y MariaDB-server MariaDB-client
    ```
 
 2. Enable and start the service to ensure it starts when the system reboots
@@ -211,13 +213,10 @@ during the installation.
    [mysqld]
    character-set-server=utf8mb4
    collation-server=utf8mb4_unicode_ci
-   innodb_file_format = Barracuda
    max_allowed_packet = 16777777
    join_buffer_size = 32M
    innodb_file_per_table = ON
-   innodb_large_prefix = 1
    innodb_buffer_pool_size = 250M
-   innodb_additional_mem_pool_size = 90M
    innodb_flush_log_at_trx_commit = 2
    log-error                      = /var/log/mysql/mysql-error.log
    log-queries-not-using-indexes  = 1
@@ -308,7 +307,7 @@ PHP and various packages are all required by Cacti for successful operation
 1. Install PHP and required packages.
 
    ```console
-   yum install -y php php-common php-bcmath php-cli \
+   dnf install -y php php-common php-bcmath php-cli \
    php-mysqlnd php-gd php-gmp php-intl \
    php-json php-ldap php-mbstring \
    php-pdo php-pear php-snmp php-process \
@@ -329,7 +328,7 @@ RRDtool is required to store the data retrieved from devices in `.rra` files to
 produce the graphs which are shown within Cacti
 
 ```console
-yum install -y rrdtool
+dnf install -y rrdtool
 ```
 
 #### SNMP
@@ -337,7 +336,7 @@ yum install -y rrdtool
 SNMP is used to query most devices for information.
 
 ```console
-yum install -y net-snmp net-snmp-utils
+dnf install -y net-snmp net-snmp-utils
 ```
 
 ### Cacti
@@ -413,17 +412,22 @@ configure the basics for Cacti.
 
 1. Install the necessary packages to compile and install spine
 
-   For RHEL/CENTOS/ROCKY 8+, you must enable the powertools repo first before
-    downloading the below packages
+   On RHEL 8 / Rocky Linux 8 / AlmaLinux 8, enable the PowerTools repository first:
 
    ```console
-   yum config-manager --set-enabled powertools
+   dnf config-manager --set-enabled powertools
    ```
 
-   For RHEL/CENTOS/ROCKY 7.x and below
+   On RHEL 9 / Rocky Linux 9 / AlmaLinux 9, the equivalent repository is called `crb`:
 
    ```console
-   yum install -y autoconf automake libtool dos2unix help2man \
+   dnf config-manager --set-enabled crb
+   ```
+
+   Then install the build dependencies:
+
+   ```console
+   dnf install -y autoconf automake libtool dos2unix help2man \
    openssl-devel mariadb-devel net-snmp-devel
    ```
 
@@ -478,12 +482,9 @@ configure the basics for Cacti.
 
 ### Security Enhanced Linux (SELinux)
 
-If you are having issues to access the web page, disable SELinux temporarily to
-prove that the issues come from the SELinux policy. It is NOT recommended to
-disable SELinux permanently.
+If you suspect SELinux is blocking Cacti, disable it temporarily to confirm, then re-enable it and apply the correct policy rather than leaving it disabled.
 
-[CentOS](https:////wiki.centos.org/es/HowTos/SELinux) has a lot of
-documentation on how to make your SELinux policy right.
+The [RHEL SELinux documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/using_selinux/) covers policy management in depth and applies equally to Rocky Linux and AlmaLinux.
 
 1. Check SELinux status
 
@@ -491,17 +492,45 @@ documentation on how to make your SELinux policy right.
    getenforce
    ```
 
-2. Disable SELinux temporarily
+2. Disable SELinux temporarily for testing
 
    ```console
    setenforce 0
    ```
 
-3. Enable SELinux back
+3. Re-enable SELinux
 
    ```console
    setenforce 1
    ```
+
+4. Configure SELinux booleans for Cacti
+
+   Cacti requires two booleans so Apache can reach the database and make outbound SNMP connections during polling:
+
+   ```console
+   setsebool -P httpd_can_network_connect 1
+   setsebool -P httpd_can_network_connect_db 1
+   ```
+
+5. Set file contexts (only needed if Cacti is outside `/var/www/html`)
+
+   If you installed Cacti to a non-default path, apply the correct SELinux file contexts. The `semanage` command is provided by `policycoreutils-python-utils`; install it first if not already present:
+
+   ```console
+   dnf install -y policycoreutils-python-utils
+   ```
+
+   Replace `/path/to/cacti` with your actual install path:
+
+   ```console
+   semanage fcontext -a -t httpd_sys_content_t "/path/to/cacti(/.*)?"
+   semanage fcontext -a -t httpd_sys_rw_content_t "/path/to/cacti/rra(/.*)?"
+   semanage fcontext -a -t httpd_sys_rw_content_t "/path/to/cacti/log(/.*)?"
+   restorecon -Rv /path/to/cacti
+   ```
+
+   These labels grant Apache read access to Cacti's files and write access to the RRD and log directories. Without `httpd_sys_rw_content_t` on `rra/` and `log/`, graph generation silently fails even when UNIX permissions appear correct.
 
 ### Considerations when using Proxies in front of Cacti (Cacti 1.2.23+)
 
@@ -536,8 +565,7 @@ These can be set by editing the following section of config.php
 $proxy_headers = null;
 ```
 
-**Note:** If you installed Cacti out of `/var/www/html` make sure you fix up
-all SELinux context and permissions.
+**Note:** If you installed Cacti outside `/var/www/html`, run the `semanage fcontext` and `restorecon` commands from step 5 of the SELinux section above to apply the correct file contexts.
 
 ---
 Copyright (c) 2004-2026 The Cacti Group

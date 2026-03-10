@@ -144,6 +144,42 @@ The system is now ready to finialise the steps by browsing to
 [http://serverip/cacti](http://serverip/cacti) to start the cacti initialization
 wizard.
 
+### AppArmor Configuration
+
+Ubuntu and Debian ship with AppArmor enabled by default. Cacti requires that
+Apache and PHP can read its files and write to several directories. If AppArmor
+denials appear in `/var/log/syslog` or `dmesg`, add a local override profile
+rather than disabling AppArmor system-wide.
+
+Check whether denials exist:
+
+```console
+grep -i "apparmor.*DENIED" /var/log/syslog | grep -E "apache|php"
+```
+
+Create a local override for Apache to allow access to the Cacti directories
+(adjust the path if Cacti is not installed under `/var/www/html/cacti`):
+
+```console
+cat > /etc/apparmor.d/local/usr.sbin.apache2 << 'EOF'
+# Cacti: allow Apache to read web root and write to RRD/log/cache dirs
+/var/www/html/cacti/** r,
+/var/www/html/cacti/rra/** rw,
+/var/www/html/cacti/log/** rw,
+/var/www/html/cacti/cache/** rw,
+EOF
+
+apparmor_parser -r /etc/apparmor.d/usr.sbin.apache2
+systemctl restart apache2
+```
+
+Verify AppArmor is enforcing (not complaining) and no new denials appear:
+
+```console
+aa-status | grep apache2
+grep -i "apparmor.*DENIED" /var/log/syslog | grep apache | tail -5
+```
+
 ### Considerations when using Proxys in front of Cacti (Cacti 1.2.23+)
 
 For optimal security, only specify the HTTP headers that are set by your proxy
