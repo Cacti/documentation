@@ -31,12 +31,22 @@ on demand by the Cacti Administrator. They include:
 
 ## Prerequisites
 
+> **Recommendation**: For most installations, especially those using the
+> **multiprocessing update** feature introduced in Cacti 1.2.17, or any
+> deployment with multiple Data Collectors, use **InnoDB** for all Boost tables.
+> The MEMORY engine can cause race conditions between concurrent processes
+> competing for memory table locks, which leads to polling backlogs and data
+> loss on busy systems. InnoDB with SSD or NVMe storage performs comparably and
+> avoids these failure modes. MEMORY tables are also incompatible with MariaDB
+> Galera and MySQL replication.
+
 In its initial design the Boost process leveraged MySQL Memory Tables to
-increase overall performance, and to reduce writing data to disk. This is still
-a valid case however, with improvements in InnoDB performance over the years
-combined with Flash storage, the need for using MySQL Memory Tables has
-diminished. In some cases, for example when using MariaDB Galera, or MySQL
-Master/Slave replication, it can not be used.
+increase overall performance, and to reduce writing data to disk. With
+improvements in InnoDB performance over the years combined with Flash storage,
+the need for MySQL Memory Tables has diminished. The sections below document
+MEMORY table sizing for sites that have an explicit reason to use it, but InnoDB
+is the recommended engine. Cacti installs MEMORY tables by default; see below
+for the conversion steps.
 
 If you do wish to use Memory you have to pay close attention to the amount of
 data that will be cached in your design. You should periodically check that you
@@ -178,10 +188,14 @@ Then, save the file, and restart MySQL. Once this is done, you are ready to
 
 ## Flushing the Boost Cache
 
-If you are planning on system maintenance if you are using MEMORY storage in
-MySQL or MariaDB, you should flush your Boost Cache before your system is taken
-offline for maintenance. To do this, you simply login to the Cacti system as
-root, and flush the Cache using the commands below
+> **Warning**: MEMORY tables are cleared on every MySQL/MariaDB restart. If you
+> are using MEMORY storage, always flush the Boost Cache before taking the
+> database offline. Failure to do so will result in loss of all buffered poller
+> data since the last flush.
+
+If you are planning on system maintenance and are using MEMORY storage in
+MySQL or MariaDB, flush your Boost Cache before the system is taken offline.
+Login to the Cacti system as root and run the following:
 
 ```console
 cd /var/www/html/cacti
