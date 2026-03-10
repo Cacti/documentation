@@ -124,6 +124,8 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 7. [Upgrading Cacti Under FreeBSD](Upgrading-Cacti-Under-FreeBSD.md)
 
+8. [Security Hardening](Security-Hardening.md)
+
 ### Cacti Overview
 
 1. Overview
@@ -264,7 +266,7 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 13. Reporting
 
-    13.1. [Reports Admistrative Interface](Reports-Admin.md)
+    13.1. [Reports Administrative Interface](Reports-Admin.md)
 
     13.2. [Reports User Interface](Reports-User.md)
 
