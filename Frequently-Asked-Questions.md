@@ -68,18 +68,17 @@ installation documents included that may also help.
 
 **Q:** I have forgotten my 'admin' password to Cacti, how do I reset it?
 
-**A:** To reset the admin account password back to the default of 'admin',
-connect to your Cacti database at the command line.
+**A:** Use the built-in CLI password reset tool. Run the following from your
+Cacti root directory as the web server user (e.g. `www-data` on Debian/Ubuntu,
+`apache` on RHEL/Rocky):
 
-```sql
-shell> mysql -u root -p cacti
+```console
+php cli/change_password.php --user=admin --password=admin
 ```
 
-Now execute the following SQL:
-
-```sql
-MySQL> update user_auth set password=md5('admin') where username='admin';
-```
+> **Warning:** Do not use direct SQL `md5()` updates. Cacti 1.x stores
+> passwords with bcrypt/phpass. Setting an MD5 hash via SQL will lock the
+> account — the login will fail even with the correct password.
 
 ## Monitoring
 
@@ -244,9 +243,8 @@ change between the new small counter value and the large previous value. One way
 to combat this issue is to specify realistic maximum values for your data
 sources. RRDtool will ignore any value that is larger than the maximum value.
 
-If you already have a spike on one or more of your graphs, there is a really
-[useful Perl script](http://cricket.sourceforge.net/contrib/files/killspike2)
-that will remove them for you.
+If you already have a spike on one or more of your graphs, Cacti includes a
+built-in Spikekill utility. See [Spikekill](Spikekill.md) for usage.
 
 ---
 
