@@ -5,10 +5,10 @@
 Over the years Cacti has attempted to adhere to standards in code construction,
 syntax, style, etc. It has been a very organic grow which has resulted in some
 mixed styles. Cacti is in the process of moving to [PHP Standards
-Recommendations](http://www.php-fig.org/psr/) (PSR) standards.
+Recommendations](https://www.php-fig.org/psr/) (PSR) standards.
 
-Initially we are moving towards [PSR-2](http://www.php-fig.org/psr/psr-2/) code
-syntax standard with the following exceptions:
+Initially we are moving towards [PSR-12](https://www.php-fig.org/psr/psr-12/)
+(Extended Coding Style) with the following exceptions:
 
 - Initial white space must be tabs not spaces followed by the use of spaces to
   align elements after initial tab.
@@ -47,7 +47,7 @@ Tab stops should be set to 4 spaces.
 Below are the vim rules to accomplish this:
 
 ```console
-set expandtab
+set noexpandtab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4

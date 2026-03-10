@@ -2,11 +2,11 @@
 
 ## Summary
 
-Cacti Performance Settings, formally known as `boost` are available to support
+Cacti Performance Settings, formerly known as `boost` are available to support
 very large Cacti installations, and are required for supporting the multiple
 **Data Collector** architecture that Cacti affords.
 
-Designed years ago, Boosts intent was to reduce the the main data collectors
+Designed years ago, Boost's intent was to reduce the main data collector's
 cycle time by caching writes to disk, and those writes would be handled by an
 out of band process currently known as `poller_boost.php`.
 
@@ -61,7 +61,7 @@ important. That will be explained in more detail later on in this chapter.
 ## Checking how your system is configured
 
 To see how your system is configured, you can goto
-`Console > Utilityes > System Utilities > View Boost Status` option, when you go
+`Console > Utilities > System Utilities > View Boost Status` option, when you go
 there, you will see an image similar to that below.
 
 ![Boost Status Screen](images/boost-status1.png)
@@ -119,17 +119,17 @@ column, even though the column type is `varchar()`. By default it's
 `varchar(512)`. Therefore, if your system only needs 50 bytes, you will have 90%
 waste in your `poller_output_boost` table.
 
-The next step would me to modify the structure of your `poller_output` and
+The next step would be to modify the structure of your `poller_output` and
 `poller_output_boost` tables. You would do this by doing the following:
 
 ```sql
-ALTER TABLE poller_output,
-    MODIFY column output varchar(50) NOT NULL default ""
-    ENGINE=memory;
+ALTER TABLE poller_output
+    MODIFY COLUMN output varchar(50) NOT NULL DEFAULT '',
+    ENGINE=MEMORY;
 
-ALTER TABLE poller_output_boost,
-    MODIFY column output varchar(50) NOT NULL default ""
-    ENGINE=memory;
+ALTER TABLE poller_output_boost
+    MODIFY COLUMN output varchar(50) NOT NULL DEFAULT '',
+    ENGINE=MEMORY;
 ```
 
 As previously mentioned, its also important that the `poller_output` table is
@@ -174,7 +174,7 @@ max_heap_table_size=132M
 ```
 
 Then, save the file, and restart MySQL. Once this is done, you are ready to
-“enable” Boost as described above.
+"enable" Boost as described above.
 
 ## Flushing the Boost Cache
 

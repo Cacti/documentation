@@ -186,29 +186,6 @@ Last resort would be to check, that the correct data sources are used. Go to
 the RRDfile and data source to be used. You may check, that all of them are as
 wanted.
 
-## Miscellaneous
-
-Up to current cacti 0.8.6h, table `poller_output` may increase beyond reasonable
-size.
-
-This is commonly due to php.ini's memory settings of 8MB default. Change this to
-at least 64 MB.
-
-To check this, run the following SQL from MySQL CLI (or phpMyAdmin or the like)
-
-```sql
-select count(*) from poller_output;
-```
-
-If the result is huge, you may get rid of those stuff by
-
-```sql
-truncate table poller_output;
-```
-
-As of current SVN code for upcoming cacti 0.9, I saw measures were taken on both
-issues (memory size, truncating poller_output).
-
 ## RPM Installation
 
 Most rpm installations will setup the crontab entry now. If you've followed the
@@ -248,7 +225,7 @@ shell> crontab -e -u cactiuser
 
 Pay attention to custom scripts. It is required, that external commands called
 from there are in the `$PATH` of the cactiuser running the poller. It is
-therefor recommended to provide `/full/path/to/external/command`
+therefore recommended to provide `/full/path/to/external/command`
 
 User "criggie" reported an issue with running smartctl. It was complaining "you
 are not root" so a quick `chmod +s` on the script fixed that problem.
