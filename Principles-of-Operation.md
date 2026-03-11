@@ -1,6 +1,6 @@
 # Principles of Operation
 
-To understand Cacti's principal of operation, you have to start
+To understand Cacti's principles of operation, you have to start
 at the top and work down.  Cacti's operational model is
 divided into multiple layers.  They include
 
@@ -15,34 +15,34 @@ divided into multiple layers.  They include
 
 Cacti **Devices** are either physical hosts, sensors, clusters,
 services, or any type of object with a name and that can
-provide information about it self that should go into a
+provide information about itself that should go into a
 **Graph** or could be used to provide additional information
 useful for Operations.
 
 The Cacti **Device** object serves as the center Cacti's world
-it's where stores information on how gather data about it.  You
+it stores information on how to gather data about it.  You
 can have from one to tens of thousands of **Devices** monitored
 from one Cacti system.  It's very scalable.  They can be
 discovered using Cacti's Automation sub-system, added manually,
-or gathered from a CMDB and added to Cacti using it's command
+or gathered from a CMDB and added to Cacti using its command
 line interface.
 
 ## Sites
 
-Cacti works with **Sites**.  So, when you add a phyical **Device**
+Cacti works with **Sites**.  So, when you add a physical **Device**
 to Cacti, you can associate it with a **Site**.  Sites are designed
-to be physical locations.  Cacti can organize **Devices** and it's
+to be physical locations.  Cacti can organize **Devices** and its
 **Graphs** by Site in a convenient fashion.
 
 ## Data Collectors
 
 These are the physical or virtual hosts or containers that gather
 data about a group of devices either within a network or a site.
-They are resiliant in that if the central Cacti server is not reachable,
+They are resilient in that if the central Cacti server is not reachable,
 they will cache data and wait for it to become available again.
 
-Cacti supports upto dozens of Data Collectors today.  Some customers
-use somethings as simple as a Raspberry Pi or Nuk for
+Cacti supports up to dozens of Data Collectors today.  Some customers
+use something as simple as a Raspberry Pi or Intel NUC for
 Data Collectors.  However, Virtual Machines are preferred as they
 can be migrated live which does not interrupt data collection.
 
@@ -79,7 +79,7 @@ can be nearer in latency than the database, can scale to 30,
 40, even 50 thousand devices with relative ease in Cacti
 depending on the size of your database and data collector
 infrastructure (sockets, cores, threads).  When using this
-N-Tiered methology, most customers will use Cacti's
+N-Tiered methodology, most customers will use Cacti's
 `script server` which is a pool of memory resident PHP
 interpreters that preloads all scripts used to gather data,
 therefore, it's super fast, and parallel in nature.
@@ -102,7 +102,7 @@ hammer.  Other approaches in the industry use SQL database,
 others flat files or document stores like ElasticSearch, Splunk,
 Mongo DB, InfluxDB.  There are a number of options out there.
 You can get more information about RRDfile from the
-[RRDtool Website](http://www.RRDtool.org/).
+[RRDtool Website](https://www.rrdtool.org/).
 
 `RRD` is an acronym for **Round Robin Database**. RRD is a system to store and
 display time-series data (i.e. network bandwidth, machine-room temperature,
@@ -118,7 +118,7 @@ different consolidation functions: AVERAGE, MAXIMUM, MINIMUM and LAST.
 
 ## Data Presentation
 
-One of the most appreciated features of [RRDtool](http://www.RRDtool.org/) is
+One of the most appreciated features of [RRDtool](https://www.rrdtool.org/) is
 the built-in graphing function. This comes in useful when combining this with
 some commonly used web server. Such, it is possible to access the graphs from
 merely any browser on any platform.
@@ -177,10 +177,10 @@ results with others.
 ## Beyond Graphs
 
 Cacti is not just a Graphing platform, it's also a Network Operations
-Framework.  Thought the dozens of plugins and user contributed
+Framework.  Through the dozens of plugins and user contributed
 Graph Templates, the sky is the limit as to what can be done using the
-Cacti Framework.  It's stood the test of time now in it's 19th year
-of existence in the Open Source world.
+Cacti Framework.  It's stood the test of time now for over two decades
+in the Open Source world.
 
 ---
 Copyright (c) 2004-2026 The Cacti Group

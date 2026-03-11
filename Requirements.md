@@ -104,10 +104,12 @@ Cacti requires that the following software is installed on your system.
       the only feature in MariaDB or MySQL becomes temporary table space
       which may not be dependent on the **max_heap_table_size**.
 
-    - **table_cache >= 200**
+    - **table_open_cache >= 200**
 
       Keeping the table cache larger means less file open/close operations
-      when using innodb_file_per_table.
+      when using innodb_file_per_table. (Note: `table_cache` was renamed to
+      `table_open_cache` in MySQL 5.1.3; use `table_open_cache` on all
+      current MySQL and MariaDB releases.)
 
     - **max_allowed_packet >= 16777216**
 
@@ -162,11 +164,6 @@ Cacti requires that the following software is installed on your system.
       Setting this value to 2 means that you will flush all transactions every
       second rather than at commit.  This allows MySQL/MariaDB to perform
       writing less often.
-
-    - **innodb_file_io_threads >= 16**
-
-      With modern SSD type storage, having multiple io threads is advantageous
-      for applications with high IO characteristics.
 
     - **innodb_flush_log_at_timeout >= 3**
 

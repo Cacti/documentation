@@ -16,7 +16,7 @@ you are using unvalidated data.  They include:
 
 * get_filter_request_var('somevariable') - This function call, by default,
   will validate that the variable `$_REQUEST['somevariable']` returned
-  is actually an integer, if not, Cacti will block the the page
+  is actually an integer, if not, Cacti will block the page
   function from continuing.
 
 * get_filter_request_var('somevariable', 'options') - This version of the
@@ -28,8 +28,20 @@ you are using unvalidated data.  They include:
 Generally speaking, you should never use either `$_GET`, `$_REQUEST` or
 `$_POST` in your Cacti code.  Use the validators.  When you do, you can
 turn on the Cacti setting `Log Input Validation Issues` when you are
-developing, and you Cacti log will include warnings when an invalidate
+developing, and your Cacti log will include warnings when an invalid
 variable has been encountered.
+
+## OS Command Injection
+
+Never pass unsanitized input to shell execution functions (`exec()`,
+`shell_exec()`, `system()`, `passthru()`, `popen()`). Device fields,
+OID strings, community names, and any other user-influenced values must
+be treated as untrusted.
+
+Always escape arguments with `escapeshellarg()`. If you need to run an
+external command from a plugin, use Cacti's `api_plugin_safe_exec()` API
+where available, as it enforces an allowlist of permitted executables and
+strips dangerous characters before any shell invocation.
 
 ## Prepared Statements
 

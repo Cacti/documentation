@@ -1,18 +1,21 @@
-# Configuring and enabling SSL for Cacti with a self signed certificate
+# Configuring and enabling SSL for Cacti with a self-signed certificate
 
-Enabling SSL for Cacti is mostly done at the webserver level. An example SSL
-config for HTTP is as follows:
+Enabling SSL for Cacti is done at the web server level. An example HTTPS
+configuration for Apache is as follows:
 
 ```bash
-yum install -y mod_ssl -y
-openssl genrsa -out ca.key 2048
+yum install -y mod_ssl
+openssl genrsa -out ca.key 4096
 openssl req -new -key ca.key -out ca.csr
 openssl x509 -req -days 700 -in ca.csr -signkey ca.key -out ca.crt
 cp ca.crt /etc/pki/tls/certs
 cp ca.key /etc/pki/tls/private/ca.key
 cp ca.csr /etc/pki/tls/private/ca.csr
-
 ```
+
+> **Note on key size**: A 4096-bit RSA key is used above. NIST SP 800-57
+> recommends a minimum of 3072 bits for RSA keys through 2030. 2048-bit keys
+> are below that threshold and should not be used for new certificates.
 
 Then we need to update the Apache SSL configuration file:
 
@@ -28,16 +31,17 @@ Restart the httpd service:
 systemctl restart httpd
 ```
 
-After configuring the web server to accept https, you can enable https in the
-GUI
+After configuring the web server to accept HTTPS, you can enable HTTPS in the
+GUI.
+
+> **Note for public-facing servers**: Instead of a self-signed certificate,
+> use a certificate from a trusted CA. [Certbot](https://certbot.eff.org/)
+> from Let's Encrypt provides free, automatically-renewed certificates and
+> is the recommended approach for any internet-accessible Cacti instance.
 
 ---
 
 **Note**: if using multiple pollers, all must have HTTPS enabled for the remote polling feature to work properly.
-
----
-
-**Note**: If your Cacti system is public, it is recommended to get a certificate from a trusted certificate provider.
 
 ---
 
