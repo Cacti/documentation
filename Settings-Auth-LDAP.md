@@ -201,17 +201,109 @@ out in lower-case (`fullname`).
 
 ### Certificate verification
 
-When using LDAPS, a key and certificate must be installed on the directory
-server.  When the client attaches to the server, it must make a decision to
-trust or reject the certificate that the server provided.  The client will
-attempt to find the issuer of the certificate in a local repository of trusted
-certificate signers.  If you install onto the directory server a certificate
-signed by an internal authority or a self-signed certificate, you will need to
-add the certificate of the issuer to the local repository on the Cacti server.
-If you do not, the client will surely reject the certificate, causing
-authentication to fail.  To install a trusted certificate into the local
-repository, consult the documentation for the Operating System platform upon
-which you installed Cacti.
+When using LDAPS or STARTTLS, the Cacti server (as an LDAP client) must trust
+the certificate presented by the directory server. PHP's LDAP functions use the
+system OpenLDAP library, which reads its certificate configuration from
+`/etc/ldap/ldap.conf` (Debian/Ubuntu) or `/etc/openldap/ldap.conf`
+(RHEL/Rocky/AlmaLinux).
+
+#### Adding a CA certificate on Linux
+
+If the directory server uses a certificate signed by an internal CA or a
+self-signed certificate, install the CA certificate on the Cacti server and
+configure the OpenLDAP client library to trust it.
+
+**Debian/Ubuntu:**
+
+```shell
+# Copy the CA certificate
+cp /path/to/internal-ca.crt /usr/local/share/ca-certificates/internal-ca.crt
+
+# Update the system trust store
+update-ca-certificates
+
+```
+
+Add the following line to `/etc/ldap/ldap.conf` if not already present:
+
+```console
+TLS_CACERT /etc/ssl/certs/ca-certificates.crt
+```
+
+**RHEL/Rocky/AlmaLinux:**
+
+```shell
+# Copy the CA certificate
+cp /path/to/internal-ca.crt /etc/pki/ca-trust/source/anchors/internal-ca.crt
+
+# Update the system trust store
+update-ca-trust extract
+
+```
+
+Add the following line to `/etc/openldap/ldap.conf` if not already present:
+
+```console
+TLS_CACERT /etc/pki/tls/cert.pem
+```
+
+#### Controlling certificate verification strictness
+
+By default, the OpenLDAP library requires a valid, trusted certificate
+(`TLS_REQCERT demand`). You can relax this for testing, but do not disable
+verification in production; it exposes the LDAP bind to interception.
+
+```console
+# /etc/ldap/ldap.conf or /etc/openldap/ldap.conf
+
+# Require a valid certificate (default, recommended for production)
+TLS_REQCERT demand
+
+# Accept certificates signed by the configured CA even if the hostname
+# does not match (useful if the LDAP server has an internal hostname)
+TLS_REQCERT allow
+
+# Disable certificate verification entirely — DO NOT use in production
+TLS_REQCERT never
+```
+
+#### Verifying the configuration
+
+Test the LDAP TLS connection from the Cacti server before enabling it in Cacti:
+
+```shell
+# Test LDAPS (port 636)
+openssl s_client -connect ldap.example.com:636 -CAfile /path/to/ca.crt
+
+# Test STARTTLS (port 389)
+openssl s_client -connect ldap.example.com:389 -starttls ldap -CAfile /path/to/ca.crt
+```
+
+> **Note**: `openssl s_client` verifies the certificate chain but does not
+> check the server hostname. Use `ldapsearch` or a dedicated TLS testing tool
+> (e.g. `testssl.sh`) to confirm hostname validation.
+
+```shell
+# Full LDAP query over TLS using ldapsearch (-W prompts for password)
+ldapsearch -H ldaps://ldap.example.com -b "dc=example,dc=com" \
+  -D "cn=service,dc=example,dc=com" -W "(cn=testuser)"
+```
+
+A successful `CONNECTED` and `Verify return code: 0 (ok)` in the `openssl`
+output confirms the Cacti server trusts the certificate.
+
+#### Adding a CA certificate on Windows (IIS)
+
+On Windows, PHP's LDAP extension uses the Windows Certificate Store. Import the
+CA certificate using the Microsoft Management Console:
+
+1. Open `mmc.exe`, go to **File > Add/Remove Snap-in**, add
+   **Certificates** for the **Computer account**.
+2. Expand **Trusted Root Certification Authorities > Certificates**.
+3. Right-click, select **All Tasks > Import**, and follow the wizard to import
+   the CA certificate (`.crt` or `.cer` file).
+4. Restart the IIS service (`net stop w3svc && net start w3svc`) for the
+   change to take effect.
 
 ### Search Result Reference (Referrals)
 
