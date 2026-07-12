@@ -92,6 +92,8 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 7. [Development Standards](README.md#development-standards)
 
+8. [Architecture Decisions](README.md#architecture-decisions)
+
    This section contains the relevant information on how to ensure that any
    contribution is kept to the same standards that are applied for the Cacti
    Group. It should be noted that non-compliance does not mean automatically
@@ -383,6 +385,10 @@ Watch Howto's and Tutorials on the Cacti Official YouTube page if you prefer. If
 6. [SQL Standards](Standards-SQL.md)
 
 7. [Security](Standards-Security.md)
+
+### Architecture Decisions
+
+1. [Architecture Decision Records](Architecture-Decisions.md)
 
 ### Template Specific Documentation
 
