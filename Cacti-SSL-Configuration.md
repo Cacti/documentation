@@ -44,6 +44,11 @@ openssl req -x509 -nodes -newkey rsa:4096 \
 chmod 600 /etc/pki/tls/private/cacti.key
 ```
 
+> **Debian/Ubuntu paths**: the commands above use the RHEL layout
+> (`/etc/pki/tls/...`). On Debian/Ubuntu, write the key and certificate to
+> `/etc/ssl/private/cacti.key` and `/etc/ssl/certs/cacti.crt` instead, to match
+> the Apache `SSLCertificateKeyFile`/`SSLCertificateFile` paths shown below.
+
 > **Key size**: RSA 2048-bit is below NIST SP 800-131A Rev 2 guidance for
 > long-term use. Use 4096-bit RSA or an ECDSA key.
 
@@ -101,6 +106,8 @@ browser-trusted certificate at no cost.
 ### RHEL/Rocky/AlmaLinux
 
 ```shell
+# certbot ships in EPEL on RHEL/Rocky/AlmaLinux, not in BaseOS/AppStream
+dnf install -y epel-release
 dnf install -y certbot python3-certbot-apache
 certbot --apache -d cacti.example.com
 ```
