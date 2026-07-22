@@ -8,7 +8,7 @@ is exploited, the attacker's reach should be limited.
 
 A recurring class of vulnerability in Cacti involves writing an arbitrary
 file into the `resource/` or `scripts/` tree and then reaching that file
-over the web.  The package-import advisory (GHSA-jj7m-3x5c-9xvr) is a
+over the web.  The package-import advisory (GHSA-7cmj-g5qc-pj88, CVE-2024-25641) is a
 concrete example: a crafted package archive could write `resource/test.php`
 and execute it as a web request.  The controls below close or limit that
 path at the OS and web-server layers, independent of the PHP fix.
@@ -47,6 +47,11 @@ chmod -R 755               /var/www/html/cacti
 chown -R www-data:www-data /var/www/html/cacti/rra \
                            /var/www/html/cacti/log \
                            /var/www/html/cacti/cache
+
+# Protect the database credentials in config.php.  The recursive 755 above
+# leaves it world-readable; restrict it to root and the web user.
+chown root:www-data /var/www/html/cacti/include/config.php
+chmod 640           /var/www/html/cacti/include/config.php
 ```
 
 > **Note:** The `scripts/` and `resource/` paths may be written during
@@ -126,7 +131,13 @@ clear_env = yes
 security.limit_extensions = .php
 
 ; Disable dangerous functions at the pool level (not overridable by ini_set).
-php_admin_value[disable_functions] = exec,passthru,shell_exec,system,popen,proc_open,pcntl_exec
+; Cacti's web process shells out to RRDtool, fping and helper binaries via
+; exec, shell_exec, system, popen and proc_open (see lib/rrd.php, lib/ping.php,
+; lib/spikekill.php), so disabling those breaks graph rendering and diagnostics.
+; Only passthru and pcntl_exec are unused by the web tier and safe to disable.
+; For tighter control, constrain the process with open_basedir and a hardened
+; PATH rather than removing the shell-exec family Cacti depends on.
+php_admin_value[disable_functions] = passthru,pcntl_exec
 
 ; Restrict file operations to the Cacti tree.
 ; NOTE: open_basedir disables the PHP realpath cache.  Measure the
@@ -183,14 +194,14 @@ setsebool -P httpd_can_network_connect_db on
 
 ### Poller Systemd Drop-in
 
-The Cacti spine poller runs as a separate process and may need to connect
-outward for SNMP.  Add a drop-in under
-`/etc/systemd/system/cactid.service.d/selinux.conf`:
+The Cacti spine poller runs as a separate daemon and may need to connect
+outward for SNMP.  Do not force it into the `httpd_t` domain: that confines
+spine to Apache's policy rather than freeing it, and outbound access in
+`httpd_t` is still gated by booleans.  If SNMP polling is blocked by SELinux,
+enable the relevant boolean instead and leave the daemon in its own domain:
 
-```ini
-[Service]
-# Allow spine to connect to arbitrary network hosts for SNMP polling.
-SELinuxContext=system_u:system_r:httpd_t:s0
+```bash
+setsebool -P httpd_can_network_connect on
 ```
 
 Run `systemctl daemon-reload && systemctl restart cactid` after changes.
@@ -226,6 +237,16 @@ profile cacti-fpm /usr/sbin/php-fpm* {
     /var/www/html/cacti/rra/**     rw,
     /var/www/html/cacti/log/**     rw,
     /var/www/html/cacti/cache/**   rw,
+
+    # Helper binaries Cacti shells out to.  AppArmor is default-deny once
+    # file rules are present, so these need explicit execute (ix) or graphs
+    # and polling break under enforce mode.
+    /usr/bin/rrdtool               ix,
+    /usr/bin/fping                 ix,
+    /usr/bin/ping                  ix,
+    /usr/bin/snmpget               ix,
+    /usr/bin/snmpbulkwalk          ix,
+    /usr/bin/php                   ix,
 
     # Temp files
     /tmp/**                        rw,
