@@ -7,7 +7,7 @@ for about 20,000 data sources are achievable e.g. on a dual XEON system supplied
 with 4 GB RAM and standard local disks.
 
 When using Spine, don't change crontab or systemd settings. The poller entry
-point is always `poller.php` — Spine is invoked by the poller, not directly
+point is always `poller.php`. Spine is invoked by the poller, not directly
 from cron or systemd.
 
 To activate Spine instead of cmd.php, please visit
