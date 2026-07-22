@@ -80,10 +80,8 @@ Cacti will need these files name in hyphenated format, so: `fr_FR.po`, becomes
 
 ## Considerations
 
-Cacti is licensed under GPL-2.0-or-later. Translation contributions are expected
-to be compatible with that license. When contributing through the Cacti Weblate
-instance, contributors may be prompted to accept the applicable license terms
-during the translation workflow.
+As Cacti is GPL2.0+, you acknowledge, by signing up to the Cacti Weblate site,
+that your contributions will be GPL2.0+ as well.
 
 ---
 
