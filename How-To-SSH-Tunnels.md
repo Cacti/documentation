@@ -109,7 +109,7 @@ rocommunity mycommunity
 ```
 
 For a more detailed `snmpd.conf` reference, see the
-[Net-SNMP snmpd.conf man page](https://net-snmp.sourceforge.io/docs/man/snmpd.conf.html).
+[Net-SNMP snmpd.conf man page](https://www.net-snmp.org/docs/man/snmpd.conf.html).
 
 ### Testing SNMP connectivity
 

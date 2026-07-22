@@ -2,7 +2,7 @@
 
 > **Note**: As of Cacti 1.2.31, PHP 8.1 is required and PHP Composer is required.
 > Composer will be used to ensure all libraries are installed and up to date.
-> PHP 8.1 reached end-of-life in November 2024. Check the
+> PHP 8.1 reached end-of-life on 31 December 2025. Check the
 > [PHP supported versions page](https://www.php.net/supported-versions.php)
 > and substitute the current supported release (e.g. `php8.3`) where appropriate.
 
