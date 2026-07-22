@@ -68,17 +68,18 @@ installation documents included that may also help.
 
 **Q:** I have forgotten my 'admin' password to Cacti, how do I reset it?
 
-**A:** Use the built-in CLI password reset tool. Run the following from your
-Cacti root directory as the web server user (e.g. `www-data` on Debian/Ubuntu,
-`apache` on RHEL/Rocky):
+**A:** Reset the password directly in the database. Connect to the Cacti
+database and set the `admin` account's password to the MD5 of the new value:
 
 ```console
-php cli/change_password.php --user=admin --password=admin
+shell> mysql -u root -p cacti
+MySQL> UPDATE user_auth SET password = MD5('newpassword') WHERE username = 'admin';
 ```
 
-> **Warning:** Do not use direct SQL `md5()` updates. Cacti 1.x stores
-> passwords with bcrypt/phpass. Setting an MD5 hash via SQL will lock the
-> account — the login will fail even with the correct password.
+> **Note:** The stored value must be the MD5 hash of the password (use
+> `MD5('newpassword')`, not the literal string). Cacti verifies passwords
+> through a backward-compatible MD5 path and transparently re-hashes the
+> account to bcrypt on the next successful login.
 
 ## Monitoring
 
