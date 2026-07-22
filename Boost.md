@@ -45,8 +45,9 @@ increase overall performance, and to reduce writing data to disk. With
 improvements in InnoDB performance over the years combined with Flash storage,
 the need for MySQL Memory Tables has diminished. The sections below document
 MEMORY table sizing for sites that have an explicit reason to use it, but InnoDB
-is the recommended engine. Cacti installs MEMORY tables by default; see below
-for the conversion steps.
+is the recommended engine. The main boost data table (`poller_output_boost`)
+already ships as InnoDB; the `ALTER TABLE` examples below convert tables to
+MEMORY only if you have a specific reason to use that engine.
 
 If you do wish to use Memory you have to pay close attention to the amount of
 data that will be cached in your design. You should periodically check that you
