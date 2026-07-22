@@ -146,18 +146,27 @@ wizard.
 
 ### AppArmor Configuration
 
-Ubuntu and Debian ship with AppArmor enabled by default. Cacti requires that
-Apache and PHP can read its files and write to several directories. If AppArmor
-denials appear in `/var/log/syslog` or `dmesg`, add a local override profile
-rather than disabling AppArmor system-wide.
+Ubuntu and Debian enable AppArmor by default, but they do not ship a
+confinement profile for Apache, so on a stock system Apache runs unconfined
+and no AppArmor changes are needed for Cacti. This section applies only if you
+have deliberately installed and loaded an Apache profile (for example from the
+`apparmor-profiles-extra` package).
 
-Check whether denials exist:
+First confirm whether an Apache profile is actually loaded:
+
+```console
+aa-status | grep apache2
+ls /etc/apparmor.d/usr.sbin.apache2 2>/dev/null
+```
+
+If neither prints anything, Apache is unconfined and you can skip this section.
+If a profile is present and denials appear in `/var/log/syslog` or `dmesg`:
 
 ```console
 grep -i "apparmor.*DENIED" /var/log/syslog | grep -E "apache|php"
 ```
 
-Create a local override for Apache to allow access to the Cacti directories
+add a local override so Apache can reach the Cacti directories
 (adjust the path if Cacti is not installed under `/var/www/html/cacti`):
 
 ```console
