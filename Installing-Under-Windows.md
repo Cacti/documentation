@@ -411,7 +411,7 @@ The following changes will be required regardless of your selected Webserver.
       directories:
 
       `c:\php`
-      `c:\phpsapi`
+      `c:\php\sapi`
 
    6. Click Next and Finish to close the wizard.
 
