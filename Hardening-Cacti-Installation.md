@@ -70,7 +70,8 @@ to a `.php` file written there is the direct exploitation path.
 
 ### Apache
 
-Add inside your Cacti `<VirtualHost>` or `.htaccess`:
+`<DirectoryMatch>` is only valid in server config or `<VirtualHost>` context,
+not `.htaccess`. Add this inside your Cacti `<VirtualHost>`:
 
 ```apache
 # Deny direct HTTP access to the script and resource trees.
@@ -80,6 +81,16 @@ Add inside your Cacti `<VirtualHost>` or `.htaccess`:
         Require all denied
     </FilesMatch>
 </DirectoryMatch>
+```
+
+If you only have access to `.htaccess` (e.g. shared hosting), use a
+`FilesMatch` block inside each directory instead:
+
+```apache
+# scripts/.htaccess and resource/.htaccess
+<FilesMatch "\.php$">
+    Require all denied
+</FilesMatch>
 ```
 
 Or, more broadly, deny all non-XML/non-script files from direct access:
@@ -312,3 +323,7 @@ After applying all controls, confirm:
 - [Installing Under Ubuntu/Debian](Installing-Under-Ubuntu-Debian.md)
 - [Installing Under CentOS (LAMP)](Install-Under-CentOS_LAMP.md)
 - [Standards Security](Standards-Security.md)
+
+---
+
+Copyright (c) 2004-2026 The Cacti Group
