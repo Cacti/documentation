@@ -113,8 +113,7 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    3.2. [Installation Under Enterprise Linux (RHEL/Rocky/AlmaLinux) - LEMP Stack](Install-Under-Enterprise-Linux-LEMP.md)
 
-   3.3.
-   [Installation Under Ubuntu/Debian - LAMP Stack](Installing-Under-Ubuntu-Debian.md)
+   3.3. [Installation Under Ubuntu/Debian - LAMP Stack](Installing-Under-Ubuntu-Debian.md)
 
 4. [Installing Under Windows](Installing-Under-Windows.md)
 

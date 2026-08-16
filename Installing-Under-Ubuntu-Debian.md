@@ -137,6 +137,51 @@ The system is now ready. Browse to
 [http://serverip/cacti](http://serverip/cacti) to start the Cacti
 initialization wizard.
 
+### AppArmor Configuration
+
+Ubuntu and Debian enable AppArmor by default, but they do not ship a
+confinement profile for Apache, so on a stock system Apache runs unconfined
+and no AppArmor changes are needed for Cacti. This section applies only if you
+have deliberately installed and loaded an Apache profile (for example from the
+`apparmor-profiles-extra` package).
+
+First confirm whether an Apache profile is actually loaded:
+
+```console
+aa-status | grep apache2
+ls /etc/apparmor.d/usr.sbin.apache2 2>/dev/null
+```
+
+If neither prints anything, Apache is unconfined and you can skip this section.
+If a profile is present and denials appear in `/var/log/syslog` or `dmesg`:
+
+```console
+grep -i "apparmor.*DENIED" /var/log/syslog | grep -E "apache|php"
+```
+
+add a local override so Apache can reach the Cacti directories
+(adjust the path if Cacti is not installed under `/var/www/html/cacti`):
+
+```console
+cat > /etc/apparmor.d/local/usr.sbin.apache2 << 'EOF'
+# Cacti: allow Apache to read web root and write to RRD/log/cache dirs
+/var/www/html/cacti/** r,
+/var/www/html/cacti/rra/** rw,
+/var/www/html/cacti/log/** rw,
+/var/www/html/cacti/cache/** rw,
+EOF
+
+apparmor_parser -r /etc/apparmor.d/usr.sbin.apache2
+systemctl restart apache2
+```
+
+Verify AppArmor is enforcing (not complaining) and no new denials appear:
+
+```console
+aa-status | grep apache2
+grep -i "apparmor.*DENIED" /var/log/syslog | grep apache | tail -5
+```
+
 ### Considerations when using proxies in front of Cacti (Cacti 1.2.23+)
 
 For optimal security, specify only the HTTP headers that your proxy software
