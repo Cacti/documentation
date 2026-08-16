@@ -141,7 +141,7 @@ prefix are core Cacti API's that are only to be used by third party
 developers and should NEVER include a call to a
 `$_REQUEST`, `$_POST`, or `$_GET` variable.
 
-Files that have the `html` prefix, generally invole the rendering of page
+Files that have the `html` prefix, generally involve the rendering of page
 content, for example the `html_form.php` library draws forms and
 `html_validate.php` includes functions to validate page variables there
 are other various files in the current cacti `lib/` directory that will

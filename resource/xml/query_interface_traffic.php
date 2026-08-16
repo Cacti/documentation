@@ -18,7 +18,7 @@
  | This code is designed, written, and maintained by the Cacti Group. See  |
  | about.php and/or the AUTHORS file for specific developer information.   |
  +-------------------------------------------------------------------------+
- | http://www.cacti.net/                                                   |
+ | https://www.cacti.net/                                                  |
  +-------------------------------------------------------------------------+
 */
 

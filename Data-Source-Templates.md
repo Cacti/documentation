@@ -30,7 +30,7 @@ see
 
 ## GAUGE
 
-GUAGE is for things like temperatures or number of people in a room or the value
+GAUGE is for things like temperatures or number of people in a room or the value
 of a RedHat share.
 
 ## COUNTER
@@ -116,7 +116,7 @@ documentation page.
 ![Data-Source-Templates](images/datasource-template.png)
 
 What is also an important setting is the internal data source name. This will be
-used to asociate the Data source with the Graph template. so be sure to name is
+used to associate the Data source with the Graph template. so be sure to name is
 something that is recognizable.
 
 ![Data-Source-Templates](images/datasource-template2.png)

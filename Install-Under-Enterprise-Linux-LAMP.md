@@ -1,59 +1,59 @@
-# Installing on CentOS/RHEL/ROCKY
+# Installing on Enterprise Linux (RHEL / Rocky Linux / AlmaLinux)
 
-> **Note**: As of Cacti 1.2.31, PHP 8.1 is required and PHP Composer is required. 
-> Composer will be used to ensure all of the libraries are installed and are up to date.
+> **Note**: As of Cacti 1.2.31, PHP 8.1 is required and PHP Composer is required.
+> Composer will be used to ensure all libraries are installed and up to date.
 
 ## LAMP (Linux, Apache, MySQL/MariaDB, PHP) Required packages
 
 ### Web Server (Apache)
 
-1. For Centos/RHEL/ROCKY 8+
+1. For EL 8 and EL 9+ (RHEL, Rocky Linux, AlmaLinux)
 
    ```console
    dnf module reset php
    dnf module enable php:8.1
    ```
 
-### A special Note on installing Cacti in LXC Containers such as the ones found on Proxmox
+### A special note on installing Cacti in LXC containers such as those found on Proxmox
 
-It is recommended to create a privileged container  you may need to update your containers config file with
+We recommend creating a privileged container. You may need to update your container's config file with
 
 ```console
 lxc.apparmor.profile: unconfined
 ```
-This will allow for ICMP ping and other functions to work
 
-A tested configuration file like below should be good however tune to your needs/standards
+This will allow ICMP ping and other functions to work.
+
+A tested configuration like the one below should work; tune to your needs and standards.
 
 ```console
 arch: amd64
 cores: 2
 hostname: cacti
 memory: 2048
-net0: name=eth0,bridge=vmbr0,firewall=1,hwaddr=mac-id,ip=dhcp,type=v>
+net0: name=eth0,bridge=vmbr0,firewall=1,hwaddr=mac-id,ip=dhcp,type=veth
 ostype: ubuntu
 rootfs: local-lvm:vm-110-disk-0,size=8G
 swap: 2048
 lxc.apparmor.profile: unconfined
 ```
 
-
 ### A special note for systems using PHP-FPM
 
-Prior to starting the setup process of Cacti you should restart the PHP-FPM
-Daemon to rebuild the Cache or you may receive a HTTP 500 Error
+Before starting the Cacti setup process, restart the PHP-FPM daemon to rebuild
+its cache, or you may receive an HTTP 500 error.
 
-   ```console
-   systemctl restart php-fpm
-   ```
+```console
+systemctl restart php-fpm
+```
 
-2.Install Apache
+2. Install Apache
 
    ```console
    yum install -y httpd
    ```
 
-3.Enable and start the service to ensure it starts when the system reboots
+3. Enable and start the service to ensure it starts when the system reboots
 
    ```console
    systemctl start httpd
@@ -62,7 +62,7 @@ Daemon to rebuild the Cache or you may receive a HTTP 500 Error
 
 ### Example configuration file for Apache 2.4 and SSL
 
-This example configuration assumes you have your own certificates already.  You
+This example configuration assumes you have your own certificates already. You
 should make sure you change the paths to match your setup.
 
 Replace `YourOwnCertFile.crt` and `YourOwnCertFile.key` with the names of the
@@ -140,16 +140,14 @@ files holding your certificate (`.crt`) and private key (`.key`).
 
 ### Database Server
 
-The choice between MySQL server and MariaDB is normally down to the OS
-maintainers if you use one of the predefined LAMP setup installations.  If you
-are deciding between these yourself, you should research this via your
-favorite search engine.
+The choice between MySQL server and MariaDB is normally determined by the OS
+maintainers when using a predefined LAMP setup. If you are choosing between
+them yourself, research the differences via your preferred search engine.
 
-Whilst MySQL is the original open source SQL database server created in 1995
-which is now owned by Oracle, MariaDB is designed as a drop-in replacement by
-some of the original MySQL developers / owners.  This will likely continue to
-be a drop-in alternative until there is a major divergence that can not be
-bridged.
+MySQL is the original open source SQL database server, created in 1995 and now
+owned by Oracle. MariaDB is designed as a drop-in replacement by some of the
+original MySQL developers. The two are expected to remain compatible until a
+major divergence occurs that cannot be bridged.
 
 #### MySQL
 
@@ -183,7 +181,7 @@ bridged.
 
 ### MySQL/MariaDB common tasks and recommendations
 
-**IMPORTANT**: Secure your MySQL installation before doing any more changes
+> **Note**: Secure your MySQL installation before making any further changes.
 
 ```console
 /usr/bin/mysql_secure_installation
@@ -199,25 +197,24 @@ during the installation.
    vim /etc/my.cnf.d/server.cnf
    ```
 
-   The following `[mysqld]` section is a base configuration.  The installer
-   will provide recommendations based on the actual system which will be more
-   tailored to your environment.
+   The following `[mysqld]` section is a base configuration. The installer
+   will provide recommendations tailored to your actual system; revise these
+   values up or down based on those recommendations.
 
-   If using MariaDB less than version 11.1 or MySQL use the settings below.
-   Note that you should revise up or down your settings depending on
-   the Cacti recommendation that you see once you start the installer.
+   **For MariaDB earlier than version 11.1, or MySQL:**
 
    ```shell
    [mysqld]
    character-set-server=utf8mb4
    collation-server=utf8mb4_unicode_ci
-   innodb_file_format = Barracuda
+   # innodb_file_format and innodb_large_prefix were removed in MySQL 8.0 /
+   # MariaDB 10.3+; omit those settings on newer releases.
    max_allowed_packet = 16777777
    join_buffer_size = 32M
    innodb_file_per_table = ON
-   innodb_large_prefix = 1
    innodb_buffer_pool_size = 250M
-   innodb_additional_mem_pool_size = 90M
+   # innodb_additional_mem_pool_size was removed in MySQL 5.7.4 /
+   # MariaDB 10.0; omit on newer releases.
    innodb_flush_log_at_trx_commit = 2
    log-error                      = /var/log/mysql/mysql-error.log
    log-queries-not-using-indexes  = 1
@@ -225,7 +222,7 @@ during the installation.
    slow-query-log-file            = /var/log/mysql/mysql-slow.log
    ```
 
-   If using MariaDB 11.0 or higher, use the settings below:
+   **For MariaDB 11.0 or higher:**
 
    ```shell
    [mariadb]
@@ -242,21 +239,21 @@ during the installation.
    slow-query-log-file            = /var/log/mysql/mysql-slow.log
    ```
 
-3. Restart MySQL/MariaDB service to pick up the changes
+2. Restart MySQL/MariaDB to apply the changes
 
    ```console
    systemctl restart mysql
    ```
 
-4. Populate timezone table with available timezones
+3. Populate the timezone table
 
    ```console
    mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
    ```
 
-#### Setup Cacti database
+#### Set up the Cacti database
 
-1. Login to MySQL/MariaDB as root to create Cacti database
+1. Log in to MySQL/MariaDB as root and create the Cacti database
 
    ```console
    # mysql -u root -p
@@ -264,7 +261,7 @@ during the installation.
    Query OK, 1 row affected (0.00 sec)
    ```
 
-2. Import Cacti database from SQL file
+2. Import the default Cacti schema
 
    ```sql
    MariaDB [(none)]> use cacti;
@@ -272,18 +269,18 @@ during the installation.
    MariaDB [(cacti)]> source /var/www/html/cacti/cacti.sql
    ```
 
-3. Grant Cacti username access to Cacti database. Replace `your_cacti_username`
-   and `your_cacti_password` with your own details.
+3. Create the Cacti database user. Replace `your_cacti_username` and
+   `your_cacti_password` with your own credentials.
 
    ```sql
-   MariaDB [(none)]> CREATE USER 'your_cacti_username'@'localhost' 
+   MariaDB [(none)]> CREATE USER 'your_cacti_username'@'localhost'
    IDENTIFIED BY 'your_cacti_password';
    Query OK, 0 rows affected (0.00 sec)
    MariaDB [(none)]> GRANT ALL PRIVILEGES ON cacti.* TO 'your_cacti_username'@'localhost';
    Query OK, 0 rows affected (0.00 sec)
    ```
 
-4. Grant cacti username to MySQL timezone table
+4. Grant the Cacti user access to the timezone table
 
    ```sql
    MariaDB [(none)]> GRANT SELECT ON mysql.time_zone_name TO 'your_cacti_username'@'localhost';
@@ -292,7 +289,7 @@ during the installation.
    Query OK, 0 rows affected (0.00 sec)
    ```
 
-5. Save the Database Charset and Collation
+5. Set the database character set and collation
 
    ```sql
    MariaDB [(none)]> ALTER DATABASE cacti CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -303,9 +300,9 @@ during the installation.
 
 #### PHP
 
-PHP and various packages are all required by Cacti for successful operation
+PHP and the following packages are required for Cacti to operate.
 
-1. Install PHP and required packages.
+1. Install PHP and required packages
 
    ```console
    yum install -y php php-common php-bcmath php-cli \
@@ -315,18 +312,18 @@ PHP and various packages are all required by Cacti for successful operation
    php-xml php-zip composer
    ```
 
-2. Set a timezone to your PHP.INI configuration
+2. Set a timezone in your PHP configuration
 
-   Edit php.ini typically located at `/etc/php.ini`
+   Edit `/etc/php.ini` and set:
 
    ```console
-   date.timezone = Pacific/Auckland
+   date.timezone = America/Los_Angeles
    ```
 
 #### RRDtool
 
-RRDtool is required to store the data retrieved from devices in `.rra` files to
-produce the graphs which are shown within Cacti
+RRDtool is required to store the data retrieved from devices in `.rra` files and
+produce the graphs shown within Cacti.
 
 ```console
 yum install -y rrdtool
@@ -342,11 +339,11 @@ yum install -y net-snmp net-snmp-utils
 
 ### Cacti
 
-The following steps will show you how to manually download, install and
-configure the basics for Cacti.
+The following steps show you how to manually download, install, and configure
+the basics for Cacti.
 
-1. Download Cacti source code from [Cacti Web
-   Site](https://www.cacti.net/download_cacti.php)
+1. Download the Cacti source code from the
+   [Cacti website](https://www.cacti.net/download_cacti.php)
 
    ```console
    cd /tmp
@@ -355,50 +352,45 @@ configure the basics for Cacti.
    mv -v cacti-1.y.z /var/www/html/cacti
    ```
 
-2. Edit the config.php file
+2. Create the config.php file
 
    ```console
    mv -v /var/www/html/cacti/include/config.php-dist /var/www/html/cacti/include/config.php
    ```
 
-3. Update `database_` fields with your own details. This section only applies
- to the Main Cacti Server
+3. Update the `database_` fields with your own details. This section applies
+   only to the main Cacti server.
 
-    ```php
-    $database_type     = 'mysql';
-    $database_default  = 'your_cacti_database';
-    $database_hostname = 'localhost';
-    $database_username = 'your_cacti_username';
-    $database_password = 'your_cacti_password';
-    $database_port     = '3306';
-    $database_ssl      = false;
-    $database_ssl_key  = '';
-    $database_ssl_cert = '';
-    $database_ssl_ca   = '';
-    ```
+   ```php
+   $database_type     = 'mysql';
+   $database_default  = 'your_cacti_database';
+   $database_hostname = 'localhost';
+   $database_username = 'your_cacti_username';
+   $database_password = 'your_cacti_password';
+   $database_port     = '3306';
+   $database_ssl      = false;
+   $database_ssl_key  = '';
+   $database_ssl_cert = '';
+   $database_ssl_ca   = '';
+   ```
 
 4. Create your cron task file or systemd units file
 
-   Starting with Cacti 1.2.16, you have the option to use either the
-   legacy Crontab entry, or an optional cactid units file and server
-   to run your Cacti pollers.
+   Starting with Cacti 1.2.16, you can use either a legacy crontab entry or the
+   optional `cactid` systemd service to run your Cacti pollers.
 
-   For Crontab use, follow the instructions below:
-
-   Create and edit `/etc/cron.d/cacti` file.
-   Make sure to setup the correct path to poller.php
+   For crontab use, create and edit `/etc/cron.d/cacti`, setting the correct
+   path to `poller.php`:
 
    ```console
    */5 * * * * apache php /var/www/html/cacti/poller.php &>/dev/null
    ```
 
-   For systemd unit's file install, you will need to modify the
-   included units file to following your install location
-   and desired user and group's to run the Cacti poller as.
-   To complete the task, follow the procedure below:
+   For systemd, modify the included units file to reflect your install location
+   and the desired user and group, then follow the procedure below:
 
    ```console
-   vim /var/www/html/cacti/service/cactid.service (edit the path)
+   vim /var/www/html/cacti/service/cactid.service
    touch /etc/sysconfig/cactid
    cp -p /var/www/html/cacti/service/cactid.service /etc/systemd/system
    systemctl enable cactid
@@ -406,31 +398,46 @@ configure the basics for Cacti.
    systemctl status cactid
    ```
 
-   The systemd units file makes managing a highly available Cacti
-   setup a bit more convenient.
+   The systemd units file makes managing a highly available Cacti setup more
+   convenient.
 
 #### Spine
 
-1. Install the necessary packages to compile and install spine
+1. Install the packages required to compile Spine
 
-   For RHEL/CENTOS/ROCKY 8+, you must enable the powertools repo first before
-    downloading the below packages
+   The required packages depend on your EL version. Choose the block that
+   matches your distribution.
+
+   **EL 9+ (RHEL 9, Rocky Linux 9, AlmaLinux 9 and later)**
+
+   The `crb` (CodeReady Builder) repository provides the development headers
+   needed to compile Spine.
 
    ```console
-   yum config-manager --set-enabled powertools
+   dnf config-manager --set-enabled crb
+   dnf install -y autoconf automake libtool dos2unix help2man \
+   openssl-devel mariadb-devel net-snmp-devel
    ```
 
-   For RHEL/CENTOS/ROCKY 7.x and below
+   **EL 8 (RHEL 8, Rocky Linux 8, AlmaLinux 8)**
+
+   On EL 8 the same repository is called `powertools`.
+
+   ```console
+   dnf config-manager --set-enabled powertools
+   dnf install -y autoconf automake libtool dos2unix help2man \
+   openssl-devel mariadb-devel net-snmp-devel
+   ```
+
+   **EL 7 and earlier**
 
    ```console
    yum install -y autoconf automake libtool dos2unix help2man \
    openssl-devel mariadb-devel net-snmp-devel
    ```
 
-2. Download spine source code from [Cacti Web
-   Site](https://www.cacti.net/spine_download.php)
-
-   Go to /tmp to download the source code and extract it
+2. Download the Spine source code from the
+   [Cacti website](https://www.cacti.net/spine_download.php)
 
    ```console
    cd /tmp
@@ -439,30 +446,25 @@ configure the basics for Cacti.
    cd cacti-spine-1.y.z
    ```
 
-3. Run the configure script and compile spine.
+3. Compile and install Spine
 
    ```console
-   # ./configure
-   # make &  make install
-   config/install-sh -c -d '/usr/local/spine/bin'
-   /bin/sh ./libtool   --mode=install /usr/bin/install -c spine '/usr/local/spine/bin'
-   libtool: install: /usr/bin/install -c spine /usr/local/spine/bin/spine
-   config/install-sh -c -d '/usr/local/spine/etc'
-   /usr/bin/install -c -m 644 spine.conf.dist '/usr/local/spine/etc'
-   config/install-sh -c -d '/usr/local/spine/share/man/man1'
-   /usr/bin/install -c -m 644 spine.1 '/usr/local/spine/share/man/man1'
+   ./bootstrap
+   ./configure
+   make
+   make install
+   chown root:root /usr/local/spine/bin/spine
+   chmod u+s /usr/local/spine/bin/spine
    ```
 
-4. Edit spine.conf
-
-   Rename spine.conf.dist to spine.conf
+4. Configure Spine
 
    ```console
    mv -v /usr/local/spine/etc/spine.conf.dist /usr/local/spine/etc/spine.conf
    vi /usr/local/spine/etc/spine.conf
    ```
 
-5. Now set up your database connection
+5. Set up the database connection in `spine.conf`
 
    ```console
    DB_Host       localhost
@@ -478,12 +480,12 @@ configure the basics for Cacti.
 
 ### Security Enhanced Linux (SELinux)
 
-If you are having issues to access the web page, disable SELinux temporarily to
-prove that the issues come from the SELinux policy. It is NOT recommended to
-disable SELinux permanently.
+If you have trouble accessing the web interface, disable SELinux temporarily to
+determine whether the SELinux policy is the cause. Do not disable SELinux
+permanently.
 
-[CentOS](https:////wiki.centos.org/es/HowTos/SELinux) has a lot of
-documentation on how to make your SELinux policy right.
+The [CentOS SELinux HowTo](https://wiki.centos.org/HowTos/SELinux) provides
+guidance on writing a correct SELinux policy.
 
 1. Check SELinux status
 
@@ -497,17 +499,20 @@ documentation on how to make your SELinux policy right.
    setenforce 0
    ```
 
-3. Enable SELinux back
+3. Re-enable SELinux
 
    ```console
    setenforce 1
    ```
 
-### Considerations when using Proxies in front of Cacti (Cacti 1.2.23+)
+**Note:** If Cacti is installed outside `/var/www/html`, ensure that all SELinux
+file contexts and permissions are set correctly.
 
-For optimal security, only specify the HTTP headers that are set by your proxy
-software to prevent unauthorized access.  
-These can be set by editing the following section of config.php
+### Considerations when using proxies in front of Cacti (Cacti 1.2.23+)
+
+For optimal security, specify only the HTTP headers that your proxy software
+actually sets. This prevents unauthorized access via header spoofing. Configure
+the setting by editing the following section of `config.php`:
 
 ```ini
  * Allow the use of Proxy IPs when searching for client
@@ -535,9 +540,6 @@ These can be set by editing the following section of config.php
  */
 $proxy_headers = null;
 ```
-
-**Note:** If you installed Cacti out of `/var/www/html` make sure you fix up
-all SELinux context and permissions.
 
 ---
 Copyright (c) 2004-2026 The Cacti Group

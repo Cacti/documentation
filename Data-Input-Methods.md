@@ -169,7 +169,7 @@ be executed as the user the data gatherer runs as. Sometimes a script may work
 correctly when executed as root, but fails due to permissions problems when
 executed as a less privileged user.
 
-## Walkthough
+## Walkthrough
 
 You can find a detailed example of how to create a complete Graph from
 simple command output in the following example
