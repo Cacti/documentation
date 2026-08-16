@@ -58,7 +58,7 @@ $oids = array(
 
 $xml_delimiter  =  '!';
 
-# all required input parms
+# all required input params
 $hostname        = $_SERVER['argv'][1];        # hostname/IP@
 $cmd             = $_SERVER['argv'][2];        # one of: index/query/get
 
@@ -87,7 +87,7 @@ $snmp_context             = '';
 #       <arg_index>index</arg_index>
 #       you may replace the string 'index' both in the XML and here
 # -------------------------------------------------------------------------
-#       php -q <script> <parms> index
+#       php -q <script> <params> index
 # will list all indices of the target values
 # e.g. in case of interfaces
 #      it has to respond with the list of interface indices
@@ -281,7 +281,7 @@ parameters. We'll have to change the XML template for that (see: `<arg_prepend>`
 later on). Cacti supports more SNMP parameters since version 0.8.7:
 
 ```php
-# all required input parms
+# all required input params
 $hostname               = $_SERVER["argv"][1];
 $snmp_community         = $_SERVER["argv"][2];
 $snmp_version           = $_SERVER["argv"][3];
@@ -312,7 +312,7 @@ The code responsible for the “index” option is left unchanged:
 #       <arg_index>index</arg_index>
 #       you may replace the string "index" both in the XML and here
 # -------------------------------------------------------------------------
-#       php -q <script> <parms> index
+#       php -q <script> <params> index
 # will all indices of the target values
 # e.g. in case of interfaces
 #      it has to respond with the list of interface indices
@@ -340,7 +340,7 @@ The new code implements the **query** function as follows
 #       <arg_query>query</arg_query>
 #       you may replace the string "query" both in the XML and here
 # -------------------------------------------------------------------------
-#       php -q <script> <parms> query <function>
+#       php -q <script> <params> query <function>
 # where <function> is a parameter that tells this script,
 # which target value should be retrieved
 # e.g. in case of interfaces, <function> = ifdescription
@@ -372,7 +372,7 @@ Last option is the **get** function
 #       <arg_get>get</arg_get>
 #       you may replace the string "get" both in the XML and here
 # -------------------------------------------------------------------------
-#       php -q <script> <parms> get <function> <index>
+#       php -q <script> <params> get <function> <index>
 # where <function> is a parameter that tells this script,
 # which target value should be retrieved
 # and   <index>    is the index that should be queried

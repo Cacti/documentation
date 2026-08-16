@@ -159,9 +159,9 @@ systemctl enable snmpd
 systemctl restart snmpd
 ```
 
-Though there are many more advanced settings available in net-snmp, it generally
-recommended to keep a simpler configuration unless your information security
-policies require more stringent settings.
+Though there are many more advanced settings available in net-snmp, keep a
+simpler configuration unless your information security policies require more
+stringent settings.
 
 ---
 

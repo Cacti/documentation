@@ -393,7 +393,7 @@ Graph Templates and Data Queries available for this Class of **Devices**.
 Assume, you're searching for a specific set of templates to monitor a special
 type of device. Apart from designing templates from scratch, there's a good
 chance to find a solution in the
-[Scripts and Templates Forum](http://forums.cacti.net/forum-12.html). The set of
+[Scripts and Templates Forum](https://forums.cacti.net/forum-12.html). The set of
 templates is usually provided as a single XML file holding all required
 definitions for a data template and a graph template. Depending on the goal of
 the original author, he/she may have provided a **Device Template** as well as

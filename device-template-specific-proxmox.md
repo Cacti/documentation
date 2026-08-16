@@ -24,13 +24,28 @@ Run `visudo` and add line
 Debian-snmp ALL=(ALL) NOPASSWD: /usr/sbin/pvesm status
 ```
 
-Modify file `/etc/systemd/system/multi-user.target.wants/snmpd.service`, 
-add these lines to the service section:
+Create a systemd drop-in file to allow snmpd to call the monitoring script.
+Use a drop-in rather than editing the service file directly, so package
+updates do not overwrite your changes:
+
 ```console
-ProtectSystem=off
-ProtectHome=off
+mkdir -p /etc/systemd/system/snmpd.service.d
+cat > /etc/systemd/system/snmpd.service.d/proxmox-monitoring.conf << 'EOF'
+[Service]
+# Allow snmpd to execute the monitoring script and call sudo pvesm.
+# PrivateTmp is disabled because some Proxmox storage backends access
+# /tmp during status queries. Narrow this further if your storage
+# backends do not require /tmp access.
 PrivateTmp=false
+EOF
+systemctl daemon-reload
 ```
+
+> **Note**: Avoid setting `ProtectSystem=off` or `ProtectHome=off` unless
+> you have confirmed that pvesm requires broader filesystem access on your
+> specific Proxmox version. The sudoers entry above already restricts
+> the script to a single command, which limits the blast radius of a
+> compromised snmpd process.
 
 Create new shell script `/usr/local/bin/monitoring.sh`:
 ```console

@@ -13,7 +13,7 @@ of **Data Collectors** they are:
   firewall or security policies.  The **Remote Data Collectors** are
   also referred to as **Remote Pollers**.
 
-Due to the design of the Cacti **Remote Data Collector**, somone at the
+Due to the design of the Cacti **Remote Data Collector**, someone at the
 remote site, can actually login to that **Data Collector** and interact
 with it as if their **Data Collector** was the **Main Data Collector**.
 Additionally, if for some reason the **Main Data Collector** becomes

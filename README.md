@@ -94,8 +94,8 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    This section contains the relevant information on how to ensure that any
    contribution is kept to the same standards that are applied for the Cacti
-   Group. It should be noted that non-compliance does not mean automatically
-   exclusion of proposed changes.
+   Group. Non-compliance does not automatically mean exclusion of proposed
+   changes.
 
 ### Known Issues
 
@@ -109,12 +109,11 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 3. Installing Cacti on Linux
 
-   3.1. [Installation Under RHEL/Rocky Linux/AlmaLinux - LAMP Stack](Install-Under-RHEL-Compatible_LAMP.md)
+   3.1. [Installation Under Enterprise Linux (RHEL/Rocky/AlmaLinux) - LAMP Stack](Install-Under-Enterprise-Linux-LAMP.md)
 
-   3.2. [Installation Under RHEL/Rocky Linux/AlmaLinux - LEMP Stack](Install-Under-RHEL-Compatible_LEMP.md)
+   3.2. [Installation Under Enterprise Linux (RHEL/Rocky/AlmaLinux) - LEMP Stack](Install-Under-Enterprise-Linux-LEMP.md)
 
-   3.3.
-   [Installation Under Ubuntu/Debian - LAMP Stack](Installing-Under-Ubuntu-Debian.md)
+   3.3. [Installation Under Ubuntu/Debian - LAMP Stack](Installing-Under-Ubuntu-Debian.md)
 
 4. [Installing Under Windows](Installing-Under-Windows.md)
 
@@ -264,7 +263,7 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 13. Reporting
 
-    13.1. [Reports Admistrative Interface](Reports-Admin.md)
+    13.1. [Reports Administrative Interface](Reports-Admin.md)
 
     13.2. [Reports User Interface](Reports-User.md)
 
@@ -386,7 +385,7 @@ Watch Howto's and Tutorials on the Cacti Official YouTube page if you prefer. If
 
 ### Template Specific Documentation
 
-This section will be for template specific configuration requriments
+This section will be for template specific configuration requirements
 
 1. [Apache Server Template](template_apache_config.md)
 
@@ -394,7 +393,7 @@ This section will be for template specific configuration requriments
 
 ### Device Template Specific Documentation
 
-This section will be for device template specific configuration requriments
+This section will be for device template specific configuration requirements
 
 1. [Proxmox External Storage Usage with Linux Device Template](device-template-specific-proxmox.md)
 

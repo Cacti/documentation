@@ -40,7 +40,7 @@ this file. It may contain important installation information.
    ![thold plugin enable](images/thold-enable.png)
 
 After this, the **Plugin** is installed and enabled. However, there will likely
-be onfiguration that must take place after the **Plugin** is enabled. See the
+be configuration that must take place after the **Plugin** is enabled. See the
 **Plugin** documentation for instructions on how to configure and use them.
 
 ## Updating a Plugin
@@ -82,9 +82,9 @@ plugin which will not drop the SQL tables and thus save your settings.
 
 ### Video Walkthrough
 
-[![Video Tuturial](http://img.youtube.com/vi/TPKu-2XYKok/0.jpg)](https://youtu.be/TPKu-2XYKok)
+[![Video Tutorial](https://img.youtube.com/vi/TPKu-2XYKok/0.jpg)](https://youtu.be/TPKu-2XYKok)
 
-## Unistall a Plugin
+## Uninstall a Plugin
 
 To uninstall a plugin go into the plugins page
 `Console > Configuration > Plugins` Click on the plugin to Disable the plugin.
@@ -107,7 +107,7 @@ the plugin will show to be available to be installed.
 
 Some dependencies such as THOLD aka Thresholds rely on another plugin in this
 case thold reliese on the monitor plugin which is missing in this case you will
-see the below messege box in order to continue you must install the required
+see the below message box in order to continue you must install the required
 plugin.
 
 ![plugin dependencies](images/plugins-dependencies.png)

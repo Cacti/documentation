@@ -1,23 +1,26 @@
 # Upgrading Cacti Under FreeBSD
 
-1. Backup the old Cacti database.
+1. Back up the old Cacti database.
 
    ```sh
-   shell> mysqldump -l --add-drop-table --lock-tables=false cacti > mysql.cacti
+   shell> mysqldump --single-transaction --add-drop-table cacti > mysql.cacti
    ```
 
-   > **Note:** You will probably have to specify the -u and -p flags for the
-   > MySQL username and password. This user must have permission to read from
-   > Cacti's database or you will end up with an empty backup.
+   > **Note**: You will probably need to specify `-u` and `-p` for the MySQL
+   > username and password. This user must have permission to read from Cacti's
+   > database or you will end up with an empty backup.
+   >
+   > `--single-transaction` provides a consistent InnoDB snapshot without
+   > locking tables, which is the correct approach for Cacti's InnoDB schema.
 
-2. Backup the old Cacti directory.
+2. Back up the old Cacti directory.
 
    ```sh
    shell> cd /usr/local/share
    shell> tar -zcf cacti_backup_YYYYMMDD.tgz cacti
    ```
 
-3. Install new version from compiled packages or FreeBSD ports.
+3. Install the new version from compiled packages or FreeBSD ports.
 
    ```sh
    shell> pkg delete cacti
@@ -34,8 +37,8 @@
    shell> make deinstall clean install
    ```
 
-4. If you are using the optional feature Performance -> Image Caching, also
-   recreate the folder and correct the permissions.
+4. If you are using the optional **Performance → Image Caching** feature,
+   recreate the cache folder and set the correct permissions.
 
    ```sh
    shell> cd /usr/local/share/cacti
@@ -43,16 +46,12 @@
    shell> chown -R cacti cache
    ```
 
-5. Point your web browser to:
+5. Browse to `http://your-server/cacti/` and follow the on-screen instructions
+   to update the database schema to the new version.
 
-   `http://your-server/cacti/`
-
-   Follow the on-screen instructions so your database can be updated to the
-   new version.
-
-> Note that starting with Cacti 1.0, all **Data Collectors** will upgrade
-> themselves automatically within two polling cycles.  If for some reason they
-> do not, upgrade them one at a time.
+> **Note**: Starting with Cacti 1.0, all Data Collectors upgrade themselves
+> automatically within two polling cycles. If they do not, upgrade them one
+> at a time.
 
 ---
 Copyright (c) 2004-2026 The Cacti Group
