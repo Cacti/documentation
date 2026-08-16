@@ -123,6 +123,8 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 7. [Upgrading Cacti Under FreeBSD](Upgrading-Cacti-Under-FreeBSD.md)
 
+8. [Hardening a Cacti Installation](Hardening-Cacti-Installation.md)
+
 ### Cacti Overview
 
 1. Overview
@@ -400,3 +402,4 @@ This section will be for device template specific configuration requirements
 ---
 
 Copyright (c) 2004-2026 The Cacti Group
+
