@@ -438,7 +438,7 @@ This hook allows you to add custom actions to the host edit page, below the
 
 ## device_filter_end
 
-This hook allows you to add custom filter fields before Cacti buildin filter to
+This hook allows you to add custom filter fields before Cacti built-in filter to
 the host list page
 
 | file     | introduced  | retired |
@@ -447,7 +447,7 @@ the host list page
 
 ## device_filter_start
 
-This hook allows you to add custom filter fields after Cacti buildin filter to
+This hook allows you to add custom filter fields after Cacti built-in filter to
 the host list page
 
 | file     | introduced  | retired |

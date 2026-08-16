@@ -74,7 +74,7 @@ After that, the options below define what Graphs from the Device are to be inclu
 - **Sequence**  - The Graph Items Sequence number.  This is a Read Only variable.
 
 The last **Report Item** that we will document here is the **Tree** type.
-The Text and Horizontal Rule types are pretty much self explanitory.
+The Text and Horizontal Rule types are pretty much self explanatory.
 The image below is the layout that will be shown
 when you change the **Report Item** to **Tree**.
 

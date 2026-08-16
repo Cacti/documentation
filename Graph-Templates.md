@@ -60,7 +60,7 @@ and by what means.  Determines if the Graph will have fixed upper and lower limi
 
 Each of these sections are displayed below for reference.  For more information
 on how to use these options, please visit the [RRDtool
-Website](http://RRDtool.org).
+Website](https://RRDtool.org).
 
 The *Graph Items* make up what is draw within the canvas of the Graph.  There
 are several *Graph Item* types including:

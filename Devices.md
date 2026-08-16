@@ -82,7 +82,7 @@ you have specified.
 
 ## Additional Important Options
 
-There are some additional options that you should note before starting to use Cacti.
+There are some additional options to be aware of before starting to use Cacti.
 They include the following:
 
 - **Device Threads** - If your device is far away, and can tolerate multiple threads
@@ -91,7 +91,7 @@ They include the following:
 - **Maximum OIDs Per Get Request** - Otherwise known as MaxOID's, this SNMP option
   will allow the SNMP client to gather more metrics per get request.  Please keep
   in mind that the higher you make this number, the longer a SNMP respond may take.
-  So, you have to be sensitive about the SNMP timeout as the number get's larger.
+  So, you have to be sensitive about the SNMP timeout as the number gets larger.
   Since, by default SNMP is generally collected over UDP, you will also be limited
   in the number of responses depending on how many routers or VPN's you traverse
   to reach a device.  When traversing VPN connections, many VPN's limit the MTU
