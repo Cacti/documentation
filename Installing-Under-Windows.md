@@ -71,11 +71,11 @@ Cacti yourself, please follow the instructions below.
    Ensure you write down your MariaDB/MySQL root password for later use.  Keep
    a backup copy of it safe.
 
-8. (Optional) Cygwin - Download and execute `setup-x86_64.exe` from the Cygwin website.
+7. (Optional) Cygwin - Download and execute `setup-x86_64.exe` from the Cygwin website.
    Keep the `setup-x86_64.exe` file for later use.  You will need Cygwin and its
    development packages for building RRDtool and spine.
 
-9. (Optional) Net-SNMP - Install to the `c:\usr` directory. If you choose to
+8. (Optional) Net-SNMP - Install to the `c:\usr` directory. If you choose to
    use `c:\Program Files\net-snmp` you will have to use 8.3 filenames to
    reference its binaries in Cacti.  The default installation location for Net-SNMP
    on Windows is `c:\usr` where closely aligns with Linux and Unix install paths.
@@ -111,18 +111,18 @@ The following changes will be required regardless of your selected Webserver.
    max_execution_time = 300
    ```
 
-6. In earlier installation guides to PHP, they recommended moving certain DLL's
+5. In earlier installation guides to PHP, they recommended moving certain DLL's
    to the `c:\winnt\system32` directory. If so, you will have to remove those
    files. Please review the PHP installation documentation for instructions on
    removing those files.
 
-7. If you want to allow template importing, uncomment the following line:
+6. If you want to allow template importing, uncomment the following line:
 
    ```ini
    file_uploads = On
    ```
 
-8. Give the user who will be running the scheduled task, modify rights to the
+7. Give the user who will be running the scheduled task, modify rights to the
    `.index` file in the location pointed to by the `MIBDIRS` Windows System
    environment variable.
 
@@ -328,7 +328,7 @@ The following changes will be required regardless of your selected Webserver.
    Log in using the username and password of admin/admin. You will be required
    to change this password immediately.
 
-3. From Cacti, go to Settings -> Paths and verify/udate your paths to point to
+3. From Cacti, go to Settings -> Paths and verify/update your paths to point to
    the correct locations. Recommended examples are posted below. If you plan on
    using Spine, then it is very important that all paths include forward slashes
    instead of backslashes.
@@ -384,11 +384,11 @@ The following changes will be required regardless of your selected Webserver.
    After this has ran once, you should have `cacti.log` in `/cacti/log/` and
    RRDfiles in `/cacti/rra/`.
 
-8. You are going to need to schedule a task while logged on as an Administrator.
-   This task is required to you can run `poller.php` every 5 minutes. Make sure
+6. You are going to need to schedule a task while logged on as an Administrator.
+   This task is required so you can run `poller.php` every 5 minutes. Make sure
    the Task Scheduler service is started and follow the steps below to begin.
 
-   > **Note:* The following instructions are based on most Windows installs.
+   > **Note:** The following instructions are based on most Windows installs.
 
    1. Select Start -> Settings -> Control Panel and double click on Scheduled
       Tasks.
@@ -411,22 +411,22 @@ The following changes will be required regardless of your selected Webserver.
       directories:
 
       `c:\php`
-      `c:\phpsapi`
+      `c:\php\sapi`
 
-   7. Click Next and Finish to close the wizard.
+   6. Click Next and Finish to close the wizard.
 
-   8. Right click on the task you just created, and select Properties.
+   7. Right click on the task you just created, and select Properties.
 
-   9. Select the Schedule tab.
+   8. Select the Schedule tab.
 
-   10. Make sure Daily is selected and click the Advanced button.
+   9. Make sure Daily is selected and click the Advanced button.
 
-   11. Check the Repeat checkbox, set it for 5 minutes and set the duration for
+   10. Check the Repeat checkbox, set it for 5 minutes and set the duration for
        24 hours.
 
-   12. Click Ok
+   11. Click Ok
 
-   13. In the Run textbox enter the following text making sure to use the
+   12. In the Run textbox enter the following text making sure to use the
        appropriate paths.
 
        `c:\php\php.exe c:\mycacti\website\cacti\poller.php`
