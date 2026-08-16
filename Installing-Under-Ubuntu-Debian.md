@@ -118,7 +118,7 @@ optional `cactid` systemd service to run your Cacti pollers.
 For crontab use, create and edit `/etc/cron.d/cacti`:
 
 ```console
-*/5 * * * * www-data php /var/www/html/cacti/poller.php &>/dev/null
+*/5 * * * * www-data php /var/www/html/cacti/poller.php >/dev/null 2>&1
 ```
 
 For systemd, modify the included units file to reflect your install location

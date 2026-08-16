@@ -6,8 +6,9 @@ in polling time of an order of magnitude. Polling times far less than 60 seconds
 for about 20,000 data sources are achievable e.g. on a dual XEON system supplied
 with 4 GB RAM and standard local disks.
 
-When using Spine, don't change crontab or systemd settings! Always use
-poller.php with crontab or cactid.php for systemd!
+When using Spine, don't change crontab or systemd settings. The poller entry
+point is always `poller.php`. Spine is invoked by the poller, not directly
+from cron or systemd.
 
 To activate Spine instead of cmd.php, please visit
 `Console > Configuration > Settings > Poller` and select spine and save as the
@@ -68,17 +69,16 @@ be installed on below is an example of compiling on centos and Ubuntu
 Install the required system packages
 
 ```console
-apt-get install -y build-essential dos2unix dh-autoreconf libtool help2man libssl-dev libmysql++-dev librrds-perl libsnmp-dev
+apt-get install -y build-essential dos2unix dh-autoreconf libtool help2man libssl-dev default-libmysqlclient-dev librrd-dev libsnmp-dev
 ```
 
-Next, download the version of spine you are looking for Typically this should
-match the version of Cacti you are using. In this case we will download Version
-1.2.3 of Spine
+Download the version of Spine that matches your Cacti version. Replace `X.Y.Z`
+with the actual release number (e.g., `1.2.31`):
 
 ```console
-wget <https://github.com/Cacti/spine/archive/release/1.2.3.zip>
-unzip 1.2.3
-cd spine-release-1.2.3
+wget https://github.com/Cacti/spine/archive/release/X.Y.Z.zip
+unzip X.Y.Z.zip
+cd spine-release-X.Y.Z
 ```
 
 Once you are in the spine directory its time to compile the poller by issuing
@@ -135,9 +135,9 @@ chmod u+s /usr/local/spine/bin/spine
 
 ### Testing/Debugging spine via command line
 
-spine offer a a few different ways at the command line to test its
+Spine offers a few different ways at the command line to test its
 functionality. Here are a few examples of some tests you can run by executing
-spine.
+Spine.
 
 #### Test Spine without writing results to database
 
