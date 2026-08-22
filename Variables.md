@@ -98,7 +98,7 @@ huge file one day, the large spike will be ignored. Common Nth percentile is 95,
 which would cut off the top 5% of the traffic.
 
 The Nth Percentile variables, when placed in Graph Comments will be detected and
-the syntax will be parsed and the reulting numeric value will replace the
+the syntax will be parsed and the resulting numeric value will replace the
 formula. They are used in both 95th Percentile and Bandwidth Traffic Graphs
 today.
 

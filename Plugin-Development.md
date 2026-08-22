@@ -2,10 +2,10 @@
 
 ## Overview
 
-Cacti Plugins allow users of Cacti to extend it's functionality into areas
+Cacti Plugins allow users of Cacti to extend its functionality into areas
 that the core Cacti developers have not.  They were written based off of
-the work of Jimmy Conner from the Squirrel Mail project years ago.  They
-allow developers to augment the Cacti Website, and it's polling processes
+the work of Jimmy Conner from the SquirrelMail project years ago.  They
+allow developers to augment the Cacti Website, and its polling processes
 to extend Cacti's reach.
 
 There are a number of popular plugins including:
@@ -138,7 +138,7 @@ version = 2.8
 longname = Device Monitoring
 author = The Cacti Group
 email =
-homepage = http://www.cacti.net
+homepage = https://www.cacti.net
 compat = 1.2.15
 requires = thold:1.2.1
 capabilities = online_view:1, online_mgmt:1, offline_view:0, offline_mgmt:0, remote_collect:0
@@ -153,7 +153,7 @@ version = 4.2
 longname = Syslog Monitoring
 author = The Cacti Group
 email =
-homepage = http://www.cacti.net
+homepage = https://www.cacti.net
 compat = 1.2.23
 nosync = config.php
 capabilities = online_view:1, online_mgmt:1, offline_view:1, offline_mgmt:1, remote_collect:0, remote_poller:1
@@ -191,9 +191,9 @@ plugins other than RRDtool.
 
 - [Billboard.js](https://naver.github.io/billboard.js/)
 - [D3](https://d3js.org/)
-- [Chart.js](http://www.chartjs.org/)
-- [DyGraphs](http://dygraphs.com/)
-- [jQuery Sparklines](http://omnipotent.net/jquery.sparkline/)
+- [Chart.js](https://www.chartjs.org/)
+- [DyGraphs](https://dygraphs.com/)
+- [jQuery Sparklines](https://omnipotent.net/jquery.sparkline/) (note: this project appears unmaintained; evaluate before use)
 
 ## Logging
 

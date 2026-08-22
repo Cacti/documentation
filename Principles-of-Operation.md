@@ -150,7 +150,7 @@ use your own | invoke Nagios agents
 
 and much more...
 
-There a two ways extending Cacti's build-in capabilities:
+There are two ways to extend Cacti's built-in capabilities:
 
 [Data Input Methods](Data-Input-Methods.md) for querying **single or
 multiple**, but **non-indexed** readings

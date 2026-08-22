@@ -98,5 +98,11 @@ If you follow the simple rules above, your Plugin will be much safer
 for others to use and will more easily pass internal security and
 pen tests.
 
+## See Also
+
+For OS-level hardening controls covering file permissions, web server access
+restrictions, PHP-FPM pool settings, SELinux, and AppArmor, see
+[Hardening a Cacti Installation](Hardening-Cacti-Installation.md).
+
 ---
 Copyright (c) 2004-2026 The Cacti Group

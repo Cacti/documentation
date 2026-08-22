@@ -36,16 +36,16 @@ Edit page has multiple Sub-tabs.  They include:
 - **User Settings** - Settings for the User of the Group if they can not manage
   settings on their own
 
-The first form elements are pretty self explanitory.  The Tree,
+The first form elements are pretty self explanatory.  The Tree,
 Graph List, and Preview rights speak to Cacti three Graph Viewing modes
 which are explained in the Viewing Graphs section of the Document.
 
 Lastly Login options, are how the user should be re-directed after logging.
-This is again, pretty self explanitory.
+This is again, pretty self explanatory.
 
 ![User Groups General](images/user-groups-edit-general.png)
 
-The next image shows the Member list.  This one is pretty self explanitory.
+The next image shows the Member list.  This one is pretty self explanatory.
 You can see all the users defined on the system and whether or not they
 below to the User Group, and the ability to add or remove them enmass.
 

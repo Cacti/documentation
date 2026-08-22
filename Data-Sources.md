@@ -28,7 +28,7 @@ to management then clicking on devices.
 
 You can also see the total amount of data sources by checking the poller stats
 on the system. Click the log tab and filter by stats and lookout for the below
-messege
+message
 
 ```console
 2019/05/24 17:21:11 - SYSTEM STATS: Time:9.5913 Method:spine Processes:2 Threads:2 Hosts:14 HostsPerProcess:7 DataSources:162 RRDsProcessed:117
@@ -45,14 +45,20 @@ devices. e.g. 1 minute or 5 Minute polls
 Here is the approximate amount of storage you can expect to consume per data
 source
 
-| Polling time | Retention | File size | Polling time | Retention | File size |
-| -----------: | --------- | --------: | -----------: | --------- | --------: |
-|    30 second | Daily     |      48kb |    30 second | Weekly    |      43kb |
-|    30 second | Monthly   |      46kb |    30 second | Yearly    |     140kb |
-|     1 minute | Daily     |      93kb |     1 minute | Weekly    |      45kb |
-|     1 minute | Monthly   |      47kb |     1 minute | Yearly    |     140kb |
-|     5 minute | Daily     |       19b |     5 minute | Weekly    |      22kb |
-|     5 minute | Monthly   |      25kb |     5 minute | Yearly    |      26kb |
+| Polling time | Retention | File size |
+| -----------: | --------- | --------: |
+|    30 second | Daily     |      48kb |
+|    30 second | Weekly    |      43kb |
+|    30 second | Monthly   |      46kb |
+|    30 second | Yearly    |     140kb |
+|     1 minute | Daily     |      93kb |
+|     1 minute | Weekly    |      45kb |
+|     1 minute | Monthly   |      47kb |
+|     1 minute | Yearly    |     140kb |
+|     5 minute | Daily     |      19kb |
+|     5 minute | Weekly    |      22kb |
+|     5 minute | Monthly   |      25kb |
+|     5 minute | Yearly    |      26kb |
 
 ### Viewing all Data sources by device
 

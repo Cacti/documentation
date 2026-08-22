@@ -10,7 +10,7 @@ system startup.
 
 ### A special Note on installing Cacti in LXC Containers such as the ones found on Proxmox
 
-It is recommended to create a privileged container  you may need to update your containers config file with
+We recommend creating a privileged container. You may need to update your container's config file with
 
 ```console
 lxc.apparmor.profile: unconfined
@@ -173,7 +173,7 @@ chmod +s /usr/local/bin/spine
 
 Verify that the modules are installed and configured correctly. There are
 several ways to do so - consult
-[PHP configuration instructions](http://www.php.net/manual/en/configuration.php)
+[PHP configuration instructions](https://www.php.net/manual/en/configuration.php)
 for a complete description.
 
 It is imperative that you set the `date.timezone` in your `/etc/php.ini`, or
@@ -408,7 +408,7 @@ DB_Password cacti
 DB_Port     3306
 ```
 
-### Considerations when using Proxys in front of Cacti (Cacti 1.2.23+)
+### Considerations when using Proxies in front of Cacti (Cacti 1.2.23+)
 
 For optimal security, only specify the HTTP headers that are set by your proxy
 software. to prevent unauthorized access, These can be set by editing the
