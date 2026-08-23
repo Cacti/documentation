@@ -69,17 +69,18 @@ installation documents included that may also help.
 **Q:** I have forgotten my 'admin' password to Cacti, how do I reset it?
 
 **A:** Reset the password directly in the database. Connect to the Cacti
-database and set the `admin` account's password to the MD5 of the new value:
+database and set the `admin` account's password to the SHA-256 hash of the new
+value:
 
 ```console
 shell> mysql -u root -p cacti
-MySQL> UPDATE user_auth SET password = MD5('newpassword') WHERE username = 'admin';
+MySQL> UPDATE user_auth SET password = SHA2('newpassword', 256) WHERE username = 'admin';
 ```
 
-> **Note:** The stored value must be the MD5 hash of the password (use
-> `MD5('newpassword')`, not the literal string). Cacti verifies passwords
-> through a backward-compatible MD5 path and transparently re-hashes the
-> account to bcrypt on the next successful login.
+> **Note:** On an older database server without `SHA2()`, use
+> `MD5('newpassword')` instead. Cacti accepts either legacy bootstrap hash and
+> transparently re-hashes the account with its current password algorithm on
+> the next successful local login.
 
 ## Monitoring
 
