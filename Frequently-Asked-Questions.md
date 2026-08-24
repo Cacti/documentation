@@ -74,8 +74,17 @@ value:
 
 ```console
 shell> mysql -u root -p cacti
-MySQL> UPDATE user_auth SET password = SHA2('newpassword', 256) WHERE username = 'admin';
+MySQL> UPDATE user_auth
+    -> SET password = SHA2('newpassword', 256),
+    ->     password_change = 'on',
+    ->     must_change_password = 'on',
+    ->     lastchange = UNIX_TIMESTAMP()
+    -> WHERE username = 'admin' AND realm = 0;
 ```
+
+Use a unique temporary value in place of `newpassword`. The local administrator
+will be required to replace it at the next login, and the reset timestamp keeps
+the account subject to any configured password-expiration policy.
 
 > **Note:** On an older database server without `SHA2()`, use
 > `MD5('newpassword')` instead. Cacti accepts either legacy bootstrap hash and
