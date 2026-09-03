@@ -73,14 +73,16 @@ database and set the `admin` account's password to the SHA-256 hash of the new
 value:
 
 ```console
-shell> mysql -u root -p cacti
-MySQL> UPDATE user_auth
+shell> mariadb -u root -p cacti
+MariaDB> UPDATE user_auth
     -> SET password = SHA2('newpassword', 256),
     ->     password_change = 'on',
     ->     must_change_password = 'on',
     ->     lastchange = UNIX_TIMESTAMP()
     -> WHERE username = 'admin' AND realm = 0;
 ```
+
+On MySQL, the `mysql` client takes the same arguments.
 
 Use a unique temporary value in place of `newpassword`. The local administrator
 will be required to replace it at the next login, and the reset timestamp keeps
