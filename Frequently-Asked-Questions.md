@@ -68,18 +68,30 @@ installation documents included that may also help.
 
 **Q:** I have forgotten my 'admin' password to Cacti, how do I reset it?
 
-**A:** To reset the admin account password back to the default of 'admin',
-connect to your Cacti database at the command line.
+**A:** Reset the password directly in the database. Connect to the Cacti
+database and set the `admin` account's password to the SHA-256 hash of the new
+value:
 
-```sql
-shell> mysql -u root -p cacti
+```console
+shell> mariadb -u root -p cacti
+MariaDB> UPDATE user_auth
+    -> SET password = SHA2('newpassword', 256),
+    ->     password_change = 'on',
+    ->     must_change_password = 'on',
+    ->     lastchange = UNIX_TIMESTAMP()
+    -> WHERE username = 'admin' AND realm = 0;
 ```
 
-Now execute the following SQL:
+On MySQL, the `mysql` client takes the same arguments.
 
-```sql
-MySQL> update user_auth set password=md5('admin') where username='admin';
-```
+Use a unique temporary value in place of `newpassword`. The local administrator
+will be required to replace it at the next login, and the reset timestamp keeps
+the account subject to any configured password-expiration policy.
+
+> **Note:** On an older database server without `SHA2()`, use
+> `MD5('newpassword')` instead. Cacti accepts either legacy bootstrap hash and
+> transparently re-hashes the account with its current password algorithm on
+> the next successful local login.
 
 ## Monitoring
 
@@ -244,9 +256,8 @@ change between the new small counter value and the large previous value. One way
 to combat this issue is to specify realistic maximum values for your data
 sources. RRDtool will ignore any value that is larger than the maximum value.
 
-If you already have a spike on one or more of your graphs, there is a really
-[useful Perl script](http://cricket.sourceforge.net/contrib/files/killspike2)
-that will remove them for you.
+If you already have a spike on one or more of your graphs, Cacti includes a
+built-in Spikekill utility. See [Spikekill](Spikekill.md) for usage.
 
 ---
 
