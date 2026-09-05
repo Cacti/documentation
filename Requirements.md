@@ -170,6 +170,10 @@ Cacti requires that the following software is installed on your system.
       migrate to the per file storage by enabling the feature, and then
       running an alter statement on all InnoDB tables.
 
+      It is already ON by default on every supported version, and MariaDB
+      deprecated the variable in 11.0, so only set it where an older my.cnf
+      turned it off.
+
     - **innodb_data_file_path = ibdata1:12M:autoextend:autoshrink** (MariaDB 11.2.0+)
 
       Long running installs that accumulated blocking queries can end up with a
@@ -178,9 +182,10 @@ Cacti requires that the following software is installed on your system.
       minimum size.  It is off by default and is enabled by appending
       :autoshrink to innodb_data_file_path, not by a separate variable.
 
-      From MariaDB 11.2.3 the shrink runs during a slow shutdown, so set
-      innodb_fast_shutdown = 0 before stopping the server or the file will not
-      be truncated.  MySQL has no equivalent.
+      From MariaDB 11.2.0 the shrink runs at server startup.  MariaDB 11.2.3
+      adds the option of shrinking during a slow shutdown instead, which needs
+      innodb_fast_shutdown = 0 set before the server is stopped.  MySQL has no
+      equivalent.
 
     - **innodb_buffer_pool_size >= 25% of system RAM**
 
@@ -233,12 +238,16 @@ Cacti requires that the following software is installed on your system.
       With modern SSD type storage, having multiple write IO threads is
       advantageous for applications with high IO characteristics.
 
-    - **innodb_buffer_pool_instances >= 16**
+    - **innodb_buffer_pool_instances >= 16** (MySQL only)
 
-      MySQL/MariaDB will divide the innodb_buffer_pool into memory regions to
-      improve performance with a maximum value is 64.  When your
-      innodb_buffer_pool is less than 1GB, you should use the pool size
-      divided by 128MB. Continue to use this equation up to the max of 64.
+      MySQL will divide the innodb_buffer_pool into memory regions to improve
+      performance with a maximum value is 64.  When your innodb_buffer_pool is
+      less than 1GB, you should use the pool size divided by 128MB. Continue to
+      use this equation up to the max of 64.
+
+      MariaDB 10.5 deprecated this variable and gave it no effect, and MariaDB
+      10.6 removed it.  Leave it out of my.cnf on MariaDB 10.6 and later, which
+      will not start on an unknown variable.
 
     > **Note**: Some of these recommendations may not be applicable depending
     > on the version of MySQL/MariaDB you are running, and some should be
