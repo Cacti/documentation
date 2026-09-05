@@ -97,6 +97,11 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
    Group. Non-compliance does not automatically mean exclusion of proposed
    changes.
 
+8. [Architecture Decisions](README.md#architecture-decisions)
+
+   This section contains the architecture decision records that describe the
+   decisions guiding the long-term architecture of Cacti.
+
 ### Known Issues
 
 [List of Known issues](Known-Issues.md)
@@ -384,6 +389,10 @@ Watch Howto's and Tutorials on the Cacti Official YouTube page if you prefer. If
 6. [SQL Standards](Standards-SQL.md)
 
 7. [Security](Standards-Security.md)
+
+### Architecture Decisions
+
+1. [Architecture Decision Records](Architecture-Decisions.md)
 
 ### Template Specific Documentation
 
