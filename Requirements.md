@@ -284,5 +284,10 @@ paste them into my.cnf
  innodb_io_capacity_max = 10000
 ```
 
+> **Note**: MySQL 8.4 raised the default for **innodb_io_capacity** from 200 to
+> 10000, while MariaDB still defaults to 200.  On MySQL 8.4 and later the value
+> above lowers the setting rather than raising it, so check your server default
+> before pasting the block in.
+
 ---
 Copyright (c) 2004-2026 The Cacti Group
