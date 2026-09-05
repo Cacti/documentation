@@ -1,5 +1,36 @@
 # Requirements
 
+## Hardware Sizing
+
+The table below covers common deployment sizes. These are starting points; actual
+requirements depend on polling interval, number of data sources per device, use of
+Spine vs cmd.php, and whether remote pollers are used.
+
+| Deployment size | Devices | Data sources | CPU cores | RAM | Disk |
+|---|---|---|---|---|---|
+| Small | < 500 | < 50,000 | 2 | 4 GB | 50 GB SSD |
+| Medium | 500–2,000 | 50,000–500,000 | 4–8 | 16 GB | 200 GB SSD |
+| Large | 2,000–10,000 | 500,000–2,000,000 | 8–16 | 32–64 GB | 1 TB NVMe |
+| Very large | > 10,000 | > 2,000,000 | 16+ | 64+ GB | 2+ TB NVMe |
+
+**Notes:**
+
+- Use SSD or NVMe for the RRD file directory. RRDtool performs many small random
+  writes; spinning disk causes polling backlogs on medium and larger installs.
+- The MySQL/MariaDB data directory benefits from SSD as well.
+  `innodb_doublewrite` protects against torn page writes during a crash;
+  disabling it reduces crash safety on any storage type, including SSD/NVMe.
+  Setting `innodb_doublewrite = OFF` is an advanced optimization; only
+  consider it when you accept the durability trade-off (e.g. strong
+  backup/replication strategy and tolerance for potential data loss on an
+  unclean shutdown).
+- Spine is CPU-bound. Each spine process spawns threads up to your configured
+  maximum; allocate 1–2 spine processes per CPU core for best throughput.
+- Very large deployments (> 10,000 devices) require remote pollers deployed close to the devices
+  they poll rather than scaling a single main poller vertically.
+
+## Software Requirements
+
 Cacti requires that the following software is installed on your system.
 
 > **Note**: As of Cacti 1.2.31, PHP 8.1 is required. When installing from source or
@@ -35,17 +66,17 @@ Cacti requires that the following software is installed on your system.
     SELinux or AppArmor system-wide is a security regression and is not
     recommended for production systems.
 
-- MySQL 5.7 or MariaDB 10.2 or greater
+- MySQL 8.0 or MariaDB 10.6.28 or greater
   - Timezone support must be enabled
 
   - The following are my.cnf recommendations:
 
-    - **version >= 5.7 (MySQL) / 10.2 (MariaDB)**
+    - **version >= 8.0 (MySQL) / 10.6.28 (MariaDB)**
 
-      MySQL 5.7+ and MariaDB 10.2+ are the minimum supported versions.
-      Make sure you run the very latest release though, which fixes a long
-      standing low level networking issue that was causing spine many issues
-      with reliability.
+      MySQL 8.0+ and MariaDB 10.6.28+ are the minimum supported versions.
+      MariaDB 11.8.8 or greater is recommended for new installs. Run the
+      latest maintenance release for your chosen branch; older patch releases
+      have known networking issues that cause intermittent Spine failures.
 
     - **innodb = ON**
 
@@ -139,6 +170,23 @@ Cacti requires that the following software is installed on your system.
       migrate to the per file storage by enabling the feature, and then
       running an alter statement on all InnoDB tables.
 
+      It is already ON by default on every supported version, and MariaDB
+      deprecated the variable in 11.0, so only set it where an older my.cnf
+      turned it off.
+
+    - **innodb_data_file_path = ibdata1:12M:autoextend:autoshrink** (MariaDB 11.2.0+)
+
+      Long running installs that accumulated blocking queries can end up with a
+      very large ibdata1 file that never shrinks back down.  The autoshrink
+      attribute lets MariaDB truncate the system tablespace back toward its
+      minimum size.  It is off by default and is enabled by appending
+      :autoshrink to innodb_data_file_path, not by a separate variable.
+
+      From MariaDB 11.2.0 the shrink runs at server startup.  MariaDB 11.2.3
+      adds the option of shrinking during a slow shutdown instead, which needs
+      innodb_fast_shutdown = 0 set before the server is stopped.  MySQL has no
+      equivalent.
+
     - **innodb_buffer_pool_size >= 25% of system RAM**
 
       InnoDB will hold as much tables and indexes in system memory as is
@@ -150,8 +198,12 @@ Cacti requires that the following software is installed on your system.
 
     - **innodb_doublewrite = OFF**
 
-      With modern SSD type storage, this operation actually degrades the disk
-      more rapidly and adds a 50% overhead on all write operations.
+      Disables the InnoDB doublewrite buffer. This eliminates a 50% write
+      overhead on SSD/NVMe storage, but removes protection against partial page
+      writes on an unclean shutdown. Only set this on SSD or NVMe storage with
+      battery-backed or capacitor-backed write cache, or when the database is
+      on a volume with hardware-level write atomicity guarantees. Do not set on
+      spinning disk or consumer SSDs without power-loss protection.
 
     - ~~**innodb_additional_mem_pool_size**~~ (removed in MySQL 5.7.4 / MariaDB 10.0)
 
@@ -186,12 +238,16 @@ Cacti requires that the following software is installed on your system.
       With modern SSD type storage, having multiple write IO threads is
       advantageous for applications with high IO characteristics.
 
-    - **innodb_buffer_pool_instances >= 16**
+    - **innodb_buffer_pool_instances >= 16** (MySQL only)
 
-      MySQL/MariaDB will divide the innodb_buffer_pool into memory regions to
-      improve performance with a maximum value is 64.  When your
-      innodb_buffer_pool is less than 1GB, you should use the pool size
-      divided by 128MB. Continue to use this equation up to the max of 64.
+      MySQL will divide the innodb_buffer_pool into memory regions to improve
+      performance with a maximum value is 64.  When your innodb_buffer_pool is
+      less than 1GB, you should use the pool size divided by 128MB. Continue to
+      use this equation up to the max of 64.
+
+      MariaDB 10.5 deprecated this variable and gave it no effect, and MariaDB
+      10.6 removed it.  Leave it out of my.cnf on MariaDB 10.6 and later, which
+      will not start on an unknown variable.
 
     > **Note**: Some of these recommendations may not be applicable depending
     > on the version of MySQL/MariaDB you are running, and some should be
@@ -226,8 +282,12 @@ paste them into my.cnf
  innodb_buffer_pool_size = 250M
  innodb_io_capacity = 5000
  innodb_io_capacity_max = 10000
- # innodb_file_format and innodb_large_prefix are removed in MySQL 8.0; omit on MySQL 8.0+ / MariaDB 10.3+
- ```
+```
+
+> **Note**: MySQL 8.4 raised the default for **innodb_io_capacity** from 200 to
+> 10000, while MariaDB still defaults to 200.  On MySQL 8.4 and later the value
+> above lowers the setting rather than raising it, so check your server default
+> before pasting the block in.
 
 ---
 Copyright (c) 2004-2026 The Cacti Group
