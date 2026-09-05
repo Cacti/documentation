@@ -99,6 +99,9 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 8. [Architecture Decisions](README.md#architecture-decisions)
 
+   This section contains the architecture decision records that describe the
+   decisions guiding the long-term architecture of Cacti.
+
 ### Known Issues
 
 [List of Known issues](Known-Issues.md)
