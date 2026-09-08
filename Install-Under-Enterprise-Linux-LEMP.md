@@ -55,7 +55,7 @@ server {
    gzip_min_length 1000;
 
    location / {
-      try_files $uri $uri/ /index.php$query_string;
+      try_files $uri $uri/ /index.php?$query_string;
    }
 
    error_page 404 /404.html;
@@ -108,7 +108,7 @@ server {
       }
    }
 
-   location /cacti/rra/ {
+   location ~ ^/(cacti/)?(rra|log|cache)/ {
       deny all;
    }
 
@@ -170,7 +170,7 @@ major divergence occurs that cannot be bridged.
 1. Install MariaDB server
 
    ```console
-   yum install -y MariaDB-server MariaDB-client
+   dnf install -y mariadb-server mariadb
    ```
 
 2. Enable and start the service
@@ -244,7 +244,7 @@ prompt you with more accurate recommendations during installation.
 2. Restart MySQL/MariaDB to apply the changes
 
    ```console
-   systemctl restart mysql
+   systemctl restart mysqld  # or: systemctl restart mariadb
    ```
 
 3. Populate the timezone table
@@ -309,7 +309,7 @@ PHP and the following packages are required for Cacti to operate.
    ```console
    yum install -y php php-common php-bcmath php-cli \
    php-mysqlnd php-gd php-gmp php-intl \
-   php-json php-ldap php-mbstring \
+   php-ldap php-mbstring \
    php-pdo php-pear php-snmp php-process \
    php-xml php-zip php-fpm composer
    ```
@@ -403,7 +403,7 @@ the basics for Cacti.
 2. Create the config.php file
 
    ```console
-   mv -v /usr/share/nginx/html/cacti/include/config.php-dist /usr/share/nginx/html/cacti/include/config.php
+   cp -v /usr/share/nginx/html/cacti/include/config.php.dist /usr/share/nginx/html/cacti/include/config.php
    ```
 
 3. Update the `database_` fields with your own details. This section applies
@@ -512,8 +512,8 @@ If you have trouble accessing the web interface, disable SELinux temporarily to
 determine whether the SELinux policy is the cause. Do not disable SELinux
 permanently.
 
-The [CentOS SELinux HowTo](https://wiki.centos.org/HowTos/SELinux) provides
-guidance on writing a correct SELinux policy.
+The [Rocky Linux SELinux Guide](https://docs.rockylinux.org/guides/security/learning_selinux/) provides
+guidance on managing SELinux policies.
 
 1. Check SELinux status
 

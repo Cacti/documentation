@@ -60,7 +60,7 @@ packages will vary by operating system.
 
 ### Database
 
-MySQL versions to 5.7 are supported. MariaDB to 10.2 is also supported.
+MySQL versions 8.0/8.4+ and MariaDB versions 10.5 through 11.x+ are supported.
 
 - mysql
 
@@ -148,22 +148,23 @@ prepared. Both ways have few pros and cons:
   pkg install git
   git clone https://git.FreeBSD.org/ports.git /usr/ports
   git -C /usr/ports pull
-  cd /usr/ports/databases/mariadb106-server (or mysql80-server)
-  make install
+  # Choose either MariaDB or MySQL:
+  cd /usr/ports/databases/mariadb106-server
+  make install clean
   cd /usr/ports/net-mgmt/cacti
   make install
   cd /usr/ports/net-mgmt/spine
   make install
   ```
 
-Apache and other software is possible install with package or Ports too.
+Apache and other software can be installed using packages or Ports as well.
 
 Everything in FreeBSD is installed to /usr/local/ directory! In this
 documentation you can see paths like /etc/php.ini, /usr/bin/spine, ...
 
 Please use correct paths - /usr/local/etc, /usr/local/bin/spine, ...
 
-For Spine set suid bit (without this isn't possible make ICMP ping):
+For Spine set suid bit (without this, ICMP ping cannot function):
 
 ```sh
 chmod +s /usr/local/bin/spine
@@ -218,13 +219,12 @@ DirectoryIndex index.php
 
 ## Configure MySQL/MariaDB
 
-Set a password for the root user, and record this password. If you loose control
+Set a password for the root user, and record this password. If you lose control
 of this password, you may have to re-install your database server in the case of
 any system disaster or recovering from a crash.
 
-```sh
-shell> mysqladmin --user=root password somepassword
-shell> mysqladmin --user=root --password reload
+```console
+mysql_secure_installation
 ```
 
 You must also load timezone information into the database. This is required for

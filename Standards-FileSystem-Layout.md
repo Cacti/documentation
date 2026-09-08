@@ -181,6 +181,8 @@ reading graph information. The `require_once` directive is used instead of
 function api_graph_item_save($graph_item_id, &$_fields_graph_item) {
     require_once(CACTI_BASE_PATH . '/lib/sys/sequence.php');
     require_once(CACTI_BASE_PATH . '/lib/graph/graph_info.php');
+    // Function implementation...
+}
 ```
 
 ---

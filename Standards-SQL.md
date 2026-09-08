@@ -34,13 +34,13 @@ attacks from the Cacti website. Examples include:
 // Example prepared statements
 $hostname = db_fetch_cell_prepared('SELECT hostname FROM host WHERE id = ?', array($id));
 $host     = db_fetch_row_prepared('SELECT * FROM host WHERE id = ?', array($id));
-$graphs   = db_fetch_assoc('SELECT * FROM graph_local WHERE host_id = ?', array($id));
+$graphs   = db_fetch_assoc_prepared('SELECT * FROM graph_local WHERE host_id = ?', array($id));
 
 db_execute_prepared('UPDATE host SET description = ? WHERE id = ?', array('Local Machines', $id));
 
 // Escape strings if using legacy functions
 $hostname = db_qstr('myhost.com');
-db_execute(UPDATE host SET hostname = '$myhost' WHERE id = $id");
+db_execute("UPDATE host SET hostname = '$hostname' WHERE id = $id");
 
 ```
 
@@ -91,7 +91,7 @@ db_execute(UPDATE host SET hostname = '$myhost' WHERE id = $id");
 #### Before formatting
 
 ```php
-$templates = db_fetch_assoc('SELECT DISTINCT gt.id, gt.name FROM graph_templates AS gt INNER JOIN graph_templates_graph AS gtg ON gt.id = gtg.graph_template_id INNER JOIN graph_templates_item AS gti ON gtg.graph_template_id=gti.graph_template_id INNER JOIN data_template_rrd AS dtr ON gti.task_item_id=dtr.id INNER JOIN data_template_data AS dtd ON dtd.data_template_id=dtr.data_template_id AND dtd.local_data_id = 0 WHERE gtg.local_graph_id=0 AND dtr.local_data_id = 0 AND dtd.local_data_id = 0 AND dtd.data_input_id in (2,11,12) ORDER BY gt.name;'
+$templates = db_fetch_assoc('SELECT DISTINCT gt.id, gt.name FROM graph_templates AS gt INNER JOIN graph_templates_graph AS gtg ON gt.id = gtg.graph_template_id INNER JOIN graph_templates_item AS gti ON gtg.graph_template_id=gti.graph_template_id INNER JOIN data_template_rrd AS dtr ON gti.task_item_id=dtr.id INNER JOIN data_template_data AS dtd ON dtd.data_template_id=dtr.data_template_id AND dtd.local_data_id = 0 WHERE gtg.local_graph_id=0 AND dtr.local_data_id = 0 AND dtd.local_data_id = 0 AND dtd.data_input_id in (2,11,12) ORDER BY gt.name;');
 ```
 
 #### Corrected formatting with prepared usage

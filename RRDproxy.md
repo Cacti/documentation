@@ -105,7 +105,7 @@ Setting | Default | Comment
 CLI System Prompt | rrdp | Max 8 chars
 IPv4 Listen Addr | 0.0.0.0 | Listen all addr
 Client Proxy Port | 40301 | Connections from a client
-Proxy Proxy port | 40302 | Connections from another proxy
+Proxy port | 40302 | Connections from another proxy
 Dedicated CLI port | 40303 | Connections to the RRDproxy cli
 
 ## Command Line Interface

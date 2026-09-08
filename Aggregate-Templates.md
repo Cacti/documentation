@@ -39,7 +39,7 @@ references can be used in the `Prefix` section in order to uniquely identify the
 **Graph Item**.
 
 There are several `Graph Types` transformations that deal with how `AREA`,
-`LINEX` and `STACK` items are handled in the resulting **Aggeregate Graph**,
+`LINEX` and `STACK` items are handled in the resulting **Aggregate Graph**,
 they include:
 
 - **Keep Graph Types** - No transformation will occur. All `AREA`, `LINE`, and

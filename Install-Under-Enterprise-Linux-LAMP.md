@@ -32,7 +32,7 @@ cores: 2
 hostname: cacti
 memory: 2048
 net0: name=eth0,bridge=vmbr0,firewall=1,hwaddr=mac-id,ip=dhcp,type=veth
-ostype: ubuntu
+ostype: rocky
 rootfs: local-lvm:vm-110-disk-0,size=8G
 swap: 2048
 lxc.apparmor.profile: unconfined
@@ -169,7 +169,7 @@ major divergence occurs that cannot be bridged.
 1. Install MariaDB server
 
    ```console
-   yum install -y MariaDB-server MariaDB-client
+   dnf install -y mariadb-server mariadb
    ```
 
 2. Enable and start the service to ensure it starts when the system reboots
@@ -242,7 +242,7 @@ during the installation.
 2. Restart MySQL/MariaDB to apply the changes
 
    ```console
-   systemctl restart mysql
+   systemctl restart mysqld  # or: systemctl restart mariadb
    ```
 
 3. Populate the timezone table
@@ -307,7 +307,7 @@ PHP and the following packages are required for Cacti to operate.
    ```console
    yum install -y php php-common php-bcmath php-cli \
    php-mysqlnd php-gd php-gmp php-intl \
-   php-json php-ldap php-mbstring \
+   php-ldap php-mbstring \
    php-pdo php-pear php-snmp php-process \
    php-xml php-zip composer
    ```
@@ -355,7 +355,7 @@ the basics for Cacti.
 2. Create the config.php file
 
    ```console
-   mv -v /var/www/html/cacti/include/config.php-dist /var/www/html/cacti/include/config.php
+   cp -v /var/www/html/cacti/include/config.php.dist /var/www/html/cacti/include/config.php
    ```
 
 3. Update the `database_` fields with your own details. This section applies
@@ -484,8 +484,8 @@ If you have trouble accessing the web interface, disable SELinux temporarily to
 determine whether the SELinux policy is the cause. Do not disable SELinux
 permanently.
 
-The [CentOS SELinux HowTo](https://wiki.centos.org/HowTos/SELinux) provides
-guidance on writing a correct SELinux policy.
+The [Rocky Linux SELinux Guide](https://docs.rockylinux.org/guides/security/learning_selinux/) provides
+guidance on managing SELinux policies.
 
 1. Check SELinux status
 

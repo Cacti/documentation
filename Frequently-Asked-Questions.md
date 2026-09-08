@@ -49,6 +49,8 @@ presented with text that looks like:
  | modify it under the terms of the GNU General Public License             |
  | as published by the Free Software Foundation; either version 2          |
  | of the License, or (at your option) any later version.                  |
+ +-------------------------------------------------------------------------+
+*/
 ```
 
 If this happens, it usually means that you have not enabled the PHP module to
@@ -101,7 +103,7 @@ to run.
 **A:** Give Spine, the fast replacement for poller.php a try. Unlike poller.php,
 Spine is written in c and makes use of threads. On a typical installation, it is
 not uncommon for Spine to poll about 50000 items in less then 10 seconds. Spine
-supports upto several threads per poller process and can also poll a single
+supports up to several threads per poller process and can also poll a single
 hosts with more than a single thread.
 
 If using spine alone does not help, look to both the amount of memory and CPU

@@ -16,7 +16,7 @@ A use example would be for example 3 levels of customers
 who will have access to the system.  For example lets
 say those three groups are:
 
-- Adminnistrators
+- Administrators
 - Managers
 - Client Team
 

@@ -12,8 +12,8 @@
 apt-get update
 apt-get install -y apache2 rrdtool mariadb-server snmp snmpd \
   php8.3 php8.3-mysql php8.3-snmp php8.3-xml php8.3-mbstring \
-  php8.3-json php8.3-gd php8.3-gmp php8.3-zip php8.3-ldap \
-  php8.3-intl php8.3-curl composer
+  php8.3-gd php8.3-gmp php8.3-zip php8.3-ldap \
+  php8.3-intl php8.3-curl php8.3-fpm composer
 ```
 
 ### A special note for systems using PHP-FPM
@@ -22,7 +22,7 @@ Before starting the Cacti setup process, restart the PHP-FPM daemon to rebuild
 its cache, or you may receive an HTTP 500 error.
 
 ```console
-systemctl restart php-fpm
+systemctl restart php8.3-fpm
 ```
 
 ### A special note on installing Cacti in LXC containers (e.g. Proxmox)
@@ -58,10 +58,12 @@ Once the OS packages are installed, clone the Cacti repository:
 git clone -b 1.2.x https://github.com/Cacti/cacti.git
 ```
 
-Move the files into the web root:
+Move the files into the web root and install Composer dependencies:
 
 ```console
 mv cacti /var/www/html
+cd /var/www/html/cacti
+composer install --no-dev
 ```
 
 ### Database creation
@@ -126,11 +128,18 @@ and the desired user and group, then:
 
 ```console
 vim /var/www/html/cacti/service/cactid.service
-touch /etc/sysconfig/cactid
 cp -p /var/www/html/cacti/service/cactid.service /etc/systemd/system
+mkdir -p /etc/default && touch /etc/default/cactid
+systemctl daemon-reload
 systemctl enable cactid
 systemctl start cactid
 systemctl status cactid
+```
+
+Set directory ownership so Apache and the poller can write to necessary directories:
+
+```console
+chown -R www-data:www-data /var/www/html/cacti/rra /var/www/html/cacti/log /var/www/html/cacti/cache /var/www/html/cacti/resource
 ```
 
 The system is now ready. Browse to

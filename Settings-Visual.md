@@ -85,7 +85,7 @@ Those settings include:
 
 - **Enable Real-time Graphing** - Allow Realtime graphs to be used in Cacti.
 
-- **Graph Time-span** - The default system level `Graph Timespan` use use when a
+- **Graph Time-span** - The default system level `Graph Timespan` to use when a
   user opens a Realtime **Graph** for the first time.
 
 - **Refresh Interval** - The default system level `Refresh Interval` for the

@@ -4,7 +4,7 @@ Cacti allows **Device**, **Graph**, and **Data** Templates to be exported in XML
 format. You can access the screen below by going to
 `Console > Import / Export > Template Export`. When you get to this page, the
 most popular option is to export the **Device Template**, but the discretion is
-upto the user. Once you pick the object type, the list of available templates is
+up to the user. Once you pick the object type, the list of available templates is
 presented. The most popular option is to save to a file, but you have additional
 options.
 

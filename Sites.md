@@ -13,15 +13,16 @@ be a customer site or data center location
 Below is an example of some of the attribute data you can enter for the
 site/location
 
-Enter the appropriate information for the site and click create on the
-below right side
+Enter the appropriate information for the site and click **Create** in the
+lower right corner:
 
-![cacti add sites](images/add-site.JPG).
+![cacti add sites](images/add-site.png)
 
-Once you have created a site while you are creating a device manually
-you can now associate the device to the site
+Once a site has been created, you can associate devices with it when adding
+or editing a device:
 
-![cacti add device site](images/add-device-site.png).
+![cacti add device site](images/add-device-site.png)
+
 
 You can also associate the discovered devices via automation to a
 particular site.

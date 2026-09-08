@@ -437,7 +437,7 @@ GPRINT:cdefcd:MAX:"Maximum:%8.2lf%sn"
 `cdefca` calculates the `SUM` of `all traffic_in` data sources, but pays
 attention only to consolidation function `AVERAGE`. Duplicate suppression makes
 sure, that the second occurrence of the `1`. target is not taken into account.
-So it's only summing data source `a` and `c`. `cdefca` is used the the `LINE1`
+So it's only summing data source `a` and `c`. `cdefca` is used for the `LINE1`
 graph item with exact match for consolidation function `AVERAGE` as well as for
 the best matched consolidation functions `LAST` and `MIN`.
 

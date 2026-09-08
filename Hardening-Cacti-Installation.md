@@ -321,7 +321,7 @@ After applying all controls, confirm:
 ## See Also
 
 - [Installing Under Ubuntu/Debian](Installing-Under-Ubuntu-Debian.md)
-- [Installing Under CentOS (LAMP)](Install-Under-CentOS_LAMP.md)
+- [Installing Under Enterprise Linux (LAMP)](Install-Under-Enterprise-Linux-LAMP.md)
 - [Standards Security](Standards-Security.md)
 
 ---

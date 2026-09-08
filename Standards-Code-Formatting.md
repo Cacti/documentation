@@ -295,7 +295,7 @@ function that needs to use it.
 $graph_unit_exponent_values = array(
   '-18' => 'a - atto',
   '-15' => 'f - femto',
-  ...
+  // ...
 );
 
 function graph_unit_exponent_values_list() {
