@@ -5,11 +5,11 @@
 Use the ```foreach ($array as $name => $value)``` syntax instead of ```while
 (list($name, $value) = each($array))``` syntax when traversing arrays. The
 former has been demonstrated to be more efficient and does not increment the
-internal pointer of the array. The `foreach` construct will error if the array
-is empty or is not an array, so you must check this first.
+internal pointer of the array. Check that the variable is an array before
+passing it to `foreach`, otherwise a null or boolean value raises a warning.
 
 ```php
-if ((is_array($array)) && (sizeof($array) > 0)) {
+if (is_array($array)) {
     foreach ($array as $name => $value) {
         // code
     }
@@ -17,14 +17,14 @@ if ((is_array($array)) && (sizeof($array) > 0)) {
 ```
 
 It should be noted that with PHP 7.2 use of `list() = each()` syntax will result
-in warnings and/or errors.  It should also be noted that 7.2 also introduced the
-need for the variable to implement ICountable which are arrays and objects.  You
-should therefore check if `variable !=== false` before using `sizeof()` or
-`count()`
+in warnings and/or errors. PHP 7.2 also made `count()` and `sizeof()` warn on
+non-countable values, so the argument must be an array or implement
+`Countable`. Verify `is_array($variable) || $variable instanceof Countable`
+before calling either function.
 
 ## Error Return Values
 
-When an a function needs to return a generic error, it is best to return boolean
+When a function needs to return a generic error, it is best to return boolean
 `false` in PHP. This makes it very straightforward to check for.
 
 ```php
@@ -41,14 +41,11 @@ functions such as `strstr()`, `str_replace()`, `substr()`, and `explode()` can
 be used, and are much faster.
 
 ```php
-$items = explode(':', $string));
+$items = explode(':', $string);
 ```
 
-It's much quicker than:
-
-```php
-$items = split(':', $string));
-```
+Avoid legacy POSIX regex functions such as `split()`, which was removed in
+PHP 7.0.
 
 ## Use `preg` Functions Instead of `ereg`
 

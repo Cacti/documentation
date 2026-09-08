@@ -1,6 +1,6 @@
 # Reference Plugins
 
-FIXME The reference plugin is under development.  Nothing to see here yet.
+This guide outlines the architecture and standard conventions for reference plugins in Cacti.
 
 The Reference Plugin(s) are generic plugins that implement key pieces of the
 Plugin Architecture.

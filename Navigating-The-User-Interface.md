@@ -149,7 +149,7 @@ into separate sub-menus.  We will describe the purpose of each next.
 - **Management** - This is where all core Cacti **Site**, **Graph**,
   **Device**, **Tree**, **Data Source**, and **Aggregate** non-templated
   objects reside.  When you install Cacti **Plugins**, you will find
-  they they extend this sub-menu.
+  they extend this sub-menu.
 - **Data Collection** - This is where you define rules for **Data Collection**
   Examples include: **Data Collectors**, **Data Input Methods** and
   **Data Queries**

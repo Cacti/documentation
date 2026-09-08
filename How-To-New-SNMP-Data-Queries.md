@@ -329,7 +329,7 @@ of the page and check **Index Type, Index Value and Output Type Id**
 ### Defining the Graph Template
 
 The Graph Template will define, how the data is presented. For more information
-about the principles of operation, please see [Common Tasks](Common-Tasks.md).
+about the principles of operation, please see [Principles of Operation](Principles-of-Operation.md).
 Please go to Graph Templates and Add:
 
 ![Defining Graph Template](images/gt-01.preview.png)

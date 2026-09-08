@@ -49,7 +49,7 @@ of their function.
 | [user_admin_edit](Plugin-Hook-API-Ref.md#user_admin_edit)                                 | [user_admin_run_action](Plugin-Hook-API-Ref.md#user_admin_run_action)                     | [user_admin_setup_sql_save](Plugin-Hook-API-Ref.md#user_admin_setup_sql_save)                   |
 | [user_admin_tab](Plugin-Hook-API-Ref.md#user_admin_tab)                                   | [user_admin_user_save](Plugin-Hook-API-Ref.md#user_admin_user_save)                       | [user_group_admin_action](Plugin-Hook-API-Ref.md#user_group_admin_action)                       |
 | [user_group_admin_edit](Plugin-Hook-API-Ref.md#user_group_admin_edit)                     | [user_group_admin_save](Plugin-Hook-API-Ref.md#user_group_admin_save)                     | [user_group_admin_setup_sql_save](Plugin-Hook-API-Ref.md#user_group_admin_setup_sql_save)       |
-| [user_group_admin_run_action] (Plugin-Hook-API-Ref.md#user_group_admin_run_action)        | [user_group_admin_tab] (Plugin-Hook-API-Ref.md#user_group_admin_tab)                      | [user_group_remove] (Plugin-Hook-API-Ref.md#user_group_remove)                                  |
+| [user_group_admin_run_action](Plugin-Hook-API-Ref.md#user_group_admin_run_action)         | [user_group_admin_tab](Plugin-Hook-API-Ref.md#user_group_admin_tab)                       | [user_group_remove](Plugin-Hook-API-Ref.md#user_group_remove)                                   |
 | [user_remove](Plugin-Hook-API-Ref.md#user_remove)                                         | [utilities_action](Plugin-Hook-API-Ref.md#utilities_action)                               | [utilities_array](Plugin-Hook-API-Ref.md#utilities_array)                                       |
 | [utilities_list](Plugin-Hook-API-Ref.md#utilities_list)                                   | [valid_host_fields](Plugin-Hook-API-Ref.md#valid_host_fields)                             |
 
@@ -590,7 +590,7 @@ graph is required to be outputted.
 
 ## graph_items_remove
 
-This hook is called when when the data source is deleted, and the option to
+This hook is called when the data source is deleted, and the option to
 remove all graph items tied to the data source is selected.
 
 | file             | introduced | retired |
@@ -934,6 +934,21 @@ things like THolds fast poller for example.
 | lib/api_device.php |            |
 | lib/poller.php     | 1.0.0      |
 
+## report_filters
+
+Allows plugins to add custom filter criteria to report generation interfaces.
+
+| File | Release |
+| --- | --- |
+| reports.php | 1.0.0 |
+
+```php
+function myplugin_report_filters($filters) {
+    // Modify or add custom report filters
+    return $filters;
+}
+```
+
 ## resolve_dependencies
 
 | file           | introduced  | retired |
@@ -1007,7 +1022,7 @@ calls the graph header)
 
 ## top_header
 
-This hooks enables you to output custom HTML on top the the graph view page, if
+This hook enables you to output custom HTML on top of the graph view page, if
 navigation tabs are not rendered. Allows you to override the rendering of the
 top_header.php include.
 
@@ -1130,19 +1145,25 @@ See the explanation on `user_admin_action`
 | -------------------- | :--------- | :------ |
 | user_group_admin.php | 1.0.0      |
 
-## user_group_admin_action
+## user_group_admin_run_action
+
+Similar to `user_admin_run_action`
 
 | file                 | introduced | retired |
 | -------------------- | :--------- | :------ |
 | user_group_admin.php | 1.0.0      |
 
-## user_group_admin_edit
+## user_group_admin_tab
+
+Similar to `user_admin_tab`
 
 | file                 | introduced | retired |
 | -------------------- | :--------- | :------ |
 | user_group_admin.php | 1.0.0      |
 
-## user_group_admin_save
+## user_group_remove
+
+Similar to `user_remove` for user groups.
 
 | file                 | introduced | retired |
 | -------------------- | :--------- | :------ |
@@ -1166,7 +1187,7 @@ plugin maintains user settings.
 
 ## utilities_action
 
-This hook set's up the function to be executed from within Cacti's utilities
+This hook sets up the function to be executed from within Cacti's utilities
 section.
 
 | file          | introduced | retired |

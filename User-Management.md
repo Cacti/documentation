@@ -306,7 +306,7 @@ will be used as the source **User**.
 ![Copy a User Part 2](images/users-copy2.png)
 
 Specify the New Username, New Full Name and New Realm of the new user. Click
-`Continue` to copy the selected template user to the the designated new user. An
+`Continue` to copy the selected template user to the designated new user. An
 error will be returned if you attempt to copy over an existing user. If you
 would like to copy over an existing user, use Batch Copy.
 

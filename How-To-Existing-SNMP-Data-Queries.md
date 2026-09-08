@@ -69,7 +69,7 @@ indexes, the XML defines descriptive parameters (direction: input) to be
 displayed in the selection table.
 
 A walkthrough for this is given now. It is based on the already supplied
-interfaces.xml XML file.
+interfaces.xml file.
 
 ## Create a Data Query to tell cacti how to retrieve data
 

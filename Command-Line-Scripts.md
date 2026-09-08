@@ -30,7 +30,7 @@ briefly.
 
 | Script                          | Category    | Description                                                                                                                                                              |
 | ------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| input_whitelist.php             | Maintenance | To to onboard new Data Input Methods when using Cacti in a high security environment where new Data Input Methods must always be vetted before enabling for general use. |
+| input_whitelist.php             | Maintenance | To onboard new Data Input Methods when using Cacti in a high security environment where new Data Input Methods must always be vetted before enabling for general use. |
 | poller_graphs_reapply_names.php | Maintenance | Allows selecting re-running of Cacti's suggested values engine for Graphs                                                                                                |
 | poller_reindex_hosts.php        | Maintenance | Batch method to re-index Cacti Devices                                                                                                                                   |
 | analyze_database.php            | Maintenance | Analyzes all Cacti tables rebuilding their index cardinality. Important to run after having added large numbers of Devices and Graphs to Cacti.                          |

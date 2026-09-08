@@ -31,7 +31,7 @@ Those settings include:
 
 - **Daily Update Frequency** - This setting determines how often
   daily averages and peaks should be calculated.  You can set
-  it to run hourly, upto every 6 hours, or after Cacti's boost
+  it to run hourly, up to every 6 hours, or after Cacti's boost
   process completes.
 
 - **Hourly Average Window** - This is a floating time window where
@@ -65,7 +65,7 @@ Those settings include:
 
 - **Check Frequency** - This setting determines how often
   checks should be executed.  You can set
-  it to run hourly, upto 24 hours, or after Cacti's boost
+  it to run hourly, up to 24 hours, or after Cacti's boost
   process completes.
 
 ## Data Storage Settings

@@ -76,7 +76,7 @@ serves as the master **Data Collector** performing key maintenance operations
 for the entire system.
 
 In the edit page below, you can see what options are available when editing the
-**Main Data Collector**.  It is important the the hostname used is resolvable
+**Main Data Collector**.  It is important that the hostname used is resolvable
 by the **Remote Data Collectors**.
 
 ![Data Collectors Edit Main](images/data-collectors-edit-main.png)

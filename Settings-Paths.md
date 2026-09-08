@@ -77,12 +77,11 @@ Older files will be removed automatically.
 
 ## Alternate Poller Path
 
-The sub-section hold information on how to find Cacti's `spine` binary if it's
-installed.  Since `spine` is written in ANSI C, it is not provided as a part of
-the Cacti install and must be compiled by the Cacti Administrator.  The benefit
-of the `spine` binary is that it's mufti-threaded and extremely scalable.
-It's possible to poll enterprises with excess of 30,000 devices using spine on
-a reasonably large system.  The image below show's this sub-section.
+This subsection holds information on how to configure Cacti's `spine` binary path.
+Since `spine` is written in C, it is compiled by the Cacti Administrator to match
+the system's environment. The primary benefit of `spine` is that it is
+multi-threaded and highly scalable, capable of polling tens of thousands of data
+sources per minute. The image below shows this subsection.
 
 ![Alternate Poller Path](images/settings-paths-alternate.png)
 

@@ -112,7 +112,7 @@ next step.
 Now, you may add this new **Graph Template** to any **Devices** that
 responds to the udp OID we specified in the **Data Template**. But in this
 case, please wait a moment. Let's first proceed to the **Device Template**
-and use this new **Graph Gemplate** for our first own **Device Template**.
+and use this new **Graph Template** for our first own **Device Template**.
 
 ## Device Template Creation
 

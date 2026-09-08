@@ -114,7 +114,7 @@ non-templated fields.
 | Data Source Profile | The **Data Source Profile** will define how often to collect data for the resulting **Data Source**, and how long to keep that data in the RRDfile.                                                                                                                                                                                             |
 | Data Source Active  | This is a quick and easy to tell Cacti to stop gathering data for this **Data Template**. The resulting **Data Source** can still be used on **Graphs**, but no data will be fed to it until it is made active again.                                                                                                                           |
 
-> **NOTE:** For most **Data Templates**, you will should not have to to check
+> **NOTE:** For most **Data Templates**, you should not have to check
 > the Use Per-Graph Value check-box for the name field. The Templating should
 > handle this just fine. However, the Generic SNMP OID **Data Template** has
 > this value checked to allow you to create Graphs and Data Sources on a
@@ -411,7 +411,7 @@ If the XML file was downloaded, simply select that file from the Downloads
 location on your local system. Cacti no longer supports pasting the XML into the
 browser window.
 
-Please pay attention the the `Data Source Profile` field. By default, cacti will
+Please pay attention to the `Data Source Profile` field. By default, cacti will
 attempt to use your default **Data Source Profile**. However, you can change
 that at import time to use an alternate **Data Source Profile** or even the one
 from the **Template** itself, if it includes one.

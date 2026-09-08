@@ -36,7 +36,7 @@ a new tree Named Linux will be created if it does not already exist.
 
 ## Video Walkthrough
 
-[![Video Tutorial](http://img.youtube.com/vi/yxO-CgaeFNc/0.jpg)](https://youtu.be/yxO-CgaeFNc "Video Tutorial")
+[![Video Tutorial](https://img.youtube.com/vi/yxO-CgaeFNc/0.jpg)](https://youtu.be/yxO-CgaeFNc "Video Tutorial")
 
 ---
 Copyright (c) 2004-2026 The Cacti Group

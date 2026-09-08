@@ -135,9 +135,9 @@ As you see, my `<target>` has 4 indices (interfaces).
 
 You may wonder why this function drops in. Well, lets have a look at
 `cacti_snmp_walk`. This function is part of cacti itself and eases the use of
-SNMP. That's why I call it here. But unfortunately, it's output looks like
+SNMP. That's why I call it here. But unfortunately, its output looks like:
 
-```php
+```text
 Array
 (
     [0] => Array
@@ -381,7 +381,7 @@ Last option is the **get** function
 #      it has to respond with
 #      the description of the interface for interface #1
 # -------------------------------------------------------------------------
-} elseif ($cmd == "get" $$ isset($query_field) && isset($query_index)) {
+} elseif ($cmd == "get" && isset($query_field) && isset($query_index)) {
     print (cacti_snmp_get($hostname, $snmp_community,
         $oids[$query_field] . ".$query_index", $snmp_version, $snmp_auth_username,
         $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol,

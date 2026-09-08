@@ -1,248 +1,375 @@
 # Spine
 
-Spine is the fast replacement for `cmd.php`. It is written in C to ensure
-ultimate performance for device polling and is multi-threaded. Expect a decrease
-in polling time of an order of magnitude. Polling times far less than 60 seconds
-for about 20,000 data sources are achievable e.g. on a dual XEON system supplied
-with 4 GB RAM and standard local disks.
+Spine is the high-speed, multi-threaded poller replacement for `cmd.php`.
+Written in C, it provides dramatic performance improvements for data collection.
+Where `cmd.php` can take several minutes to poll large installations, Spine
+routinely polls tens of thousands of data sources in well under 60 seconds on
+modern multi-core hardware.
 
-When using Spine, don't change crontab or systemd settings. The poller entry
-point is always `poller.php`. Spine is invoked by the poller, not directly
-from cron or systemd.
+Spine does not replace your cron or systemd scheduling entries. The scheduler
+entry point remains `poller.php`. When Spine is selected as the poller engine,
+`poller.php` launches Spine processes to perform the data collection across all
+configured devices.
 
-To activate Spine instead of cmd.php, please visit
-`Console > Configuration > Settings > Poller` and select spine and save as the
-`Poller Type`. If it's not showing as an available `Poller Type` this means
-either it has not been installed, or it's path has not been defined on the
-`Paths` tab within Settings.
+---
 
-Once saved, poller.php will use Spine on all subsequent polling cycles. Before
-making this change, ensure that Spine runs properly from the command line using
-the following test:
+## Spine Architecture and Operating Principles
 
-```console
-cd /usr/local/spine/bin
-./spine -R -V 3 -S
-```
+1. **Multi-Threaded Polling**: Spine executes a thread-per-device polling model
+   within multiple concurrent processes, allowing hundreds of metrics to be
+   collected simultaneously.
+2. **Persistent PHP Script Server**: For custom scripts, Spine starts and
+   maintains long-running PHP script server processes (`script_server.php`).
+   This eliminates the heavy overhead of repeatedly spawning the PHP binary for
+   every individual script item.
+3. **Privilege Separation (SUID Root)**: To perform raw ICMP pings without
+   invoking external ping utilities, Spine requires raw socket access. Spine
+   achieves this by shipping with the SUID root bit enabled (`chmod u+s`). At
+   runtime, Spine strictly limits elevated privileges: it elevates effective UID
+   only during raw socket creation (serialized by an internal lock) and
+   immediately drops back to the calling user (such as `apache` or `www-data`).
+4. **Direct Database Communication**: Spine queries the Cacti database directly
+   via the MySQL/MariaDB client library to retrieve polling targets and writes
+   collected data directly into the poller cache and RRD files.
 
-You should receive quite a bit of output depending on the size of your system.
-To increase the number of Threads and concurrent processes, you must modify the
-setting when editing your Data Collector under
-`Console > Data Collection > Data Collectors`.
+---
 
-While Spine is really fast, choosing the correct setup will ensure that all
-processor resources are used. Required settings for Maximum Concurrent Poller
-Processes are 1-2 times the number of CPU cores available for Spine.
+## Installing Spine
 
-When using spine, you must be sensitive to the number of connections that are
-available for MySQL or MariaDB. Under
-`Console > Utilities > System Utilities > General` Cacti will provide a
-recommended `max_connection` for MySQL/MariaDB.
+Because Spine is written in C, it must be compiled against your local database
+and Net-SNMP client development libraries.
 
-###### Table 15-1. Spine Parameters maintained at the System Level
+### Prerequisites by Distribution
 
-| Name                                   | Description                                                                                                                                                                                           |
-| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Script and Script Server Timeout Value | The maximum time that Spine will wait on a script to complete, in units of seconds. If a Script Server Script is terminated due to timeout conditions, the value entered into the RRDfile will be NaN |
+#### Enterprise Linux 8 & 9 (RHEL, Rocky Linux, AlmaLinux)
 
-###### Table 15-2. Spine Parameters maintained at the Data Collector Level
+Spine requires development headers found in the CodeReady Builder (`crb`)
+repository on EL 9, or `powertools` on EL 8:
 
-| Name                         | Description                                                                                                                                                                                                                                                                                                               |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Maximum Threads per Process  | The maximum threads allowed per process. Using a higher number when using Spine will improve performance. Required settings are 10-15. Values above 50 are most often insane and may degrade performance vs. improve it.                                                                                                  |
-| Number of PHP Script Servers | The number of concurrent script server processes to run per Spine process. Settings between 1 and 15 are accepted. Script Servers will pre-load a PHP environment. Then, the Script Server Scripts are included into that environment to save the overhead of reloading PHP and re-interpreting the binary for each call. |
+1. Enable the repository:
 
-###### Table 15-3. Spine Parameters maintained at the Device Level
+   ```console
+   # On EL 9 (RHEL 9, Rocky Linux 9, AlmaLinux 9):
+   dnf config-manager --set-enabled crb
 
-| Name                                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The Maximum SNMP OIDs Per SNMP Get Request | The maximum number of SNMP get OIDs to issue per SNMP request. Increasing this value increases poller performance over slow links. The maximum value is 60 OIDs, but that value is highly dependent on the MTU for your links to the remote devices. In some cases, using a **Remote Data Collector** is much more effective for polling remote **Devices**. Additionally, some **Device Types** do not handle large SNMP OID get requests. It's best to experiment until you find the correct setting. |
-| Device Threads                             | The maximum number spine threads used to gather information from a **Device**. When using this setting at the **Device** level, you have to ensure that you have enough threads allocated to a process so as to not block other **Devices** being polled from the same spine binary.                                                                                                                                                                                                                    |
+   # On EL 8 (RHEL 8, Rocky Linux 8, AlmaLinux 8):
+   dnf config-manager --set-enabled powertools
+   ```
 
-### Installing Spine
+2. Install compiler tools and development libraries:
 
-As Spine is written in C is must be compiled on the local system that it is to
-be installed on below is an example of compiling on centos and Ubuntu
+   ```console
+   dnf install -y gcc autoconf automake libtool dos2unix help2man \
+     openssl-devel mariadb-devel net-snmp-devel
+   ```
 
-### Ubuntu
+#### Ubuntu and Debian
 
-Install the required system packages
-
-```console
-apt-get install -y build-essential dos2unix dh-autoreconf libtool help2man libssl-dev default-libmysqlclient-dev librrd-dev libsnmp-dev
-```
-
-Download the version of Spine that matches your Cacti version. Replace `X.Y.Z`
-with the actual release number (e.g., `1.2.31`):
+On Ubuntu (22.04 LTS / 24.04 LTS) and Debian (11 / 12):
 
 ```console
-wget https://github.com/Cacti/spine/archive/release/X.Y.Z.zip
-unzip X.Y.Z.zip
-cd spine-release-X.Y.Z
+apt-get update
+apt-get install -y build-essential autoconf automake libtool dos2unix help2man \
+  libssl-dev default-libmysqlclient-dev librrd-dev libsnmp-dev
 ```
 
-Once you are in the spine directory its time to compile the poller by issuing
-the following commands:
+#### FreeBSD
+
+On FreeBSD, Spine can be installed directly from pre-built packages or compiled
+from Ports:
 
 ```console
-./bootstrap
-./configure
-make
-make install
-chown root:root /usr/local/spine/bin/spine
-chmod u+s /usr/local/spine/bin/spine
-```
+# Using binary packages:
+pkg install spine
 
-Once that has completed, you will need to configure spine's config file
-
-```console
-vi /usr/local/spine/etc/spine.conf
-```
-
-Below is an example of a configuration however yours should match your cacti
-database username and password
-
-```console
-DB_Host       localhost
-DB_Database   cacti
-DB_User       spine
-DB_Pass       spine
-DB_Port       3306
-#DB_UseSSL    0
-#RDB_SSL_Key
-#RDB_SSL_Cert
-#RDB_SSL_CA
-```
-
-### CentOS
-
-Install required system packages
-
-```console
-yum install -y gcc mysql-devel net-snmp-devel autoconf automake libtool dos2unix help2man
-```
-
-Then compile using the following commands
-
-```console
-./bootstrap
-./configure
-make
-make install
-chown root:root /usr/local/spine/bin/spine
-chmod u+s /usr/local/spine/bin/spine
-```
-
-### Testing/Debugging spine via command line
-
-Spine offers a few different ways at the command line to test its
-functionality. Here are a few examples of some tests you can run by executing
-Spine.
-
-#### Test Spine without writing results to database
-
-This test allows you to run spine and display the results to the console. This
-will not commit any of the data to the database by specifying the -R option.
-
-```shell
-/usr/local/spine/bin# ./spine -R -V 5
-SPINE: Using spine config file [../etc/spine.conf]
-2021-01-08 14:26:25 - SPINE: Poller[1] PID[13482] DEBUG: The path_php_server variable is /var/www/html/cacti/script_server.php
-2021-01-08 14:26:25 - SPINE: Poller[1] PID[13482] DEBUG: The path_cactilog variable is /var/www/html/cacti/log/cacti.log
-2021-01-08 14:26:25 - SPINE: Poller[1] PID[13482] DEBUG: The log_destination variable is 1 (FILE)
-2021-01-08 14:26:25 - SPINE: Poller[1] PID[13482] DEBUG: The path_php variable is /usr/bin/php
-2021-01-08 14:26:25 - SPINE: Poller[1] PID[13482] DEBUG: The availability_method variable is 2
-2021-01-08 14:26:25 - SPINE: Poller[1] PID[13482] DEBUG: The ping_recovery_count variable is 3
-2021-01-08 14:26:25 - SPINE: Poller[1] PID[13482] DEBUG: The ping_failure_count variable is 2
-2021-01-08 14:26:25 - SPINE: Poller[1] PID[13482] DEBUG: The ping_method variable is 2
-2021-01-08 14:26:25 - SPINE: Poller[1] PID[13482] DEBUG: The ping_retries variable is 1
-2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] POLLER: Active Threads is 1, Pending is 1
-2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] DEBUG: Entering ICMP Ping
-2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] DEBUG: Attempting to ping 192.168.1.5, seq 9 (Retry 0 of 1)
-2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] DEBUG: Attempting to ping 192.168.1.5, seq 9 (Retry 0 of 1)
-2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] DEBUG: ICMP Device Alive, Try Count:1, Time:0.4990 ms
-2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] PING: Result ICMP: Device is Alive
-2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] HT[1] Device has no information for recache.
-2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] HT[1] NOTE: There are '1' Polling Items for this Device
-2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] DEBUG: The NIFTY POPEN returned the following File Descriptor 5
-2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] HT[1] DS[64] TT[9.95] SCRIPT: perl /var/www/html/cacti/scripts/ping.pl '192.168.1.5', output: 0.047
-2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] HT[1] Total Time: 0.018 Seconds
-2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] Device[38] HT[1] DEBUG: HOST COMPLETE: About to Exit Device Polling Thread Function
-2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] DEBUG: The Value of Active Threads is 0 for Device ID 38
-2021-01-08 14:31:40 - SPINE: Poller[1] PID[13804] POLLER: Active Threads is 0, Pending is 0
-```
-
-#### Running spine for a specific host
-
-If you want to run spine for a specific host you are able to do that with the
-following command:
-
-```shell
-/usr/local/spine/bin# ./spine -R -f 42 -l 42 -V 5
-SPINE: Using spine config file [../etc/spine.conf]
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] DEBUG: The path_php_server variable is /var/www/html/cacti/script_server.php
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] DEBUG: The path_cactilog variable is /var/www/html/cacti/log/cacti.log
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] DEBUG: The log_destination variable is 1 (FILE)
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] DEBUG: The path_php variable is /usr/bin/php
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] DEBUG: The Value of Active Threads is 1 for Device ID 0
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] POLLER: Active Threads is 1, Pending is 0
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] SPINE: Active Threads is 1, Pending is 1
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] DEBUG: In Poller, About to Start Polling of Device for Device ID 42
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] IPv4 address 1.1.1.30 (1.1.1.30)
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] DEBUG: Entering ICMP Ping
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] DEBUG: Attempting to ping 1.1.1.30, seq 0 (Retry 0 of 1)
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] DEBUG: ICMP Device Alive, Try Count:1, Time:26.5849 ms
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] PING: Result ICMP: Device is Alive
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] HT[1] Device has no information for recache.
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] HT[1] NOTE: There are '1' Polling Items for this Device
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] DEBUG: The NIFTY POPEN returned the following File Descriptor 7
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] HT[1] DS[68] TT[42.86] SCRIPT: perl /var/www/html/cacti/scripts/ping.pl '1.1.1.30', output: 26.9
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] HT[1] Total Time: 0.077 Seconds
-2021-01-08 14:34:14 - SPINE: Poller[1] PID[14296] Device[42] HT[1] DEBUG: HOST COMPLETE: About to Exit Device Polling Thread Function
-```
-
-#### Spine debug via GUI
-
-You are also able to view spine debug information via the log file also spine
-allows you to raise the level of detail it provides in the log if you want to
-debug a specific device and see the spine output click enable device debug.
-
-Below is an example output of Spine debug info via the log file
-
-![spine](images/spine-debug-gui.png)
-
-To enable more detailed spine logging go to
-`Console > Configuration > Settings > Poller`
-
-You can choose from Detailed,Summary or No logging for Invalid data
-
-Detailed Logging will be similar to cmd.php in that you will get a report for
-each data source that is having an issue
-
-Summary provides a count of how many data sources are having an issue per device
-
-![spine](images/spine-parameters.png)
-
-### Common Spine related errors
-
-```shell
-2021/01/08 14:38:44 - SPINE: Poller[1] PID[14838] FATAL: Unable to read configuration file! (Spine init)
-```
-
-Ensure that you have spine.conf in /usr/local/spine/etc on first install
-`spine.conf` may be `spine.conf.dist`.
-
-```shell
-DEBUG Falling back to UDP Ping Due to SetUID Issues
-```
-
-This is a permissions issue with spine ensure you have give spine the proper
-permissions
-
-```shell
-chmod u+s /usr/local/spine/bin/spine
+# Or via FreeBSD Ports:
+cd /usr/ports/net-mgmt/spine
+make install clean
 ```
 
 ---
 
+### Downloading and Compiling Spine
+
+> **Important**: The version of Spine MUST match your Cacti version. Use
+> Spine 1.2.31 with Cacti 1.2.31.
+
+1. Download the release archive matching your Cacti version (replace `X.Y.Z`
+   with your version):
+
+   ```console
+   cd /tmp
+   wget https://github.com/Cacti/spine/archive/refs/tags/release/X.Y.Z.tar.gz -O cacti-spine-X.Y.Z.tar.gz
+   tar -zxvf cacti-spine-X.Y.Z.tar.gz
+   cd spine-release-X.Y.Z
+   ```
+
+2. Bootstrap, configure, and compile:
+
+   ```console
+   ./bootstrap
+   ./configure
+   make
+   make install
+   ```
+
+   By default, Spine is installed to `/usr/local/spine`.
+
+3. Set binary permissions (SUID Root):
+
+   Spine must be owned by `root` with the setuid bit set so it can open raw ICMP
+   sockets:
+
+   ```console
+   chown root:root /usr/local/spine/bin/spine
+   chmod u+s /usr/local/spine/bin/spine
+   ```
+
+---
+
+## Configuring `spine.conf`
+
+Spine reads its database connection parameters from `spine.conf`.
+
+1. Create the configuration file from the template:
+
+   ```console
+   cp /usr/local/spine/etc/spine.conf.dist /usr/local/spine/etc/spine.conf
+   ```
+
+2. Secure the file permissions:
+
+   Because `spine.conf` contains the database password in plaintext, restrict
+   permissions so only `root` and the web server / poller group can read it:
+
+   ```console
+   # On RHEL / Rocky / AlmaLinux (web group: apache):
+   chown root:apache /usr/local/spine/etc/spine.conf
+   chmod 0640 /usr/local/spine/etc/spine.conf
+
+   # On Ubuntu / Debian (web group: www-data):
+   chown root:www-data /usr/local/spine/etc/spine.conf
+   chmod 0640 /usr/local/spine/etc/spine.conf
+   ```
+
+3. Edit `/usr/local/spine/etc/spine.conf` and update the database settings to
+   match your Cacti `config.php`:
+
+   ```ini
+   DB_Host       localhost
+   DB_Database   cacti
+   DB_User       cactiuser
+   DB_Pass       cactiuser_password
+   DB_Port       3306
+   #DB_UseSSL    0
+   #RDB_SSL_Key
+   #RDB_SSL_Cert
+   #RDB_SSL_CA
+   ```
+
+---
+
+## Testing Spine from the Command Line
+
+Before activating Spine in the Cacti web interface, verify that it can connect
+to the database, query devices, and send ICMP pings without error.
+
+### 1. Read-Only Global Test
+
+Run Spine in read-only test mode (`-R`) with summary statistics (`-S`) and
+verbosity level 3 (`-V 3`). In this mode, Spine polls devices but does not write
+results into the database:
+
+```console
+/usr/local/spine/bin/spine -R -V 3 -S
+```
+
+Verify that the output shows Spine reading `/usr/local/spine/etc/spine.conf` and
+completes with: `SPINE: Execution Time: ... Total Hosts: ...`
+
+### 2. Device-Specific Test
+
+To test a single device without polling your entire infrastructure, pass the
+host ID range using `-f <host_id> -l <host_id>`:
+
+```console
+/usr/local/spine/bin/spine -R -f 1 -l 1 -V 5
+```
+
+Check the verbose output for ICMP ping success, SNMP retrieval, and script
+execution without errors.
+
+---
+
+## Enabling Spine in the Cacti Web UI
+
+Once command-line verification passes, activate Spine in Cacti:
+
+### Step 1: Set the Binary Path
+
+1. Log in to Cacti as an administrator.
+2. Navigate to **Console > Configuration > Settings > Paths**.
+3. Under **Spine Poller File Path** (or **Spine Binary File Location**), enter:
+   `/usr/local/spine/bin/spine`
+4. Optionally, set **Spine Config File Path** to
+   `/usr/local/spine/etc/spine.conf` (if left blank, Spine automatically
+   searches its sibling `../etc` directory).
+5. Verify that Cacti indicates `[OK: FILE FOUND]`.
+6. Click **Save**.
+
+![Alternate Poller Path](images/settings-paths-alternate.png)
+
+### Step 2: Switch the Poller Engine
+
+1. Navigate to **Console > Configuration > Settings > Poller**.
+2. Change the **Poller Type** dropdown from `cmd.php` to `spine`.
+3. Click **Save**.
+
+The next scheduled polling cycle by `poller.php` will immediately invoke Spine.
+
+---
+
+## Tuning Spine for Optimal Performance
+
+Spine parameters are configured at three distinct levels:
+
+### 1. System-Level Settings
+
+Configured under **Console > Configuration > Settings > Poller**:
+
+| Parameter | Recommended Value | Description |
+| :--- | :--- | :--- |
+| **Script and Script Server Timeout** | 25 seconds | Maximum duration Spine waits for an external script or Script Server call before timing out and returning `NaN`. Must be less than your polling interval. |
+
+### 2. Data Collector-Level Settings
+
+Configured under **Console > Data Collection > Data Collectors** (select your
+collector):
+
+| Parameter | Recommended Value | Description |
+| :--- | :--- | :--- |
+| **Maximum Concurrent Poller Processes** | 1–2 per CPU core | Number of Spine processes launched concurrently. For a 4-core system, 4 to 8 processes is typical. |
+| **Maximum Threads per Process** | 10–20 threads | Number of concurrent threads per process. Do not set higher than 50, as excessive context switching degrades performance. |
+| **Number of PHP Script Servers** | 2–5 per process | Number of persistent `script_server.php` workers maintained per Spine process to handle script data queries. |
+
+### 3. Device-Level Overrides
+
+Configured on individual devices under **Console > Management > Devices**:
+
+| Parameter | Default | Description |
+| :--- | :--- | :--- |
+| **Device Threads** | 1 | Number of concurrent threads dedicated to polling this specific device. Increase for high-density switches or routers with hundreds of interfaces. |
+| **Maximum OIDs Per Get Request** | 10–60 | Number of SNMP OIDs bundled into a single SNMP GET request. Higher values increase throughput over high-latency links, provided the device agent supports it. |
+
+---
+
+## Database Connection Sizing (`max_connections`)
+
+Each concurrent Spine process, thread, and script server requires database
+connections. Ensure your MySQL/MariaDB `max_connections` limit is sized
+adequately:
+
+```text
+Total Connections >= (Data Collectors * Processes * (Threads + Script Servers + 2)) + 50
+```
+
+If this setting is too low, Spine will fail with `FATAL: Connection to MySQL
+database failed`.
+
+Edit `/etc/my.cnf.d/server.cnf` (or `/etc/mysql/mariadb.conf.d/50-server.cnf`)
+and set:
+
+```ini
+[mysqld]
+max_connections = 500
+```
+
+Restart the database server after changing `max_connections`.
+
+---
+
+## Security Policies (SELinux & AppArmor)
+
+### SELinux (RHEL, Rocky Linux, AlmaLinux)
+
+If SELinux is enforcing, allow the web server and poller to establish outgoing
+network connections:
+
+```console
+setsebool -P httpd_can_network_connect 1
+setsebool -P httpd_can_network_connect_db 1
+```
+
+Ensure the Spine binary has the appropriate system binary context (`bin_t`):
+
+```console
+semanage fcontext -a -t bin_t "/usr/local/spine/bin/spine"
+restorecon -v /usr/local/spine/bin/spine
+```
+
+### AppArmor (Ubuntu / Debian)
+
+If using a confined profile for Apache or PHP-FPM, allow execution of the Spine
+binary:
+
+```console
+# Add to /etc/apparmor.d/local/usr.sbin.apache2:
+/usr/local/spine/bin/spine rix,
+/usr/local/spine/etc/spine.conf r,
+```
+
+Reload AppArmor:
+
+```console
+apparmor_parser -r /etc/apparmor.d/usr.sbin.apache2
+```
+
+---
+
+## Troubleshooting Spine
+
+### Common Errors and Solutions
+
+#### 1. `FATAL: Unable to read configuration file! (Spine init)`
+
+* **Cause**: Spine cannot locate or read `spine.conf`.
+* **Fix**: Ensure `/usr/local/spine/etc/spine.conf` exists and is readable by
+  the user executing the poller (e.g. `apache` or `www-data`):
+
+  ```console
+  ls -la /usr/local/spine/etc/spine.conf
+  chmod 640 /usr/local/spine/etc/spine.conf
+  ```
+
+#### 2. `DEBUG: Falling back to UDP Ping Due to SetUID Issues`
+
+* **Cause**: Spine is missing the SUID root permission required to open raw ICMP
+  sockets.
+* **Fix**: Restore SUID permissions on the binary:
+
+  ```console
+  chown root:root /usr/local/spine/bin/spine
+  chmod u+s /usr/local/spine/bin/spine
+  ```
+
+#### 3. `FATAL: Connection to MySQL database failed`
+
+* **Cause**: Incorrect database credentials in `spine.conf`, database host
+  unreachable, or MySQL/MariaDB `max_connections` reached.
+* **Fix**: Test database connectivity manually with `mysql -u cactiuser -p -h
+  localhost cacti` and increase `max_connections` in your MySQL configuration.
+
+#### 4. Verification in Cacti Log
+
+To confirm Spine is functioning in production, open **Console > Utilities >
+System Utilities > View Cacti Log**. Look for the poller completion summary
+line:
+
+```text
+SYSTEM STATS: Time:12.3456 Method:spine Processes:4 Threads:40 Hosts:250 HostsPerProcess:63 DataSources:12400 RRDsProcessed:6200
+```
+
+If the log displays `Method:spine`, Spine is running successfully.
+
+---
 Copyright (c) 2004-2026 The Cacti Group
