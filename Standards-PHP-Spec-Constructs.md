@@ -5,10 +5,11 @@
 Use the ```foreach ($array as $name => $value)``` syntax instead of ```while
 (list($name, $value) = each($array))``` syntax when traversing arrays. The
 former has been demonstrated to be more efficient and does not increment the
-internal pointer of the array. Ensure the variable is an array or iterable object before passing it to `foreach` to prevent type warnings on null or boolean values.
+internal pointer of the array. Check that the variable is an array before
+passing it to `foreach`, otherwise a null or boolean value raises a warning.
 
 ```php
-if (is_iterable($array)) {
+if (is_array($array)) {
     foreach ($array as $name => $value) {
         // code
     }
@@ -16,7 +17,10 @@ if (is_iterable($array)) {
 ```
 
 It should be noted that with PHP 7.2 use of `list() = each()` syntax will result
-in warnings and/or errors.  It should also be noted that PHP 7.2 introduced warnings when passing non-countable types to `count()` or `sizeof()`. Variables must implement `Countable` or be an `array`. You should verify `is_array($variable) || $variable instanceof Countable` before calling `count()`.
+in warnings and/or errors. PHP 7.2 also made `count()` and `sizeof()` warn on
+non-countable values, so the argument must be an array or implement
+`Countable`. Verify `is_array($variable) || $variable instanceof Countable`
+before calling either function.
 
 ## Error Return Values
 
@@ -40,7 +44,8 @@ be used, and are much faster.
 $items = explode(':', $string);
 ```
 
-Avoid legacy POSIX regex functions such as `split()`, which was removed in PHP 7.0.
+Avoid legacy POSIX regex functions such as `split()`, which was removed in
+PHP 7.0.
 
 ## Use `preg` Functions Instead of `ereg`
 

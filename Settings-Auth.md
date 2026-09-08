@@ -2,51 +2,53 @@
 
 ## Overview
 
-Cacti provides four Authentication methods that can be leveraged to provide
-Authentication services.  When combined with the variety of Apache and NGINX
-Modules, Cacti can support just about every Authentication method available
-today in the industry.  Those Authentication method include:
+Cacti provides four Authentication methods.  Combined with the Apache and
+nginx authentication modules, Cacti can support most of the Authentication
+methods in common use.  Those Authentication methods are:
 
-- **Built-in Authentication** - When using the method, Cacti will store both
-  the user account, and it's password on the Cacti server.  When using this
-  method, Cacti will encrypt the users password using a strong password
-  encryption method and it will be rehashed periodically automatically.
-  Also, when using this method, Cacti complies with C3 password requirements.
-- **Web Basic Authentication** - With this method, the Web Server itself
-  controls the Authentication.  Using this method, Cacti can support protocols
-  such as SAML2 via OpenITC, NIS, LDAP, local password, TACAC+, etc.
-- **LDAP/AD Authentication** - Cacti supports direct communications with LDAP
+- **Built-in Authentication** - With this method, Cacti stores both the user
+  account and its password on the Cacti server.  The password is hashed with
+  PHP's `password_hash()` using the default algorithm, and it is rehashed on
+  login whenever that default algorithm or its cost changes.  This method
+  also supports the local complexity, history and expiry policies described
+  in [Local Authentication](Settings-Auth-Local.md).
+- **Web Basic Authentication** - With this method, the web server itself
+  controls the Authentication.  Cacti then accepts whatever the web server
+  authenticated, so the web server can front Cacti with SAML 2.0, Kerberos,
+  NIS, LDAP, a local password file, TACACS+ or another scheme.
+- **LDAP Authentication** - Cacti supports direct communication with LDAP
   and Active Directory servers as well.  When using this method, Cacti
   can limit what User Group may access Cacti based upon more detailed
   settings.
 - **Multiple LDAP/AD Domains** - When you have multiple security levels
   and/or LDAP and AD Domains that you wish to support, for example
   maybe you have Admins, Power Users, and General Users groups defined
-  and you wish to restrict who can login as who, this Authentication
-  method allows you to setup that type of security system.
+  and you wish to restrict who can log in as whom, this Authentication
+  method lets you set up that type of security system.
 
 For most of these `Authentication Methods`, there are some common settings
-showing in the image below.
+shown in the image below.
 
 ![Common Authentication Options](images/settings-auth-common.png)
 
 Those options include:
 
 - **Authentication Method** - One of the options below.
-- **Support Authentication Cookies** - Provide Remember me that will keep a user
-  logged in from a single browser instance for up-to 90 days without
-  requesting that they re-validate their passwords.
+- **Support Authentication Cookies** - Offers a `Keep me signed in` checkbox
+  on the login page.  The authentication cookie keeps the user signed in on
+  that browser and expires after 90 days without use.  The client must use
+  HTTPS for the cookie to be issued.
 - **Primary Admin** - This is the Primary Cacti Admin account.  This user
-  account will receive all Cacti Administrative notification like when
-  the Cacti system is experiencing issues.
+  account receives Cacti administrative notifications, such as when the
+  Cacti system is experiencing issues.
 - **Guest User** - If you select a **Guest User**, people within an organization
   will be able to access certain Cacti pages without first authenticating.
-  This setting is good for the pages like the **Graph Page** where you may
-  with to embed live Cacti **Graphs** in other corporate websites.
-- **User Template**, when creating new accounts, either LDAP, Web Basic,
-  or new Cacti local accounts, Cacti will pull the users default Authorization
-  from this Template User account.  For some Cacti **Authentication Methods**,
-  you can have more than one Template User, for example:
+  This setting is good for pages like the **Graph Page** where you may
+  wish to embed live Cacti **Graphs** in other corporate websites.
+- **User Template** - When creating new accounts, whether LDAP, Web Basic,
+  or new Cacti local accounts, Cacti takes the user's default authorization
+  from this Template User account.  For some Cacti **Authentication Methods**
+  you can have more than one Template User, for example
   **Multiple LDAP/AD Domains**.
 
 In the sections below, we will go over these various
@@ -56,9 +58,9 @@ In the sections below, we will go over these various
 
 [Web Basic Authentication](Settings-Auth-Basic.md)
 
-[LDAP/AD Authentication](Settings-Auth-LDAP.md)
+[LDAP Authentication](Settings-Auth-LDAP.md)
 
-[Multiple LDAP/AD Authentication](Settings-Domains.md)
+[Multiple LDAP/AD Domains](Settings-Domains.md)
 
 ---
 Copyright (c) 2004-2026 The Cacti Group

@@ -2,9 +2,9 @@
 
 ## Hardware Sizing
 
-The table below covers common deployment sizes. These are starting points; actual
-requirements depend on polling interval, number of data sources per device, use of
-Spine vs cmd.php, and whether remote pollers are used.
+The table below covers common deployment sizes. These are starting points;
+actual requirements depend on polling interval, number of data sources per
+device, use of Spine vs cmd.php, and whether remote pollers are used.
 
 | Deployment size | Devices | Data sources | CPU cores | RAM | Disk |
 |---|---|---|---|---|---|
@@ -24,25 +24,28 @@ Spine vs cmd.php, and whether remote pollers are used.
   consider it when you accept the durability trade-off (e.g. strong
   backup/replication strategy and tolerance for potential data loss on an
   unclean shutdown).
-- Spine is CPU-bound. Each spine process spawns threads up to your configured
-  maximum; allocate 1–2 spine processes per CPU core for best throughput.
-- Very large deployments (> 10,000 devices) require remote pollers deployed close to the devices
-  they poll rather than scaling a single main poller vertically.
+- Spine is CPU-bound. Each Spine process spawns threads up to your configured
+  maximum; allocate 1–2 Spine processes per CPU core for best throughput.
+- Very large deployments (> 10,000 devices) require remote pollers deployed
+  close to the devices they poll rather than scaling a single main poller
+  vertically.
 
 ## Software Requirements
 
 Cacti requires that the following software is installed on your system.
 
-> **Note**: As of Cacti 1.2.31, PHP 8.1 is required. When installing from source or
-> the develop branch, PHP Composer is required to install vendor dependencies. Pre-packaged
-> releases include the required vendor files, so Composer is not needed for standard installs.
+> **Note**: As of Cacti 1.2.31, PHP 8.1 is required. When installing from
+> source or the develop branch, PHP Composer is required to install vendor
+> dependencies. Pre-packaged releases include the required vendor files, so
+> Composer is not needed for standard installs.
 
-- Web Server that supports PHP e.g. Apache, Nginx, or IIS
+- Web server that supports PHP, for example Apache, nginx, or IIS
 
-- Build environment when using spine (gcc, automake, autoconf, libtool,
+- Build environment when using Spine (gcc, automake, autoconf, libtool,
   help2man)
 
-- RRDtool 1.5 or greater (1.8+ required for Cacti 1.3.x / develop branch)
+- RRDtool 1.5 or greater (Cacti 1.3.x offers version settings for RRDtool 1.5
+  through 1.11)
 
 - PHP 8.1 or greater
   - Required modules:
@@ -50,14 +53,14 @@ Cacti requires that the following software is installed on your system.
     - hash, json, ldap, mbstring, mysqlnd, openssl, pcre
     - PDO, pdo_mysql, Phar, session, simplexml, sockets, spl
     - sqlite3, standard, xml, zlib
-    - com_dotnet (windows only)
-    - pcntl, posix (linux only)
+    - com_dotnet (Windows only)
+    - pcntl, posix (Linux only)
 
   - Optional modules:
-    - snmp - The PHP SNMP extension is optional. Cacti selectively bypasses it in
-      favor of Net-SNMP binaries for SNMPv3 queries, IPv6 targets, bulkwalk, and
-      hex-string output. You do not need to remove php-snmp; Cacti handles the
-      fallback automatically based on query type and device configuration.
+    - snmp - The PHP SNMP extension is optional. Cacti selectively bypasses it
+      in favor of Net-SNMP binaries for SNMPv3 queries, IPv6 targets, bulkwalk,
+      and hex-string output. You do not need to remove php-snmp; Cacti handles
+      the fallback automatically based on query type and device configuration.
 
 - Problematic software and configuration
   - SELinux, AppArmor, and ModSecurity can interfere with ICMP ping, socket
@@ -85,17 +88,17 @@ Cacti requires that the following software is installed on your system.
     - **collation_server = utf8mb4_unicode_ci**
 
       When using Cacti with languages other than English, it is important to
-      use the utf8_general_ci collation type as some characters take more than
-      a single byte.  If you are first just now installing Cacti, stop, make
-      the changes and start over again.  If your Cacti has been running and is
-      in production, see the internet for instructions on converting your
-      databases and tables if you plan on supporting other languages.
+      use the utf8mb4_unicode_ci collation type as some characters take more
+      than a single byte.  If you are first just now installing Cacti, stop,
+      make the changes and start over again.  If your Cacti has been running
+      and is in production, see the internet for instructions on converting
+      your databases and tables if you plan on supporting other languages.
 
     - **character_set_client = utf8mb4**
     - **character_set_server = utf8mb4**
 
       When using Cacti with languages other than English, it is important to
-      use the utf8 character set as some characters take more than a single
+      use the utf8mb4 character set as some characters take more than a single
       byte. If you are first just now installing Cacti, stop, make the changes
       and start over again. If your Cacti has been running and is in
       production, see the internet for instructions on converting your
@@ -103,10 +106,10 @@ Cacti requires that the following software is installed on your system.
 
     - **max_connections >= 100**
 
-      Depending on the number of logins and use of spine data collector,
+      Depending on the number of logins and use of the Spine data collector,
       MySQL/MariaDB will need many connections.  The calculation for spine is:
 
-      ```php
+      ```text
       total_connections = total_processes * (total_threads + script_servers + 1)
       ```
 
@@ -141,7 +144,7 @@ Cacti requires that the following software is installed on your system.
 
     - **table_open_cache >= 200**
 
-      Keeping the table cache larger means less file open/close operations
+      Keeping the table cache larger means fewer file open/close operations
       when using innodb_file_per_table. (Note: `table_cache` was renamed to
       `table_open_cache` in MySQL 5.1.3; use `table_open_cache` on all
       current MySQL and MariaDB releases.)
@@ -154,8 +157,8 @@ Cacti requires that the following software is installed on your system.
 
     - **tmp_table_size >= 64M**
 
-      When executing subqueries, having a larger temporary table size, keep
-      those temporary tables in memory.
+      When executing subqueries, a larger temporary table size keeps those
+      temporary tables in memory.
 
     - **join_buffer_size >= 64M**
 
@@ -165,7 +168,7 @@ Cacti requires that the following software is installed on your system.
     - **innodb_file_per_table = ON**
 
       When using InnoDB storage it is important to keep your table spaces
-      separate.  This makes managing the tables simpler for long time users of
+      separate.  This makes managing the tables simpler for long-time users of
       MySQL/MariaDB.  If you are running with this currently off, you can
       migrate to the per file storage by enabling the feature, and then
       running an alter statement on all InnoDB tables.
@@ -174,7 +177,8 @@ Cacti requires that the following software is installed on your system.
       deprecated the variable in 11.0, so only set it where an older my.cnf
       turned it off.
 
-    - **innodb_data_file_path = ibdata1:12M:autoextend:autoshrink** (MariaDB 11.2.0+)
+    - **innodb_data_file_path = ibdata1:12M:autoextend:autoshrink**
+      (MariaDB 11.2.0+)
 
       Long running installs that accumulated blocking queries can end up with a
       very large ibdata1 file that never shrinks back down.  The autoshrink
@@ -189,12 +193,12 @@ Cacti requires that the following software is installed on your system.
 
     - **innodb_buffer_pool_size >= 25% of system RAM**
 
-      InnoDB will hold as much tables and indexes in system memory as is
+      InnoDB will hold as many tables and indexes in system memory as
       possible.  Therefore, you should make the innodb_buffer_pool large
-      enough to hold as much of the tables and index in memory.  Checking the
-      size of the /var/lib/mysql/cacti directory will help in determining this
-      value.  We are recommending 25% of your systems total memory, but your
-      requirements will vary depending on your systems size.
+      enough to hold as many of the tables and indexes in memory as you can.
+      Checking the size of the /var/lib/mysql/cacti directory will help in
+      determining this value.  We are recommending 25% of your system's total
+      memory, but your requirements will vary depending on your system's size.
 
     - **innodb_doublewrite = OFF**
 
@@ -205,15 +209,17 @@ Cacti requires that the following software is installed on your system.
       on a volume with hardware-level write atomicity guarantees. Do not set on
       spinning disk or consumer SSDs without power-loss protection.
 
-    - ~~**innodb_additional_mem_pool_size**~~ (removed in MySQL 5.7.4 / MariaDB 10.0)
+    - ~~**innodb_additional_mem_pool_size**~~ (removed in MySQL 5.7.4 /
+      MariaDB 10.0)
 
       This setting no longer exists. MySQL/MariaDB manages metadata memory
-      internally. Remove it from my.cnf if present; MySQL 8.0+ will error on startup.
+      internally. Remove it from my.cnf if present; MySQL 8.0+ will error on
+      startup.
 
     - **innodb_lock_wait_timeout >= 50**
 
-      Rogue queries should not for the database to go offline to others.  Kill
-      these queries before they kill your system.
+      Rogue queries should not cause the database to go offline to others.
+      Kill these queries before they kill your system.
 
     - **innodb_flush_log_at_trx_commit = 2**
 
@@ -223,17 +229,17 @@ Cacti requires that the following software is installed on your system.
 
     - **innodb_flush_log_at_timeout >= 3**
 
-      If your MySQL/MariaDB version supports it, the you can control how often
+      If your MySQL/MariaDB version supports it, you can control how often
       MySQL/MariaDB flushes transactions to disk.  The default is 1 second,
       but in high I/O systems setting to a value greater than 1 can allow disk
-      I/O to be more sequential
+      I/O to be more sequential.
 
-    - **innodb_read_IO_threads >= 32**
+    - **innodb_read_io_threads >= 32**
 
       With modern SSD type storage, having multiple read IO threads is
       advantageous for applications with high IO characteristics.
 
-    - **innodb_write_IO_threads >= 16**
+    - **innodb_write_io_threads >= 16**
 
       With modern SSD type storage, having multiple write IO threads is
       advantageous for applications with high IO characteristics.
@@ -241,7 +247,7 @@ Cacti requires that the following software is installed on your system.
     - **innodb_buffer_pool_instances >= 16** (MySQL only)
 
       MySQL will divide the innodb_buffer_pool into memory regions to improve
-      performance with a maximum value is 64.  When your innodb_buffer_pool is
+      performance, up to a maximum value of 64.  When your innodb_buffer_pool is
       less than 1GB, you should use the pool size divided by 128MB. Continue to
       use this equation up to the max of 64.
 
@@ -253,13 +259,13 @@ Cacti requires that the following software is installed on your system.
     > on the version of MySQL/MariaDB you are running, and some should be
     > scaled where appropriate.
 
-    - Newer MySQL/MariaDB software are using [strict
-      modes](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html) and it can
+    - Newer MySQL/MariaDB releases use [strict
+      modes](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html), which can
       cause unexpected problems when importing dumps of Cacti databases from
       older systems, like **Can't create table `cacti`.`poller_output_boost`
       (errno: 140 "Wrong create options")**.
 
-      You have more possibilities:
+      You have several options:
 
       - disable appropriate strict mode - not recommended
 
@@ -269,8 +275,8 @@ Cacti requires that the following software is installed on your system.
       - before mysqldump run query:
         **ALTER TABLE `poller_output_boost` ROW_FORMAT=DYNAMIC;**
 
-To implement the above mysql recommendations you can use the below entries and
-paste them into my.cnf
+To implement the above MySQL recommendations, you can paste the entries below
+into my.cnf
 
 ```console
  innodb_flush_log_at_timeout = 4

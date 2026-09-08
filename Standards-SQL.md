@@ -38,9 +38,10 @@ $graphs   = db_fetch_assoc_prepared('SELECT * FROM graph_local WHERE host_id = ?
 
 db_execute_prepared('UPDATE host SET description = ? WHERE id = ?', array('Local Machines', $id));
 
-// Escape strings if using legacy functions
+// Escape strings if using legacy functions. db_qstr() returns the value
+// already wrapped in quotes, so do not quote it again.
 $hostname = db_qstr('myhost.com');
-db_execute("UPDATE host SET hostname = $hostname WHERE id = $id");
+db_execute("UPDATE host SET hostname = $hostname WHERE id = " . (int) $id);
 
 ```
 
