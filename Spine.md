@@ -1,45 +1,50 @@
 # Spine
 
-Spine is the high-speed, multi-threaded poller replacement for `cmd.php`. Written in C,
-it provides dramatic performance improvements for data collection. Where `cmd.php`
-can take several minutes to poll large installations, Spine routinely polls tens of
-thousands of data sources in well under 60 seconds on modern multi-core hardware.
+Spine is the high-speed, multi-threaded poller replacement for `cmd.php`.
+Written in C, it provides dramatic performance improvements for data collection.
+Where `cmd.php` can take several minutes to poll large installations, Spine
+routinely polls tens of thousands of data sources in well under 60 seconds on
+modern multi-core hardware.
 
-Spine does not replace your cron or systemd scheduling entries. The scheduler entry point
-remains `poller.php`. When Spine is selected as the poller engine, `poller.php` launches
-Spine processes to perform the data collection across all configured devices.
+Spine does not replace your cron or systemd scheduling entries. The scheduler
+entry point remains `poller.php`. When Spine is selected as the poller engine,
+`poller.php` launches Spine processes to perform the data collection across all
+configured devices.
 
 ---
 
 ## Spine Architecture and Operating Principles
 
-1. **Multi-Threaded Polling**: Spine executes a thread-per-device polling model within
-   multiple concurrent processes, allowing hundreds of metrics to be collected simultaneously.
-2. **Persistent PHP Script Server**: For custom scripts, Spine starts and maintains
-   long-running PHP script server processes (`script_server.php`). This eliminates the
-   heavy overhead of repeatedly spawning the PHP binary for every individual script item.
-3. **Privilege Separation (SUID Root)**: To perform raw ICMP pings without invoking external
-   ping utilities, Spine requires raw socket access. Spine achieves this by shipping with the
-   SUID root bit enabled (`chmod u+s`). At runtime, Spine strictly limits elevated privileges:
-   it elevates effective UID only during raw socket creation (serialized by an internal lock)
-   and immediately drops back to the calling user (such as `apache` or `www-data`).
-4. **Direct Database Communication**: Spine queries the Cacti database directly via the
-   MySQL/MariaDB client library to retrieve polling targets and writes collected data directly
-   into the poller cache and RRD files.
+1. **Multi-Threaded Polling**: Spine executes a thread-per-device polling model
+   within multiple concurrent processes, allowing hundreds of metrics to be
+   collected simultaneously.
+2. **Persistent PHP Script Server**: For custom scripts, Spine starts and
+   maintains long-running PHP script server processes (`script_server.php`).
+   This eliminates the heavy overhead of repeatedly spawning the PHP binary for
+   every individual script item.
+3. **Privilege Separation (SUID Root)**: To perform raw ICMP pings without
+   invoking external ping utilities, Spine requires raw socket access. Spine
+   achieves this by shipping with the SUID root bit enabled (`chmod u+s`). At
+   runtime, Spine strictly limits elevated privileges: it elevates effective UID
+   only during raw socket creation (serialized by an internal lock) and
+   immediately drops back to the calling user (such as `apache` or `www-data`).
+4. **Direct Database Communication**: Spine queries the Cacti database directly
+   via the MySQL/MariaDB client library to retrieve polling targets and writes
+   collected data directly into the poller cache and RRD files.
 
 ---
 
 ## Installing Spine
 
-Because Spine is written in C, it must be compiled against your local database and Net-SNMP
-client development libraries.
+Because Spine is written in C, it must be compiled against your local database
+and Net-SNMP client development libraries.
 
 ### Prerequisites by Distribution
 
 #### Enterprise Linux 8 & 9 (RHEL, Rocky Linux, AlmaLinux)
 
-Spine requires development headers found in the CodeReady Builder (`crb`) repository on EL 9,
-or `powertools` on EL 8:
+Spine requires development headers found in the CodeReady Builder (`crb`)
+repository on EL 9, or `powertools` on EL 8:
 
 1. Enable the repository:
 
@@ -70,7 +75,8 @@ apt-get install -y build-essential autoconf automake libtool dos2unix help2man \
 
 #### FreeBSD
 
-On FreeBSD, Spine can be installed directly from pre-built packages or compiled from Ports:
+On FreeBSD, Spine can be installed directly from pre-built packages or compiled
+from Ports:
 
 ```console
 # Using binary packages:
@@ -85,9 +91,11 @@ make install clean
 
 ### Downloading and Compiling Spine
 
-> **Important**: The version of Spine MUST match your Cacti version (e.g., Spine 1.2.31 for Cacti 1.2.31).
+> **Important**: The version of Spine MUST match your Cacti version. Use
+> Spine 1.2.31 with Cacti 1.2.31.
 
-1. Download the release archive matching your Cacti version (replace `X.Y.Z` with your version):
+1. Download the release archive matching your Cacti version (replace `X.Y.Z`
+   with your version):
 
    ```console
    cd /tmp
@@ -109,7 +117,8 @@ make install clean
 
 3. Set binary permissions (SUID Root):
 
-   Spine must be owned by `root` with the setuid bit set so it can open raw ICMP sockets:
+   Spine must be owned by `root` with the setuid bit set so it can open raw ICMP
+   sockets:
 
    ```console
    chown root:root /usr/local/spine/bin/spine
@@ -130,8 +139,8 @@ Spine reads its database connection parameters from `spine.conf`.
 
 2. Secure the file permissions:
 
-   Because `spine.conf` contains the database password in plaintext, restrict permissions
-   so only `root` and the web server / poller group can read it:
+   Because `spine.conf` contains the database password in plaintext, restrict
+   permissions so only `root` and the web server / poller group can read it:
 
    ```console
    # On RHEL / Rocky / AlmaLinux (web group: apache):
@@ -143,8 +152,8 @@ Spine reads its database connection parameters from `spine.conf`.
    chmod 0640 /usr/local/spine/etc/spine.conf
    ```
 
-3. Edit `/usr/local/spine/etc/spine.conf` and update the database settings to match your
-   Cacti `config.php`:
+3. Edit `/usr/local/spine/etc/spine.conf` and update the database settings to
+   match your Cacti `config.php`:
 
    ```ini
    DB_Host       localhost
@@ -162,31 +171,33 @@ Spine reads its database connection parameters from `spine.conf`.
 
 ## Testing Spine from the Command Line
 
-Before activating Spine in the Cacti web interface, verify that it can connect to the database,
-query devices, and send ICMP pings without error.
+Before activating Spine in the Cacti web interface, verify that it can connect
+to the database, query devices, and send ICMP pings without error.
 
 ### 1. Read-Only Global Test
 
-Run Spine in read-only test mode (`-R`) with summary statistics (`-S`) and verbosity level 3 (`-V 3`).
-In this mode, Spine polls devices but does not write results into the database:
+Run Spine in read-only test mode (`-R`) with summary statistics (`-S`) and
+verbosity level 3 (`-V 3`). In this mode, Spine polls devices but does not write
+results into the database:
 
 ```console
 /usr/local/spine/bin/spine -R -V 3 -S
 ```
 
-Verify that the output shows Spine reading `/usr/local/spine/etc/spine.conf` and completes with:
-`SPINE: Execution Time: ... Total Hosts: ...`
+Verify that the output shows Spine reading `/usr/local/spine/etc/spine.conf` and
+completes with: `SPINE: Execution Time: ... Total Hosts: ...`
 
 ### 2. Device-Specific Test
 
-To test a single device without polling your entire infrastructure, pass the host ID range using
-`-f <host_id> -l <host_id>`:
+To test a single device without polling your entire infrastructure, pass the
+host ID range using `-f <host_id> -l <host_id>`:
 
 ```console
 /usr/local/spine/bin/spine -R -f 1 -l 1 -V 5
 ```
 
-Check the verbose output for ICMP ping success, SNMP retrieval, and script execution without errors.
+Check the verbose output for ICMP ping success, SNMP retrieval, and script
+execution without errors.
 
 ---
 
@@ -200,8 +211,9 @@ Once command-line verification passes, activate Spine in Cacti:
 2. Navigate to **Console > Configuration > Settings > Paths**.
 3. Under **Spine Poller File Path** (or **Spine Binary File Location**), enter:
    `/usr/local/spine/bin/spine`
-4. Optionally, set **Spine Config File Path** to `/usr/local/spine/etc/spine.conf` (if left blank,
-   Spine automatically searches its sibling `../etc` directory).
+4. Optionally, set **Spine Config File Path** to
+   `/usr/local/spine/etc/spine.conf` (if left blank, Spine automatically
+   searches its sibling `../etc` directory).
 5. Verify that Cacti indicates `[OK: FILE FOUND]`.
 6. Click **Save**.
 
@@ -231,7 +243,8 @@ Configured under **Console > Configuration > Settings > Poller**:
 
 ### 2. Data Collector-Level Settings
 
-Configured under **Console > Data Collection > Data Collectors** (select your collector):
+Configured under **Console > Data Collection > Data Collectors** (select your
+collector):
 
 | Parameter | Recommended Value | Description |
 | :--- | :--- | :--- |
@@ -252,14 +265,19 @@ Configured on individual devices under **Console > Management > Devices**:
 
 ## Database Connection Sizing (`max_connections`)
 
-Each concurrent Spine process, thread, and script server requires database connections. Ensure your
-MySQL/MariaDB `max_connections` limit is sized adequately:
+Each concurrent Spine process, thread, and script server requires database
+connections. Ensure your MySQL/MariaDB `max_connections` limit is sized
+adequately:
 
+```text
 Total Connections >= (Data Collectors * Processes * (Threads + Script Servers + 2)) + 50
+```
 
-If this setting is too low, Spine will fail with `FATAL: Connection to MySQL database failed`.
+If this setting is too low, Spine will fail with `FATAL: Connection to MySQL
+database failed`.
 
-Edit `/etc/my.cnf.d/server.cnf` (or `/etc/mysql/mariadb.conf.d/50-server.cnf`) and set:
+Edit `/etc/my.cnf.d/server.cnf` (or `/etc/mysql/mariadb.conf.d/50-server.cnf`)
+and set:
 
 ```ini
 [mysqld]
@@ -274,7 +292,8 @@ Restart the database server after changing `max_connections`.
 
 ### SELinux (RHEL, Rocky Linux, AlmaLinux)
 
-If SELinux is enforcing, allow the web server and poller to establish outgoing network connections:
+If SELinux is enforcing, allow the web server and poller to establish outgoing
+network connections:
 
 ```console
 setsebool -P httpd_can_network_connect 1
@@ -290,7 +309,8 @@ restorecon -v /usr/local/spine/bin/spine
 
 ### AppArmor (Ubuntu / Debian)
 
-If using a confined profile for Apache or PHP-FPM, allow execution of the Spine binary:
+If using a confined profile for Apache or PHP-FPM, allow execution of the Spine
+binary:
 
 ```console
 # Add to /etc/apparmor.d/local/usr.sbin.apache2:
@@ -313,8 +333,9 @@ apparmor_parser -r /etc/apparmor.d/usr.sbin.apache2
 #### 1. `FATAL: Unable to read configuration file! (Spine init)`
 
 * **Cause**: Spine cannot locate or read `spine.conf`.
-* **Fix**: Ensure `/usr/local/spine/etc/spine.conf` exists and is readable by the user executing
-  the poller (e.g. `apache` or `www-data`):
+* **Fix**: Ensure `/usr/local/spine/etc/spine.conf` exists and is readable by
+  the user executing the poller (e.g. `apache` or `www-data`):
+
   ```console
   ls -la /usr/local/spine/etc/spine.conf
   chmod 640 /usr/local/spine/etc/spine.conf
@@ -322,8 +343,10 @@ apparmor_parser -r /etc/apparmor.d/usr.sbin.apache2
 
 #### 2. `DEBUG: Falling back to UDP Ping Due to SetUID Issues`
 
-* **Cause**: Spine is missing the SUID root permission required to open raw ICMP sockets.
+* **Cause**: Spine is missing the SUID root permission required to open raw ICMP
+  sockets.
 * **Fix**: Restore SUID permissions on the binary:
+
   ```console
   chown root:root /usr/local/spine/bin/spine
   chmod u+s /usr/local/spine/bin/spine
@@ -331,15 +354,16 @@ apparmor_parser -r /etc/apparmor.d/usr.sbin.apache2
 
 #### 3. `FATAL: Connection to MySQL database failed`
 
-* **Cause**: Incorrect database credentials in `spine.conf`, database host unreachable, or
-  MySQL/MariaDB `max_connections` reached.
-* **Fix**: Test database connectivity manually with `mysql -u cactiuser -p -h localhost cacti`
-  and increase `max_connections` in your MySQL configuration.
+* **Cause**: Incorrect database credentials in `spine.conf`, database host
+  unreachable, or MySQL/MariaDB `max_connections` reached.
+* **Fix**: Test database connectivity manually with `mysql -u cactiuser -p -h
+  localhost cacti` and increase `max_connections` in your MySQL configuration.
 
 #### 4. Verification in Cacti Log
 
-To confirm Spine is functioning in production, open **Console > Utilities > System Utilities > View Cacti Log**.
-Look for the poller completion summary line:
+To confirm Spine is functioning in production, open **Console > Utilities >
+System Utilities > View Cacti Log**. Look for the poller completion summary
+line:
 
 ```text
 SYSTEM STATS: Time:12.3456 Method:spine Processes:4 Threads:40 Hosts:250 HostsPerProcess:63 DataSources:12400 RRDsProcessed:6200
