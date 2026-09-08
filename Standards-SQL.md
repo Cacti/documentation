@@ -40,7 +40,7 @@ db_execute_prepared('UPDATE host SET description = ? WHERE id = ?', array('Local
 
 // Escape strings if using legacy functions
 $hostname = db_qstr('myhost.com');
-db_execute("UPDATE host SET hostname = '$hostname' WHERE id = $id");
+db_execute("UPDATE host SET hostname = $hostname WHERE id = $id");
 
 ```
 

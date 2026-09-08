@@ -8,7 +8,7 @@ former has been demonstrated to be more efficient and does not increment the
 internal pointer of the array. Ensure the variable is an array or iterable object before passing it to `foreach` to prevent type warnings on null or boolean values.
 
 ```php
-if (is_array($array) && !empty($array)) {
+if (is_iterable($array)) {
     foreach ($array as $name => $value) {
         // code
     }

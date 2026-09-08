@@ -68,9 +68,9 @@ may be interested in to view the Data sources in use
 
 ![device datasources](images/data-sources-per-device.png)
 
-You can also view Orphaned data sources in this view by setting Orphaned from
-Orphaned data sources are where the graph has been deleted but
-the data source was not deleted
+You can also view orphaned data sources in this view by changing the Orphaned
+filter from **All** to **Orphaned**. Orphaned data sources are those whose graph
+has been deleted but whose data source was not deleted.
 
 ---
 
