@@ -199,6 +199,40 @@ out in lower-case (`fullname`).
 
 ## A few notes
 
+### One-Time Passwords (OTP / MFA)
+
+Cacti supports directories where users authenticate with a One-Time Password
+(OTP) or another Multi-Factor Authentication (MFA) token, but the LDAP _Mode_
+must be chosen so that the user's single-use credential is presented to the
+directory only once.
+
+Regardless of the configured _Mode_, Cacti binds the user's password exactly
+once, during the final authentication step.  The Distinguished Name (DN) lookup
+that precedes it never uses the user's password:
+
+- _No Searching_ performs no bind during the lookup (the DN is built from the
+  template), then binds once as the user.
+- _Anonymous Searching_ binds anonymously to locate the DN, then binds once as
+  the user.
+- _Specific Searching_ binds with the service account to locate the DN, then
+  binds once as the user.
+
+Group membership checks, when enabled, reuse the connection that was already
+bound with the user's credential and do not perform a second bind.
+
+Because Active Directory refuses anonymous searches by default, an OTP/MFA
+deployment on AD should use _Specific Searching_ with a dedicated service
+account.  The service account performs the directory search so that the user's
+one-time code is preserved for the single authentication bind.  Do not use
+_No Searching_ when locating the DN would otherwise require the user's
+credentials.
+
+Finally, configure only a single LDAP server (for example a load balancer VIP)
+for OTP/MFA.  The _Server(s)_ field accepts a space-delimited list and fails
+over from left to right; if the first server consumes the one-time password and
+then returns an error, Cacti will re-attempt the bind against the next server
+with an already-spent code, which will fail.
+
 ### Certificate verification
 
 When using LDAPS, a key and certificate must be installed on the directory
