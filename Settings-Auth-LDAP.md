@@ -199,6 +199,46 @@ out in lower-case (`fullname`).
 
 ## A few notes
 
+### One-Time Passwords (OTP / MFA)
+
+Cacti supports directories where users authenticate with a One-Time Password
+(OTP) or another Multi-Factor Authentication (MFA) token, but the LDAP _Mode_
+must be chosen so that the user's single-use credential is presented to the
+directory only once.
+
+On a single-server authentication path, Cacti binds the user's password exactly
+once, during the final authentication step.  The Distinguished Name (DN) lookup
+that precedes it never uses the user's password (see the note on multi-server
+failover below):
+
+- _No Searching_ performs no bind during the lookup (the DN is built from the
+  template), then binds once as the user.
+- _Anonymous Searching_ binds anonymously to locate the DN, then binds once as
+  the user.
+- _Specific Searching_ binds with the service account to locate the DN, then
+  binds once as the user.
+
+Group membership checks, when enabled, reuse the connection that was already
+bound with the user's credential and do not perform a second bind.
+
+Because Active Directory refuses anonymous searches by default, an OTP/MFA
+deployment on AD should use _Specific Searching_ with a dedicated service
+account.  The service account performs the directory search so that the user's
+one-time code is preserved for the single authentication bind.  _No Searching_
+is also safe for OTP when the DN template alone identifies the user, since it
+performs no directory lookup; choose _Specific_ or _Anonymous Searching_ only
+when a lookup is actually required to resolve the DN.
+
+Finally, for OTP/MFA do not use the _Server(s)_ space-delimited multi-server
+list.  That field fails over from left to right, so if the first server consumes
+the one-time password and then returns an error, Cacti re-attempts the bind
+against the next server with an already-spent code, which will fail.  Instead,
+point the _Server(s)_ field at a single, resilient DNS name fronted by a DNS
+load balancer (VIP).  Treat that DNS/load-balancer layer as the resilient,
+highly-available entry point: it handles backend failover transparently, so
+Cacti only ever performs one authentication bind per login and the single-use
+code is never replayed.
+
 ### Certificate verification
 
 When using LDAPS, a key and certificate must be installed on the directory
