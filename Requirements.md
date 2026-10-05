@@ -57,10 +57,10 @@ Cacti requires that the following software is installed on your system.
     - pcntl, posix (Linux only)
 
   - Optional modules:
-    - snmp - The PHP SNMP extension is optional. Cacti selectively bypasses it
-      in favor of Net-SNMP binaries for SNMPv3 queries, IPv6 targets, bulkwalk,
-      and hex-string output. You do not need to remove php-snmp; Cacti handles
-      the fallback automatically based on query type and device configuration.
+    - snmp - The PHP SNMP extension is optional and fully supported. Cacti also
+      uses the Net-SNMP binaries for SNMPv3 queries, IPv6 targets, bulkwalk,
+      and hex-string output. You do not need to remove php-snmp; Cacti selects
+      the right method automatically based on query type and device configuration.
 
 - Problematic software and configuration
   - SELinux, AppArmor, and ModSecurity can interfere with ICMP ping, socket
