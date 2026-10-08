@@ -89,7 +89,7 @@ host.
 - **SNMP Port** - UDP port number to use for SNMP (default is 161).
 
 - **SNMP Timeout** - Maximum number of milliseconds Cacti will wait for an SNMP
-  response (does not work with php-snmp support).
+  response.
 
 - **Maximum OID's Per Get Request** - This is a performance feature. Specifies
   the number of OID's that can be obtained in a single SNMP Get request.
