@@ -10,3 +10,11 @@ updates:
       github-actions: {patterns: ["*"]}
     labels: [dependencies, github-actions]
     commit-message: {prefix: ci, include: scope}
+  - package-ecosystem: pip
+    directory: /.github
+    schedule: {interval: weekly, day: friday}
+    open-pull-requests-limit: 5
+    cooldown: {default-days: 7}
+    groups:
+      python-tools: {patterns: ["*"], update-types: [minor, patch]}
+    commit-message: {prefix: deps, include: scope}
