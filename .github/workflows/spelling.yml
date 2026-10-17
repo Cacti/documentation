@@ -20,7 +20,7 @@ jobs:
           persist-credentials: false
 
       - name: Install codespell
-        run: python3 -m pip install --require-hashes -r .github/codespell-requirements.txt
+        run: python3 -m pip install --only-binary :all: --require-hashes -r .github/codespell-requirements.txt
 
       - name: Run codespell
         run: codespell --config .codespell.cfg
