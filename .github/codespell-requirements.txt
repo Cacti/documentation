@@ -1,4 +1,4 @@
-codespell==2.4.1 \
-    --hash=sha256:299fcdcb09d23e81e35a671bbe746d5ad7e8385972e65dbb833a2eaac33c01e5 \
-    --hash=sha256:3dadafa67df7e4a3dbf51e0d7315061b80d265f9552ebd699b3dd6834b47e425
-    # via -r .github/codespell-requirements.in
+codespell==2.4.3 \
+    --hash=sha256:af2505b335e8573dbd2d384d1c4ef498f4006f4ba2d6fceca01e55b91f52628a \
+    --hash=sha256:cbe085e331227b37bb86ef8bddd08dc768c704ee9a07ca869852c093fa2793e2
+    # via -r codespell-requirements.in
