@@ -11,13 +11,16 @@ permissions:
 
 jobs:
   codespell:
+    timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Install codespell
-        run: pip install codespell==2.4.1
+        run: "python3 -m pip install --only-binary :all: --require-hashes -r .github/codespell-requirements.txt"
 
       - name: Run codespell
         run: codespell --config .codespell.cfg
