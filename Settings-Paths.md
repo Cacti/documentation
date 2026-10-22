@@ -32,9 +32,9 @@ Those settings include:
 
 **snmpget Binary Path** - This is the path to the `snmpget` binary.
 
-**snmpbulkwalk Binary Path** - This is the path to the `snmpwalk` binary.  This binary
-path is essential if you use SNMPv2 of SNMPv3 versions where **Data Queries** perform
-bulkwalks by default to increase performance.
+**snmpbulkwalk Binary Path** - This is the path to the `snmpbulkwalk` binary.
+Bulk requests are available with SNMPv2c and SNMPv3. Configure this separately
+from `snmpwalk`; the two commands use different request types.
 
 **snmpgetnext Binary Path** - This is the path to the `snmpgetnext` binary.
 
@@ -44,8 +44,10 @@ is important for SNMP Notification and Trap generation.
 **RRDtool Binary Path** - The location of the RRDtool binary that matches your
 RRDtool version.
 
-**PHP Binary Path** - The location of the PHP Binary, generally, this setting is
-always `/usr/php`, but can change for some users.
+**PHP Binary Path** - The absolute path to the PHP CLI executable used by the
+poller and background commands, for example `/usr/bin/php`. Use the actual
+installation path and verify its version and extensions as the service user.
+The web server may use a different PHP installation or configuration.
 
 ## Logging
 
@@ -77,12 +79,12 @@ Older files will be removed automatically.
 
 ## Alternate Poller Path
 
-The sub-section hold information on how to find Cacti's `spine` binary if it's
-installed.  Since `spine` is written in ANSI C, it is not provided as a part of
-the Cacti install and must be compiled by the Cacti Administrator.  The benefit
-of the `spine` binary is that it's mufti-threaded and extremely scalable.
-It's possible to poll enterprises with excess of 30,000 devices using spine on
-a reasonably large system.  The image below show's this sub-section.
+This sub-section identifies the separately installed Spine binary and its
+configuration. Install a compatible package or build it as described in
+[Spine](Spine.md). Spine uses multiple threads; size its process and thread
+counts for the available CPU, database connections and polling workload.
+Device capacity depends on those resources and the metrics being collected.
+The image below shows this sub-section.
 
 ![Alternate Poller Path](images/settings-paths-alternate.png)
 
