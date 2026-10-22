@@ -1,16 +1,25 @@
 # Requirements
 
-Cacti requires that the following software is installed on your system.
+This page describes the software and configuration used by Cacti 1.2.31.
+The historical compatibility values below come from the
+[released requirements][release-readme] and installer checks. They do not
+establish whether a dependency is still maintained by its vendor, or certify
+every later version. Check the installed components with the Cacti installer
+before using them in a new deployment or upgrade.
 
 - Web Server that supports PHP e.g. Apache, Nginx, or IIS
 
 - Build environment when using spine (gcc, automake, autoconf, libtool,
   help2man)
 
-- RRDtool 1.3 or greater, 1.5+ recommended
+- RRDtool 1.3 or greater, 1.5+ recommended by the 1.2.31 release
 
-- PHP 5.4 or greater, 5.5+ recommended
+- Net-SNMP 5.5 or greater, including the command-line tools used by Cacti
+
+- PHP 5.4 or greater, with a CLI binary for the poller
+
   - Required modules:
+
     - ctype, date, filter, gettext, gd, gmp
     - hash, json, ldap, mbstring, openssl, pcre
     - PDO, pdo_mysql, session, simplexml, sockets, spl
@@ -19,215 +28,92 @@ Cacti requires that the following software is installed on your system.
     - posix (linux only)
 
   - Optional modules:
+
     - snmp (falls back to NetSNMP)
 
-- Problematic software and configuration
-  - On Linux OS do not turn on SELinux
-  - On web server do not turn on ModSecurity
+- MySQL or MariaDB, with timezone support enabled
 
-    SELinux and ModSecurity can cause problem with ICMP ping, socket connections, ...
+## Database compatibility and checks
 
-- MySQL 5.6 or MariaDB 5.5 or greater
-  - Timezone support must be enabled
+The 1.2.31 release README lists MySQL 5.1 or greater as its historical
+baseline. The installer's tuning guidance recommends MySQL 5.6+ and MariaDB
+10.0+; its database-version recommendation is a warning, not a complete
+compatibility matrix. These values do not establish an upper supported
+version or prove that every database release has been tested.
 
-  - The following are my.cnf recommendations:
+Review the installer's database checks and the database information under
+`Console > Utilities > System Utilities > General`. The
+[released recommendation code][database-checks] reads the installed server's
+variables, identifies MySQL or MariaDB, and adjusts guidance for version and
+memory. It displays recommendations for variables that the server exposes.
+Check the database vendor's documentation before applying a setting.
 
-    - **version >= 5.6**
+## Database configuration
 
-      MySQL 5.6+ and MariaDB 10.0+ are great releases, and are very good
-      versions to choose. Make sure you run the very latest release though
-      which fixes a long standing low level networking issue that was causing
-      spine many issues with reliability.
+Use the following points when reviewing the checks. There is no single
+`my.cnf` block appropriate for every database version and machine size.
 
-    - **innodb = ON**
+- **Character sets and collation:** The release checks expect `utf8mb4` for
+  `character_set_server` and `character_set_client`, and
+  `utf8mb4_unicode_ci` for `collation_server`. Use those names consistently;
+  `utf8_general_ci` is a different collation. Changing server defaults does
+  not by itself convert existing tables. Plan and back up an existing
+  database before changing its character sets or collations.
 
-      It is recommended that you enable InnoDB in any MySQL/MariaDB version
-      greater than 5.1.
+- **Storage engines:** Review InnoDB and `innodb_file_per_table` in the
+  installer. Performance Booster tables can use different storage engines;
+  inspect the actual tables before sizing memory-table limits. Do not assume
+  that memory tables are required on every installation.
 
-    - **collation_server = utf8mb4_unicode_ci**
+- **Connections:** The release checks use 100 as a starting recommendation
+  for `max_connections`. Estimate Spine's connections with the formula below,
+  then allow for web requests, maintenance and other database clients.
 
-      When using Cacti with languages other than English, it is important to
-      use the utf8_general_ci collation type as some characters take more than
-      a single byte.  If you are first just now installing Cacti, stop, make
-      the changes and start over again.  If your Cacti has been running and is
-      in production, see the internet for instructions on converting your
-      databases and tables if you plan on supporting other languages.
+  ```text
+  total_connections = total_processes * (total_threads + script_servers + 1)
+  ```
 
-    - **character_set_client = utf8mb4**
-    - **character_set_server = utf8mb4**
+- **Buffer pool:** The release check starts with 25% of system memory for
+  `innodb_buffer_pool_size`. Review the database size and memory required by
+  PHP, pollers, RRDtool and other services before applying it.
 
-      When using Cacti with languages other than English, it is important to
-      use the utf8 character set as some characters take more than a single
-      byte. If you are first just now installing Cacti, stop, make the changes
-      and start over again. If your Cacti has been running and is in
-      production, see the internet for instructions on converting your
-      databases and tables if you plan on supporting other languages.
+- **Per-connection memory:** `join_buffer_size` and `sort_buffer_size` can
+  multiply memory use across database connections. The release computes
+  recommendations using connection counts and memory; fixed large buffers
+  are not a safe substitute for that calculation.
 
-    - **max_connections >= 100**
+- **Temporary and memory tables:** Size `tmp_table_size` and
+  `max_heap_table_size` for the installed database and workload. Review Boost
+  buffer usage under System Utilities when using memory tables. A bare
+  number such as `5` does not express a percentage of system memory in
+  `my.cnf`.
 
-      Depending on the number of logins and use of spine data collector,
-      MySQL/MariaDB will need many connections.  The calculation for spine is:
+- **Remote collection:** The release recommends `max_allowed_packet` of at
+  least 16777216 bytes (16 MiB) for synchronization with remote collectors.
 
-      ```php
-      total_connections = total_processes * (total_threads + script_servers + 1)
-      ```
+- **Version-specific options:** Cache, I/O, buffer-pool-instance and legacy
+  InnoDB options vary by database version. Apply only options supported by
+  the installed server; do not copy settings from an older server unchanged.
 
-      then you must leave headroom for user connections, which will change
-      depending on the number of concurrent login accounts.
+## Durability and operating-system policy
 
-    - **max_heap_table_size >= 5**
+Do not disable `innodb_doublewrite` simply because the server uses SSDs.
+The 1.2.31 checks normally expect it to be enabled and contain separate
+MariaDB guidance concerning atomic writes. Confirm the database and storage
+requirements before changing crash-protection settings. See the database
+vendor's [doublewrite documentation][doublewrite]. Changes to
+`innodb_flush_log_at_trx_commit` also affect durability; choose them with an
+explicit recovery policy rather than treating them as universal tuning.
 
-      If using the Cacti Performance Booster and choosing a memory storage
-      engine, you have to be careful to flush your Performance Booster buffer
-      before the system runs out of memory table space.  This is done two
-      ways, first reducing the size of your output column to just the right
-      size.  This column is in the tables poller_output, and
-      poller_output_boost.
+Configure SELinux and web-server security rules to allow the operations
+needed by the web server and poller accounts. Check policy and application
+logs when permissions block polling, scripts or socket access. Disabling an
+entire security mechanism is not an installation prerequisite.
 
-      The second thing you can do is allocate more memory to memory tables
-      with a recommended value of 10% of system memory, but if you are using
-      SSD disk drives, or have a smaller system, you may ignore this
-      recommendation or choose a different storage engine.  You may see the
-      expected consumption of the Performance Booster tables under Console ->
-      System Utilities -> View Boost Status.
-
-      NOTE: If you are using a recent version of MariaDB or MySQL, using
-      memory tables is no longer a requirement.  You may choose to continue
-      to use memory tables to spare your NVMe or SSD drives excessive use
-      wear.  However, outside of that, it is no longer a requirement.
-      As such, the value of the **max_heap_table_size** is not as important
-      as in previous releases.  Additionally, if you are using Galera
-      replication with Cacti, all your tables must be in InnoDB format.  So,
-      the only feature in MariaDB or MySQL becomes temporary table space
-      which may not be dependent on the **max_heap_table_size**.
-
-    - **table_cache >= 200**
-
-      Keeping the table cache larger means less file open/close operations
-      when using innodb_file_per_table.
-
-    - **max_allowed_packet >= 16777216**
-
-      With Remote polling capabilities, large amounts of data will be synced
-      from the main server to the remote pollers.  Therefore, keep this value
-      at or above 16M.
-
-    - **tmp_table_size >= 64M**
-
-      When executing subqueries, having a larger temporary table size, keep
-      those temporary tables in memory.
-
-    - **join_buffer_size >= 64M**
-
-      When performing joins, if they are below this size, they will be kept in
-      memory and never written to a temporary file.
-
-    - **innodb_file_per_table = ON**
-
-      When using InnoDB storage it is important to keep your table spaces
-      separate.  This makes managing the tables simpler for long time users of
-      MySQL/MariaDB.  If you are running with this currently off, you can
-      migrate to the per file storage by enabling the feature, and then
-      running an alter statement on all InnoDB tables.
-
-    - **innodb_buffer_pool_size >= 25**
-
-      InnoDB will hold as much tables and indexes in system memory as is
-      possible.  Therefore, you should make the innodb_buffer_pool large
-      enough to hold as much of the tables and index in memory.  Checking the
-      size of the /var/lib/mysql/cacti directory will help in determining this
-      value.  We are recommending 25% of your systems total memory, but your
-      requirements will vary depending on your systems size.
-
-    - **innodb_doublewrite = OFF**
-
-      With modern SSD type storage, this operation actually degrades the disk
-      more rapidly and adds a 50% overhead on all write operations.
-
-    - **innodb_additional_mem_pool_size >= 80M**
-
-      This is where metadata is stored. If you had a lot of tables, it would
-      be useful to increase this.
-
-    - **innodb_lock_wait_timeout >= 50**
-
-      Rogue queries should not for the database to go offline to others.  Kill
-      these queries before they kill your system.
-
-    - **innodb_flush_log_at_trx_commit = 2**
-
-      Setting this value to 2 means that you will flush all transactions every
-      second rather than at commit.  This allows MySQL/MariaDB to perform
-      writing less often.
-
-    - **innodb_file_io_threads >= 16**
-
-      With modern SSD type storage, having multiple io threads is advantageous
-      for applications with high IO characteristics.
-
-    - **innodb_flush_log_at_timeout >= 3**
-
-      If your MySQL/MariaDB version supports it, the you can control how often
-      MySQL/MariaDB flushes transactions to disk.  The default is 1 second,
-      but in high I/O systems setting to a value greater than 1 can allow disk
-      I/O to be more sequential
-
-    - **innodb_read_IO_threads >= 32**
-
-      With modern SSD type storage, having multiple read IO threads is
-      advantageous for applications with high IO characteristics.
-
-    - **innodb_write_IO_threads >= 16**
-
-      With modern SSD type storage, having multiple write IO threads is
-      advantageous for applications with high IO characteristics.
-
-    - **innodb_buffer_pool_instances >= 16**
-
-      MySQL/MariaDB will divide the innodb_buffer_pool into memory regions to
-      improve performance with a maximum value is 64.  When your
-      innodb_buffer_pool is less than 1GB, you should use the pool size
-      divided by 128MB. Continue to use this equation up to the max of 64.
-
-    Note:
-
-    - Some of these recommendations may not be applicable depending on the
-      version of MySQL/MariaDB you are running.
-
-    - Some of these recommendations should be scaled where appropriate
-
-    - Newer MySQL/MariaDB software are using [strict
-      modes](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html) and it can
-      cause unexpected problems when importing dumps of Cacti databases from
-      older systems, like **Can't create table `cacti`.`poller_output_boost`
-      (errno: 140 "Wrong create options")**.
-
-      You have more possibilities:
-
-      - disable appropriate strict mode - not recommended
-
-      - change mysqldump file - remove **ROW_FORMAT=FIXED** from table
-        definition
-
-      - before mysqldump run query:
-        **ALTER TABLE `poller_output_boost` ROW_FORMAT=DYNAMIC;**
-
-To implement the above mysql recommendations you can use the below entries and
-paste them into my.cnf
-
-```console
- innodb_flush_log_at_timeout = 4
- innodb_read_io_threads = 34
- innodb_write_io_threads = 17
- max_heap_table_size = 70M
- tmp_table_size = 70M
- join_buffer_size = 130M
- innodb_buffer_pool_size = 250M
- innodb_io_capacity = 5000
- innodb_io_capacity_max = 10000
- innodb_file_format = Barracuda
- innodb_large_prefix = 1
- ```
+[release-readme]:<https://github.com/Cacti/cacti/blob/1e8eaca26b84b128c39ce8cc8ece42d7ff76aac1/README.md#requirements>
+[database-checks]:<https://github.com/Cacti/cacti/blob/1e8eaca26b84b128c39ce8cc8ece42d7ff76aac1/lib/utility.php#L1181>
+[doublewrite]:<https://dev.mysql.com/doc/refman/8.0/en/innodb-doublewrite-buffer.html>
 
 ---
+
 Copyright (c) 2004-2026 The Cacti Group

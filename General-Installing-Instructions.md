@@ -32,7 +32,12 @@ packages will vary by operating system.
 
 ### Database
 
-MySQL versions to 5.7 are supported. MariaDB to 10.2 is also supported.
+Use MySQL or MariaDB and check the installed version and configuration with
+the Cacti 1.2.31 installer. The release's historical compatibility values and
+version-dependent tuning checks are described in
+[Requirements](Requirements.md).
+MySQL 5.7 and MariaDB 10.2 are not upper-version limits established by those
+checks. Passing a configuration check does not certify every database version.
 
 - mysql
 
