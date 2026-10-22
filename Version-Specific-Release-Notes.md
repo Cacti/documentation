@@ -8,7 +8,10 @@ list of changes that have occurred over the years, and since Cacti 0.8.x is no
 longer supported, it's a good time to for the purposes of this document, move
 them aside.
 
-Before that list, let's talks about Cacti 1.0.0 first.
+For Cacti 1.2.31, use the [published release notes][release-1231] and the
+[CHANGELOG shipped with that release][changelog-1231]. The sections below
+describe historical context and changelog conventions; their examples are not
+a complete list of 1.2.31 changes.
 
 ## Cacti 1.0.0
 
@@ -69,6 +72,9 @@ Below are a few examples of the version, type and description that can be found 
 | 1.2.16  | feature#3943  | Add hooks for plugins to show custom Graph Source and custom Template URL (List View)                                            |
 | 1.2.13  | security#3628 | Lack of escaping on template import can lead to XSS exposure                                                                     |
 | 1.2.13  | issue#3517    | When generating reports, function looping can occur resulting in 100% cpu usage                                                  |
+
+[release-1231]: <https://github.com/Cacti/cacti/releases/tag/release/1.2.31>
+[changelog-1231]:<https://github.com/Cacti/cacti/blob/1e8eaca26b84b128c39ce8cc8ece42d7ff76aac1/CHANGELOG>
 
 ---
 
