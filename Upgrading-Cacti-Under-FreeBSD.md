@@ -1,58 +1,106 @@
 # Upgrading Cacti Under FreeBSD
 
-1. Backup the old Cacti database.
+These instructions cover upgrading to Cacti 1.2.31. Determine whether Cacti is
+maintained by `pkg`, by ports or from a source archive. Keep that installation
+method for the upgrade; do not overlay an archive onto package-managed files.
+Review the target Cacti [release notes](Version-Specific-Release-Notes.md),
+[requirements](Requirements.md) and package or port notes before proceeding. Do
+not make an unrelated operating-system, PHP or database major-version upgrade
+part of this procedure without a separate compatibility plan.
+
+## Pause collection and back up
+
+1. Clear **Data Collection Enabled** under `Console > Configuration > Settings
+   > Poller`. Disable the Cacti-specific cron entry or stop its configured
+   poller service on every collector. Record what you change; do not stop the
+   system-wide cron service merely to pause Cacti. Wait for pollers, Spine,
+   script servers and other background writers to finish. Restrict web access
+   to the upgrade administrator and pause plugin jobs that write to Cacti.
+   Flush pending RRD-cache writes and confirm that the database and RRD files
+   remain unchanged before taking the backup.
+
+2. Use the dump client appropriate to the installed MySQL or MariaDB server.
+   The following example requires an existing, protected backup directory and a
+   database account with the server's required backup privileges. Replace the
+   account, database name and filename for your installation. Use its actual
+   database host, port and TLS options.
 
    ```sh
-   shell> mysqldump -l --add-drop-table --lock-tables=false cacti > mysql.cacti
+   mysqldump --user=YOUR_BACKUP_USER --password \
+     --lock-tables --quick --routines --events --triggers \
+     --databases cacti --result-file=/protected/backup/cacti-YYYYMMDD.sql
    ```
 
-   > **Note:** You will probably have to specify the -u and -p flags for the
-   > MySQL username and password. This user must have permission to read from
-   > Cacti's database or you will end up with an empty backup.
+   The password is prompted. With all Cacti writers paused, this [dump
+   method][dump] uses table locks for the Cacti database, including
+   nontransactional tables. A transaction-only dump does not cover those
+   tables. Verify the command succeeded and test restoring the dump separately;
+   a nonempty file alone is not proof of a complete backup. Use a new filename
+   rather than overwriting a known good backup.
 
-2. Backup the old Cacti directory.
+3. Back up the Cacti application files, RRDs and local configuration together
+   with the database dump. Preserve ownership, permissions and hidden files.
+   Include `include/config.php`, custom scripts, query resources, plugins,
+   secret files, including any alternate `path_csrf_secret`, and configured
+   paths outside the application tree. Record symbolic links and back up their
+   targets separately. Also record the Spine configuration, cron/service
+   settings, web-server settings, database grants, certificates/keys and
+   installed versions. Package layouts may keep configuration and data outside
+   `/usr/local/share/cacti`; inspect the installed paths rather than backing up
+   that directory alone.
 
-   ```sh
-   shell> cd /usr/local/share
-   shell> tar -zcf cacti_backup_YYYYMMDD.tgz cacti
-   ```
+## Upgrade using the existing installation method
 
-3. Install new version from compiled packages or FreeBSD ports.
+For a binary package installation, review the proposed package transaction
+before applying it. The [FreeBSD Handbook][packages] describes package
+upgrades. Run the following with appropriate administrator privileges:
 
-   ```sh
-   shell> pkg delete cacti
-   shell> pkg install cacti
-   ```
+```sh
+pkg update
+pkg upgrade -n cacti
+pkg upgrade cacti
+```
 
-   or
+Check the proposed version and dependency changes before accepting the actual
+upgrade. The configured repository may offer a version other than 1.2.31. Stop
+if that is not your approved target and select an appropriate repository or
+installation method. Do not delete Cacti first or assume that upgrading one
+package cannot affect its dependencies.
 
-   ```sh
-   shell> pkg install git
-   shell> git clone https://git.FreeBSD.org/ports.git /usr/ports
-   shell> git -C /usr/ports pull
-   shell> cd /usr/ports/net-mgmt/cacti
-   shell> make deinstall clean install
-   ```
+For a ports-managed installation, follow the handbook's [ports upgrade
+procedure][ports] and applicable `/usr/ports/UPDATING` entries. Use the
+existing ports management method; do not switch between ports and binary
+packages without reviewing their options and dependencies. A source
+installation instead follows [Upgrading Cacti](Upgrading-Cacti.md).
 
-4. If you are using the optional feature Performance -> Image Caching, also
-   recreate the folder and correct the permissions.
+Preserve the working configuration and merge required changes from the new
+configuration example. Keep existing database credentials, collector IDs, paths
+and secrets. Review package-generated configuration changes and restore local
+resources only after checking compatibility. Recreate cache or data directories
+only where the installed configuration requires them, with access for the
+actual service account; do not assume a universal account or apply recursive
+ownership changes to the whole installation.
 
-   ```sh
-   shell> cd /usr/local/share/cacti
-   shell> mkdir cache
-   shell> chown -R cacti cache
-   ```
+## Complete the application upgrade
 
-5. Point your web browser to:
+Open the existing Cacti URL as an administrator and complete its database
+upgrade. Review the installer and logs before resuming collection. Upgrade
+remote collectors' local files and configuration through their installation
+method, complete the applicable upgrade/synchronization, and verify their
+versions, connectivity and logs. Do not rely on a fixed number of poll cycles
+for completion. Check the matching Spine version on collectors using Spine.
 
-   `http://your-server/cacti/`
+After successful checks, re-enable **Data Collection Enabled** and restore the
+recorded Cacti cron entry or service. Verify a complete poll cycle, recent RRD
+samples and representative graphs on every collector. If recovery is needed,
+stop all writers again and restore the matching files, database, RRDs and
+configuration as one set; restoring old application files alone does not undo a
+database upgrade.
 
-   Follow the on-screen instructions so your database can be updated to the
-   new version.
-
-> Note that starting with Cacti 1.0, all **Data Collectors** will upgrade
-> themselves automatically within two polling cycles.  If for some reason they
-> do not, upgrade them one at a time.
+[dump]:<https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html>
+[packages]:<https://docs.freebsd.org/en/books/handbook/ports/#pkgng-upgrading>
+[ports]:<https://docs.freebsd.org/en/books/handbook/ports/#ports-upgrading>
 
 ---
+
 Copyright (c) 2004-2026 The Cacti Group
