@@ -1,13 +1,17 @@
 # Data Source Profiles
 
-This section will describe **Data Source Profiles** in Cacti.
+**Data Source Profiles** define sampling intervals, heartbeats, consolidation
+functions and archive retention for data sources. A profile describes how
+RRDfiles should be created; selecting another profile does not automatically
+convert existing RRDfiles.
 
 ![Data Source Profiles](images/data-source-profiles.png)
 
 ![Data Source Profiles Edit](images/data-source-profiles-edit1.png)
 
-The following values are for the disk usage per Data source for the respective
-data profile
+The following are illustrative archive sizes per data source. Actual RRDfile
+size depends on its data sources, rows, archives and consolidation functions;
+these values are not fixed requirements for every profile.
 
 | polling time | type    | size per ds | polling time | type   | size per ds |
 | -----------: | ------- | ----------: | -----------: | ------ | ----------: |
@@ -29,7 +33,7 @@ due to the bigger sized RRDfile
 
 To do this follow these steps
 
-### Method 1 - New system without any hosts
+### Method 1 - Profile not used by existing data sources
 
 1. Login to Cacti
 
@@ -42,35 +46,54 @@ To do this follow these steps
 5. If you wish to change the average select the aggregate level for 1 minute you
    will be able to go as low as 5 Minutes
 
-6. You will need to edit the Rows amount to match the data retention you want to
-   set after this period the data will be averaged out to the monthly graph
+6. Set the row count for the retention required at that resolution. Each
+   archive maintains its own consolidation and retention settings.
 
 7. Save config and generate graphs
 
 ### Method 2 - Existing device(s) on system
 
-This is a more data destructive route and it will depend on your situation. If
-you have graphs already on cacti you will not be able to use Method 1. An option
-if you do not care about the graphs is to either remove the graphs via the gui
-or run the following script `/cli/php remove_graphs.php with the --all`
-function.
+In Cacti 1.2.31, archive settings are read-only in the profile editor when
+local data sources use that profile. Duplicate the profile and edit the copy
+for new data sources instead of deleting all graphs to unlock those settings.
+Select only the intended data templates when using **Change Profile**; that
+bulk action changes template definitions, not existing local data sources.
 
-This will REMOVE ALL THE GRAPHS and you can then follow the steps outlined in
-Method 1 to change the profile how you like
+Existing RRDfiles retain their stored structure until explicitly converted.
+Back up matching database, configuration and RRD data before a migration,
+and validate conversion on isolated copies. Changing a database setting alone
+does not change an existing file's step or archive layout. See
+[changing to one-minute collection](How-To-Poller-5-to-1-min.md) for the
+distinction between new collection and an existing-history migration.
 
 ## Data profile Rows Calculation
 
-The rows calculation take in to account the following
+Each archive row covers the base sampling step multiplied by the number of
+primary data points consolidated into that row. Calculate retention as:
 
 ```console
-Rows = Aggregate level \* hours
+row_seconds = profile_step_seconds * archive_steps
+retention_seconds = rows * row_seconds
+rows = desired_retention_seconds / row_seconds
 ```
 
 > **Example**
 >
-> 1 Minute aggregate level storing for 3 days ( 72 hours)
+> For one-minute rows retained for three days (72 hours):
 >
-> (Aggregate level)60 \* 72 ( 72 hours) = 4,320
+> 72 * 3600 / 60 = 4,320 rows.
+
+Round up to a whole number of rows when necessary. Retention is calculated
+separately for each archive; older data does not move from one archive to
+another when a graph changes timespan. For an existing file, inspect its
+actual step, `pdp_per_row` and row count with [RRDtool info][rrdinfo].
+
+The [Cacti 1.2.31 profile editor][profile-source] and
+[template profile action][template-source] define these editing rules.
+
+[profile-source]:<https://github.com/Cacti/cacti/blob/1e8eaca26b84b128c39ce8cc8ece42d7ff76aac1/data_source_profiles.php>
+[template-source]:<https://github.com/Cacti/cacti/blob/1e8eaca26b84b128c39ce8cc8ece42d7ff76aac1/data_templates.php>
+[rrdinfo]:<https://oss.oetiker.ch/rrdtool/doc/rrdinfo.en.html>
 
 ---
 
