@@ -1,5 +1,15 @@
 # Installing on CentOS 7
 
+This page retains examples from the CentOS 7/8 era. CentOS Linux 7 reached
+end of life on June 30, 2024, and CentOS Linux 8 on December 31, 2021; see the
+[CentOS lifecycle notice](https://www.centos.org/cl-vs-cs/). These examples are
+not a tested compatibility matrix for current RHEL or Rocky Linux releases.
+Use a maintained operating system and a PHP version meeting
+[Requirements](Requirements.md), with repositories appropriate to that system.
+Run administrative commands as root and adapt paths and service accounts to
+the actual installation. Do not use the legacy PHP streams below as a new
+server recommendation.
+
 ## LEMP (Linux, Nginx, MySQL, PHP) Required packages
 
 ### Web Server
@@ -30,115 +40,66 @@ files holding your certificate (`.crt`) and private key (`.key`).
 ```
 
 ```console
-# Advanced config for NGINX
-#server_tokens off;
-add_header X-XSS-Protection "1; mode=block";
-add_header X-Content-Type-Options nosniff;
-
-# Redirect all HTTP traffic to HTTPS
+# Serve Cacti at https://cacti.yourdomain.com/cacti/.
 server {
    listen 80;
-   server_name cacti.yourdomain.com; #No one likes unencrypted web servers
-   #return 301 https://$host$request_uri; # some nginx do not support 'return';
+   server_name cacti.yourdomain.com;
+   return 301 https://$host$request_uri;
 }
 
-# SSL configuration
 server {
-   listen 443 ssl default deferred;
+   listen 443 ssl;
    server_name cacti.yourdomain.com;
-   root /usr/share/nginx/html/cacti;
-   index index.php index.html index.htm;
+   root /usr/share/nginx/html;
+   index index.php index.html;
 
-   # Compression increases performance0
-   gzip on;
-   gzip_types      text/plain text/html text/xml text/css application/xml application/javascript application/x-javascript application/rss+xml application/xhtml+xml;
-   gzip_proxied    no-cache no-store private expired auth;
-   gzip_min_length 1000;
+   ssl_certificate /etc/ssl/certs/YourOwnCertFile.crt;
+   ssl_certificate_key /etc/ssl/private/YourOwnCertKey.key;
+   ssl_protocols TLSv1.2;
 
-   location / {
-      try_files $uri $uri/ /index.php$query_string;
+   location = / {
+      return 302 /cacti/;
+   }
+   location = /cacti {
+      return 301 /cacti/;
    }
 
-   error_page 404 /404.html;
-   error_page 500 502 503 504 /50x.html;
-   location = /50x.html {
-      root /usr/share/nginx/html/;
+   # Nginx does not process Apache .htaccess files.
+   location ~ (^|/)\. {
+      deny all;
    }
-
-   location ~ \.php$ {
-      alias /usr/share/nginx/html/cacti;
-      index index.php
-      try_files $uri $uri/ =404;
-      fastcgi_split_path_info ^(.+\.php)(/.+)$;
-
-      # you may have to change the path here for your OS
-      fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
-      fastcgi_index index.php;
-      fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-      include /etc/nginx/fastcgi_params;
+   location ~ ^/cacti/(cli|contrib|log|mibs|rra|scripts|service)/ {
+      deny all;
    }
-
-   location /cacti {
-      root /usr/share/nginx/html/;
-      index index.php index.html index.htm;
-      location ~ ^/cacti/(.+\.php)$ {
-         try_files $uri =404;
-         root /usr/share/nginx/html;
-
-         # you may have to change the path here for your OS
-         fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
-         fastcgi_index index.php;
-         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-         include /etc/nginx/fastcgi_params;
-      }
-
-      location ~* ^/cacti/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt))$ {
-         expires max;
-         log_not_found off;
-      }
+   location ~ ^/cacti/cache/(boost|mibcache|realtime|spikekill)/ {
+      deny all;
    }
-
-   location /doc/ {
-      alias /usr/share/nginx/html/cacti/doc/;
-      location ~* ^/docs/(.+\.(html|md|txt))$ {
-         root /usr/share/nginx/html/cacti/;
-         autoindex on;
-         allow 127.0.0.1; # Change this to allow your local networks
-         allow ::1;
-         deny all;
-      }
-   }
-
-   location /cacti/rra/ {
+   location ~ ^/cacti/include/(config(_local)?\.php|vendor/.*\.php) {
       deny all;
    }
 
-   ## Access and error logs.
+   location ~ ^/cacti/(.+\.php)$ {
+      try_files $uri =404;
+      include /etc/nginx/fastcgi_params;
+      fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+      fastcgi_index index.php;
+   }
+   location /cacti/ {
+      try_files $uri $uri/ =404;
+   }
+
    access_log /var/log/nginx/cacti_access.log;
-   error_log  /var/log/nginx/cacti_error.log info;
-
-   ssl_certificate      /etc/ssl/certs/YourOwnCertFile.crt;
-   ssl_certificate_key  /etc/ssl/private/YourOwnCertKey.key;
-
-   # Improve HTTPS performance with session resumption
-   ssl_session_cache shared:SSL:10m;
-   ssl_session_timeout 5m;
-
-   # Enable server-side protection against BEAST attacks
-   #ssl_prefer_server_ciphers on;
-   ssl_ciphers ECDH+AESGCM:ECDH+AES256:ECDH+AES128:DH+3DES:!ADH:!AECDH:!MD5;
-
-   # Disable SSLv3
-   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-
-   # Diffie-Hellman parameter for DHE cipher suites
-   # $ sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 4096
-   ssl_dhparam /etc/ssl/certs/dhparam.pem;
-
-   # Enable HSTS (https://developer.mozilla.org/en-US/docs/Security/HTTP_Strict_Transport_Security)
-   add_header Strict-Transport-Security "max-age=63072000; includeSubdomains";
+   error_log /var/log/nginx/cacti_error.log;
 }
 ```
+
+The socket must match the PHP-FPM pool configured below. Adjust the TLS
+configuration for the maintained OS and web-server versions you actually use;
+this legacy example is not a current TLS compatibility matrix. Validate the
+configuration with `nginx -t` before reloading Nginx. Keep the private-path
+rules before the PHP handler; static files such as the CSRF JavaScript and
+flag icons under `include/vendor` must remain accessible.
 
 ### Database Server
 
@@ -169,10 +130,11 @@ a drop-in alternative until there is a major divergence that can not be bridged.
 
 #### MariaDB
 
-1. Install MariaDB server
+1. Install the distribution MariaDB packages (package names differ when using
+   the MariaDB vendor repository).
 
    ```console
-   yum install -y MariaDB-server MariaDB-client
+   yum install -y mariadb-server mariadb
    ```
 
 2. Enable and start the service to ensure it starts when the system reboots
@@ -200,56 +162,25 @@ during the installation.
    vim /etc/my.cnf.d/server.cnf
    ```
 
-   The following `[mysqld]` section is a base configuration. The installer will
-   provide recommendations based on the actual system which will be more
-   tailored to your environment.
+   Keep the database vendor's configuration defaults unless the installer and
+   workload justify a change. A minimal character-set example is:
 
-   If using MariaDB less than version 11.1 or MySQL use the settings below.
-   Note that you should revise up or down your settings depending on
-   the Cacti recommendation that you see once you start the installer.
-
-   ```shell
+   ```ini
    [mysqld]
-   character_set_client            = utf8mb4
-   character-set-server            = utf8mb4
-   collation-server                = utf8mb4_unicode_ci
-   innodb_file_format              = Barracuda
-   max_allowed_packet              = 16777777
-   max_heap_table_size             = 500M
-   join_buffer_size                = 32M
-   innodb_file_per_table           = ON
-   innodb_large_prefix             = 1
-   innodb_buffer_pool_size         = 500M
-   innodb_additional_mem_pool_size = 90M
-   innodb_flush_log_at_trx_commit  = 2
-   log-error                       = /var/log/mysql/mysql-error.log
-   log-queries-not-using-indexes   = 1
-   slow-query-log                  = 1
-   slow-query-log-file             = /var/log/mysql/mysql-slow.log
+   character-set-server=utf8mb4
+   collation-server=utf8mb4_unicode_ci
    ```
 
-   If using MariaDB 11.0 or higher, use the settings below:
+   Buffer sizes depend on available memory and workload. Do not copy obsolete
+   InnoDB options or disable doublewrite protection as a general tuning step;
+   consult the [MariaDB InnoDB variable reference][innodb-variables] for the
+   installed version.
 
-   ```shell
-   [mariadb]
-   character_set_client            = utf8mb4
-   character_set_server            = utf8mb4
-   collation_server                = utf8mb4_unicode_ci
-   max_heap_table_size             = 500M
-   join_buffer_size                = 32M
-   innodb_buffer_pool_size         = 8G
-   innodb_doublewrite              = OFF
-   tmp_table_size                  = 500M
-   log-error                       = /var/log/mysql/mysql-error.log
-   log-queries-not-using-indexes   = 1
-   slow-query-log                  = 1
-   slow-query-log-file             = /var/log/mysql/mysql-slow.log
-   ```
-   
-2. Restart MySQL/MariaDB service to pick up the changes
+2. Restart the service actually installed (`mariadb` for the MariaDB example,
+   or `mysqld` for the MySQL example):
 
    ```console
-   systemctl restart mysql
+   systemctl restart mariadb
    ```
 
 3. Populate timezone table with available timezones
@@ -260,45 +191,25 @@ during the installation.
 
 #### Setup Cacti database
 
-1. Login to MySQL/MariaDB as root to create Cacti database
+Connect using the database administrator's authentication method:
 
-   ```console
-   # mysql -u root -p
-   MariaDB [(none)]> create database if not exists cacti;
-   Query OK, 1 row affected (0.00 sec)
-   ```
+```console
+mysql -u root -p
+```
 
-2. Import Cacti database from SQL file
+Create a new database and account. Replace the username and password below,
+and use those same values in Cacti's configuration. Do not apply this
+fresh-install procedure to an existing Cacti database.
 
-   ```sql
-   MariaDB [(none)]> use cacti;
-   Database changed
-   MariaDB [(cacti)]> source /var/www/html/cacti/cacti.sql
-   ```
+```sql
+CREATE DATABASE cacti CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'your_cacti_username'@'localhost' IDENTIFIED BY 'your_cacti_password';
+GRANT ALL PRIVILEGES ON cacti.* TO 'your_cacti_username'@'localhost';
+GRANT SELECT ON mysql.time_zone_name TO 'your_cacti_username'@'localhost';
+EXIT;
+```
 
-3. Grant Cacti username access to Cacti database. Replace `your_cacti_username`
-   and `your_cacti_password` with your own details.
-
-   ```sql
-   MariaDB [(none)]> GRANT ALL PRIVILEGES ON cacti.* TO 'your_cacti_username'@'localhost' IDENTIFIED BY 'your_cacti_password';
-   Query OK, 0 rows affected (0.00 sec)
-   ```
-
-4. Grant cacti username to MySQL timezone table
-
-   ```sql
-   MariaDB [(none)]> GRANT SELECT ON mysql.time_zone_name TO 'cacti'@'localhost';
-   Query OK, 0 rows affected (0.00 sec)
-   MariaDB [(none)]> FLUSH PRIVILEGES;
-   Query OK, 0 rows affected (0.00 sec)
-   ```
-
-5. Save the Database Charset and Collation
-
-   ```sql
-   MariaDB [(none)]> ALTER DATABASE cacti CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-   MariaDB [(none)]> FLUSH PRIVILEGES;
-   ```
+The schema import occurs below, after the Cacti archive has been extracted.
 
 ### Common PHP packages
 
@@ -345,7 +256,7 @@ Note: **php-fpm** is only required if your Web Server is Nginx
 
 2. Edit `/etc/php-fpm.d/www.conf`
 
-   Find `listen = 127.0.0.1:9000` and add the following line below
+   Replace the existing `listen` setting; do not leave two active settings:
 
    ```console
    listen = /var/run/php-fpm/php-fpm.sock
@@ -386,10 +297,11 @@ SNMP is used to query most devices for information.
 
 ```console
 yum install -y net-snmp net-snmp-utils
-echo "rocommunity public" > /etc/snmp/snmpd.conf
-systemctl enable snmpd
-systemctl start snmpd
 ```
+
+Install and enable `snmpd` only if this host also needs to expose an SNMP
+agent. Configure credentials and an appropriate access view before starting
+it; polling remote devices does not require a local SNMP agent.
 
 ### Cacti
 
@@ -401,15 +313,22 @@ configure the basics for Cacti.
 
    ```console
    cd /tmp
-   wget https://www.cacti.net/downloads/cacti-1.y.z.tar.gz
-   tar -zxvf cacti-1.y.z.tar.gz
-   mv -v cacti-1.y.z /usr/share/nginx/html/cacti
+   wget https://www.cacti.net/downloads/cacti-1.2.31.tar.gz
+   tar -zxvf cacti-1.2.31.tar.gz
+   mv -v cacti-1.2.31 /usr/share/nginx/html/cacti
+   ```
+
+   Import the schema into the new `cacti` database created above. Do not run
+   this fresh-install import against an existing Cacti database.
+
+   ```console
+   mysql -u root -p cacti < /usr/share/nginx/html/cacti/cacti.sql
    ```
 
 2. Edit the config.php file
 
    ```console
-   mv -v /usr/share/nginx/html/cacti/include/config.php-dist /usr/share/nginx/html/cacti/include/config.php
+   cp /usr/share/nginx/html/cacti/include/config.php.dist /usr/share/nginx/html/cacti/include/config.php
    ```
 
 3. Update database\_ fields with your own details. This section only applies to
@@ -417,7 +336,7 @@ configure the basics for Cacti.
 
    ```php
    $database_type     = 'mysql';
-   $database_default  = 'your_cacti_database';
+   $database_default  = 'cacti';
    $database_hostname = 'localhost';
    $database_username = 'your_cacti_username';
    $database_password = 'your_cacti_password';
@@ -428,42 +347,66 @@ configure the basics for Cacti.
    $database_ssl_ca   = '';
    ```
 
-4. Set your cookie domain to match your web site domain name
+4. Keep the URL path consistent with the Nginx `/cacti/` location:
+
+   ```php
+   $url_path = '/cacti/';
+   ```
+
+   Keep code owned by the administrator. Allow the web/poller account to read
+   the configuration and write only the runtime directories:
 
    ```console
-   $cacti_cookie_domain = 'cacti.yourdomain.com';
+   chown root:nginx /usr/share/nginx/html/cacti/include/config.php
+   chmod 640 /usr/share/nginx/html/cacti/include/config.php
+   chown -R nginx:nginx /usr/share/nginx/html/cacti/rra /usr/share/nginx/html/cacti/log /usr/share/nginx/html/cacti/cache
+   chmod -R u+rwX,go-rwx /usr/share/nginx/html/cacti/rra /usr/share/nginx/html/cacti/log /usr/share/nginx/html/cacti/cache
    ```
+
+   The installer can additionally request temporary write access to its
+   `resource` query directories, `scripts`, and the CSRF-secret location.
+   Grant only the requested access during installation/package import and
+   remove it afterwards. Keep SELinux permissions in mind as well.
+   Restrict installer access to the administrator and use HTTPS or a protected
+   local connection before entering credentials. Complete the web installer
+   before starting scheduled polling.
 
 5. Create your cron task file or systemd units file
 
-   Starting with Cacti 1.2.16, you have the option to use either the legacy
-   Crontab entry, or an optional cactid units file and server to run your Cacti
-   pollers.
+   Choose either cron or the daemon, not both. Cacti 1.2.16 and later include
+   an optional `cactid.service` for running the polling daemon. Match the
+   schedule to the configured **Cron/Daemon Interval** in Settings > Poller;
+   this can differ from the shorter data-source polling interval.
 
    For Crontab use, follow the instructions below:
 
-   Create and edit `/etc/cron.d/cacti` file. Make sure to setup the correct path
-   to poller.php
+   Create `/etc/cron.d/cacti` as root with mode `644`. Use the installation
+   path and PHP CLI binary appropriate to this host.
 
    ```console
-   */5 * * * * nginx php /var/www/html/cacti/poller.php &>/dev/null
+   */5 * * * * nginx /usr/bin/php /usr/share/nginx/html/cacti/poller.php >/dev/null 2>&1
    ```
 
    For systemd unit's file install, you will need to modify the included units
    file to following your install location and desired user and group's to run
    the Cacti poller as. To complete the task, follow the procedure below:
 
-   ```console
-   vim /var/www/html/cacti/service/cactid.service (edit the path)
-   touch /etc/sysconfig/cactid
-   cp -p /var/www/html/cacti/service/cactid.service /etc/systemd/system
-   systemctl enable cactid
-   systemctl start cactid
-   systemctl status cactid
-   ```
+   In that service, use `User=nginx`, `Group=nginx` and
+   `ExecStart=/usr/bin/php /usr/share/nginx/html/cacti/cactid.php`. The
+   supplied service defaults to the Apache account and `/var/www/html/cacti`;
+   Nginx installations must change both. The daemon manages local polling;
+   it does not by itself provide high availability.
 
-   The systemd units file makes managing a highly available Cacti setup a bit
-   more convenient.
+   ```console
+   cp /usr/share/nginx/html/cacti/service/cactid.service /etc/systemd/system/cactid.service
+   vi /etc/systemd/system/cactid.service
+   install -d -m 755 /etc/sysconfig
+   touch /etc/sysconfig/cactid
+   systemctl daemon-reload
+   systemctl enable cactid.service
+   systemctl start cactid.service
+   systemctl status cactid.service
+   ```
 
 #### Spine
 
@@ -481,23 +424,19 @@ configure the basics for Cacti.
 
    ```console
    cd /tmp
-   wget https://www.cacti.net/downloads/spine/cacti-spine-1.y.z.tar.gz
-   tar -zxvf cacti-spine-1.y.z.tar.gz
-   cd cacti-spine-1.y.z
+   wget https://www.cacti.net/downloads/spine/cacti-spine-1.2.31.tar.gz
+   tar -zxvf cacti-spine-1.2.31.tar.gz
+   cd cacti-spine-1.2.31
    ```
 
-3. Run the configure script and compile spine.
+3. This example uses the corresponding Spine 1.2.31 release. Prepare its
+   build configuration, then configure and compile it.
 
    ```console
-   # ./configure
-   # make &  make install
-   config/install-sh -c -d '/usr/local/spine/bin'
-   /bin/sh ./libtool   --mode=install /usr/bin/install -c spine '/usr/local/spine/bin'
-   libtool: install: /usr/bin/install -c spine /usr/local/spine/bin/spine
-   config/install-sh -c -d '/usr/local/spine/etc'
-   /usr/bin/install -c -m 644 spine.conf.dist '/usr/local/spine/etc'
-   config/install-sh -c -d '/usr/local/spine/share/man/man1'
-   /usr/bin/install -c -m 644 spine.1 '/usr/local/spine/share/man/man1'
+   ./bootstrap
+   ./configure
+   make
+   make install
    ```
 
 4. Edit spine.conf
@@ -513,7 +452,7 @@ configure the basics for Cacti.
 
    ```console
    DB_Host       localhost
-   DB_Database   your_cacti_database
+   DB_Database   cacti
    DB_User       your_cacti_username
    DB_Pass       your_cacti_password
    DB_Port       3306
@@ -525,30 +464,19 @@ configure the basics for Cacti.
 
 ### Security Enhanced Linux (SELinux)
 
-If you are having issues to access the web page, disable SELinux temporarily to
-prove that the issues come from the SELinux policy. It is NOT recommended to
-disable SELinux permanently.
-
-[CentOS](https:////wiki.centos.org/es/HowTos/SELinux) has a lot of documentation
-on how to make your SELinux policy right.
-
-Check SELinux status
+Keep SELinux enforcing. Inspect denials and file contexts rather than
+assuming a Unix ownership change is sufficient:
 
 ```console
 getenforce
+ls -Zd /usr/share/nginx/html/cacti /usr/share/nginx/html/cacti/rra
+ausearch -m AVC -ts recent
 ```
 
-Disable SELinux temporarily
-
-```console
-setenforce 0
-```
-
-Enable SELinux back
-
-```console
-setenforce 1
-```
+Apply the file labels and narrowly scoped policy settings required by your
+web server, writable directories and database connection. Consult the
+[Red Hat SELinux documentation][selinux-guide]; disabling SELinux is not a
+required installation step.
 
 **Note:** If you installed Cacti out of `/usr/share/nginx/html` make sure you
 fix up all SELinux context and permissions.

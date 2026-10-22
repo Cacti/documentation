@@ -1,127 +1,166 @@
-# Installing Cacti 1.x  in Ubuntu/Debian LAMP stack
+# Installing Cacti 1.2 on Ubuntu or Debian with Apache
 
-## Installing the required packages needed for the LAMP stack
+This is a source-install example for Cacti 1.2.31, not a tested distribution
+matrix. Use a maintained distribution and check its PHP version against
+[Requirements](Requirements.md) before
+installing packages. Run the administrative commands below as root. The
+example uses `/var/www/html/cacti` and the default Debian/Ubuntu web account,
+`www-data`; adjust both if your web-server setup differs.
+
+## Install the required packages
+
+The unversioned PHP package names select the distribution's configured PHP
+version. Do not mix extensions from different PHP versions.
 
 ```console
 apt-get update
-apt-get install -y apache2 rrdtool mariadb-server snmp snmpd php8.0 php8.0-mysql php8.0-snmp php8.0-xml php8.0-mbstring php8.0-json php8.0-gd php8.0-gmp php8.0-zip php8.0-ldap php8.0-mbstring
+apt-get install -y apache2 libapache2-mod-php mariadb-server rrdtool snmp git cron \
+  php-cli php-mysql php-snmp php-xml php-mbstring php-gd php-gmp php-zip php-ldap php-intl
+systemctl enable --now apache2 mariadb cron
 ```
 
-### A special note for systems using PHP-FPM
+If using PHP-FPM instead of the Apache PHP module, configure Apache's FPM
+integration and use the installed FPM pool's account. FPM service names are
+versioned on Debian/Ubuntu; inspect them with
+`systemctl list-unit-files 'php*-fpm.service'` and restart the actual unit after
+configuration changes. Do not assume a service named `php-fpm` exists.
 
- Prior to starting the setup process of Cacti you should restart the PHP-FPM
- Daemon to rebuild the Cache or you may received a HTTP 500 Error
+## Download the Cacti source
+
+The release tag below fixes the version used by this example. The `1.2.x` branch
+can contain changes made after the release.
 
 ```console
-systemctl restart php-fpm
+git clone --branch release/1.2.31 --depth 1 https://github.com/Cacti/cacti.git cacti
+mv cacti /var/www/html/cacti
 ```
 
-### Downloading the Cacti software
+Do not overwrite an existing installation with these fresh-install commands.
 
-Once the OS packages are installed, you will need to download the Cacti files
-you can do this by using the git command
+## Create the database
 
-```console
-git clone -b 1.2.x  https://github.com/Cacti/cacti.git
-Cloning into 'cacti'...
-remote: Enumerating objects: 81, done.
-remote: Counting objects: 100% (81/81), done.
-remote: Compressing objects: 100% (55/55), done.
-remote: Total 59936 (delta 40), reused 51 (delta 26), pack-reused 59855&
-Receiving objects: 100% (59936/59936), 76.33 MiB | 1.81 MiB/s, done.
-Resolving deltas: 100% (43598/43598), done.
-```
-
-After cloning the Cacti repository, move the files into the /var/www/html
-directory
-
-```console
-mv cacti /var/www/html
-```
-
-#### Database Creation
-
-Next we will create a database for the cacti installation to use
+Choose a unique database password and replace the example placeholder in both
+the SQL and `include/config.php`. Connect using your database administrator's
+authentication method; the example below prompts for a password.
 
 ```console
 mysql -u root -p
-CREATE DATABASE cacti DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
-CREATE USER 'cactiuser'@'localhost' IDENTIFIED BY 'cactiuser';
-GRANT ALL ON cacti.* TO 'cactiuser'@'localhost';
+```
+
+```sql
+CREATE DATABASE cacti CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'cactiuser'@'localhost' IDENTIFIED BY 'replace-with-a-unique-password';
+GRANT ALL PRIVILEGES ON cacti.* TO 'cactiuser'@'localhost';
 GRANT SELECT ON mysql.time_zone_name TO 'cactiuser'@'localhost';
-ALTER DATABASE cacti CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-FLUSH PRIVILEGES;
+EXIT;
 ```
 
-You will now need to pre-populate the database used by cacti
+Load the system timezone data and the schema into this new database. A MariaDB
+installation may provide `mariadb-tzinfo-to-sql` as the timezone utility's name.
 
 ```console
-mysql -u root cacti < /var/www/html/cacti/cacti.sql
+mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
+mysql -u root -p cacti < /var/www/html/cacti/cacti.sql
 ```
 
-Next, you will need to create the config.php file in /var/www/html/cacti/include
+## Configure Cacti and filesystem permissions
+
+Copy the distributed configuration example; do not rename or delete it.
 
 ```console
-cd /var/www/html/cacti/include
-cp config.php.dist config.php
+cp /var/www/html/cacti/include/config.php.dist /var/www/html/cacti/include/config.php
 ```
 
-Now, edit the config.php file and make sure to change the database settings as
-needed to match the below entries (though it is highly recommended to use a
-customised username/password combination for security)
+Edit the database fields to match the account and database created above:
 
-```console
+```php
 $database_type     = 'mysql';
 $database_default  = 'cacti';
 $database_hostname = 'localhost';
 $database_username = 'cactiuser';
-$database_password = 'cactiuser';
+$database_password = 'replace-with-a-unique-password';
 $database_port     = '3306';
-$database_retries  = 5;
-$database_ssl      = false;
-$database_ssl_key  = '';
 ```
 
-### Create your cron task file or systemd units file
-
-Starting with Cacti 1.2.16, you have the option to use either the
-legacy Crontab entry, or an optional cactid units file and server
-to run your Cacti pollers.
-
-For Crontab use, follow the instructions below:
-
-Create and edit `/etc/cron.d/cacti` file.
-Make sure to setup the correct path to poller.php
+Keep application code owned by the administrator. The web and poller accounts
+must be able to read the configuration and write the runtime directories:
 
 ```console
-*/5 * * * * apache php /var/www/html/cacti/poller.php &>/dev/null
+chown root:www-data /var/www/html/cacti/include/config.php
+chmod 640 /var/www/html/cacti/include/config.php
+chown -R www-data:www-data /var/www/html/cacti/rra /var/www/html/cacti/log /var/www/html/cacti/cache
+chmod -R u+rwX,go-rwx /var/www/html/cacti/rra /var/www/html/cacti/log /var/www/html/cacti/cache
 ```
 
-For systemd unit's file install, you will need to modify the
-included units file to following your install location
-and desired user and group's to run the Cacti poller as.
-To complete the task, follow the procedure below:
+During installation or package import, the installer also checks write access
+to `resource/snmp_queries`, `resource/script_server`, `resource/script_queries`
+and `scripts`, and the location used to create the CSRF secret. Grant only the
+additional access requested by the installer and remove that temporary access
+afterwards. Do not make the entire application tree world-writable.
+
+Restrict installer access to the administrator. Configure HTTPS or use a
+protected local connection before entering credentials, then browse to
+`/cacti/` and complete the web installer before
+starting scheduled polling.
+
+## Schedule polling
+
+Choose either cron or `cactid.service`, not both. Complete the web installer
+before starting the selected scheduler. The example cron interval is five
+minutes; match the **Cron/Daemon Interval** in Settings > Poller. This is
+separate from the data-source polling interval, which can be shorter.
+
+### Cron
+
+Create `/etc/cron.d/cacti` as root, with mode `644`, and include this line:
 
 ```console
-vim /var/www/html/cacti/service/cactid.service (edit the path)
-touch /etc/sysconfig/cactid
-cp -p /var/www/html/cacti/service/cactid.service /etc/systemd/system
-systemctl enable cactid
-systemctl start cactid
-systemctl status cactid
+*/5 * * * * www-data /usr/bin/php /var/www/html/cacti/poller.php >/dev/null 2>&1
 ```
 
-The systemd units file makes managing a highly available Cacti
-setup a bit more convenient.
+This is a system cron file, so the username field is required. Use an absolute
+PHP CLI path and POSIX shell redirection; Debian cron uses `/bin/sh` by default.
+See [Debian crontab format][crontab-format].
 
-The system is now ready to finialise the steps by browsing to
-[http://serverip/cacti](http://serverip/cacti) to start the cacti initialization
-wizard.
+### systemd
+
+Copy the supplied service and edit the installed copy:
+
+```console
+cp /var/www/html/cacti/service/cactid.service /etc/systemd/system/cactid.service
+```
+
+Replace its existing `User`, `Group`, `EnvironmentFile` and `ExecStart` entries
+with the following, retaining the other service settings:
+
+```ini
+User=www-data
+Group=www-data
+EnvironmentFile=-/etc/default/cactid
+ExecStart=/usr/bin/php /var/www/html/cacti/cactid.php
+```
+
+The leading `-` makes the optional environment file unnecessary if you do not
+use one. After completing the installer, load and start the service:
+
+```console
+systemctl daemon-reload
+systemctl enable cactid.service
+systemctl start cactid.service
+systemctl status cactid.service
+```
+
+The service manages the local polling daemon; it does not by itself provide
+high availability. Verify the poller log and newly created graphs after
+starting the selected scheduler.
 
 ### Considerations when using Proxys in front of Cacti (Cacti 1.2.23+)
 
-For optimal security, only specify the HTTP headers that are set by your proxy
-software to prevent unauthorized access.
+A header allowlist does not authenticate the proxy. Enable forwarded client-IP
+headers only when requests pass through a trusted proxy that replaces those
+headers and untrusted clients cannot bypass it to access Cacti directly.
+Otherwise, leave forwarded-header processing disabled. Select only the headers
+that the trusted proxy actually supplies.
 These can be set by editing the following section of config.php
 
 ```ini
@@ -150,6 +189,8 @@ These can be set by editing the following section of config.php
  */
 $proxy_headers = null;
 ```
+
+[crontab-format]:<https://manpages.debian.org/bookworm/cron/crontab.5.en.html>
 
 ---
 Copyright (c) 2004-2026 The Cacti Group
