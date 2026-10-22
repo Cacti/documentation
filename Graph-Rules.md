@@ -6,6 +6,17 @@ Graph rules are used by the Cacti automation process after a device has been
 identified and a template has been applied the next step is graph creation.
 Graph rules are processed from top to bottom.
 
+These rules select indexed data-query graphs. Associated non-indexed graph
+templates have a separate automatic creation path controlled by **Enable
+Automatic Graph Creation**; they do not require a graph rule.
+
+Device identification and graph selection are separate steps. A vendor or
+[device template](Device-Templates.md) match does not prove that the device
+exposes every measurement in that template. Confirm SNMP access and the
+returned data-query rows before enabling a rule across a fleet. For queries
+with optional tables or components, select only the rows and graph types
+supported by the target devices.
+
 The graph rule matches the graph template by looking at the data fields
 chosen that are available in the data query for example below we are creating
 graphs for interface traffic the data query has several fields available to
@@ -13,6 +24,11 @@ match on.
 
 You can see how these rules would take place by clicking the show matching
 objects link.
+
+Use both **Show matching devices** and **Show matching objects** to review
+the scope. These previews show rule matches, not proof that each selected
+metric will poll successfully. Check the resulting graphs on representative
+devices as well.
 
 ![Automation Graph Rules](images/automation-graph-rules.png)
 

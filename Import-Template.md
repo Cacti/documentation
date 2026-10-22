@@ -7,6 +7,25 @@ different devices that can be shared with others. These template files can
 either be custom made or you could download them from the community on the cacti
 forums.
 
+## Template XML and signed packages
+
+The **Import Templates** screen described below accepts template XML. It does
+not install the signed `.xml.gz` packages bundled in `install/templates`.
+Select those packages in the installer, or use `cli/import_package.php` on
+the main collector for an existing installation. Run the CLI importer with
+PHP from the Cacti installation and consult its `--help` output for options.
+Its `--filename` option selects the signed package. The `--preview` option
+previews template changes, but is not a strictly read-only audit in Cacti
+1.2.31: import compatibility repair can update existing system data-input
+metadata even during a preview.
+
+Packages include scripts and query resources as well as template definitions.
+An ordinary XML import may require installing those resource files separately
+according to the template author's instructions. Check the collection method
+and dependencies before choosing a template; not all templates use SNMP.
+
+## Import template XML
+
 Once you have downloaded the graph/device template you are looking for you will
 need to import the template into the cacti system. To import a device/graph
 template go to `Console > Import/Export > Import Templates` you will now see

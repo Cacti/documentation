@@ -143,11 +143,14 @@ if nothing currently exists.
 
 ### A Word About SNMP
 
-The SNMP version that you choose can have a great effect on how SNMP works for
-you in Cacti. Version 1 should be used for everything unless you have reason to
-choose otherwise. If you plan on utilizing (and your device supports)
-high-speed (64-bit) counters, you must select version 2. Starting with Cacti
-0.8.7, version 3 is fully implemented.
+Choose an SNMP version supported by the device and configure matching
+credentials in Cacti. Use SNMPv3 with authentication and privacy when supported
+by the device and collector. SNMPv2c is also suitable for 64-bit interface
+counters, but community-based access does not encrypt the requests. SNMPv1
+cannot retrieve Counter64 objects; reserve it for agents that require it.
+For high-speed interfaces, select a 64-bit traffic graph and confirm that the
+device exposes the corresponding counters. Selecting SNMPv2c or SNMPv3 alone
+does not change an existing graph from 32-bit to 64-bit counters.
 
 The way in which Cacti retrieves SNMP information from a host has an effect on
 which SNMP-related options are supported. Currently there are three types of
@@ -157,15 +160,22 @@ SNMP retrieval methods in Cacti and are outlined below.
 
 | Type          | Description              | Supported Options   | Where Used |
 |---------------|--------------------------|---------------------|------------|
-| External SNMP | Calls the net-snmp snmpwalk and snmpget binaries that are installed on your system. | All SNMP options | Web interface and PHP poller |
-| Internal SNMP | Uses PHP's SNMP functions which are linked against `net-snmp` at compile time. | Version 1 Only | Web interface and PHP poller |
-| Spine SNMP    | Links directly against `net-snmp` and directly uses the SNMP APIs. | All SNMP options | Spine Poller |
+| External SNMP | Calls the installed Net-SNMP command-line tools. | SNMPv1, v2c and v3, subject to the installed tools | Web interface and PHP poller |
+| Internal SNMP | Uses PHP's SNMP extension, linked against Net-SNMP. | SNMPv1 and v2c in Cacti 1.2.31 | Web interface and PHP poller |
+| Spine SNMP | Links against Net-SNMP and uses its APIs directly. | SNMPv1, v2c and v3, subject to the linked library | Spine poller |
+
+In Cacti 1.2.31, the web interface and PHP poller use external tools for
+SNMPv3. Backend selection can change in later maintenance versions. Available
+authentication and privacy protocols depend on the installed Net-SNMP build
+and collector. Check the protocol choices on the actual installation rather
+than assuming every build supports every option.
 
 ### SNMP V3 Options Explained
 
-SNMP supports authentication and encryption features when using SNMP protocol
-version 3 known as **View-Based Access Control Model (VACM)**. This requires,
-that the target device in question supports and is configured for SNMP V3 use.
+SNMPv3 can authenticate requests and encrypt their contents. The agent's
+**View-Based Access Control Model (VACM)** configuration controls which objects
+the user can access. The target device must support and be configured for
+SNMPv3 with credentials and access permissions matching the Cacti settings.
 In general, configuration of V3 options is target type dependent. The following
 is cited from `man snmpd.conf` concerning user definitions
 
