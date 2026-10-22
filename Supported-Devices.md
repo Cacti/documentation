@@ -172,12 +172,9 @@ defined in the [shipped interface query][interfaces].
 Use the [release notes][release]
 to identify the release; the moving maintenance branch can change after it.
 
-[installer]:
-  <https://github.com/Cacti/cacti/blob/1e8eaca26b84b128c39ce8cc8ece42d7ff76aac1/install/functions.php#L464>
-[packages]:
-  <https://github.com/Cacti/cacti/tree/1e8eaca26b84b128c39ce8cc8ece42d7ff76aac1/install/templates>
-[interfaces]:
-  <https://github.com/Cacti/cacti/blob/1e8eaca26b84b128c39ce8cc8ece42d7ff76aac1/resource/snmp_queries/interface.xml>
+[installer]:<https://github.com/Cacti/cacti/blob/1e8eaca26b84b128c39ce8cc8ece42d7ff76aac1/install/functions.php#L464>
+[packages]:<https://github.com/Cacti/cacti/tree/1e8eaca26b84b128c39ce8cc8ece42d7ff76aac1/install/templates>
+[interfaces]:<https://github.com/Cacti/cacti/blob/1e8eaca26b84b128c39ce8cc8ece42d7ff76aac1/resource/snmp_queries/interface.xml>
 [release]: <https://github.com/Cacti/cacti/releases/tag/release/1.2.31>
 
 ---
