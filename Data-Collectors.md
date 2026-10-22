@@ -21,37 +21,28 @@ unavailable due to a WAN outage for example, the data for the **Devices**
 it manages will be cached locally until such time as the
 **Main Data Collector** is reachable again.
 
-Once the **Main Data Collector** becomes reachable, the **Remote Data Collector**
-will flush it cache back to the **Main Data Collector** and the system
-will normalize.  Therefore, this is generally considered to be a more
-Highly Available (HA) design.
+Once the **Main Data Collector** becomes reachable, recovery can transfer
+cached results back to it. Recovery depends on the remote collector retaining
+its local data and on a working connection to the primary database. Monitor
+outages, local capacity and recovery errors; buffering does not guarantee
+lossless collection through every failure.
 
-A good Enterprise Architecture for Cacti would include three **Main Data Collectors**
-which cactid systemd service was managed by keepalived, using GlusterFS as
-fully replicated File system for the Web Server, the logs, and the RRDfiles
-using MariaDB Galera as the fully fault tolerant database server.
+Remote collection is not automatic failover of the primary server. A highly
+available primary deployment needs separately designed and tested database,
+RRD storage and scheduler coordination. Do not run multiple primary pollers
+against shared data on the assumption that installing cactid provides
+cross-server fencing.
 
-Then, either using keepalived to a load balancer, you could load balance
-the connections across all three **Main Data Collectors**, using the
-MariaDB Galera database to maintain login session data.  There are many
-good articles on setting up and using MariaDB Galera along with HAProxy
-or load balancers from Citrix and others to direct read and write traffic
-to the correct Galera instance server.  The bottom line is that Cacti
-provides the opportunity to have a Highly Available (HA) setup today.
+Multiple **Data Collectors** use the built-in **Boost** module for buffered
+RRD updates. Cacti 1.2.31 enables Boost when multiple collectors are configured.
 
-That HA setup will not be covered in this chapter, but may be included
-at a later date.
-
-When using multiple **Data Collectors**, Cacti requires the use of the
-`boost` module, which is now included in the main Cacti package.  Therefore if
-you are planning on deploying multiple **Data Collectors**, you should become
-familiar with its use and why it is critical to a HA design.
-
-In order for a **Remote Data Collector** to work with a **Main Data Collector**
-the **Remote Data Collector** must be able to talk to the **Main Data Collector**
-over both https and the MySQL protocol in a bidirectional fashion.  Therefore,
-there are only two ports that are required to be open in order to fully
-leverage the multiple **Data Collector** architecture in Cacti.
+Remote collectors connect to the primary database, and the primary connects
+to each remote database for synchronization. Collector operations also use
+web requests to the configured collector hostnames. Configure reachable
+addresses, the actual database and web ports, and restricted firewall rules
+for these flows. Use HTTPS with a valid certificate and database TLS or a
+protected network connection. Device polling protocols require their own
+network access; there is no universal two-port firewall rule for a deployment.
 
 ## Data Collector User Interface
 
@@ -84,48 +75,34 @@ by the **Remote Data Collectors**.
 When editing the **Remote Data Collector** in the images below, you can see that
 it shares many of the settings of the **Main Data Collector** with the addition
 of a `TimeZone` setting and MySQL/MariaDB credentials and a `Test Connection`
-button.  Generally, these setting are only use during the initial setup
-of Cacti, and afterwards for diagnostics only.
+button. These saved credentials are used for ongoing synchronization from the
+primary to the remote database as well as for the connection test.
 
 ![Data Collectors Edit Remote](images/data-collectors-edit-remote1.png)
 
 ![Data Collectors Edit Remote Connection Test](images/data-collectors-edit-remote2.png)
 
-## Setup Main Data Collector to accept connections Remotes
+## Set up remote collector connections
 
-We will need to make some config changes to the MySQL configuration to allow
-the **Remote Data Collector** to talk to the **Main Data Collector**.
+Follow [Remote Poller Setup](How-To-Setup-Remote-Pollers.md) for database
+accounts, connection directions, Cacti and Spine configuration, and the
+installer-assigned poller ID. Keep each collector's local database credentials
+separate from its connection to the primary and the primary's reverse
+synchronization credentials. Use matching account names and unique secrets;
+do not copy a commented configuration block as an active setup.
 
-```console
-mysql -u root mysql -e "GRANT ALL ON cacti.* TO cactidb@<ip of remote poller host>  IDENTIFIED BY 'password';"
-mysql -u root mysql -e "GRANT SELECT ON mysql.time_zone_name TO cacti@<ip of remote poller host> IDENTIFIED BY 'password';"
-```
-
-Next setup the **Remote Data Collectors** config.php located in
-`<path_cacti>/include/config.php` with the remote database details and credentials.
-Generally, you will not have to do this as part of the direct maintenance of the
-**Remote Data Collector**, the **Remote Data Collector** install process will force
-you to take these steps to complete the install.  However, it's provided here for
-reference so that you understand the process.
-
-```console
-#$rdatabase_type     = 'mysql';
-#$rdatabase_default  = 'cacti';
-#$rdatabase_hostname = 'localhost'; <<< IP/Hostname of main server
-#$rdatabase_username = 'cactiuser';
-#$rdatabase_password = 'cactiuser';
-#$rdatabase_port     = '3306';
-#$rdatabase_retries  = 5;
-#$rdatabase_ssl      = false;
-#$rdatabase_ssl_key  = '';
-#$rdatabase_ssl_cert = '';
-#$rdatabase_ssl_ca   = '';
-```
-
-You will now need to install Cacti on the remote server selecting the
+Install the same Cacti version on the remote server, selecting the
 **New Remote Poller** install option as shown below.
 
 ![Remote Data Collector Setup](images/data-collectors-remote-setup.png)
 
+Source: Cacti 1.2.31 [remote database synchronization][sync-source],
+[recovery processing][recovery-source] and [poller startup][poller-source].
+
+[sync-source]:<https://github.com/Cacti/cacti/blob/1e8eaca26b84b128c39ce8cc8ece42d7ff76aac1/lib/poller.php>
+[recovery-source]:<https://github.com/Cacti/cacti/blob/1e8eaca26b84b128c39ce8cc8ece42d7ff76aac1/poller_recovery.php>
+[poller-source]:<https://github.com/Cacti/cacti/blob/1e8eaca26b84b128c39ce8cc8ece42d7ff76aac1/poller.php>
+
 ---
+
 Copyright (c) 2004-2026 The Cacti Group
