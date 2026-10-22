@@ -174,6 +174,8 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    4.5. [Color](Color-Templates.md)
 
+   4.6. [Supported Devices in Cacti 1.2](Supported-Devices.md)
+
 5. Automation
 
    5.1. [Networks](Automation-Networks.md)

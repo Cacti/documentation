@@ -1,5 +1,8 @@
 # Device Templates
 
+See [Supported Devices in Cacti 1.2](Supported-Devices.md) for the bundled
+package inventory, generic SNMP coverage and device compatibility limits.
+
 **Device Templates** are Cacti objects that allows you to define classes of
 **Devices** that includes from one to many **Graph Templates**, **Data Queries**
 and other **Plugin** related object types.
