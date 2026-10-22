@@ -137,11 +137,13 @@ create graphs for measurements the device actually exposes. Follow
 workflow. Importing a template is separate from identifying a device or
 creating all of its possible graphs.
 
-For automatic selection and creation, configure
-[device rules](Device-Rules.md) and [graph rules](Graph-Rules.md) deliberately.
-A template name alone does not prove that a particular device implements all
-of its queries. Verify the selected rows, units and resulting graphs before
-using a rule across a fleet.
+For automatic device-template selection, configure
+[device rules](Device-Rules.md). Indexed query graphs use
+[graph rules](Graph-Rules.md) or manual selection. In Cacti 1.2.31, adding an
+associated non-indexed graph template can also create its graph when **Enable
+Automatic Graph Creation** is enabled, without a graph rule. A template name
+alone does not prove that a device implements all of its measurements. Verify
+the selected rows, units and resulting graphs before deploying across a fleet.
 
 ## Devices without a dedicated package
 
