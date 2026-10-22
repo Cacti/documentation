@@ -14,8 +14,10 @@ not install the signed `.xml.gz` packages bundled in `install/templates`.
 Select those packages in the installer, or use `cli/import_package.php` on
 the main collector for an existing installation. Run the CLI importer with
 PHP from the Cacti installation and consult its `--help` output for options.
-Its `--filename` option selects the signed package, and `--preview` previews
-the import without applying it.
+Its `--filename` option selects the signed package. The `--preview` option
+previews template changes, but is not a strictly read-only audit in Cacti
+1.2.31: import compatibility repair can update existing system data-input
+metadata even during a preview.
 
 Packages include scripts and query resources as well as template definitions.
 An ordinary XML import may require installing those resource files separately

@@ -6,6 +6,10 @@ Graph rules are used by the Cacti automation process after a device has been
 identified and a template has been applied the next step is graph creation.
 Graph rules are processed from top to bottom.
 
+These rules select indexed data-query graphs. Associated non-indexed graph
+templates have a separate automatic creation path controlled by **Enable
+Automatic Graph Creation**; they do not require a graph rule.
+
 Device identification and graph selection are separate steps. A vendor or
 [device template](Device-Templates.md) match does not prove that the device
 exposes every measurement in that template. Confirm SNMP access and the

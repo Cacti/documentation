@@ -5,9 +5,12 @@
 and other **Plugin** related object types.
 
 **Device Templates** make a common set of **Graph Templates** and **Data
-Queries** available to devices of the same class. Assigning one does not
-create every associated graph. Create graphs manually or use configured
-[graph rules](Graph-Rules.md) to select discovered rows. Automation
+Queries** available to devices of the same class. In Cacti 1.2.31, adding an
+associated non-indexed graph template can create its graph when **Enable
+Automatic Graph Creation** is enabled. Indexed data-query graphs use
+configured [graph rules](Graph-Rules.md) or manual selection of query rows.
+Assigning a device template does not guarantee that every associated graph
+will be created or can collect data. Automation
 [device rules](Device-Rules.md) select which device template to assign.
 
 A device template's name does not establish support for every model or metric

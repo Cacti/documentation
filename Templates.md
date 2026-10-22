@@ -50,9 +50,11 @@ agent exposes. A generic SNMP template can provide interface monitoring for
 devices without a dedicated vendor template.
 
 Assigning a **Device Template** makes its **Graph Templates** and **Data
-Queries** available to the **Device**. Create graphs manually or through
-configured [graph rules](Graph-Rules.md), selecting measurements the device
-actually exposes. Assignment alone does not create every possible graph.
+Queries** available to the **Device**. In Cacti 1.2.31, adding associated
+non-indexed graph templates can create their graphs when **Enable Automatic
+Graph Creation** is enabled. Indexed query graphs use configured
+[graph rules](Graph-Rules.md) or manual selection. Select measurements the
+device actually exposes; assignment does not guarantee every possible graph.
 
 There's no need to create all Templates on your own! Apart from the fact, that
 many common templates are provided out-of-the-box, there's a very simple
@@ -437,8 +439,9 @@ current and future versions of Cacti, you will be able to see all local
 modifications when performing a `Preview` prior to `Importing`.
 
 In the image below, you can see the output of a `Preview` of the Cisco WLC 5520
-**Device Template**. When Previewing, no changes are actually made to your Cacti
-system.
+**Device Template**. Preview displays the requested changes before applying
+the templates. In Cacti 1.2.31, compatibility repair may still update system
+data-input metadata during preview; it is not a strictly read-only audit.
 
 ![Import Template Preview](images/import-template-preview.png)
 

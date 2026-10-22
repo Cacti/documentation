@@ -1,10 +1,9 @@
 # Apache Template Config
 
-The Apache http webserver template allows you to monitor your local Cacti
-server's Apache server for performance KPI's
-
-This template leverages the mod_status module in apache in order to pull the kpi
-data to feed into the script
+The Apache webserver template collects server statistics over HTTP using
+Apache's `mod_status` module. These examples configure local access to the
+machine-readable `/server-status?auto` endpoint. See the
+[Apache mod_status documentation][mod-status] for the available statistics.
 
 ![apache template view](images/apache-template-preview.png)
 
@@ -26,31 +25,34 @@ ExtendedStatus On
 
 ## Debian Specific Configuration
 
-Enable the apcache2 `status` module:
+Configure the Apache `status` module:
 
 Place the below config into a new file (eg, 80-server-status.conf) within
 `/etc/apache2/conf-available`
 
-```console
+```apache
 ExtendedStatus On
 
 <Location /server-status>
     SetHandler server-status
     Require local
-</Location
+</Location>
 ```
 
-Then use the following commands to enable the `stauts` module and new
-configuration **Note**: You must restart the apache ( systemctl restart apache2)
-for the config to take effect
+Run the following commands with administrator privileges to enable the module
+and configuration. Check the syntax, then restart Apache only if the check
+succeeds:
 
 ```bash
 a2enmod status
-a2enconf 80-server-status.conf
+a2enconf 80-server-status
+apache2ctl configtest && systemctl restart apache2
 ```
 
 **Note**: This configuration restricts the `/server-status` url to local access
 only via the `Require local` directive
+
+[mod-status]: <https://httpd.apache.org/docs/2.4/mod/mod_status.html>
 
 ---
 

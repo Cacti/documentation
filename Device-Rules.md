@@ -10,15 +10,20 @@ Cisco router template for the device.
 
 ![Automation Device Rules](images/automation-device-templates.png)
 
-Below you will be able to choose a REGEX that will help identify the device
-the REGEX can be in any Perl supported format.  You can select either to
-match the system description (`sysDescr`), which commonly describes the
+The matching fields are evaluated through the database's `REGEXP` and
+substring matching in Cacti 1.2.31, not a Perl regular-expression engine.
+You can match the system description (`sysDescr`), which commonly describes the
 platform and software, or the system name (`sysName`), which is the agent's
 configured name.
 
-An example regex for Cisco would be (Cisco Internetwork Operating System
-Software|IOS). Apply this example to the system description, not the system
-name. Check the strings actually returned by the device before using it.
+The criteria for returned, nonempty identification fields are combined with
+`AND`. Filling in multiple match fields narrows a rule; the fields are not
+alternative ways to match it.
+
+For a Cisco IOS agent, inspect the returned `sysDescr` and enter a distinctive
+substring such as `Cisco IOS` if it is present. Apply that match to the system
+description, not the system name. Avoid assuming that every device from a
+vendor returns the same description or supports the same measurements.
 
 Using this info automation would apply the appropriate device template you
 choose.  If you see below we match for a system that matches Linux once a

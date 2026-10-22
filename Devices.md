@@ -79,7 +79,8 @@ The device is considered UP even if the tcp ping returns closed
 When providing the SNMP credentials, Cacti currently supports the following versions:
 
 - **Version 1** - Rarely used any more.  Reserved for very old hardware
-- **Version 2** - Still very popular, and support 64 bit counters except on Windows
+- **Version 2** - SNMPv2c supports 64-bit counters when the device's agent
+  exposes them.
 - **Version 3** - Fully supported, including advanced settings such as SHA224+
   or AES192+ with SNMPv3.  Cacti automatically leverages the Net-SNMP binaries
   where needed, so there is no need to uninstall the php-snmp module.

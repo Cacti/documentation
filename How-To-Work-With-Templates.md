@@ -133,6 +133,11 @@ contains all existing **Graph Templates**. In the images, you will see that
 we are creating a **Device Template** for a NetApp Filer and adding some
 common Graph Templates and Data Queries from the Cacti built-in collection.
 
+This is a custom device-template example. Cacti 1.2.31 does not bundle a
+dedicated NetApp package. Reusing built-in graph templates does not establish
+NetApp-specific metric support; verify the objects the device exposes before
+adding graphs or queries to the template.
+
 ![Host Template Associate Graph Template](images/device-template-new-gt.png)
 
 and Add it:
