@@ -43,6 +43,15 @@ entered, click save on the bottom right corner. With the device created you will
 need to add graphs for the device by clicking **Create graphs for this device**
 on the top right hand corner.
 
+Choose a [device template](Device-Templates.md) for the device's exposed
+measurements. The [template overview](Templates.md) explains bundled examples
+and import choices. If no dedicated template is available, generic SNMP
+interface monitoring may still work. Vendor and template names do not
+guarantee support for every model, firmware version or metric. Check the
+device's SNMP agent and permitted view, then inspect its returned query rows
+before selecting graphs. For script-based templates, also check the script's
+dependencies and access requirements.
+
 ## Availability/Reachability Settings
 
 Cacti prefers to use the Simple Network Management Protocol (SNMP) to communicate

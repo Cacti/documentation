@@ -35,24 +35,30 @@ all **Graphs** that are created using this Template.
 
 The last type of classic Templates are the **Device Templates**. The purpose of
 **Device Templates** is to group all **Graph Templates** and **Data Queries**
-for a given **Device Type**. Example **Device Types** that you might find a
-**Device Template** for include:
+for a given **Device Type**. Examples of device templates in the packages
+bundled with Cacti 1.2.31 include:
 
 - Cisco Router
 - Net-SNMP Device
-- F5 Load Balancer
+- HPE iLO
 - Windows Device
-- Local Linux Device
-- ...
+- Local Linux Machine
 
-So you will make up a **Device Template** e.g. for a specific type of router,
-switch, host and the like. By assigning the correct **Device Template** to each
-new **Device**, you'll never forget to create all needed **Graphs**.
+A template identifies an intended device family, not every compatible model
+or firmware version. Its measurements depend on the objects the device's
+agent exposes. A generic SNMP template can provide interface monitoring for
+devices without a dedicated vendor template.
+
+Assigning a **Device Template** makes its **Graph Templates** and **Data
+Queries** available to the **Device**. Create graphs manually or through
+configured [graph rules](Graph-Rules.md), selecting measurements the device
+actually exposes. Assignment alone does not create every possible graph.
 
 There's no need to create all Templates on your own! Apart from the fact, that
 many common templates are provided out-of-the-box, there's a very simple
-mechanism to **Import Templates** and to **Export Templates** and more recently
-to **Import Packages**.
+mechanism to [import template XML](Import-Template.md) and to **Export
+Templates**. Signed packages use a separate package importer, which also
+installs their embedded scripts and query files.
 
 More recent additions to the Cacti family of Templates are the **Aggregate
 Template** and **Color Template**. The **Aggregate Template** allows you to
@@ -400,10 +406,12 @@ the original author, he/she may have provided a **Device Template** as well as
 part of this XML file. Note that after you **Import Templates**, you may also
 have to copy a Resource XML file to the appropriate &lt;path_cacti&gt;/resource
 directory, and a script to the &lt;path_cacti&gt;/scripts directory. However,
-also note that in the current version of Cacti, **Packages** are now importable
-as well. When you import a **Package** all of the required additional file
-changes will also be accommodated. We will discuss **Packages** later in the
-documentation.
+also note that Cacti 1.2 supports signed **Packages**, which include their
+additional resource files. Select bundled packages in the installer or use
+`cli/import_package.php` on the main collector. These signed `.xml.gz`
+packages are separate from the plain XML files accepted by the **Import
+Templates** screen. See [Template Import](Import-Template.md) for the
+distinction and package importer options.
 
 ![Import Templates](images/import-template.png)
 

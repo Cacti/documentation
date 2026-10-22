@@ -4,11 +4,16 @@
 **Devices** that includes from one to many **Graph Templates**, **Data Queries**
 and other **Plugin** related object types.
 
-The purpose of **Device Templates** is to simplify the **Automation** process by
-pre-defining the **Graphs** that should be created for every **Device** that is
-added to Cacti.  They work in conjunction with **Automation Templates** so that
-when Cacti discovers a **Network** it knows what **Graphs** to create for each
-**Device**.
+**Device Templates** make a common set of **Graph Templates** and **Data
+Queries** available to devices of the same class. Assigning one does not
+create every associated graph. Create graphs manually or use configured
+[graph rules](Graph-Rules.md) to select discovered rows. Automation
+[device rules](Device-Rules.md) select which device template to assign.
+
+A device template's name does not establish support for every model or metric
+from that vendor. Verify the device's SNMP access, returned query rows and
+individual measurements before creating graphs. See [Templates](Templates.md)
+for bundled examples and import choices.
 
 The **Device Templates** main screen looks like the image below:
 
