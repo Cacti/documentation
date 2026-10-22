@@ -64,12 +64,9 @@ files holding your certificate (`.crt`) and private key (`.key`).
 # Cacti: An RRDtool based graphing web application
 #
 
-# For security reasons, the Cacti web interface is accessible only to
-# localhost in the default configuration. If you want to allow other clients
-# to access your Cacti installation, change the httpd ACLs below.
-# For example:
-# On httpd 2.4, change "Require host localhost" to "Require all granted".
-# On httpd 2.2, change "Allow from localhost" to "Allow from all".
+# This example allows clients to reach the configured HTTPS site. Restrict
+# access to the administrator during installation using server ACLs or a
+# firewall, then review the permitted clients before normal operation.
 
 <VirtualHost *:443>
     LogLevel warn
@@ -340,10 +337,18 @@ configure the basics for Cacti.
    Grant only the requested access during installation/package import and
    remove it afterwards. Keep SELinux permissions in mind as well.
    Restrict installer access to the administrator and use HTTPS or a protected
-   local connection before entering credentials. Complete the web installer
-   before starting scheduled polling.
+   local connection before entering credentials. For a freshly imported
+   1.2.31 schema, sign in with application username `admin` and initial
+   password `admin`, then choose a unique administrator password when
+   prompted. These are separate from the database credentials. Complete the
+   web installer before starting scheduled polling or allowing general access.
 
 4. Create your cron task file or systemd units file
+
+   Before using the supplied `Type=forking` systemd unit, confirm that the PHP
+   CLI used by the unit provides `pcntl_fork`. For example,
+   `/usr/bin/php -r 'var_dump(function_exists("pcntl_fork"));'` should report
+   `bool(true)`. Otherwise use cron or install the appropriate PCNTL support.
 
    Choose either cron or the daemon, not both. Cacti 1.2.16 and later include
    an optional `cactid.service` for running the polling daemon. Match the

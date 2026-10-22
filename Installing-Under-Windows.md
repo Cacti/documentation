@@ -257,9 +257,12 @@ Verify Spine from that account before selecting it as the poller in Cacti.
 
    Adjust `$url_path` if Cacti is served at another URL path.
 
-2. Open the Cacti URL through HTTPS and complete the installer. Resolve its
-   dependency, database, path and permission checks. Complete the initial
-   administrator password change before allowing general access.
+2. Open the Cacti URL through HTTPS. For a freshly imported 1.2.31 schema,
+   sign in with application username `admin` and initial password `admin`,
+   then choose a unique administrator password when prompted. These are
+   separate from the database credentials. Complete the installer and resolve
+   its dependency, database, path and permission checks before allowing
+   general access.
 
 3. In **Console > Configuration > Settings > Paths**, verify the executable
    paths against your installation. For the example layout:

@@ -100,8 +100,11 @@ afterwards. Do not make the entire application tree world-writable.
 
 Restrict installer access to the administrator. Configure HTTPS or use a
 protected local connection before entering credentials, then browse to
-`/cacti/` and complete the web installer before
-starting scheduled polling.
+`/cacti/`. For a freshly imported 1.2.31 schema, sign in with application
+username `admin` and initial password `admin`, then choose a unique
+administrator password when prompted. These are separate from the database
+credentials. Complete the web installer before starting scheduled polling or
+allowing general access.
 
 ## Schedule polling
 
@@ -123,6 +126,11 @@ PHP CLI path and POSIX shell redirection; Debian cron uses `/bin/sh` by default.
 See [Debian crontab format][crontab-format].
 
 ### systemd
+
+The supplied unit uses `Type=forking`, so the selected PHP CLI must provide
+`pcntl_fork`. Check `/usr/bin/php -r 'var_dump(function_exists("pcntl_fork"));'`
+for `bool(true)` before using this example. If fork support is unavailable,
+use cron or install the appropriate PCNTL support for that PHP CLI.
 
 Copy the supplied service and edit the installed copy:
 
