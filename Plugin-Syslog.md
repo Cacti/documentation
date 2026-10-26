@@ -89,7 +89,7 @@ $template cacti_syslog,"INSERT INTO syslog_incoming(facility_id, priority_id,
 
 *.* >localhost,my_database,my_user,my_password;cacti_syslog
 
-for centos/rhel systems you will all need to install the rsyslog-mysql package
+for RHEL, Rocky Linux, or AlmaLinux systems you will all need to install the rsyslog-mysql package
 
 ```shell
 yum install rsyslog-mysql

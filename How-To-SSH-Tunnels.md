@@ -67,7 +67,8 @@ Option summary:
 
 ### Making the tunnel persistent (systemd)
 
-On systemd-based hosts (Ubuntu 16.04+, Debian 9+, most current distros),
+On systemd-based hosts covered by the
+[supported operating systems](Requirements.md#supported-operating-systems),
 `/etc/rc.local` is deprecated and disabled by default. Use a systemd service
 instead.
 

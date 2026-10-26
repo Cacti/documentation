@@ -124,6 +124,9 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 ### Cacti Installation
 
+Earlier [LAMP][previous-lamp] and [LEMP][previous-lemp] guide URLs point to
+the maintained Enterprise Linux instructions.
+
 1. [Requirements](Requirements.md)
 
 2. [General Installing Instructions](General-Installing-Instructions.md)
@@ -133,10 +136,11 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
    3.1. [Installation Under Enterprise Linux (RHEL/Rocky/AlmaLinux) - LAMP
    Stack][ref-10]
 
-   3.2. [Installation Under Enterprise Linux (RHEL/Rocky/AlmaLinux) - LEMP
-   Stack][ref-9]
+   3.2. [Rocky Linux 9 and 10 - nginx/LEMP][ref-9]
 
    3.3. [Installation Under Ubuntu/Debian - LAMP Stack][ref-8]
+
+   3.4. [Ubuntu Server 26.04 LTS and 26.10 - nginx/LEMP][ubuntu-lemp]
 
 4. [Installing Under Windows](Installing-Under-Windows.md)
 
@@ -457,6 +461,10 @@ This section will be for device template specific configuration requirements
 [ref-8]: Installing-Under-Ubuntu-Debian.md
 [ref-9]: Install-Under-Enterprise-Linux-LEMP.md
 [ref-10]: Install-Under-Enterprise-Linux-LAMP.md
+
+[previous-lamp]: Install-Under-CentOS_LAMP.md
+[previous-lemp]: Install-Under-CentOS_LEMP.md
+[ubuntu-lemp]: Installing-Under-Ubuntu-LEMP.md
 
 ---
 
