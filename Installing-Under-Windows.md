@@ -1,5 +1,8 @@
 # Installing Under Windows
 
+Use only the [supported operating systems][supported-os] and maintained
+dependencies compatible with this Cacti branch.
+
 These instructions describe a manual installation of Cacti 1.2.31 on Windows.
 Use the [requirements](Requirements.md) for your Cacti release and supported
 Windows builds of PHP, your database server and RRDtool. Community Windows
@@ -50,9 +53,9 @@ administrator; the poller does not normally need administrator privileges.
 
 ## Configure PHP
 
-Copy `php.ini-production` from the PHP distribution to `C:\php\php.ini`.
-Set the timezone for your installation and enable the required extensions.
-For current PHP Windows builds, an example configuration is:
+Copy `php.ini-production` from the PHP distribution to `C:\php\php.ini`. Set
+the timezone for your installation and enable the required extensions. For
+current PHP Windows builds, an example configuration is:
 
 ```ini
 extension_dir = "C:\php\ext"
@@ -111,7 +114,8 @@ Follow the [PHP IIS instructions][php-iis] and Microsoft's
 
 2. Create the Cacti site/application and a dedicated application pool. Match
    the pool architecture to PHP. In Handler Mappings, map `*.php` through
-   `FastCgiModule` to `C:\php\php-cgi.exe`, not `php.exe`. Use the corresponding
+      `FastCgiModule` to `C:\php\php-cgi.exe`, not `php.exe`. Use the
+   corresponding
    FastCGI application entry and allow script execution for the application.
    PHP 8 does not provide `php8isapi.dll`; do not configure an ISAPI filter.
 
@@ -145,36 +149,34 @@ use the appropriate PHP build.
 ## File permissions
 
 Identify the effective web identity and the scheduled-task account before
-setting ACLs. For IIS, this may be `IIS AppPool\Cacti` for a pool named `Cacti`,
-or another account selected by authentication and FastCGI impersonation.
-See Microsoft's [application-pool identity guidance][iis-identity]. Do not
-assume the account is always `IUSR`.
+setting ACLs. For IIS, this may be `IIS AppPool\Cacti` for a pool named
+`Cacti`, or another account selected by authentication and FastCGI
+impersonation. See Microsoft's [application-pool identity
+guidance][iis-identity]. Do not assume the account is always `IUSR`.
 
 Give the web and poller identities read access to Cacti's code and
-configuration, and read/execute access to PHP, RRDtool, SNMP and optional
-Spine programs and their dependencies. If PHP requires `cmd.exe` to launch
-a command, allow only the necessary read/execute access. Do not grant
-either identity write access to Windows system executables or to tool
-installation directories.
+configuration, and read/execute access to PHP, RRDtool, SNMP and optional Spine
+programs and their dependencies. If PHP requires `cmd.exe` to launch a command,
+allow only the necessary read/execute access. Do not grant either identity
+write access to Windows system executables or to tool installation directories.
 
 The poller needs Modify permission on `rra` and `log` and on the cache
-subdirectories it uses. The web identity also needs Modify permission on
-`log`, its configured temporary/session directories and the Cacti cache
-subdirectories used by features such as real-time graphs. Use the
-installer's permission checks to identify the required paths, including
-`cache/boost`, `cache/mibcache`, `cache/realtime` and `cache/spikekill`.
-Grant access only to the identities and paths that need it, accounting for
-inherited ACLs.
+subdirectories it uses. The web identity also needs Modify permission on `log`,
+its configured temporary/session directories and the Cacti cache subdirectories
+used by features such as real-time graphs. Use the installer's permission
+checks to identify the required paths, including `cache/boost`,
+`cache/mibcache`, `cache/realtime` and `cache/spikekill`. Grant access only to
+the identities and paths that need it, accounting for inherited ACLs.
 
 During installation or signed-package imports, Cacti also needs to write
-queries and scripts under `resource/snmp_queries`,
-`resource/script_server`, `resource/script_queries` and `scripts`. Grant
-temporary Modify access to the identity performing that operation, then
-remove it when finished. The installer also needs to initialize a nonempty
-CSRF secret, by default `include/vendor/csrf/csrf-secret.php`. Allow
-creation in its containing directory during setup, then retain read access
-to the generated secret and remove the temporary directory write
-permission. Do not create an empty placeholder secret.
+queries and scripts under `resource/snmp_queries`, `resource/script_server`,
+`resource/script_queries` and `scripts`. Grant temporary Modify access to the
+identity performing that operation, then remove it when finished. The installer
+also needs to initialize a nonempty CSRF secret, by default
+`include/vendor/csrf/csrf-secret.php`. Allow creation in its containing
+directory during setup, then retain read access to the generated secret and
+remove the temporary directory write permission. Do not create an empty
+placeholder secret.
 
 Edit `include/config.php` as an administrator. Keep it readable by the web and
 poller identities but not writable by them for ordinary operation. If a
@@ -226,9 +228,9 @@ current compiler/development dependencies. Do not replace or delete DLLs
 shipped with a binary distribution without checking that distribution's
 requirements. Avoid mixing incompatible Cygwin runtimes.
 
-For Spine, copy `spine.conf.dist` to `spine.conf` and set the connection details
-to match Cacti. Replace the password placeholder with the same application
-secret used above, not a sample password:
+For Spine, copy `spine.conf.dist` to `spine.conf` and set the connection
+details to match Cacti. Replace the password placeholder with the same
+application secret used above, not a sample password:
 
 ```ini
 DB_Host     127.0.0.1
@@ -271,14 +273,15 @@ Verify Spine from that account before selecting it as the poller in Cacti.
    | --- | --- |
    | PHP binary | `C:/php/php.exe` |
    | RRDtool | `C:/rrdtool/rrdtool.exe` |
-   | SNMP tools, if used | `C:/usr/bin/snmpget.exe`, `snmpwalk.exe`, `snmpbulkwalk.exe`, `snmpgetnext.exe` |
+      | SNMP tools, if used | `C:/usr/bin/snmpget.exe`, `snmpwalk.exe`, `snmpbulkwalk.exe`, `snmpgetnext.exe` |
    | Cacti log | `C:/inetpub/wwwroot/cacti/log/cacti.log` |
    | Spine, if used | `C:/spine/spine.exe` |
 
    Use the CLI PHP executable here, not the IIS FastCGI executable. Verify the
    separate Spine configuration path if selecting Spine.
 
-4. Create devices and graphs deliberately, or configure discovery and automation
+4. Create devices and graphs deliberately, or configure discovery and
+   automation
    rules for the intended network. Installing Cacti does not establish that
    every discovered device exposes all measurements in its selected template.
 
@@ -341,6 +344,8 @@ under the task account after changing PHP, paths, credentials or ACLs.
 [task-scheduler]:<https://learn.microsoft.com/en-us/windows/win32/taskschd/task-scheduler-start-page>
 [cacti-extensions]:<https://github.com/Cacti/cacti/blob/1e8eaca26b84b128c39ce8cc8ece42d7ff76aac1/lib/utility.php#L1923>
 [cacti-permissions]:<https://github.com/Cacti/cacti/blob/1e8eaca26b84b128c39ce8cc8ece42d7ff76aac1/lib/installer.php#L501>
+
+[supported-os]: Requirements.md#supported-operating-systems
 
 ---
 

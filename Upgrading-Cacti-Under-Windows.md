@@ -1,5 +1,8 @@
 # Upgrading Cacti under Windows
 
+Use only the [supported operating systems][supported-os] and maintained
+dependencies compatible with this Cacti branch.
+
 These instructions cover upgrading a source/archive installation to Cacti
 1.2.31. For a managed Windows installation, also follow its package or
 installer upgrade procedure; do not overwrite package-managed files with an
@@ -95,6 +98,8 @@ require upgrading Windows, PHP or the database.
 [dump]:<https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html>
 [robocopy]:<https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/robocopy>
 [download]:<https://github.com/Cacti/cacti/releases/tag/release/1.2.31>
+
+[supported-os]: Requirements.md#supported-operating-systems
 
 ---
 

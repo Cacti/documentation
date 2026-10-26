@@ -1,5 +1,11 @@
 # Installing Cacti 1.2 on Ubuntu or Debian with Apache
 
+For nginx with PHP-FPM on Ubuntu Server 26.04 LTS or 26.10, use the
+[Ubuntu LEMP guide](Installing-Under-Ubuntu-LEMP.md).
+
+Use only the [supported operating systems][supported-os] and maintained
+dependencies compatible with this Cacti branch.
+
 This is a source-install example for Cacti 1.2.31, not a tested distribution
 matrix. Use a maintained distribution and check its PHP version against
 [Requirements](Requirements.md) before
@@ -21,14 +27,14 @@ systemctl enable --now apache2 mariadb cron
 
 If using PHP-FPM instead of the Apache PHP module, configure Apache's FPM
 integration and use the installed FPM pool's account. FPM service names are
-versioned on Debian/Ubuntu; inspect them with
-`systemctl list-unit-files 'php*-fpm.service'` and restart the actual unit after
-configuration changes. Do not assume a service named `php-fpm` exists.
+versioned on Debian/Ubuntu; inspect them with `systemctl list-unit-files
+'php*-fpm.service'` and restart the actual unit after configuration changes. Do
+not assume a service named `php-fpm` exists.
 
 ## Download the Cacti source
 
-The release tag below fixes the version used by this example. The `1.2.x` branch
-can contain changes made after the release.
+The release tag below fixes the version used by this example. The `1.2.x`
+branch can contain changes made after the release.
 
 ```console
 git clone --branch release/1.2.31 --depth 1 https://github.com/Cacti/cacti.git cacti
@@ -56,7 +62,8 @@ EXIT;
 ```
 
 Load the system timezone data and the schema into this new database. A MariaDB
-installation may provide `mariadb-tzinfo-to-sql` as the timezone utility's name.
+installation may provide `mariadb-tzinfo-to-sql` as the timezone utility's
+name.
 
 ```console
 mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
@@ -122,15 +129,16 @@ Create `/etc/cron.d/cacti` as root, with mode `644`, and include this line:
 ```
 
 This is a system cron file, so the username field is required. Use an absolute
-PHP CLI path and POSIX shell redirection; Debian cron uses `/bin/sh` by default.
-See [Debian crontab format][crontab-format].
+PHP CLI path and POSIX shell redirection; Debian cron uses `/bin/sh` by
+default. See [Debian crontab format][crontab-format].
 
 ### systemd
 
 The supplied unit uses `Type=forking`, so the selected PHP CLI must provide
-`pcntl_fork`. Check `/usr/bin/php -r 'var_dump(function_exists("pcntl_fork"));'`
-for `bool(true)` before using this example. If fork support is unavailable,
-use cron or install the appropriate PCNTL support for that PHP CLI.
+`pcntl_fork`. Check `/usr/bin/php -r
+'var_dump(function_exists("pcntl_fork"));'` for `bool(true)` before using this
+example. If fork support is unavailable, use cron or install the appropriate
+PCNTL support for that PHP CLI.
 
 Copy the supplied service and edit the installed copy:
 
@@ -162,43 +170,21 @@ The service manages the local polling daemon; it does not by itself provide
 high availability. Verify the poller log and newly created graphs after
 starting the selected scheduler.
 
-### Considerations when using Proxys in front of Cacti (Cacti 1.2.23+)
+### Considerations when using Proxies in front of Cacti (Cacti 1.2.23+)
 
-A header allowlist does not authenticate the proxy. Enable forwarded client-IP
-headers only when requests pass through a trusted proxy that replaces those
-headers and untrusted clients cannot bypass it to access Cacti directly.
-Otherwise, leave forwarded-header processing disabled. Select only the headers
-that the trusted proxy actually supplies.
-These can be set by editing the following section of config.php
+A header allowlist does not authenticate a proxy. Trust forwarded client-IP
+headers only when a trusted proxy replaces those headers and untrusted clients
+cannot bypass it to reach Cacti directly. Leave forwarding disabled otherwise.
+In `include/config.php`, select only the headers your proxy sets. For a
+deployment using `X-Forwarded-For`, the setting is:
 
-```ini
- * Allow the use of Proxy IPs when searching for client
- * IP to be used
- *
- * This can be set to one of the following:
- *   - false: to use only REMOTE_ADDR
- *   - true: to use all allowed headers (not advised)
- *   - array of one or more the following:
- *'X-Forwarded-For',
- *'X-Client-IP',
- *'X-Real-IP',
- *'X-ProxyUser-Ip',
- *'CF-Connecting-IP',
- *'True-Client-IP',
- *'HTTP_X_FORWARDED',
- *'HTTP_X_FORWARDED_FOR',
- *'HTTP_X_CLUSTER_CLIENT_IP',
- *'HTTP_FORWARDED_FOR',
- *'HTTP_FORWARDED',
- *'HTTP_CLIENT_IP',
- *
- * NOTE: The following will always be checked:
- *'REMOTE_ADDR',
- */
-$proxy_headers = null;
+```php
+$proxy_headers = ['X-Forwarded-For'];
 ```
 
 [crontab-format]:<https://manpages.debian.org/bookworm/cron/crontab.5.en.html>
+[supported-os]: Requirements.md#supported-operating-systems
 
 ---
+
 Copyright (c) 2004-2026 The Cacti Group

@@ -1,5 +1,8 @@
 # Upgrading Cacti Under FreeBSD
 
+Use only the [supported operating systems][supported-os] and maintained
+dependencies compatible with this Cacti branch.
+
 These instructions cover upgrading to Cacti 1.2.31. Determine whether Cacti is
 maintained by `pkg`, by ports or from a source archive. Keep that installation
 method for the upgrade; do not overlay an archive onto package-managed files.
@@ -100,6 +103,8 @@ database upgrade.
 [dump]:<https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html>
 [packages]:<https://docs.freebsd.org/en/books/handbook/ports/#pkgng-upgrading>
 [ports]:<https://docs.freebsd.org/en/books/handbook/ports/#ports-upgrading>
+
+[supported-os]: Requirements.md#supported-operating-systems
 
 ---
 

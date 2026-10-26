@@ -89,7 +89,7 @@ $template cacti_syslog,"INSERT INTO syslog_incoming(facility_id, priority_id,
 
 *.* >localhost,my_database,my_user,my_password;cacti_syslog
 
-for centos/rhel systems you will all need to install the rsyslog-mysql package
+for RHEL, Rocky Linux, or AlmaLinux systems you will all need to install the rsyslog-mysql package
 
 ```shell
 yum install rsyslog-mysql
@@ -374,7 +374,7 @@ you can leverage the built in variable substitution to format the input to the s
 The Syslog plugin allows administrators to delete incoming messages
 so they are not stored in the DB.
 For example, if you are not interested in seeing Syslog messages
-everytime a user logs into a device you may add a rule to delete the message.
+every time a user logs into a device you may add a rule to delete the message.
 
 to do this click on the Syslog settings tab in the console then click removal rules
 

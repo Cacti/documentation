@@ -40,7 +40,7 @@ of their function.
 | [poller_bottom](Plugin-Hook-API-Ref.md#poller_bottom)                                     | [poller_command_args](Plugin-Hook-API-Ref.md#poller_command_args)                                 | [poller_exiting](Plugin-Hook-API-Ref.md#poller_exiting)                                           |
 | [poller_finishing](Plugin-Hook-API-Ref.md#poller_finishing)                               | [poller_output](Plugin-Hook-API-Ref.md#poller_output)                                             | [poller_remote_maint](Plugin-Hook-API-Ref.md#poller_remote_maint)                                 |
 | [poller_top](Plugin-Hook-API-Ref.md#poller_top)                                           | [remote_agent](Plugin-Hook-API-Ref.md#remote_agent)                                               | [replicate_in](Plugin-Hook-API-Ref.md#replicate_in)                                               |
-| [replicate_out](Plugin-Hook-API-Ref.md#replicate_out)                                     | [report_filters](Plugin-Hook-API-Ref.md#report_filters)                                           | [resolve_dependencies](Plugin-Hook-API-Ref.md#resolve_dependencies)                               |
+| [replicate_out](Plugin-Hook-API-Ref.md#replicate_out)                                     | report_filters                                           | [resolve_dependencies](Plugin-Hook-API-Ref.md#resolve_dependencies)                               |
 | [rrd_graph_graph_options](Plugin-Hook-API-Ref.md#rrd_graph_graph_options)                 | [run_data_query](Plugin-Hook-API-Ref.md#run_data_query)                                           | [snmpagent_cache_install](Plugin-Hook-API-Ref.md#snmpagent_cache_install)                         |
 | [substitute_host_data](Plugin-Hook-API-Ref.md#substitute_host_data)                       | [top_graph_header](Plugin-Hook-API-Ref.md#top_graph_header)                                       | [top_graph_header_tabs](Plugin-Hook-API-Ref.md#top_graph_header_tabs)                             |
 | [top_graph_jquery_function](Plugin-Hook-API-Ref.md#top_graph_jquery_function)             | [top_graph_refresh](Plugin-Hook-API-Ref.md#top_graph_refresh)                                     | [top_header](Plugin-Hook-API-Ref.md#top_header)                                                   |
@@ -438,7 +438,7 @@ This hook allows you to add custom actions to the host edit page, below the
 
 ## device_filter_end
 
-This hook allows you to add custom filter fields before Cacti buildin filter to
+This hook allows you to add custom filter fields before Cacti built-in filter to
 the host list page
 
 | file     | introduced  | retired |
@@ -447,7 +447,7 @@ the host list page
 
 ## device_filter_start
 
-This hook allows you to add custom filter fields after Cacti buildin filter to
+This hook allows you to add custom filter fields after Cacti built-in filter to
 the host list page
 
 | file     | introduced  | retired |

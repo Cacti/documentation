@@ -449,16 +449,10 @@ stick to the listing options
 
 ```console
 shell>php -q add_device.php --list-host-templates
-
-Valid Host Templates: (id, name)
-1       Generic SNMP-enabled Host
-3       ucd/net SNMP Host
-4       Karlnet Wireless Bridge
-5       Cisco Router
-6       Netware 4/5 Server
-7       Windows 2000/XP Host
-8       Local Linux Machine
 ```
+
+The command lists the templates installed in your database. Use those
+IDs rather than assuming the IDs from another installation.
 
 Why are those `Host Templates` of such importance for this script? Well, when
 using this script to add a new device, there are 3 required parameters. The
