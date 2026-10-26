@@ -32,7 +32,12 @@ packages will vary by operating system.
 
 ### Database
 
-MySQL versions to 5.7 are supported. MariaDB to 10.2 is also supported.
+Use MySQL or MariaDB and check the installed version and configuration with
+the Cacti 1.2.31 installer. The release's historical compatibility values and
+version-dependent tuning checks are described in
+[Requirements](Requirements.md).
+MySQL 5.7 and MariaDB 10.2 are not upper-version limits established by those
+checks. Passing a configuration check does not certify every database version.
 
 - mysql
 
@@ -233,121 +238,167 @@ MariaDB [cacti]>> ALTER TABLE `poller_output` ENGINE=InnoDB;
 MariaDB [cacti]>> ALTER TABLE `poller_output_boost_processes` ENGINE=InnoDB;
 ```
 
-These changes should replicate to the other nodes in your cluster. Allow Cacti
-to run at least two or three full polling cycles before placing the other nodes
-back into rotation.
+Before restoring database load balancing, verify the table-engine changes,
+replication state and successful polling on the configured topology. A fixed
+number of polling cycles is not proof that the cluster is ready.
 
 ## Install and Configure Cacti
 
-1. Extract the distribution tarball.
+These are fresh source-install examples for Cacti 1.2.31. Package-managed
+installations should use the maintainer's procedure instead. For an existing
+installation, follow [Upgrading Cacti](Upgrading-Cacti.md). The examples use
+`/var/www/html/cacti`; adjust that path and the service accounts for your OS.
+Use administrator privileges for software installation and permission changes.
 
-   ```sh
-   shell> tar xzvf cacti-version.tar.gz
-   ```
+### Extract the source and create the database
 
-2. Create the MySQL database:
+Extract the intended release into the installation directory. Do not run these
+commands over an existing deployment:
 
-   ```sh
-   shell> mysqladmin --user=root create cacti
-   ```
+```sh
+tar -xzf cacti-1.2.31.tar.gz
+mv cacti-1.2.31 /var/www/html/cacti
+```
 
-3. Import the default cacti database:
+The installation root should now contain `cacti.sql`, `poller.php` and
+`include/config.php.dist`, rather than another nested release directory.
 
-   ```sh
-   shell> mysql cacti < cacti.sql
-   ```
+Connect with a database administrator account:
 
-4. Optional: Create a MySQL username and password for Cacti.
+```sh
+mysql --user=root --password
+```
 
-   ```sql
-   shell> mysql --user=root mysql
-   mysql> CREATE DATABASE cacti
-   mysql> CREATE USER 'cacti'@'localhost';
-   mysql> ALTER USER 'cacti'@'localhost' IDENTIFIED BY 'somepassword';
-   mysql> GRANT ALL PRIVILEGES ON cacti.* to 'cacti'@'localhost';
-   mysql> GRANT SELECT ON mysql.time_zone_name TO 'cacti'@'localhost';
-   mysql> FLUSH PRIVILEGES;
-   ```
+Create the database and a dedicated application account. Replace the password
+placeholder before running this SQL, and use the same secret in the Cacti
+configuration. The database account is separate from the operating-system
+account that runs the poller.
 
-   Note that if your `root` (or equivalent) user does not have `SUPER`
-   permissions, it may still be possible to `GRANT SELECT` privileges to the
-   Cacti user via an `INSERT INTO mysql.tables_priv`.
+```sql
+CREATE DATABASE cacti CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'cactiuser'@'localhost'
+  IDENTIFIED BY 'REPLACE_WITH_UNIQUE_DATABASE_PASSWORD';
+GRANT ALL PRIVILEGES ON cacti.* TO 'cactiuser'@'localhost';
+GRANT SELECT ON mysql.time_zone_name TO 'cactiuser'@'localhost';
+EXIT;
+```
 
-   ```sql
-   INSERT INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Table_priv)
-   VALUES ('localhost', 'mysql', 'cactiuser', 'time_zone_name', 'root@localhost', 'Select');
-   ```
+Use an authorized database administrator to grant access. Do not edit
+`mysql.tables_priv` as a substitute for an authorized `GRANT` operation. Ensure
+the server's timezone tables are populated using the procedure for the
+installed MySQL or MariaDB server; granting access does not populate them.
 
-5. Edit `include/config.php` and specify the database type, name, host, user and
-   password for your Cacti configuration.
+Import the schema into the new database using the appropriate client:
 
-   ```php
-   $database_type = "mysql";
-   $database_default = "cacti";
-   $database_hostname = "localhost";
-   $database_username = "cactiuser";
-   $database_password = "cacti";
-   ```
+```sh
+mysql --user=root --password --default-character-set=utf8mb4 cacti \
+  < /var/www/html/cacti/cacti.sql
+```
 
-6. Set the appropriate permissions on Cacti's directories for graph/log
-   generation. You should execute these commands from inside Cacti's directory
-   to change the permissions.
+The `--password` option prompts for the password. Use `mariadb` in place of
+`mysql` where appropriate for the installed server.
 
-   ```sh
-   shell> chown -R cactiuser rra/ log/ cache/
-   ```
+### Configure access and complete installation
 
-   (Enter a valid username for _cactiuser_, this user will also be used in the
-   next step for data gathering.)
+Copy the supplied configuration example:
 
-7. Create your cron task file or systemd units file
+```sh
+cp /var/www/html/cacti/include/config.php.dist \
+  /var/www/html/cacti/include/config.php
+```
 
-   Starting with Cacti 1.2.16, you have the option to use either the legacy
-   Crontab entry, or an optional cactid units file and server to run your Cacti
-   pollers.
+Edit the copied file to match the account created above:
 
-   For Crontab use, follow the instructions below:
+```php
+$database_type     = 'mysql';
+$database_default  = 'cacti';
+$database_hostname = 'localhost';
+$database_username = 'cactiuser';
+$database_password = 'REPLACE_WITH_UNIQUE_DATABASE_PASSWORD';
+$database_port     = '3306';
+$url_path          = '/cacti/';
+```
 
-   Create and edit `/etc/cron.d/cacti` file. Make sure to setup the correct path
-   to poller.php
+Identify the actual web and poller service accounts. Give them the required
+read/execute access to application files and external tools, and write access
+to the runtime paths they use, including RRD, log and cache paths. They need
+not be the same account. Do not assume a database username is also a local OS
+account or make the whole application tree writable.
 
-   ```console
-   */5 * * * * apache php <path_cacti>/poller.php &>/dev/null
-   ```
+During installation and package imports, grant the performing identity the
+additional access required by the installer, including query/script resources
+and the location used to initialize the CSRF secret. Remove temporary setup
+permissions afterward. Preserve read access to the generated secret; do not
+create an empty secret file. See the platform-specific installation guides
+for their account and permission examples.
 
-   For systemd unit's file install, you will need to modify the included units
-   file to following your install location and desired user and group's to run
-   the Cacti poller as. To complete the task, follow the procedure below:
+Restrict installer access to the administrator and use HTTPS or a protected
+local connection before entering credentials. A freshly imported 1.2.31
+schema uses application username `admin` and initial password `admin`. Open
+the configured Cacti URL, sign in and choose a unique administrator password
+when prompted. These are separate from the database credentials. Complete the
+installer's dependency, database, path and permission checks before allowing
+general access.
 
-   ```console
-   vim <path_cacti>/service/cactid.service (edit the path)
-   touch /etc/sysconfig/cactid
-   cp -p <path_cacti>/service/cactid.service /etc/systemd/system
-   systemctl enable cactid
-   systemctl start cactid
-   systemctl status cactid
-   ```
+### Schedule collection after installation
 
-   The systemd units file makes managing a highly available Cacti setup a bit
-   more convenient.
+Use either cron or `cactid.service`, not both. The following examples assume
+an existing local user and group named `cacti` with the required polling
+permissions; replace them with the actual service identity for your system.
+Do not start polling before completing the web installer.
 
-8. During install, you will need to provide write access to the following files
-   and directories:
+For a system cron file such as `/etc/cron.d/cacti`, use an absolute PHP CLI
+path and include the OS username:
 
-   ```sh
-   shell> chown -R resource scripts include/config.php
-   ```
+```console
+*/5 * * * * cacti /usr/bin/php /var/www/html/cacti/poller.php >/dev/null 2>&1
+```
 
-   Once the installation is complete, you may change the permissions to more
-   restrictive settings.
+The five-minute launch interval must match **Cron/Daemon Interval** under the
+poller settings. This is separate from individual data-source polling
+intervals. The redirection above works with `/bin/sh`; `&>` is Bash-specific.
 
-9. Point your web browser to:
+The supplied systemd unit uses `Type=forking`. Confirm that the selected PHP
+CLI provides `pcntl_fork` before using it; otherwise use cron or install the
+appropriate PCNTL support. For the example CLI path, this should report
+`bool(true)`:
 
-   `http://<your-server>/cacti/`
+```sh
+/usr/bin/php -r 'var_dump(function_exists("pcntl_fork"));'
+```
 
-   Log in the with a username/password of _admin_. You will be required to
-   change this password immediately. Make sure to fill in all of the path
-   variables carefully and correctly on the following screen.
+For systemd, copy the supplied unit and edit the installed copy:
+
+```sh
+cp /var/www/html/cacti/service/cactid.service \
+  /etc/systemd/system/cactid.service
+```
+
+Replace the unit's existing `User`, `Group`, `ExecStart` and `EnvironmentFile`
+settings with values for the actual deployment, retaining its other settings.
+For example:
+
+```ini
+User=cacti
+Group=cacti
+ExecStart=/usr/bin/php /var/www/html/cacti/cactid.php
+EnvironmentFile=-/etc/default/cactid
+```
+
+The `-` allows the optional environment file to be absent. Disable the
+Cacti-specific cron entry before enabling the daemon, then load the edited
+unit:
+
+```sh
+systemctl daemon-reload
+systemctl enable cactid.service
+systemctl start cactid.service
+systemctl status cactid.service
+```
+
+The unit manages the local daemon; it does not establish high availability.
+Verify scheduler execution, collector status, logs and recent graph data
+under the configured account.
 
 ## (Optional) Install and Configure Spine
 
@@ -362,29 +413,32 @@ To compile Spine, download it to any location of your liking. Then, issue from
 the downloaded directory following commands
 
 ```sh
-shell>./bootstrap
+./bootstrap
 ```
 
-If the `bootstrap` script is successful, you then will follow the instructions it
-provides to compile and install.
+After `bootstrap` succeeds, follow the release's build instructions to
+configure, compile and install Spine.
 
 Assuming, you've managed to install spine correctly, you will have to configure
-it. The configuration file may be placed in the same directory as spine itself
-or at /etc/spine.conf.
+it. Use the installed `spine.conf.dist` as the example, and configure the actual
+Spine configuration path in Cacti. Use the same database account and secret
+as the Cacti configuration, and restrict file access to the poller account
+and administrators.
 
 ```ini
-DB_Host     127.0.0.1 or hostname (not localhost)
+DB_Host     localhost
 DB_Database cacti
 DB_User     cactiuser
-DB_Password cacti
+DB_Pass     REPLACE_WITH_UNIQUE_DATABASE_PASSWORD
 DB_Port     3306
 ```
 
 ### Considerations when using Proxys in front of Cacti (Cacti 1.2.23+)
 
-For optimal security, only specify the HTTP headers that are set by your proxy
-software. to prevent unauthorized access, These can be set by editing the
-following section of config.php
+A header allowlist does not authenticate a proxy. Trust forwarded client-IP
+headers only when a trusted proxy replaces those headers and untrusted clients
+cannot bypass it to reach Cacti directly. Select only headers supplied by that
+proxy in `include/config.php`:
 
 ```php
 /*

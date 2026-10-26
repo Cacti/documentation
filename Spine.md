@@ -1,10 +1,15 @@
 # Spine
 
-Spine is the fast replacement for `cmd.php`. It is written in C to ensure
-ultimate performance for device polling and is multi-threaded. Expect a decrease
-in polling time of an order of magnitude. Polling times far less than 60 seconds
-for about 20,000 data sources are achievable e.g. on a dual XEON system supplied
-with 4 GB RAM and standard local disks.
+Spine is a multithreaded replacement for `cmd.php`, written in C. Polling
+performance depends on the devices, network latency, scripts, database and
+collector configuration. Measure complete poll-cycle duration on your own
+workload before choosing thread and process counts; this page does not provide
+a reproducible benchmark or guarantee a particular speedup.
+
+For Cacti 1.2.31, start with the corresponding
+[Spine 1.2.31 source][spine-release] and its build instructions. Check the
+installed binary's version and configuration before switching pollers. This
+does not establish compatibility for arbitrary mixed Cacti and Spine versions.
 
 When using Spine, don't change crontab or systemd settings! Always use
 poller.php with crontab or cactid.php for systemd!
@@ -29,9 +34,9 @@ To increase the number of Threads and concurrent processes, you must modify the
 setting when editing your Data Collector under
 `Console > Data Collection > Data Collectors`.
 
-While Spine is really fast, choosing the correct setup will ensure that all
-processor resources are used. Required settings for Maximum Concurrent Poller
-Processes are 1-2 times the number of CPU cores available for Spine.
+Choose Maximum Concurrent Poller Processes together with thread counts and
+database connection capacity. CPU count alone does not determine the
+appropriate settings.
 
 When using spine, you must be senstivive to the number of connections that are
 available for MySQL or MariaDB. Under
@@ -48,7 +53,7 @@ recommended `max_connection` for MySQL/MariaDB.
 
 | Name                         | Description                                                                                                                                                                                                                                                                                                               |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Maximum Threads per Process  | The maximum threads allowed per process. Using a higher number when using Spine will improve performance. Required settings are 10-15. Values above 50 are most often insane and may degrade performance vs. improve it.                                                                                                  |
+| Maximum Threads per Process | The maximum threads allowed per process. More threads may reduce time spent waiting for devices, but also increase database connections and concurrent work. Measure poll-cycle duration and resource use before increasing the value; there is no universal requirement to use 10-15 threads. |
 | Number of PHP Script Servers | The number of concurrent script server processes to run per Spine process. Settings between 1 and 10 are accepted. Script Servers will pre-load a PHP environment. Then, the Script Server Scripts are included into that environment to save the overhead of reloading PHP and re-interpreting the binary for each call. |
 
 ###### Table 15-3. Spine Parameters maintained at the Device Level
@@ -242,6 +247,8 @@ permissions
 ```shell
 chmod u+s /usr/local/spine/bin/spine
 ```
+
+[spine-release]: <https://github.com/Cacti/spine/tree/release/1.2.31>
 
 ---
 
