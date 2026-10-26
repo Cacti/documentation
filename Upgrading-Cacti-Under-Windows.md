@@ -1,100 +1,101 @@
 # Upgrading Cacti under Windows
 
-Download [latest stable version](https://www.cacti.net/download_cacti.php)
-of Cacti which is referred to as `cacti-xxx.zip` in this document.
+These instructions cover upgrading a source/archive installation to Cacti
+1.2.31. For a managed Windows installation, also follow its package or
+installer upgrade procedure; do not overwrite package-managed files with an
+unrelated archive. Review the [release
+notes](Version-Specific-Release-Notes.md) and [requirements](Requirements.md)
+for the target Cacti version first. An upgrade of Cacti does not automatically
+require upgrading Windows, PHP or the database.
 
-1. Stop poller.
+## Pause collection and take a recoverable backup
 
-   - Cacti Console
+1. In `Console > Configuration > Settings > Poller`, clear **Data Collection
+   Enabled** and save. Disable the actual Windows Scheduled Task that launches
+   `poller.php`, or stop the service that manages your poller. Record the task
+   or service settings so you can restore them. Use [Task Scheduler][tasks] to
+   disable future starts; this alone does not finish an already running poll.
 
-   - Configuration
+2. Wait for running pollers, Spine processes, script servers and background
+   writers to finish. Include remote collectors and plugin jobs. Restrict web
+   access to the upgrade administrator so configuration changes cannot race the
+   backup. Flush pending RRD-cache writes before copying RRD files and confirm
+   that writers have stopped. Do not start a manual poll during this
+   maintenance window.
 
-   - Settings
+3. Create a protected backup directory outside the web root. From Command
+   Prompt, use the dump utility matching your database server. Replace the
+   executable path, account, database name and output path in this example. Use
+   the actual database host, port and TLS options for your installation. The
+   account needs the backup privileges required by the installed server;
+   `--password` prompts rather than putting a password in the command.
 
-   - Poller
-
-   - uncheck Data Collection Enabled and Save
-
-1. Run Command Prompt as administrator and backup database.
-
-   ```sh
-   shell> cd Documents
-   shell> "\Program Files\MySQL\MySQL Server 5.7\bin\mysqldump.exe" -uroot -p -l
-   --add-drop-table cacti > cacti-version-YYYYMMDD.sql
+   ```bat
+   "C:\path\to\mysqldump.exe" --user=YOUR_BACKUP_USER --password ^
+     --lock-tables --quick --routines --events --triggers ^
+     --databases cacti --result-file="D:\CactiBackup\cacti-YYYYMMDD.sql"
    ```
 
-1. Backup the old Cacti directory.
+   With all Cacti writers paused, this [dump example][dump] uses table locks to
+   cover transactional and nontransactional tables in the Cacti database. A
+   transaction-only dump does not protect nontransactional tables. Use a new
+   output filename and verify successful completion: a failed dump may leave a
+   partial file. Do not proceed until the backup can be restored in a separate
+   test environment.
 
-   ```sh
-   shell> cd \inetpub\wwwroot
-   shell> robocopy cacti cacti-version-YYYYMMDD /s /b /copyall
+4. Back up the existing Cacti tree, including hidden files, using a separate
+   destination outside the web root. For example, [Robocopy][robocopy] can
+   preserve file permissions as well as contents when run with the required
+   privileges:
+
+   ```bat
+   robocopy "C:\inetpub\wwwroot\cacti" "D:\CactiBackup\cacti-YYYYMMDD" /E /COPYALL /SL /XJ /R:2 /W:2
    ```
 
-1. Windows Update
+   Inspect its report; exit codes of 8 or greater indicate copy failures.
+   Confirm that the backup includes `include/config.php`, RRDs, custom scripts,
+   query resources, plugins and secret files, including any alternate
+   `path_csrf_secret`. Also save configured paths outside this tree, the Spine
+   configuration, scheduler settings, web-server configuration, database grants
+   and required certificates/keys. Record symbolic links and junctions and back
+   up their external targets separately; the example copies symbolic links and
+   excludes junctions. Preserve permissions and record the installed versions.
+   Keep this file backup and database dump together as one recovery set.
 
-1. MySQL
+## Install and verify the upgrade
 
-   - Open `MySQL Installer - Community`
+1. Extract the target [Cacti release][download] into a staging directory. Keep
+   the existing tree and verified backup available. Deploy the release files
+   using your existing installation layout, preserving the working
+   `include/config.php` and local resources. Compare the new
+   `include/config.php.dist` for changes; do not replace existing credentials,
+   collector IDs, paths or secrets with example defaults. Check plugin and
+   custom-script compatibility before restoring or enabling them.
 
-   - update Catalog
+2. Verify file permissions for the web server and poller accounts. Open the
+   existing Cacti URL as an administrator and complete the database upgrade.
+   Review installer checks and logs. Use version-appropriate database settings
+   from [Requirements](Requirements.md), rather than applying fixed global SQL
+   tuning commands.
 
-   - upgrade MySQL Server
+3. For remote collectors, keep their schedulers paused while updating their
+   local application files and configuration and completing the applicable
+   upgrade and synchronization. Verify each collector's reported version,
+   connectivity and logs; completion is not guaranteed after two poll cycles.
+   Check the matching Spine version where it is used.
 
-1. PHP
+4. Re-enable **Data Collection Enabled** and restore the recorded scheduler or
+   service only after the upgrade succeeds. Check a complete poll cycle,
+   collector status, new RRD samples and representative graphs. If recovery is
+   necessary, stop writers again and restore the matching application files,
+   database, RRDs and configuration together; copying old PHP files over an
+   upgraded database is not a rollback.
 
-   - Backup `C:\php\` folder
-
-   - Download a [supported version](http://php.net/supported-versions.php) of
-   [PHP for Windows](https://windows.php.net/download/) using the appropriate
-   build for IIS or Apache. If missing, install the appropriate VC build.
-
-   - Overwrite `C:\php\` folder contents from zip file.
-
-1. Overwrite new Cacti version to production folder.
-   Extract contents of `cacti-xxx` folder in `cacti-xxx.zip` to
-   `C:\inetpub\wwwroot\cacti\` and replace files.
-
-1. Edit `include/config.php` and specify the MySQL user, password and database
-   for your Cacti configuration.
-
-   ```sh
-   shell> notepad cacti/include/config.php
-   ```
-
-   ```php
-   $database_type = "mysql";
-   $database_default = "cacti";
-   $database_hostname = "localhost";
-   $database_username = "cactiuser";
-   $database_password = "cacti";
-   ```
-
-1. Point your web browser to: `http://localhost/cacti/`
-
-   Follow the on-screen instructions so your database can be updated to the
-   new version.
-
-   Open "MySQL 5.7 Command Line Client" and set variables as needed in
-   following format:
-
-   ```sh
-   set global max_allowed_packet = 16777216;
-   set global tmp_table_size = 67108864;
-   set global join_buffer_size = 67108864;
-   set global innodb_flush_log_at_timeout = 3;
-   ```
-
-1. Start poller
-
-   - Cacti Console
-
-   - Configuration
-
-   - Settings
-
-   - Poller
-
-   - check Data Collection Enabled and Save
+[tasks]:<https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks-change>
+[dump]:<https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html>
+[robocopy]:<https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/robocopy>
+[download]:<https://github.com/Cacti/cacti/releases/tag/release/1.2.31>
 
 ---
+
 Copyright (c) 2004-2026 The Cacti Group
