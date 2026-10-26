@@ -1,5 +1,8 @@
 # Spine
 
+Use only the [supported operating systems][supported-os] and maintained
+dependencies compatible with this Cacti branch.
+
 Spine is a multithreaded replacement for `cmd.php`, written in C. Polling
 performance depends on the devices, network latency, scripts, database and
 collector configuration. Measure complete poll-cycle duration on your own
@@ -65,78 +68,46 @@ recommended `max_connection` for MySQL/MariaDB.
 
 ### Installing Spine
 
-As Spine is written in C is must be compiled on the local system that it is to
-be installed on below is an example of compiling on centos and Ubuntu
+Use a Spine release compatible with the installed Cacti release. For Cacti
+1.2.31, obtain [Spine 1.2.31][spine-release] or a compatible maintained
+package.
+Follow that release's build instructions rather than using an older archive.
 
-### Ubuntu
-
-Install the required system packages
-
-```console
-apt-get install -y build-essential dos2unix dh-autoreconf libtool help2man libssl-dev libmysql++-dev librrds-perl libsnmp-dev
-```
-
-Next, download the version of spine you are looking for Typically this should
-match the version of Cacti you are using. In this case we will download Version
-1.2.3 of Spine
+On supported Ubuntu Server or Debian installations:
 
 ```console
-wget <https://github.com/Cacti/spine/archive/release/1.2.3.zip>
-unzip 1.2.3
-cd spine-release-1.2.3
+apt-get update
+apt-get install -y build-essential autoconf automake libtool dos2unix \
+  help2man libssl-dev default-libmysqlclient-dev libsnmp-dev
 ```
 
-Once you are in the spine directory its time to compile the poller by issuing
-the following commands:
+On supported RHEL, Rocky Linux, or AlmaLinux installations, first enable the
+vendor's development-header repository if needed. Repository names differ
+between RHEL and its derivatives. Install the required build tools:
 
 ```console
-./bootstrap
-./configure
-make
-make install
-chown root:root /usr/local/spine/bin/spine
-chmod u+s /usr/local/spine/bin/spine
+dnf install -y gcc autoconf automake libtool dos2unix help2man \
+  openssl-devel mariadb-devel net-snmp-devel
 ```
 
-Once that has completed, you will need to configure spine's config file
-
-```console
-vi /usr/local/spine/etc/spine.conf
-```
-
-Below is an example of a configuration however yours should match your cacti
-database username and password
-
-```console
-DB_Host       localhost
-DB_Database   cacti
-DB_User       spine
-DB_Pass       spine
-DB_Port       3306
-#DB_UseSSL    0
-#RDB_SSL_Key
-#RDB_SSL_Cert
-#RDB_SSL_CA
-```
-
-### CentOS
-
-Install required system packages
-
-```console
-yum install -y gcc mysql-devel net-snmp-devel autoconf automake libtool dos2unix help2man
-```
-
-Then compile using the following commands
+Build and install from the extracted release directory:
 
 ```console
 ./bootstrap
 ./configure
 make
 make install
-chown root:root /usr/local/spine/bin/spine
-chmod u+s /usr/local/spine/bin/spine
 ```
+
+Copy the installed `spine.conf.dist` to `spine.conf`. Set `DB_Host`,
+`DB_Database`, `DB_User`, `DB_Pass`, and `DB_Port` to the actual Cacti database
+connection. Restrict access to the configuration to administrators and the
+poller account. Configure the installed Spine binary and configuration paths
+in Cacti, then test execution under the actual poller account.
+
+Grant raw-socket privileges only if the selected availability checks need
+them, using the package's documented mechanism. Do not grant blanket root
+execution privileges merely to resolve a failed configuration check.
 
 ### Testing/Debugging spine via command line
 
@@ -224,7 +195,8 @@ You can choose from Detailed,Summary or No logging for Invalid data
 Detailed Logging will be similar to cmd.php in that you will get a report for
 each data source that is having an issue
 
-Summary provides a count of how many data sources are having an issue per device
+Summary provides a count of how many data sources are having an issue per
+device
 
 ![spine](images/spine-parameters.png)
 
@@ -248,7 +220,9 @@ permissions
 chmod u+s /usr/local/spine/bin/spine
 ```
 
-[spine-release]: <https://github.com/Cacti/spine/tree/release/1.2.31>
+[spine-release]:<https://github.com/Cacti/spine/tree/release/1.2.31>
+
+[supported-os]: Requirements.md#supported-operating-systems
 
 ---
 

@@ -2,6 +2,13 @@
 
 ![Cacti](images/logo.svg)
 
+This manual documents released Cacti 1.2.31. Development versions have
+different requirements; use the [development manual][manual-dev] for those.
+
+Start with [Requirements](Requirements.md), then choose the operating-system
+guide under [Cacti Installation](#cacti-installation). For an existing
+installation, follow the upgrade guide instead of the fresh-install commands.
+
 Cacti is designed to be a complete graphing solution based on the RRDtool's
 framework. Its goal is to make a network administrator's job easier by taking
 care of all the necessary details necessary to create meaningful graphs.
@@ -21,7 +28,7 @@ Active Developers
 - Thomas Urban (phalek)
 - Jing Chen (ddb4github)
 
-### Contributors to Docuemntation, QA, Packaging, the Forums and our YouTube page.
+### Contributors to Documentation, QA, Packaging, the Forums and our YouTube page.
 
 - Sean Mancini (bmfmancini)
 - J.P. Pasnak, CD (Linegod)
@@ -37,9 +44,7 @@ Active Developers
 - Tony Roman (rony)
 - Andy Blyler (ablyler)
 
-
 ## Thanks
-
 
 A very special thanks to Tobi Oetiker, the creator of RRDtool and the very
 popular MRTG. The users of Cacti - especially anyone who has taken the time to
@@ -103,18 +108,22 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 ### Cacti Installation
 
+Earlier [LAMP][previous-lamp] and [LEMP][previous-lemp] guide URLs point to
+the maintained Enterprise Linux instructions.
+
 1. [Requirements](Requirements.md)
 
 2. [General Installing Instructions](General-Installing-Instructions.md)
 
 3. Installing Cacti on Linux
 
-   3.1. [Installation Under CentOS 7 - LAMP Stack](Install-Under-CentOS_LAMP.md)
+   3.1. [Enterprise Linux - Apache/LAMP][linux-lamp]
 
-   3.2. [Installation Under CentOS 7 - LEMP Stack](Install-Under-CentOS_LEMP.md)
+   3.2. [Rocky Linux 9 and 10 - nginx/LEMP][linux-lemp]
 
-   3.3.
-   [Installation Under Ubuntu/Debian - LAMP Stack](Installing-Under-Ubuntu-Debian.md)
+   3.3. [Ubuntu/Debian - Apache/LAMP](Installing-Under-Ubuntu-Debian.md)
+
+   3.4. [Ubuntu Server 26.04 LTS and 26.10 - nginx/LEMP][ubuntu-lemp]
 
 4. [Installing Under Windows](Installing-Under-Windows.md)
 
@@ -380,11 +389,20 @@ Watch Howto's and Tutorials on the Cacti Official YouTube page if you prefer. If
 
 ### Template Specific Documentation
 
-This section will be for template specific configuration requriments
+This section will be for template specific configuration requirements
 
 1. [Apache Server Template](template_apache_config.md)
 
 2. [ESXi/VMWare Template](template_esxi_config.md)
+
+[manual-dev]:<https://github.com/Cacti/documentation/tree/develop>
+
+[previous-lamp]: Install-Under-CentOS_LAMP.md
+[previous-lemp]: Install-Under-CentOS_LEMP.md
+
+[linux-lamp]: Install-Under-Enterprise-Linux-LAMP.md
+[linux-lemp]: Install-Under-Enterprise-Linux-LEMP.md
+[ubuntu-lemp]: Installing-Under-Ubuntu-LEMP.md
 
 ---
 

@@ -16,7 +16,7 @@ site/location
 Enter the appropriate information for the site and click create on the
 below right side
 
-![cacti add sites](images/add-site.JPG).
+![cacti add sites](images/add-site.png).
 
 Once you have created a site while you are creating a device manually
 you can now associate the device to the site

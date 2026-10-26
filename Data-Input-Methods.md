@@ -127,7 +127,7 @@ Methods** that are present in a new installation of Cacti.
 To have Cacti call an external script to gather data you must create a new
 **Data Input Method**, making sure to specify Script/Command for the Input Type
 field. See the previous section, [Creating a Data Input
-Method](data_input_methods.html) for more information about how to create a
+Method](Data-Input-Methods.md#creating-a-data-input-method) for more information about how to create a
 **Data Input Method**. To gather data using your **Data Input Method**, Cacti
 simply executes the shell command specified in the Input String field. Because
 of this, you can have Cacti run any shell command or call any script which can
@@ -169,7 +169,7 @@ be executed as the user the data gatherer runs as. Sometimes a script may work
 correctly when executed as root, but fails due to permissions problems when
 executed as a less privileged user.
 
-## Walkthough
+## Walkthrough
 
 You can find a detailed example of how to create a complete Graph from
 simple command output in the following example
