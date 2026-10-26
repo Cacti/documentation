@@ -15,22 +15,21 @@
 #  | http://www.cacti.net/                                                   |
 #  +-------------------------------------------------------------------------+
 #
-# Helper shell script to all documentation is linked from index
+# Check that documentation is linked from the front page or manual index.
 
 # Determine if running script with out arguments so that path will be relative
 if [ -n "${*}" ]
 then
 
 	FILENAME=$(basename "$1")
-	LINES=$(grep -c "${FILENAME}" README.md)
-	if [[ ${LINES} -gt 0 ]]; then
+	if grep -Fq -- "${FILENAME}" README.md Manual-Index.md Project-Information.md; then
 		if [ -n "${CHECK_SHOW_LINKED}" ]; then
 			echo "Linked....: ${FILENAME}";
 		fi
-	else
-		echo "Not Linked: ${FILENAME}"
+		exit 0;
 	fi
-	exit "${LINES}";
+	echo "Not Linked: ${FILENAME}"
+	exit 1;
 else
 	LINES=$(find . -not \( -path ./.github/\* \) -name \*.md ! -name README.md -exec "$0" "{}" \;)
 	COUNT=$(echo "${LINES}" | grep -c "Not Linked:")

@@ -4,6 +4,7 @@ rule "MD010", code_blocks: false
 rule "MD013", code_blocks: false, tables: false
 rule "MD029", style: "ordered"
 rule "MD046", style: "fenced"
+rule "MD033", allowed_elements: "a" # Preserve public heading anchors.
 
 # Lesser rules
 exclude_rule "MD010" # hard tabs

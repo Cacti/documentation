@@ -38,6 +38,8 @@ Paragraph text.
 
 Separate headings from surrounding content with a blank line. Preserve existing
 heading anchors when possible; when renaming a heading, update links to it.
+Empty HTML anchors may preserve public fragment links when headings move or
+change. Use Markdown for visible links and ordinary page content.
 
 ### Text and lists
 
@@ -81,9 +83,10 @@ pages so the links work in the repository and published manual.
 ![Data Collectors](images/data-collectors.png)
 ```
 
-Check that target files and heading anchors exist. Add new pages to
-`README.md`. Check image filenames and use alternate text that describes the
-image. Explain when a screenshot shows an older interface or a specific theme.
+Check that target files and heading anchors exist. Add new guides to
+`Manual-Index.md` and link entry pages from `README.md`. Check image filenames
+and use alternate text that describes the image. Explain when a screenshot
+shows an older interface or a specific theme.
 
 ### Tables
 
