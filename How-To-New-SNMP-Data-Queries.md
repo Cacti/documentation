@@ -26,7 +26,7 @@ SNMP table: HOST-RESOURCES-MIB::hrStorageTable
 ```
 
 This given, the first step will be the definition of an XML file based on those
-OIDs. So change to your `<path_cacti>/resources/snmp_queries` directory and
+OIDs. So change to your `<path_cacti>/resource/snmp_queries` directory and
 create a file named **hrStorageTable.xml**. You may of course choose your own
 name, but for me it seems appropriate to take the name of the SNMP Table itself.
 Before doing so, it is necessary to identify the Index of that table. Without
@@ -54,7 +54,7 @@ The first index is `.1.3.6.1.2.1.25.2.3.1.1.1`, but the Index Base is
 
 ```xml
 <interface>
-    <name>Get hrStoragedTable Information</name>
+    <name>Get hrStorageTable Information</name>
     <description>Get SNMP based Partition Information out of hrStorageTable</description>
     <index_order>hrStorageDescr:hrStorageIndex</index_order>
     <index_order_type>numeric</index_order_type>
@@ -147,7 +147,7 @@ must.
 
 ```xml
 <interface>
-    <name>Get hrStoragedTable Information</name>
+    <name>Get hrStorageTable Information</name>
     <description>Get SNMP based Partition Information out of hrStorageTable</description>
     <index_order>hrStorageDescr:hrStorageIndex</index_order>
     <index_order_type>numeric</index_order_type>
@@ -227,7 +227,7 @@ XML field descriptions, see:
 
 ```xml
 <interface>
-    <name>Get hrStoragedTable Information</name>
+    <name>Get hrStorageTable Information</name>
     <description>Get SNMP based Partition Information out of hrStorageTable</description>
     <index_order>hrStorageDescr:hrStorageIndex</index_order>
     <index_order_type>numeric</index_order_type>
@@ -437,7 +437,7 @@ By
 <hrStorageAllocationUnits>
    <name>Allocation Units (Bytes)</name>
    <method>walk</method>
-   <source>VALUE/REGEXP:([0-9]*) Bytes</source>
+   <source>VALUE/REGEXP:^([0-9]+)(?:[[:space:]]+Bytes)?$</source>
    <direction>input</direction>
    <oid>.1.3.6.1.2.1.25.2.3.1.4</oid>
 </hrStorageAllocationUnits>

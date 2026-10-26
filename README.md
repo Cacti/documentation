@@ -17,6 +17,9 @@ For downloads and project news, visit the [Cacti
 website](https://www.cacti.net/).
 For support, use the [Cacti Forums](https://forums.cacti.net/).
 
+For offline reading and runnable query examples, see
+[manual and example downloads](Downloads.md).
+
 ## Getting Started
 
 1. Check the [requirements](Requirements.md), then follow the
@@ -357,7 +360,7 @@ screenshots may show a different theme or an earlier release.
 
 3. [Mactrack Plugin documentation](Plugin-Mactrack.md)
 
-4. [ReportIt Plugin documentation][ref-6] Older version, pdf format
+4. [ReportIt 3.0 development manual][ref-6] (PDF)
 
 ### How Tos
 
@@ -452,7 +455,7 @@ This section will be for device template specific configuration requirements
 [ref-3]: convert-from-package-to-source-debian-ubuntu.md
 [ref-4]: How-To-Poller-5-to-1-min.md
 [ref-5]: How-To-Existing-SNMP-Data-Queries.md
-[ref-6]: resource/pdf/manual_reportit.pdf
+[ref-6]: resource/pdf/manual_reportit_3.0.pdf
 [ref-7]: Settings-Users-Groups-Domains.md
 [ref-8]: Installing-Under-Ubuntu-Debian.md
 [ref-9]: Install-Under-Enterprise-Linux-LEMP.md
