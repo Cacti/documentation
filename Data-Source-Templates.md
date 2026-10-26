@@ -45,6 +45,8 @@ accordingly by adding an appropriate value to the result.
 
 ## DCOUNTER
 
+Available when the configured RRDtool version is 1.5 or later.
+
 DCOUNTER the same as COUNTER, but for quantities expressed as double-precision
 floating point number. It could be used to track quantities that increment by
 non-integer numbers, i.e. number of seconds that some routine has taken to run,
@@ -66,6 +68,8 @@ like COUNTER but without overflow checks. So if your counter does not reset at
 32 or 64 bit you might want to use DERIVE and combine it with a MIN value of 0.
 
 ## DDERIVE
+
+Available when the configured RRDtool version is 1.5 or later.
 
 DDERIVE the same as DERIVE, but for quantities expressed as double-precision
 floating point number.
@@ -98,13 +102,17 @@ since the last update.
 
 ## COMPUTE
 
-COMPUTE is for storing the result of a formula applied to other data sources in
-the RRD. This data source is not supplied a value on update, but rather its
-Primary Data Points (PDPs) are computed from the PDPs of the data sources
-according to the rpn-expression that defines the formula. Consolidation
-functions are then applied normally to the PDPs of the COMPUTE data source (that
-is the rpn-expression is only applied to generate PDPs). In database software,
-such data sets are referred to as "virtual" or "computed" columns.
+RRDtool supports computed data sources using an RPN expression derived from
+other data sources in the same file. That is distinct from a graph-time CDEF.
+
+The current Cacti type list includes `COMPUTE`, but the ordinary data-template
+editor has no expression field and the normal RRD creation path emits the
+heartbeat/minimum/maximum form used by collected data sources. That form is not
+a valid COMPUTE definition. Do not select it for a new data source through this
+workflow. Use a [CDEF](CDEFs.md) for graph-time calculations, or an explicitly
+managed external RRD workflow when persistent computed data is required.
+Advanced RRD/XML helpers do not supply the missing template editor and creation
+support.
 
 ![Data-Source-Templates](images/datasource-template-create.png)
 
@@ -115,9 +123,12 @@ documentation page.
 
 ![Data-Source-Templates](images/datasource-template.png)
 
-What is also an important setting is the internal data source name. This will be
-used to associate the Data source with the Graph template. so be sure to name is
-something that is recognizable.
+What is also an important setting is the internal data source name. This will
+be used to associate the data source with the graph template. The template
+editor accepts 1–19 letters, digits, or underscores. Use a recognizable name,
+such as `traffic_in`. Do not rename an existing item without also planning the
+matching RRD file change; a metadata edit alone does not rename the stored
+series.
 
 ![Data-Source-Templates](images/datasource-template2.png)
 

@@ -6,9 +6,14 @@ distinguish one **Graph** from the next within the **Aggregate Graph**.  These
 **Color Templates** are a list of colors that will be looped through in Round
 Robin fashion to render the **Aggregate Graph**.
 
-So, for example, if your **Color Template** uses 8 differing **Colors**, and
-your **Aggregate Graph** includes 16 *Graph Items*, then each color will be used
-twice in the **Aggregate Graph**.
+Color selection rotates across member graphs for each item to which a color
+template is assigned. It uses the member-graph index modulo the number of
+colors; it does not advance once for every graph item or legend entry.
+
+For example, assign an eight-color template to one plotted series shared by 16
+member graphs. Each color is selected twice for that series. Additional series
+can have their own assigned color templates, while uncolored legend items do
+not add steps to this rotation.
 
 Below, you can see the four standard **Color Templates**.  From the Actions
 drop down you can *Delete*, *Duplicate*, or *Sync Aggregates* for the selected
