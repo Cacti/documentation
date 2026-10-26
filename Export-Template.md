@@ -1,23 +1,21 @@
 # Template Exporting
 
-Cacti allows **Device**, **Graph**, and **Data** Templates to be exported in XML
-format. You can access the screen below by going to
-`Console > Import / Export > Template Export`. When you get to this page, the
-most popular option is to export the **Device Template**, but the discretion is
-upto the user. Once you pick the object type, the list of available templates is
-presented. The most popular option is to save to a file, but you have additional
-options.
+Open **Console > Import/Export > Export Templates**, choose the object type,
+then select the template to export. Select **Include Dependencies** when the
+recipient needs its referenced objects. Choose the output option to display
+XML or download it as a file.
 
 ![Import Template](images/export-template.png)
 
-Inside of the Template, Cacti uses a **hash** Global Uniqueue ID (GUID) to
-uniquely identify every Template component. So, any Template that you export can
-be shared with anyone around the globe without ambiguity. See the Linux Device
-Template Example below.
+Each template component has a persistent hash identity. Import uses it to
+match objects across installations. The historical Linux example below
+illustrates the XML structure; it is not a current, self-contained import
+fixture. Generate a complete export from your own installation rather than
+copying omitted or legacy dependencies.
 
-In this Template thaere are Many Components:
+An export with dependencies can include:
 
-1. The Device Template Name itself and it's GUID
+1. The device template name and its identity
 2. All the Graph Templates and their GUID's
 3. All the Graph Template inputs and their GUID's
 4. All the Data Templates and their GUID's
@@ -26,12 +24,20 @@ In this Template thaere are Many Components:
 7. All the CDEF's and VDEF's and their GUID's
 8. All the Data Source Profiles and their GUID's
 
-Although the output is human readable, some columns are encoded so as to not
-cause problems with the XML output format. To read them, you must base64_decode
-them in PHP or some other language.
+Most fields use XML escaping. Data-input command strings can be
+base64-encoded; decode only fields defined that way by the format. For
+example, the path placeholder is stored as `&lt;path_cacti&gt;` in XML, not
+as an unclosed element.
 
-Presently they are saved in XML format, but there are discussions with making
-these templates YAML formatted.
+Template export writes XML. Preserve object hashes when sharing an update: they
+identify the objects to update on import. The compatibility prefix is described
+in [Determine a Template Version](How-To-Determine-Template-Version.md).
+
+Select **Include Dependencies** when the recipient needs referenced templates,
+queries, profiles, CDEFs or VDEFs. Ordinary template XML does not bundle the
+external scripts or query XML files; install those separately or use a signed
+package workflow. Review the import preview on a separate test installation
+before distributing an update that changes existing objects.
 
 ```xml
 <cacti>
@@ -454,7 +460,7 @@ these templates YAML formatted.
 	<hash_0401028ffa36c1864124b38bcda2ae9bd61f46>
 		<name>Unix - Get Mounted Partitions</name>
 		<description>Queries a list of mounted partitions on a unix-based host with the</description>
-		<xml_path><path_cacti>/resource/script_queries/unix_disk.xml</xml_path>
+		<xml_path>&lt;path_cacti&gt;/resource/script_queries/unix_disk.xml</xml_path>
 		<data_input_id>hash_03010280e9e4c4191a5da189ae26d0e237f015</data_input_id>
 		<graphs>
 			<hash_110102a0b3e7b63c2e66f9e1ea24a16ff245fc>

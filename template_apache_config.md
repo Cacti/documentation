@@ -1,19 +1,19 @@
 # Apache Template Config
 
-The Apache webserver template collects server statistics over HTTP using
-Apache's `mod_status` module. These examples configure local access to the
-machine-readable `/server-status?auto` endpoint. See the
-[Apache mod_status documentation][mod-status] for the available statistics.
+The Apache template collects server statistics over HTTP from
+`/server-status?auto`, using Apache's `mod_status` module. These examples allow
+local access. Check the [mod_status documentation][mod-status] for the available
+statistics and use the endpoint on the server being monitored.
 
-![apache template view](images/apache-template-preview.png)
+![Apache template view](images/apache-template-preview.png)
 
-## CentOS/RedHat Specific Configuration
+## CentOS and Red Hat configuration
 
-For Centos/Redhat implementations the config will look as follows
+Check whether the installed Apache configuration already loads `mod_status`.
+Add the module load only if it is missing, then configure the status location
+in the site's Apache configuration, for example under `/etc/httpd/conf.d`:
 
-Place the below config in /etc/httpd/conf/httpd.conf
-
-```console
+```apache
 LoadModule status_module modules/mod_status.so
 ExtendedStatus On
 
@@ -23,12 +23,16 @@ ExtendedStatus On
 </Location>
 ```
 
-## Debian Specific Configuration
+With administrator privileges, test the configuration before reloading a running
+service:
 
-Configure the Apache `status` module:
+```sh
+apachectl configtest && systemctl reload httpd
+```
 
-Place the below config into a new file (eg, 80-server-status.conf) within
-`/etc/apache2/conf-available`
+## Debian configuration
+
+Create `/etc/apache2/conf-available/80-server-status.conf` with:
 
 ```apache
 ExtendedStatus On
@@ -39,18 +43,25 @@ ExtendedStatus On
 </Location>
 ```
 
-Run the following commands with administrator privileges to enable the module
-and configuration. Check the syntax, then restart Apache only if the check
-succeeds:
+Enable the module and configuration with administrator privileges. Reload only
+if the configuration test succeeds:
 
-```bash
+```sh
 a2enmod status
 a2enconf 80-server-status
-apache2ctl configtest && systemctl restart apache2
+apache2ctl configtest && systemctl reload apache2
 ```
 
-**Note**: This configuration restricts the `/server-status` url to local access
-only via the `Require local` directive
+## Verify the collection endpoint
+
+Request `http://127.0.0.1/server-status?auto` locally and check for the expected
+machine-readable statistics. Then verify collection through Cacti under the
+account and from the host that actually runs the helper.
+
+`Require local` rejects a collector on a different host. For remote collection,
+configure access for the intended collector addresses and network path rather
+than making server-status public. The package does not configure the target's
+Apache service or access controls for you.
 
 [mod-status]: <https://httpd.apache.org/docs/2.4/mod/mod_status.html>
 

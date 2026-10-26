@@ -81,13 +81,19 @@ set of Templates.
 
 ## Data Templates
 
-In Cacti, a **Data Template** provides a skeleton for an actual **Data Source**.
-If you have many **Data Sources** that share most of their characteristics,
-using a **Data Template** would probably make sense. No change of a **Data
-Template** is propagated to already existing RRDfiles. But most of them may be
-changed by using `rrdtool tune` from command line. Pay attention to not append
-new _Data Source Items_ to already existing RRDfiles. There's no `rrdtool`
-command to achieve this!
+In Cacti, a **Data Template** provides a skeleton for an actual **Data
+Source**. If you have many **Data Sources** that share most of their
+characteristics, using a **Data Template** makes sense. Saving a template
+propagates eligible fields into attached Cacti data-source definitions, subject
+to their per-source settings. It does not automatically rewrite existing RRD
+files.
+
+Changes to physical RRD structure need a separate migration or repair. RRDtool
+1.5 and later can add a data source with `rrdtool tune DS:...`. Use the repair
+or migration operations supported by your installed Cacti and RRDtool versions.
+Back up the RRD and inspect the proposed changes before applying them. Changing
+a sampling step or archive layout needs a migration suited to that change. See
+[Data Source Profiles](Data-Profiles.md).
 
 ### Creating a Data Template
 
@@ -142,14 +148,14 @@ Queries**, so you can have a single **Data Template** that contains both Inbound
 and Outbound Traffic, rather than having to create a separate **Data Template**
 for each.
 
-###### Table 13-2. Data Templates: Field Description of the Data Source Items Section
+###### Table 13-2. Data source item fields
 
 | Name                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Internal Data Source Name | This is the name used by RRDtool to identify this particular data source within the RRDfile. RRDtool places a limit of 19 alphanumeric characters (plus '\_' and '-') on this field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Internal Data Source Name | This is the name used by RRDtool to identify this particular data source within the RRDfile. The Cacti template editor accepts 1–19 letters, digits, or underscores. Some imported names can contain other RRDtool-valid characters, including hyphens, that this editor rejects. Use underscores for new templates; renaming an existing RRD data source requires a coordinated file and definition change.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | Minimum Value             | Here is where you specify the minimum value that is expected for this data source in the RRDfile. If a value lower than the minimum is given, it will be stored as Unknown (U).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | Maximum Value             | Here is where you specify the maximum value that is expected for this data source in the RRDfile. If a value higher than the maximum is given, it will be stored as Unknown (U). Note: It often makes sense to define a reasonable maximum value here to avoid spikes in case of a COUNTER wrap                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| Data Source Type          | Cacti currently supports seven types of data that RRDtool can represent for any given data source: COUNTER: is for continuous incrementing counters like the ifInOctets counter in a router. The COUNTER data source assumes that the counter never decreases, except when a counter overflows. It is always a whole INTEGER, floating point numbers are invalid. The update function takes the overflow into account. The counter is stored as a per-second rate. When the counter overflows, RRDtool checks if the overflow happened at the 32-bit or 64-bit border and acts accordingly by adding an appropriate value to the result. GAUGE: numbers that are not continuously incrementing, e.g. a temperature reading. Floating point numbers are accepted. ABSOLUTE: counters that are reset upon reading. DERIVE: like COUNTER but without overflow checks |
+| Data Source Type | Choose a type supported by the collection method and installed RRDtool. See [Data Source Templates](Data-Source-Templates.md) for COUNTER, GAUGE, DERIVE, ABSOLUTE and version-dependent double-precision types, plus the current COMPUTE creation limitation. |
 | Heartbeat                 | As defined by RRDtool: "The maximum amount of time that can pass before data is entered as "unknown". This field is usually '600' or 2 data gathering intervals".                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
 #### Custom Data
@@ -181,11 +187,10 @@ instances, it was fairly common before Cacti's Templating system matured.
 Once a Template is applied to a Data Source, you will notice that you can only
 change values for the fields that you checked Use Per-Data Source Value for.
 
-> **NOTE:** Now any time a change is made to the **Data Template**, it will be
-> automatically propagated to the **Data Sources** attached to it. However, as
-> previously stated, changes to a **Data Template** that involve changes to the
-> **Data Source Items**, will not be automatically applied to those same **Data
-> Sources**.
+> **NOTE:** Eligible template and item fields propagate to attached database
+> definitions unless configured per data source. This database propagation is
+> separate from changing an existing RRD file. Inspect the actual RRD structure
+> and use a backed-up repair or migration when its fields no longer match.
 
 #### How To: Working with Templates
 
@@ -426,17 +431,11 @@ attempt to use your default **Data Source Profile**. However, you can change
 that at import time to use an alternate **Data Source Profile** or even the one
 from the **Template** itself, if it includes one.
 
-Also, not that if you have made local modification to an earlier version of a
-**Graph Template**, and wish to fully migrate to the new **Graph Template** for
-all your existing **Graphs**, please select `Remove Orphaned Graph Items`.
-Otherwise, your **Graphs** will look awkward in the end. This should not be a
-problem for new Imports.
-
-It's also important to `Preview` the **Template** imports to access the impact
-that the import will have on existing database object. In earlier versions of
-Cacti, you were unable to determine what would actually change. However, in the
-current and future versions of Cacti, you will be able to see all local
-modifications when performing a `Preview` prior to `Importing`.
+Review the automatically generated preview before importing. Use **Remove
+Orphaned Graph Items** only when you intend to delete items absent from the
+incoming template, including those on attached graphs. It can remove local
+customizations; it is not a general requirement for every update. See [Template
+Import](Import-Template.md) for selection and override details.
 
 In the image below, you can see the output of a `Preview` of the Cisco WLC 5520
 **Device Template**. Preview displays the requested changes before applying
@@ -452,10 +451,11 @@ the author will provide the script that has to be downloaded to the Cacti
 file holding the Data Query definitions will have to be downloaded to the
 appropriate directory under the `./resource` directory.
 
-When importing templates, Cacti will perform a version check. All XML templates
-hold the version of the Cacti system that generated this XML set. Cacti will
-import only, if your current Cacti version equals or is higher than the exported
-one.
+Cacti checks the XML object's hash compatibility code against the installed
+version's mapping. Several releases can share a code, so it does not identify
+an exact exporter release. Unknown or newer codes can be rejected. See
+[Determine a Template Version](How-To-Determine-Template-Version.md) before
+troubleshooting compatibility; do not change hash prefixes to force an import.
 
 ## Export Templates
 
