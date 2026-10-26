@@ -97,6 +97,9 @@ def build_manual(output, revision, built):
                 token.content = re.sub(r'\b(id|name)="([^"]+)"',
                                        lambda m: f'{m[1]}="{prefix}--{m[2]}"', token.content)
             for child in token.children or []:
+                if child.type == "html_inline":
+                    child.content = re.sub(r'\b(id|name)="([^"]+)"',
+                                           lambda m: f'{m[1]}="{prefix}--{m[2]}"', child.content)
                 if child.type == "link_open":
                     href = child.attrGet("href") or ""
                     url = urlsplit(href)
