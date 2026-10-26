@@ -1,87 +1,55 @@
 # Creating Translations
 
-## Internationalization of Cacti and its Plugins
+## Translate Cacti and its plugins
 
-If you wish to help with the development of translations of Cacti from English
-to other languages, the Cacti Group has simplified the process for you.
+Create an account at the [Cacti Translation Site](https://translate.cacti.net/),
+select the project and branch, and choose a language. Review existing strings
+or add missing translations through the site's Weblate interface.
 
-You simply have to goto the following Web Site and create an account.
-[Cacti Translation Site](https://translate.cacti.net). From there, you can
-simply select what you want translated, and the push the "translate" button on
-your language of choice, and the beauty of the translation is that if the string
-that you translate is in another plugin, it can also be automatically translated
-at the same time.
+Weblate manages synchronization of language translations with GitHub. Do not
+include unrelated language catalog changes in a code pull request.
 
-If you make a change to the translations, they are automatically committed back
-to GitHub programmatically. To install the new language strings, you simply have
-to update the `locales` directory from the latest GitHub branch that you were
-translating.
+## Update the source message template
 
-The `locales` directory has two separate subdirectories. They are:
+Wrap user-facing strings with Cacti's translation helpers, such as `__()`.
+When adding, changing, or removing translatable strings, update
+`locales/po/cacti.pot` in the same pull request.
+
+From the Cacti application repository root, use its extraction script:
 
 ```console
-# ls -1 locales/
-LC_MESSAGES
-po
+./locales/update-pot.sh
+msgfmt --check-format -o /dev/null locales/po/cacti.pot
 ```
 
-The LC_MESSAGES includes the compiled language files, and the po directory
-includes not only the base Cacti translation file `cacti.pot`, but all currently
-supported languages as well.
+The script requires GNU gettext (`xgettext`); `msgfmt` validates the template.
+Review the resulting diff and keep it focused on the changed strings. The
+script and extraction coverage can differ by branch, so confirm that each new
+or changed message appears in the template.
 
-## Pull Requests
+Commit the source template, `locales/po/cacti.pot`, with your code change.
+Leave per-language `.po` and compiled `.mo` updates to Weblate.
 
-If you are making changes to the core Cacti code that involve new strings to be
-translated, you have to ensure that your Pull Request includes an updated
-`cacti.pot` file. To update the `cacti.pot` file, you simply open a shell and
-change to the `locales` directory and run the script `build_gettext.sh`. It will
-scan the Cacti source code for all strings to be internationalized and update
-the `cacti.pot` file.
+## Catalog locations and local testing
 
-If you include the updated file in your pull request, it will keep the
-development engine running smooth.
+Cacti stores the source template and language `.po` files under `locales/po/`.
+Compiled runtime catalogs are under `locales/LC_MESSAGES/`.
 
-## Translating using other tools
+For local testing, use a separate Cacti installation, compile the relevant
+catalog using gettext, and select the language in your user profile. Preserve
+the repository's locale names and directory layout. Do not deploy catalog
+files from an unrelated branch to a production installation.
 
-You may use other tools to Translate Cacti as well. One popular tool is PO
-Editor, you can download it here: [Poedit Pro](https://poedit.net/pro). The tool
-does work well and also run machine translations for you at an added cost.
+You can edit translations with a gettext-compatible editor such as
+[Poedit](https://poedit.net/), then submit them through Weblate. Consult the
+[Weblate upload documentation][ref-1]
+for supported formats and upload options.
 
-If you choose to use that route, you will need to still have a Cacti Translation
-account. From there, you can upload your modified `language.po` files into the
-interface directly. See the Weblate documentation on how to upload your modified
-`language.po` files.
+Preserve placeholders, plural forms, and formatting markers when translating.
+Test messages with substituted values as well as messages containing accented
+or non-Latin characters.
 
-1. Once Poedit is installed, open it, and select File -> New from POT/PO file,
-   and select the cacti.pot file. When you click 'Open', it will ask you for
-   what language you are translating to. Cacti uses the dual syntax of Language
-   (Country). So, for French, you would select 'French (France)'.
-
-1. Once you have done that, you can start your translation. You will select each
-   phrase one at a time, and enter in the translation in your language.
-
-1. You should save your work often.
-
-1. You can test your work on a test installation. Upload both .mo and .po files
-   to your test installation and change your user profile to use the language
-   you have just updated.
-
-1. Cacti and its plugins get updates very often. To make sure the translations
-   are up to date, the translator should download the latest version and run
-   `build_gettext.sh` to create an up-to-date version of cacti.pot.
-
-## Editing PO Files
-
-The PO Editor will create both a PO and MO file every time you save the file.
-The final name of the file will have to be changed to Cacti's standard naming.
-For example, Poedit saves the file from the example above as `fr_FR.po`, but
-Cacti will need these files name in hyphenated format, so: `fr_FR.po`, becomes
-`fr-FR.po`. Make that note especially if you are starting a new language.
-
-## Considerations
-
-As Cacti is GPL2.0+, you acknowledge, by signing up to the Cacti Weblate site,
-that your contributions will be GPL2.0+ as well.
+[ref-1]: https://docs.weblate.org/en/latest/user/files.html
 
 ---
 

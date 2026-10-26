@@ -12,11 +12,12 @@ Cisco router template for the device.
 
 Below you will be able to choose a REGEX that will help identify the device
 the REGEX can be in any Perl supported format.  You can select either to
-match by system description i.e the device hostname or the system name
-i.e Cisco.
+match **sysDescr**, the device's system description, or **sysName**, its
+administratively assigned name.
 
 An example regex for Cisco would be (Cisco Internetwork Operating System
-Software|IOS) This matches based on the system name of the Cisco IOS software.
+Software|IOS) Use that pattern against **sysDescr**, where IOS software
+identifies itself.
 
 Using this info automation would apply the appropriate device template you
 choose.  If you see below we match for a system that matches Linux once a

@@ -8,7 +8,7 @@ through caching of RRDfile disk writes.
 It will also reduce the number of CPU cores require to render
 Cacti **Graphs** due to it's image cache mechanism.
 
-We will explain how these settings work briely in the next
+We will explain how these settings work briefly in the next
 two sections.  However, there is a more detailed guide in
 the [Advanced Topics](Boost.md).  Please refer to that guide
 as well.

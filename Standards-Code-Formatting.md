@@ -2,39 +2,44 @@
 
 ## Overview
 
-Over the years Cacti has attempted to adhere to standards in code construction,
-syntax, style, etc. It has been a very organic grow which has resulted in some
-mixed styles. Cacti is in the process of moving to [PHP Standards
-Recommendations](https://www.php-fig.org/psr/) (PSR) standards.
+Follow the target branch's `.php-cs-fixer.php` and contributor instructions.
+The development branch exposes `composer php-cs-fixer` for a dry run and
+`composer php-cs-fixit` to apply formatting. Inspect formatter changes and
+avoid unrelated formatting in a focused fix.
 
-Initially we are moving towards [PSR-12](https://www.php-fig.org/psr/psr-12/)
-(Extended Coding Style) with the following exceptions:
+Cacti uses conventions based on
+[PSR-12](https://www.php-fig.org/psr/psr-12/) with project-specific exceptions.
+The checked-in formatter configuration takes precedence over these examples.
+
+The main conventions are:
 
 - Initial white space must be tabs not spaces followed by the use of spaces to
-  align elements after initial tab.
+   align elements after initial tab.
 
 - In a block of variable assignments or array elements (moved to multi-line) it
-  is acceptable, but not required, to use spaces to align the `=` or `=>` for the
-  purpose of readability.
+   is acceptable, but not required, to use spaces to align the `=` or `=>` for
+   purpose of readability.
 
-- Bracketing/braces should start on the same line of the statement.  For example:
-  - `if (expression) {`,
-  - `} else {`,
-  - and `} elseif {`
+- Bracketing/braces should start on the same line of the statement.  For
+   example:
+   - `if (expression) {`,
+   - `} else {`,
+   - and `} elseif (expression) {`
 
 - Use lower case constants for things like `false`, `true`, and `null`.
 
 - Use `print` over `echo`.
 
-- Function declarations should include ending braces on the same line as
-  the function.  For example:
-  - `function name($params ...) {`
+- Function declarations should include opening braces on the same line as
+   the function.  For example:
+   - `function name($params ...) {`
 
 - White-space inside of evaluations is discouraged.  For example:
-  - `if (expression) {` and not `if ( expression ) {`.
+   - `if (expression) {` and not `if ( expression ) {`.
 
-- Using single quotes to enclose strings, and arrays. This save quite a bit of
-  page processing time.  Use of double quotes is acceptable in certain circumstances.
+- Prefer single quotes for literal strings. Use double quotes for interpolation
+   or escape sequences. Use short array syntax on the development branch;
+   preserve compatibility with the target branch.
 
 All style guidelines should be followed exactly as shown in these examples,
 unless indicated otherwise.
@@ -162,20 +167,18 @@ name.
 
 `[identifier]_[type]_[value]`
 
-`Supported graph rendering file types`
+`Examples of application constants`
 
 ```php
-define('GRAPH_IMAGE_TYPE_PNG', 1);
-define('GRAPH_IMAGE_TYPE_GIF', 2);
+define('DATA_INPUT_TYPE_SCRIPT', 1);
+define('DATA_INPUT_TYPE_SNMP', 2);
 ```
 
 `Data input types for data sources`
 
 ```php
-define('DATA_INPUT_TYPE_NONE', 1);
-define('DATA_INPUT_TYPE_DATA_QUERY', 2);
-define('DATA_INPUT_TYPE_SCRIPT', 3);
-define('DATA_INPUT_TYPE_SNMP', 4);
+define('DATA_INPUT_TYPE_SNMP_QUERY', 3);
+define('DATA_INPUT_TYPE_SCRIPT_QUERY', 4);
 ```
 
 ## Common Action Types
@@ -264,75 +267,34 @@ if ($poller_verbosity == POLLER_VERBOSITY_LOW) {
 
 ### Variables
 
-Allocating memory for a variable consumes resources. Only declare a variable if
-it is referenced more than once throughout the code. Instead of doing:
-
-```php
-$num_devices = device_total_num_get();
-
-if ($num_devices > 0) {
-    // code
-}
-```
-
-Do:
-
-```php
-if (device_total_num_get() > 0) {
-    // code
-}
-```
+Use a local variable when it clarifies intent, avoids repeated work, or makes
+error handling explicit. Do not sacrifice readability to avoid an assignment.
 
 ### Global Variables
 
-Certain situations warrant creating a single variable that is to be referenced
-by multiple functions. Do not rely on PHP's `global` keyword since it creates
-the possibility of name space collisions. Instead, create a wrapper function
-that brings the variable into a global scope and returns a new copy to any
-function that needs to use it.
-
-```php
-$graph_unit_exponent_values = array(
-  '-18' => 'a - atto',
-  '-15' => 'f - femto',
-  // ...
-);
-
-function graph_unit_exponent_values_list() {
-    global $graph_unit_exponent_values;
-
-    return $graph_unit_exponent_values;
-}
-
-function graph_unit_exponent_values_print() {
-    foreach (graph_unit_exponent_values_list() as $power => $unit) {
-        // code
-    }
-}
-```
+Use explicit arguments and return values for new shared code where practical.
+Preserve existing global-state contracts when fixing legacy functions. Do not
+introduce additional global state as an incidental part of a focused change.
 
 ## References
 
-Copying around large arrays in PHP can be an expensive operation. Be sure to
-return or pass arrays by reference when data corruption is not a huge concern.
-
-```php
-function big_array_process(&$big_array) {
-    // code
-}
-```
+Pass arrays by value unless the function is intended to modify the caller's
+array. PHP uses copy-on-write; adding references is not a general performance
+optimization. Document intentional mutation and measure performance-sensitive
+changes against the actual call path.
 
 ## Database Calls
 
 Ensure that you indent your Database calls by a single tab per indentation level
-and that you break up database calls by the various provisos.  A few well defined
+and that you break up database calls by the various provisos.  A few well
+defined
 database queries can be seen in the examples below
 
 ```php
 $devices = db_fetch_assoc_prepared('SELECT *
   FROM host
   WHERE id = ?',
-  array($device_id));
+  [$device_id]);
 
 $vdefs = db_fetch_assoc("SELECT rs.*,
   SUM(CASE WHEN local_graph_id = 0 THEN 1 ELSE 0 END) AS templates,
@@ -351,11 +313,10 @@ $vdefs = db_fetch_assoc("SELECT rs.*,
   $sql_limit");
 ```
 
-1) Ensure that you use prepared statements as in the first example whenever
-you can.
+1) Use prepared statements for values, as in the first example.
 
-2) If you can not use prepared statements, ensure that you properly
-escape any database SQL WHERE logic properly.
+2) Build dynamic identifiers and SQL fragments from explicit allowlists.
+Do not concatenate untrusted values into SQL.
 
 3) Always use the term `AS` to define an alias.
 
@@ -372,8 +333,8 @@ escape any database SQL WHERE logic properly.
 
 ## Comments
 
-The key to being a respectable coder is to write clear, concise code and to use
-comments everywhere.
+Explain intent, constraints, and non-obvious behavior. Keep comments consistent
+with the code and avoid comments that merely restate an assignment or test.
 
 ### Whole Line Comments
 

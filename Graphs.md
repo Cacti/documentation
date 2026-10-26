@@ -17,10 +17,13 @@ of the graph amongst other things
 
 ### Modifying the graph template
 
-Cacti allows you to change many aspects of the graph template.  You can
-change parameters such the title of the graph as well the size of the graphs.
-These changes will be pushed to the graph template so other devices using the
-template will also be updated.
+An individual graph inherits managed settings from its graph template. Editing
+that graph does not update the template or other graphs. Fields marked
+**Use Per-Graph Value** in the template can be set independently on each graph.
+
+To change shared settings, edit the [Graph Template](Graph-Templates.md) under
+**Console > Templates > Graphs**. Review the affected graphs first: template
+changes propagate to attached graphs for fields managed by that template.
 
 ![Graph template options](images/graph-template-options.png)
 

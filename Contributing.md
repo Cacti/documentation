@@ -1,55 +1,77 @@
 # Contributing
 
-If you wish to contribute to Cacti, the process is very easy.  The first step
-is to register for a GitHub account.  Once you have a GitHub account, you then
-need to learn about their community guidelines and familiarize yourself with
-how to create a pull request.  Pull requests are how we accept submissions from
-the community for Code and Documentation.
+Cacti accepts bug reports, code changes, documentation corrections, and
+translations. Choose the repository that owns the affected component:
 
-Pull requests are always created against the **develop** branch, unless
-otherwise instructed. Detailed guide on how to create Pull Requests on GitHub
-under [Standards-Patch-Creation](Standards-Patch-Creation.md) section.
+- [Cacti](https://github.com/Cacti/cacti) for the application.
+- [Documentation](https://github.com/Cacti/documentation) for this manual.
+- [Spine](https://github.com/Cacti/spine) for the C poller.
+- The relevant [Cacti plugin repository][ref-1]
+  for a plugin.
 
-## Code Contributions
+## Report a problem
 
-There are a few key points.  First, if you want a feature, or find an issue,
-and the forums are leading you to GitHub, create an Issue, this issue can be
-tagged either an enhancement or a bug.  Regardless of what it is, if you think
-you can create a fix for that, prepare a pull request with your changes.
+Search the project's open and closed issues before opening a report. Include
+versions, reproduction steps, expected and actual behavior, and relevant logs.
+Remove passwords, SNMP communities, tokens, and other sensitive information.
+See [Known Issues](Known-Issues.md) for release notes and existing reports.
+For installation or usage help, use the [Cacti
+Forums](https://forums.cacti.net/).
 
-When your code is submitted, basic checks are performed to ensure that the code
-is runnable but this does not guarantee that it will work.  Please ensure that
-you have been able to test your code before submitting a fix.
+Report suspected vulnerabilities privately through the
+[Cacti security policy](https://github.com/Cacti/cacti/security/policy).
 
-In addition to testing, please try to keep your code to Cacti's standards:
+## Code contributions
 
-- [Code](Standards-Code-Formatting.md)
+Create a branch for one focused change and submit a pull request to the
+repository that owns it. Use `develop` unless maintainers request another
+branch. Check the issue and target branch before starting a maintenance fix;
+a change needed on one branch may already be fixed on another.
 
-- [File System Layout](Standards-FileSystem-Layout.md)
+Read the contributor instructions in that branch. In the Cacti development
+repository, `composer.json` defines PHP requirements and checks, `.nvmrc`
+specifies the Node version, and `package-lock.json` locks frontend dependencies.
+For a development checkout, install dependencies from the repository root:
 
-- [SQL styling](Standards-SQL.md)
+```console
+composer install
+npm ci
+```
 
-  and
+Use the branch's formatter, static analysis, and relevant tests before
+submitting. The development branch provides `composer check`; consult its
+[contributor guide](https://github.com/Cacti/cacti/blob/develop/CONTRIBUTING.md)
+for individual commands. Maintenance branches may have different tools.
+Describe what changed and how you verified it. Add regression coverage when
+it protects against a realistic failure, and link the associated issue.
 
-- [Security](Standards-Security.md)
+Follow the [code formatting](Standards-Code-Formatting.md),
+[PHP](Standards-PHP-Spec-Constructs.md), [SQL](Standards-SQL.md), and
+[security](Standards-Security.md) guides. Update relevant documentation and
+follow the target branch's changelog instructions. See
+[Patch Creation](Standards-Patch-Creation.md) for the submission workflow.
 
-You can view all the repositories of code that Cacti publicly shares on GitHub
-at this [link](https://github.com/Cacti), or to go specifically to the [Cacti
-source code](https://github.com/Cacti/cacti), [issue
-tracker](https://github.com/Cacti/cacti/issues), and [internal
-Wiki](https://github.com/Cacti/cacti/wiki)
+## Documentation contributions
 
-## Documentation Contributions
+Submit manual changes to
+[the documentation repository](https://github.com/Cacti/documentation).
+Explain the correction and link an existing issue where applicable. Check
+instructions against the Cacti branch being documented, distinguish released
+features from development features, and verify commands, links, and images.
 
-As with Code contributions, if you wish to enhance or correct an issue with the
-current documentation, create an issue with the details and then link the Pull
-Request to it.
+Follow the [Documentation Standards](Standards-Documentation.md) and link new
+pages from `README.md`. Updating this repository does not immediately update
+the public website; publication depends on the project's documentation build
+and deployment process.
 
-Unlike the various standards for coding depending on the type of code you are
-attempting to contribute, there is only one set of [Documentation
-Standards](Standards-Documentation.md) at this time.  Please try to ensure that
-your code confirms to this, as there are strict checks in place which will fail
-your submission if it fails these standards.
+## Translations
+
+Use the [translation guide](Contributing-Translations.md) to contribute through
+Cacti's translation service. Changes to translatable application strings must
+also update the source message template as described in that guide.
+
+[ref-1]: https://github.com/orgs/Cacti/repositories
 
 ---
+
 Copyright (c) 2004-2026 The Cacti Group

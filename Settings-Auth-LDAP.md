@@ -1,5 +1,10 @@
 # LDAP Authentication
 
+On the unreleased Cacti 1.3 development branch, configure LDAP and Active
+Directory under [Login Providers](Login-Providers.md). Cacti 1.2 uses the
+authentication settings and User Domains screens described below. The LDAP
+terms and connection settings apply to both, but menu labels differ.
+
 Cacti supports using LDAP authentication to access the Cacti GUI.
 There are several different ways to use LDAP, which will be described in the
 following sections.

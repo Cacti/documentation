@@ -8,11 +8,11 @@ sub-tab is broken into the following sub-sections:
 
 - **Required Tool Paths** - Paths that are essential for Cacti's operation
 - **Logging** - Settings associated with Cacti's logging facilities
-  including log rotation
+   including log rotation
 - **Alternate Poller Path** - Locations for Cacti's spine binary and spine
-  config file if not in the established default locations
+   config file if not in the established default locations
 - **RRD Cleaner** - Setting for Cacti's RRDfile disposal of removed RRDfile
-  when Data Sources are removed.
+   when Data Sources are removed.
 
 When using Cacti's **Remote Data Collectors** or **Remote Pollers** the
 settings that refer for a `File Path`, or `Directory Path` will be local
@@ -32,20 +32,24 @@ Those settings include:
 
 **snmpget Binary Path** - This is the path to the `snmpget` binary.
 
-**snmpbulkwalk Binary Path** - This is the path to the `snmpwalk` binary.  This binary
-path is essential if you use SNMPv2 of SNMPv3 versions where **Data Queries** perform
+**snmpbulkwalk Binary Path** - This is the path to the `snmpbulkwalk` binary.
+This binary
+path is essential if you use SNMPv2 of SNMPv3 versions where **Data Queries**
+perform
 bulkwalks by default to increase performance.
 
 **snmpgetnext Binary Path** - This is the path to the `snmpgetnext` binary.
 
-**snmptrap Binary Path** - This is the path to the `snmptrap` binary.  This binary
+**snmptrap Binary Path** - This is the path to the `snmptrap` binary.  This
+binary
 is important for SNMP Notification and Trap generation.
 
 **RRDtool Binary Path** - The location of the RRDtool binary that matches your
 RRDtool version.
 
-**PHP Binary Path** - The location of the PHP Binary, generally, this setting is
-always `/usr/php`, but can change for some users.
+**PHP Binary Path** - The full path to the PHP CLI binary used by the poller,
+for example `/usr/bin/php`. Verify its version and extensions separately from
+the PHP runtime used by the web server.
 
 ## Logging
 
@@ -59,10 +63,12 @@ Those settings include:
 
 **Cacti Log Path** - The location of Cacti's Standard Output (stdout) log file.
 
-**Poller Standard Error Log Path** - For Cacti's **Data Collector** functions only,
+**Poller Standard Error Log Path** - For Cacti's **Data Collector** functions
+only,
 the location of the Standard Error (stderr) log file.
 
-**Rotate the Cacti Log**  - Determines if Cacti or the package maintainer rotates
+**Rotate the Cacti Log**  - Determines if Cacti or the package maintainer
+rotates
 the Cacti log.
 
 **Rotation Frequency** - Should the Log files be rotated `Daily` or `Weekly`
@@ -77,8 +83,10 @@ Older files will be removed automatically.
 
 ## Alternate Poller Path
 
-This subsection holds information on how to configure Cacti's `spine` binary path.
-Since `spine` is written in C, it is compiled by the Cacti Administrator to match
+This subsection holds information on how to configure Cacti's `spine` binary
+path.
+Since `spine` is written in C, it is compiled by the Cacti Administrator to
+match
 the system's environment. The primary benefit of `spine` is that it is
 multi-threaded and highly scalable, capable of polling tens of thousands of data
 sources per minute. The image below shows this subsection.
@@ -90,11 +98,11 @@ Those settings include:
 - **Spine Binary File Location** - The path to the spine binary.
 
 - **Spine Config File Path** - This setting is optional.  If blank, Cacti will
-  search the following locations for a `spine.conf` file.
+   search the following locations for a `spine.conf` file.
 
-  - **pwd** - The same directory as spine
-  - **../etc/** - One sibling `etc` directory of the `spine` binary directory.
-  - **/etc/** - The systems /etc/ directory.
+   - **pwd** - The same directory as spine
+   - **../etc/** - One sibling `etc` directory of the `spine` binary directory.
+   - **/etc/** - The systems /etc/ directory.
 
 ## RRD Cleaner
 
@@ -109,13 +117,14 @@ can be seen in the image below.  Note that unless you enable
 Those settings include:
 
 - **RRDfile Auto Clean** - Denotes that you wish Cacti to manage RRDfiles from
-  removed **Data Sources** potentially automatically.
+   removed **Data Sources** potentially automatically.
 
 - **RRDfile Auto Clean Method** - This is the method to perform cleanup.
-  Options include:
+   Options include:
 
-  - **Delete** - Simply remote the files once the **Data Source** is removed
-  - **Archive** - Archive the RRDfile to an Archive directory once it's removed.
+   - **Delete** - Simply remote the files once the **Data Source** is removed
+   - **Archive** - Archive the RRDfile to an Archive directory once it's
+     removed.
 
 - **Archive directory** - The Archive directory to move old RRDfile to.
 

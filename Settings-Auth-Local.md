@@ -3,8 +3,9 @@
 ## Overview
 
 Cacti's Built-in Authentication is sufficient for most small work-group Cacti
-installs.  All users and their passwords are stored on the local Cacti
-database, and are stored in a method where they are not easily compromised.
+installations. Cacti stores local accounts and password hashes in its database,
+not recoverable plaintext passwords. Protect database access and backups as
+part of the installation's credential security.
 
 ## Local Account Complexity Requirements
 

@@ -1,101 +1,66 @@
 # PHP Specific Constructs
 
-## Traversing Arrays
+Use the PHP range declared in the target branch's `composer.json`, together
+with its CI configuration. The development branch requires PHP 8.3 or later
+within the declared Composer range; maintenance branches can differ.
+Do not introduce syntax or APIs unsupported by the branch being changed.
 
-Use the ```foreach ($array as $name => $value)``` syntax instead of ```while
-(list($name, $value) = each($array))``` syntax when traversing arrays. The
-former has been demonstrated to be more efficient and does not increment the
-internal pointer of the array. Check that the variable is an array before
-passing it to `foreach`, otherwise a null or boolean value raises a warning.
+## Traversing arrays
+
+Use `foreach` to traverse arrays. `each()` was removed in PHP 8.0.
 
 ```php
-if (is_array($array)) {
-    foreach ($array as $name => $value) {
-        // code
-    }
+foreach ($devices as $device) {
+	// Process the device.
 }
 ```
 
-It should be noted that with PHP 7.2 use of `list() = each()` syntax will result
-in warnings and/or errors. PHP 7.2 also made `count()` and `sizeof()` warn on
-non-countable values, so the argument must be an array or implement
-`Countable`. Verify `is_array($variable) || $variable instanceof Countable`
-before calling either function.
+Define the expected type at the function boundary. If an existing API can
+return `false` or `null`, handle that result before iterating or calling
+`count()`. Use `is_countable()` when a value can be an array or `Countable`.
 
-## Error Return Values
+## Return values
 
-When a function needs to return a generic error, it is best to return boolean
-`false` in PHP. This makes it very straightforward to check for.
+Preserve the function's documented return contract. Compare strictly when
+`false` signals failure and a successful value could be `0` or an empty array.
+Do not change a public API's error handling as part of an unrelated fix.
 
 ```php
-if (file_list() === false) {
-    // there was an error
+$result = file_get_contents($path);
+
+if ($result === false) {
+	// Handle the read failure.
 }
 ```
 
-## Regular Expressions Are Slow
+## String operations and regular expressions
 
-Only use PHP's regular expression parsing functions (`preg_match`,
-`preg_replace`, `preg_quote`, etc) when absolutely needed. Often simpler
-functions such as `strstr()`, `str_replace()`, `substr()`, and `explode()` can
-be used, and are much faster.
+Use string functions for literal operations and `preg_*` functions when the
+operation requires a regular expression. The old `ereg*` and `split()` APIs
+are unavailable on supported development runtimes.
 
-```php
-$items = explode(':', $string);
-```
+Prefer single quotes for literal strings. Use double quotes when interpolation
+or escape sequences make the code clearer. Do not claim a performance benefit
+without measuring the relevant code path.
 
-Avoid legacy POSIX regex functions such as `split()`, which was removed in
-PHP 7.0.
+## Including PHP files
 
-## Use `preg` Functions Instead of `ereg`
+Web entry points that require an authenticated user load `include/auth.php`.
+User-facing CLI entry points load `include/cli_check.php`. These bootstrap
+files establish the application environment; a CLI entry point must not load
+the web authentication bootstrap.
 
-The POSIX based regular expressions in PHP tend to be slower than their
-Perl-based equivalents. Use Perl-based regular expression functions unless there
-is an explicit reason to do otherwise.
-
-***NOTE:*** Do not use any deprecated functions: `eregi_replace`, `ereg`, or
-`eregi`
-
-## Quotes
-
-Single quotes are used instead of double where possible. Per string, it doesn't
-really make a huge difference, but when you have thousands upon thousands of
-them, every little bit helps.
+After bootstrap, resolve library paths relative to `$config['base_path']`:
 
 ```php
-include_once('./lib/api_tree.php');
+require_once($config['base_path'] . '/lib/api_device.php');
 ```
 
-However, there isn't any difference between
-
-```php
-"This is a $test"
-```
-
-and
-
-```php
-'This is a ' . $test
-```
-
-Don't bother trying to break out variables out of the string if you are just
-going to have to concatenate them.
-
-## Including other PHP files
-
-When including other PHP files, you should use the `$config['base_path']` to
-ensure that the base path is configured properly.
-
-If the main file is a web-based page, it should include `include/auth.php` to
-ensure that the current user is authenticated.
-
-If the main file is a CLI-based program to be run by end users, it should
-include `lib/cli_check.php` and support `-h` and `-v` parameters which run
-`display_help()` and `display_version()` respectively.
-
-```php
-include($config['base_path'] . '/lib/database.php');
-```
+Use `require_once` for required libraries that might already be loaded. Follow
+the existing entry point's `--help` and `--version` conventions for CLI tools.
+Keep request validation and authorization at the appropriate boundaries; see
+[Security](Standards-Security.md).
 
 ---
+
 Copyright (c) 2004-2026 The Cacti Group

@@ -1,5 +1,10 @@
 # User Domain Management
 
+This page describes **User Domains in Cacti 1.2**. The unreleased Cacti 1.3
+development branch replaces this screen with
+[Login Providers](Login-Providers.md). User Domains are a core Cacti feature
+in 1.2, not a separate plugin.
+
 User Domains in Cacti are a way of providing Custom Login
 experiences to differing groups of users and using LDAP
 or Active Directory Group Permissions to limit who
@@ -10,7 +15,7 @@ will enherit the Template accounts permission settings
 including User Group's and their permissions.
 
 So, as the name implies, you can have from one to many
-LDAP and Active directory listings in the Domains plugin.
+LDAP and Active Directory entries in the User Domains interface.
 
 A use example would be for example 3 levels of customers
 who will have access to the system.  For example lets

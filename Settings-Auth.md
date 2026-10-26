@@ -2,29 +2,21 @@
 
 ## Overview
 
-Cacti provides four Authentication methods.  Combined with the Apache and
-nginx authentication modules, Cacti can support most of the Authentication
-methods in common use.  Those Authentication methods are:
+Authentication options depend on the Cacti version. In the unreleased Cacti
+1.3 development branch, choose from:
 
-- **Built-in Authentication** - With this method, Cacti stores both the user
-  account and its password on the Cacti server.  The password is hashed with
-  PHP's `password_hash()` using the default algorithm, and it is rehashed on
-  login whenever that default algorithm or its cost changes.  This method
-  also supports the local complexity, history and expiry policies described
-  in [Local Authentication](Settings-Auth-Local.md).
-- **Web Basic Authentication** - With this method, the web server itself
-  controls the Authentication.  Cacti then accepts whatever the web server
-  authenticated, so the web server can front Cacti with SAML 2.0, Kerberos,
-  NIS, LDAP, a local password file, TACACS+ or another scheme.
-- **LDAP Authentication** - Cacti supports direct communication with LDAP
-  and Active Directory servers as well.  When using this method, Cacti
-  can limit what User Group may access Cacti based upon more detailed
-  settings.
-- **Multiple LDAP/AD Domains** - When you have multiple security levels
-  and/or LDAP and AD Domains that you wish to support, for example
-  maybe you have Admins, Power Users, and General Users groups defined
-  and you wish to restrict who can log in as whom, this Authentication
-  method lets you set up that type of security system.
+- **Cacti Builtin Authentication** - Local accounts use password hashes and
+  Cacti's password policies. See [Local Authentication](Settings-Auth-Local.md).
+- **Web Basic Authentication** - The web server authenticates the user and
+  passes the authenticated identity to Cacti. Cacti still controls access to
+  its features and objects. See [Basic Authentication](Settings-Auth-Basic.md).
+- **Login Providers** - Configure LDAP, Active Directory, SAML2, or OpenID
+  Connect through [Login Providers](Login-Providers.md).
+
+Cacti 1.2 instead provides separate **LDAP Authentication** and **Multiple
+LDAP/AD Domains** methods. The [LDAP](Settings-Auth-LDAP.md) and
+[domain](Settings-Domains.md) guides retain those version-specific details.
+Do not assume that development interface labels are present in a 1.2 release.
 
 For most of these `Authentication Methods`, there are some common settings
 shown in the image below.
@@ -49,7 +41,7 @@ Those options include:
   or new Cacti local accounts, Cacti takes the user's default authorization
   from this Template User account.  For some Cacti **Authentication Methods**
   you can have more than one Template User, for example
-  **Multiple LDAP/AD Domains**.
+  **Login Providers**, or **Multiple LDAP/AD Domains** in Cacti 1.2.
 
 In the sections below, we will go over these various
 **Authentication Methods** and their settings.
@@ -60,7 +52,9 @@ In the sections below, we will go over these various
 
 [LDAP Authentication](Settings-Auth-LDAP.md)
 
-[Multiple LDAP/AD Domains](Settings-Domains.md)
+[Login Providers (development)](Login-Providers.md)
+
+[Multiple LDAP/AD Domains (1.2)](Settings-Domains.md)
 
 ---
 Copyright (c) 2004-2026 The Cacti Group
