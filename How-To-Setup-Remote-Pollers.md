@@ -12,8 +12,8 @@ in Toronto in this case will help with that issue.
 ## Setup Instructions
 
 The process of remote poller installation is similar to cacti installation.
-In the wizard, select the installation type for Remote poller. For the remote poller
-you must use the same version of cacti as the main poller installation.
+In the wizard, select **New Remote Poller**. Use the same version of Cacti
+as the primary installation.
 
 With this setup the following layout is assumed
 
@@ -25,43 +25,72 @@ With this setup the following layout is assumed
 
 ## Database Configuration
 
-Each server will have its own local database however the remote pollers will
-need to talk back to the main poller so we must allow the remote servers user
-account to connect back to the main pollers database via the network
+Each server needs its own local Cacti database, initialized as described in
+[Installing Cacti](General-Installing-Instructions.md). The examples below
+assume that each database is named `cacti`. Remote pollers connect to the
+primary database, and
+the primary connects to each remote database for synchronization. These are
+two separate connection directions with separate credentials.
 
-Main server database config
+Run the following SQL as a database administrator on the specified server.
+Replace every example password with a unique secret before running it. The
+host portion of each account must match the source address seen by that
+database server, which may differ from the addresses below when using NAT.
+Use separate `CREATE USER` and `GRANT` statements; do not rely on `GRANT` to
+create an account. If an account already exists, review its authentication
+and grants instead of recreating it.
+
+On the primary database server (`192.168.1.5`), create accounts for connections
+from the two remote pollers:
 
 ```sql
-GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'192.168.1.10' IDENTIFIED BY 'cacti';
-GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'192.168.1.20' IDENTIFIED BY 'cacti';
+CREATE USER 'cacti_remote1'@'192.168.1.10' IDENTIFIED BY 'replace-with-remote1-secret';
+GRANT ALL PRIVILEGES ON cacti.* TO 'cacti_remote1'@'192.168.1.10';
+CREATE USER 'cacti_remote2'@'192.168.1.20' IDENTIFIED BY 'replace-with-remote2-secret';
+GRANT ALL PRIVILEGES ON cacti.* TO 'cacti_remote2'@'192.168.1.20';
 ```
 
-Remote poller 1 database configuration
+On remote poller 1's database server (`192.168.1.10`), create an account for
+connections from the primary:
 
 ```sql
-GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'192.168.1.5' IDENTIFIED BY 'cacti';
+CREATE USER 'cacti_sync'@'192.168.1.5' IDENTIFIED BY 'replace-with-sync1-secret';
+GRANT ALL PRIVILEGES ON cacti.* TO 'cacti_sync'@'192.168.1.5';
 ```
 
-Remote poller 2 database configuration
+On remote poller 2's database server (`192.168.1.20`):
 
 ```sql
-GRANT ALL PRIVILEGES ON cacti.* TO 'cacti'@'192.168.1.5' IDENTIFIED BY 'cacti';
+CREATE USER 'cacti_sync'@'192.168.1.5' IDENTIFIED BY 'replace-with-sync2-secret';
+GRANT ALL PRIVILEGES ON cacti.* TO 'cacti_sync'@'192.168.1.5';
 ```
 
-We have also let the main poller talk to the remote pollers to keep in sync
+These network accounts do not replace the local database account configured
+in each server's `$database_*` settings. Keep the local account's grants and
+credentials consistent with the local installation instructions.
+
+Database listeners and firewalls must permit these connections only between
+the required servers. Use database TLS or a protected network connection;
+do not expose the database port publicly. Configure matching TLS options in
+Cacti and Spine when using database TLS.
 
 ## Spine configuration
 
-When you have setup multiple pollers while using spine you will need to also
-configure the spine.conf file to connect to the remote database as well.
+If a remote poller uses Spine, configure its `spine.conf` with both database
+connections. `DB_*` points to that poller's local database and must match its
+`$database_*` settings. `RDB_*` points to the primary database and must match
+its `$rdatabase_*` settings. Use a Spine release compatible with Cacti 1.2.
+Protect this file because it contains database credentials.
 
-Be sure to remove the # next to the below entries
+For remote poller 1, uncomment and set the following primary-connection
+entries. Replace the password with the same secret used in its primary
+server account. Remote poller 2 uses `cacti_remote2` and its own secret.
 
 ```console
 RDB_Host 192.168.1.5
 RDB_Database cacti
-RDB_User cacti
-RDB_Pass cacti
+RDB_User cacti_remote1
+RDB_Pass replace-with-remote1-secret
 RDB_Port 3306
 #RDB_UseSSL 0
 #RDB_SSL_Key
@@ -80,19 +109,21 @@ connections = spine-processes x ( 1 + threads-per-process  + PHP servers )
 
 ## Remote poller config.php setup
 
-Now that we have set up the database connections we need to set up the cacti
-config.php file on the remote pollers to give them the database info they need
-to connect to the main poller we won’t have to edit the main servers config.php
-file aside from the normal install procedure to give it access to its local
-database. Below is the portion of the config.php that we need to edit to allow
-the remote poller to talk to the main server be sure to remove the hash sign (#)
+On each remote poller, copy `include/config.php.dist` to `include/config.php`
+if the configuration file does not already exist. Do not overwrite an
+existing configuration. Keep `$database_*` pointing to that poller's local
+database with its local database credentials.
 
-```console
+Uncomment the `$rdatabase_*` settings and point them to the primary database.
+For remote poller 1, use the account created on the primary for
+`192.168.1.10`:
+
+```php
 $rdatabase_type = 'mysql';
 $rdatabase_default = 'cacti';
-$rdatabase_hostname = '192.168.1.5;
-$rdatabase_username = 'cacti';
-$rdatabase_password = 'cacti';
+$rdatabase_hostname = '192.168.1.5';
+$rdatabase_username = 'cacti_remote1';
+$rdatabase_password = 'replace-with-remote1-secret';
 $rdatabase_port = '3306';
 $rdatabase_retries = 5;
 $rdatabase_ssl = false;
@@ -101,5 +132,53 @@ $rdatabase_ssl_cert = '';
 $rdatabase_ssl_ca = '';
 ```
 
+For remote poller 2, use `cacti_remote2` and its corresponding password. The
+TLS options shown are disabled; enable and configure them when using database
+TLS. Leave `$rdatabase_*` commented out on the primary server.
+
+Restrict access to the installer and use HTTPS or a protected local connection
+before entering credentials. Select **New Remote Poller** in the web installer
+and use **Test Connection** to check the primary database connection. Cacti
+1.2.31 requires `include/config.php` to be writable by the web server during
+remote installation so it can save the assigned `$poller_id`. Afterwards,
+remove web-server write access while retaining read access. Do not assign
+poller IDs from the example numbering above: the primary uses ID `1`, and the
+installer obtains the remote poller's ID from the primary database.
+
+After installation, edit each remote Data Collector on the primary server.
+Under **Remote Database Connection**, set its reachable database hostname,
+database name, port and synchronization credentials. For remote poller 1,
+use hostname `192.168.1.10`, database `cacti`, user `cacti_sync` and the
+`replace-with-sync1-secret` value you replaced earlier. For remote poller 2,
+use `192.168.1.20` and its own synchronization password. Do not use `localhost`
+here: the primary must connect to the remote database. Use **Test Connection**
+to verify this reverse connection as well.
+
+## Scheduled polling
+
+Complete installation and both connection checks before starting scheduled
+polling on a remote poller. Configure one scheduler per server, either cron
+or `cactid.service`, using that server's installation path and poller account.
+Do not run both. Match the **Cron/Daemon Interval** in Settings > Poller;
+this is separate from the data-source polling interval, which can be shorter.
+See the scheduler examples in the
+[Ubuntu/Debian guide](Installing-Under-Ubuntu-Debian.md#schedule-polling)
+or the relevant platform installation guide.
+
+## References
+
+- [Cacti 1.2.31 configuration example][cacti-config]
+- [Cacti 1.2.31 remote installation checks][cacti-installer]
+- [Spine 1.2.31 database configuration example][spine-config]
+- [MySQL CREATE USER][mysql-create-user]
+- [MariaDB CREATE USER][mariadb-create-user]
+
+[cacti-config]:<https://github.com/Cacti/cacti/blob/release/1.2.31/include/config.php.dist>
+[cacti-installer]:<https://github.com/Cacti/cacti/blob/release/1.2.31/lib/installer.php#L2173-L2207>
+[spine-config]:<https://github.com/Cacti/spine/blob/release/1.2.31/spine.conf.dist>
+[mysql-create-user]:<https://dev.mysql.com/doc/refman/8.0/en/create-user.html>
+[mariadb-create-user]:<https://mariadb.com/docs/server/reference/sql-statements/account-management-sql-statements/create-user>
+
 ---
+
 Copyright (c) 2004-2026 The Cacti Group
