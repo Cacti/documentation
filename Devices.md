@@ -43,6 +43,15 @@ entered, click save on the bottom right corner. With the device created you will
 need to add graphs for the device by clicking **Create graphs for this device**
 on the top right hand corner.
 
+Choose a [device template](Device-Templates.md) for the device's exposed
+measurements. The [template overview](Templates.md) explains bundled examples
+and import choices. If no dedicated template is available, generic SNMP
+interface monitoring may still work. Vendor and template names do not
+guarantee support for every model, firmware version or metric. Check the
+device's SNMP agent and permitted view, then inspect its returned query rows
+before selecting graphs. For script-based templates, also check the script's
+dependencies and access requirements.
+
 ## Availability/Reachability Settings
 
 Cacti prefers to use the Simple Network Management Protocol (SNMP) to communicate
@@ -70,7 +79,8 @@ The device is considered UP even if the tcp ping returns closed
 When providing the SNMP credentials, Cacti currently supports the following versions:
 
 - **Version 1** - Rarely used any more.  Reserved for very old hardware
-- **Version 2** - Still very popular, and support 64 bit counters except on Windows
+- **Version 2** - SNMPv2c supports 64-bit counters when the device's agent
+  exposes them.
 - **Version 3** - Fully supported, including advanced settings such as SHA224+
   or AES192+ with SNMPv3.  Cacti automatically leverages the Net-SNMP binaries
   where needed, so there is no need to uninstall the php-snmp module.
@@ -90,7 +100,7 @@ They include the following:
 - **Maximum OIDs Per Get Request** - Otherwise known as MaxOID's, this SNMP option
   will allow the SNMP client to gather more metrics per get request.  Please keep
   in mind that the higher you make this number, the longer a SNMP respond may take.
-  So, you have to be sensitive about the SNMP timeout as the number get's larger.
+  So, you have to be sensitive about the SNMP timeout as the number gets larger.
   Since, by default SNMP is generally collected over UDP, you will also be limited
   in the number of responses depending on how many routers or VPN's you traverse
   to reach a device.  When traversing VPN connections, many VPN's limit the MTU

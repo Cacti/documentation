@@ -36,19 +36,24 @@ the SNMP - Generic OID Template
 
 ![Data Templates](images/data-templates.png)
 
-After clicking Go, you're prompted with a new page to enter
-`udp/net - udp Out Datagrams` as the `Title Format` for the
-new **Data Template**:
+After clicking Go, you're prompted with a new page to enter `udp/net - udp In
+Datagrams` as the `Title Format` for the new **Data Template**:
+
+The screenshots are from an older example; follow the names and OIDs in this
+text for each copy.
 
 ![Data Templates Duplicate](images/data-templates-copy.png)
 
 Due to the filter defined above, you won't see the new Template at once, so
-please enter `udp Out` as a new filter to find:
+please enter `udp In` as a new filter to find:
 
 ![Data Templates New](images/data-templates-new.png)
 
-Now select this entry to change some definitions according to the following
-images:
+Edit the copy for `udpInDatagrams`, using OID `.1.3.6.1.2.1.7.1.0`, a
+recognizable internal name such as `udp_in`, and the `COUNTER` data-source
+type. The historical screenshots show the field locations and mix older labels.
+Use the name/OID pair above for the inbound copy, then `udpOutDatagrams` and
+`.1.3.6.1.2.1.7.4.0` for the second, outbound template:
 
 ![Data Templates New 1](images/data-templates-new1.png)
 
@@ -56,10 +61,12 @@ images:
 
 ![Data Templates New 2](images/data-templates-new3.png)
 
-for the lower one. Please pay attention to change the MAXIMUM value to 0 to
-prevent data suppression for values exceeding 100. And you saw the OID
-`.1.3.6.1.2.1.7.1.0` from above, didn't you? Please copy another one for OID
-`.1.3.6.1.2.1.7.4.0`, using the description **udpOutDatagrams**
+Set **Maximum Value** to `U` for no upper limit, as shown in the screenshot. Do
+not use `0`: with the illustrated minimum of `0`, Cacti rejects that range. Use
+a finite upper limit only when it represents a valid bound for the metric. And
+you saw the OID `.1.3.6.1.2.1.7.1.0` from above, didn't you? Please copy
+another one for OID `.1.3.6.1.2.1.7.4.0`, using the description
+**udpOutDatagrams**
 
 ## Graph Template Creation
 
@@ -132,6 +139,11 @@ Now you'll find two sections added. First, let's deal with
 contains all existing **Graph Templates**. In the images, you will see that
 we are creating a **Device Template** for a NetApp Filer and adding some
 common Graph Templates and Data Queries from the Cacti built-in collection.
+
+This is a custom device-template example. Cacti 1.2.31 does not bundle a
+dedicated NetApp package. Reusing built-in graph templates does not establish
+NetApp-specific metric support; verify the objects the device exposes before
+adding graphs or queries to the template.
 
 ![Host Template Associate Graph Template](images/device-template-new-gt.png)
 

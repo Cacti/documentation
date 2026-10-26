@@ -18,7 +18,7 @@ briefly.
 | Script                 | Category    | Description                                                                                     |
 | ---------------------- | ----------- | ----------------------------------------------------------------------------------------------- |
 | add_device.php         | Automation  | Allows adding a Device to Cacti. Most device options are included. Some plugin options may not. |
-| change_device.php      | Automation  | Alllows editing device details such as IP/Poller association                                    |
+| change_device.php      | Automation  | Allows editing device details such as IP/Poller association                                    |
 | add_data_query.php     | Automation  | Allows adding a Data Query to Cacti.                                                            |
 | add_graph_template.php | Automation  | Allows adding a Graph Template to Cacti.                                                        |
 | add_graphs.php         | Automation  | Allows adding a Graph to Cacti.                                                                 |
@@ -57,7 +57,7 @@ briefly.
 
 | Script                  | Category        | Description                                                                                                                                                                                                                                                               |
 | ----------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| import_package.php      | Install/Upgrade | Import a Cacti package from a tgz file.                                                                                                                                                                                                                                   |
+| import_package.php      | Install/Upgrade | Import a signed Cacti `.xml.gz` package, including its template definitions and embedded resource files. Run on the main collector; see [Template Import](Import-Template.md). |
 | install_cacti.php       | Install/Upgrade | Script to install Cacti from a raw schema. Used primarily by distribution maintainers.                                                                                                                                                                                    |
 | md5sum.php              | Install/Upgrade | Utility to verify the MD5SUM of a file.                                                                                                                                                                                                                                   |
 | sqltable_to_php.php     | Install/Upgrade | Utility for Plugin Developers to create an object for creating tables in plugins.                                                                                                                                                                                         |
