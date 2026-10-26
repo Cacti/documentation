@@ -4,462 +4,127 @@
 
 Cacti collects measurements from network devices, servers, and applications
 and uses RRDtool to store time-series data and display graphs. Use this manual
-to install Cacti, configure data collection, manage access, and contribute
-changes.
+to install Cacti, configure monitoring, and keep your installation running.
 
-This documentation branch follows **develop**, the unreleased Cacti 1.3
-development series. Features and menu labels can differ from released Cacti
-1.2 installations. For maintenance releases, use the
-[1.2.x documentation](https://github.com/Cacti/documentation/tree/1.2.x) and
+**Version:** This manual follows **develop**, the unreleased Cacti 1.3 series.
+For released Cacti 1.2 installations, use the [1.2.x manual][manual-1.2] and
 the requirements supplied with your installed version.
 
-For downloads and project news, visit the [Cacti
-website](https://www.cacti.net/).
-For support, use the [Cacti Forums](https://forums.cacti.net/).
+## What Do You Want to Do
 
-For offline reading and runnable query examples, see
-[manual and example downloads](Downloads.md).
+<a id="cacti-installation"></a>
+
+- **[Install or upgrade Cacti](Manual-Index.md#install-or-upgrade-cacti)**:
+  Check requirements, choose your platform, install, upgrade, and secure Cacti.
+
+<a id="cacti-overview"></a>
+
+- **[Create your first graphs](Manual-Index.md#create-your-first-graphs)**:
+  Add a device, configure SNMP, create graphs, and verify data collection.
+- **[Manage your installation](Manual-Index.md#manage-your-installation)**:
+  Organize devices and graphs, automate discovery, manage access, and report.
+
+<a id="advanced-operations"></a>
+
+- **[Configure data collection](Manual-Index.md#configure-data-collection)**:
+  Set up collectors, Spine, remote polling, scheduling, and performance.
+- **[Create and reuse templates](Manual-Index.md#create-and-reuse-templates)**:
+  Work with templates, data queries, and package import and export.
+- **[Troubleshoot a problem](#troubleshoot-a-problem)**:
+  Investigate missing data, failed SNMP queries, and polling errors.
 
 ## Getting Started
 
-1. Check the [requirements](Requirements.md), then follow the
-   [installation instructions](General-Installing-Instructions.md).
-2. Learn the [user interface](Navigating-The-User-Interface.md) and
-   [create graphs for a device](How-to-Graph-Your-Network.md).
-3. Use [data source debugging](Data-Debug.md) and the [Cacti log](Cacti-Log.md)
-   to investigate missing data.
-4. Read the [contribution guide](Contributing.md) and
-   [development standards](README.md#development-standards) before submitting
-   changes.
+Follow this sequence for a new installation:
 
-## Core Developers - Both active and emeritus
+1. [Check requirements](Requirements.md).
+2. [Install Cacti](General-Installing-Instructions.md) for your platform.
+3. [Add a device and create its graphs](How-to-Graph-Your-Network.md).
+4. [Verify data collection](Data-Debug.md) and check the
+   [Cacti log](Cacti-Log.md).
+5. [Secure the installation](Hardening-Cacti-Installation.md) before making
+   it available to other users.
 
-### Active Developers
+For the concepts behind these steps, read
+[Principles of Operation](Principles-of-Operation.md). To find your way around
+Cacti, use [Navigating the User Interface](Navigating-The-User-Interface.md).
 
-- Larry Adams (TheWitness)
-- Mark Brugnoli-Vinten (netniV)
-- Jimmy Conner (cigamit)
-- Petr Macek (xmacan)
-- Andreas Braun (browniebraun)
-- Thomas Urban (phalek)
-- Jing Chen (ddb4github)
-- Thomas Vincent (somethingwithproof)
+## Troubleshoot a Problem
 
-### Contributors
+- **[Graphs have no data](Data-Debug.md)**: Check polling and RRD updates.
+- **[Find errors in the log](Cacti-Log.md)**: Inspect collection and system
+  logs.
+- **[Investigate SNMP and graph failures](Debugging.md)**: Follow the debugging
+  guide for polling and rendering problems.
+- **[Common questions and polling problems](Frequently-Asked-Questions.md)**:
+  Find answers about SNMP, scheduling, password recovery, and graph errors.
 
-- Sean Mancini (bmfmancini)
-- J.P. Pasnak, CD (Linegod)
-- Chris Bell (Windows) (BSOD2600)
-- Paul Gevers (Debian) (paulgevers)
-- Morten Stevens (Fedora) (mortenstevens)
+<a id="known-issues"></a>
 
-### Emeritus Members
+- **[Known issues](Known-Issues.md)**: Check documented limitations and where
+  to report a problem.
 
-- Ian Berry (raX)
-- Reinhard Scheck (gandalf)
-- Tony Roman (rony)
-- Andy Blyler (ablyler)
+## Manual and Reference
 
-## Thanks
+<a id="table-of-contents"></a>
+<a id="how-tos"></a>
+<a id="template-specific-documentation"></a>
+<a id="device-template-specific-documentation"></a>
 
-A very special thanks to Tobi Oetiker, the creator of RRDtool and the very
-popular MRTG. The users of Cacti - especially anyone who has taken the time to
-create a bug report, or otherwise help fix a Cacti related problem. Also to
-anyone who has contributed to supporting Cacti.
+Browse the **[complete manual index](Manual-Index.md)** for every guide,
+including procedures grouped with their related subjects.
 
-Cacti is licensed under the GNU GPL:
+For offline reading and runnable query examples, see
+[PDF manuals and example downloads](Downloads.md).
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Use the [settings reference](Manual-Index.md#settings-reference),
+[command-line scripts](Command-Line-Scripts.md), and
+[graph and data reference](Manual-Index.md#graph-and-data-reference) when you
+need a particular option, command, variable, or graph expression. Check
+[release notes](Version-Specific-Release-Notes.md) for version-specific changes.
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE. See the GNU General Public License for more details.
+## Extend and Contribute
 
-## Table of Contents
+<a id="plugins"></a>
+<a id="plugin-development"></a>
 
-1. [Cacti Installation](README.md#cacti-installation)
+- **[Use and develop plugins](Manual-Index.md#plugins)**: Install extensions or
+  find plugin guidelines, hooks, and references.
 
-   This section contains information on how to install and/or upgrade the Cacti
-   system. It covers requirements, different platforms and the steps needed to
-   get your system working under normal circumstances.
+<a id="contributing"></a>
 
-2. [Cacti Overview](README.md#cacti-overview)
+- **[Contribute to Cacti](Contributing.md)**: Report bugs, improve code or
+  documentation, and [help translate Cacti](Contributing-Translations.md).
 
-   Learn how devices, data collectors, data sources, templates, and graphs
-   work together. Find configuration, automation, access, and reporting guides.
+<a id="development-standards"></a>
 
-3. [Advanced Operations](README.md#advanced-operations)
+- **[Development standards](Manual-Index.md#development-standards)**: Follow
+  the documentation, PHP, SQL, and security conventions for your target branch.
 
-   This section covers more advanced material such as using a advanced data
-   collection and replacement variables that can be used within **Templates**,
-   etc.
+<a id="architecture-decisions"></a>
 
-4. [Plugin Development](README.md#plugin-development)
+- **[Architecture decisions](Architecture-Decisions.md)**: Read proposals and
+  accepted decisions guiding development.
 
-   This section contains all Plugin development related information. Guidelines,
-   hooks, references, etc. More information can be found on the
-   [Cacti Forums](https://forums.cacti.net/viewforum.php?f=6).
+<a id="video-tutorials"></a>
 
-5. [How To's](README.md#how-tos)
+- **[Video tutorials][videos]**: Watch tutorials on the official Cacti channel.
+  Check the demonstrated version against your installation.
 
-   This section contains how to's for several topics.
+## Project Information
 
-6. [Contributing](README.md#contributing)
+<a id="core-developers---both-active-and-emeritus"></a>
+<a id="active-developers"></a>
+<a id="contributors"></a>
+<a id="emeritus-members"></a>
+<a id="thanks"></a>
 
-   Report bugs, contribute code or documentation, and help translate Cacti.
+See [project credits, acknowledgments, and licensing](Project-Information.md).
+For downloads and news, visit the [Cacti website](https://www.cacti.net/).
+For community support, use the [Cacti Forums](https://forums.cacti.net/).
 
-7. [Development Standards](README.md#development-standards)
-
-   Follow the documentation, PHP, SQL, and security conventions used by the
-   target branch. Check that branch's contributor instructions and tooling.
-
-8. [Architecture Decisions](README.md#architecture-decisions)
-
-   This section contains the architecture decision records that describe the
-   decisions guiding the long-term architecture of Cacti.
-
-### Known Issues
-
-[List of Known issues](Known-Issues.md)
-
-### Cacti Installation
-
-1. [Requirements](Requirements.md)
-
-2. [General Installing Instructions](General-Installing-Instructions.md)
-
-3. Installing Cacti on Linux
-
-   3.1. [Installation Under Enterprise Linux (RHEL/Rocky/AlmaLinux) - LAMP
-   Stack][ref-10]
-
-   3.2. [Installation Under Enterprise Linux (RHEL/Rocky/AlmaLinux) - LEMP
-   Stack][ref-9]
-
-   3.3. [Installation Under Ubuntu/Debian - LAMP Stack][ref-8]
-
-4. [Installing Under Windows](Installing-Under-Windows.md)
-
-5. [Upgrading Cacti Under Linux/UNIX](Upgrading-Cacti.md)
-
-6. [Upgrading Cacti Under Windows](Upgrading-Cacti-Under-Windows.md)
-
-7. [Upgrading Cacti Under FreeBSD](Upgrading-Cacti-Under-FreeBSD.md)
-
-8. [Hardening a Cacti Installation](Hardening-Cacti-Installation.md)
-
-### Cacti Overview
-
-Start with the interface and operating principles, then create a device and
-its graphs. The remaining guides cover management and configuration tasks.
-Menu visibility depends on your permissions, enabled features, and plugins;
-screenshots may show a different theme or an earlier release.
-
-1. Overview
-
-   1.1. [Navigating the User Interface](Navigating-The-User-Interface.md)
-
-   1.2. [Principles of Operation](Principles-of-Operation.md)
-
-   1.3. [Graph Overview](Graph-Overview.md)
-
-   1.4. [How to Graph Your Network](How-to-Graph-Your-Network.md)
-
-   1.5. [Viewing Graphs](Viewing-Graphs.md)
-
-2. Management
-
-   2.1. [Devices](Devices.md)
-
-   2.2. [Sites](Sites.md)
-
-   2.3. [Trees](Trees.md)
-
-   2.4. [Graphs](Graphs.md)
-
-   2.5. [Data Sources](Data-Sources.md)
-
-   2.6. [Aggregates](Aggregates.md)
-
-3. Data Collection
-
-   3.1. [Data Collectors](Data-Collectors.md)
-
-   3.2. [Spine Data Collection](Spine.md)
-
-   3.3. [Data Input Methods](Data-Input-Methods.md)
-
-   3.4. [Data Queries](Data-Queries.md)
-
-4. [Templates](Templates.md)
-
-   4.1. [Device](Device-Templates.md)
-
-   4.2. [Graph](Graph-Templates.md)
-
-   4.3. [Data Source](Data-Source-Templates.md)
-
-   4.4. [Aggregate](Aggregate-Templates.md)
-
-   4.5. [Color](Color-Templates.md)
-
-5. Automation
-
-   5.1. [Networks](Automation-Networks.md)
-
-   5.2. [Discovered Devices](Discovered-Devices.md)
-
-   5.3. [Device Rules](Device-Rules.md)
-
-   5.4. [Graph Rules](Graph-Rules.md)
-
-   5.5. [Tree Rules](Tree-Rules.md)
-
-   5.6. [SNMP Options](SNMP-Options.md)
-
-6. Presets
-
-   6.1. [Data Profiles](Data-Profiles.md)
-
-   6.2. [CDEFS](CDEFs.md)
-
-   6.3. [VDEFS](VDEFs.md)
-
-   6.4. [Colors](Colors.md)
-
-   6.5. [GPRINTs](GPRINTs.md)
-
-7. Packaging/Import/Export
-
-   7.1. [Import Packages](Import-Packages.md)
-
-   7.2. [Import Templates](Import-Template.md)
-
-   7.3. [Export Templates](Export-Template.md)
-
-   7.4. [Create Packages](Create-Packages.md)
-
-   7.5. [Package Repositories](Package-Repositories.md)
-
-   7.6. [Public Keys](Public-Keys.md)
-
-8. [Settings (w/o Auth)](Settings.md)
-
-   8.1. [General](Settings-General.md)
-
-   8.2. [Paths](Settings-Paths.md)
-
-   8.3. [Device Defaults](Settings-Device-Defaults.md)
-
-   8.4. [Poller](Settings-Poller.md)
-
-   8.5. [Data](Settings-Data.md)
-
-   8.6. [Visual](Settings-Visual.md)
-
-   8.7. [Performance](Settings-Performance.md)
-
-   8.8. [Spikes](Settings-Spikes.md)
-
-   8.9. [Mail/Reporting/DNS/Proxy](Settings-Mail-Reporting-DNS.md)
-
-9. [Settings - Auth](Settings-Auth.md)
-
-   9.1. [Local Auth](Settings-Auth-Local.md)
-
-   9.2. [LDAP Auth](Settings-Auth-LDAP.md)
-
-   9.3. [Basic Auth](Settings-Auth-Basic.md)
-
-   9.4. [Login Providers](Login-Providers.md)
-
-   9.5. [Multiple LDAP/AD Domains (1.2)](Settings-Domains.md)
-
-10. [Configuration - Users, Groups and Login Providers][ref-7]
-
-    10.1. [Users](User-Management.md)
-
-    10.2. [User Groups](User-Group-Management.md)
-
-    10.3. [Login Providers](Login-Providers.md)
-
-    10.4. [User Domains (1.2)](User-Domains.md)
-
-11. [Configuration - Plugins](Plugins.md)
-
-12. Utilities
-
-    12.1. [System Utilities](System-Utilities.md)
-
-    12.2. [Data Debug](Data-Debug.md)
-
-    12.3. [External Links](External-Links.md)
-
-13. Reporting
-
-    13.1. [Reports Administrative Interface](Reports-Admin.md)
-
-    13.2. [Reports User Interface](Reports-User.md)
-
-    13.3. [Report Items Page](Reports-Items.md)
-
-    13.4. [Report Preview Page](Reports-Preview.md)
-
-    13.5. [Report Events Page](Reports-Events.md)
-
-    13.6. [Other Options for Adding Report Items](Reports-Other-Options.md)
-
-14. [The Cacti Log](Cacti-Log.md)
-
-### Advanced Operations
-
-1. Data Collection
-
-   1.1. [Command Line Scripts](Command-Line-Scripts.md)
-
-   1.2. [PHP Script Server](PHP-Script-Server.md)
-
-   1.3. [Spine Data Collection](Spine.md)
-
-   1.4. [Performance Setting (Boost)](Boost.md)
-
-2. [Frequently Asked Questions](Frequently-Asked-Questions.md)
-
-3. [Replacement Variables](Variables.md)
-
-4. [RRDtool Specific Features](RRDtool-Specific-Features.md)
-
-5. [RRDProxy Specific Features](RRDproxy.md)
-
-6. [Spikekill](Spikekill.md)
-
-7. [Debugging](Debugging.md)
-
-8. [Version Specific Release Notes](Version-Specific-Release-Notes.md)
-
-### Plugin Development
-
-1. [Plugin Overview](Plugin-Development.md)
-
-2. [Plugin Guidelines](Plugin-Guidelines.md)
-
-3. [Creating Plugins](Plugin-Creating-Plugins.md)
-
-4. [References](Plugin-Reference.md)
-
-5. [Hook API Reference](Plugin-Hook-API-Ref.md)
-
-### Plugins
-
-1. [Supported Plugins](supported-plugins.md)
-
-2. [Syslog Plugin documentation](Plugin-Syslog.md)
-
-3. [Mactrack Plugin documentation](Plugin-Mactrack.md)
-
-4. [ReportIt 3.0 development manual][ref-6] (PDF)
-
-### How Tos
-
-1. [How To Work with Templates](How-To-Work-With-Templates.md)
-
-2. [How To Create a Data Input Method](How-To-Create-Data-Input-Method.md)
-
-3. [How To Work with Data Queries](How-To-Data-Queries.md)
-
-4. [How To Work with Existing SNMP Data Queries][ref-5]
-
-5. [How To Work with New SNMP Data Queries](How-To-New-SNMP-Data-Queries.md)
-
-6. [How To Work with Script Data Queries](How-To-Script-Data-Queries.md)
-
-7. [How To Setup Remote Pollers](How-To-Setup-Remote-Pollers.md)
-
-8. [How To Determine Template Version](How-To-Determine-Template-Version.md)
-
-9. [How To Setup SSH Tunnels](How-To-SSH-Tunnels.md)
-
-10. [Enable SSL for Cacti](Cacti-SSL-Configuration.md)
-
-11. [Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
-
-12. [How To Extend snmpd with custom script/data](How-To-SNMP-Custom-Script.md)
-
-13. [Change poller interval from 5 minutes to 1 minute][ref-4]
-
-14. [Convert from Package based install to source on Ubuntu/Debian][ref-3]
-
-### Video Tutorials
-
-Watch installation and configuration tutorials on the official Cacti YouTube
-channel. Use the project's contribution channels to suggest or contribute
-videos.
-
-[Cacti Official Youtube Channel][ref-2]
-
-### Contributing
-
-Help improve Cacti through bug reports, tested fixes, documentation, and
-translations. Submit code changes to the relevant Cacti project repository
-and documentation changes to the documentation repository. Report security
-vulnerabilities privately using the project's
-[security policy](https://github.com/Cacti/cacti/security/policy).
-
-1. [Code, Documentation, and Bug Reports](Contributing.md)
-
-2. [Language Translations](Contributing-Translations.md)
-
-### Development Standards
-
-Use these guides alongside the contributor instructions, dependency manifests,
-and checks in the branch you are changing. Development and maintenance
-branches can have different runtime requirements and tooling.
-
-1. [Documentation](Standards-Documentation.md)
-
-2. [Code Formatting](Standards-Code-Formatting.md)
-
-3. [PHP Specific Constructs](Standards-PHP-Spec-Constructs.md)
-
-4. [File System Layout](Standards-FileSystem-Layout.md)
-
-5. [Patch Creation](Standards-Patch-Creation.md)
-
-6. [SQL Standards](Standards-SQL.md)
-
-7. [Security](Standards-Security.md)
-
-### Architecture Decisions
-
-1. [Architecture Decision Records](Architecture-Decisions.md)
-
-### Template Specific Documentation
-
-This section will be for template specific configuration requirements
-
-1. [Apache Server Template](template_apache_config.md)
-
-2. [ESXi/VMWare Template](template_esxi_config.md)
-
-### Device Template Specific Documentation
-
-This section will be for device template specific configuration requirements
-
-1. [Proxmox External Storage Usage with Linux Device Template][ref-1]
-
-[ref-1]: device-template-specific-proxmox.md
-[ref-2]: https://www.youtube.com/channel/UC6ROmUGuuLa9BdHWzvGSY1w
-[ref-3]: convert-from-package-to-source-debian-ubuntu.md
-[ref-4]: How-To-Poller-5-to-1-min.md
-[ref-5]: How-To-Existing-SNMP-Data-Queries.md
-[ref-6]: resource/pdf/manual_reportit_3.0.pdf
-[ref-7]: Settings-Users-Groups-Domains.md
-[ref-8]: Installing-Under-Ubuntu-Debian.md
-[ref-9]: Install-Under-Enterprise-Linux-LEMP.md
-[ref-10]: Install-Under-Enterprise-Linux-LAMP.md
+[manual-1.2]: https://github.com/Cacti/documentation/tree/1.2.x
+[videos]: https://www.youtube.com/channel/UC6ROmUGuuLa9BdHWzvGSY1w
 
 ---
 
