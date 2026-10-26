@@ -1,25 +1,99 @@
 # Documentation Standards
 
-## Introduction
+Write instructions that match the Cacti branch being documented. State when a
+feature is available only on the development branch or in a particular release.
+Verify commands, configuration names, links, and screenshots against that
+version. Keep changes focused on the affected topic.
 
-The following are the standards to be used by Cacti Group members and
-Contributes when maintaining the documentation of Cacti or any of its plugins.
-These standards have also been applied to the Travis CI checker on GitHub.
+## Source and corrections
 
-## Reporting corrections / omissions
+This manual is maintained in the
+[Cacti documentation repository](https://github.com/Cacti/documentation).
+Submit corrections there, linking an existing issue when applicable. Use
+`develop` unless maintainers request a maintenance branch. A repository change
+reaches the public website through the project's build and deployment process.
 
-Please report any errors or corrections on the Cacti Documentation GitHub
-repository which is located at
-[https://github.com/cacti/documentation/](https://github.com/cacti/documentation/)
-where all changes can be tracked. Any **Pull Requests** will be welcome to help
-speed up changes by allowing the Cacti Group to simply verify the changes are
-correct before submitting them.
+## Markdown format
+
+The repository's `.mdlrc` loads `.mdl_style.rb`. These files define the local
+Markdown checks. Preserve the existing page's style where it does not conflict
+with those checks.
+
+### Titles
+
+Use ATX headings with a space after the hash characters. Use one level-one
+heading for the page title, then organize sections with levels two through five.
+Use level six for numbered example, figure, or table captions when needed.
+Avoid punctuation at the end of headings and keep heading text descriptive.
+
+```markdown
+# Page title
+
+## Main section
+
+### Subsection
+
+Paragraph text.
+```
+
+Separate headings from surrounding content with a blank line. Preserve existing
+heading anchors when possible; when renaming a heading, update links to it.
+
+### Text and lists
+
+Wrap prose at 79 characters. Leave one blank line between paragraphs and around
+lists and code blocks. Do not leave trailing whitespace or repeated blank
+lines. Do not use raw HTML for ordinary page content.
+
+Use `-` for unordered lists, a number followed by a full stop for ordered lists,
+and consistent indentation for nested items and continuation text.
+
+```markdown
+- First item.
+- Second item with a continuation that remains part of the same list item.
+
+1. First step.
+2. Second step.
+```
+
+Use backticks for file paths, commands, configuration keys, and literal values.
+Use bold text for interface labels where it improves readability.
+
+### Code blocks
+
+Use fenced code blocks with a language label such as `console`, `bash`, `php`,
+`sql`, or `ini`. Keep example commands reproducible and identify placeholders.
+Use continuation lines for long commands where the shell supports them. Code
+and table widths are exempt from the prose line-length rule in the current
+style configuration.
+
+Do not include real credentials, tokens, private keys, or unredacted logs.
+Explain required privileges and commands that alter or delete stored data.
+
+### Links and images
+
+Use Markdown links with meaningful labels. Use relative `.md` paths for manual
+pages so the links work in the repository and published manual.
+
+```markdown
+[Data Collectors](Data-Collectors.md)
+[Collection settings](Settings-Poller.md#general-settings)
+![Data Collectors](images/data-collectors.png)
+```
+
+Check that target files and heading anchors exist. Add new pages to
+`README.md`. Check image filenames and use alternate text that describes the
+image. Explain when a screenshot shows an older interface or a specific theme.
+
+### Tables
+
+Use Markdown tables with a header and separator row. Keep column names and
+units explicit. Add a caption when the table needs to be referenced elsewhere.
 
 ## Copyright
 
-All documentation should be marked as copyright to the Cacti Group. This is done
-by simply adding the following text to the bottom of the page (including the
-blank line):
+End pages with a separator and the Cacti Group copyright notice, following the
+target branch's current year:
 
 ```markdown
 ---
@@ -27,368 +101,37 @@ blank line):
 Copyright (c) 2004-2026 The Cacti Group
 ```
 
-## Titles
+## Validate changes
 
-### Title Levels
-
-When creating documentation titles, they should:
-
-- use the \# symbol with 1 - 5 hashes
-
-  _The actual count of hashes represents the sub-level of the title._
-
-- not have multiple level 1 headers
-
-  `MD025 Multiple top level headers in the same document`
-
-- not have punctuation at the end of the header
-
-  `MD026 Trailing punctuation in header`
-
-- not use `----` or `====` on a line that follows a header
-
-  `MD003 Header style`
-
-- increment down only one sub-level at a time
-
-  _You may go back up any number of levels_
-
-  ```markdown
-  # Main Title 1
-
-  ## Main Title 1.Sub Title 1
-
-  ### Main Title 1.Sub Title 1.Sub Title 1
-
-  ### Main Title 1.Sub Title 1.Sub Title 2
-
-  ## Main Title 1.Sub Title 2
-
-  ### Main Title 1.Sub Title 2.Sub Title 1
-
-  ### Main Title 1.Sub Title 2.Sub Title 2
-
-  # Main Title 2
-
-  ### Main Title 2.Invalid Sub Title 1.Invalid Sub Title 1
-  ```
-
-- not use other title definition symbols
-
-  _Whilst they are valid markdown, they will result in style errors._
-
-Failure to follow this will result in an `MD001` error during Travis CI checks.
-
-###### Example 1. Incorrect Markdown for Title Levels
-
-```markdown
-# Welcome
-
-Welcome to us
-
-## Using the software 1.2
-
-To use most functions of our software, navigate the menus
-
-#### Accessing the menus 1.2.1.1
-
-The menus are located at the top of the page ...
-```
-
-###### Example 2. Corrected Markdown for Title Levels
-
-```markdown
-# Welcome
-
-Welcome to us
-
-## Using the software 1.2
-
-To use most functions of our software, navigate the menus
-
-### Accessing the menus 1.2.1
-
-The menus are located at the top of the page ...
-```
-
-### Title Spacing
-
-All titles should be separated with blank lines either side of the title. The
-only exception to this is if the title is on the first line of the page. They
-should also have a single space between the hash symbols and text.
-
-###### Example 3. Incorrect Markdown for Title Spacing
-
-```markdown
-# Welcome
-
-Welcome to us
-
-## Using the software 1.2
-
-To use most functions of our software, navigate the menus
-
-### Accessing the menus 1.2.1
-
-The menus are located at the top of the page ...
-```
-
-###### Example 4. Correct Markdown for Title Spacing
-
-```markdown
-# Welcome
-
-Welcome to us
-
-## Using the software 1.2
-
-To use most functions of our software, navigate the menus
-
-### Accessing the menus 1.2.1
-
-The menus are located at the top of the page ...
-```
-
-### Titles for Captions
-
-Titles for examples, images and tables are the only exception to the Title Level
-rule. These are normally set to 6 (Six) hash symbols (e.g., `######`). The
-format of the text should be such that it reads the type of caption, a number,
-full stop, then the description
-
-```markdown
-###### <caption type> <number>. <description>
-```
-
-###### Example 5. Example of this caption
-
-```markdown
-###### Example 5. Example of this caption
-```
-
-## Text
-
-### Standard Text
-
-Any text written outside of code blocks must:
-
-- be formatted such that it does not exceed 79 characters. This is to make it
-  easier to read and adjust the paragraphs in any editor.
-
-  `MD013 Line length`
-
-- have blank lines between paragraphs
-
-- not have multiple blank lines
-
-  `MD012 Multiple consecutive blank lines`
-
-- not have trailing spaces
-
-  `MD009 Trailing spaces`
-
-- not use HTML outside of fenced code blocks
-
-  `MD033 Inline HTML`
-
-### Tables
-
-All tables should have a caption applied to them in the style that was listed
-above.
-
-### Lists
-
-All lists should:
-
-- use a single `-` (dash) character for bullet points
-
-- use the same indentation for the same level
-
-  `MD005 Inconsistent indentation for list items at the same level`
-
-- start at the beginning of a line (no spaces/indents) for the top level
-
-  `MD006 Consider starting bulleted lists at the beginning of the line`
-
-- use a digit following by a full stop for numbered lists
-
-- should have a single space between the list item marker and the start of the
-  text
-
-- have blanks lines around items in the same fashion as titles
-
-  `MD030 Spaces after list markers`
-
-- wrap text with indentation as they are exempt from the text-width formatting
-  rule
-
-  ```markdown
-  - wrap text with indentation as they are exempt from the text-width formatting
-    rule
-  ```
-
-- may include sub-items in a similar fashion to titles by:
-
-  - indenting sub-items or examples by two spaces per level
-
-  - indenting one level at a time
-
-  - include examples such as:
-
-  ````markdown
-  - may include sub-items in a similar fashion to titles by:
-
-    - indenting sub-items or examples by three spaces per level
-
-    - indenting one level at a time
-
-    - include examples such as:
-
-    ```markdown
-    - may include sub-items in a similar fashion to titles by:
-
-      - indenting sub-items or examples by three spaces per level
-    ```
-  ````
-
-### Inline Code
-
-Inline code can be included using the single backtick (\`) method to produce
-code-like references. An example of this would be to:
-
-###### Example 6. Inline Code
-
-```markdown
-use the \`--help\` parameter on the command
-```
-
-Which would produce:
-
----
-
-use the `--help` parameter on the command
-
----
-
-### Code Blocks
-
-All code blocks must be:
-
-- surround by blank lines to separate them from other text
-
-  `MD031 Fenced code blocks should be surrounded by blank lines`
-
-- fenced with three backticks (\`\`\`) and not any other code block fencing
-  characters.
-
-- have a language applied to them by entering the name after the three
-  backticks.
-
-  `MD040 Fenced code blocks should have a language specified`
-
-- an exception to the above text formatting rules as they may contain example
-  lines that are required to be on a single line.
-
-Where possible, it is advised to try and make use of continuation lines (\\) so
-that these are easily readable on any screen.
-
-###### Example 7. Code Block with Style
-
-````markdown
-```markdown
-This is a markdown example, <b> will display <b> not start a bold HTML style
-Also ` will actually be displayed not interpreted
-```
-````
-
-The style used on the fenced code block should match the contents of the code
-block. In the above example, we used `markdown` as we were displaying a markdown
-example. The following table is a basic example what is most commonly used in
-the documentation:
-
-|     Type | Markdown Language | Usage                                      |
-| -------: | :---------------: | ------------------------------------------ |
-|      C++ |        c++        | Formats code block as C++                  |
-|      PHP |        php        | Formats code block as PHP                  |
-|      SQL |        sql        | Formats code block as SQL                  |
-|   Script |       bash        | Formats code block as bash script          |
-|   &nbsp; |        sh         | Formats code block as posix script         |
-|    Shell |      console      | Formats code block as command line example |
-| Markdown |     markdown      | Formats code block as Markdown             |
-
-### URLs
-
-All URLs should be formatted in the markdown format and not just inserted
-directly into the text. The format for this is:
-
-```markdown
-[text for link](https://url/wanted)
-```
-
-Failing to do this will result in `MD034 Bare URL used`
-
-This would produce: [text for link](https://url/wanted)
-
-### Horizontal Rules
-
-Horizontal rules should be made using three or more consecutive hyphens on a
-single line. Again, these should be surrounded by spaces.
-
-```markdown
-Paragraph 1 text
-
----
-
-Paragraph 2 text
-```
-
-## Link new files to README.md
-
-Before testing your changes make sure you add the necessary links to README.md
-for any new files
-
-Running this script will help you check for any missing links.
-
-```console
-bin/check_missing_link.sh
-```
-
-## Testing changes
-
-To locally test the changes made to any Markdown document, you will need to have
-ruby installed and then run:
+Install Ruby and the `mdl` gem, then run checks from the documentation root:
 
 ```console
 gem install mdl
+bin/check_markdown_style.sh Changed-Page.md
+bin/check_missing_link.sh
 ```
 
-If this pre-requisite has already been completed, then you can simply type the
-following into your shell
+Omit the filename to run the Markdown check across the repository. Existing
+files may have unrelated lint failures; distinguish those from failures added
+by the change. `check_missing_link.sh` checks whether Markdown filenames occur
+in `README.md`; it does not validate every link target or heading anchor.
+Check those separately.
+
+The repository's GitHub Actions spelling workflow installs the pinned
+requirements from `.github/codespell-requirements.txt`. To run the same spelling
+check in a Python virtual environment:
 
 ```console
-cd <cacti_docs>
-bin/check_markdown_style.sh
+python3 -m venv /tmp/cacti-docs-spelling
+/tmp/cacti-docs-spelling/bin/python -m pip install \
+  --only-binary :all: --require-hashes \
+  -r .github/codespell-requirements.txt
+/tmp/cacti-docs-spelling/bin/codespell --config .codespell.cfg
 ```
 
-Which will generate the same output that is seen on the Travis CI build status.
-You should ensure that any reported errors are corrected before submitting your
-pull request.
-
-```console
-Documentation-Standards.md:221: MD031 Fenced code blocks should be surrounded by blank lines
-Documentation-Standards.md:230: MD031 Fenced code blocks should be surrounded by blank lines
-Documentation-Standards.md:232: MD031 Fenced code blocks should be surrounded by blank lines
-Documentation-Standards.md:265: MD031 Fenced code blocks should be surrounded by blank lines
-Documentation-Standards.md:268: MD031 Fenced code blocks should be surrounded by blank lines
-Documentation-Standards.md:290: MD031 Fenced code blocks should be surrounded by blank lines
-Documentation-Standards.md:292: MD031 Fenced code blocks should be surrounded by blank lines
-Documentation-Standards.md:161: MD032 Lists should be surrounded by blank lines
-Documentation-Standards.md:250: MD032 Lists should be surrounded by blank lines
-Documentation-Standards.md:253: MD032 Lists should be surrounded by blank lines
-Documentation-Standards.md:256: MD032 Lists should be surrounded by blank lines
-Documentation-Standards.md:236: MD033 Inline HTML
-Documentation-Standards.md:240: MD033 Inline HTML
-```
+Review `git diff --check` and the rendered Markdown before submitting. Verify
+that commands and menus describe the intended version; passing Markdown and
+spelling checks does not establish technical accuracy.
 
 ---
 

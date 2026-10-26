@@ -121,7 +121,8 @@ non-templated fields.
 | Data Source Active  | This is a quick and easy to tell Cacti to stop gathering data for this **Data Template**. The resulting **Data Source** can still be used on **Graphs**, but no data will be fed to it until it is made active again.                                                                                                                           |
 
 > **NOTE:** For most **Data Templates**, you should not have to check
-> the Use Per-Graph Value check-box for the name field. The Templating should
+> the Use Per-Data Source Value check-box for the name field. The Templating
+should
 > handle this just fine. However, the Generic SNMP OID **Data Template** has
 > this value checked to allow you to create Graphs and Data Sources on a
 > piecemeal basis.
@@ -243,27 +244,30 @@ Template** will have its own value for that particular field.
 
 Relative to Auto-scale Options, the RRDtool graph manual says:
 
-- Limits [-u|--upper-limit value] [-l|--lower-limit value] [-r|--rigid] By
+- Limits `[-u|--upper-limit value] [-l|--lower-limit value] [-r|--rigid]` By
   default the graph will be auto-scaling so that it will adjust the y-axis to
   the range of the data. You can change this behavior by explicitly setting the
   limits. The displayed y-axis will then range at least from lower-limit to
   upper-limit. Auto-scaling will still permit those boundaries to be stretched
   unless the rigid option is set.
 
-- [-A|--alt-autoscale] Sometimes the default algorithm for selecting the y-axis
+- `[-A|--alt-autoscale]` Sometimes the default algorithm for selecting the
+  y-axis
   scale is not satisfactory. Normally the scale is selected from a predefined
   set of ranges and this fails miserably when you need to graph something like
   "260 + 0.001 \* sin(x)". This option calculates the minimum and maximum y-axis
   from the actual minimum and maximum data values. Our example would display
   slightly less than "260-0.001" to slightly more than "260+0.001".
 
-- [-J|--alt-autoscale-min] Where "--alt-autoscale" will modify both the absolute
+- `[-J|--alt-autoscale-min]` Where "--alt-autoscale" will modify both the
+  absolute
   maximum AND minimum values, this option will only affect the minimum value.
   The maximum value, if not defined on the command line, will be 0. This option
   can be useful when graphing router traffic when the WAN line uses compression,
   and thus the throughput may be higher than the WAN line speed.
 
-- [-M|--alt-autoscale-max] Where "--alt-autoscale" will modify both the absolute
+- `[-M|--alt-autoscale-max]` Where "--alt-autoscale" will modify both the
+  absolute
   maximum AND minimum values, this option will only affect the maximum value.
   The minimum value, if not defined on the command line, will be 0. This option
   can be useful when graphing router traffic when the WAN line uses compression,

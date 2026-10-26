@@ -16,10 +16,11 @@ objects link.
 
 ![Automation Graph Rules](images/automation-graph-rules.png)
 
-A practical example if you want to create graphs for interfaces that are in
-up/up status you would choose the ifOperstatus field and match the status to
-UP this would tell automation to create the graph for that interface only if
-the data query discovers the operational status is equal to up.
+For example, filter interface query rows using `ifOperStatus` to select
+operationally up interfaces. Check the actual cached value and use **Show
+Matching Objects** to verify the rule. If both administrative and operational
+state must be up, also filter `ifAdminStatus`; `ifOperStatus` alone does not
+test both states.
 
 A device selection Criteria is also important Cacti needs a way to find which
 device it needs to match.  In the below example we are matching any device
@@ -30,19 +31,23 @@ devices link.
 
 ![Automation Graph Rules Edit](images/automation-graph-rules-edit1.png)
 
-![Automation Graph Rules Device Criteria](images/automation-graph-rules-edit2.png)
+![Automation Graph Rules Device
+Criteria](images/automation-graph-rules-edit2.png)
 
-![Automation Graph Rules Graph Criteria](images/automation-graph-rules-edit3.png)
+![Automation Graph Rules Graph
+Criteria](images/automation-graph-rules-edit3.png)
 
 This output shows us which devices match our devices rules this can help with
 tweaking rules as needed.
 
-![Automation Graph Rules Matching Devices](images/automation-graph-rules-edit4.png)
+![Automation Graph Rules Matching
+Devices](images/automation-graph-rules-edit4.png)
 
 This output shows which interfaces,drives,sensors etc will be graphed based
 on the graph rules.
 
-![Automation Graph Rules Matching Objects](images/automation-graph-rules-edit5.png)
+![Automation Graph Rules Matching
+Objects](images/automation-graph-rules-edit5.png)
 
 ---
 Copyright (c) 2004-2026 The Cacti Group

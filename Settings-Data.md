@@ -5,7 +5,7 @@ about Cacti's **Data Sources** and about settings around how Cacti
 stores it's **Round Robin Archives** Time Series Databases (TSDB),
 otherwise known as RRDfiles.
 
-There are presently to sub-sections for these settings.
+The sections below cover statistics, file checks, and storage.
 
 ## Data Source Statistics
 
@@ -25,8 +25,8 @@ Those settings include:
 
 - **Number of DSStats Processes** - For very large Cacti installs
   the **Data Source Statistics** can take quite a long time to complete.
-  This setting allows Cacti to perform the statistics calculation
-  at orders of magnitude faster.  You can allocate as many as 20
+  This setting controls the number of concurrent statistics workers.  You can
+  allocate as many as 20
   concurrent processes to perform all the updates.
 
 - **Daily Update Frequency** - This setting determines how often
@@ -36,8 +36,9 @@ Those settings include:
 
 - **Hourly Average Window** - This is a floating time window where
   Cacti holds onto all samples for determining the hourly averages
-  for your **Data Sources**.  You have to watch this cache as by
-  default it's stored in a memory table.  You can run out of space.
+  for your **Data Sources**. Monitor its size and database load. The current
+  development schema uses InnoDB; older installations may have a different
+  engine and capacity limit.
 
 - **Maintenance Time** - This is the time in the day that Cacti
   will calculate Monthly and Yearly numbers and perform table
@@ -61,7 +62,7 @@ Those settings include:
 
 - **Number of RRDfile Checker Processes** - For very large Cacti installs
   the **RRDfile Checker** can take quite a long time to complete.
-  This setting allows Cacti to perform the checks at orders of magnitude faster.
+  More workers increase concurrency and database and storage load.
 
 - **Check Frequency** - This setting determines how often
   checks should be executed.  You can set
@@ -85,16 +86,16 @@ The settings above include:
   with the Structured Paths option, Cacti will separate RRDfiles by
   Device ID and use the Data Source ID as the RRDfile name.
 
-> **NOTE**: If you are migrating from non-structured to structured
-> paths setup, you must run the CLI script to move those files
-> per the updated specification right after making this change.
+When changing structured-path settings on an existing installation, back up
+files and database definitions, then use `php cli/structure_rra_paths.php
+--help` to plan the move. Run the migration after changing the settings, with
+appropriate file ownership and a controlled collection window. The development
+branch supports device, query, and hashed directory patterns; changing the
+pattern requires another migration.
 
-The RRD Proxy settings below are more involved.
-
-> **NOTE**: It should be noted that although the RRD Proxy is
-> in production at large commercial sites, it continues to not
-> support replication.  The author claims that it's 95%
-> complete, but to date, has not completed the last 5%.
+RRD Proxy stores files through a separate service. Configure and verify the
+proxy deployment independently; Cacti's connection settings do not configure
+storage replication or guarantee failover of that service.
 
 ![Data Storage Proxy](images/settings-data-proxy.png)
 
@@ -110,7 +111,10 @@ The settings above include:
   key the proxy is using.  This is required to establish a trusted
   connection to the RRD Proxy service.
 
-> **WARNING**: None of the settings below are implemented.
+On the development branch, **Load Balancing** selects between the configured
+primary and backup endpoints and can try the other endpoint after a connection
+failure. Both must serve the intended data. Confirm compatibility and
+replication on the proxy side before enabling this option.
 
 - **Load Balancing** - Whether calls to the RRD Proxy should be
   load balanced.

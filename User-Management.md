@@ -29,8 +29,8 @@ disabling "guest" (Unauthenticated) access to Cacti.
 
 ## Editing an existing User
 
-To edit an existing user, select the User Management item under the Utilities
-heading on the Cacti menu. Once at the user management screen, click username of
+To edit an existing user, open **Console > Configuration > Users**. Once at the
+user management screen, click username of
 the user you wish to edit. You will see a screen that looks similar to the image
 below.
 
@@ -45,67 +45,69 @@ Each of these items are described in this section of the manual.
 
 - **_User Name_**
 
-  This field contains the login name for the user. There are no character limits
-  this field, but it would make sense to keep it to alphanumeric characters to
-  maintain simplicity.
+   This field contains the login name for the user. Use the account name
+   expected by the selected login realm. The development
+   editor permits up to 255 characters; external providers can impose their
+   own identity requirements.
 
 - **_Full Name_**
 
-  (Optional) You can use this field as a more descriptive identifier for the
-  user. It is currently only used for display on the user management page.
+   (Optional) You can use this field as a more descriptive identifier for the
+   user. It is currently only used for display on the user management page.
 
 - **_Password_**
 
-  Enter the password for the user twice, once in each text box. Keep in mind
-  that passwords are case sensitive and the password will remain unchanged if
-  the boxes are both left empty.
+   Enter the password for the user twice, once in each text box. Keep in mind
+   that passwords are case sensitive and the password will remain unchanged if
+   the boxes are both left empty.
 
 - **_Account Options_**
 
-  There are two account related options that can be set for each user.
+   There are two account related options that can be set for each user.
 
-  - **_User Must Change Password at Next Login_**
+   - **_User Must Change Password at Next Login_**
 
-    Force a password change immediately after the user logs in.
+      Force a password change immediately after the user logs in.
 
-  - **_Allow this User to Keep Custom Graph Settings_**
+   - **_Allow this User to Keep Custom Graph Settings_**
 
-    Allows user to maintain their own custom graph viewing settings.
+      Allows user to maintain their own custom graph viewing settings.
 
 - **_Graph Options_** -
 
-  Enables certain defined graph viewing options.
+   Enables certain defined graph viewing options.
 
-  - _User Has Rights to Tree View_
+   - _User Has Rights to Tree View_
 
-  - _User Has Rights to List View_
+   - _User Has Rights to List View_
 
-  - _User Has Rights to Preview View_
+   - _User Has Rights to Preview View_
 
 - **_Login Options_**
 
-  These options set what occurs after the user logs in.
+   These options set what occurs after the user logs in.
 
-  - **_Show the page that user pointed their browser to_**
+   - **_Show the page that user pointed their browser to_**
 
-    Will point the user to whatever page they were heading to before being
-    interrupted by the login page.
+      Will point the user to whatever page they were heading to before being
+      interrupted by the login page.
 
-  - **_Show the default console screen_**
+   - **_Show the default console screen_**
 
-    This option will always point the user to 'index.php' after a successful
-    login.
+      This option will always point the user to 'index.php' after a successful
+      login.
 
-  - **_Show the default graph screen_**
+   - **_Show the default graph screen_**
 
-    This option will point the user to default graph view after login.
+      This option will point the user to default graph view after login.
 
 - **_Authentication Realm_**
 
-  This setting allows you to specify a user for use with `Local`, `Web Basic` or
-  `LDAP` Authentication.
+   This setting allows you to specify a user for use with `Local`, `Web Basic`
+   or
+   `LDAP` Authentication.
 
-  **Note:** Template users must be Local.
+   **Note:** Template users must be Local.
 
 ## User Interface Permissions
 
@@ -132,7 +134,8 @@ in general, these permissions do not apply to editing graphs. You can edit a
 
 ![User Realm Management](images/users-permissions-graph.png)
 
-Cacti supports two Graph Permission models. There is the `Permissive` Graph
+Cacti supports four Graph Permission models on the development branch. There is
+the `Permissive` Graph
 permission which states that if a user has access either to the Graph, the
 Device or Graph Template, the user will have access to all the Graphs that match
 that class. For example, in the `Permissive` model, if you have access to the
@@ -146,8 +149,10 @@ the **Device** and **Graph Template**. Using this permission model requires the
 **Users** and **User Groups** have much more specific access if they want to
 gain access to various device Graphs.
 
-We introduced these new permission models and administrative processes to
-simplify the Cacti permission system, and to increase it's usability.
+The development branch also offers `Device Based` and `Graph Template Based`
+methods. These use the corresponding device or graph-template policy, while
+retaining direct graph permissions. Check the selected method when diagnosing
+access that differs from the device or template checkbox alone.
 
 In addition to the `Permissive` and `Restrictive` models, which can be set from
 **Console > Configuration > Settings > General**, a **User** or **User Group**
@@ -219,16 +224,15 @@ defaults from the `General` **User Management** tab. This is important for the
 
 ## Caching of Permissions
 
-In order to increase Cacti User Interface performance, when a **User** first
-checks for their permissions after login to either **Devices** or **Graph
-Templates** those permissions are cached for their entire login session. If you
-change a **Users** **Device** or **Graph Template** permissions, they will not
-see those permission changes until their next login.
+Cacti caches permission results to reduce repeated work. After changing user or
+group access, test the effective permissions with the affected account in a new
+session. Include both allowed and denied objects in that check; do not infer
+access solely from a management-page checkbox or a previously loaded page.
 
 ## Creating a New User
 
-To create a new user, select the User Management item under the Utilities
-heading on the Cacti menu. Once at the user management screen, click the plus
+To create a new user, open **Console > Configuration > Users**. Once at the
+user management screen, click the plus
 (+) glyph.
 
 ![Adding a User](images/users-new.png)
@@ -314,8 +318,8 @@ would like to copy over an existing user, use Batch Copy.
 
 ![Enable/Disable Users Part 1](images/users-enable-disable1.png)
 
-To enable or disable a set of or a single user, select the User Management item
-under the Utilities heading on the Cacti menu. Once at the **Users** interface,
+To enable or disable a set of or a single user, open **Console > Configuration
+> Users**. Once at the **Users** interface,
 highlight the **User** you would like to `Enable` or `Disable` and select either
 `Enable` or `Disable` from the `Choose an action` drop down selection box, click
 `Go` to continue.
@@ -328,8 +332,8 @@ perform the action. Disabling your own account is not permitted.
 ## Batch Copy Users
 
 Batch Copy is a helpful utility that helps Cacti Administrators maintain users.
-Because Cacti does not yet support groups, it is important that there is some
-way to mass update users. This what Batch Copy does for you.
+It copies a template account's settings to selected users. For ongoing shared
+permissions, use [User Groups](User-Group-Management.md).
 
 ![Batch Copy Users Part 1](images/users-batch-copy1.png)
 
@@ -351,11 +355,8 @@ other fields will be overwritten with values from the selected `Template User`.
 
 ![Delete Users Part 1](images/users-delete1.png)
 
-To delete a set of or a single **User**, highlight the **Users** from
-****Console
-
-> Configuration > Users**** interface, then select `Delete` from the
-> `Choose an action` drop down selection box and press `Go` to continue.
+To delete users, select their rows under **Console > Configuration > Users**,
+choose **Delete** from the actions menu, and click **Go**.
 
 ![Delete Users Part 2](images/users-delete2.png)
 

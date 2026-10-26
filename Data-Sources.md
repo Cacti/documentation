@@ -1,76 +1,53 @@
 # Data Source Management
 
-Data sources in Cacti are the points of data that Cacti will collect from a
-device. The following are examples of different sources that can be utililised
-for graphing, though is just the surface of what is achievable:
+A Cacti data source connects a collection definition to an RRD file. Each file
+can contain more than one named RRDtool series, such as `traffic_in` and
+`traffic_out`. Graphs refer to those series; they do not each require a separate
+collection definition.
 
-- Monitoring a device via ping will usually count as 1 data source.
+## Counts and reuse
 
-- A 24 port switch and you poll the device via snmp and graph all of the ports
-  then there will be 24 data sources
+A switch with traffic graphs for 24 ports can have 24 Cacti data sources and
+24 RRD files, each with inbound and outbound series. Additional graphs can
+reuse those sources. Reuse depends on the template and creation settings;
+creating another graph does not guarantee reuse in every case.
 
-> **Note**: if you add more graphs that base their data on the original **Data
-> source** that would not count as another **Data Source** since it uses the
-> already existing source.
+Poller statistics count collection items and processed RRD files separately.
+Do not treat `DataSources` in the poller log as a universal count of RRD files,
+graphs, or the rows shown on the Data Sources management page.
 
-For example, if you have a 24 port switch that you create an **In/Out Bits**
-graph for each interface, and you then add the **In/Out Bits with 95th
-Percentile** for each interface, you would still only have 24 data sources.
+Check device-level counts under **Console > Management > Devices**:
 
-Keeping on top of the amount of data sources you have is important as the more
-data sources you have the more resources you will need to allocate to your
-server.
+![Device data sources](images/device-datasource.png)
 
-You can see how many data sources are associated with a single device by going
-to management then clicking on devices.
+## Storage and sampling
 
-![device datasources](images/device-datasource.png)
+Storage depends on the number of series, sampling interval, archive rows,
+consolidation functions, and retention defined by the
+[Data Source Profile](Data-Profiles.md). Use the profile's estimate and inspect
+representative files with `rrdtool info`; there is no single file size for all
+one-minute or five-minute data sources.
 
-You can also see the total amount of data sources by checking the poller stats
-on the system. Click the log tab and filter by stats and lookout for the below
-message
+Changing a profile or template does not automatically convert an existing RRD
+file's layout. Plan and back up any migration of existing data separately from
+changes to future source definitions.
 
-```console
-2019/05/24 17:21:11 - SYSTEM STATS: Time:9.5913 Method:spine Processes:2 Threads:2 Hosts:14 HostsPerProcess:7 DataSources:162 RRDsProcessed:117
-```
+## View data sources by device
 
-This output tells us we have 162 data sources on the system.
+Open **Console > Management > Data Sources** and filter by device or template.
+Inspect the data source's collection method, path, active state, and associated
+graphs before changing it.
 
-### Storage considerations and datasources
+![Data sources per device](images/data-sources-per-device.png)
 
-The amount of data sources on your system has an impact on the amount of storage
-you will need. You will also need to consider what rate you are polling your
-devices. e.g. 1 minute or 5 Minute polls
+The **Orphaned** filter identifies data sources without graph references.
+Review whether a plugin or external process still needs a source before
+removing it. RRD cleanup is controlled separately by the installation's
+[Paths settings](Settings-Paths.md#rrd-cleaner).
 
-Here is the approximate amount of storage you can expect to consume per data
-source
-
-| Polling time | Retention | File size |
-| -----------: | --------- | --------: |
-|    30 second | Daily     |      48kb |
-|    30 second | Weekly    |      43kb |
-|    30 second | Monthly   |      46kb |
-|    30 second | Yearly    |     140kb |
-|     1 minute | Daily     |      93kb |
-|     1 minute | Weekly    |      45kb |
-|     1 minute | Monthly   |      47kb |
-|     1 minute | Yearly    |     140kb |
-|     5 minute | Daily     |      19kb |
-|     5 minute | Weekly    |      22kb |
-|     5 minute | Monthly   |      25kb |
-|     5 minute | Yearly    |      26kb |
-
-### Viewing all Data sources by device
-
-You are able to check the data sources associated to a specific device in the
-Console -> Management -> Data sources You can then search based on a device you
-may be interested in to view the Data sources in use
-
-![device datasources](images/data-sources-per-device.png)
-
-You can also list orphaned data sources from this page by ticking the
-**Orphaned** filter checkbox. An orphaned data source is one whose graph was
-deleted while the data source itself was left behind.
+For missing values, use [Data Source Debugging](Data-Debug.md) and the
+[Cacti log](Cacti-Log.md). Check device reachability, poller ownership, file
+permissions, and the last update time before changing a template.
 
 ---
 

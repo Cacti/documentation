@@ -15,11 +15,9 @@ below show an example of how this might be setup.
 
 ## Mail Settings
 
-Not only Cacti, but several plugins today are still leveraging Email for end
-user and administrative notification. Cacti uses the very popular PHP-Mailer 3rd
-party component to facilitate Email notification service. In this section, you
-will pick the method that you wish to provide Email notification an it's
-settings. Cacti actually provides more methods. They include:
+Cacti and its plugins use these settings for notifications and reports. The
+development branch uses Symfony Mailer through Cacti's mail helpers; older
+releases use PHPMailer. The available delivery methods include:
 
 - **PHP Mail Function** - PHP has a built-in mail facility where PHP will
   communicate with the localhost mail facilities to send mail. This is useful if
@@ -56,7 +54,8 @@ Those settings include:
   settings change, you can send out a test Email to confirm that the Email setup
   is working. The Email that you put on this line will receive the test Email.
 
-- **Mail Services** - This is where you pick one of the three options above for
+- **Mail Services** - This is where you pick one of the delivery methods above
+  for
   providing Mail Services.
 
 - **Ping Mail Server** - When using the SMTP Mail Services provider, Cacti can
@@ -97,9 +96,9 @@ As mentioned before, the SMTP Mail Services provider provides the most options
 and will be very familiar and easy to use for Cacti Administrators that may not
 be as familiar with how to configure the Operating System to properly forward
 mail to their internal Email servers. Popular mail services like Google,
-Microsoft, etc. are all supported. This is primarily due to the use of the 3rd
-Party PHP-Mailer plugin within Cacti. The image below shows the various settings
-for the **Simple Mail Transfer Protocol (SMTP)** option.
+Microsoft, etc. are all supported. Use the authentication and TLS settings
+required by your provider. The image
+below shows the **Simple Mail Transfer Protocol (SMTP)** options.
 
 ![SMTP Mail](images/settings-mrd-smtp.png)
 
@@ -112,40 +111,43 @@ Those options include:
 - **SMTP Password** - The password to use for SMTP communications if you SMTP
   Server requires authentication.
 - **SMTP Security** - The security protocol to use for SMTP communications. The
-  options include: None, SSL, and TLS. The most popular being TLS today due to
-  all the security issues with the other protocols.
+  labels distinguish no configured encryption, implicit TLS (**SSL**), and
+  STARTTLS (**TLS**). Choose the mode and port required by the mail server;
+  the **SSL** label does not mean that obsolete SSL protocols should be used.
 - **SMTP Timeout** - How long to wait before abandoning connection attempts to
   the SMTP Server.
 
 ### SMTP with OAuth2
 
 You can use your email service provider that uses Oauth2. There are ready-made
-profiles for Google, Microsoft, Yahoo, Azure. Configuration (create 
+profiles for Google, Microsoft, Yahoo, Azure. Configuration (create
 an application with offline parameter) may also be required on the email service
 provider side.
 
 ![SMTP OAuth2](images/settings-mrd-oauth2.png)
 
 Those options include:
+
 - **OAuth2 Provider** - Select you email provider
 - **Email Address** - Email address connected with your OAuth2
 - **OAuth2 Client ID** - Client ID of your OAuth2 application
 - **OAuth2 Client Secret** - Password for your Client ID
 - **Azure Tenant ID** - Used only with Azure
-- **OAuth2 Redirect URI** - The Refresh token from the OAuth2 provider is returned
-  to this url. So the url must be accessible from your OAuth2 provider.
+- **OAuth2 Redirect URI** - Register this exact callback URI with the mail
+  provider. The browser returns to it after authorization; Cacti then exchanges
+  the authorization code for tokens. The browser must be able to reach it.
 - **OAuth2 Refresh Token** - If you know it from your OAuth2 provider, paste it
   here. If not, you can use the wizard here to get the token. After successful
-  authorization, the token will be received via the OAuth2 redirect URI.
+  authorization and the server-side code exchange, Cacti stores the token.
 
 - **SMTP Hostname** - The hostname or DNS name of the SMTP Server
 - **SMTP Port** - The TCP Port to use to communicate with the SMTP Server
 - **SMTP Security** - The security protocol to use for SMTP communications. The
-  options include: None, SSL, and TLS. The most popular being TLS today due to
-  all the security issues with the other protocols.
+  labels distinguish no configured encryption, implicit TLS (**SSL**), and
+  STARTTLS (**TLS**). Choose the mode and port required by the mail server;
+  the **SSL** label does not mean that obsolete SSL protocols should be used.
 - **SMTP Timeout** - How long to wait before abandoning connection attempts to
   the SMTP Server.
-
 
 ## Reporting Presets
 

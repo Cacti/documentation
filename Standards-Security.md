@@ -1,113 +1,105 @@
 # Security
 
-## General Validation
+## Report vulnerabilities privately
 
-Never trust input regardless of where it is coming from! The responsibility
-falls on the library functions to ensure that potentially dangerous input does
-not introduce a security hole. Some sort of sanitization, validation, or quoting
-must be provided for **all** arguments in a function. This ensures that bad
-data does not make its way into an SQL string, a filename, an executable, or
-even another function.
+Follow the [Cacti security policy][ref-1]
+for suspected vulnerabilities. Keep exploit details and credentials out of
+public issues and pull requests until disclosure is coordinated.
 
-## Request Validation
+## Authentication and authorization
 
-For Plugin Developers, Cacti includes settings to allow you to know when
-you are using unvalidated data.  They include:
+Authenticated web entry points load `include/auth.php`. Check the user's realm
+and object permissions before returning protected data or changing state.
+Hiding a button or filtering a browser view does not enforce authorization.
+Shared management functions must not assume that a caller owns an object just
+because its ID is valid.
 
-* get_filter_request_var('somevariable') - This function call, by default,
-  will validate that the variable `$_REQUEST['somevariable']` returned
-  is actually an integer, if not, Cacti will block the page
-  function from continuing.
+Protect cookie-authenticated changes with Cacti's CSRF mechanism. Use POST for
+mutations and include the expected `__csrf_magic` token in forms and AJAX
+requests. Do not implement state changes through GET requests.
 
-* get_filter_request_var('somevariable', $filter, $options) - The second
-  argument is a PHP filter constant such as `FILTER_VALIDATE_INT` or
-  `FILTER_VALIDATE_REGEXP`, and the third is the matching options array.
-  This form covers the rest of the verification and sanitization cases.
+## Request validation
 
-* set_request_var('somevariable', 'somevalue') - This function will set
-  the Cacti request variable superglobal with a value.
+Treat request data, device responses, plugin output, and database content as
+untrusted. Validate each value for its intended use. Cacti provides request
+helpers in `lib/html_utility.php`:
 
-Generally speaking, you should never use `$_GET`, `$_POST` or `$_REQUEST`
-directly in your Cacti code.  Use the validators.  When you do, you can
-turn on the Cacti setting `Log Input Validation Issues` when you are
-developing, and your Cacti log will include warnings when an invalid
-variable has been encountered.
+- `get_filter_request_var()` (also `gfrv()`) validates an integer by default
+  and supports PHP filter constants and options for other types.
+- `get_request_var()` (`grv()`) retrieves request data; retrieval alone does
+  not establish that the value is valid for a particular use.
+- `set_request_var()` (`srv()`) stores a request value; it is not a validator.
 
-## OS Command Injection
+A value already validated in the request cache need not be validated again in
+every getter. Preserve the validation contract and check lengths, ranges,
+allowed choices, and permissions where required. The **Log Input Validation
+Issues** setting helps identify missing validation during development.
 
-Never pass unsanitized input to shell execution functions (`exec()`,
-`shell_exec()`, `system()`, `passthru()`, `popen()`, `proc_open()`). Device
-fields, OID strings, community names, and any other user-influenced values
-must be treated as untrusted.
+## SQL statements
 
-Escape every argument with Cacti's `cacti_escapeshellarg()` rather than the
-PHP `escapeshellarg()` directly.  The Cacti wrapper strips carriage returns
-and line feeds, and it quotes correctly on both Unix and Windows, where
-`escapeshellarg()` blanks out percent signs that RRDtool format strings need.
-Where a whole command string has to be escaped, use `cacti_escapeshellcmd()`.
-Neither function is a substitute for validating the value first: resolve
-binaries from a fixed path and check arguments against an expected pattern
-before the command is built.
-
-## Prepared Statements
-
-The second method of hardening your Cacti application is through the use
-of prepared SQL statements.  A prepared statement sends the query and the
-values separately, so a value can never be parsed as SQL.  This removes the
-injection risk that string interpolation creates.
-
-Examples of a non-prepared call and its prepared equivalent:
+Use Cacti's prepared database helpers for values:
 
 ```php
-$somevalue = db_fetch_cell("SELECT COUNT(*)
-  FROM host
-  WHERE id = $somevariable");
+$hostname = db_fetch_cell_prepared('SELECT hostname
+	FROM host
+	WHERE id = ?',
+	[$device_id]);
 ```
 
-In the case above, it would be very easy to exploit Cacti.  The example
-below is the correct way to protect against attacks.
+Placeholders bind values, not identifiers or SQL fragments. Build dynamic
+column names, sort directions, and table names from an explicit allowlist.
+See [SQL Standards](Standards-SQL.md).
+
+## OS commands and paths
+
+Prefer an existing API or process helper over constructing shell commands.
+When a shell command is required, validate values and escape each argument
+using the target branch's Cacti helpers. On the development branch, use
+`cacti_escapeshellarg_cmd()` for arguments reaching Windows `cmd.exe`, and
+`cacti_escapeshellarg()` for the supported non-cmd path.
+A whole-command escape is not a substitute for argument escaping.
+
+Use configured binary paths and restrict user-selected paths to the intended
+location. Check ownership and permissions before reading, replacing, or
+deleting files. Do not solve permission errors by making application code or
+credential files writable by everyone.
+
+## Output escaping
+
+Escape values for the context where they are rendered. HTML text, HTML
+attributes, JavaScript, URLs, and shell arguments require different handling.
+On the development branch, use `html_escape()` for HTML text and
+`html_escape_attr()` for attribute values. Check helper availability before
+backporting to another branch.
 
 ```php
-$somevalue = db_fetch_cell_prepared('SELECT COUNT(*)
-  FROM host
-  WHERE id = ?',
-  array($somevariable));
+print '<td>' . html_escape($description) . '</td>';
 ```
 
-## Output Escaping
+When building browser content, use `textContent` for plain text and DOM methods
+for elements. Do not concatenate untrusted values into HTML, inline event
+handlers, or executable JavaScript. Validate dynamic URLs for the intended
+protocol and destination before escaping them for an attribute.
 
-Cacti provides an escaping function to reduce the likelihood of XSS
-vulnerabilities in Cacti leading to exploitation of other websites.
-Cacti itself has a restrictive XSS mitigation policy in effect
-by default, but proper output escaping still matters.
+For intentionally supported HTML, use the application's reviewed sanitization
+path. Sanitize after Markdown or other markup conversion and do not append
+untrusted markup afterward. A content security policy supplements these
+controls;
+it does not replace validation, authorization, or output escaping.
 
-The following examples show how, and how not, to escape output:
+## Browser and server checks
 
-```php
-print "<tr><td>" . $some_variable . "</td></tr>";
-```
+Browser validation gives prompt feedback, but enforce validation and
+permissions on the server. Test realistic denied-access cases as well as valid
+requests when changing a security boundary.
 
-The print statement above can lead to Stored XSS in your code whenever the
-value comes from the database.  Use the following instead:
+## See also
 
-```php
-print "<tr><td>" . html_escape($some_variable) . "</td></tr>";
-```
+[Hardening a Cacti Installation](Hardening-Cacti-Installation.md) covers
+installation permissions and operating-system controls.
 
-## JavaScript Validation
-
-Relying on JavaScript-based validation is nice for instant feedback to the
-user, but should not replace validation checking in the PHP code.
-
-If you follow the simple rules above, your Plugin will be much safer
-for others to use and will more easily pass internal security and
-pen tests.
-
-## See Also
-
-For OS-level hardening controls covering file permissions, web server access
-restrictions, PHP-FPM pool settings, SELinux, and AppArmor, see
-[Hardening a Cacti Installation](Hardening-Cacti-Installation.md).
+[ref-1]: https://github.com/Cacti/cacti/security/policy
 
 ---
+
 Copyright (c) 2004-2026 The Cacti Group

@@ -1,5 +1,9 @@
 # Multiple LDAP/AD Domains
 
+This page describes the Cacti 1.2 authentication interface. The unreleased
+Cacti 1.3 development branch uses [Login Providers](Login-Providers.md)
+instead.
+
 ## Summary
 
 This Authentication method enables the Cacti Administrator to

@@ -1,16 +1,23 @@
 # Navigating the Cacti User Interface
 
+Menu names and available tabs depend on your Cacti version, permissions,
+theme, and installed plugins. The screenshots illustrate navigation and may
+show an earlier theme or release.
+
 The Cacti User Interface is visually broken into multiple panels.  Each major
-major panel is designed to hold content.  Depending on the Cacti Theme you use
+panel is designed to hold content.  Depending on the Cacti Theme you use
 some of these panel may not be visible at the Theme Developers discretion.  The
 common panels are:
 
 - **Top Tabs** - Where you perform major navigation separate content
-- **Navigation Area** - If the content in navigated to by the Top Tab has a menu,
+- **Navigation Area** - If the content in navigated to by the Top Tab has a
+  menu,
   it will be found here.
-- **Breadcrumb Bar** - This is where you can see where in the Cacti interface you
+- **Breadcrumb Bar** - This is where you can see where in the Cacti interface
+  you
   are currently pointed to
-- **Content Area** - This is where you present tables, charts, forms, etc.  It is
+- **Content Area** - This is where you present tables, charts, forms, etc.  It
+  is
   where your main Content resides
 - **Footer** - This section is left for Theme Developers to insert content
   that belongs at the bottom of the screen.
@@ -22,7 +29,7 @@ with the Footer.
 ![Cacti Layout](images/navigation-layout.png)
 
 In Cacti, when you click on the **Top Tab**, you will by default enter a
-completely different section of Cacti.  Cacti's Top Taps are Designed
+completely different section of Cacti.  Cacti's Top Tabs are designed
 to mimic browser tabs, this helps with users orienting themselves to the
 various sections of Cacti.  When you have many **Plugins** installed as
 in the example above, you can see clearly the benefit of these
@@ -41,8 +48,9 @@ Most of Cacti's pages are laid out in this fashion.  However, what goes into
 the Cacti **Content Area** is completely under the **Plugin** authors
 control.
 
-At the Theme developers discretion, all pages should include both the **Top Tab**
-and **Breadcrumb Bar**.  Inside of the **Breadcrumb Bar** or **Top Tap** panels
+At the Theme developers discretion, all pages should include both the **Top
+Tab**
+and **Breadcrumb Bar**.  Inside of the **Breadcrumb Bar** or **Top Tab** panels
 you should always see the *User Profile and Menu* on the right.
 
 To use Cacti properly, you should first understand these sections.  We will
@@ -165,7 +173,8 @@ into separate sub-menus.  We will describe the purpose of each next.
 - **Import Export** - This is how you can import and export various Cacti
   Template objects.
 - **Configuration** - This is where you manage **Users**, **User Groups**,
-  **User Domains**, **Global Settings**, and **Plugins**.
+  **Login Providers**, **Global Settings**, and **Plugins** on the development
+  branch. Cacti 1.2 has **User Domains** instead.
 - **Utilities** - This is where Cacti includes common utilities that can be use
   in the Web Portal without having to goto the Command line.
 - **Troubleshooting** - There are some handy utilities here that help

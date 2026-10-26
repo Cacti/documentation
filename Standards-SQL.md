@@ -1,6 +1,7 @@
 # SQL Standards
 
-Special care must be taken for Cacti to properly support multiple DBMS's.
+Cacti uses MySQL or MariaDB through the helpers in `lib/database.php`. Check
+the target branch's supported database versions before adding SQL syntax.
 
 ## Quotes
 
@@ -8,82 +9,79 @@ When writing queries do not use quotes around numeric values. While MySQL is not
 strict about types, most DBMS's assume that any value contained within quotes is
 a string.
 
-As well, single quotes are used unless a variable is referenced
+Use single-quoted PHP strings for literal SQL where possible. Bind changing
+values with placeholders rather than interpolating them into a query.
 
-```php
-$graphs = db_fetch_assoc('SELECT * FROM graph WHERE height >= 150');
-```
+## Database compatibility
 
-```php
-$rows = db_fetch_cell("SELECT count(*) FROM $archive_table");
-```
-
-## DBMS Functions
-
-Do not use functions in SQL queries that are provided only by a single DBMS.
-These functions are generally not uniformly support or even available in all
-DBMS's. Common examples of such functions are `MD5()`, `CONCAT()`, and `NOW()`.
+Use SQL supported by both MySQL and MariaDB at the versions required by the
+target branch. Cacti already uses database-specific functions, including
+`CONCAT()` and `NOW()`; this manual does not imply support for other database
+engines. Test changes involving collation, grouping, and date handling on the
+supported engines where their behavior differs.
 
 ## SQL Injection
 
 Cacti provides support for prepared statements. You should use these prepared
-statement functions as much as possible to avoid the risk of SQL Injection
+statement functions for values to avoid the risk of SQL injection
 attacks from the Cacti website. Examples include:
 
 ```php
 // Example prepared statements
-$hostname = db_fetch_cell_prepared('SELECT hostname FROM host WHERE id = ?', array($id));
-$host     = db_fetch_row_prepared('SELECT * FROM host WHERE id = ?', array($id));
-$graphs   = db_fetch_assoc_prepared('SELECT * FROM graph_local WHERE host_id = ?', array($id));
+$hostname = db_fetch_cell_prepared('SELECT hostname FROM host WHERE id = ?', [$id]);
+$host     = db_fetch_row_prepared('SELECT * FROM host WHERE id = ?', [$id]);
+$graphs   = db_fetch_assoc_prepared('SELECT * FROM graph_local WHERE host_id = ?', [$id]);
 
-db_execute_prepared('UPDATE host SET description = ? WHERE id = ?', array('Local Machines', $id));
-
-// Escape strings if using legacy functions. db_qstr() returns the value
-// already wrapped in quotes, so do not quote it again.
-$hostname = db_qstr('myhost.com');
-db_execute("UPDATE host SET hostname = $hostname WHERE id = " . (int) $id);
+db_execute_prepared('UPDATE host SET description = ? WHERE id = ?', ['Local Machines', $id]);
 
 ```
+
+Placeholders bind values, not table or column names. Map dynamic identifiers,
+sort directions, and other SQL fragments from explicit allowlists. Do not
+concatenate user-supplied SQL, even when ordinary values are parameterized.
 
 ## Format of SQL statements
 
 - For short statements, SQL calls may be made on a single row.
 
 - If the SQL statement starts to grow and be unreadable without scrolling, it
-  should be wrapped onto a continuation line for ease of use and readability.
-  The following keywords should also be placed at the start of a new line:
+   should be wrapped onto a continuation line for ease of use and readability.
+   The following keywords should also be placed at the start of a new line:
 
-  - joins statements (excluding JOIN itself which should not be used) (eg, INNER
-    JOIN, LEFT JOIN, RIGHT JOIN, OUTER JOIN, CROSS JOIN)
+   - joins statements (excluding JOIN itself which should not be used) (eg,
+     INNER
+      JOIN, LEFT JOIN, RIGHT JOIN, OUTER JOIN, CROSS JOIN)
 
-    **Note:** \*Any implicit join or JOIN without one of the modifiers should be
-    converted to an explicit join with a modifier. When converting the implicit
-    join statement, remember to remove the WHERE joining clause.
+      **Note:** \*Any implicit join or JOIN without one of the modifiers should
+      be
+      converted to an explicit join with a modifier. When converting the
+      implicit
+      join statement, remember to remove the WHERE joining clause.
 
-  - AND / OR
+   - AND / OR
 
-  - FROM
+   - FROM
 
-  - WHERE
+   - WHERE
 
-  - ORDER
+   - ORDER
 
-  - GROUP BY
+   - GROUP BY
 
-  - HAVING
+   - HAVING
 
-  - LIMIT
+   - LIMIT
 
-  - prepared statement arrays
+   - prepared statement arrays
 
 - Indentation should consist of one extra tab when any of the following occur:
 
-  - continuation lines
+   - continuation lines
 
-  - Subqueries
+   - Subqueries
 
 - There should always be 'AS' when defining an alias for any table, field or
-  query to clearly define the definition of said alias.
+   query to clearly define the definition of said alias.
 
 - There should always be a space following a comma and before/after an operator.
 
@@ -114,7 +112,7 @@ $templates = db_fetch_assoc_prepared('SELECT DISTINCT gt.id, gt.name
     AND dtd.local_data_id = 0
     AND dtd.data_input_id in (?,?,?)
     ORDER BY gt.name',
-    array(2,11,12));
+    [2, 11, 12]);
 ```
 
 ### Example of implicit join

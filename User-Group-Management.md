@@ -1,6 +1,8 @@
 # User Group Management
 
-Cacti supports from one to many static User Groups in the current design.
+Cacti supports User Groups for shared permissions. On the development branch,
+[Login Providers](Login-Providers.md) can also assign membership at login when
+automatic assignment rules are configured.
 User Groups closely mimic the normal user.  You see things like **Graph**
 permissions, Roles and Realms, Default pages, and settings, it's all there.
 

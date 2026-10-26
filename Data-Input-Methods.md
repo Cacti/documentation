@@ -90,7 +90,8 @@ The `Field Name` must contain no spaces or other non-alphanumeric characters
 
 If you want to enforce a certain regular expression pattern when the user enters
 a value into `Regular Expression Match (Input Only)` for this Data Input Field,
-it must follow POSIX syntax as it will be passed to PHP's preg() functions.
+use a Perl-compatible regular expression (PCRE), as required by PHP's
+`preg_*` functions.
 
 If the Data Input Field needs to reference another field internally, you can
 enter this into the `Special Type Code`. For instance, if your field requires an
@@ -105,7 +106,7 @@ hostname | The hostname
 management_ip | The ip
 snmp_community | The SNMP community
 snmp_username | The SNMP username
-snmp_password | The SNMP version
+snmp_password | The SNMPv3 authentication password
 
 If you enable the `Update RRDfile`, Cacti will insert the return value from this
 field into the RRDfile. This box needs to be checked for at least one output
@@ -127,7 +128,8 @@ Methods** that are present in a new installation of Cacti.
 To have Cacti call an external script to gather data you must create a new
 **Data Input Method**, making sure to specify Script/Command for the Input Type
 field. See the previous section, [Creating a Data Input
-Method](data_input_methods.html) for more information about how to create a
+Method](Data-Input-Methods.md#creating-a-data-input-method) for more
+information about how to create a
 **Data Input Method**. To gather data using your **Data Input Method**, Cacti
 simply executes the shell command specified in the Input String field. Because
 of this, you can have Cacti run any shell command or call any script which can
@@ -158,11 +160,11 @@ formatted like the following:
 <fieldname_1>:<value_1> <fieldname_2>:<value_2> ... <fieldname_n>:<value_n>
 ```
 
-If you wrote a script that outputs the 1, 5, and 10 minute load average of a
-Unix machine and in Cacti named the output fields '1min', '5min', and '10min',
+If you wrote a script that outputs the 1, 5, and 15 minute load average of a
+Unix machine and in Cacti named the output fields '1min', '5min', and '15min',
 the output of the script should look like the following:
 
-`1min:0.40 5min:0.32 10min:0.01`
+`1min:0.40 5min:0.32 15min:0.01`
 
 One last thing to keep in mind when writing scripts for Cacti is that they will
 be executed as the user the data gatherer runs as. Sometimes a script may work

@@ -2,16 +2,36 @@
 
 ![Cacti](images/logo.svg)
 
-Cacti is designed to be a complete graphing solution based on the RRDtool's
-framework. Its goal is to make a network administrator's job easier by taking
-care of all the necessary details necessary to create meaningful graphs.
+Cacti collects measurements from network devices, servers, and applications
+and uses RRDtool to store time-series data and display graphs. Use this manual
+to install Cacti, configure data collection, manage access, and contribute
+changes.
 
-Please see the official Cacti website for information, support, and updates.
+This documentation branch follows **develop**, the unreleased Cacti 1.3
+development series. Features and menu labels can differ from released Cacti
+1.2 installations. For maintenance releases, use the
+[1.2.x documentation](https://github.com/Cacti/documentation/tree/1.2.x) and
+the requirements supplied with your installed version.
+
+For downloads and project news, visit the [Cacti
+website](https://www.cacti.net/).
+For support, use the [Cacti Forums](https://forums.cacti.net/).
+
+## Getting Started
+
+1. Check the [requirements](Requirements.md), then follow the
+   [installation instructions](General-Installing-Instructions.md).
+2. Learn the [user interface](Navigating-The-User-Interface.md) and
+   [create graphs for a device](How-to-Graph-Your-Network.md).
+3. Use [data source debugging](Data-Debug.md) and the [Cacti log](Cacti-Log.md)
+   to investigate missing data.
+4. Read the [contribution guide](Contributing.md) and
+   [development standards](README.md#development-standards) before submitting
+   changes.
 
 ## Core Developers - Both active and emeritus
-Active Developers
 
-### Developers working on Cacti, its Architecture, Documentation and Future Releases.
+### Active Developers
 
 - Larry Adams (TheWitness)
 - Mark Brugnoli-Vinten (netniV)
@@ -20,8 +40,9 @@ Active Developers
 - Andreas Braun (browniebraun)
 - Thomas Urban (phalek)
 - Jing Chen (ddb4github)
+- Thomas Vincent (somethingwithproof)
 
-### Contributors to Documentation, QA, Packaging, the Forums and our YouTube page.
+### Contributors
 
 - Sean Mancini (bmfmancini)
 - J.P. Pasnak, CD (Linegod)
@@ -29,17 +50,14 @@ Active Developers
 - Paul Gevers (Debian) (paulgevers)
 - Morten Stevens (Fedora) (mortenstevens)
 
-### Members of the original Cacti Group that have since moved on in their careers.
-### We continue to wish them the best.
+### Emeritus Members
 
 - Ian Berry (raX)
 - Reinhard Scheck (gandalf)
 - Tony Roman (rony)
 - Andy Blyler (ablyler)
 
-
 ## Thanks
-
 
 A very special thanks to Tobi Oetiker, the creator of RRDtool and the very
 popular MRTG. The users of Cacti - especially anyone who has taken the time to
@@ -67,8 +85,8 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 2. [Cacti Overview](README.md#cacti-overview)
 
-   This section describes Cacti components and their purpose as well as
-   providing examples including on how to create **Templates** in Cacti.
+   Learn how devices, data collectors, data sources, templates, and graphs
+   work together. Find configuration, automation, access, and reporting guides.
 
 3. [Advanced Operations](README.md#advanced-operations)
 
@@ -88,14 +106,12 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 6. [Contributing](README.md#contributing)
 
-   This section contains information on how to contribute to Cacti.
+   Report bugs, contribute code or documentation, and help translate Cacti.
 
 7. [Development Standards](README.md#development-standards)
 
-   This section contains the relevant information on how to ensure that any
-   contribution is kept to the same standards that are applied for the Cacti
-   Group. Non-compliance does not automatically mean exclusion of proposed
-   changes.
+   Follow the documentation, PHP, SQL, and security conventions used by the
+   target branch. Check that branch's contributor instructions and tooling.
 
 8. [Architecture Decisions](README.md#architecture-decisions)
 
@@ -114,11 +130,13 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 3. Installing Cacti on Linux
 
-   3.1. [Installation Under Enterprise Linux (RHEL/Rocky/AlmaLinux) - LAMP Stack](Install-Under-Enterprise-Linux-LAMP.md)
+   3.1. [Installation Under Enterprise Linux (RHEL/Rocky/AlmaLinux) - LAMP
+   Stack][ref-10]
 
-   3.2. [Installation Under Enterprise Linux (RHEL/Rocky/AlmaLinux) - LEMP Stack](Install-Under-Enterprise-Linux-LEMP.md)
+   3.2. [Installation Under Enterprise Linux (RHEL/Rocky/AlmaLinux) - LEMP
+   Stack][ref-9]
 
-   3.3. [Installation Under Ubuntu/Debian - LAMP Stack](Installing-Under-Ubuntu-Debian.md)
+   3.3. [Installation Under Ubuntu/Debian - LAMP Stack][ref-8]
 
 4. [Installing Under Windows](Installing-Under-Windows.md)
 
@@ -131,6 +149,11 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 8. [Hardening a Cacti Installation](Hardening-Cacti-Installation.md)
 
 ### Cacti Overview
+
+Start with the interface and operating principles, then create a device and
+its graphs. The remaining guides cover management and configuration tasks.
+Menu visibility depends on your permissions, enabled features, and plugins;
+screenshots may show a different theme or an earlier release.
 
 1. Overview
 
@@ -218,8 +241,6 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    7.5. [Package Repositories](Package-Repositories.md)
 
-   7.6. [Package Public Keys](Public-Keys.md)
-
    7.6. [Public Keys](Public-Keys.md)
 
 8. [Settings (w/o Auth)](Settings.md)
@@ -250,15 +271,19 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    9.3. [Basic Auth](Settings-Auth-Basic.md)
 
-   9.4. [Domains Auth](Settings-Domains.md)
+   9.4. [Login Providers](Login-Providers.md)
 
-10. [Configuration - Users, Groups and Domains](Settings-Users-Groups-Domains.md)
+   9.5. [Multiple LDAP/AD Domains (1.2)](Settings-Domains.md)
+
+10. [Configuration - Users, Groups and Login Providers][ref-7]
 
     10.1. [Users](User-Management.md)
 
     10.2. [User Groups](User-Group-Management.md)
 
-    10.3. [User Domains](User-Domains.md)
+    10.3. [Login Providers](Login-Providers.md)
+
+    10.4. [User Domains (1.2)](User-Domains.md)
 
 11. [Configuration - Plugins](Plugins.md)
 
@@ -332,7 +357,7 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 3. [Mactrack Plugin documentation](Plugin-Mactrack.md)
 
-4. [ReportIt Plugin documentation](resource/pdf/manual_reportit.pdf) Older version, pdf format
+4. [ReportIt Plugin documentation][ref-6] Older version, pdf format
 
 ### How Tos
 
@@ -342,7 +367,7 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 3. [How To Work with Data Queries](How-To-Data-Queries.md)
 
-4. [How To Work with Existing SNMP Data Queries](How-To-Existing-SNMP-Data-Queries.md)
+4. [How To Work with Existing SNMP Data Queries][ref-5]
 
 5. [How To Work with New SNMP Data Queries](How-To-New-SNMP-Data-Queries.md)
 
@@ -360,23 +385,35 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 12. [How To Extend snmpd with custom script/data](How-To-SNMP-Custom-Script.md)
 
-13. [Change poller interval from 5 minutes to 1 minute ](How-To-Poller-5-to-1-min.md)
+13. [Change poller interval from 5 minutes to 1 minute][ref-4]
 
-14. [Convert from Package based install to source on Ubuntu/Debian](convert-from-package-to-source-debian-ubuntu.md)
+14. [Convert from Package based install to source on Ubuntu/Debian][ref-3]
 
 ### Video Tutorials
 
-Watch Howto's and Tutorials on the Cacti Official YouTube page if you prefer. If you would have any ideas for videos or would like to contribute let us know !
+Watch installation and configuration tutorials on the official Cacti YouTube
+channel. Use the project's contribution channels to suggest or contribute
+videos.
 
-[Cacti Official Youtube Channel](https://www.youtube.com/channel/UC6ROmUGuuLa9BdHWzvGSY1w)
+[Cacti Official Youtube Channel][ref-2]
 
 ### Contributing
 
-1. [Open Source Code](Contributing.md)
+Help improve Cacti through bug reports, tested fixes, documentation, and
+translations. Submit code changes to the relevant Cacti project repository
+and documentation changes to the documentation repository. Report security
+vulnerabilities privately using the project's
+[security policy](https://github.com/Cacti/cacti/security/policy).
+
+1. [Code, Documentation, and Bug Reports](Contributing.md)
 
 2. [Language Translations](Contributing-Translations.md)
 
 ### Development Standards
+
+Use these guides alongside the contributor instructions, dependency manifests,
+and checks in the branch you are changing. Development and maintenance
+branches can have different runtime requirements and tooling.
 
 1. [Documentation](Standards-Documentation.md)
 
@@ -408,9 +445,19 @@ This section will be for template specific configuration requirements
 
 This section will be for device template specific configuration requirements
 
-1. [Proxmox External Storage Usage with Linux Device Template](device-template-specific-proxmox.md)
+1. [Proxmox External Storage Usage with Linux Device Template][ref-1]
+
+[ref-1]: device-template-specific-proxmox.md
+[ref-2]: https://www.youtube.com/channel/UC6ROmUGuuLa9BdHWzvGSY1w
+[ref-3]: convert-from-package-to-source-debian-ubuntu.md
+[ref-4]: How-To-Poller-5-to-1-min.md
+[ref-5]: How-To-Existing-SNMP-Data-Queries.md
+[ref-6]: resource/pdf/manual_reportit.pdf
+[ref-7]: Settings-Users-Groups-Domains.md
+[ref-8]: Installing-Under-Ubuntu-Debian.md
+[ref-9]: Install-Under-Enterprise-Linux-LEMP.md
+[ref-10]: Install-Under-Enterprise-Linux-LAMP.md
 
 ---
 
 Copyright (c) 2004-2026 The Cacti Group
-
