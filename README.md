@@ -218,6 +218,8 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
    7.5. [Package Repositories](Package-Repositories.md)
 
+   7.6. [Package Public Keys](Public-Keys.md)
+
    7.6. [Public Keys](Public-Keys.md)
 
 8. [Settings (w/o Auth)](Settings.md)

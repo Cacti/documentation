@@ -19,8 +19,10 @@ bonus - you can add and remove **Graphs** from aggregate in a very controlled
 way, reducing the effort to maintain them during their life-cycle.
 
 If you wish to change settings for **Graphs** managed by the **Aggregate
-Template**, simply make the changes in the **Aggregate Template**, and they will
-cascade to **Aggregate Graphs** managed by the Template.
+Template**, simply make the changes in the **Aggregate Template**, and they
+will cascade to attached **Aggregate Graphs** with **Propagation Enabled**. An
+aggregate whose propagation has been disabled no longer follows these template
+settings. See [Aggregate Graphs](Aggregates.md) for membership and propagation.
 
 ## Aggregate Template Interface
 
@@ -92,7 +94,7 @@ order. The options include:
   name
 - **Base Graph Order** - Focus on the **Graph** name only
 
-![Aggregate Templates Edit General Options](images/aggregate-templates-edit1.png)
+![Aggregate template general options](images/aggregate-templates-edit1.png)
 
 The `Graph Template Items` section allows you to either Skip or Total (aka
 include) the **Graph Items** in the resulting **Aggregate Graphs**. When you
@@ -114,7 +116,7 @@ options here, only let you know that you can override them in your resulting
 
 ![Aggregate Templates Edit Common Options](images/aggregate-templates-edit3.png)
 
-![Aggregate Templates Edit Scaling Options](images/aggregate-templates-edit4.png)
+![Aggregate template scaling options](images/aggregate-templates-edit4.png)
 
 ![Aggregate Templates Edit Grid Options](images/aggregate-templates-edit5.png)
 
