@@ -17,14 +17,16 @@ reported behavior and preserve the target branch's compatibility.
 
 ## Theme and Plugin Checks
 
-The development theme validation work is tracked in
-[Cacti pull request 8522][theme-pr]. Until it is merged into your target branch,
-use that change set when reproducing these checks. Its
-[validation guides][guides] contain exact commands, fixture revisions,
-and per-theme screenshots.
+The workflow described below was proposed in
+[Cacti pull request 8522][theme-pr], which was closed without merging.
+It is not an available upstream workflow. The pinned
+[validation guides][guides] preserve reproduction commands, fixture revisions,
+and per-theme screenshots for that proposal. Check your target branch for
+the workflows and commands it currently supports.
 
-The browser component suites cover core theme rendering, seven standalone
-Cacti plugins, and the available RTM plugin surfaces across eleven core themes
+The proposal's browser component suites cover core theme rendering, seven
+standalone Cacti plugins, and the available RTM plugin surfaces across eleven
+core themes
 and both Midwinter palettes. Fixtures use synthetic monitoring values and real
 stylesheets. They do not exercise plugin authentication, backend requests,
 pollers, schedulers, or live license servers.
@@ -36,10 +38,11 @@ chart rendering and tooltips require the matching runtime assets.
 
 ## Read Actions Results
 
-The theme workflow separates core rendering, each standalone plugin, and RTM
-into named jobs. The aggregate **Theme validation** check requires every job
-to succeed. It runs for pull requests, merge-queue checks, development pushes,
-and manual runs after the workflow is available on the default branch.
+The proposed theme workflow separates core rendering, each standalone plugin,
+and RTM into named jobs. The aggregate **Theme validation** check requires
+every job to succeed. It runs for pull requests, merge-queue checks,
+development pushes,
+and manual runs in repositories that adopt the workflow.
 
 Open a job's summary to see actual pass, fail, flaky, and skipped counts.
 Download its artifact for the HTML report, JSON and JUnit results, populated
