@@ -1,6 +1,6 @@
 {
-  "documentation_base": "9e4becad44e4",
-  "build_date": "2026-10-26",
+  "documentation_base": "32db4ecbb519",
+  "build_date": "2026-10-27",
   "builder_sha256": "9c36f14d29fe292e12e451f47ab1329310c29a72ebc629f443149ea6953f12ff",
   "tool_lock_sha256": "4b5333f4b4aba1d08ead0b9441494aadd991386e8ffd2c42d46c6d8647e82ca2",
   "stylesheet_sha256": "172a8d4b17e011b0e966e1ac2453412e5fc8f3edc0cb6ce33a92139ca7a2f98c",
@@ -129,7 +129,7 @@
       "RRDtool-Specific-Features.md": "a8dc18fff893b7b28809ccc48eb05c8587dfe66e835b71283e59d4110626ffce",
       "Command-Line-Scripts.md": "387b302af0837fe523cb590a93b895091715fc44599ad22abc2f315dcd688198",
       "Contributing.md": "25c89a7ccae8ebac99d1d3fef31fe4f6c81869054e80f97712e505bf28d4a5c3",
-      "Development-and-Testing.md": "fdf8ea84c44ea83c14f33a38185a7343e3ff9d533a0498c27948a5beaa230799",
+      "Development-and-Testing.md": "61a49da30c145e32cceb16b53c6ded2a576a6e68c37272b59eb8333be9d5e973",
       "Contributing-Translations.md": "f2b33c3a2958a7302eed055d0ed6718490dade8f0aaf9eae09e73d681ebebd36",
       "Standards-Documentation.md": "2704222edadd0224c8dffeeae7a7f53876dfcdfe9c881c4a1111dd81955bdc59",
       "Standards-Code-Formatting.md": "9083a666b2e2e5d8d53f70b0bc91c7be1f95d537235f6abf065334f62832b637",
@@ -154,7 +154,7 @@
     ],
     "chapters": 135,
     "pdf": "resource/pdf/cacti-manual.pdf",
-    "pdf_sha256": "3e2412675bd63a8fa4b33ce9440ed0f54e96a9e912b7038377f29814cdfa67cd"
+    "pdf_sha256": "f14aafc4e8de151aa195c328a2963eca4d9447c5622803a6d46544f83b6d4da8"
   },
   "reportit": {
     "source": "resource/docx/manual_reportit.docx",
