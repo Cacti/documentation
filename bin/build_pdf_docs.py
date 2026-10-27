@@ -22,6 +22,7 @@ import re
 import subprocess
 from urllib.parse import unquote, urlsplit
 
+from check_navigation import ordered_pages
 from markdown_it import MarkdownIt
 import mammoth
 from PIL import Image
@@ -62,14 +63,8 @@ def document(title, body):
 
 
 def build_manual(output, revision, built):
-    paths = [ROOT / "README.md"]
-    available = set(ROOT.glob("*.md")) | set((ROOT / "Architecture").glob("*.md"))
-    # Follow the manual's existing navigation order, then include every remaining page.
-    for match in re.finditer(r"(?:\]\(|\]:\s*)([^\s)#]+\.md)", paths[0].read_text()):
-        path = (ROOT / match[1]).resolve()
-        if path in available and path not in paths:
-            paths.append(path)
-    paths += sorted(available - set(paths))
+    paths = ordered_pages(ROOT)
+    available = set(paths)
     md = MarkdownIt("commonmark", {"html": True}).enable(["table", "strikethrough"])
     chapters = []
     titles = []
@@ -211,6 +206,7 @@ def main():
     manifest = json.loads(manifest_path.read_text()) if args.only and manifest_path.exists() else {}
     manifest.update({"documentation_base": revision, "build_date": built,
                      "builder_sha256": digest(Path(__file__)),
+                     "navigation_sha256": digest(ROOT / "bin/check_navigation.py"),
                      "tool_lock_sha256": digest(Path(__file__).with_suffix(".py.lock")),
                      "stylesheet_sha256": digest(ROOT / "resources/css/pdf.css"),
                      "tools": {p: importlib.metadata.version(p) for p in ("markdown-it-py", "mammoth", "weasyprint", "Pillow")}})
