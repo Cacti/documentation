@@ -1,376 +1,371 @@
 # Installing Under Windows
 
-> **Note**: As of Cacti 1.2.31, PHP 8.1 is required and PHP Composer is required.
-> Composer will be used to ensure all libraries are installed and up to date.
-
-BSOD2600, one of the long-term users of Cacti, provides an installer for Windows.
-We recommend using that installer. You can obtain it under the Windows section of
-the Cacti forums. If you prefer to install Cacti manually, follow the instructions
-below.
-
-1. (Optional) Apache - This software is optional if running Windows Internet
-   Information Server.
-
-2. Cacti - Install from the zip distribution into the web root of your choice.
-   Many choose to install into a `Cacti` subfolder.
-
-3. Spine - Install from the zip distribution into the `c:\cacti` directory.
-   Ensure `spine.conf.dist` is located in that directory as well.
-
-4. RRDtool - Install from the Cacti website into the `c:\cacti` directory.
-
-5. PHP 8.x - Install into the `c:\php` folder. If you choose to install into
-   `c:\Program Files\php`, you will have to use 8.3 filenames to reference its
-   binaries in Cacti.
-
-6. MySQL 8.x or MariaDB 10.5+ - Install into the default locations.
-   For MySQL this is typically:
-
-   `c:\Program Files\MySQL\MySQL Server X.XX`
-
-   For MariaDB it is typically:
-
-   `c:\Program Files\MariaDB`
-
-   After the database is confirmed running, apply the following settings to the
-   `my.ini` file:
-
-   ```ini
-   [mysqld]
-   character-set-server = utf8mb4
-   collation-server = utf8mb4_unicode_ci
-   max_heap_table_size = 770M  # Adjust for your OS memory size
-   max_allowed_packet = 500M   # Adjust for your OS memory size
-   tmp_table_size = 512M       # Adjust for your OS memory size
-   join_buffer_size = 256M     # Adjust for your OS memory size
-   sort_buffer_size = 32M      # Per-session buffer; keep small to avoid OOM under load
-
-   # sql_mode: NO_AUTO_CREATE_USER was removed in MySQL 8.0; omit it on MySQL 8+
-   sql_mode = NO_ENGINE_SUBSTITUTION
-
-   innodb_flush_log_at_trx_commit = 2
-   innodb_flush_log_at_timeout = 3
-   innodb_file_per_table = ON
-
-   innodb_buffer_pool_size = 4500M # Adjust for your OS memory size
-
-   # innodb_file_format and innodb_large_prefix removed in MySQL 8.0 /
-   # MariaDB 10.3+; omit those settings on newer releases.
-
-   # for SSDs on a multi-core server
-   innodb_doublewrite = OFF
-   innodb_read_io_threads = 32
-   innodb_write_io_threads = 16
-   innodb_io_capacity = 10000
-   innodb_io_capacity_max = 20000
-   innodb_flush_method = O_DIRECT
-   ```
-
-   Restart MariaDB/MySQL after applying these settings. Once you start the
-   installer, Cacti will recommend better values for your hardware.
-
-   Write down your MariaDB/MySQL root password and keep a backup copy in a safe
-   place.
-
-7. (Optional) Cygwin - Download and execute `setup-x86_64.exe` from the Cygwin
-   website. Keep the `setup-x86_64.exe` file for later use. You will need Cygwin
-   and its development packages for building RRDtool and Spine.
-
-8. (Optional) Net-SNMP - Install to the `c:\usr` directory. If you choose to
-   use `c:\Program Files\net-snmp`, you will have to use 8.3 filenames to
-   reference its binaries in Cacti. The default installation location for
-   Net-SNMP on Windows is `c:\usr`, which closely aligns with Linux and Unix
-   install paths.
-
-## Common OS Changes
-
-The following changes are required regardless of your selected web server.
-
-1. Add the following directory to the existing Windows System `PATH` environment
-   variable: `c:\php`. The Windows PATH can be accessed via:
-   Control Panel → System → Advanced → Environment Variables → System Variables.
-
-2. Add a new Windows System environment variable `PHPRC` set to `c:\php`.
-
-3. Add a new Windows System environment variable `MIBDIRS` set to
-   `c:\php\extrasmibs`.
-
-4. Rename `c:\php\php.ini.dist` to `php.ini`, and make the following changes.
-   The Cacti installer will guide you through enabling additional modules.
-
-   ```ini
-   extension_dir = c:\php\ext
-   extension=php_pdo_mysql.dll
-   extension=php_snmp.dll
-   extension=php_sockets.dll
-   cgi.force_redirect = 0
-   date.timezone = America/Detroit
-   memory_limit = 800M
-   max_execution_time = 300
-   ```
-
-   > **Note**: `php_mysql.dll` (the old `mysql_*` extension) was removed in
-   > PHP 7.0. Use `php_pdo_mysql.dll` instead.
-
-5. In earlier PHP installation guides, moving certain DLLs to
-   `c:\winnt\system32` was recommended. If you followed those guides, remove
-   those files. Review the PHP installation documentation for instructions.
-
-6. To allow template importing, uncomment the following line:
-
-   ```ini
-   file_uploads = On
-   ```
-
-7. Give the user running the scheduled task modify rights to the `.index` file
-   in the location pointed to by the `MIBDIRS` environment variable.
-
-## Web Server Configuration
-
-1. Ensure you have stopped any IIS web servers before proceeding with Apache
-   installation, or configure Apache on an alternate port.
-
-2. If using Apache 2.x with PHP 8, add the following lines. Adjust values for
-   your version of PHP and Apache.
-
-   ```ini
-   LoadModule php_module "C:\php\php8apache2_4.dll"
-   AddHandler application/x-httpd-php .php
-   AddType application/x-httpd-php .php
-   DirectoryIndex index.html index.htm index.php
-   PHPIniDir "C:\php"
-   ```
-
-## IIS Specific Steps
-
-PHP 8.0 removed ISAPI support. For IIS with PHP 8, use the FastCGI handler
-instead of ISAPI.
-
-1. Install the **IIS FastCGI module** if it is not already present (available
-   via Windows Server roles or Web Platform Installer).
-
-2. Open IIS Manager. At the server level, open **FastCGI Settings** and add a
-   new application:
-   - **Full Path**: `C:\php\php-cgi.exe`
-   - Set **InstanceMaxRequests** to `10000`
-
-3. In the site or server **Handler Mappings**, add a new module mapping:
-   - **Request path**: `*.php`
-   - **Module**: `FastCgiModule`
-   - **Executable**: `C:\php\php-cgi.exe`
-
-4. Under the **Default Document** feature, add `index.php` to the list.
-
-5. Give the IIS application pool identity (or `IUSR`) read and execute
-   permissions on `%windir%\system32\cmd.exe`, and read/write/execute on the
-   Cacti directories:
-
-   ```batchfile
-   icacls "C:\windows\system32\cmd.exe" /grant "IUSR:(OI)(CI)(RX,W)"
-   icacls "C:\inetpub\wwwroot\cacti\resource\snmp_queries" /grant "IUSR:(OI)(CI)(RX,W)"
-   icacls "C:\inetpub\wwwroot\cacti\resource\script_server" /grant "IUSR:(OI)(CI)(RX,W)"
-   icacls "C:\inetpub\wwwroot\cacti\scripts" /grant "IUSR:(OI)(CI)(RX,W)"
-   icacls "C:\inetpub\wwwroot\cacti\rra" /grant "IUSR:(OI)(CI)(RX,W)"
-   icacls "C:\inetpub\wwwroot\cacti\log" /grant "IUSR:(OI)(CI)(RX,W)"
-   icacls "C:\inetpub\wwwroot\cacti\cache" /grant "IUSR:(OI)(CI)(RX,W)"
-   icacls "C:\inetpub\wwwroot\cacti\include\config.php" /grant "IUSR:(RX,W)"
-   copy /b NUL "C:\inetpub\wwwroot\cacti\include\vendor\csrf\csrf-secret.php"
-   icacls "C:\inetpub\wwwroot\cacti\include\vendor\csrf\csrf-secret.php" /grant "IUSR:(RX,W)"
-   ```
-
-6. Completely stop and start the IIS service:
-
-   ```batchfile
-   net stop iisadmin
-   net start w3svc
-   ```
-
-## Cygwin Installation Steps for Spine and RRDtool
-
-1. Installing a single instance of Cygwin and using it for all applications
-   is recommended. Multiple Cygwin installations can have conflicting DLL
-   versions.
-
-2. Run the `setup-x86_64.exe` you downloaded previously.
-
-3. At the **Select Packages** step, install the following packages (version
-   numbers may have changed):
-
-   - Base (include all items)
-     - Libs
-       - libcairo2
-       - libcrypt0
-       - libfontconfig-common
-       - libfontconfig1
-       - libfreetype6
-       - libgcrypt20
-       - libgd3
-       - libglib2.0_0
-       - libmariadb3
-       - libssl1.0
-       - libpango1.0_0
-       - libpng16
-       - libreadline7
-       - zlib-devel
-       - zlib0
-     - Devel
-       - autoconf
-       - automake
-       - binutils
-       - clang
-       - cygwin-devel
-       - gcc-core
-       - gcc-g++
-       - libmariadb-devel
-       - help2man
-       - libargp
-       - libltdl7
-       - libtool
-       - net-snmp-devel
-       - patch
-       - texinfo
-       - w32api-headers
-       - w32api-runtime
-       - windows-default-manifest
-     - Web
-       - wget
-
-4. Add `c:\cygwin\bin` to your Windows System PATH environment variable.
-
-5. Move `setup-x86_64.exe` to `c:\cygwin` for future use. Update this binary
-   periodically, as it is updated from time to time.
-
-## RRDtool Download and Installation
-
-1. Obtain Windows-compatible builds of RRDtool from https://rrdtool.org and
-   install to `C:\rrdtool`.
-
-2. Create the MariaDB/MySQL database:
-
-   ```sh
-   shell> mysqladmin --user=root --password create cacti
-   ```
-
-3. Import the default Cacti database:
-
-   ```sh
-   shell> mysql --user=root --password cacti < c:\apache2\htdocs\cacti\cacti.sql
-   ```
-
-4. Create a MySQL username and password for Cacti:
-
-   ```sh
-   shell> mysql --user=root --password mysql
-   ```
-
-   ```sql
-   MySQL> CREATE USER 'cactiuser'@'localhost' IDENTIFIED BY 'cactiuser';
-   MySQL> GRANT ALL ON cacti.* TO 'cactiuser'@'localhost';
-   MySQL> GRANT SELECT ON mysql.time_zone_name TO 'cactiuser'@'localhost';
-   MySQL> ALTER DATABASE cacti CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-   MySQL> FLUSH PRIVILEGES;
-   ```
-
-## Net-SNMP Installation
-
-1. If you plan to use SNMP v2c and are using early versions of PHP, download
-   and install the Net-SNMP libraries. Net-SNMP provides an installer.
-
-   If you use long directory names, note that Cacti requires 8.3 notation:
-
-   | Format | Path |
-   | --- | --- |
-   | Original | `c:\Program Files\Net-SNMP\bin` |
-   | 8.3 notation | `c:\progra~1\net-snmp\bin` |
-
-## Cacti Spine Installation
-
-1. Extract the Spine zip file to `c:\spine` and edit `spine.conf.dist` with
-   your database details:
-
-   ```ini
-   DB_Host      127.0.0.1
-   DB_Database  cacti
-   DB_User      cactiuser
-   DB_Password  cactiuser
-   DB_Port      3306
-   ```
-
-   > **Note**: Use `127.0.0.1` rather than `localhost` for the DB host on Windows.
-
-2. Spine is distributed as a binary. We strongly recommend installing Cygwin
-   and removing all DLL files and `sh.exe` from `c:\spine`, keeping only
-   `spine.exe` and `spine.conf`.
-
-## Finishing Your Setup
-
-1. Edit `cacti_web_root/cacti/include/config.php` and specify the database
-   connection details:
+Use only the [supported operating systems][supported-os] and maintained
+dependencies compatible with this Cacti branch.
+
+These instructions describe a manual installation of Cacti development (1.3) on
+Windows. Use the [requirements](Requirements.md) for your Cacti release and
+supported Windows builds of PHP, your database server and RRDtool. Community
+Windows installers are also discussed in the [Cacti
+forums](https://forums.cacti.net/); check their included versions and
+maintenance status before using them.
+
+The examples use `C:\inetpub\wwwroot\cacti` for Cacti, `C:\php` for PHP,
+`C:\rrdtool` for RRDtool and `C:\spine` for optional Spine. Substitute your
+actual paths throughout. Use a dedicated Windows account for the poller and a
+separate web-server identity. Install software and configure services as an
+administrator; the poller does not normally need administrator privileges.
+
+## Development packaging prerequisite
+
+The current development dependency manifest requires PHP `^8.3`, including
+`ext-pcntl` and `ext-posix` unconditionally. Native Windows PHP cannot supply
+those two extensions. A source checkout therefore cannot currently install its
+Composer dependencies on native Windows. A bundled artifact must also pass its
+generated runtime platform check. Stop if it rejects Windows and use a
+compatible release or a Unix installation. Do not bypass platform checks or
+edit generated vendor files to force an incompatible installation.
+
+The remaining instructions apply only to an artifact that passes its platform
+checks. Read the [PHP PCNTL platform restriction][pcntl] and the selected
+revision's [dependency manifest][manifest] before choosing an artifact.
+
+## Install the software
+
+1. Choose IIS or Apache and install only the web server you intend to use on
+   the selected address and port.
+
+2. Extract the Cacti ZIP distribution into the chosen web directory.
+
+3. Install PHP and its required runtime libraries using the
+   [PHP Windows installation instructions][php-windows]. Match the architecture
+   and build type to your web-server integration. Use a Non-Thread-Safe build
+   for IIS FastCGI; an Apache module requires a compatible Thread-Safe build.
+   A path without spaces, such as `C:\php`, simplifies tool configuration.
+
+4. Install a Windows build of [RRDtool](https://oss.oetiker.ch/rrdtool/) and
+   verify its runtime dependencies. If using Spine, install a compatible
+   [Spine release](Spine.md) and the dependencies supplied or required by that
+   build. The PHP poller can be used without Spine.
+
+5. Install MySQL or MariaDB. Use the server's supported Windows configuration
+   and service-management instructions. Start with its documented defaults,
+   then review the Cacti installer's checks for your actual server and
+   workload.
+
+   Do not copy a tuning block from a different database version or operating
+   system. MySQL 8 removed `NO_AUTO_CREATE_USER`, `innodb_file_format` and
+   `innodb_large_prefix`; these settings can prevent startup. Do not disable
+   InnoDB doublewrite protection or reduce commit durability as an installation
+   shortcut. Size global and per-connection buffers for the available memory
+   and expected concurrency.
+
+6. Install Net-SNMP command-line tools if your collection configuration needs
+   them, for example into `C:\usr`. Cacti uses these tools for SNMPv3
+   requests from the web interface and PHP poller; PHP's SNMP extension alone
+   does not provide that collection path. Verify the installed executable paths
+   instead of assuming a particular short filename or installation directory.
+
+## Configure PHP
+
+Copy `php.ini-production` from the PHP distribution to `C:\php\php.ini`. Set
+the timezone for your installation and enable the required extensions. For
+current PHP Windows builds, an example configuration is:
+
+```ini
+extension_dir = "C:\php\ext"
+extension=curl
+extension=pdo_mysql
+extension=sqlite3
+extension=gd
+extension=gmp
+extension=intl
+extension=ldap
+extension=mbstring
+extension=openssl
+extension=sockets
+extension=com_dotnet
+; Enable if using PHP's SNMP extension:
+extension=snmp
+
+date.timezone = America/Detroit
+file_uploads = On
+```
+
+Use only extensions supplied for the selected PHP build and install their
+required DLL dependencies according to PHP's instructions. Some modules are
+built in. The Cacti installer checks additional modules, including SimpleXML,
+XML and zlib, in both the web and command-line environments. `pdo_mysql` is the
+database driver Cacti uses; the removed `php_mysql.dll` is not a substitute.
+Set memory and execution limits using the installer recommendations for your
+installation rather than copying values sized for another server.
+
+Check the command-line configuration before configuring the web server:
+
+```console
+C:\php\php.exe --ini
+C:\php\php.exe -m
+```
+
+Set `PHPRC` to `C:\php` for the web-server and poller environments if needed to
+select this configuration. An absolute path to `php.exe` avoids depending on
+`PATH` for scheduled tasks. Ensure required DLLs are discoverable by both
+identities; do not copy PHP DLLs into Windows system directories.
+
+If loading external MIBs, set `MIBDIRS` to their actual directory and allow the
+collecting account to update the Net-SNMP index/cache there if needed. This is
+separate from permission to modify executable files.
+
+After changing PHP configuration, recycle the application pool or restart the
+selected web-server service. Confirm the Cacti installer reports the expected
+configuration and modules for both web PHP and CLI PHP.
+
+## Configure the web server
+
+### IIS with FastCGI
+
+Follow the [PHP IIS instructions][php-iis] and Microsoft's
+[FastCGI configuration reference][iis-fastcgi].
+
+1. Enable the IIS CGI role service, which supplies FastCGI support.
+
+2. Create the Cacti site/application and a dedicated application pool. Match
+   the pool architecture to PHP. In Handler Mappings, map `*.php` through
+      `FastCgiModule` to `C:\php\php-cgi.exe`, not `php.exe`. Use the
+   corresponding
+   FastCGI application entry and allow script execution for the application.
+   PHP 8 does not provide `php8isapi.dll`; do not configure an ISAPI filter.
+
+3. Add `index.php` to the site's Default Document list. Apply the PHP CGI
+   settings required by the PHP IIS guide, including `cgi.force_redirect=0`
+   for IIS. Configure authentication/impersonation deliberately so the account
+   accessing Cacti files is known.
+
+4. Configure an HTTPS binding and restrict access during installation. Recycle
+   the affected application pool after configuration changes.
+
+### Apache
+
+Follow the [PHP Apache instructions][php-apache] for a matching Apache/PHP
+build. For Apache 2.4 with a compatible PHP 8 Thread-Safe module, the relevant
+configuration is:
+
+```apache
+LoadModule php_module "C:/php/php8apache2_4.dll"
+<FilesMatch "\.php$">
+    SetHandler application/x-httpd-php
+</FilesMatch>
+DirectoryIndex index.php index.html
+PHPIniDir "C:/php"
+```
+
+Check Apache's configuration before restarting its service. If using FastCGI
+instead of the Apache module, follow that integration's PHP instructions and
+use the appropriate PHP build.
+
+## File permissions
+
+Identify the effective web identity and the scheduled-task account before
+setting ACLs. For IIS, this may be `IIS AppPool\Cacti` for a pool named
+`Cacti`, or another account selected by authentication and FastCGI
+impersonation. See Microsoft's [application-pool identity
+guidance][iis-identity]. Do not assume the account is always `IUSR`.
+
+Give the web and poller identities read access to Cacti's code and
+configuration, and read/execute access to PHP, RRDtool, SNMP and optional Spine
+programs and their dependencies. If PHP requires `cmd.exe` to launch a command,
+allow only the necessary read/execute access. Do not grant either identity
+write access to Windows system executables or to tool installation directories.
+
+The poller needs Modify permission on `rra` and `log` and on the cache
+subdirectories it uses. The web identity also needs Modify permission on `log`,
+its configured temporary/session directories and the Cacti cache subdirectories
+used by features such as real-time graphs. Use the installer's permission
+checks to identify the required paths, including `cache/boost`,
+`cache/mibcache`, `cache/realtime` and `cache/spikekill`. Grant access only to
+the identities and paths that need it, accounting for inherited ACLs.
+
+During installation or signed-package imports, Cacti also needs to write
+queries and scripts under `resource/snmp_queries`, `resource/script_server`,
+`resource/script_queries` and `scripts`. Grant temporary Modify access to the
+identity performing that operation, then remove it when finished. The installer
+also needs to initialize a nonempty CSRF secret, by default
+`include/vendor/csrf/csrf-secret.php`. Allow creation in its containing
+directory during setup, then retain read access to the generated secret and
+remove the temporary directory write permission. Do not create an empty
+placeholder secret.
+
+Edit `include/config.php` as an administrator. Keep it readable by the web and
+poller identities but not writable by them for ordinary operation. If a
+specific installation operation needs to update it, grant temporary write
+access for that operation and remove it afterward.
+
+## Create the database
+
+The following commands are for **Command Prompt**, not PowerShell. Use the
+actual path to `mysql.exe` or the equivalent MariaDB client if it is not on
+`PATH`. The `--password` option prompts for the database administrator's
+password; do not put that password on the command line.
+
+```console
+mysql --user=root --password
+```
+
+Create an empty database and a dedicated application account. Replace
+`REPLACE_WITH_UNIQUE_DATABASE_PASSWORD` with a unique secret before executing
+this SQL. The example account and connection use TCP loopback consistently.
+
+```sql
+CREATE DATABASE cacti CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'cacti_user'@'127.0.0.1'
+  IDENTIFIED BY 'REPLACE_WITH_UNIQUE_DATABASE_PASSWORD';
+GRANT ALL PRIVILEGES ON cacti.* TO 'cacti_user'@'127.0.0.1';
+GRANT SELECT ON mysql.time_zone_name TO 'cacti_user'@'127.0.0.1';
+```
+
+Exit the SQL client and import the schema from the same Cacti release you
+extracted:
+
+```console
+mysql --user=root --password --default-character-set=utf8mb4 cacti < "C:\inetpub\wwwroot\cacti\cacti.sql"
+```
+
+Ensure the server's time-zone tables are populated using its documented Windows
+procedure. Granting access to an empty `mysql.time_zone_name` table does not
+populate it. Resolve the database and time-zone checks reported by the Cacti
+installer before completing installation.
+
+## Optional Cygwin and Spine configuration
+
+If your Spine or RRDtool build depends on Cygwin, install the runtime packages
+required by that build using the official
+[Cygwin installer](https://cygwin.com/).
+For a source build, follow the release's build instructions and select its
+current compiler/development dependencies. Do not replace or delete DLLs
+shipped with a binary distribution without checking that distribution's
+requirements. Avoid mixing incompatible Cygwin runtimes.
+
+For Spine, copy `spine.conf.dist` to `spine.conf` and set the connection
+details to match Cacti. Replace the password placeholder with the same
+application secret used above, not a sample password:
+
+```ini
+DB_Host     127.0.0.1
+DB_Database cacti
+DB_User     cacti_user
+DB_Pass     REPLACE_WITH_UNIQUE_DATABASE_PASSWORD
+DB_Port     3306
+```
+
+Restrict access to `spine.conf` to administrators and the poller account.
+Verify Spine from that account before selecting it as the poller in Cacti.
+
+## Finish the Cacti installation
+
+1. Copy `include/config.php.dist` to `include/config.php` and set its database
+   connection. Replace the password placeholder with your application secret:
 
    ```php
-   $database_default  = "cacti";
-   $database_hostname = "localhost";
-   $database_username = "cactiuser";
-   $database_password = "cactiuser";
-   $database_port     = "3306";
+   $database_default  = 'cacti';
+   $database_hostname = '127.0.0.1';
+   $database_username = 'cacti_user';
+   $database_password = 'REPLACE_WITH_UNIQUE_DATABASE_PASSWORD';
+   $database_port     = '3306';
+   $url_path          = '/cacti/';
    ```
 
-2. Browse to `http://your-server/cacti/` and log in with `admin`/`admin`.
-   You will be prompted to change the password immediately.
+   Adjust `$url_path` if Cacti is served at another URL path.
 
-3. Go to **Settings → Paths** and verify/update all paths to point to the
-   correct locations. If using Spine, all paths must use forward slashes.
+2. Open the Cacti URL through HTTPS. For a freshly imported development schema,
+   sign in with application username `admin` and initial password `admin`,
+   then choose a unique administrator password when prompted. These are
+   separate from the database credentials. Complete the installer and resolve
+   its dependency, database, path and permission checks before allowing
+   general access.
 
-   - PHP Binary Path: `c:/php/php.exe`
-   - RRDtool Binary Path: `c:/rrdtool/rrdtool.exe`
-   - SNMP Binary Paths: `c:/usr/bin/snmpget.exe`, `c:/usr/bin/snmpwalk.exe`, etc.
-   - Cacti Logfile Path: `c:/mycacti/website/cacti/log/cacti.log`
-   - Spine Path: `c:/spine/spine.exe`
+3. In **Console > Configuration > Settings > Paths**, verify the executable
+   paths against your installation. For the example layout:
 
-4. If you enabled automation, once the Cacti poller starts it will discover
-   compatible devices using your SNMP settings and default automation rules.
-   A Localhost device is created automatically at install time.
+   | Setting | Example |
+   | --- | --- |
+   | PHP binary | `C:/php/php.exe` |
+   | RRDtool | `C:/rrdtool/rrdtool.exe` |
+      | SNMP tools, if used | `C:/usr/bin/snmpget.exe`, `snmpwalk.exe`, `snmpbulkwalk.exe`, `snmpgetnext.exe` |
+   | Cacti log | `C:/inetpub/wwwroot/cacti/log/cacti.log` |
+   | Spine, if used | `C:/spine/spine.exe` |
 
-5. Log into the account you will use for the scheduled task and verify a
-   polling cycle works:
+   Use the CLI PHP executable here, not the IIS FastCGI executable. Verify the
+   separate Spine configuration path if selecting Spine.
 
-   ```sh
-   php c:/cacti_web_root/cacti/poller.php
-   ```
+4. Create devices and graphs deliberately, or configure discovery and
+   automation
+   rules for the intended network. Installing Cacti does not establish that
+   every discovered device exposes all measurements in its selected template.
 
-   Expected output includes lines like:
+## Schedule and verify the poller
 
-   ```
-   OK u:0.00 s:0.06 r:1.32
-   10/28/2005 04:57:12 PM - SYSTEM STATS: Time:4.7272 Method:cmd.php ...
-   ```
+Log on as the intended poller account and test the same executable and paths
+that the task will use:
 
-   After the first run, `cacti.log` will appear in `/cacti/log/` and RRD files
-   in `/cacti/rra/`.
+```console
+C:\php\php.exe -q C:\inetpub\wwwroot\cacti\poller.php
+```
 
-6. Schedule a recurring task to run `poller.php` every 5 minutes:
+Check `log/cacti.log`, data-source polling and graph updates. RRD files are
+created for configured data sources; an installation without graphs need not
+create them. Resolve permission and configuration errors before scheduling.
 
-   > **Note**: The following instructions apply to most Windows versions.
+Open **Task Scheduler** and choose **Create Task**:
 
-   1. Open **Task Scheduler** (Control Panel → Scheduled Tasks).
-   2. Click **Add Scheduled Task** and then **Next**.
-   3. Browse to `c:\php` and select `php.exe`. Choose **Daily** and click **Next**.
-   4. Click **Next** without changing the time or date settings.
-   5. Ensure the task account has the correct permissions on:
-      - `cacti_web_root/cacti/rra`
-      - `cacti_web_root/log`
-      - `c:\php`
-      - `c:\phpsapi`
-   6. Click **Next** and **Finish** to close the wizard.
-   7. Right-click the task and select **Properties**.
-   8. On the **Schedule** tab, confirm **Daily** is selected and click **Advanced**.
-   9. Check **Repeat**, set to **5 minutes**, and set duration to **24 hours**.
-   10. Click **OK**.
-   11. In the **Run** field, enter:
+1. Select the dedicated poller account and **Run whether user is logged on or
+   not**, with the account rights needed for batch logon. Do not enable
+   **Run with highest privileges** unless a documented local requirement needs
+   it.
 
-       `c:\php\php.exe c:\mycacti\website\cacti\poller.php`
+2. Add a daily trigger that repeats every **5 minutes** indefinitely for the
+   default five-minute scheduler configuration. If changing Cacti's scheduler
+   interval, adjust this trigger to match it; the scheduler interval and data
+   source polling intervals are separate settings.
 
-       Set **Start in** to `c:\mycacti\website\cacti`.
+3. Add a **Start a program** action with these separate fields:
+
+   - **Program/script:** `C:\php\php.exe`
+   - **Add arguments:** `-q "C:\inetpub\wwwroot\cacti\poller.php"`
+   - **Start in:** `C:\inetpub\wwwroot\cacti`
+
+4. Under **Settings**, choose **Do not start a new instance** if the task is
+   already running. Review any task execution limit against the configured
+   polling cycle; do not terminate a healthy poller prematurely.
+
+Run the task manually, then verify subsequent scheduled runs, Task Scheduler's
+result/history, Cacti's poller statistics and graph freshness. Recheck these
+under the task account after changing PHP, paths, credentials or ACLs.
+
+## References
+
+- [Cacti development (1.3) PHP dependency checks][cacti-extensions]
+- [Cacti development (1.3) installation permission checks][cacti-permissions]
+- [PHP Windows installation][php-windows], [IIS][php-iis] and
+  [Apache][php-apache]
+- [Microsoft FastCGI configuration][iis-fastcgi] and
+  [application-pool identities][iis-identity]
+- [MySQL 8 removed features][mysql-removed]
+- [Microsoft Task Scheduler][task-scheduler]
+
+[pcntl]:<https://www.php.net/manual/en/pcntl.installation.php>
+[manifest]:<https://github.com/Cacti/cacti/blob/develop/composer.json>
+[php-windows]:<https://www.php.net/manual/en/install.windows.manual.php>
+[php-iis]:<https://www.php.net/manual/en/install.windows.iis.php>
+[php-apache]:<https://www.php.net/manual/en/install.windows.apache2.php>
+[iis-fastcgi]:<https://learn.microsoft.com/en-us/iis/configuration/system.webserver/fastcgi/>
+[iis-identity]:<https://learn.microsoft.com/en-us/iis/manage/configuring-security/application-pool-identities>
+[mysql-removed]:<https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html>
+[task-scheduler]:<https://learn.microsoft.com/en-us/windows/win32/taskschd/task-scheduler-start-page>
+[cacti-extensions]:<https://github.com/Cacti/cacti/blob/develop/lib/utility.php>
+[cacti-permissions]:<https://github.com/Cacti/cacti/blob/develop/lib/installer.php>
+
+[supported-os]: Requirements.md#supported-operating-systems
 
 ---
+
 Copyright (c) 2004-2026 The Cacti Group

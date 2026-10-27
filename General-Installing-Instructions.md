@@ -1,52 +1,30 @@
 # General Installing Instructions
 
-> **Note**: As of Cacti 1.2.31, PHP 8.1 is required and PHP Composer is
-> required. Composer installs the vendor libraries and keeps them up to date.
+Use only the [supported operating systems][supported-os] and maintained
+dependencies compatible with this Cacti branch.
 
-Make sure the following packages are installed according to your operating
-system's requirements. Verify that Apache and MySQL/MariaDB start at system
-startup.
+Install the packages required by the selected operating system and verify that
+the configured web server, PHP handler, and database start at boot.
 
+## Containers
 
-### A special note on installing Cacti in LXC containers such as those found on Proxmox
-
-We recommend creating a privileged container. You may need to update your
-container's config file with
-
-```console
-lxc.apparmor.profile: unconfined
-```
-
-This will allow ICMP ping and other functions to work.
-
-A tested configuration file like the one below should work. Tune it to your own
-needs and standards.
-
-```console
-arch: amd64
-cores: 2
-hostname: cacti
-memory: 2048
-net0: name=eth0,bridge=vmbr0,firewall=1,hwaddr=mac-id,ip=dhcp,type=veth
-ostype: ubuntu
-rootfs: local-lvm:vm-110-disk-0,size=8G
-swap: 2048
-lxc.apparmor.profile: unconfined
-```
-
+Use an unprivileged container with its normal security profile where possible.
+Diagnose the specific ICMP, socket, or filesystem permission that fails and
+adjust only the required capability or policy. Do not remove AppArmor
+confinement or make the entire container privileged as a general prerequisite.
 
 ## Required Packages for Most Operating Systems
 
 Depending on your operating system and PHP version, certain packages are
-required for Cacti. The largest variable in these requirements comes with
-regard to PHP and MySQL/MariaDB.
+required for Cacti. The largest variable in these requirements come with regard
+to PHP and MySQL/MariaDB.
 
 Installation requirements include the packages below. The installation of these
 packages will vary by operating system.
 
 ### Base OS
 
-- Apache, IIS, or nginx
+- apache, IIS, or nginx
 
 - net-snmp, net-snmp-utils
 
@@ -63,7 +41,9 @@ packages will vary by operating system.
 
 ### Database
 
-MySQL versions 8.0/8.4+ and MariaDB versions 10.5 through 11.x+ are supported.
+Use the database versions and configuration described in
+[Requirements](Requirements.md). The development branch recommends MySQL 8.4+
+or MariaDB 10.11+. Check the installed server with the Cacti installer.
 
 - mysql
 
@@ -81,103 +61,53 @@ or
 
 ### PHP Modules
 
-The installation of these modules varies by OS. Use the `php -m` command to
-verify that they are installed.
+Use PHP 8.3 or later in the PHP 8 series and the extensions listed in
+[Requirements](Requirements.md). Verify the CLI with `php -v` and `php -m` and
+check web PHP separately in the installer. Source deployments also need
+Composer and all extensions required by the selected revision's lock file.
+Run `composer install --no-dev` as the deployment owner, then
+`composer check-platform-reqs --no-dev`. Use the lock file rather than updating
+dependencies during installation.
 
-- posix
+### Systems using PHP-FPM
 
-- session
-
-- sockets
-
-- PDO
-
-- pdo_mysql
-
-- xml
-
-- ldap
-
-- mbstring
-
-- pcre
-
-- json
-
-- openssl
-
-- gd
-
-- zlib
-
-### PHP Optional Modules
-
-The following modules are optional, but preferred to be installed.
-
-- snmp
-
-- gmp (for plugin support)
-
-- com or dotnet (Windows only)
-
-### A special note for systems using PHP-FPM
-
-Before starting the Cacti setup process, restart the PHP-FPM daemon to rebuild
-its cache, or you may receive an HTTP 500 error.
-
-```console
-systemctl restart php-fpm
-```
+After changing PHP configuration, test and restart the actual FPM service.
+Service names can be versioned, for example on Debian and Ubuntu. Check the
+installed unit rather than assuming that `php-fpm` is the service name. Confirm
+its socket path and permissions match the web-server handler.
 
 ## FreeBSD
 
-There are two ways to install on FreeBSD. In both cases Cacti pulls in its
-dependent packages, so you do not need to install anything else. Each way has
-trade-offs:
+Use the [FreeBSD Handbook][freebsd-ports] to choose binary packages or ports
+and follow the installed package's notes. Inspect the offered Cacti version,
+PHP dependencies, database service, web integration, and configuration paths
+before installing. Do not assume a package contains a development revision.
 
-- Compiled packages: fast, but with fixed dependency versions (for example an
-  older MySQL server or PHP version).
-
-  ```sh
-  pkg install cacti
-  pkg install spine
-  ```
-
-- FreeBSD ports: compilation can take a long time, but dependency versions are
-  not fixed (see
-  [Using the Ports Collection](https://docs.freebsd.org/en/books/handbook/ports/))
-
-  ```sh
-  pkg install git
-  git clone https://git.FreeBSD.org/ports.git /usr/ports
-  git -C /usr/ports pull
-  # Choose either MariaDB or MySQL:
-  cd /usr/ports/databases/mariadb106-server
-  make install clean
-  cd /usr/ports/net-mgmt/cacti
-  make install
-  cd /usr/ports/net-mgmt/spine
-  make install
-  ```
-
-Apache and other software can be installed using packages or Ports as well.
-
-Everything in FreeBSD is installed under /usr/local/. This documentation shows
-paths such as /etc/php.ini and /usr/bin/spine.
-
-Use the FreeBSD equivalents instead: /usr/local/etc, /usr/local/bin/spine.
-
-For Spine, set the suid bit (without it, ICMP ping cannot function):
+For binary packages, review the proposed transaction first:
 
 ```sh
-chmod +s /usr/local/bin/spine
+pkg install -n cacti
+pkg install cacti
 ```
+
+Install optional Spine separately if required. Do not mix ports and binary
+packages without reviewing dependency and build-option compatibility. Package
+dependencies alone do not configure the database or web server.
+
+FreeBSD commonly installs third-party software under `/usr/local`. Adapt Linux
+examples such as `/etc/php.ini` and `/usr/bin/spine` to the actual installed
+paths. Grant ICMP privileges only when required by the selected collector and
+package; do not apply a blanket setuid command to an unverified binary. Use
+[Upgrading Under FreeBSD](Upgrading-Cacti-Under-FreeBSD.md) for an existing
+installation.
+
+[freebsd-ports]:<https://docs.freebsd.org/en/books/handbook/ports/>
 
 ## Configure PHP
 
 Verify that the modules are installed and configured correctly. There are
 several ways to do so - consult
-[PHP configuration instructions](https://www.php.net/manual/en/configuration.php)
+[PHP configuration instructions][php-config]
 for a complete description.
 
 It is imperative that you set the `date.timezone` in your `/etc/php.ini`, or
@@ -189,52 +119,30 @@ no need to discuss that here.
 
 ## Configure the Webserver (Apache)
 
-Most Linux and UNIX systems automatically configure the web server to allow PHP
-content, so no additional configuration should be needed. The section below is
-included for reference in case you are running a UNIX version that does not
-configure the web server correctly. It is written specifically for RHEL and its
-variants, so the instructions may vary.
+Use the distribution's Apache/PHP integration, selecting either its PHP-FPM
+handler or a compatible Apache PHP module. Do not configure both handlers for
+the same files. The [Enterprise Linux LAMP guide][lamp] and
+[Ubuntu/Debian guide](Installing-Under-Ubuntu-Debian.md) provide examples.
 
-Find the file `/etc/httpd/conf/httpd.conf` or its equivalent and make the
-following changes to it:
-
-```ini
-# Load config files from the config directory "/etc/httpd/conf.d".
-Include conf.d/*.conf
-```
-
-Now, locate the PHP configuration file at `/etc/httpd/conf.d/php.conf`
-
-```ini
-# PHP is an HTML-embedded scripting language which attempts to make it
-# easy for developers to write dynamically generated webpages.
-LoadModule php_module modules/libphp.so
-#
-# Cause the PHP interpreter to handle files with a .php extension.
-AddHandler php-script .php
-AddType text/html .php
-#
-# Add index.php to the list of files that will be served as directory
-# indexes.
-DirectoryIndex index.php
-```
+Verify Apache's configuration before reloading. Restrict access during setup,
+use HTTPS, and ensure that PHP requests execute rather than expose source. Keep
+Cacti's shipped `.htaccess` restrictions active, or reproduce them in the
+server configuration if overrides are disabled. nginx and IIS need their own
+restrictions; they do not interpret Apache `.htaccess` files.
 
 ## Configure MySQL/MariaDB
 
-Set a password for the root user, and record this password. If you lose control
-of this password, you may have to re-install your database server in the case of
-any system disaster or recovering from a crash.
-
-```console
-mysql_secure_installation
-```
+Initialize and secure the database using the procedure for the installed MySQL
+or MariaDB package. Use the administrator authentication method configured by
+that package; some Unix packages use local socket authentication. Store
+credentials securely and do not put passwords directly on shell command lines.
 
 You must also load timezone information into the database. This is required for
 various plugin use. Later, you will be required to grant access to the
 `time_zone_name` table during the final installation steps.
 
 ```sh
-shell> mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql
+mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
 ```
 
 Since Cacti 1.x is supporting internationalization (i18n), it is important that
@@ -242,16 +150,16 @@ the default character set for MySQL/MariaDB be i18n compatible. The Cacti
 installer will make specific recommendations on MySQL/MariaDB settings. Follow
 those as applicable for your OS.
 
-Galera clustering: several tables use the MEMORY storage engine. Those tables
-are not replicated among nodes, which can cause problems. If you configure Cacti
-to connect to only one node of your cluster and are not load balancing, this
-does not apply to you.
+Galera clustering: There are several tables which are set to use the MEMORY
+storage engine which do not get replicated among nodes which can cause
+problems. If you configure Cacti to only connect to one node of your cluster
+and are not load balancing this does not apply to you.
 
 If you are running multiple nodes in a load-balanced environment where you
-connect to a VIP, remove all but one node from rotation during Cacti
-installation or update. After the installation or update, log in to your MySQL
-server and run the following commands to convert those tables to the InnoDB
-engine:
+connect to a VIP you should remove all but one node from rotation during Cacti
+installation or update. After the installation/update login to your MySQL
+server and execute the following commands to update those tables to use the
+InnoDB engine:
 
 ```sql
 MariaDB [(none)]> use cacti;
@@ -260,198 +168,224 @@ MariaDB [cacti]> ALTER TABLE `automation_processes` ENGINE=InnoDB;
 MariaDB [cacti]> ALTER TABLE `data_source_stats_hourly_cache` ENGINE=InnoDB;
 MariaDB [cacti]> ALTER TABLE `data_source_stats_hourly_last` ENGINE=InnoDB;
 MariaDB [cacti]> ALTER TABLE `poller_output` ENGINE=InnoDB;
-MariaDB [cacti]> ALTER TABLE `poller_output_boost_local_data_ids` ENGINE=InnoDB;
 MariaDB [cacti]> ALTER TABLE `poller_output_boost_processes` ENGINE=InnoDB;
-MariaDB [cacti]> ALTER TABLE `processes` ENGINE=InnoDB;
 ```
 
-On Cacti 1.3 the `data_source_stats_hourly_cache` table already uses InnoDB,
-so that one statement is a no-op there. It is still required on 1.2.x.
-
-These changes should replicate to the other nodes in your cluster. Allow Cacti
-to run at least two or three full polling cycles before placing the other nodes
-back into rotation.
+Before restoring database load balancing, verify the table-engine changes,
+replication state and successful polling on the configured topology. A fixed
+number of polling cycles is not proof that the cluster is ready.
 
 ## Install and Configure Cacti
 
-1. Extract the distribution tarball.
+These are fresh source-install examples for Cacti development (1.3).
+Package-managed installations should use the maintainer's procedure instead.
+For an existing installation, follow [Upgrading Cacti](Upgrading-Cacti.md). The
+examples use `/var/www/html/cacti`; adjust that path and the service accounts
+for your OS. Use administrator privileges for software installation and
+permission changes.
 
-   ```sh
-   shell> tar xzvf cacti-version.tar.gz
-   ```
+### Extract the source and create the database
 
-2. Create the MySQL database:
+Obtain the intended source revision in a new installation directory. Do not run
+these commands over an existing deployment:
 
-   ```sh
-   shell> mysqladmin --user=root create cacti
-   ```
+```sh
+git clone --branch develop --depth 1 https://github.com/Cacti/cacti.git cacti
+mv cacti /var/www/html/cacti
+cd /var/www/html/cacti
+composer install --no-dev
+composer check-platform-reqs --no-dev
+```
 
-3. Import the default cacti database:
+The installation root should now contain `cacti.sql`, `poller.php` and
+`include/config.php.dist`, rather than another nested release directory.
 
-   ```sh
-   shell> mysql cacti < cacti.sql
-   ```
+Connect with a database administrator account:
 
-4. Optional: Create a MySQL username and password for Cacti.
+```sh
+mysql --user=root --password
+```
 
-   ```sql
-   shell> mysql --user=root mysql
-   mysql> CREATE USER 'cactiuser'@'localhost' IDENTIFIED BY 'somepassword';
-   mysql> GRANT ALL PRIVILEGES ON cacti.* TO 'cactiuser'@'localhost';
-   mysql> GRANT SELECT ON mysql.time_zone_name TO 'cactiuser'@'localhost';
-   mysql> FLUSH PRIVILEGES;
-   ```
+Create the database and a dedicated application account. Replace the password
+placeholder before running this SQL, and use the same secret in the Cacti
+configuration. The database account is separate from the operating-system
+account that runs the poller.
 
-   Note that if your `root` (or equivalent) user does not have `SUPER`
-   permissions, it may still be possible to `GRANT SELECT` privileges to the
-   Cacti user via an `INSERT INTO mysql.tables_priv`.
+```sql
+CREATE DATABASE cacti CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'cactiuser'@'localhost'
+  IDENTIFIED BY 'REPLACE_WITH_UNIQUE_DATABASE_PASSWORD';
+GRANT ALL PRIVILEGES ON cacti.* TO 'cactiuser'@'localhost';
+GRANT SELECT ON mysql.time_zone_name TO 'cactiuser'@'localhost';
+EXIT;
+```
 
-   ```sql
-   INSERT INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Table_priv)
-   VALUES ('localhost', 'mysql', 'cactiuser', 'time_zone_name', 'root@localhost', 'Select');
-   ```
+Use an authorized database administrator to grant access. Do not edit
+`mysql.tables_priv` as a substitute for an authorized `GRANT` operation. Ensure
+the server's timezone tables are populated using the procedure for the
+installed MySQL or MariaDB server; granting access does not populate them.
 
-5. Edit `include/config.php` and specify the database type, name, host, user and
-   password for your Cacti configuration.
+Import the schema into the new database using the appropriate client:
 
-   ```php
-   $database_type = "mysql";
-   $database_default = "cacti";
-   $database_hostname = "localhost";
-   $database_username = "cactiuser";
-   $database_password = "cacti";
-   ```
+```sh
+mysql --user=root --password --default-character-set=utf8mb4 cacti \
+  < /var/www/html/cacti/cacti.sql
+```
 
-6. Set the appropriate permissions on Cacti's directories for graph/log
-   generation. You should execute these commands from inside Cacti's directory
-   to change the permissions.
+The `--password` option prompts for the password. Use `mariadb` in place of
+`mysql` where appropriate for the installed server.
 
-   ```sh
-   shell> chown -R cactiuser rra/ log/ cache/
-   ```
+### Configure access and complete installation
 
-   (Enter a valid username for _cactiuser_, this user will also be used in the
-   next step for data gathering.)
+Copy the supplied configuration example:
 
-7. Create your cron task file or systemd units file
+```sh
+cp /var/www/html/cacti/include/config.php.dist \
+  /var/www/html/cacti/include/config.php
+```
 
-   Starting with Cacti 1.2.16, you have the option to use either the legacy
-   Crontab entry, or an optional cactid units file and server to run your Cacti
-   pollers.
+Edit the copied file to match the account created above:
 
-   For Crontab use, follow the instructions below:
+```php
+$database_type     = 'mysql';
+$database_default  = 'cacti';
+$database_hostname = 'localhost';
+$database_username = 'cactiuser';
+$database_password = 'REPLACE_WITH_UNIQUE_DATABASE_PASSWORD';
+$database_port     = '3306';
+$url_path          = '/cacti/';
+```
 
-   Create and edit `/etc/cron.d/cacti` file. Make sure to setup the correct path
-   to poller.php
+Identify the actual web and poller service accounts. Give them the required
+read/execute access to application files and external tools, and write access
+to the runtime paths they use, including RRD, log and cache paths. They need
+not be the same account. Do not assume a database username is also a local OS
+account or make the whole application tree writable.
 
-   ```console
-   */5 * * * * apache php <path_cacti>/poller.php >/dev/null 2>&1
-   ```
+During installation and package imports, grant the performing identity the
+additional access required by the installer, including query/script resources
+and the location used to initialize the CSRF secret. Remove temporary setup
+permissions afterward. Preserve read access to the generated secret; do not
+create an empty secret file. See the platform-specific installation guides for
+their account and permission examples.
 
-   To install the systemd unit file, first edit the included unit file to match
-   your install location and the user and group the Cacti poller should run as.
-   Then follow the procedure below:
+Restrict installer access to the administrator and use HTTPS or a protected
+local connection before entering credentials. A freshly imported development
+schema uses application username `admin` and initial password `admin`. Open the
+configured Cacti URL, sign in and choose a unique administrator password when
+prompted. These are separate from the database credentials. Complete the
+installer's dependency, database, path and permission checks before allowing
+general access.
 
-   ```console
-   vim <path_cacti>/service/cactid.service (edit the path)
-   touch /etc/sysconfig/cactid
-   cp -p <path_cacti>/service/cactid.service /etc/systemd/system
-   systemctl daemon-reload
-   systemctl enable cactid
-   systemctl start cactid
-   systemctl status cactid
-   ```
+### Schedule collection after installation
 
-   The systemd units file makes managing a highly available Cacti setup a bit
-   more convenient.
+Use either cron or `cactid.service`, not both. The following examples assume an
+existing local user and group named `cacti` with the required polling
+permissions; replace them with the actual service identity for your system. Do
+not start polling before completing the web installer.
 
-8. During install, you will need to provide write access to the following files
-   and directories:
+For a system cron file such as `/etc/cron.d/cacti`, use an absolute PHP CLI
+path and include the OS username:
 
-   ```sh
-   shell> chown -R apache:apache resource scripts include/config.php
-   ```
+```console
+*/5 * * * * cacti /usr/bin/php /var/www/html/cacti/poller.php >/dev/null 2>&1
+```
 
-   Use the account your web server runs as. That is `apache` on Enterprise
-   Linux and `www-data` on Debian and Ubuntu. Do not use the database
-   account here, because it is a MySQL user rather than a system user.
+The five-minute launch interval must match **Cron/Daemon Interval** under the
+poller settings. This is separate from individual data-source polling
+intervals. The redirection above works with `/bin/sh`; `&>` is Bash-specific.
 
-   Once the installation is complete, you may change the permissions to more
-   restrictive settings.
+The supplied systemd unit uses `Type=forking`. Confirm that the selected PHP
+CLI provides `pcntl_fork` before using it; otherwise use cron or install the
+appropriate PCNTL support. For the example CLI path, this should report
+`bool(true)`:
 
-9. Point your web browser to:
+```sh
+/usr/bin/php -r 'var_dump(function_exists("pcntl_fork"));'
+```
 
-   `http://<your-server>/cacti/`
+For systemd, copy the supplied unit and edit the installed copy:
 
-   Log in with a username and password of _admin_. You will be required to
-   change this password immediately. Make sure to fill in all of the path
-   variables carefully and correctly on the following screen.
+```sh
+cp /var/www/html/cacti/service/cactid.service \
+  /etc/systemd/system/cactid.service
+```
+
+Replace the unit's existing `User`, `Group`, `ExecStart` and `EnvironmentFile`
+settings with values for the actual deployment, retaining its other settings.
+For example:
+
+```ini
+User=cacti
+Group=cacti
+ExecStart=/usr/bin/php /var/www/html/cacti/cactid.php
+EnvironmentFile=-/etc/default/cactid
+```
+
+The `-` allows the optional environment file to be absent. Disable the
+Cacti-specific cron entry before enabling the daemon, then load the edited
+unit:
+
+```sh
+systemctl daemon-reload
+systemctl enable cactid.service
+systemctl start cactid.service
+systemctl status cactid.service
+```
+
+The unit manages the local daemon; it does not establish high availability.
+Verify scheduler execution, collector status, logs and recent graph data under
+the configured account.
 
 ## (Optional) Install and Configure Spine
 
 Spine is a very fast data collection engine, written in C. It is an optional
 replacement for cmd.php. If you decide to use it, you will have to install it
-explicitly. It does not come with Cacti itself.
+explicitly. It does not come with cacti itself.
 
 The easiest way is to install Spine using rpm or ports. You will find packages
-for Spine at the main Cacti site or from your distribution.
+for Spine at the main cacti site or from your distribution.
 
 To compile Spine, download it to any location of your liking. Then, issue from
 the downloaded directory following commands
 
 ```sh
-shell> ./bootstrap
+./bootstrap
 ```
 
-If the `bootstrap` script is successful, you then will follow the instructions it
-provides to compile and install.
+After `bootstrap` succeeds, follow the release's build instructions to
+configure, compile and install Spine.
 
-Assuming you installed Spine correctly, you must now configure it. The
-configuration file may be placed in the same directory as Spine itself or at
-/etc/spine.conf.
+Assuming, you've managed to install spine correctly, you will have to configure
+it. Use the installed `spine.conf.dist` as the example, and configure the
+actual Spine configuration path in Cacti. Use the same database account and
+secret as the Cacti configuration, and restrict file access to the poller
+account and administrators.
 
 ```ini
-DB_Host     127.0.0.1 or hostname (not localhost)
+DB_Host     localhost
 DB_Database cacti
 DB_User     cactiuser
-DB_Pass     cactiuser
+DB_Pass     REPLACE_WITH_UNIQUE_DATABASE_PASSWORD
 DB_Port     3306
 ```
 
 ### Considerations when using Proxies in front of Cacti (Cacti 1.2.23+)
 
-For optimal security, specify only the HTTP headers that your proxy software
-sets. This prevents unauthorized access through header spoofing. Set them by
-editing the following section of `config.php`:
+A header allowlist does not authenticate a proxy. Trust forwarded client-IP
+headers only when a trusted proxy replaces those headers and untrusted clients
+cannot bypass it to reach Cacti directly. Leave forwarding disabled otherwise.
+In `include/config.php`, select only the headers your proxy sets. For a
+deployment using `X-Forwarded-For`, the setting is:
 
 ```php
-/*
- * Allow the use of Proxy IPs when searching for client
- * IP to be used
- *
- * This can be set to one of the following:
- *   - false: to use only REMOTE_ADDR
- *   - true: to use all allowed headers (not advised)
- *   - array of one or more the following:
- *		'X-Forwarded-For',
- *		'X-Client-IP',
- *		'X-Real-IP',
- *		'X-ProxyUser-Ip',
- *		'CF-Connecting-IP',
- *		'True-Client-IP',
- *		'HTTP_X_FORWARDED',
- *		'HTTP_X_FORWARDED_FOR',
- *		'HTTP_X_CLUSTER_CLIENT_IP',
- *		'HTTP_FORWARDED_FOR',
- *		'HTTP_FORWARDED',
- *		'HTTP_CLIENT_IP',
- *
- * NOTE: The following will always be checked:
- *		'REMOTE_ADDR',
- */
-$proxy_headers = null;
-
+$proxy_headers = ['X-Forwarded-For'];
 ```
+
+[lamp]: Install-Under-Enterprise-Linux-LAMP.md
+[supported-os]: Requirements.md#supported-operating-systems
+
+[php-config]:<https://www.php.net/manual/en/configuration.php>
 
 ---
 
