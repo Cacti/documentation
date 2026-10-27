@@ -101,7 +101,8 @@ Publish the main manual separately from the historic `manual.pdf` and
 [old-tr]: https://files.cacti.net/docs/contrib/Cacti-El-Kitab.pdf
 [old-linux]: https://files.cacti.net/docs/contrib/Cacti-Linux-How-To.pdf
 [old-ru-unix]: https://files.cacti.net/docs/contrib/install_russian_unix.pdf
-[old-ru-windows]: https://files.cacti.net/docs/contrib/install_russian_windows.pdf
+[old-ru-windows]:
+  <https://files.cacti.net/docs/contrib/install_russian_windows.pdf>
 [old-solaris]: https://files.cacti.net/docs/contrib/install_solaris.html
 [old-windows]: https://files.cacti.net/docs/contrib/install_windows.html
 [old-pdf]: https://files.cacti.net/docs/pdf/manual.pdf

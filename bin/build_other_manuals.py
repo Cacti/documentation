@@ -123,6 +123,7 @@ def build(root, revision, built, pdf_builder):
     root = root.resolve()
     folder = root / 'resource/manuals'
     folder.mkdir(parents=True, exist_ok=True)
+    (folder / 'build-manifest.json').touch()
     provenance, tables, ddl = schema_reference(root)
     (folder / 'cacti-schema.sql').write_text('-- Reference only; not an installation or upgrade script.\n' + ddl)
     pages = ordered_pages(root)
