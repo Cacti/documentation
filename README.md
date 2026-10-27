@@ -18,6 +18,8 @@ data and shows an earlier interface. Menu labels can differ in your version.
 [Current editions and contributed archives](Other-Manuals.md) include PDF,
 text, localized installation guides, and the development schema reference.
 
+<a id="hot-tos"></a>
+
 ## What Do You Want to Do
 
 <a id="cacti-installation"></a>
