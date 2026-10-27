@@ -128,9 +128,9 @@ def section(body, fragment):
     return selected.replace('<h' + start[1] + ' ', '<h1 ', 1).replace('</h' + start[1] + '>', '</h1>', 1)
 
 
-def document(title, body, prefix, revision, legacy=False):
+def document(title, body, prefix, revision, legacy=False, language="en"):
     notice = '<p>This legacy chapter URL now presents the corresponding current chapter.</p>' if legacy else ''
-    return (f'<!doctype html>\n<html lang="en"><head><meta charset="utf-8">'
+    return (f'<!doctype html>\n<html lang="{escape(language, quote=True)}"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width, initial-scale=1">'
             '<meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; '
             'img-src &#39;self&#39; https:; style-src &#39;self&#39;; base-uri &#39;none&#39;; form-action &#39;none&#39;">'
@@ -210,7 +210,9 @@ def render_chapters(root, staging, pages, revision):
         target = staging / output_name(name)
         target.parent.mkdir(parents=True, exist_ok=True)
         prefix = '../' * (len(name.parts) - 1)
-        target.write_text(document(title, body, prefix, revision))
+        language = {'Guide-de': 'de', 'Guide-tr': 'tr', 'Install-ru-unix': 'ru',
+                    'Install-ru-windows': 'ru'}.get(name.stem, 'en')
+        target.write_text(document(title, body, prefix, revision, language=language))
     return rendered
 
 
@@ -253,7 +255,7 @@ def build(root, output):
     tracked = subprocess.check_output(['git', 'ls-files', '-z', '--', '*.md', 'images', 'resource',
                                        'resources', ':(exclude)resource/html/**'], cwd=root).decode().split('\0')
     pages = sorted(root / name for name in filter(None, tracked)
-                   if Path(name).suffix == '.md' and Path(name).parent.as_posix() in {'.', 'Architecture', 'resources/build'})
+                   if Path(name).suffix == '.md' and Path(name).parent.as_posix() in {'.', 'Architecture', 'resources/build', 'resources/manuals'})
     assets = [name for name in tracked if name.startswith(('images/', 'resource/', 'resources/'))]
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='cacti-html-', dir=output.parent) as temporary:

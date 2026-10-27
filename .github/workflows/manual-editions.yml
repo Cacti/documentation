@@ -1,0 +1,87 @@
+name: PDF and text manual editions
+on:
+  pull_request:
+  merge_group:
+    types: [checks_requested]
+  push:
+    branches: [develop]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: manual-editions-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  editions:
+    name: Build and verify current manual editions
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: jdx/mise-action@9b200bcecbfd6303e69a4a261b2e09e3757440a7
+        with:
+          tool_versions: |
+            python 3.12.12
+            uv 0.12.23
+      - name: Install native PDF libraries, fonts, and review tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libpango-1.0-0 libpangoft2-1.0-0 \
+            libharfbuzz-subset0 fonts-dejavu-core fonts-dejavu-extra poppler-utils
+      - name: Export the committed PDF tool lock
+        run: |
+          mkdir -p manual-artifacts
+          mise exec python@3.12.12 uv@0.12.23 -- uv export --locked \
+            --script bin/build_pdf_docs.py --format requirements-txt \
+            --output-file "$RUNNER_TEMP/pdf-requirements.txt"
+      - name: Test edition selection, text conversion, and schema provenance
+        run: |
+          renderer=(mise exec python@3.12.12 uv@0.12.23 -- uv run \
+            --with-requirements "$RUNNER_TEMP/pdf-requirements.txt" --with coverage==7.13.2)
+          "${renderer[@]}" python -m coverage run --branch --include=bin/build_other_manuals.py \
+            -m unittest discover -s bin/tests -p test_other_manuals.py
+          "${renderer[@]}" python -m unittest discover -s bin/tests -p test_navigation_anchors.py
+          "${renderer[@]}" python -m coverage report --fail-under=100
+          "${renderer[@]}" python -m coverage json -o manual-artifacts/coverage.json
+      - name: Build every current PDF and text edition
+        run: |
+          mise exec python@3.12.12 uv@0.12.23 -- uv run --locked --python python \
+            --script bin/build_pdf_docs.py --only manual --companions
+      - name: Verify actual PDFs, complete text appendices, hashes, and populated preview
+        run: |
+          mise exec python@3.12.12 uv@0.12.23 -- uv run \
+            --with-requirements "$RUNNER_TEMP/pdf-requirements.txt" --with pypdf==6.12.2 \
+            python bin/tests/verify_other_manuals.py
+      - name: Summarize publication evidence
+        if: always()
+        run: |
+          mise exec python@3.12.12 -- python - <<'PY'
+          import json, os
+          from pathlib import Path
+          path = Path('manual-artifacts/publication-evidence.json')
+          summary = '## Manual editions\n\nPublication verification did not complete.\n'
+          if path.exists():
+              report = json.loads(path.read_text())
+              summary = (f"## Manual editions\n\nComplete: {report['complete']}\n\n"
+                         f"Source: {report['source_revision']}\n\n"
+                         f"Editions: {len(report['editions'])}; schema tables: {report['schema_tables']}\n\n")
+              summary += '| Edition | Chapters | PDF pages |\n| --- | --- | --- |\n'
+              for name, result in report['editions'].items():
+                  summary += f"| {name} | {result['chapters']} | {result['pdf_pages']} |\n"
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as output:
+              output.write(summary)
+          PY
+      - name: Preserve manuals, manifests, coverage, and populated PDF preview
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: cacti-manual-editions-attempt-${{ github.run_attempt }}
+          path: |
+            resource/manuals/
+            resource/pdf/cacti-manual.pdf
+            resource/pdf/build_manifest.json
+            manual-artifacts/
+          if-no-files-found: warn
+          retention-days: 14

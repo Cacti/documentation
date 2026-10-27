@@ -7,6 +7,9 @@ Cacti 1.2 installations, use the [1.2.x manual][manual-1.2]. Menu visibility
 also depends on permissions, enabled features, and plugins. Screenshots can
 show an earlier release or a different theme.
 
+[Current editions and contributed archives](Other-Manuals.md) include PDF,
+text, localized installation guides, and the development schema reference.
+
 ## Install or Upgrade Cacti
 
 Choose the guide for your operating system and installation method.

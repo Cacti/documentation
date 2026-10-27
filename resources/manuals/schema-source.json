@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/Cacti/cacti",
+  "branch": "develop",
+  "revision": "883b334debc61c436e6ba140cf91863c7d6686b7",
+  "path": "cacti.sql",
+  "sha256": "213c3d929c1bd643e6f5a9c84f61cab21b476144088bc91a0fe778a2827f86c6"
+}
