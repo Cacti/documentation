@@ -1,6 +1,6 @@
 Requirements
 Unreleased Cacti 1.3 develop
-Source: 67bc24e44000
+Source: d8a327c12a91
 Built: 2026-10-27
 
 Requirements
@@ -198,7 +198,7 @@ The current manifest requires ext-pcntl and ext-posix unconditionally.
 Native Windows PHP cannot supply these modules. Source dependency installation
 is therefore blocked on native Windows, even though the installer has
 Windows-specific checks. A bundled artifact must also pass its runtime platform
-check. See Installing Under Windows <https://github.com/Cacti/documentation/blob/67bc24e44000/Installing-Under-Windows.md#development-packaging-prerequisite> before choosing a build. Do not
+check. See Installing Under Windows <https://github.com/Cacti/documentation/blob/d8a327c12a91/Installing-Under-Windows.md#development-packaging-prerequisite> before choosing a build. Do not
 bypass platform checks to force installation.
 
 
@@ -272,7 +272,7 @@ secrets, private caches, RRD files, and backups inaccessible over HTTP.
 Configure SELinux, AppArmor, container permissions, or IIS request filtering
 for the required operations. Do not remove confinement globally to make
 installation checks pass. Follow the platform installation guide and
-Hardening a Cacti Installation <https://github.com/Cacti/documentation/blob/67bc24e44000/Hardening-Cacti-Installation.md>.
+Hardening a Cacti Installation <https://github.com/Cacti/documentation/blob/d8a327c12a91/Hardening-Cacti-Installation.md>.
 
 
 
@@ -283,12 +283,12 @@ Copyright (c) 2004-2026 The Cacti Group
 Installing Under Windows
 
 
-Use only the supported operating systems <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md#supported-operating-systems> and maintained
+Use only the supported operating systems <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md#supported-operating-systems> and maintained
 dependencies compatible with this Cacti branch.
 
 
 These instructions describe a manual installation of Cacti development (1.3) on
-Windows. Use the requirements <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md> for your Cacti release and
+Windows. Use the requirements <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md> for your Cacti release and
 supported Windows builds of PHP, your database server and RRDtool. Community
 Windows installers are also discussed in the Cacti
 forums <https://forums.cacti.net/>; check their included versions and
@@ -338,7 +338,7 @@ A path without spaces, such as C:\php, simplifies tool configuration.
 
 * Install a Windows build of RRDtool <https://oss.oetiker.ch/rrdtool/> and
 verify its runtime dependencies. If using Spine, install a compatible
-Spine release <https://github.com/Cacti/documentation/blob/67bc24e44000/Spine.md> and the dependencies supplied or required by that
+Spine release <https://github.com/Cacti/documentation/blob/d8a327c12a91/Spine.md> and the dependencies supplied or required by that
 build. The PHP poller can be used without Spine.
 
 
@@ -761,7 +761,7 @@ How to Graph Your Network
 
 Create a device, select its measurements, and verify collection before adding
 its graphs to a tree. The manual workflow below is useful for a first device.
-Automation <https://github.com/Cacti/documentation/blob/67bc24e44000/Automation-Networks.md> can perform these tasks for larger sets of
+Automation <https://github.com/Cacti/documentation/blob/d8a327c12a91/Automation-Networks.md> can perform these tasks for larger sets of
 devices once its discovery and graph rules are configured.
 
 
@@ -770,11 +770,11 @@ Creating a Device
 
 Open Console > Management > Devices and click Add. Enter a description
 and address, choose the responsible data collector, and select a suitable
-Device Template <https://github.com/Cacti/documentation/blob/67bc24e44000/Device-Templates.md>. The template supplies associated graph
+Device Template <https://github.com/Cacti/documentation/blob/d8a327c12a91/Device-Templates.md>. The template supplies associated graph
 templates and data queries; it does not restrict you to those defaults.
 
 
-[Image: Adding a New Device] <https://github.com/Cacti/documentation/blob/67bc24e44000/images/new-device.png>
+[Image: Adding a New Device] <https://github.com/Cacti/documentation/blob/d8a327c12a91/images/new-device.png>
 
 
 Device Field Definitions
@@ -861,8 +861,8 @@ indexes, and credentials before creating graphs.
 
 
 For interface traffic, prefer the 64-bit counter graph type when the device
-and selected SNMP version support it. See Data Queries <https://github.com/Cacti/documentation/blob/67bc24e44000/Data-Queries.md> for
-query-to-template mappings and Device Management <https://github.com/Cacti/documentation/blob/67bc24e44000/Devices.md> for other
+and selected SNMP version support it. See Data Queries <https://github.com/Cacti/documentation/blob/d8a327c12a91/Data-Queries.md> for
+query-to-template mappings and Device Management <https://github.com/Cacti/documentation/blob/d8a327c12a91/Devices.md> for other
 availability and collection settings.
 
 
@@ -875,7 +875,7 @@ query rows to graph. For indexed queries, choose the appropriate graph type
 before clicking Create.
 
 
-[Image: Creating New Graphs] <https://github.com/Cacti/documentation/blob/67bc24e44000/images/new-graphs.png>
+[Image: Creating New Graphs] <https://github.com/Cacti/documentation/blob/d8a327c12a91/images/new-graphs.png>
 
 
 Fill in any per-graph values requested by the templates and complete creation.
@@ -887,15 +887,15 @@ selected data-source type.
 Verify and publish
 
 
-* Check the device's status and the Cacti log <https://github.com/Cacti/documentation/blob/67bc24e44000/Cacti-Log.md> after polling.
+* Check the device's status and the Cacti log <https://github.com/Cacti/documentation/blob/d8a327c12a91/Cacti-Log.md> after polling.
 
 * Open the graph under Console > Management > Graphs. For blank graphs,
-inspect Data Source Debugging <https://github.com/Cacti/documentation/blob/67bc24e44000/Data-Debug.md> and the RRD last update.
+inspect Data Source Debugging <https://github.com/Cacti/documentation/blob/d8a327c12a91/Data-Debug.md> and the RRD last update.
 
-* Add the graph or device to a Tree <https://github.com/Cacti/documentation/blob/67bc24e44000/Trees.md>, publish the tree, and grant
+* Add the graph or device to a Tree <https://github.com/Cacti/documentation/blob/d8a327c12a91/Trees.md>, publish the tree, and grant
 the intended users access.
 
-* Confirm the result in Viewing Graphs <https://github.com/Cacti/documentation/blob/67bc24e44000/Viewing-Graphs.md> with an account
+* Confirm the result in Viewing Graphs <https://github.com/Cacti/documentation/blob/d8a327c12a91/Viewing-Graphs.md> with an account
 that has the intended permissions.
 
 
@@ -928,7 +928,7 @@ For a single data source, you can click the data source name which will also
 put it into debug mode.
 
 
-[Image: Data Source Debug] <https://github.com/Cacti/documentation/blob/67bc24e44000/images/data-debug.png>
+[Image: Data Source Debug] <https://github.com/Cacti/documentation/blob/d8a327c12a91/images/data-debug.png>
 
 
 You can see the status of each data source along with all of the checks run
@@ -937,10 +937,10 @@ a red X.  Depending on the issue a recommendation will be provided for a failed
 check.
 
 
-[Image: Data Source Debug Select Data Sources] <https://github.com/Cacti/documentation/blob/67bc24e44000/images/data-debug1.png>
+[Image: Data Source Debug Select Data Sources] <https://github.com/Cacti/documentation/blob/d8a327c12a91/images/data-debug1.png>
 
 
-[Image: Data Debug Tests Complete] <https://github.com/Cacti/documentation/blob/67bc24e44000/images/data-debug3.png>
+[Image: Data Debug Tests Complete] <https://github.com/Cacti/documentation/blob/d8a327c12a91/images/data-debug3.png>
 
 
 A summary of the checks as well as the properties of the data source
@@ -948,7 +948,7 @@ can be displayed by clicking on the data source name.  This is useful
 for a single page view of the data source and graph details.
 
 
-[Image: Data Debug Test Details] <https://github.com/Cacti/documentation/blob/67bc24e44000/images/data-debug4.png>
+[Image: Data Debug Test Details] <https://github.com/Cacti/documentation/blob/d8a327c12a91/images/data-debug4.png>
 
 
 This page also shows what the last values where when last polled. This is also
@@ -978,7 +978,7 @@ Copyright (c) 2004-2026 The Cacti Group
 Upgrading Cacti under Windows
 
 
-Use only the supported operating systems <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md#supported-operating-systems> and maintained
+Use only the supported operating systems <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md#supported-operating-systems> and maintained
 dependencies compatible with this Cacti branch.
 
 
@@ -986,14 +986,14 @@ These instructions cover upgrading a source/archive installation to Cacti
 1.3-dev. For a managed Windows installation, also follow its package or
 installer upgrade procedure; do not overwrite package-managed files with an
 unrelated archive. Review the release
-notes <https://github.com/Cacti/documentation/blob/67bc24e44000/Version-Specific-Release-Notes.md> and requirements <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md>
+notes <https://github.com/Cacti/documentation/blob/d8a327c12a91/Version-Specific-Release-Notes.md> and requirements <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md>
 for the target Cacti version first. An upgrade of Cacti does not automatically
 require upgrading Windows, PHP or the database.
 
 
 The current source manifest requires ext-pcntl and ext-posix, which native
 Windows PHP cannot provide. Read the Windows installation
-prerequisite <https://github.com/Cacti/documentation/blob/67bc24e44000/Installing-Under-Windows.md#development-packaging-prerequisite>
+prerequisite <https://github.com/Cacti/documentation/blob/d8a327c12a91/Installing-Under-Windows.md#development-packaging-prerequisite>
 before scheduling downtime. Stop if the selected artifact rejects Windows.
 
 
@@ -1086,7 +1086,7 @@ custom-script compatibility before restoring or enabling them.
 * Verify file permissions for the web server and poller accounts. Open the
 existing Cacti URL as an administrator and complete the database upgrade.
 Review installer checks and logs. Use version-appropriate database settings
-from Requirements <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md>, rather than applying fixed global SQL
+from Requirements <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md>, rather than applying fixed global SQL
 tuning commands.
 
 
@@ -1533,11 +1533,11 @@ After applying all controls, confirm:
 See Also
 
 
-* Installing Under Ubuntu/Debian <https://github.com/Cacti/documentation/blob/67bc24e44000/Installing-Under-Ubuntu-Debian.md>
+* Installing Under Ubuntu/Debian <https://github.com/Cacti/documentation/blob/d8a327c12a91/Installing-Under-Ubuntu-Debian.md>
 
-* Installing Under Enterprise Linux (LAMP) <https://github.com/Cacti/documentation/blob/67bc24e44000/Install-Under-Enterprise-Linux-LAMP.md>
+* Installing Under Enterprise Linux (LAMP) <https://github.com/Cacti/documentation/blob/d8a327c12a91/Install-Under-Enterprise-Linux-LAMP.md>
 
-* Standards Security <https://github.com/Cacti/documentation/blob/67bc24e44000/Standards-Security.md>
+* Standards Security <https://github.com/Cacti/documentation/blob/d8a327c12a91/Standards-Security.md>
 
 
 

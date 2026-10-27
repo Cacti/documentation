@@ -1,6 +1,6 @@
 Установка и обслуживание Cacti в Linux и FreeBSD
 Unreleased Cacti 1.3 develop
-Source: 67bc24e44000
+Source: d8a327c12a91
 Built: 2026-10-27
 
 Установка и обслуживание Cacti в Linux и FreeBSD
@@ -16,11 +16,11 @@ Built: 2026-10-27
 Подготовка
 
 
-Проверьте требования <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md> выбранной версии. Используйте ОС с
+Проверьте требования <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md> выбранной версии. Используйте ОС с
 действующими обновлениями безопасности и совместимые PHP, СУБД и RRDtool.
-Для Linux выберите Ubuntu/Debian <https://github.com/Cacti/documentation/blob/67bc24e44000/Installing-Under-Ubuntu-Debian.md> либо Enterprise Linux <https://github.com/Cacti/documentation/blob/67bc24e44000/Install-Under-Enterprise-Linux-LAMP.md>.
+Для Linux выберите Ubuntu/Debian <https://github.com/Cacti/documentation/blob/d8a327c12a91/Installing-Under-Ubuntu-Debian.md> либо Enterprise Linux <https://github.com/Cacti/documentation/blob/d8a327c12a91/Install-Under-Enterprise-Linux-LAMP.md>.
 Для FreeBSD прочтите раздел о пакетах, вариантах PHP и путях в
-общей инструкции <https://github.com/Cacti/documentation/blob/67bc24e44000/General-Installing-Instructions.md>. Не применяйте команды systemctl в FreeBSD.
+общей инструкции <https://github.com/Cacti/documentation/blob/d8a327c12a91/General-Installing-Instructions.md>. Не применяйте команды systemctl в FreeBSD.
 Пакет Cacti 1.2 не является сборкой Cacti 1.3.
 
 
@@ -54,7 +54,7 @@ php -m
 данных, часового пояса, PHP и разрешений в веб-интерфейсе. Измените начальный
 пароль. Настройте ровно одно расписание с абсолютными путями к PHP и
 poller.php. Не запускайте второй poller одновременно. При использовании
-Spine <https://github.com/Cacti/documentation/blob/67bc24e44000/Spine.md> проверьте совместимость его версии с Cacti.
+Spine <https://github.com/Cacti/documentation/blob/d8a327c12a91/Spine.md> проверьте совместимость его версии с Cacti.
 
 
 Проверка сбора данных
@@ -64,10 +64,10 @@ Spine <https://github.com/Cacti/documentation/blob/67bc24e44000/Spine.md> про
 версию SNMP и реквизиты, разрешённые на устройстве. Ограничьте доступ SNMP
 адресом сборщика. Создайте графики и добавьте их в дерево. Подождите несколько
 интервалов опроса. Подробные действия приведены в инструкции по
-графикам <https://github.com/Cacti/documentation/blob/67bc24e44000/How-to-Graph-Your-Network.md>.
+графикам <https://github.com/Cacti/documentation/blob/d8a327c12a91/How-to-Graph-Your-Network.md>.
 
 
-[Image: График с историческими примерными данными] <https://github.com/Cacti/documentation/blob/67bc24e44000/images/graphs-edit.png>
+[Image: График с историческими примерными данными] <https://github.com/Cacti/documentation/blob/d8a327c12a91/images/graphs-edit.png>
 
 
 На снимке показаны исторические данные и прежняя версия интерфейса.
@@ -78,16 +78,16 @@ Spine <https://github.com/Cacti/documentation/blob/67bc24e44000/Spine.md> про
 
 Сначала проверьте службы, системное время, пути программ, настройки PHP и
 права доступа. Изучите журнал Cacti. Для одной проблемной метрики используйте
-диагностику источника данных <https://github.com/Cacti/documentation/blob/67bc24e44000/Data-Debug.md>. Подробное журналирование включайте
+диагностику источника данных <https://github.com/Cacti/documentation/blob/d8a327c12a91/Data-Debug.md>. Подробное журналирование включайте
 временно и только там, где оно требуется. Не удаляйте RRD-файлы и не создавайте
 базу заново из-за пустого графика.
 
 
 Перед обновлением прочтите примечания к выпуску и порядок
-обновления <https://github.com/Cacti/documentation/blob/67bc24e44000/Upgrading-Cacti.md>.
+обновления <https://github.com/Cacti/documentation/blob/d8a327c12a91/Upgrading-Cacti.md>.
 Сохраните внешние каталоги данных, плагины и расписания. Сначала проверьте
 обновление в тестовой среде. Выполните обновление базы только один раз.
-Завершите настройку безопасности <https://github.com/Cacti/documentation/blob/67bc24e44000/Hardening-Cacti-Installation.md> до открытия доступа
+Завершите настройку безопасности <https://github.com/Cacti/documentation/blob/d8a327c12a91/Hardening-Cacti-Installation.md> до открытия доступа
 пользователям.
 
 
@@ -291,7 +291,7 @@ The current manifest requires ext-pcntl and ext-posix unconditionally.
 Native Windows PHP cannot supply these modules. Source dependency installation
 is therefore blocked on native Windows, even though the installer has
 Windows-specific checks. A bundled artifact must also pass its runtime platform
-check. See Installing Under Windows <https://github.com/Cacti/documentation/blob/67bc24e44000/Installing-Under-Windows.md#development-packaging-prerequisite> before choosing a build. Do not
+check. See Installing Under Windows <https://github.com/Cacti/documentation/blob/d8a327c12a91/Installing-Under-Windows.md#development-packaging-prerequisite> before choosing a build. Do not
 bypass platform checks to force installation.
 
 
@@ -365,7 +365,7 @@ secrets, private caches, RRD files, and backups inaccessible over HTTP.
 Configure SELinux, AppArmor, container permissions, or IIS request filtering
 for the required operations. Do not remove confinement globally to make
 installation checks pass. Follow the platform installation guide and
-Hardening a Cacti Installation <https://github.com/Cacti/documentation/blob/67bc24e44000/Hardening-Cacti-Installation.md>.
+Hardening a Cacti Installation <https://github.com/Cacti/documentation/blob/d8a327c12a91/Hardening-Cacti-Installation.md>.
 
 
 
@@ -376,7 +376,7 @@ Copyright (c) 2004-2026 The Cacti Group
 General Installing Instructions
 
 
-Use only the supported operating systems <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md#supported-operating-systems> and maintained
+Use only the supported operating systems <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md#supported-operating-systems> and maintained
 dependencies compatible with this Cacti branch.
 
 
@@ -436,7 +436,7 @@ Database
 
 
 Use the database versions and configuration described in
-Requirements <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md>. The development branch recommends MySQL 8.4+
+Requirements <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md>. The development branch recommends MySQL 8.4+
 or MariaDB 10.11+. Check the installed server with the Cacti installer.
 
 
@@ -469,7 +469,7 @@ PHP Modules
 
 
 Use PHP 8.3 or later in the PHP 8 series and the extensions listed in
-Requirements <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md>. Verify the CLI with php -v and php -m and
+Requirements <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md>. Verify the CLI with php -v and php -m and
 check web PHP separately in the installer. Source deployments also need
 Composer and all extensions required by the selected revision's lock file.
 Run composer install --no-dev as the deployment owner, then
@@ -489,7 +489,7 @@ its socket path and permissions match the web-server handler.
 FreeBSD
 
 
-Use a patched release listed in supported operating systems <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md#supported-operating-systems>.
+Use a patched release listed in supported operating systems <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md#supported-operating-systems>.
 Choose binary packages or the Ports Collection using the
 FreeBSD Handbook <https://docs.freebsd.org/en/books/handbook/ports/>. Run package and service administration
 commands as root. Use the dedicated poller account for collection.
@@ -501,7 +501,7 @@ Choose the Cacti version and PHP flavor
 The FreeBSD net-mgmt/cacti port currently packages Cacti 1.2.31, not the
 unreleased Cacti 1.3 development branch covered by this manual. For a packaged
 release, follow its installed instructions and the 1.2.x manual <https://github.com/Cacti/documentation/tree/1.2.x>.
-For development source, meet Requirements <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md> and follow the
+For development source, meet Requirements <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md> and follow the
 source-install steps below using FreeBSD paths and service configuration.
 Do not overlay a source checkout onto files owned by pkg.
 
@@ -662,7 +662,7 @@ cacti user's crontab is:
 
 Match this cadence to Cron/Daemon Interval in Cacti. A system crontab needs
 the account field as well. Check for an existing cron entry or daemon first;
-do not run both. Use Data Source Debugging <https://github.com/Cacti/documentation/blob/67bc24e44000/Data-Debug.md> and the Cacti log
+do not run both. Use Data Source Debugging <https://github.com/Cacti/documentation/blob/d8a327c12a91/Data-Debug.md> and the Cacti log
 to verify collection after completing the web installer.
 
 
@@ -686,7 +686,7 @@ selected polling method requires them; do not apply a blanket setuid command.
 
 
 For an existing installation, follow
-Upgrading Under FreeBSD <https://github.com/Cacti/documentation/blob/67bc24e44000/Upgrading-Cacti-Under-FreeBSD.md>.
+Upgrading Under FreeBSD <https://github.com/Cacti/documentation/blob/d8a327c12a91/Upgrading-Cacti-Under-FreeBSD.md>.
 
 
 Configure PHP
@@ -712,8 +712,8 @@ Configure the Webserver (Apache)
 
 Use the distribution's Apache/PHP integration, selecting either its PHP-FPM
 handler or a compatible Apache PHP module. Do not configure both handlers for
-the same files. The Enterprise Linux LAMP guide <https://github.com/Cacti/documentation/blob/67bc24e44000/Install-Under-Enterprise-Linux-LAMP.md> and
-Ubuntu/Debian guide <https://github.com/Cacti/documentation/blob/67bc24e44000/Installing-Under-Ubuntu-Debian.md> provide examples.
+the same files. The Enterprise Linux LAMP guide <https://github.com/Cacti/documentation/blob/d8a327c12a91/Install-Under-Enterprise-Linux-LAMP.md> and
+Ubuntu/Debian guide <https://github.com/Cacti/documentation/blob/d8a327c12a91/Installing-Under-Ubuntu-Debian.md> provide examples.
 
 
 Verify Apache's configuration before reloading. Restrict access during setup,
@@ -780,7 +780,7 @@ Install and Configure Cacti
 
 These are fresh source-install examples for Cacti development (1.3).
 Package-managed installations should use the maintainer's procedure instead.
-For an existing installation, follow Upgrading Cacti <https://github.com/Cacti/documentation/blob/67bc24e44000/Upgrading-Cacti.md>. The
+For an existing installation, follow Upgrading Cacti <https://github.com/Cacti/documentation/blob/d8a327c12a91/Upgrading-Cacti.md>. The
 examples use /var/www/html/cacti; adjust that path and the service accounts
 for your OS. Use administrator privileges for software installation and
 permission changes.
@@ -1025,7 +1025,7 @@ How to Graph Your Network
 
 Create a device, select its measurements, and verify collection before adding
 its graphs to a tree. The manual workflow below is useful for a first device.
-Automation <https://github.com/Cacti/documentation/blob/67bc24e44000/Automation-Networks.md> can perform these tasks for larger sets of
+Automation <https://github.com/Cacti/documentation/blob/d8a327c12a91/Automation-Networks.md> can perform these tasks for larger sets of
 devices once its discovery and graph rules are configured.
 
 
@@ -1034,11 +1034,11 @@ Creating a Device
 
 Open Console > Management > Devices and click Add. Enter a description
 and address, choose the responsible data collector, and select a suitable
-Device Template <https://github.com/Cacti/documentation/blob/67bc24e44000/Device-Templates.md>. The template supplies associated graph
+Device Template <https://github.com/Cacti/documentation/blob/d8a327c12a91/Device-Templates.md>. The template supplies associated graph
 templates and data queries; it does not restrict you to those defaults.
 
 
-[Image: Adding a New Device] <https://github.com/Cacti/documentation/blob/67bc24e44000/images/new-device.png>
+[Image: Adding a New Device] <https://github.com/Cacti/documentation/blob/d8a327c12a91/images/new-device.png>
 
 
 Device Field Definitions
@@ -1125,8 +1125,8 @@ indexes, and credentials before creating graphs.
 
 
 For interface traffic, prefer the 64-bit counter graph type when the device
-and selected SNMP version support it. See Data Queries <https://github.com/Cacti/documentation/blob/67bc24e44000/Data-Queries.md> for
-query-to-template mappings and Device Management <https://github.com/Cacti/documentation/blob/67bc24e44000/Devices.md> for other
+and selected SNMP version support it. See Data Queries <https://github.com/Cacti/documentation/blob/d8a327c12a91/Data-Queries.md> for
+query-to-template mappings and Device Management <https://github.com/Cacti/documentation/blob/d8a327c12a91/Devices.md> for other
 availability and collection settings.
 
 
@@ -1139,7 +1139,7 @@ query rows to graph. For indexed queries, choose the appropriate graph type
 before clicking Create.
 
 
-[Image: Creating New Graphs] <https://github.com/Cacti/documentation/blob/67bc24e44000/images/new-graphs.png>
+[Image: Creating New Graphs] <https://github.com/Cacti/documentation/blob/d8a327c12a91/images/new-graphs.png>
 
 
 Fill in any per-graph values requested by the templates and complete creation.
@@ -1151,15 +1151,15 @@ selected data-source type.
 Verify and publish
 
 
-* Check the device's status and the Cacti log <https://github.com/Cacti/documentation/blob/67bc24e44000/Cacti-Log.md> after polling.
+* Check the device's status and the Cacti log <https://github.com/Cacti/documentation/blob/d8a327c12a91/Cacti-Log.md> after polling.
 
 * Open the graph under Console > Management > Graphs. For blank graphs,
-inspect Data Source Debugging <https://github.com/Cacti/documentation/blob/67bc24e44000/Data-Debug.md> and the RRD last update.
+inspect Data Source Debugging <https://github.com/Cacti/documentation/blob/d8a327c12a91/Data-Debug.md> and the RRD last update.
 
-* Add the graph or device to a Tree <https://github.com/Cacti/documentation/blob/67bc24e44000/Trees.md>, publish the tree, and grant
+* Add the graph or device to a Tree <https://github.com/Cacti/documentation/blob/d8a327c12a91/Trees.md>, publish the tree, and grant
 the intended users access.
 
-* Confirm the result in Viewing Graphs <https://github.com/Cacti/documentation/blob/67bc24e44000/Viewing-Graphs.md> with an account
+* Confirm the result in Viewing Graphs <https://github.com/Cacti/documentation/blob/d8a327c12a91/Viewing-Graphs.md> with an account
 that has the intended permissions.
 
 
@@ -1192,7 +1192,7 @@ For a single data source, you can click the data source name which will also
 put it into debug mode.
 
 
-[Image: Data Source Debug] <https://github.com/Cacti/documentation/blob/67bc24e44000/images/data-debug.png>
+[Image: Data Source Debug] <https://github.com/Cacti/documentation/blob/d8a327c12a91/images/data-debug.png>
 
 
 You can see the status of each data source along with all of the checks run
@@ -1201,10 +1201,10 @@ a red X.  Depending on the issue a recommendation will be provided for a failed
 check.
 
 
-[Image: Data Source Debug Select Data Sources] <https://github.com/Cacti/documentation/blob/67bc24e44000/images/data-debug1.png>
+[Image: Data Source Debug Select Data Sources] <https://github.com/Cacti/documentation/blob/d8a327c12a91/images/data-debug1.png>
 
 
-[Image: Data Debug Tests Complete] <https://github.com/Cacti/documentation/blob/67bc24e44000/images/data-debug3.png>
+[Image: Data Debug Tests Complete] <https://github.com/Cacti/documentation/blob/d8a327c12a91/images/data-debug3.png>
 
 
 A summary of the checks as well as the properties of the data source
@@ -1212,7 +1212,7 @@ can be displayed by clicking on the data source name.  This is useful
 for a single page view of the data source and graph details.
 
 
-[Image: Data Debug Test Details] <https://github.com/Cacti/documentation/blob/67bc24e44000/images/data-debug4.png>
+[Image: Data Debug Test Details] <https://github.com/Cacti/documentation/blob/d8a327c12a91/images/data-debug4.png>
 
 
 This page also shows what the last values where when last polled. This is also
@@ -1248,7 +1248,7 @@ stage: device or script, collector, database buffering, RRD storage, or graph
 rendering. The commands and menu labels follow Cacti development (1.3).
 
 
-Use Data Source Debugging <https://github.com/Cacti/documentation/blob/67bc24e44000/Data-Debug.md> for the guided checks. Record the
+Use Data Source Debugging <https://github.com/Cacti/documentation/blob/d8a327c12a91/Data-Debug.md> for the guided checks. Record the
 device, data-source and collector IDs, the expected polling interval, and the
 last successful sample. A down device or an idle counter can legitimately
 produce a different result from a failed collector.
@@ -1257,7 +1257,7 @@ produce a different result from a failed collector.
 Check Cacti Log File
 
 
-Read the configured Cacti log <https://github.com/Cacti/documentation/blob/67bc24e44000/Cacti-Log.md>, including the affected remote
+Read the configured Cacti log <https://github.com/Cacti/documentation/blob/d8a327c12a91/Cacti-Log.md>, including the affected remote
 collector's log. The log path can be outside the application directory; the
 FreeBSD package normally uses /var/log/cacti.
 
@@ -1282,7 +1282,7 @@ Run a data-input script as the actual poller account, using the configured
 interpreter, arguments and environment. Compare its output with the expected
 field names and numeric values in the [Data Input Method](Data-Input-
 Methods.md).
-For a script-server input, use the PHP Script Server <https://github.com/Cacti/documentation/blob/67bc24e44000/PHP-Script-Server.md>
+For a script-server input, use the PHP Script Server <https://github.com/Cacti/documentation/blob/d8a327c12a91/PHP-Script-Server.md>
 procedure; executing a function-based script directly is not an equivalent
 test.
 
@@ -1298,7 +1298,7 @@ A successful ping alone does not confirm that SNMP is available.
 Check Cacti's poller
 
 
-Verify the responsible Data Collector <https://github.com/Cacti/documentation/blob/67bc24e44000/Data-Collectors.md>, its selected
+Verify the responsible Data Collector <https://github.com/Cacti/documentation/blob/d8a327c12a91/Data-Collectors.md>, its selected
 polling engine, and Data Collection Enabled. Check the actual launcher and
 Cron/Daemon Interval as well as Poller Interval. FreeBSD uses cron or
 configured rc.d services; Linux systemd commands do not apply there.
@@ -1317,18 +1317,18 @@ php -q cmd.php --first=42 --last=42 --debug
 Replace 42 with the device ID and run from the Cacti directory as the poller
 account. This collects data; it is not a read-only inspection. Restore the
 original schedule after the test. For Spine, use the installed binary's
---help and Spine <https://github.com/Cacti/documentation/blob/67bc24e44000/Spine.md> instructions for its version and configuration.
+--help and Spine <https://github.com/Cacti/documentation/blob/d8a327c12a91/Spine.md> instructions for its version and configuration.
 
 
 Check MySQL updating
 
 
 Check the collector log for failed database writes, connection errors or
-replication problems. Inspect the Poller Cache <https://github.com/Cacti/documentation/blob/67bc24e44000/System-Utilities.md> and
+replication problems. Inspect the Poller Cache <https://github.com/Cacti/documentation/blob/d8a327c12a91/System-Utilities.md> and
 confirm that the affected data source is assigned to the expected collector.
 
 
-Cacti can buffer samples for later processing. With Boost <https://github.com/Cacti/documentation/blob/67bc24e44000/Boost.md> or an
+Cacti can buffer samples for later processing. With Boost <https://github.com/Cacti/documentation/blob/d8a327c12a91/Boost.md> or an
 RRD cache enabled, collection and disk updates can occur at different times.
 Check the relevant worker and pending-data state before concluding that a
 missing direct rrdtool update log entry means collection failed.
@@ -1373,7 +1373,7 @@ identities rather than assuming they are the same user.
 Inspect the affected file and its parent directories. Correct the specific
 ownership or permissions that differ from the deployment's policy. Avoid
 blanket ownership changes to application code, credentials, or every RRD file.
-See the FreeBSD installation guidance <https://github.com/Cacti/documentation/blob/67bc24e44000/General-Installing-Instructions.md#freebsd> for package defaults.
+See the FreeBSD installation guidance <https://github.com/Cacti/documentation/blob/d8a327c12a91/General-Installing-Instructions.md#freebsd> for package defaults.
 
 
 Check RRDfile numbers
@@ -1388,8 +1388,8 @@ rrdtool info /path/to/device.rrd
 
 
 Check data-source type, minimum, maximum, step and heartbeat against the
-Data Source Template <https://github.com/Cacti/documentation/blob/67bc24e44000/Data-Source-Templates.md> and
-Data Profile <https://github.com/Cacti/documentation/blob/67bc24e44000/Data-Profiles.md>. An out-of-range value, counter reset or gap
+Data Source Template <https://github.com/Cacti/documentation/blob/d8a327c12a91/Data-Source-Templates.md> and
+Data Profile <https://github.com/Cacti/documentation/blob/d8a327c12a91/Data-Profiles.md>. An out-of-range value, counter reset or gap
 beyond the heartbeat can produce unknown data even when collection succeeds.
 
 
@@ -1425,7 +1425,7 @@ system-wide cron service to stop a single Cacti job.
 
 After resolving duplicate launches, verify a complete polling cycle and fresh
 RRD samples. Preserve the original service and scheduling configuration for
-rollback. See Settings - Poller <https://github.com/Cacti/documentation/blob/67bc24e44000/Settings-Poller.md>.
+rollback. See Settings - Poller <https://github.com/Cacti/documentation/blob/d8a327c12a91/Settings-Poller.md>.
 
 
 Not NaN, but 0 (zero) values
@@ -1868,11 +1868,11 @@ After applying all controls, confirm:
 See Also
 
 
-* Installing Under Ubuntu/Debian <https://github.com/Cacti/documentation/blob/67bc24e44000/Installing-Under-Ubuntu-Debian.md>
+* Installing Under Ubuntu/Debian <https://github.com/Cacti/documentation/blob/d8a327c12a91/Installing-Under-Ubuntu-Debian.md>
 
-* Installing Under Enterprise Linux (LAMP) <https://github.com/Cacti/documentation/blob/67bc24e44000/Install-Under-Enterprise-Linux-LAMP.md>
+* Installing Under Enterprise Linux (LAMP) <https://github.com/Cacti/documentation/blob/d8a327c12a91/Install-Under-Enterprise-Linux-LAMP.md>
 
-* Standards Security <https://github.com/Cacti/documentation/blob/67bc24e44000/Standards-Security.md>
+* Standards Security <https://github.com/Cacti/documentation/blob/d8a327c12a91/Standards-Security.md>
 
 
 
@@ -1884,7 +1884,7 @@ Copyright (c) 2004-2026 The Cacti Group
 Spine
 
 
-Use only the supported operating systems <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md#supported-operating-systems> and maintained
+Use only the supported operating systems <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md#supported-operating-systems> and maintained
 dependencies compatible with this Cacti branch.
 
 
@@ -2042,7 +2042,7 @@ cycle for errors and confirm that graph timestamps advance.
 
 
 
-[Image: Alternate Poller Path] <https://github.com/Cacti/documentation/blob/67bc24e44000/images/settings-paths-alternate.png>
+[Image: Alternate Poller Path] <https://github.com/Cacti/documentation/blob/d8a327c12a91/images/settings-paths-alternate.png>
 
 
 Tuning Spine for Optimal Performance
@@ -2091,7 +2091,7 @@ SELinux or AppArmor can restrict execution, network connections, or
 configuration
 file access. Inspect policy denials and apply rules appropriate to the poller
 account and executable. Do not disable enforcement to diagnose a path or
-credential error. See Hardening <https://github.com/Cacti/documentation/blob/67bc24e44000/Hardening-Cacti-Installation.md>.
+credential error. See Hardening <https://github.com/Cacti/documentation/blob/d8a327c12a91/Hardening-Cacti-Installation.md>.
 
 
 Troubleshooting Spine
@@ -2113,8 +2113,8 @@ configured collection interval.
 
 A SYSTEM STATS log line containing Method:spine confirms the selected
 engine, not successful collection of every item. Check errors and actual RRD
-updates as well. See Data Source Debugging <https://github.com/Cacti/documentation/blob/67bc24e44000/Data-Debug.md> and
-The Cacti Log <https://github.com/Cacti/documentation/blob/67bc24e44000/Cacti-Log.md>.
+updates as well. See Data Source Debugging <https://github.com/Cacti/documentation/blob/d8a327c12a91/Data-Debug.md> and
+The Cacti Log <https://github.com/Cacti/documentation/blob/d8a327c12a91/Cacti-Log.md>.
 
 
 
@@ -2125,15 +2125,15 @@ Copyright (c) 2004-2026 The Cacti Group
 Installing on Enterprise Linux with Apache
 
 
-Use only the supported operating systems <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md#supported-operating-systems> and maintained
+Use only the supported operating systems <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md#supported-operating-systems> and maintained
 dependencies compatible with this Cacti branch.
 
 
 This source-install example covers the unreleased Cacti 1.3 development branch
-on RHEL, Rocky Linux, or AlmaLinux. Read Requirements <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md>
+on RHEL, Rocky Linux, or AlmaLinux. Read Requirements <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md>
 first. Run administrative commands as root and adapt paths and accounts to
 your deployment. For an existing installation, use
-Upgrading Cacti <https://github.com/Cacti/documentation/blob/67bc24e44000/Upgrading-Cacti.md>. For package-managed Cacti, follow the
+Upgrading Cacti <https://github.com/Cacti/documentation/blob/d8a327c12a91/Upgrading-Cacti.md>. For package-managed Cacti, follow the
 package maintainer's procedure instead of overlaying source files.
 
 
@@ -2173,7 +2173,7 @@ php -m
 
 
 Additional packages can be required by the chosen source revision. Check
-Requirements <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md>, including Composer dependencies where
+Requirements <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md>, including Composer dependencies where
 applicable. Do not mix extensions from different PHP versions or repositories.
 
 
@@ -2242,7 +2242,7 @@ virtual host for conflicts. Restrict access to administrators during setup.
 Install and configure Cacti
 
 
-Use General Installing Instructions <https://github.com/Cacti/documentation/blob/67bc24e44000/General-Installing-Instructions.md#install-and-configure-cacti> to obtain the intended source,
+Use General Installing Instructions <https://github.com/Cacti/documentation/blob/d8a327c12a91/General-Installing-Instructions.md#install-and-configure-cacti> to obtain the intended source,
 create a new database and dedicated application account, load timezone data,
 import cacti.sql, and configure include/config.php. The examples there use
 /var/www/html/cacti; use that same path here.
@@ -2289,7 +2289,7 @@ container privileged or set an unconfined AppArmor profile merely to run Cacti.
 Optional Spine and proxies
 
 
-Follow Spine <https://github.com/Cacti/documentation/blob/67bc24e44000/Spine.md> for the optional compiled collector. Select a
+Follow Spine <https://github.com/Cacti/documentation/blob/d8a327c12a91/Spine.md> for the optional compiled collector. Select a
 compatible source or package and the development headers for your OS.
 Repository names differ: do not apply Rocky/AlmaLinux crb commands to RHEL
 without checking its repository configuration. Configure the Spine database
@@ -2298,7 +2298,7 @@ configuration file.
 
 
 When using a reverse proxy, see the proxy configuration in the general
-guide <https://github.com/Cacti/documentation/blob/67bc24e44000/General-Installing-Instructions.md>. A header allowlist alone does not authenticate a proxy; prevent
+guide <https://github.com/Cacti/documentation/blob/d8a327c12a91/General-Installing-Instructions.md>. A header allowlist alone does not authenticate a proxy; prevent
 clients from bypassing the trusted proxy and require it to replace forwarded
 client-IP headers.
 
@@ -2311,15 +2311,15 @@ Copyright (c) 2004-2026 The Cacti Group
 Installing on Rocky Linux 9 and 10 with nginx
 
 
-Use only the supported operating systems <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md#supported-operating-systems> and maintained
+Use only the supported operating systems <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md#supported-operating-systems> and maintained
 dependencies compatible with this Cacti branch.
 
 
 This source-install example covers the unreleased Cacti 1.3 development branch
-on RHEL, Rocky Linux, or AlmaLinux. Read Requirements <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md>
+on RHEL, Rocky Linux, or AlmaLinux. Read Requirements <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md>
 first. Run administrative commands as root and adapt paths and accounts to
 your deployment. For an existing installation, use
-Upgrading Cacti <https://github.com/Cacti/documentation/blob/67bc24e44000/Upgrading-Cacti.md>. For package-managed Cacti, follow the
+Upgrading Cacti <https://github.com/Cacti/documentation/blob/d8a327c12a91/Upgrading-Cacti.md>. For package-managed Cacti, follow the
 package maintainer's procedure instead of overlaying source files.
 
 
@@ -2399,7 +2399,7 @@ php -m
 
 
 Additional packages can be required by the chosen source revision. Check
-Requirements <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md>, including Composer dependencies where
+Requirements <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md>, including Composer dependencies where
 applicable. Do not mix extensions from different PHP versions or repositories.
 
 
@@ -2508,7 +2508,7 @@ staged source tree before deploying it to the web root. Do not substitute
 composer update or run dependency scripts as the runtime service account.
 
 
-Use General Installing Instructions <https://github.com/Cacti/documentation/blob/67bc24e44000/General-Installing-Instructions.md#install-and-configure-cacti> to obtain the intended source,
+Use General Installing Instructions <https://github.com/Cacti/documentation/blob/d8a327c12a91/General-Installing-Instructions.md#install-and-configure-cacti> to obtain the intended source,
 create a new database and dedicated application account, load timezone data,
 import cacti.sql, and configure include/config.php. The examples there use
 /var/www/html/cacti; substitute /usr/share/nginx/html/cacti here.
@@ -2555,7 +2555,7 @@ container privileged or set an unconfined AppArmor profile merely to run Cacti.
 Optional Spine and proxies
 
 
-Follow Spine <https://github.com/Cacti/documentation/blob/67bc24e44000/Spine.md> for the optional compiled collector. Select a
+Follow Spine <https://github.com/Cacti/documentation/blob/d8a327c12a91/Spine.md> for the optional compiled collector. Select a
 compatible source or package and the development headers for your OS.
 Repository names differ: do not apply Rocky/AlmaLinux crb commands to RHEL
 without checking its repository configuration. Configure the Spine database
@@ -2564,7 +2564,7 @@ configuration file.
 
 
 When using a reverse proxy, see the proxy configuration in the general
-guide <https://github.com/Cacti/documentation/blob/67bc24e44000/General-Installing-Instructions.md>. A header allowlist alone does not authenticate a proxy; prevent
+guide <https://github.com/Cacti/documentation/blob/d8a327c12a91/General-Installing-Instructions.md>. A header allowlist alone does not authenticate a proxy; prevent
 clients from bypassing the trusted proxy and require it to replace forwarded
 client-IP headers.
 
@@ -2578,17 +2578,17 @@ Installing Cacti Development on Ubuntu or Debian with Apache
 
 
 For nginx with PHP-FPM on Ubuntu Server 26.04 LTS or 26.10, use the
-Ubuntu LEMP guide <https://github.com/Cacti/documentation/blob/67bc24e44000/Installing-Under-Ubuntu-LEMP.md>.
+Ubuntu LEMP guide <https://github.com/Cacti/documentation/blob/d8a327c12a91/Installing-Under-Ubuntu-LEMP.md>.
 
 
-Use only the supported operating systems <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md#supported-operating-systems> and maintained
+Use only the supported operating systems <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md#supported-operating-systems> and maintained
 dependencies compatible with this Cacti branch.
 
 
 This is a source-install example for Cacti development (1.3), not a tested
 distribution
 matrix. Use a maintained distribution and check its PHP version against
-Requirements <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md> before
+Requirements <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md> before
 installing packages. Run the administrative commands below as root. The
 example uses /var/www/html/cacti and the default Debian/Ubuntu web account,
 www-data; adjust both if your web-server setup differs.
@@ -2803,8 +2803,8 @@ Installing Cacti on Ubuntu Server with nginx
 
 
 This fresh-install guide covers Cacti development (1.3) with nginx, PHP-FPM,
-and MariaDB. Use the requirements <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md> for this Cacti branch.
-For an existing installation, follow Upgrading Cacti <https://github.com/Cacti/documentation/blob/67bc24e44000/Upgrading-Cacti.md>.
+and MariaDB. Use the requirements <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md> for this Cacti branch.
+For an existing installation, follow Upgrading Cacti <https://github.com/Cacti/documentation/blob/d8a327c12a91/Upgrading-Cacti.md>.
 Do not overlay source files onto a package-managed Cacti installation.
 
 
@@ -2923,7 +2923,7 @@ dependencies, to /var/www/html/cacti. Use administrator privileges only for
 placement, ownership, and system configuration.
 
 
-Follow General Installing Instructions <https://github.com/Cacti/documentation/blob/67bc24e44000/General-Installing-Instructions.md#install-and-configure-cacti> to create the new database
+Follow General Installing Instructions <https://github.com/Cacti/documentation/blob/d8a327c12a91/General-Installing-Instructions.md#install-and-configure-cacti> to create the new database
 and dedicated application account, load timezone data, import the matching
 cacti.sql, and copy/configure include/config.php. These are fresh-install
 steps; do not import the default schema over an existing Cacti database.
@@ -3010,7 +3010,7 @@ CLI and web PHP environments separately. Verify executable paths, timezone
 data, filesystem permissions, and optional Spine before enabling collection.
 
 
-Configure either cron or cactid, using the Ubuntu scheduler guide <https://github.com/Cacti/documentation/blob/67bc24e44000/Installing-Under-Ubuntu-Debian.md#schedule-polling>.
+Configure either cron or cactid, using the Ubuntu scheduler guide <https://github.com/Cacti/documentation/blob/d8a327c12a91/Installing-Under-Ubuntu-Debian.md#schedule-polling>.
 Do not run both for one collector. For the default five-minute scheduler,
 create /etc/cron.d/cacti with mode 644 and this system-cron entry:
 
@@ -3023,7 +3023,7 @@ Run a manual polling cycle as the poller account before scheduling, then
 verify scheduled execution, collector status, logs, and recent RRD samples.
 Keep AppArmor enforcing and adjust only the specific policy and filesystem
 access required by the deployed services. For reverse proxies, use the
-trusted-proxy guidance <https://github.com/Cacti/documentation/blob/67bc24e44000/General-Installing-Instructions.md> rather than trusting arbitrary client headers.
+trusted-proxy guidance <https://github.com/Cacti/documentation/blob/d8a327c12a91/General-Installing-Instructions.md> rather than trusting arbitrary client headers.
 
 
 
@@ -3034,7 +3034,7 @@ Copyright (c) 2004-2026 The Cacti Group
 Upgrading Cacti Under UNIX Compatible Operating Systems
 
 
-Use only the supported operating systems <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md#supported-operating-systems> and maintained
+Use only the supported operating systems <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md#supported-operating-systems> and maintained
 dependencies compatible with this Cacti branch.
 
 
@@ -3042,11 +3042,11 @@ This procedure covers a source installation upgrading to Cacti development
 (1.3). For a
 package-managed installation, use the package maintainer's upgrade procedure
 and configuration-file handling. See the separate guides for
-Windows <https://github.com/Cacti/documentation/blob/67bc24e44000/Upgrading-Cacti-Under-Windows.md> and
-FreeBSD <https://github.com/Cacti/documentation/blob/67bc24e44000/Upgrading-Cacti-Under-FreeBSD.md>.
+Windows <https://github.com/Cacti/documentation/blob/d8a327c12a91/Upgrading-Cacti-Under-Windows.md> and
+FreeBSD <https://github.com/Cacti/documentation/blob/d8a327c12a91/Upgrading-Cacti-Under-FreeBSD.md>.
 
 
-Review the release notes <https://github.com/Cacti/cacti/releases> and requirements <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md> first.
+Review the release notes <https://github.com/Cacti/cacti/releases> and requirements <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md> first.
 Schedule time to back up and restore the installation. Test the upgrade on an
 isolated copy of the database and files before changing production. Keep
 dependency upgrades separate unless a prerequisite requires them.
@@ -3225,7 +3225,7 @@ Copyright (c) 2004-2026 The Cacti Group
 Upgrading Cacti Under FreeBSD
 
 
-Use only the supported operating systems <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md#supported-operating-systems> and maintained
+Use only the supported operating systems <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md#supported-operating-systems> and maintained
 dependencies compatible with this Cacti branch.
 
 
@@ -3235,8 +3235,8 @@ Use the 1.2.x manual <https://github.com/Cacti/documentation/tree/1.2.x> for rel
 upgrading the packaged release. Determine whether Cacti is maintained by
 pkg, by ports or from a source archive. Keep that installation
 method for the upgrade; do not overlay an archive onto package-managed files.
-Review the target Cacti release notes <https://github.com/Cacti/documentation/blob/67bc24e44000/Version-Specific-Release-Notes.md>,
-requirements <https://github.com/Cacti/documentation/blob/67bc24e44000/Requirements.md> and package or port notes before proceeding. Do
+Review the target Cacti release notes <https://github.com/Cacti/documentation/blob/d8a327c12a91/Version-Specific-Release-Notes.md>,
+requirements <https://github.com/Cacti/documentation/blob/d8a327c12a91/Requirements.md> and package or port notes before proceeding. Do
 not make an unrelated operating-system, PHP or database major-version upgrade
 part of this procedure without a separate compatibility plan.
 
@@ -3325,7 +3325,7 @@ pkg info -D cacti-php84
 Replace cacti-php84 with the installed package name. Keep the PHP flavor
 unless a separate migration is intended. If Spine is installed, review its
 upgrade and verify its version remains compatible with Cacti. See the
-FreeBSD installation section <https://github.com/Cacti/documentation/blob/67bc24e44000/General-Installing-Instructions.md#freebsd> for package paths and the
+FreeBSD installation section <https://github.com/Cacti/documentation/blob/d8a327c12a91/General-Installing-Instructions.md#freebsd> for package paths and the
 net-mgmt/cacti-spine port.
 
 
@@ -3340,7 +3340,7 @@ For a ports-managed installation, follow the handbook's ports upgrade
 procedure <https://docs.freebsd.org/en/books/handbook/ports/#ports-upgrading> and applicable /usr/ports/UPDATING entries. Use the
 existing ports management method; do not switch between ports and binary
 packages without reviewing their options and dependencies. A source
-installation instead follows Upgrading Cacti <https://github.com/Cacti/documentation/blob/67bc24e44000/Upgrading-Cacti.md>.
+installation instead follows Upgrading Cacti <https://github.com/Cacti/documentation/blob/d8a327c12a91/Upgrading-Cacti.md>.
 
 
 Preserve the working configuration and merge required changes from the new

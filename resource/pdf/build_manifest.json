@@ -1,8 +1,8 @@
 {
-  "documentation_base": "67bc24e44000",
+  "documentation_base": "d8a327c12a91",
   "build_date": "2026-10-27",
   "builder_sha256": "b4ae314f15a98cb3b615c6e2a10d923d35fbb284580e5bbd5c90b2a7a8cc541e",
-  "navigation_sha256": "40af57d46c498ad16527afdb179fc2ca1fccbfea32c8068f85573a0abf052a60",
+  "navigation_sha256": "8f825c79c96297e4b7d4471904db25ffe03950194bebba8e57bbdfd596bb6b47",
   "tool_lock_sha256": "4b5333f4b4aba1d08ead0b9441494aadd991386e8ffd2c42d46c6d8647e82ca2",
   "stylesheet_sha256": "172a8d4b17e011b0e966e1ac2453412e5fc8f3edc0cb6ce33a92139ca7a2f98c",
   "tools": {
@@ -156,6 +156,6 @@
     ],
     "chapters": 136,
     "pdf": "resource/pdf/cacti-manual.pdf",
-    "pdf_sha256": "607bdb53a282d23329aa5931e381035fe69159315a4f8ce82367bfa8581e56bb"
+    "pdf_sha256": "ee245a994177814e545c48df5e87b925eb2eef17a0a1e919c7d3b41e6b4bd454"
   }
 }

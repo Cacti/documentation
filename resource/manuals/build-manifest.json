@@ -1,5 +1,5 @@
 {
-  "source_revision": "67bc24e44000",
+  "source_revision": "d8a327c12a91",
   "manual_version": "unreleased Cacti 1.3 develop",
   "build_date": "2026-10-27",
   "schema_source": {
@@ -14,7 +14,7 @@
     "bin/build_other_manuals.py": "e790098a27548a57668c7b312fa75926aea2941e9cb438281bc373f782b51df1",
     "bin/build_pdf_docs.py": "b4ae314f15a98cb3b615c6e2a10d923d35fbb284580e5bbd5c90b2a7a8cc541e",
     "bin/build_pdf_docs.py.lock": "4b5333f4b4aba1d08ead0b9441494aadd991386e8ffd2c42d46c6d8647e82ca2",
-    "bin/check_navigation.py": "40af57d46c498ad16527afdb179fc2ca1fccbfea32c8068f85573a0abf052a60",
+    "bin/check_navigation.py": "8f825c79c96297e4b7d4471904db25ffe03950194bebba8e57bbdfd596bb6b47",
     "resources/css/pdf.css": "172a8d4b17e011b0e966e1ac2453412e5fc8f3edc0cb6ce33a92139ca7a2f98c",
     "resources/manuals/editions.json": "7e1947580750f88181e3c43d325e8d4d0e02062b58b9115aafd82409d724b06a",
     "resources/manuals/archive-inventory.json": "6a2c3035a16badb156211ed439a8ba3246581d2bf69db9a594314f1e17ff0ce8"
@@ -528,23 +528,23 @@
     }
   },
   "files": {
-    "cacti-guide-de.pdf": "781ae19162bbc23200b67443229204204a84e23f1fc9676e03a376b65896b24d",
-    "cacti-guide-de.txt": "bc724cdc558ec1a1baf796cec480274d1b06ed512ac2eaf8e71e6d1ff5630a35",
-    "cacti-guide-tr.pdf": "86e36d9fcc49cfc9902756641d10a6fef3bf1a3bb0f8d6dffb21f890d0329903",
-    "cacti-guide-tr.txt": "c8a93d27ba99e4981d784fbcb54efc714652209115e499a63e5a65c1eb453075",
+    "cacti-guide-de.pdf": "9aa35d4d519feb7bc60682405cc8b99d97dc36d216d89dd26e6f3b8413830f80",
+    "cacti-guide-de.txt": "8f22369eb6284818ccfa7da8d97568f7c53ccaf1e48f932ab2b98d4dae49f74a",
+    "cacti-guide-tr.pdf": "1cd577685a6ebeb5508d6c6611709e6f7942364829c6c98f53a4c5db58915c19",
+    "cacti-guide-tr.txt": "9be9e0ce149ddbdc1e427a86aaefeb34ccd7f125f34de1d3d8b2c1ddc1fd17ae",
     "cacti-schema.sql": "1b89f72e9989d7e09e142183c4d1c0eb2eb1aa235672fca253489f49f49ac952",
-    "install-linux.pdf": "ec4f778098703b5fe4dfaa330908dcee53da240a8840c635b637c9474bd19c20",
-    "install-linux.txt": "b3162abbee6aeeebb9b807cdeaaae6069fe042b45fc73e303b4fd9404d68e559",
-    "install-ru-unix.pdf": "e63b666c63e67f13a9ec980874aa2f0c3c9fe9f0baba45f4f16b23950946bc78",
-    "install-ru-unix.txt": "ba7f0099fa391272c65f3c2c1443fa7b7f3e7b4ea494ea3976ccd9b4b9a32d5c",
-    "install-ru-windows.pdf": "2c1dedd3ad694d94e9e8aa1cee8cc9957cba043f656b995b45818987e86443a2",
-    "install-ru-windows.txt": "80fbc34eec7b3a9e16dd653ced509af7a0352ee35e7be6fe59643a85aa13ca99",
-    "install-windows.pdf": "7abc8f2971144881bb0e4dd27ef85dac0a1912e9d58aee46620dce0ade85039e",
-    "install-windows.txt": "9d81ae056f14d30bcd7d3902472f8b47749d7c05ec858669e302aa234bd851f2",
-    "manual.txt": "46b8b7398c0f9ad44b4ef383cd5277e0e7ca9c496310d2725ac08897084e7373",
-    "migrate-solaris.pdf": "d6dd5b1f1d91cd9a230544c2a582285ba3066d120dbdbd59f1e020abcaa69207",
-    "migrate-solaris.txt": "4c99089d80540c14afd0d3a234498f4ccf792d5e70dfa3b7dec7ef64a1b9cf7a",
-    "schema-reference.pdf": "4645d15a3000e7c73f46a0bf38881cd7998a255d69263a9898cf5da6914bf9e3",
-    "schema-reference.txt": "67ac2f59a340976da6e9c1a83aeb4f2398f75262b48a57ac4d1c40b522561618"
+    "install-linux.pdf": "f9a4947f1aa67c09b3e5e830eb36084cdae896ddd6dff3545124e92b01cdbf74",
+    "install-linux.txt": "36a8a252b73f16d821ee43677215a772fca10d8cd561101f62121a458230a144",
+    "install-ru-unix.pdf": "96fbd0f3c04dfe64f4f50fbcc388c54ff6a8f29a2d313545fb6e305eb7a5cb3e",
+    "install-ru-unix.txt": "5b68236db4db47824a103b51568dd68eb6758cffdfbae9927b021baf35d2e236",
+    "install-ru-windows.pdf": "cc9ddb0f2cb22ff1604031d103eb09d100ba429b3e4331850e1facb3ec4ccba0",
+    "install-ru-windows.txt": "67dfcd1f0db17b053d6fdcb8644a2bc5cfc6c839608bd8cfbe4b1ec04af43577",
+    "install-windows.pdf": "e40c2ecf834bf999e7a2867776ca12b376875f7e83b3e3ef930ca0e2b6b7b5f8",
+    "install-windows.txt": "7e098c7889562cf3a493f940346388614d66d43830e812fe47fa6a29186e7bd2",
+    "manual.txt": "2158dfe1e559d9fc2c9918e772c615c23265424c641c45b0aec1810ae63f82bd",
+    "migrate-solaris.pdf": "3ea4f1d911917d24001cfeb063285a901e7c73a8e9378f7a20eae03b43a97299",
+    "migrate-solaris.txt": "4043e5ed3019ca81eee7ec6c6439b665603076be30c6ce47f568159d094e4fba",
+    "schema-reference.pdf": "e86a3c46319e200689b4e4fe263bffeb70a62a8a89413c3d7eaae55ed070f608",
+    "schema-reference.txt": "dff39fb5d3e3268e54440017d674e7486acea0148354bc05515ef5840a32234e"
   }
 }
