@@ -15,6 +15,9 @@ the requirements supplied with your installed version.
 This example from [Graph Overview](Graph-Overview.md) contains historical sample
 data and shows an earlier interface. Menu labels can differ in your version.
 
+[Current editions and contributed archives](Other-Manuals.md) include PDF,
+text, localized installation guides, and the development schema reference.
+
 ## What Do You Want to Do
 
 <a id="cacti-installation"></a>

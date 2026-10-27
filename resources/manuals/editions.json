@@ -1,0 +1,101 @@
+[
+  {
+    "id": "cacti-guide-de",
+    "language": "de",
+    "guide": "Guide-de.md",
+    "pages": "all"
+  },
+  {
+    "id": "cacti-guide-tr",
+    "language": "tr",
+    "guide": "Guide-tr.md",
+    "pages": "all"
+  },
+  {
+    "id": "install-linux",
+    "language": "en",
+    "guide": "Install-linux.md",
+    "pages": [
+      "Requirements.md",
+      "General-Installing-Instructions.md",
+      "How-to-Graph-Your-Network.md",
+      "Data-Debug.md",
+      "Debugging.md",
+      "Hardening-Cacti-Installation.md",
+      "Spine.md",
+      "Install-Under-Enterprise-Linux-LAMP.md",
+      "Install-Under-Enterprise-Linux-LEMP.md",
+      "Installing-Under-Ubuntu-Debian.md",
+      "Installing-Under-Ubuntu-LEMP.md",
+      "Upgrading-Cacti.md"
+    ]
+  },
+  {
+    "id": "install-ru-unix",
+    "language": "ru",
+    "guide": "Install-ru-unix.md",
+    "pages": [
+      "Requirements.md",
+      "General-Installing-Instructions.md",
+      "How-to-Graph-Your-Network.md",
+      "Data-Debug.md",
+      "Debugging.md",
+      "Hardening-Cacti-Installation.md",
+      "Spine.md",
+      "Install-Under-Enterprise-Linux-LAMP.md",
+      "Install-Under-Enterprise-Linux-LEMP.md",
+      "Installing-Under-Ubuntu-Debian.md",
+      "Installing-Under-Ubuntu-LEMP.md",
+      "Upgrading-Cacti.md",
+      "Upgrading-Cacti-Under-FreeBSD.md"
+    ]
+  },
+  {
+    "id": "install-ru-windows",
+    "language": "ru",
+    "guide": "Install-ru-windows.md",
+    "pages": [
+      "Requirements.md",
+      "Installing-Under-Windows.md",
+      "How-to-Graph-Your-Network.md",
+      "Data-Debug.md",
+      "Upgrading-Cacti-Under-Windows.md",
+      "Hardening-Cacti-Installation.md"
+    ]
+  },
+  {
+    "id": "install-windows",
+    "language": "en",
+    "guide": null,
+    "pages": [
+      "Requirements.md",
+      "Installing-Under-Windows.md",
+      "How-to-Graph-Your-Network.md",
+      "Data-Debug.md",
+      "Upgrading-Cacti-Under-Windows.md",
+      "Hardening-Cacti-Installation.md"
+    ]
+  },
+  {
+    "id": "migrate-solaris",
+    "language": "en",
+    "guide": "Migrate-solaris.md",
+    "pages": [
+      "Requirements.md",
+      "General-Installing-Instructions.md",
+      "How-to-Graph-Your-Network.md",
+      "Data-Debug.md",
+      "Debugging.md",
+      "Hardening-Cacti-Installation.md",
+      "Spine.md",
+      "Upgrading-Cacti.md",
+      "Upgrading-Cacti-Under-FreeBSD.md"
+    ]
+  },
+  {
+    "id": "schema-reference",
+    "language": "en",
+    "guide": "Schema-Reference.md",
+    "pages": []
+  }
+]

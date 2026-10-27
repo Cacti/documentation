@@ -253,7 +253,7 @@ def build(root, output):
     tracked = subprocess.check_output(['git', 'ls-files', '-z', '--', '*.md', 'images', 'resource',
                                        'resources', ':(exclude)resource/html/**'], cwd=root).decode().split('\0')
     pages = sorted(root / name for name in filter(None, tracked)
-                   if Path(name).suffix == '.md' and Path(name).parent.as_posix() in {'.', 'Architecture', 'resources/build'})
+                   if Path(name).suffix == '.md' and Path(name).parent.as_posix() in {'.', 'Architecture', 'resources/build', 'resources/manuals'})
     assets = [name for name in tracked if name.startswith(('images/', 'resource/', 'resources/'))]
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='cacti-html-', dir=output.parent) as temporary:
