@@ -97,6 +97,8 @@ class Text(HTMLParser):
             self.parts.append(' <' + self.links.pop() + '>')
 
     def handle_data(self, data):
+        if not data.strip() and self.parts and self.parts[-1].endswith('* '):
+            return
         self.parts.append(data)
 
 
