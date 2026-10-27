@@ -3,9 +3,11 @@
 Use only the [supported operating systems][supported-os] and maintained
 dependencies compatible with this Cacti branch.
 
-These instructions cover upgrading to Cacti development (1.3). Determine
-whether Cacti is
-maintained by `pkg`, by ports or from a source archive. Keep that installation
+These instructions cover the FreeBSD upgrade procedure. This manual describes
+Cacti development (1.3), while the FreeBSD port currently supplies Cacti 1.2.31.
+Use the [1.2.x manual][manual-12] for release-specific requirements when
+upgrading the packaged release. Determine whether Cacti is maintained by
+`pkg`, by ports or from a source archive. Keep that installation
 method for the upgrade; do not overlay an archive onto package-managed files.
 Review the target Cacti [release notes](Version-Specific-Release-Notes.md),
 [requirements](Requirements.md) and package or port notes before proceeding. Do
@@ -51,7 +53,9 @@ part of this procedure without a separate compatibility plan.
    settings, web-server settings, database grants, certificates/keys and
    installed versions. Package layouts may keep configuration and data outside
    `/usr/local/share/cacti`; inspect the installed paths rather than backing up
-   that directory alone.
+   that directory alone. Include `/var/db/cacti/rra` and `/var/log/cacti`
+   when those are the configured package paths, and protect the backup directory
+   from other users because the configuration contains credentials.
 
 ## Upgrade using the existing installation method
 
@@ -59,11 +63,26 @@ For a binary package installation, review the proposed package transaction
 before applying it. The [FreeBSD Handbook][packages] describes package
 upgrades. Run the following with appropriate administrator privileges:
 
+Discover the installed flavor first:
+
 ```sh
+pkg info -o -x '^cacti'
 pkg update
-pkg upgrade -n cacti
-pkg upgrade cacti
 ```
+
+For an installed `cacti-php84` package, for example:
+
+```sh
+pkg upgrade -n cacti-php84
+pkg upgrade cacti-php84
+pkg info -D cacti-php84
+```
+
+Replace `cacti-php84` with the installed package name. Keep the PHP flavor
+unless a separate migration is intended. If Spine is installed, review its
+upgrade and verify its version remains compatible with Cacti. See the
+[FreeBSD installation section][freebsd-install] for package paths and the
+`net-mgmt/cacti-spine` port.
 
 Check the proposed version and dependency changes before accepting the actual
 upgrade. A package repository normally supplies a release rather than
@@ -116,6 +135,8 @@ database upgrade.
 [ports]:<https://docs.freebsd.org/en/books/handbook/ports/#ports-upgrading>
 
 [supported-os]: Requirements.md#supported-operating-systems
+[manual-12]: <https://github.com/Cacti/documentation/tree/1.2.x>
+[freebsd-install]: General-Installing-Instructions.md#freebsd
 
 ---
 
