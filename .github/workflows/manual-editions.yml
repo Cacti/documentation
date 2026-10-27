@@ -42,6 +42,7 @@ jobs:
             --with-requirements "$RUNNER_TEMP/pdf-requirements.txt" --with coverage==7.13.2)
           "${renderer[@]}" python -m coverage run --branch --include=bin/build_other_manuals.py \
             -m unittest discover -s bin/tests -p test_other_manuals.py
+          "${renderer[@]}" python -m unittest discover -s bin/tests -p test_navigation_anchors.py
           "${renderer[@]}" python -m coverage report --fail-under=100
           "${renderer[@]}" python -m coverage json -o manual-artifacts/coverage.json
       - name: Build every current PDF and text edition
