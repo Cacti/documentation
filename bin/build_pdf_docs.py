@@ -195,7 +195,7 @@ def build_reportit(output):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--only", choices=("manual", "reportit"))
+    parser.add_argument("--only", choices=("manual", "reportit"), default="manual")
     parser.add_argument("--companions", action="store_true", help="Also build text and archive replacement editions")
     args = parser.parse_args()
     logging.getLogger("weasyprint").setLevel(logging.ERROR)

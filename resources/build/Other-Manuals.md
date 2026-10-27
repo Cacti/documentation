@@ -42,8 +42,8 @@ example, use `mise exec python@3.12 uv@0.12.23 -- env` followed by
 arguments on an Apple Silicon Homebrew installation.
 
 The command above preserves the
-existing ReportIt edition and its metadata. To rebuild ReportIt too, omit
-`--only manual`.
+existing ReportIt edition. The default is the Cacti manual; rebuilding
+ReportIt with `--only reportit` requires its separate editable source.
 
 Outputs are `resource/pdf/cacti-manual.pdf`, its existing PDF manifest, and
 `resource/manuals/`: eight companion PDFs, nine UTF-8 text editions, a schema
