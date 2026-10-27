@@ -82,7 +82,7 @@ documents are not copied or translated into the new guides.
 
 ## Build and publish
 
-Follow [manual publication](resources/build/Other-Manuals.md) to rebuild and
+Follow [manual publication][publication] to rebuild and
 validate every edition. The [edition manifest][editions-manifest]
 records exact sources and checksums. The PDF builder also records its locked
 toolchain in [the PDF manifest](resource/pdf/build_manifest.json).
@@ -93,6 +93,7 @@ link this index from the download page, and retain the original archive URLs.
 Publish the main manual separately from the historic `manual.pdf` and
 `manual.txt` names so an existing archive citation keeps its meaning.
 
+[publication]: resources/build/Other-Manuals.md
 [inventory]: resources/manuals/archive-inventory.json
 [editions-manifest]: resource/manuals/build-manifest.json
 [stable]: https://github.com/Cacti/documentation/blob/1.2.x/README.md

@@ -58,7 +58,7 @@ def schema_reference(root):
               '---', '', 'Copyright (c) 2004-2026 The Cacti Group', '']
     rendered = []
     fenced = False
-    for line in lines:
+    for line in "\n".join(lines).split("\n"):
         if line.startswith('```'):
             fenced = not fenced
         if not fenced and len(line) > 79 and not line.startswith('  <'):
