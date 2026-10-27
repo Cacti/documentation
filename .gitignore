@@ -25,3 +25,4 @@ html-artifacts/
 
 /manual-artifacts/
 navigation-report.json
+!.gitattributes
