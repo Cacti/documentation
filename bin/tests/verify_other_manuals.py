@@ -8,7 +8,13 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from build_other_manuals import local, plain, schema_reference
-from build_pdf_docs import chapter_id
+import re
+
+
+def chapter_id(path):
+    name = path.relative_to(ROOT).with_suffix('').as_posix().replace('/', '-')
+    return 'chapter-' + re.sub(r'[^\w -]', '', name.lower()).replace(' ', '-')
+
 from check_navigation import ordered_pages
 from pypdf import PdfReader
 

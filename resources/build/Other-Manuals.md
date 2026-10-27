@@ -36,7 +36,12 @@ mise exec python@3.12 uv@0.12.23 -- uv run --locked --python python \
 ```
 
 On macOS with Homebrew, set `DYLD_FALLBACK_LIBRARY_PATH` to the Homebrew `lib`
-directory if WeasyPrint cannot locate Pango. The command above preserves the
+directory after selecting runtimes if WeasyPrint cannot locate Pango. For
+example, use `mise exec python@3.12 uv@0.12.23 -- env` followed by
+`DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib uv run` and the remaining build
+arguments on an Apple Silicon Homebrew installation.
+
+The command above preserves the
 existing ReportIt edition and its metadata. To rebuild ReportIt too, omit
 `--only manual`.
 
