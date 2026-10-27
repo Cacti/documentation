@@ -15,3 +15,10 @@ manual/*
 .git*
 !.github
 !.github/**
+# Static manual build and browser evidence
+node_modules/
+__pycache__/
+/tests/browser/artifacts/
+html-artifacts/
+.coverage
+/html-check/
