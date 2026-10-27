@@ -79,7 +79,8 @@ class Text(HTMLParser):
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         if tag in {'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'pre', 'tr', 'blockquote'}:
-            self.parts.append('\n\n')
+            if not (tag == 'p' and self.parts and self.parts[-1].endswith('* ')):
+                self.parts.append('\n\n')
         if tag == 'li':
             self.parts.append('\n* ')
         if tag in {'td', 'th'}:
@@ -116,7 +117,7 @@ def plain(source, root, revision):
                                   target.relative_to(root).as_posix() + ('#' + url.fragment if url.fragment else ''))
     output = Text()
     output.feed(md.renderer.render(tokens, md.options, {}))
-    return ''.join(output.parts).strip() + '\n'
+    return '\n'.join(line.rstrip() for line in ''.join(output.parts).strip().splitlines()) + '\n'
 
 
 def build(root, revision, built, pdf_builder):

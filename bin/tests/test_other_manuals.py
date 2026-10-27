@@ -72,6 +72,7 @@ class Editions(unittest.TestCase):
 ![Example measurements](image.png)
 
 1. First
+
 2. Second
 
 > Quoted text

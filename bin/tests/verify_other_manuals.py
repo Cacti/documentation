@@ -2,24 +2,23 @@
 """Check the real PDF/text publication outputs, not mocked renderer results."""
 import hashlib
 import json
+import re
 from pathlib import Path
 import subprocess
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from build_other_manuals import local, plain, schema_reference
-import re
-
-
-def chapter_id(path):
-    name = path.relative_to(ROOT).with_suffix('').as_posix().replace('/', '-')
-    return 'chapter-' + re.sub(r'[^\w -]', '', name.lower()).replace(' ', '-')
-
 from check_navigation import ordered_pages
 from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[2]
 FOLDER = ROOT / 'resource/manuals'
+
+
+def chapter_id(path):
+    name = path.relative_to(ROOT).with_suffix('').as_posix().replace('/', '-')
+    return 'chapter-' + re.sub(r'[^\w -]', '', name.lower()).replace(' ', '-')
 
 
 def hashes(folder, entries):
@@ -76,7 +75,7 @@ def main():
         reader = pdf(path, selected)
         if spec['guide']:
             title = selected[0].read_text().splitlines()[0].lstrip('# ')
-            if title not in reader.pages[0].extract_text():
+            if title not in ' '.join(reader.pages[0].extract_text().split()):
                 raise ValueError('Missing localized PDF cover text: ' + spec['id'])
         evidence['editions'][spec['id']] = {'chapters': len(selected), 'pdf_pages': len(reader.pages),
                                           'pdf_destinations': len(reader.named_destinations), 'text_bytes': len(text.encode())}
@@ -88,7 +87,9 @@ def main():
         raise ValueError('Original contributed manual inventory is incomplete')
     # This guide contains the populated graph screenshot and its explicit caption.
     guide = PdfReader(FOLDER / 'install-linux.pdf')
-    page = next(i for i, p in enumerate(guide.pages, 1) if 'historical example measurements' in p.extract_text())
+    page = next(i for i, p in enumerate(guide.pages, 1)
+                if any(op == b'Do' and p['/Resources']['/XObject'][args[0]].get_object().get('/Subtype') == '/Image'
+                       for args, op in p.get_contents().operations))
     previews = ROOT / 'manual-artifacts'
     previews.mkdir(exist_ok=True)
     subprocess.run(['pdftoppm', '-f', str(page), '-singlefile', '-scale-to', '1440', '-png',
