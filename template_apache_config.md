@@ -7,7 +7,7 @@ statistics and use the endpoint on the server being monitored.
 
 ![Apache template view](images/apache-template-preview.png)
 
-## CentOS and Red Hat configuration
+## Enterprise Linux configuration
 
 Check whether the installed Apache configuration already loads `mod_status`.
 Add the module load only if it is missing, then configure the status location

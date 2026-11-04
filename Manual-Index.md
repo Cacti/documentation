@@ -10,12 +10,15 @@ show an earlier release or a different theme.
 ## Install or Upgrade Cacti
 
 Choose the guide for your operating system and installation method.
+Earlier [LAMP][previous-lamp] and [LEMP][previous-lemp] guide URLs point to
+the maintained Enterprise Linux instructions.
 
 - [Requirements](Requirements.md)
 - [General Installing Instructions](General-Installing-Instructions.md)
 - [Enterprise Linux with Apache (LAMP)](Install-Under-Enterprise-Linux-LAMP.md)
-- [Enterprise Linux with Nginx (LEMP)](Install-Under-Enterprise-Linux-LEMP.md)
+- [Rocky Linux 9 and 10 with Nginx (LEMP)][rocky-lemp]
 - [Ubuntu/Debian with Apache (LAMP)](Installing-Under-Ubuntu-Debian.md)
+- [Ubuntu Server 26.04 LTS and 26.10 with Nginx (LEMP)][ubuntu-lemp]
 - [Installing Under Windows](Installing-Under-Windows.md)
 - [Upgrading Cacti Under UNIX Compatible Operating Systems](Upgrading-Cacti.md)
 - [Upgrading Cacti Under Windows](Upgrading-Cacti-Under-Windows.md)
@@ -214,3 +217,8 @@ Find project credits, licensing, support, and additional resources.
 ---
 
 Copyright (c) 2004-2026 The Cacti Group
+
+[rocky-lemp]: Install-Under-Enterprise-Linux-LEMP.md
+[ubuntu-lemp]: Installing-Under-Ubuntu-LEMP.md
+[previous-lamp]: Install-Under-CentOS_LAMP.md
+[previous-lemp]: Install-Under-CentOS_LEMP.md
