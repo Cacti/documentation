@@ -10,6 +10,11 @@ to install Cacti, configure monitoring, and keep your installation running.
 For released Cacti 1.2 installations, use the [1.2.x manual][manual-1.2] and
 the requirements supplied with your installed version.
 
+![Example Cacti graph with populated historical data](images/graphs-edit.png)
+
+This example from [Graph Overview](Graph-Overview.md) contains historical sample
+data and shows an earlier interface. Menu labels can differ in your version.
+
 ## What Do You Want to Do
 
 <a id="cacti-installation"></a>
@@ -95,6 +100,8 @@ need a particular option, command, variable, or graph expression. Check
 
 <a id="development-standards"></a>
 
+- **[HTML manual content and publication](resources/build/HTML-Manual.md)**:
+  Build all chapters and preserve links from the archived HTML manual.
 - **[Development standards](Manual-Index.md#development-standards)**: Follow
   the documentation, PHP, SQL, and security conventions for your target branch.
 
