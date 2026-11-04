@@ -78,30 +78,142 @@ its socket path and permissions match the web-server handler.
 
 ## FreeBSD
 
-Use the [FreeBSD Handbook][freebsd-ports] to choose binary packages or ports
-and follow the installed package's notes. Inspect the offered Cacti version,
-PHP dependencies, database service, web integration, and configuration paths
-before installing. Do not assume a package contains a development revision.
+Use a patched release listed in [supported operating systems][supported-os].
+Choose binary packages or the Ports Collection using the
+[FreeBSD Handbook][freebsd-ports]. Run package and service administration
+commands as root. Use the dedicated poller account for collection.
 
-For binary packages, review the proposed transaction first:
+### Choose the Cacti version and PHP flavor
+
+The FreeBSD `net-mgmt/cacti` port currently packages Cacti 1.2.31, not the
+unreleased Cacti 1.3 development branch covered by this manual. For a packaged
+release, follow its installed instructions and the [1.2.x manual][manual-12].
+For development source, meet [Requirements](Requirements.md) and follow the
+source-install steps below using FreeBSD paths and service configuration.
+Do not overlay a source checkout onto files owned by `pkg`.
+
+Cacti packages have PHP flavors. Discover the names available in your
+configured repository before selecting one:
 
 ```sh
-pkg install -n cacti
-pkg install cacti
+pkg update
+pkg search -S name -x '^cacti(-php[0-9]+)?$'
 ```
 
-Install optional Spine separately if required. Do not mix ports and binary
-packages without reviewing dependency and build-option compatibility. Package
-dependencies alone do not configure the database or web server.
+For example, if the repository offers `cacti-php84` and the installation uses
+PHP 8.4, review and install that flavor:
 
-FreeBSD commonly installs third-party software under `/usr/local`. Adapt Linux
-examples such as `/etc/php.ini` and `/usr/bin/spine` to the actual installed
-paths. Grant ICMP privileges only when required by the selected collector and
-package; do not apply a blanket setuid command to an unverified binary. Use
-[Upgrading Under FreeBSD](Upgrading-Cacti-Under-FreeBSD.md) for an existing
-installation.
+```sh
+pkg install -n cacti-php84
+pkg install cacti-php84
+pkg info -D cacti-php84
+pkg info -l cacti-php84
+```
 
-[freebsd-ports]:<https://docs.freebsd.org/en/books/handbook/ports/>
+Replace the example name with the selected flavor. Read the transaction before
+accepting it, particularly changes to PHP extensions and database clients.
+Dependencies do not configure a web server or create a database server. Set up
+a compatible local MariaDB/MySQL service, or an existing remote database,
+and configure Apache or nginx with the matching PHP handler separately.
+Use FreeBSD `service` and `sysrc` for installed rc.d services; Linux
+`systemctl` examples do not apply.
+
+### Build from ports when custom options are required
+
+Use a maintained ports tree and read `/usr/ports/UPDATING`. Clone a tree only
+if `/usr/ports` does not already contain one:
+
+```sh
+pkg install git
+# New tree only:
+git clone --depth 1 https://git.FreeBSD.org/ports.git /usr/ports
+# Existing Git tree instead:
+git -C /usr/ports pull --ff-only
+```
+
+Build the chosen flavor, for example:
+
+```sh
+cd /usr/ports/net-mgmt/cacti
+make FLAVOR=php84 config
+make FLAVOR=php84 install clean
+```
+
+The supported flavors and dependencies come from that ports revision. Follow
+the handbook's dependency-management guidance before mixing custom ports with
+binary packages. Rebuilding a port does not turn the packaged release into
+Cacti development source.
+
+### Check installed paths and services
+
+The [Cacti port][freebsd-cacti] uses these default locations. Custom ports
+options and existing Cacti settings can change them; inspect the installed
+files and application configuration before copying commands.
+
+| Item | Default location or account |
+| --- | --- |
+| Application and bundled schema | `/usr/local/share/cacti` |
+| Database configuration | `/usr/local/share/cacti/include/config.php` |
+| PHP configuration | `/usr/local/etc/php.ini` |
+| RRD data | `/var/db/cacti/rra` |
+| Log directory | `/var/log/cacti` |
+| PHP CLI | `/usr/local/bin/php` |
+| Packaged poller account | `cacti` |
+| Web-server account | Commonly `www`; verify the service configuration |
+
+The port supplies `include/config.php.sample`; preserve an existing
+`include/config.php` and use the sample when creating a new one. Set the
+intended timezone in both CLI and web PHP. Initialize a new database from the
+bundled `cacti.sql`, grant the application account access to its database and
+`mysql.time_zone_name`, and verify database timezone data is loaded. Never
+import `cacti.sql` over an existing installation.
+
+Check package-specific patches as well as upstream instructions. For example,
+the current port sets `$php_snmp_support = false` for new configurations;
+verify the installed setting and Net-SNMP paths when troubleshooting polling.
+
+Configure write access only for the runtime directories needed by the actual
+poller and web processes. Keep application code and database credentials
+protected. Preserve Cacti's web-server restrictions on configuration, CLI,
+resource, and data directories.
+
+Create one Cacti schedule. For a five-minute launcher, an example entry in the
+`cacti` user's crontab is:
+
+```cron
+*/5 * * * * /usr/local/bin/php -q /usr/local/share/cacti/poller.php
+```
+
+Match this cadence to **Cron/Daemon Interval** in Cacti. A system crontab needs
+the account field as well. Check for an existing cron entry or daemon first;
+do not run both. Use [Data Source Debugging](Data-Debug.md) and the Cacti log
+to verify collection after completing the web installer.
+
+### Optional Spine poller
+
+The [Spine port][freebsd-spine] is `net-mgmt/cacti-spine`; its package is
+`spine`. Install it only when its version matches the Cacti release you use:
+
+```sh
+pkg install -n spine
+pkg install spine
+```
+
+Its default binary is `/usr/local/bin/spine`, with
+`/usr/local/etc/spine.conf.sample` as the configuration example. Supply the
+correct database connection in `spine.conf` and select the binary in Cacti.
+Verify the poller account can run it. Grant ICMP privileges only when the
+selected polling method requires them; do not apply a blanket setuid command.
+
+For an existing installation, follow
+[Upgrading Under FreeBSD](Upgrading-Cacti-Under-FreeBSD.md).
+
+[freebsd-ports]: <https://docs.freebsd.org/en/books/handbook/ports/>
+[freebsd-cacti]:
+  <https://github.com/freebsd/freebsd-ports/tree/main/net-mgmt/cacti>
+[freebsd-spine]:
+  <https://github.com/freebsd/freebsd-ports/tree/main/net-mgmt/cacti-spine>
+[manual-12]: <https://github.com/Cacti/documentation/tree/1.2.x>
 
 ## Configure PHP
 
