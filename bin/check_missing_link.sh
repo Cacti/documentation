@@ -17,29 +17,6 @@
 #
 # Check that documentation is linked from the front page or manual index.
 
-# Determine if running script with out arguments so that path will be relative
-if [ -n "${*}" ]
-then
-
-	FILENAME=$(basename "$1")
-	if grep -Fq -- "${FILENAME}" README.md Manual-Index.md Project-Information.md; then
-		if [ -n "${CHECK_SHOW_LINKED}" ]; then
-			echo "Linked....: ${FILENAME}";
-		fi
-		exit 0;
-	fi
-	echo "Not Linked: ${FILENAME}"
-	exit 1;
-else
-	LINES=$(find . -not \( -path ./.github/\* \) -name \*.md ! -name README.md -exec "$0" "{}" \;)
-	COUNT=$(echo "${LINES}" | grep -c "Not Linked:")
-
-	if [[ -n "${CHECK_SHOW_LINKED}" || ${COUNT} -gt 0 ]]; then
-		if [[ -n "$LINES" ]]; then
-			echo "${LINES}";
-			echo "";
-		fi;
-		echo "$COUNT unlinked files";
-	fi
-	exit "$COUNT";
-fi
+set -eu
+DOC_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+exec python3 "$DOC_ROOT/bin/check_navigation.py" "$@"

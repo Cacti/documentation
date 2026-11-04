@@ -7,7 +7,16 @@ Cacti 1.2 installations, use the [1.2.x manual][manual-1.2]. Menu visibility
 also depends on permissions, enabled features, and plugins. Screenshots can
 show an earlier release or a different theme.
 
-## Install or Upgrade Cacti
+Browse by task: [start here](#start-here),
+[monitor and operate](#monitor-and-operate),
+[customize and extend](#customize-and-extend),
+[troubleshooting and reference](#troubleshooting-and-reference),
+[contribute and develop](#contribute-and-develop), or
+[downloads and community](#downloads-and-community).
+
+## Start Here
+
+### Install or Upgrade Cacti
 
 Choose the guide for your operating system and installation method.
 
@@ -25,11 +34,12 @@ Choose the guide for your operating system and installation method.
 - [Configuring SSL for Cacti](Cacti-SSL-Configuration.md)
 - [Version Specific Release Notes](Version-Specific-Release-Notes.md)
 
-## Create Your First Graphs
+### Create Your First Graphs
 
 Start with the interface and concepts, then add a device and its graphs.
 
 - [Navigating the Cacti User Interface](Navigating-The-User-Interface.md)
+- [Themes and Plugin Appearance](Themes.md)
 - [Principles of Operation](Principles-of-Operation.md)
 - [How to Graph Your Network](How-to-Graph-Your-Network.md)
 - [Device Management](Devices.md)
@@ -38,7 +48,9 @@ Start with the interface and concepts, then add a device and its graphs.
 - [Viewing Graphs](Viewing-Graphs.md)
 - [Creating a Graph for a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
 
-## Manage Your Installation
+## Monitor and Operate
+
+### Manage Your Installation
 
 Organize monitoring, automate discovery, manage access, and create reports.
 
@@ -64,7 +76,7 @@ Organize monitoring, automate discovery, manage access, and create reports.
 - [Other Report Management Options](Reports-Other-Options.md)
 - [System Utilities](System-Utilities.md)
 
-## Configure Data Collection
+### Configure Data Collection
 
 Configure local and remote collection and diagnose performance constraints.
 
@@ -79,7 +91,9 @@ Configure local and remote collection and diagnose performance constraints.
 - [SSH tunnels for remote Unix monitoring](How-To-SSH-Tunnels.md)
 - [How To Extend snmpd with custom script/data](How-To-SNMP-Custom-Script.md)
 
-## Create and Reuse Templates
+## Customize and Extend
+
+### Create and Reuse Templates
 
 Find template concepts, query procedures, packaging, and device-specific guides.
 
@@ -108,7 +122,25 @@ Find template concepts, query procedures, packaging, and device-specific guides.
 - [ESXi/VMware Template](template_esxi_config.md)
 - [Proxmox - external storage usage](device-template-specific-proxmox.md)
 
-## Troubleshoot a Problem
+### Plugins
+
+Install and use plugins, or develop an extension.
+
+- [Plugin Management](Plugins.md)
+- [Supported plugins](supported-plugins.md)
+- [syslog](Plugin-Syslog.md)
+- [MacTrack](Plugin-Mactrack.md)
+- [Plugin Development](Plugin-Development.md)
+- [Plugin Guidelines](Plugin-Guidelines.md)
+- [Creating a plugin](Plugin-Creating-Plugins.md)
+- [Reference Plugins](Plugin-Reference.md)
+- [Plugin Hook API Reference](Plugin-Hook-API-Ref.md)
+- [ReportIt 3.0 development manual (PDF)](resource/pdf/manual_reportit_3.0.pdf)
+- [ReportIt plugin manual (historical PDF)](resource/pdf/manual_reportit.pdf)
+
+## Troubleshooting and Reference
+
+### Troubleshoot a Problem
 
 Start with the symptom, polling output, and log messages.
 
@@ -119,7 +151,7 @@ Start with the symptom, polling output, and log messages.
 - [Known Issues](Known-Issues.md)
 - [Spikekill](Spikekill.md)
 
-## Settings Reference
+### Settings Reference
 
 Use the settings for your branch. Development and 1.2 authentication differ.
 
@@ -139,7 +171,7 @@ Use the settings for your branch. Development and 1.2 authentication differ.
 - [Multiple LDAP/AD Domains (1.2)](Settings-Domains.md)
 - [Users, groups, and login providers](Settings-Users-Groups-Domains.md)
 
-## Graph and Data Reference
+### Graph and Data Reference
 
 Look up data profiles, expressions, formatting, and command-line tools.
 
@@ -152,29 +184,17 @@ Look up data profiles, expressions, formatting, and command-line tools.
 - [RRDtool Specific Features](RRDtool-Specific-Features.md)
 - [Command Line Scripts (CLI)](Command-Line-Scripts.md)
 
-## Plugins
+## Contribute and Develop
 
-Install and use plugins, or develop an extension.
-
-- [Plugin Management](Plugins.md)
-- [Supported plugins](supported-plugins.md)
-- [syslog](Plugin-Syslog.md)
-- [MacTrack](Plugin-Mactrack.md)
-- [Plugin Development](Plugin-Development.md)
-- [Plugin Guidelines](Plugin-Guidelines.md)
-- [Creating a plugin](Plugin-Creating-Plugins.md)
-- [Reference Plugins](Plugin-Reference.md)
-- [Plugin Hook API Reference](Plugin-Hook-API-Ref.md)
-- [ReportIt plugin manual (historical PDF)](resource/pdf/manual_reportit.pdf)
-
-## Contributing
+### Contributing
 
 Contribute code, documentation, translations, and support.
 
 - [Contributing](Contributing.md)
+- [Development and Testing](Development-and-Testing.md)
 - [Creating Translations](Contributing-Translations.md)
 
-## Development Standards
+### Development Standards
 
 Follow the target branch's contributor instructions and checks.
 
@@ -186,7 +206,7 @@ Follow the target branch's contributor instructions and checks.
 - [SQL Standards](Standards-SQL.md)
 - [Security](Standards-Security.md)
 
-## Architecture Decisions
+### Architecture Decisions
 
 Read the decision index for the status of each proposal.
 
@@ -196,10 +216,13 @@ Read the decision index for the status of each proposal.
 - [ADR-0003: Plugin extension boundary][guide-2]
 - [ADR-0004: Workflow storage and observability][guide-3]
 
-## Project and Community
+## Downloads and Community
+
+### Project and Community
 
 Find project credits, licensing, support, and additional resources.
 
+- [Manual and Example Downloads](Downloads.md)
 - [Project Credits and Licensing](Project-Information.md)
 - [External Links](External-Links.md)
 - [Official video tutorials][videos]
