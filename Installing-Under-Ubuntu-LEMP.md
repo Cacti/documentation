@@ -126,7 +126,7 @@ server {
 
     # nginx does not process Cacti's Apache .htaccess restrictions.
     location ~ (^|/)\. { deny all; }
-    location ~ ^/cacti/(cli|contrib|log|mibs|rra|scripts|service)/ {
+    location ~ ^/cacti/(bin|cli|contrib|log|mibs|rra|scripts|service|tests)/ {
         deny all;
     }
     location ~ ^/cacti/cache/(boost|mibcache|realtime|spikekill)/ {
@@ -187,7 +187,7 @@ access required by the deployed services. For reverse proxies, use the
 [ubuntu-php-interim]:<https://packages.ubuntu.com/stonking/php/php-fpm>
 [general]: General-Installing-Instructions.md#install-and-configure-cacti
 [polling]: Installing-Under-Ubuntu-Debian.md#schedule-polling
-[proxy]: General-Installing-Instructions.md
+[proxy]: General-Installing-Instructions.md#considerations-when-using-proxies-in-front-of-cacti-cacti-1223
 
 ---
 
