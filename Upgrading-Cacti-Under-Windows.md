@@ -110,7 +110,7 @@ verify its platform checks instead of assuming that every archive is complete.
    upgraded database is not a rollback.
 
 [tasks]:<https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks-change>
-[dump]:<https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html>
+[dump]:<https://dev.mysql.com/doc/refman/8.4/en/mysqldump.html>
 [robocopy]:<https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/robocopy>
 [download]:<https://github.com/Cacti/cacti/releases>
 

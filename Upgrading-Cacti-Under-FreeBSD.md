@@ -130,7 +130,7 @@ stop all writers again and restore the matching files, database, RRDs and
 configuration as one set; restoring old application files alone does not undo a
 database upgrade.
 
-[dump]:<https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html>
+[dump]:<https://dev.mysql.com/doc/refman/8.4/en/mysqldump.html>
 [packages]:<https://docs.freebsd.org/en/books/handbook/ports/#pkgng-upgrading>
 [ports]:<https://docs.freebsd.org/en/books/handbook/ports/#ports-upgrading>
 

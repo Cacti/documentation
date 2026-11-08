@@ -52,7 +52,7 @@ against Cacti's requirements before installation.
 ```console
 dnf install -y nginx php-fpm php-cli php-mysqlnd php-gd php-gmp \
   php-intl php-ldap php-mbstring php-xml php-process php-snmp php-pdo \
-  mariadb-server rrdtool net-snmp-utils cronie
+  php-pecl-zip mariadb-server rrdtool net-snmp-utils cronie git unzip
 php -v
 php -m
 ```
@@ -119,7 +119,7 @@ server {
 
     # nginx does not read Apache .htaccess files.
     location ~ (^|/)\. { deny all; }
-    location ~ ^/cacti/(cli|contrib|log|mibs|rra|scripts|service)/ {
+    location ~ ^/cacti/(bin|cli|contrib|log|mibs|rra|scripts|service|tests)/ {
         deny all;
     }
     location ~ ^/cacti/cache/(boost|mibcache|realtime|spikekill)/ {
@@ -209,7 +209,7 @@ clients from bypassing the trusted proxy and require it to replace forwarded
 client-IP headers.
 
 [general]: General-Installing-Instructions.md#install-and-configure-cacti
-[proxy]: General-Installing-Instructions.md
+[proxy]: General-Installing-Instructions.md#considerations-when-using-proxies-in-front-of-cacti-cacti-1223
 [selinux]:<https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/using_selinux/index>
 
 [supported-os]: Requirements.md#supported-operating-systems

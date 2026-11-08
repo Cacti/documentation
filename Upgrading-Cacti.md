@@ -156,7 +156,7 @@ Verify the restored installation before re-enabling its schedulers. Restoring
 an earlier backup discards changes collected after that backup.
 
 [release]:<https://github.com/Cacti/cacti/releases>
-[dump]:<https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html>
+[dump]:<https://dev.mysql.com/doc/refman/8.4/en/mysqldump.html>
 
 [supported-os]: Requirements.md#supported-operating-systems
 
