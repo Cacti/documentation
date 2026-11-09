@@ -83,10 +83,13 @@ claim that every manual instruction was executed on every operating system.
 
 ## Publish the Reviewed Artifact
 
-Review the exact artifact and source manifest before publication. The committed
-snapshot is `resource/html/cacti-development-manual.zip`; CI also builds an
-artifact for the PR revision. CI artifacts expire and should not be permanent
-website download links.
+Review the exact artifact and source manifest before publication. The archive
+is not committed to this repository: it is generated output that would go stale
+on the next documentation change, and every rebuild would add another large
+binary to the history. Build it locally with the command above, or take the
+`cacti-html-manual-attempt-*` artifact from the workflow run for the reviewed
+`develop` commit; its `build-manifest.json` records that source revision. CI
+artifacts expire and should not be permanent website download links.
 
 A site maintainer must publish the approved artifact to the documentation host.
 This workflow does not hold deployment credentials or write to files.cacti.net.
