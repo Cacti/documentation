@@ -1,0 +1,39 @@
+name: Documentation navigation
+on:
+  pull_request:
+  merge_group:
+    types: [checks_requested]
+  push:
+    branches: [develop]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: docs-navigation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  navigation:
+    name: Manual links and coverage
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: '3.12'
+      - name: Check missing links, fragments, and ordering regressions
+        run: python3 -m unittest discover -s bin/tests -p 'test_*.py'
+      - name: Validate every manual page is indexed
+        run: python3 bin/check_navigation.py
+      - name: Preserve navigation evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: documentation-navigation-attempt-${{ github.run_attempt }}
+          path: navigation-report.json
+          if-no-files-found: warn
+          retention-days: 14

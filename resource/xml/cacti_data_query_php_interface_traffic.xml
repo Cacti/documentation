@@ -24,12 +24,12 @@
 					<hash_12010266ab2bbe2d6d5963fdd266650cf31ecd>
 						<field_name>title</field_name>
 						<sequence>1</sequence>
-						<text>|host_description| - Traffic - |query_ifDescription|</text>
+						<text>|host_description| - Traffic - |query_ifdescription|</text>
 					</hash_12010266ab2bbe2d6d5963fdd266650cf31ecd>
 					<hash_120102635a1159ebf12de0f4d9c55600aa3d43>
 						<field_name>title</field_name>
 						<sequence>2</sequence>
-						<text>|host_description| - Traffic - |query_ifType| </text>
+						<text>|host_description| - Traffic - |query_iftype| </text>
 					</hash_120102635a1159ebf12de0f4d9c55600aa3d43>
 				</sv_graph>
 				<sv_data_source>
@@ -37,7 +37,7 @@
 						<field_name>name</field_name>
 						<data_template_id>hash_010102557bda63dbb48bac37f730ee1e593472</data_template_id>
 						<sequence>1</sequence>
-						<text>|host_description| - Traffic- |query_ifDescription|</text>
+						<text>|host_description| - Traffic - |query_ifdescription|</text>
 					</hash_1301028c3beb136e83089d8a83e7e87595e98d>
 				</sv_data_source>
 			</hash_11010265cfcd1b8a5ddb319cf90c2b3b566ae1>

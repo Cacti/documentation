@@ -116,9 +116,16 @@ bin/check_missing_link.sh
 
 Omit the filename to run the Markdown check across the repository. Existing
 files may have unrelated lint failures; distinguish those from failures added
-by the change. `check_missing_link.sh` checks whether Markdown filenames occur
-in `README.md`; it does not validate every link target or heading anchor.
-Check those separately.
+by the change. `check_missing_link.sh` validates homepage, index, and project
+links, local image paths, heading fragments, legacy homepage fragments in
+`UriMap.json`,
+and whether every manual page is indexed. The PDF builder uses that same index
+order. It does not crawl external sites or validate every link inside every
+chapter. Run its regression checks with:
+
+```console
+python3 -m unittest discover -s bin/tests -p 'test_*.py'
+```
 
 The repository's GitHub Actions spelling workflow installs the pinned
 requirements from `.github/codespell-requirements.txt`. To run the same spelling
