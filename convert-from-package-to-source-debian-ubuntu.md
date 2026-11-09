@@ -1,62 +1,60 @@
-# Converting from Debian/Ubuntu Package Install to Cacti Source-Based Install
+# Converting a Debian or Ubuntu Package Installation to Source
 
-This guide outlines the steps to convert from a Debian/Ubuntu package install of Cacti to a source-based install.
+Use this procedure only on a [supported operating system][supported-os].
+Changing installation ownership can affect paths, service accounts, package
+upgrades, and database management. Test the migration on an isolated copy
+before changing a production server.
 
-If you are looking to run the latest version of Cacti a source based installation is the way to go 
-Often the cacti team releases feature and updates that the packages lag behind on also source based installs
-provide more control for administrators than a package installation
+## Record the installed layout
 
-This document will provide the steps on how to convert a system that has been installed via package on a Debian/Ubuntu system while retaining your settings and data
+Record the Cacti version, database and grants, PHP configuration, web-server
+configuration, scheduler, service accounts, plugins, Spine configuration,
+and actual RRD, log, cache, script, and query-resource paths. Distribution
+packages can keep configuration and data outside the web application tree.
+Inspect symlinks and package-managed files; do not assume that copying the
+web directory includes their external targets.
 
-### Important !  Before running these steps ensure you have a system backup !
-#### Note these steps can vary between Ubuntu/Debian versions however the process flow would be the same 
+## Pause writers and take a complete backup
 
-## Step 1: Stop Cron/cactid Daemon
-ensure that cron is stopped to prevent any conflicts during the transition and to prevent the poller from running while backing up the system
-systemctl stop cron
-If you have installed the cactid daemon 
-```shell
-systemctl stop cactid
- ```
+Follow [Upgrading Cacti](Upgrading-Cacti.md#stop-writers-before-backing-up)
+to pause only Cacti's scheduler and other application writers, and take a
+matching backup of the database, files, RRD history, configuration, and
+external state. Do not stop the entire system cron service. Verify the backup
+and rehearse restoring it before changing the package installation.
 
-## Step 2: Backup Configuration File
-```shell
-cp /usr/share/cacti/site/include/config.php /path/to/backup/config.php
-```
+## Stage and verify the source installation
 
-## Step 3: Backup Graph Files
-You can copy all of the graph files in `/usr/share/cacti/site/rra` to another folder so you can copy them back later.
-```shell
-cp -r /usr/share/cacti/site/rra /path/to/backup/rra
-```
+Use the [source installation guide][install] to select and stage the intended
+Cacti revision and dependencies in a new directory. Its fresh-install schema
+import is for an empty database. Preserve the existing database for this
+migration; do not import `cacti.sql` over it or run the fresh-install procedure
+against production data.
 
-## Step 4: Dump the Database
-Create a backup of the Cacti database.
-```shell
-mysqldump cacti > cacti.sql
-```
-## Step 5: Uninstall the Package Version of Cacti
-Remove and purge the Cacti package to ensure no conflicts with the source-based install.
-```shell
-apt-get remove cacti && apt-get purge cacti
-```
+Copy the existing configuration, custom resources, plugins, and RRD data to
+the intended paths, preserving permissions. Reconcile the new configuration
+example, URL path, web restrictions, dependency versions, and service accounts.
+Protect credentials and secret files. Use the package maintainer's documented
+procedure to relinquish package ownership without deleting application data.
+Do not purge the package or accept a database-removal prompt merely to switch
+to source. Keep the old installation and verified backup available.
 
-## Step 6: Install Cacti via Source
-Follow the appropriate steps to install Cacti from source. Refer to the official Cacti https://github.com/bmfmancini/documentation/blob/develop/Installing-Under-Ubuntu-Debian.md
+## Cut over and validate
 
-## Step 7: Re-import the Database
-Once Cacti is installed from source, restore your previous settings by re-importing the database.
-```shell
-mysql cacti < cacti.sql
-```
+With writers still paused, update the web mapping and the single Cacti
+scheduler to the source installation. If changing Cacti versions, follow the
+[database-upgrade procedure](Upgrading-Cacti.md#run-and-verify-the-upgrade)
+against the preserved database. Verify paths, permissions, plugins, collector
+connectivity, and any remote-collector upgrades before resuming collection.
 
-## Step 8: Restore Graph Files
-Copy the backed-up RRA files to the new RRA folder directory in your source installation.
+Check scheduled polling, logs, RRD updates, and representative graphs.
+Document how future source updates will be applied and prevent a later package
+operation from overwriting the source deployment. If recovery is required,
+restore the matching files, database, RRDs, and configuration as one set;
+restoring application files alone does not undo a database migration.
 
-```shell
-cp -r /path/to/backup/rra /new/cacti/source/path/rra
-```
+[supported-os]: Requirements.md#supported-operating-systems
+[install]: Installing-Under-Ubuntu-Debian.md
 
 ---
 
-Once these steps are completed, your Cacti installation will be switched from a package-based install to a source-based one, while retaining your configurations and graphs.
+Copyright (c) 2004-2026 The Cacti Group
