@@ -1,0 +1,772 @@
+{
+  "source": "https://files.cacti.net/docs/html/",
+  "inventory_date": "2026-10-26",
+  "chapters": {
+    "installation.html": {
+      "target": "General-Installing-Instructions.md",
+      "fragments": [
+        "GENERATOR",
+        "INSTALLATION"
+      ],
+      "source_sha256": "db49b74e8f4bd9a42d04740a42605c829984aef0029ff2fe62d658678a1ad778"
+    },
+    "install_unix.html": {
+      "target": "General-Installing-Instructions.md",
+      "fragments": [
+        "GENERATOR",
+        "INSTALL_UNIX",
+        "RPM_PACKAGES"
+      ],
+      "source_sha256": "13071a86c154b19e40674408fffddf7d9d76d74e55cfafc11598fec695b405df"
+    },
+    "unix_configure_php.html": {
+      "target": "General-Installing-Instructions.md#configure-php",
+      "fragments": [
+        "GENERATOR",
+        "UNIX_CONFIGURE_PHP"
+      ],
+      "source_sha256": "a77b9f88d3eeae82b6ee2705bf36e2f317508f6bf5a048ee89a34035ac212094"
+    },
+    "unix_configure_httpd.html": {
+      "target": "General-Installing-Instructions.md#configure-the-webserver-apache",
+      "fragments": [
+        "GENERATOR",
+        "UNIX_CONFIGURE_HTTPD"
+      ],
+      "source_sha256": "cc6e082e74e9b9b0b4cf98e97298bbb90be9eb9e0be242f50d87899de7f30f85"
+    },
+    "unix_configure_mysql.html": {
+      "target": "General-Installing-Instructions.md#configure-mysqlmariadb",
+      "fragments": [
+        "GENERATOR",
+        "UNIX_CONFIGURE_MYSQL"
+      ],
+      "source_sha256": "2d971341f6120e1af82a59949d701debc4c1533025e530c69a5e38cf99932819"
+    },
+    "unix_configure_cacti.html": {
+      "target": "General-Installing-Instructions.md#install-and-configure-cacti",
+      "fragments": [
+        "AEN219",
+        "GENERATOR",
+        "UNIX_CONFIGURE_CACTI"
+      ],
+      "source_sha256": "d0ecbb54f26d470a78dff62c99576f5e9204a3fb74bfe01d9a672f208daf05fa"
+    },
+    "bsd_ports.html": {
+      "target": "General-Installing-Instructions.md#freebsd",
+      "fragments": [
+        "BSD_PORTS",
+        "GENERATOR"
+      ],
+      "source_sha256": "9fe436f9d183f6a2f14eb6030d8ed77d54eca958e4b3024b81e895376b1f26cb"
+    },
+    "requirements.html": {
+      "target": "Requirements.md",
+      "fragments": [
+        "GENERATOR",
+        "REQUIREMENTS"
+      ],
+      "source_sha256": "37ae23e48ccba6d48a30152851ec630bb4a4569d48af4732ae9fec7d16b32aa0"
+    },
+    "install_windows.html": {
+      "target": "Installing-Under-Windows.md",
+      "fragments": [
+        "GENERATOR",
+        "INSTALL_WINDOWS"
+      ],
+      "source_sha256": "1dbca5f91120f5c60666be41ac6a6647fdb81deb1888eb4602c8462405a49257"
+    },
+    "upgrade.html": {
+      "target": "Upgrading-Cacti.md",
+      "fragments": [
+        "AEN648",
+        "GENERATOR",
+        "UPGRADE"
+      ],
+      "source_sha256": "8bd9c411b72633b23f3801e038d3ce54687b4e30164fc1c9ded7787fc1c4325d"
+    },
+    "unix_apply_patches.html": {
+      "target": "Upgrading-Cacti.md",
+      "fragments": [
+        "GENERATOR",
+        "UNIX_APPLY_PATCHES"
+      ],
+      "source_sha256": "36df77f4ae79611b1278aa90f862b13f8cb629149c5eecc7b2da55ed35e45718"
+    },
+    "basics.html": {
+      "target": "Principles-of-Operation.md",
+      "fragments": [
+        "BASICS",
+        "GENERATOR"
+      ],
+      "source_sha256": "6c97b1b131fca8b56a717c800f6deb22b056fd4d79db0861df8108b47f86112e"
+    },
+    "advanced_topics.html": {
+      "target": "Manual-Index.md",
+      "fragments": [
+        "ADVANCED_TOPICS",
+        "GENERATOR"
+      ],
+      "source_sha256": "36936f1e378e75ed5041ab45defa87c4f6776f29967031453561175fe48dc892"
+    },
+    "cacti_help.html": {
+      "target": "Manual-Index.md#troubleshoot-a-problem",
+      "fragments": [
+        "CACTI_HELP",
+        "GENERATOR"
+      ],
+      "source_sha256": "b146263765e2493953b2c86e90a5e559410b11695eea08858f80f59fdbf76100"
+    },
+    "reference.html": {
+      "target": "Manual-Index.md#graph-and-data-reference",
+      "fragments": [
+        "GENERATOR",
+        "REFERENCE"
+      ],
+      "source_sha256": "181781319f196677eb905bba7a1c3303ccfc14a9befe145a127007a2a94f68af"
+    },
+    "LICENSE.html": {
+      "target": "Project-Information.md",
+      "fragments": [
+        "GENERATOR",
+        "LICENSE"
+      ],
+      "source_sha256": "496117179f22aff8d688787f1a85a9c6f4d221e643ece655350250f487b3e5b4"
+    },
+    "operating_principles.html": {
+      "target": "Principles-of-Operation.md",
+      "fragments": [
+        "DATA_RETRIEVAL",
+        "GENERATOR",
+        "OPERATING_PRINCIPLES",
+        "PRINCIPLES_OF_OPERATION"
+      ],
+      "source_sha256": "c988e45c124e98623c1426ba376d340037b32d086145f89febf1c87cdd8689db"
+    },
+    "data_storage.html": {
+      "target": "Principles-of-Operation.md#collection-and-storage",
+      "fragments": [
+        "DATA_STORAGE",
+        "GENERATOR"
+      ],
+      "source_sha256": "e0681dfe27dab7aba8ef3adf3b7e3531423867fadee1f3a7c7449851003d704c"
+    },
+    "data_presentation.html": {
+      "target": "Principles-of-Operation.md#graphing",
+      "fragments": [
+        "DATA_PRESENTATION",
+        "GENERATOR"
+      ],
+      "source_sha256": "ac1626b522aaa85dfa47f9099ef189ee151109d79f08b1ef851d20215d04e47a"
+    },
+    "graph_overview.html": {
+      "target": "Graph-Overview.md",
+      "fragments": [
+        "GENERATOR",
+        "GRAPH_OVERVIEW"
+      ],
+      "source_sha256": "d56dee834bb0362a8a3ea6a55a72885539a875fa5d54e2acc62c9caf8b3479ce"
+    },
+    "graph_howto.html": {
+      "target": "How-to-Graph-Your-Network.md",
+      "fragments": [
+        "AEN708",
+        "AEN831",
+        "GENERATOR",
+        "GRAPH_HOWTO",
+        "IMG_DEVICE_NEW",
+        "NEW_DEVICE",
+        "SNMP_INFO",
+        "SNMP_V3"
+      ],
+      "source_sha256": "41fc3cb3bef32ea234f4a88927ad4c9e50dbdf9ce81173b08f17c15fa5f53ccd"
+    },
+    "new_graphs.html": {
+      "target": "How-to-Graph-Your-Network.md",
+      "fragments": [
+        "GENERATOR",
+        "IMG_GRAPH_NEW",
+        "NEW_GRAPHS"
+      ],
+      "source_sha256": "23cf1473e6a58be8e844514506a13d20178428f7b87e058d44b429af221326a8"
+    },
+    "graph_viewing.html": {
+      "target": "Viewing-Graphs.md",
+      "fragments": [
+        "AEN918",
+        "GENERATOR",
+        "GRAPH_VIEWING",
+        "IMG_GRAPH_TREE_NEW",
+        "NEW_GRAPH_TREE",
+        "NEW_GRAPH_TREES"
+      ],
+      "source_sha256": "55950fd894925897c2e2f214617054d50b751220d708dfb2276c5c91a24f563e"
+    },
+    "user_management.html": {
+      "target": "User-Management.md",
+      "fragments": [
+        "AEN974",
+        "EDIT_EXISTING_USER",
+        "GENERATOR",
+        "GRAPH_PERMISSIONS",
+        "GRAPH_SETTINGS",
+        "IMG_USER_EDIT",
+        "IMG_USER_LIST",
+        "REALM_PERMISSIONS",
+        "USER_MANAGEMENT"
+      ],
+      "source_sha256": "80e49ea4d436cd1324acd66084350eb9a1d5427f4981a28dc31a86603e655a92"
+    },
+    "create_new_user.html": {
+      "target": "User-Management.md#creating-a-new-user",
+      "fragments": [
+        "CREATE_NEW_USER",
+        "GENERATOR",
+        "IMG_USER_NEW"
+      ],
+      "source_sha256": "a489a002a958ef8c265fa785cddb15168a918c8ec1a79b004b706a3fd54b5116"
+    },
+    "copying_user.html": {
+      "target": "User-Management.md#copying-a-user",
+      "fragments": [
+        "COPYING_USER",
+        "GENERATOR",
+        "IMG_USER_COPY_1",
+        "IMG_USER_COPY_2"
+      ],
+      "source_sha256": "84b30e4add69cf3afede0bcfe0943b62d8bb22884cb45fb2b7ce30c346719982"
+    },
+    "enable_disable_users.html": {
+      "target": "User-Management.md#enabledisable-users",
+      "fragments": [
+        "ENABLE_DISABLE_USERS",
+        "GENERATOR",
+        "IMG_USER_ENABLE_DISABLE_1",
+        "IMG_USER_ENABLE_DISABLE_2"
+      ],
+      "source_sha256": "8d69e473def762ff9168de0d3ca81bd6b0a3b4268613d30a0053ddaebc115718"
+    },
+    "batch_copy_users.html": {
+      "target": "User-Management.md#batch-copy-users",
+      "fragments": [
+        "BATCH_COPY_USERS",
+        "GENERATOR",
+        "IMG_USER_BATCH_COPY_1",
+        "IMG_USER_BATCH_COPY_2"
+      ],
+      "source_sha256": "6feb06268e10cebfc073218af658b0eee097e494653fcd177b5b80551679c24f"
+    },
+    "delete_users.html": {
+      "target": "User-Management.md#delete-users",
+      "fragments": [
+        "DELETE_USERS",
+        "GENERATOR",
+        "IMG_USER_DELETE_1",
+        "IMG_USER_DELETE_2"
+      ],
+      "source_sha256": "ad8ce18f9b2d20e5c079e76f238f3f6b4d34f043dc2ba125d2730c6eb5fb3cf2"
+    },
+    "guest_access.html": {
+      "target": "User-Management.md#guest-anonymous-access",
+      "fragments": [
+        "GENERATOR",
+        "GUEST_ACCESS"
+      ],
+      "source_sha256": "fe79b076719c80e5b4dd19fb83663aba61839e39bd2a80ccab8df446c9d7fd9d"
+    },
+    "graph_snmp_oid.html": {
+      "target": "Graph-a-Single-SNMP-OID.md",
+      "fragments": [
+        "AEN1148",
+        "GENERATOR",
+        "GRAPH_SNMP_OID"
+      ],
+      "source_sha256": "a879955b509c2c2e908e36f73457a813d1dbe2bc9052fbe2dc0b050400e57f8c"
+    },
+    "data_input_methods.html": {
+      "target": "Data-Input-Methods.md",
+      "fragments": [
+        "AEN1202",
+        "AEN1240",
+        "DATA_INPUT_FIELDS",
+        "DATA_INPUT_METHODS",
+        "GENERATOR",
+        "NEW_DATA_INPUT_METHOD"
+      ],
+      "source_sha256": "0feb7c13447565c1c4a0d0cdd1bb2fcceab305557d14673e630de03a5b41bb31"
+    },
+    "making_scripts_work_with_cacti.html": {
+      "target": "How-To-Create-Data-Input-Method.md",
+      "fragments": [
+        "AEN1284",
+        "AEN1292",
+        "GENERATOR",
+        "MAKING_SCRIPTS_WORK_WITH_CACTI"
+      ],
+      "source_sha256": "bc69f98b5f497f6f0ceb4065018af501c20e4e3e96c5d60c137c64714917bad6"
+    },
+    "data_queries.html": {
+      "target": "Data-Queries.md",
+      "fragments": [
+        "AEN1309",
+        "AEN1338",
+        "DATA_QUERIES",
+        "DATA_QUERIES_ASSOCIATED_GRAPH_TEMPLATES",
+        "GENERATOR",
+        "NEW_DATA_QUERY"
+      ],
+      "source_sha256": "f72d2b4676d0e107168ba9eb89aa40da29253bb10a37effa72663e561240e4cf"
+    },
+    "snmp_query_xml.html": {
+      "target": "How-To-New-SNMP-Data-Queries.md",
+      "fragments": [
+        "AEN1365",
+        "GENERATOR",
+        "SNMP_QUERY_XML"
+      ],
+      "source_sha256": "e6af58b70a91edd91a3845278f071ee4fe639938a158a45066c8b803ea19c64c"
+    },
+    "script_query_xml.html": {
+      "target": "How-To-Script-Data-Queries.md",
+      "fragments": [
+        "AEN1459",
+        "GENERATOR",
+        "SCRIPT_QUERY_XML"
+      ],
+      "source_sha256": "0fb81150de21d7a47606f0d8b016a028bc244adb734a9ff4368300b19eebf8f4"
+    },
+    "templates.html": {
+      "target": "Templates.md",
+      "fragments": [
+        "AEN1560",
+        "AEN1600",
+        "APPLYING_DATA_TEMPLATES",
+        "CREATING_DATA_TEMPLATES",
+        "CUSTOM_DATA",
+        "DATA_TEMPLATES",
+        "DATA_TEMPLATE_ITEMS",
+        "GENERATOR",
+        "IMG_DATA_TEMPLATE_NEW",
+        "TEMPLATES"
+      ],
+      "source_sha256": "33118c49f6e8d2d7b55c5db252136dde595da15c5d3d718d036305e2d25f5dc5"
+    },
+    "graph_templates.html": {
+      "target": "Graph-Templates.md",
+      "fragments": [
+        "AEN1670",
+        "AEN1775",
+        "AEN1825",
+        "APPLYING_GRAPH_TEMPLATES",
+        "CREATING_GRAPH_TEMPLATES",
+        "GENERATOR",
+        "GRAPH_ITEMS",
+        "GRAPH_ITEM_INPUTS",
+        "GRAPH_TEMPLATES",
+        "IMG_GRAPH_TEMPLATE_NEW"
+      ],
+      "source_sha256": "ebab10ef309aa156b60730ff1d4b81bcfcb00f3d260647c3f6550bde5eaf5fe0"
+    },
+    "host_templates.html": {
+      "target": "Device-Templates.md",
+      "fragments": [
+        "GENERATOR",
+        "HOST_TEMPLATES",
+        "HOST_TEMPLATE_NEW",
+        "IMG_HOST_TEMPLATE_NEW"
+      ],
+      "source_sha256": "5248a1dcd0fc99aaafc283306427192bd3517df3a6fd68767dcb9ef1f637b7ae"
+    },
+    "template_import.html": {
+      "target": "Import-Template.md",
+      "fragments": [
+        "GENERATOR",
+        "IMG_IMPORT_TEMPLATES",
+        "TEMPLATE_IMPORT"
+      ],
+      "source_sha256": "5a78fdbc67140d5a891c27e8b91c2cf1e3fd9a306d5f58c204ad9d902f2cd229"
+    },
+    "template_export.html": {
+      "target": "Export-Template.md",
+      "fragments": [
+        "GENERATOR",
+        "IMG_EXPORT_TEMPLATES",
+        "TEMPLATE_EXPORT"
+      ],
+      "source_sha256": "56000c865b6c7ca9dd1e3394d783db4fabfbba1d95529dc37dff51edb2b51681"
+    },
+    "php_script_server.html": {
+      "target": "PHP-Script-Server.md",
+      "fragments": [
+        "GENERATOR",
+        "PHP_SCRIPT_SERVER",
+        "USING_SCRIPT_SERVER"
+      ],
+      "source_sha256": "51a173ad2f704a159629b5d12cd0e4e46e033ea2080a0afc1189a729681ad951"
+    },
+    "upgrade_using_hostmib_data_queries.html": {
+      "target": "How-To-Existing-SNMP-Data-Queries.md",
+      "fragments": [
+        "GENERATOR",
+        "UPGRADE_USING_HOSTMIB_DATA_QUERIES"
+      ],
+      "source_sha256": "242af6bd484de9f3b1ca24a80c0f0a33efa7be48c6460c1671f93c6470c6e6a2"
+    },
+    "migration_php_scripts_to_script_server.html": {
+      "target": "PHP-Script-Server.md#migration-of-existing-scripts-and-data-queries-to-php-script-server",
+      "fragments": [
+        "DATA_QUERY_DATA_TEMPLATE_CHANGES",
+        "GENERATOR",
+        "MIGRATION_PHP_SCRIPTS_TO_SCRIPT_SERVER",
+        "SCRIPT_FILE_CHANGES",
+        "XML_FILE_CHANGES"
+      ],
+      "source_sha256": "a4a471730cad7fa9878bb611c17c4fec4c339ba835d2a472cd2d3a00edbdef75"
+    },
+    "testing_script_in_script_server.html": {
+      "target": "PHP-Script-Server.md",
+      "fragments": [
+        "GENERATOR",
+        "TESTING_SCRIPT_IN_SCRIPT_SERVER"
+      ],
+      "source_sha256": "c441711803bca38f9b483407d0cb5693b6f8dcfa2e906e4904897f8d5df905bb"
+    },
+    "unix_configure_spine.html": {
+      "target": "Spine.md",
+      "fragments": [
+        "GENERATOR",
+        "UNIX_CONFIGURE_SPINE"
+      ],
+      "source_sha256": "5f42f96e2d5cc1f21c1471cc6f84bdf9fc37697c733474c0d7675af9691f1188"
+    },
+    "using_spine.html": {
+      "target": "Spine.md",
+      "fragments": [
+        "AEN2048",
+        "GENERATOR",
+        "USING_SPINE"
+      ],
+      "source_sha256": "af5044820411c58545acf0df1bcd883529e5d54aeb0ac8ec7b189a04537f9b38"
+    },
+    "how_to.html": {
+      "target": "Manual-Index.md",
+      "fragments": [
+        "AEN2080",
+        "GENERATOR",
+        "HOW_TO",
+        "SCRIPT_TO_GRAPH"
+      ],
+      "source_sha256": "def2814372687b8f813df7fb30b0cc7c8aa6ff4542d4a015e43327f5c2065f3a"
+    },
+    "faq.html": {
+      "target": "Frequently-Asked-Questions.md",
+      "fragments": [
+        "AEN2376",
+        "AEN2379",
+        "AEN2406",
+        "AEN2409",
+        "AEN2414",
+        "AEN2419",
+        "AEN2430",
+        "AEN2433",
+        "AEN2441",
+        "AEN2448",
+        "AEN2455",
+        "AEN2466",
+        "AEN2469",
+        "AEN2482",
+        "AEN2494",
+        "AEN2502",
+        "AEN2511",
+        "AEN2515",
+        "AEN2518",
+        "FAQ",
+        "GENERATOR"
+      ],
+      "source_sha256": "40620b5b296bd37e6becbdc4cbcf333a054153ed9cb1800bb2220bdc281dc523"
+    },
+    "variables.html": {
+      "target": "Variables.md",
+      "fragments": [
+        "AEN2564",
+        "AEN2568",
+        "AEN2578",
+        "AEN2608",
+        "AEN2661",
+        "AEN2671",
+        "AEN2697",
+        "DATA_SOURCE_TITLE_EXAMPLE1",
+        "DATA_SOURCE_TITLE_EXAMPLE2",
+        "DATA_SOURCE_TITLE_TEMPLATE",
+        "GENERATOR",
+        "GRAPH_VARIABLES",
+        "VARIABLES",
+        "VARIABLE_BANDWIDTH_SUMMATION",
+        "VARIABLE_DATA_QUERY",
+        "VARIABLE_DATA_SOURCE_TITLE",
+        "VARIABLE_DATE_TIME",
+        "VARIABLE_NTH_PERCENTILE"
+      ],
+      "source_sha256": "b3d44aaaa2594e0db2d0e781ecffc489c5b5e75ce908c6868bb9d0f1fcd4a1e1"
+    },
+    "host_variables.html": {
+      "target": "Variables.md#host-variables",
+      "fragments": [
+        "AEN2704",
+        "GENERATOR",
+        "HOST_VARIABLES"
+      ],
+      "source_sha256": "1961b96a33b6796b42c0da2439eb0ebb11958bad082ee22dfdfbc3f313b33471"
+    },
+    "rrdtool_features.html": {
+      "target": "RRDtool-Specific-Features.md",
+      "fragments": [
+        "ADD_NEW_GPRINT_PRESET",
+        "GENERATOR",
+        "GPRINT_PRESETS",
+        "RRDTOOL_FEATURES"
+      ],
+      "source_sha256": "58cfe462e4a586f70d32909da0f2f06edd28a424ff6477cba2809ac94fbce4ad"
+    },
+    "cdefs.html": {
+      "target": "CDEFs.md",
+      "fragments": [
+        "ADD_NEW_CDEF",
+        "AEN2802",
+        "AEN2832",
+        "AEN2890",
+        "AEN2902",
+        "AEN2914",
+        "AEN2932",
+        "AEN2949",
+        "AEN2975",
+        "CDEFS",
+        "CDEF_MORE_EXAMPLES",
+        "CDEF_SPECIAL_DATA_SOURCE",
+        "CDEF_SPECIAL_DATA_SOURCE_EXAMPLES",
+        "GENERATOR"
+      ],
+      "source_sha256": "58c2833ccdf0700b95ea43ecfa58a0c2395ae3ede7c96faf9b38477ec46ae139"
+    },
+    "scripts.html": {
+      "target": "Command-Line-Scripts.md",
+      "fragments": [
+        "CLI_REBUILD_POLLER_CACHE",
+        "GENERATOR",
+        "SCRIPTS"
+      ],
+      "source_sha256": "04685592c9ed8ecdaede91f59c31c0b19658b9f98c9a5b125a83c61726745dea"
+    },
+    "cli_poller_reindex_hosts.html": {
+      "target": "Command-Line-Scripts.md",
+      "fragments": [
+        "AEN3030",
+        "CLI_POLLER_REINDEX_HOSTS",
+        "GENERATOR"
+      ],
+      "source_sha256": "70893cf916647a21946f29bf65ca4fe6dcd0c056e0dbe06a023ad4d1c805de2a"
+    },
+    "cli_poller_output_empty.html": {
+      "target": "Command-Line-Scripts.md",
+      "fragments": [
+        "CLI_POLLER_OUTPUT_EMPTY",
+        "GENERATOR"
+      ],
+      "source_sha256": "1001fbc686cbd26e0f9944c69c9578bb5bc2e4d9ebdab81558c13c552cbfde07"
+    },
+    "cli_poller_graphs_reapply_names.html": {
+      "target": "Command-Line-Scripts.md",
+      "fragments": [
+        "CLI_POLLER_GRAPHS_REAPPLY_NAMES",
+        "GENERATOR"
+      ],
+      "source_sha256": "8cd6fda88ce4d2869e0ff9c4fd713911d1c2b9f1dba4f6d9e25b865efbaca7aa"
+    },
+    "cli_copy_user.html": {
+      "target": "Command-Line-Scripts.md",
+      "fragments": [
+        "CLI_COPY_USER",
+        "GENERATOR"
+      ],
+      "source_sha256": "5877d7f3f70200b036ac7c1a1864b5d0283b0b6b128cbda3f1c06960e61005dd"
+    },
+    "cli_add_device.html": {
+      "target": "Command-Line-Scripts.md",
+      "fragments": [
+        "CLI_ADD_DEVICE",
+        "CLI_ADD_DEVICE_LIST_COMMUNITIES",
+        "CLI_ADD_DEVICE_LIST_HOST_TEMPLATE",
+        "CLI_ADD_DEVICE_SIMPLE",
+        "GENERATOR"
+      ],
+      "source_sha256": "01d4fe0984e7dd37e0e330f6fca24ea656f147a5ef307e409dcc2c8647a0eaf1"
+    },
+    "cli_add_data_query.html": {
+      "target": "Command-Line-Scripts.md",
+      "fragments": [
+        "CLI_ADD_DATA_QUERY",
+        "CLI_ADD_DATA_QUERY_EXAMPLE",
+        "CLI_ADD_DATA_QUERY_LIST_DATA_QUERIES",
+        "CLI_ADD_DATA_QUERY_LIST_HOSTS",
+        "GENERATOR"
+      ],
+      "source_sha256": "4ccd54b1c491d377967c0e435ad6ce21d7d29dbd25083531a370f05dad7ffcca"
+    },
+    "cli_add_graph_template.html": {
+      "target": "Command-Line-Scripts.md",
+      "fragments": [
+        "CLI_ADD_GRAPH_TEMPLATE",
+        "CLI_ADD_GRAPH_TEMPLATE_EXAMPLE",
+        "CLI_ADD_GRAPH_TEMPLATE_LIST_GRAPH_TEMPLATES",
+        "CLI_ADD_GRAPH_TEMPLATE_LIST_HOSTS",
+        "GENERATOR"
+      ],
+      "source_sha256": "0920449788651aa31ded316224978c87b04762331aab70dac05859dbbdce77eb"
+    },
+    "cli_add_graphs.html": {
+      "target": "Command-Line-Scripts.md",
+      "fragments": [
+        "AEN3300",
+        "CLI_ADD_GRAPHS",
+        "CLI_ADD_GRAPHS_CG",
+        "CLI_ADD_GRAPHS_DS",
+        "CLI_ADD_GRAPHS_LIST_CG",
+        "CLI_ADD_GRAPHS_LIST_DS",
+        "GENERATOR"
+      ],
+      "source_sha256": "285c7e9215004f05313d265fa16700a8075701a0ae57464f8a4facfe3a5c9edb"
+    },
+    "cli_add_tree.html": {
+      "target": "Command-Line-Scripts.md",
+      "fragments": [
+        "CLI_ADD_TREE",
+        "CLI_ADD_TREE_GRAPH",
+        "CLI_ADD_TREE_HEADER",
+        "CLI_ADD_TREE_HOST",
+        "CLI_ADD_TREE_LIST_GRAPHS",
+        "CLI_ADD_TREE_LIST_HOSTS",
+        "CLI_ADD_TREE_LIST_NODES",
+        "CLI_ADD_TREE_LIST_RRAS",
+        "CLI_ADD_TREE_LIST_TREES",
+        "CLI_ADD_TREE_TREE",
+        "GENERATOR"
+      ],
+      "source_sha256": "a01c9aded5a3dc14d7ddd5b0d77d3890c66c6b47a047ae420e87756981a85e51"
+    },
+    "cli_add_perms.html": {
+      "target": "Command-Line-Scripts.md",
+      "fragments": [
+        "CLI_ADD_PERMS",
+        "CLI_ADD_PERMS_LIST_GRAPHS",
+        "CLI_ADD_PERMS_LIST_GRAPH_TEMPLATES",
+        "CLI_ADD_PERMS_LIST_TREES",
+        "CLI_ADD_PERMS_LIST_USERS",
+        "CLI_ADD_PERMS_USER",
+        "GENERATOR"
+      ],
+      "source_sha256": "24be12d25db0c35f35cca98fdbe56b605932d780fecf69f2fccf5306ac8e532d"
+    },
+    "debugging.html": {
+      "target": "Debugging.md",
+      "fragments": [
+        "CHECK_LOG_FILE",
+        "DEBUGGING",
+        "GENERATOR"
+      ],
+      "source_sha256": "2f171986bcabce6834d9534a18642c3ff431161a52989c20499f12dd1940dd3e"
+    },
+    "check_data_gathering.html": {
+      "target": "Debugging.md#check-basic-data-gathering",
+      "fragments": [
+        "CHECK_DATA_GATHERING",
+        "GENERATOR"
+      ],
+      "source_sha256": "c69b7e9b97263bffec97dce2c3aad9d5e1d45ea606549fbdefebd5e74f0975e9"
+    },
+    "check_cacti_poller.html": {
+      "target": "Debugging.md#check-cactis-poller",
+      "fragments": [
+        "CHECK_CACTI_POLLER",
+        "GENERATOR"
+      ],
+      "source_sha256": "2fb752b0f669909f72a99ead47ee35d12f06bdc96948f9a8848f4403a9f1f992"
+    },
+    "check_mysql_updating.html": {
+      "target": "Debugging.md#check-mysql-updating",
+      "fragments": [
+        "CHECK_MYSQL_UPDATING",
+        "GENERATOR"
+      ],
+      "source_sha256": "b40d679d1248b7798270f715fbda2e4d09bff655a142310281d7a0fe0b8ce010"
+    },
+    "check_rrd_updating.html": {
+      "target": "Debugging.md#check-rrdfile-updating",
+      "fragments": [
+        "CHECK_RRD_UPDATING",
+        "GENERATOR"
+      ],
+      "source_sha256": "2e9d693167e04c51c692b38238365069216ca022f4a9ec155546415e38cc625f"
+    },
+    "check_rrd_owner.html": {
+      "target": "Debugging.md#check-rrdfile-ownership",
+      "fragments": [
+        "CHECK_RRD_OWNER",
+        "GENERATOR"
+      ],
+      "source_sha256": "ed5c74118883111c5a0467ead8014d96a3f3c8ea0f04bb800ff9d08407d8a099"
+    },
+    "check_rrd_numbers.html": {
+      "target": "Debugging.md#check-rrdfile-numbers",
+      "fragments": [
+        "CHECK_RRD_NUMBERS",
+        "GENERATOR"
+      ],
+      "source_sha256": "5924ff7a097a889fa1cc79025d6c91f455e84b5f63213d5f412df5163364bf2a"
+    },
+    "check_rrd_graph.html": {
+      "target": "Debugging.md#check-rrdtool-graph-statement",
+      "fragments": [
+        "CHECK_RRD_GRAPH",
+        "GENERATOR"
+      ],
+      "source_sha256": "67a476752ac13d0d91803d3703779fc757e11087bc00c78663ac821785424607"
+    },
+    "debug_miscellaneous.html": {
+      "target": "Debugging.md",
+      "fragments": [
+        "DEBUG_MISCELLANEOUS",
+        "GENERATOR"
+      ],
+      "source_sha256": "abd9d288a0667b9a0f96d26016d109f0d84399f02ae144171c235e6998c5d451"
+    },
+    "debug_rpm_installation.html": {
+      "target": "General-Installing-Instructions.md",
+      "fragments": [
+        "DEBUG_RPM_INSTALLATION",
+        "GENERATOR"
+      ],
+      "source_sha256": "36fcb3e2f20a058e9ba7a332b143b9e00587e1126b242a9ebb0da8b50d27056a"
+    },
+    "check_zero_values.html": {
+      "target": "Debugging.md#not-nan-but-0-zero-values",
+      "fragments": [
+        "CHECK_ZERO_VALUES",
+        "GENERATOR"
+      ],
+      "source_sha256": "e1466e95120aefbb0b25f6fd7e0ce17f4285aa59dc53f89bd2fe4069be7e5220"
+    }
+  },
+  "source_index_sha256": "53c739cf473e014f91302972b6d761f9ec37af2176437a6ed428c2711db70d46",
+  "homepage_fragments": [
+    "GENERATOR",
+    "AEN1",
+    "AEN2",
+    "AEN5",
+    "AEN8",
+    "AEN11",
+    "AEN14",
+    "AEN17",
+    "AEN20",
+    "AEN23"
+  ]
+}

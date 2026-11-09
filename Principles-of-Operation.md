@@ -54,7 +54,7 @@ Cacti's update processing writes those measurements to RRD files, either during
 normal polling or through [Boost](Boost.md) when on-demand updating is enabled.
 Spine does not directly render graphs or replace the RRD update process.
 
-![Principles of Operation](images/principles-of-operation.png)
+![Principles of Operation](images/principles-of-operation.svg)
 
 [Data Source Profiles](Data-Profiles.md) define sampling, heartbeat,
 consolidation functions, and retention when files are created. RRD archives

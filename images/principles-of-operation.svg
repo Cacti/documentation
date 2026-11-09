@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="300" viewBox="0 0 1000 300" role="img" aria-labelledby="title description">
+  <!-- Copyright (C) 2004-2026 The Cacti Group. GPL-2.0-or-later. -->
+  <title id="title">Cacti configuration, collection, storage and graphing</title>
+  <desc id="description">Devices and scripts supply measurements to PHP or Spine collectors. RRDtool stores time-series measurements and renders graphs. MariaDB or MySQL holds configuration, templates and permissions used by collection and presentation.</desc>
+  <rect width="1000" height="300" fill="white"/>
+  <g fill="#f2f7f1" stroke="#315d28" stroke-width="2">
+    <rect x="20" y="35" width="200" height="90" rx="8"/>
+    <rect x="270" y="35" width="200" height="90" rx="8"/>
+    <rect x="520" y="35" width="200" height="90" rx="8"/>
+    <rect x="770" y="35" width="200" height="90" rx="8"/>
+    <rect x="270" y="200" width="450" height="75" rx="8"/>
+  </g>
+  <g fill="#183315" font-family="sans-serif" text-anchor="middle">
+    <text x="120" y="72" font-size="20">Devices and scripts</text>
+    <text x="120" y="101" font-size="16">SNMP and data inputs</text>
+    <text x="370" y="72" font-size="20">Data collection</text>
+    <text x="370" y="101" font-size="16">PHP poller or Spine</text>
+    <text x="620" y="72" font-size="20">Time-series storage</text>
+    <text x="620" y="101" font-size="16">RRDtool RRD files</text>
+    <text x="870" y="72" font-size="20">Graph presentation</text>
+    <text x="870" y="101" font-size="16">RRDtool and web UI</text>
+    <text x="495" y="230" font-size="20">MariaDB or MySQL</text>
+    <text x="495" y="257" font-size="16">Configuration, templates, permissions and polling state</text>
+  </g>
+  <g stroke="#315d28" stroke-width="3" fill="none">
+    <path d="M220 80H258M470 80H508M720 80H758"/>
+    <path d="M370 200V137M720 237H870V137" stroke-dasharray="7 5"/>
+  </g>
+  <g fill="#315d28">
+    <path d="M258 73L270 80L258 87ZM508 73L520 80L508 87ZM758 73L770 80L758 87Z"/>
+    <path d="M363 137L370 125L377 137ZM863 137L870 125L877 137Z"/>
+  </g>
+</svg>
