@@ -1,0 +1,71 @@
+{
+  "captured": "2026-10-26",
+  "originals": [
+    {
+      "url": "https://files.cacti.net/docs/pdf/manual.pdf",
+      "sha256": "848df1ef6df88ddbfd2614bb2308ab415f9764af5de5b981875439ed348aeee1",
+      "bytes": 1656133,
+      "status": "archive"
+    },
+    {
+      "url": "https://files.cacti.net/docs/text/manual.txt",
+      "sha256": "e31bd298ff583b6ac67f111b6d599978647c9f64c5a2ef010bd21c6061acdb2d",
+      "bytes": 251278,
+      "status": "archive"
+    },
+    {
+      "url": "https://files.cacti.net/docs/contrib/Cacti-Doku_german.pdf",
+      "sha256": "bb031c54849fb16a2e220b6335cd4166357a462ea7160b4219ab68716953748e",
+      "bytes": 892007,
+      "status": "archive"
+    },
+    {
+      "url": "https://files.cacti.net/docs/contrib/Cacti-El-Kitab.pdf",
+      "sha256": "ffdf59d2b2f5e99fdf29593f47f0cc47189975b09fad6e7e40b704f02d770bbb",
+      "bytes": 52324,
+      "status": "archive"
+    },
+    {
+      "url": "https://files.cacti.net/docs/contrib/Cacti-Linux-How-To.pdf",
+      "sha256": "cdca4891170d7428ef5b993a219fe4487822473d0aa4b5a9b487e66d5f0351a0",
+      "bytes": 410807,
+      "status": "archive"
+    },
+    {
+      "url": "https://files.cacti.net/docs/contrib/install_russian_unix.pdf",
+      "sha256": "fcfb4c8930efd7392d0fd21f3b063bf4148bbf98ff4f02b2d8d624405ad15ecb",
+      "bytes": 122783,
+      "status": "archive"
+    },
+    {
+      "url": "https://files.cacti.net/docs/contrib/install_russian_windows.pdf",
+      "sha256": "84d12d84d8529fc34bb7426718f207879a15dfd49d6253bc5584375c22c28ccd",
+      "bytes": 202027,
+      "status": "archive"
+    },
+    {
+      "url": "https://files.cacti.net/docs/contrib/install_solaris.html",
+      "sha256": "fde48ee79e7b99356590408213e8885165d15a715851d1f2ae28f1407e71059d",
+      "bytes": 22971,
+      "status": "archive"
+    },
+    {
+      "url": "https://files.cacti.net/docs/contrib/install_windows.html",
+      "sha256": "8bc451d0500c3f1cc5974e02f95adf8e09c46ff252b77c39e7973103a038e73e",
+      "bytes": 34536,
+      "status": "archive"
+    },
+    {
+      "url": "https://files.cacti.net/docs/sql/database_schema.pdf",
+      "sha256": "ff121a155fa4542e1ccf0e988d0ba11fe667c6ec78408040ed74d9d8df6a3221",
+      "bytes": 210388,
+      "status": "archive"
+    },
+    {
+      "url": "https://files.cacti.net/docs/sql/phpMyAdmin.sql",
+      "sha256": "4cb32e9b77c16f0ac2be0f6c6cfdd9ac12473a3dffc04150b2f0b14da88a4914",
+      "bytes": 15927,
+      "status": "archive"
+    }
+  ]
+}

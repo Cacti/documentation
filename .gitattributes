@@ -1,0 +1,3 @@
+# Preserve the pinned upstream schema and extracted DDL formatting.
+resources/manuals/source/cacti.sql -whitespace
+resource/manuals/cacti-schema.sql -whitespace

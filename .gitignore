@@ -22,3 +22,7 @@ __pycache__/
 html-artifacts/
 .coverage
 /html-check/
+
+/manual-artifacts/
+navigation-report.json
+!.gitattributes

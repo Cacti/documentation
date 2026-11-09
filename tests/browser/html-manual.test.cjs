@@ -158,3 +158,19 @@ scenario('the extracted manual opens offline with local images and its existing 
       .filter(image => image.naturalWidth === 0).map(image => image.src)), []);
   } finally { await page.close(); }
 });
+
+
+scenario('localized guide languages match their edition metadata', async () => {
+  const editions = JSON.parse(await fs.readFile(path.join(__dirname, '../../resources/manuals/editions.json')));
+  const page = await context.newPage();
+  try {
+    for (const edition of editions.filter(entry => entry.guide && entry.language !== 'en')) {
+      const file = 'resources/manuals/' + edition.guide.replace(/\.md$/, '.html');
+      await page.goto(base + file);
+      assert.equal(await page.locator('html').getAttribute('lang'), edition.language);
+      (evidence.localized_guides ||= []).push({ file, language: edition.language });
+    }
+  } finally {
+    await page.close();
+  }
+});
