@@ -1,422 +1,446 @@
 # Frequently Asked Questions
 
+These answers follow Cacti's **develop** branch, the unreleased 1.3 series.
+Menu labels and available options can differ in released versions. For Cacti
+1.2, use the [1.2.x manual][manual-1.2] and your installed version's code.
+
 ## Using Cacti
 
 **Q:** How do I create traffic graphs?
 
-**A:** Before you can create traffic graphs, Cacti must have working SNMP
-support. One way to do this is to compile PHP with SNMP support built in, many
-times you can install the 'php-snmp' package to do this. The second option is to
-have Cacti call the snmpget and snmpwalk binaries from your ucd-snmp or net-snmp
-installation. You can use the about page to determine whether to are using
-"built-in" or "external" SNMP support.
+**A:** First, configure read access to the device's SNMP interface counters.
+Cacti's PHP SNMP functions use the PHP SNMP extension where supported and
+fall back to Net-SNMP command-line tools for other requests. Configure the
+installed binaries under **Console > Configuration > Settings > Paths**.
+Installing the PHP extension does not eliminate every need for these tools.
+Spine uses its own Net-SNMP support for polling.
 
-Now that you have working SNMP support, follow these steps.
+1. Open **Console > Management > Devices** and add a device.
 
-1. Click Devices on Cacti's menu.
+2. Enter a description and hostname or IP address, select a suitable **Device
+   Template**, and configure the SNMP version and credentials. For SNMPv3,
+   match the device's username, authentication, privacy, and context settings.
 
-2. Click Add to add a new device.
+3. Save the device and check the SNMP information displayed on its edit page.
+   Ensure **SNMP - Interface Statistics** is in **Associated Data Queries**.
+   Add the query if the selected template did not supply it. Use **Verbose
+   Query** if it returns no interfaces.
 
-3. Type a description, hostname, management IP, and SNMP community. Make sure to
-   select "Generic SNMP-enabled Host" under Host Template and click Create.
+4. Select **Create New Graphs**, then select the interfaces in the interface
+   statistics query and choose the desired graph type. Use a 64-bit counter
+   graph where the device supports it, especially for high-speed interfaces.
 
-4. Click Create Graphs for this Host at the top of the page.
+5. Click **Create** and complete any additional fields presented. Allow
+   polling to collect samples before expecting traffic data.
 
-5. You should see one or more interfaces listed under the Data Query [SNMP -
-   Interface Statistics] box. Place a check next to each interface that you want
-   to graph. Below the box, select type of graph that you want to create (bits,
-   bytes, summation, etc).
-
-6. Click Create, and Create again on the following screen to create your graphs.
+See [How to Graph Your Network](How-to-Graph-Your-Network.md) and
+[Data Queries](Data-Queries.md) for the full workflow.
 
 ## General
 
-**Q:** When I visit the Cacti Monitoring Website, I see garbage instead of a
-login prompt.
+**Q:** The website displays PHP source instead of a login page. What is wrong?
 
-**A:** Starting with Cacti 1.2.x, the first thing you should always see is a
-login prompt asking for your admin credentials before the installation wizard
-will be displayed. However, if you fail to see the login prompt, you may be
-presented with text that looks like:
+**A:** The web server is serving PHP files without passing them to PHP.
+Configure its PHP handler, such as PHP-FPM or the Apache PHP module used by
+your installation. Having a working `php` command in a terminal does not
+confirm that the web server can execute PHP.
 
-```php
-<?php
-/*
- +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2026 The Cacti Group                                 |
- |                                                                         |
- | This program is free software; you can redistribute it and/or           |
- | modify it under the terms of the GNU General Public License             |
- | as published by the Free Software Foundation; either version 2          |
- | of the License, or (at your option) any later version.                  |
- +-------------------------------------------------------------------------+
-*/
-```
-
-If this happens, it usually means that you have not enabled the PHP module to
-work with your web server software. This can be as simple as running `a2enmod`
-on Ubuntu, or having to manually create a configuration for nginx under another
-flavour of Linux. For specific help on enabling PHP, search the internet using
-your favourite search engine with keywords such as:
-
-> How do I enable PHP under ...
-
-Replacing the three dots with your operating system and web server software
-should reveal many results on how to do this. The specific steps are outside of
-the scope of Cacti's FAQ documentation, though there are several How To
-installation documents included that may also help.
+Keep the site inaccessible to other users until this is fixed: source files
+can contain database credentials. Check the web server and PHP service logs,
+then follow the [installation guide](General-Installing-Instructions.md) for
+your operating system and web server.
 
 ---
 
-**Q:** I have forgotten my 'admin' password to Cacti, how do I reset it?
+**Q:** I have forgotten my local `admin` password. How do I reset it?
 
-**A:** Reset the password directly in the database. Connect to the Cacti
-database and set the `admin` account's password to the SHA-256 hash of the new
-value:
+**A:** If another administrator can log in, use
+[User Management](User-Management.md) to reset the local account. Otherwise,
+connect to the Cacti database with an account permitted to update `user_auth`:
 
-```console
-shell> mariadb -u root -p cacti
-MariaDB> UPDATE user_auth
-    -> SET password = SHA2('newpassword', 256),
-    ->     password_change = 'on',
-    ->     must_change_password = 'on',
-    ->     lastchange = UNIX_TIMESTAMP()
-    -> WHERE username = 'admin' AND realm = 0;
+```sh
+mariadb -u root -p cacti
 ```
 
-On MySQL, the `mysql` client takes the same arguments.
+Replace `cacti` with your database name and `newpassword` with a unique
+temporary password, escaping any SQL quote characters in the value:
 
-Use a unique temporary value in place of `newpassword`. The local administrator
-will be required to replace it at the next login, and the reset timestamp keeps
-the account subject to any configured password-expiration policy.
+```sql
+UPDATE user_auth
+SET password = SHA2('newpassword', 256),
+    password_change = 'on',
+    must_change_password = 'on',
+    lastchange = UNIX_TIMESTAMP()
+WHERE username = 'admin' AND realm = 0;
+```
 
-> **Note:** On an older database server without `SHA2()`, use
-> `MD5('newpassword')` instead. Cacti accepts either legacy bootstrap hash and
-> transparently re-hashes the account with its current password algorithm on
-> the next successful local login.
+The MySQL `mysql` client accepts the same connection arguments. Cacti accepts
+this SHA-256 bootstrap hash and re-hashes it with its current password
+algorithm after successful local authentication. The account must then change
+the temporary password. The reset timestamp also preserves password-expiration
+behavior. See the [local login provider][code-local-auth] and
+[password verification][code-auth] implementations.
+
+Changing the password does not unlock or enable an account. If login still
+fails, check its status in User Management or inspect it in the database:
+
+```sql
+SELECT username, realm, enabled, locked, failed_attempts, lastfail
+FROM user_auth
+WHERE username = 'admin' AND realm = 0;
+```
+
+Have an administrator resolve an unintended lockout or disabled status. For
+LDAP or another external login provider, reset the password at that provider.
 
 ## Monitoring
 
-**Q:** I am polling thousands of items and poller.php takes more than 5 minutes
-to run.
+**Q:** Polling does not finish within the configured interval. What can I do?
 
-**A:** Give Spine, the fast replacement for poller.php a try. Unlike poller.php,
-Spine is written in c and makes use of threads. On a typical installation, it is
-not uncommon for Spine to poll about 50000 items in less then 10 seconds. Spine
-supports up to several threads per poller process and can also poll a single
-hosts with more than a single thread.
+**A:** Check the Cacti log for slow or unreachable devices, script timeouts,
+database errors, and runtime warnings. Compare poller statistics with the
+configured interval before changing concurrency.
 
-If using spine alone does not help, look to both the amount of memory and CPU
-threads are available on your Cacti server. You should generally not use more
-than 2 times the number of CPU threads as you have spine threads. Remember,
-every spine thread has to also talk to the database, so having more CPU threads
-on your Cacti server has a direct impact on performance. If you make the thread
-setting too high, it will actually decrease performance. So, be careful.
+[Spine](Spine.md) is the multithreaded C alternative to the PHP `cmd.php`
+collector. `poller.php` still launches the selected collector and coordinates
+the polling cycle. Install Spine, configure its database access and paths,
+then select it under **Settings > Poller > Poller Type**.
 
----
-
-**Q:** I changed x, and now some of my graphs are not updating.
-
-**A:** First, check your Poller Cache to see if the poller entries for the Data
-Sources in question are still found there. Then, if you find that they are
-missing, you can either resave the Device in question, if it's a single device,
-or Repopulate the Poller cache if it impacts multiple Devices. If you have a
-large installation with thousands or tens of thousands of devices you should use
-the CLI script `rebuild_poller_cache.php` to perform this action.
-
-Often times, if you have changed a Template, bad things can happen. So, it's
-always advisable to have a backup of your Graph and Data Templates as well as
-any Script or XML files you used to create the Templates. Another good practice
-is to perform database backups daily just in case of either an unintended
-change, or a disaster.
+Tune **Processes** and Spine **Threads** for the affected entry under
+**Data Collectors**. Threads are per collector process, so consider the total
+concurrency and database connections. Increase gradually while measuring
+runtime, CPU, memory, database load, and storage I/O. More threads do not
+guarantee faster polling; there is no fixed item throughput or CPU ratio that
+applies to every installation. See [Data Collectors](Data-Collectors.md).
 
 ---
 
-**Q:** I am using Redhat 8.0 and SNMP is not working.
+**Q:** I changed a setting or template and some graphs stopped updating.
 
-**A:** Redhat 8.0 comes with a broken php-snmp package. Updating your 'php-snmp'
-and 'net-snmp' packages to their latest versions should fix this problem.
+**A:** Use [Data Debug](Data-Debug.md) and inspect the affected device's
+**View Poller Cache** entries. Confirm that the data sources still have valid
+polling commands, credentials, and OIDs.
 
----
-
-**Q:** How do I configure net-snmp so it will work with Cacti?
-
-**A:** Run `snmpconf -g basic_setup` and follow the prompts. Also check that the
-file being used by snmpd is the correct config file. For Redhat Linux, snmpconf
-creates the `/etc/snmpd.conf`, but snmpd uses `/etc/snmpd/snmpd.conf`.
-
-If this doesn't work a very simple config file is:
-
-```console
-    # contact
-    syslocation Something
-    syscontact "root@someone.com"
-
-    # auth
-    rocommunity public
-
-    # disk monitoring
-    disk /
-
-    # Don't monitor NFS
-    skipNFSInHostResources true
-
-    # Allow for real big disk volumes
-    realStorageUnits 0
-```
-
-After you have made the changes to the net-snmp configuration file, you should
-restart the service using the following command:
+If entries are missing or stale, use **Repopulate Poller Cache** on the device
+edit page or save that device again. For a targeted CLI rebuild, run this from
+the Cacti directory as the polling account, replacing `123` with the device ID:
 
 ```sh
-systemctl enable snmpd
-systemctl restart snmpd
+php -q cli/rebuild_poller_cache.php --host-id=123
 ```
 
-Though there are many more advanced settings available in net-snmp, keep a
-simpler configuration unless your information security policies require more
-stringent settings.
+For a system-wide rebuild, use **Utilities > System Utilities > Rebuild Poller
+Cache**, or omit `--host-id` from the CLI command. Large installations should
+use the CLI. Rebuilding the cache does not repair a faulty template or restore
+lost RRD data. Back up the database, RRD files, and custom scripts and query XML
+before changing templates. See the [cache rebuild utility][code-cache].
 
 ---
 
-**Q:** I've installed Cacti, and scheduled a network discovery, but nothing is
-happening. Where should I go to see the issue?
+**Q:** SNMP queries fail. Where should I start?
 
-**A:** You should click the **Log** tab at the top of the page. When you get to
-the **Log** tab, you should search for an entry "SYSTEM STATS:". If you do not
-find that entry, it means that you Cacti Data Collector, otherwise known as the
-Cacti Poller is not running.
+**A:** Test from the Data Collector assigned to the device, using the same
+SNMP version, credentials, port, and context as Cacti. A successful query from
+your workstation does not prove that the collector can reach the agent.
 
-This can happen if you have neglected to create either a CRON entry for the
-Cacti Poller, or registered and started the `cactid` service available in the
-latest Cacti. If you find that the CRON entry is there, you should look at your
-systems CRON log for entries like **permission denied**. Sometimes the user
-accounts you have selected to run the CRON are not permitted to do so. We
-strongly recommend that you use the `cactid` service with Cacti 1.x though and
-avoid CRON based Data Collection though.
+Check the agent's listening address, firewall rules, access controls, and
+supported authentication/privacy protocols. For Cacti's PHP paths, verify the
+PHP SNMP extension and the Net-SNMP binary paths. For Spine, also inspect its
+configuration and log messages. Use the device's **Verbose Query** output to
+distinguish an inaccessible agent from an empty or unsupported data query.
+
+---
+
+**Q:** How do I configure Net-SNMP's agent for Cacti?
+
+**A:** Configure `snmpd` on the monitored system. `snmpconf -g basic_setup`
+can help generate a configuration; confirm which file the installed service
+actually reads. Paths differ between operating systems and packages.
+
+Use read-only access and restrict requests to your Data Collectors. Prefer
+SNMPv3 authentication and privacy where supported. If you use SNMPv2c, this
+example restricts a community to one collector:
+
+```text
+# Replace both placeholders with your own values.
+rocommunity REPLACE_WITH_UNIQUE_COMMUNITY 192.0.2.10
+```
+
+Replace the example IP with the collector's source address as seen by the
+agent. Set matching credentials in Cacti and permit the configured SNMP UDP
+port through the firewall only from the collectors. Apply the configuration
+using your platform's service manager. On a systemd installation whose service
+is named `snmpd`, for example:
+
+```sh
+sudo systemctl restart snmpd
+```
+
+Use the [Net-SNMP configuration manual][net-snmp-config] for SNMPv3 user
+creation, views, and any disk-monitoring options required by your templates.
+
+---
+
+**Q:** I scheduled network discovery, but nothing is happening.
+
+**A:** Open the **Log** tab and look for recent `SYSTEM` polling statistics,
+`AUTOM8` messages, and errors. Missing statistics can indicate a stopped
+poller, an early failure, or logging settings that suppress or redirect the
+messages. Check the active log destination and filters before concluding
+that polling has stopped.
+
+Confirm **Settings > Poller > Data Collection Enabled** is checked. Verify
+that your chosen scheduler, such as cron or `cactid`, is running under the
+intended account and can execute PHP and access Cacti. Check its service or
+scheduler logs for startup and permission errors. Use one scheduler for each
+collector to avoid duplicate launches.
+
+If polling works, inspect the enabled state, schedule, assigned collector,
+address range, and SNMP options of the network under **Automation > Networks**.
+Discovery is launched from the polling cycle and has its own scheduling and
+process checks. See [Automation Networks](Automation-Networks.md),
+[Discovered Devices](Discovered-Devices.md), and the
+[automation implementation][code-automation].
 
 ## Graphs
 
-**Q:** I just installed Cacti and all of my graphs appear as broken images.
+**Q:** I just installed Cacti and my graphs appear as broken images.
 
-**A:** For you to actually get graph images, poller.php must run at least once
-so it can create .rrd files in Cacti's 'rra/' directory. Double check that you
-configured your `/etc/crontab` file or the `cactid` service to execute
-poller.php at the desired frequency, normally either every 1 or 5 minutes. Also
-make sure that the user poller.php runs as has permission to create new files in
-Cacti's 'rra/' directory. In the modern Cacti, both the Web Server account and
-Cacti's Poller account must have write access.
+**A:** A graph cannot read its data until the corresponding RRD files exist.
+Confirm that polling has run successfully and inspect the Cacti log for RRD
+creation errors. The normal local storage directory is `rra/`, but use the
+actual data source path if you configured another storage layout or RRDproxy.
 
-If all of your settings appear correct, try running poller.php manually by
-cd'ing to Cacti's directory and typing:
+The polling account needs access to create and update those files. The web
+server needs access to render graphs and, when it performs RRD updates or
+maintenance, write access as well. See
+[installation hardening](Hardening-Cacti-Installation.md) for permissions.
 
-```sh
-shell> php poller.php
-```
-
-If you have files in your 'rra/' directory, but your graphs still appear as
-broken images, you should enable graph debug mode see exactly why the graphs are
-not rendering. To do this go into Cacti, select Graph Management from the menu,
-select any graph listed, and select Turn On Graph Debug Mode.
-
----
-
-**Q:** My graphs render, but they do not contain any data.
-
-**A:** More often than not, this problem's cause is permissions. For instance if
-you run poller.php manually as root for testing, any .rrd files that it creates
-will be owned by root. Now when poller.php runs from cron, it will not be able
-to update these .rrd files because they are owned by root. You can double check
-the owner of your .rrd files by running the following command in your Cacti
-directory:
+To diagnose a polling failure, run from the Cacti directory as the configured
+polling account, while avoiding an overlapping scheduled run:
 
 ```sh
-shell> ls -al rra/
+php -q poller.php --debug
 ```
 
-If only some of your graphs are not updating correctly, double check the Maximum
-Value field for all data sources used by these graphs. If the value being fed to
-the .rrd file exceeds its Maximum Value, RRDtool will insert an Unknown and you
-will see no data on the graph.
+Use the PHP CLI binary configured for your installation. If the files exist,
+open the graph under **Management > Graphs**, select **Turn On Graph Debug
+Mode**, and inspect the RRDtool command and response. Check the configured
+RRDtool path and the web server's access to the files named in that command.
 
 ---
 
-**Q:** A lot of my graphs contain long ifAlias names, but they are being
-truncated to 15 characters.
+**Q:** My graphs render, but they do not contain data.
 
-**A:** Cacti does this by default to better control graph title formatting. You
-can change this limit, by going to Cacti Settings on the Cacti menu, selecting
-the Visual tab, and changing the value for Data Queries - Maximum Field Length.
+**A:** Start with [Data Debug](Data-Debug.md) to confirm that polling returns
+valid values. Inspect the log for SNMP, script, and RRD update errors. Check
+that the polling account can update the actual RRD path. A manual run as
+another user can leave files with unsuitable ownership or permissions.
 
----
-
-**Q:** One of my devices rebooted and now I have a huge spike on my graph!
-
-**A:** This occurs because the reboot causes SNMP counters to reset, which can
-cause a rather large spike on the graph when RRDtool tries to determine the
-change between the new small counter value and the large previous value. One way
-to combat this issue is to specify realistic maximum values for your data
-sources. RRDtool will ignore any value that is larger than the maximum value.
-
-If you already have a spike on one or more of your graphs, Cacti includes a
-built-in Spikekill utility. See [Spikekill](Spikekill.md) for usage.
+Check the data source type, minimum, maximum, heartbeat, and polling interval.
+Values outside the RRD data source bounds become Unknown. For counters, the
+bounds apply to the calculated rate, so use the data source's units when
+choosing a maximum. A traffic graph may convert byte rates to bits for display.
+Counter-based sources also need successive samples before a rate is available.
+See [Data Sources](Data-Sources.md) and [Debugging](Debugging.md).
 
 ---
 
-**Q:** I have a remote poller that is timing out but SNMP timing to the devices
-is fine
+**Q:** Long `ifAlias` values are truncated in graph titles. Can I change this?
 
-**A:** Check that the network connection between the Remote poller and Main
-poller is working ok if the link has very high latency this can cause the
-polling times to increase as the data being transferred from the remote poller
-will be slowed causing the poll not to finish in time
+**A:** Under **Settings > Visual > Graph/Data Source/Data Query Settings**,
+increase **Data Source Field Length** (`max_data_query_field_length`). Its
+development-branch default is **40**, not 15. Also check **Maximum Title
+Length**, whose default is **110**.
+
+If existing names still contain the shortened text, use **Reapply Suggested
+Names** for the affected graphs or data sources. This regenerates names from
+their naming rules, so check custom names before applying it in bulk. See
+[setting definitions][code-settings] and [query substitution][code-variables].
 
 ---
 
-**Q:** RRDtool Says: ERROR: unknown option '--slope-mode' or RRDtool Says:
-ERROR: Garbage ':39:24 To 2005/10/22 16:39:24\c' after command: COMMENT:From
-2005/10/21 16:39:24 To 2005/10/22 16:39:24\c
+**Q:** A device rebooted and now there is a large spike on its traffic graph.
 
-**A:** This occurs because the version of RRDtool that you are running does not
-match the RRDtool version Cacti is configured to use. Double check your Cacti
-Settings and make sure that the RRDtool version matches what version of RRDtool
-you are running.
+**A:** Counter resets or discontinuities can produce an implausible rate.
+Check the counter type, interface speed, and the maximum for the RRD data
+source. A realistic maximum lets RRDtool reject impossible calculated rates.
+Use the source's units, such as bytes per second, rather than the graph's
+displayed units.
+
+For an existing spike, see [Spikekill](Spikekill.md). Back up the affected RRD
+files before removing spikes because this changes stored history.
+
+---
+
+**Q:** A remote collector times out even though SNMP responses are fast.
+
+**A:** SNMP is only one part of a remote collection cycle. Check the logs on
+both collectors and verify connectivity, latency, and database access between
+the remote collector and the main system. Also inspect replication/recovery
+messages, database load, script runtimes, and RRD processing.
+
+The **Remote Agent Timeout** setting controls how long the central web server
+waits for remote device-information requests. It is not the polling cycle's
+runtime limit. Diagnose the timed-out operation before changing it. See
+[Remote Poller Setup](How-To-Setup-Remote-Pollers.md).
+
+---
+
+**Q:** RRDtool reports an unknown option or a malformed `COMMENT`. What next?
+
+**A:** Check **Settings > Paths > RRDtool Binary Path** and
+**Settings > General > RRDtool Version** against the executable actually used
+by Cacti. A version mismatch can make Cacti generate unsupported options.
+
+Enable Graph Debug Mode to inspect the failing command. A malformed `COMMENT`
+can also come from graph text or escaping; a version mismatch is not the only
+possible cause. Check the exact option or graph item named in the error.
 
 ## Windows Related
 
-**Q:** I get a "Fatal error: Cannot redeclare title_trim()" error message from
-Cacti.
+**Q:** PHP reports `Cannot redeclare title_trim()`. How do I fix it?
 
-**A:** Contrary to previous versions of Cacti, you must not put Cacti in your
-PHP include path. Check your `php.ini` file to make sure there is not something
-like `include_path = C:/Apache2/htdocs/cacti`.
+**A:** This means PHP loaded more than one definition of the function. Check
+for a mixed installation, duplicate Cacti files, and custom PHP include or
+`auto_prepend_file` settings that load Cacti code twice. Check the PHP
+configuration used by the failing web or CLI process, since they can differ.
+
+Do not add a Cacti directory to PHP's `include_path` as an installation step.
+Use a complete, consistent release and follow the
+[Windows installation guide](Installing-Under-Windows.md). The error alone
+does not establish that `include_path` is the cause.
 
 ## Common Problems
 
-### I see "MySQL server has gone away" in cacti log and cacti does not work as expected
+### MySQL server has gone away
 
-Check the following in MySQL/MariaDB
-```
+This means the database connection was lost. Check the database error log and
+service status for restarts or crashes, then investigate network failures,
+connection timeouts, and oversized packets. Inspect relevant settings:
+
+```sql
+SHOW GLOBAL VARIABLES LIKE 'wait_timeout';
+SHOW GLOBAL VARIABLES LIKE 'max_allowed_packet';
 SHOW GLOBAL VARIABLES LIKE 'max_connections';
-SHOW GLOBAL STATUS LIKE 'max_used_connections';
+SHOW GLOBAL STATUS LIKE 'Threads_connected';
+SHOW GLOBAL STATUS LIKE 'Max_used_connections';
 ```
 
-If they are close, increase the max_connections in the server.cnf (mysql.cnf, my.cnf) 
-and restart MariaDB/MySQL.
+Connection exhaustion normally reports **Too many connections**. Raise
+`max_connections` only when the logs and workload support that diagnosis and
+the server has capacity. Increasing it alone does not fix a lost connection.
+See the [MySQL troubleshooting guide][mysql-gone-away].
 
 ### Cron is out of sync with the Poller Interval
 
-```shell
-WARNING: Cron is out of sync with the Poller Interval! The Poller Interval is
-'15' seconds, with a maximum of a '60' second Cron, but 300.9 seconds have
-passed since the last poll!
+A scheduling warning can indicate that the launcher cadence and Cacti's
+configuration disagree, or that launches were delayed or missed. Under
+**Console > Configuration > Settings > Poller**, check **Cron/Daemon Interval**
+and **Poller Interval**.
+
+**Cron/Daemon Interval** is the launch frequency, with choices of 60 or 300
+seconds. **Poller Interval** is the collection frequency; `poller.php` can
+perform multiple collection passes during a single launch. Changing the
+poller interval also requires rebuilding the poller cache; existing RRD
+profiles need separate consideration. See the
+[interval-change guide](How-To-Poller-5-to-1-min.md).
+
+For cron, the schedule must match **Cron/Daemon Interval**. For example, these
+are alternative entries in a system cron file. Replace the account and paths
+with your installation's values:
+
+```cron
+# Every five minutes (300 seconds)
+*/5 * * * * cacti /usr/bin/php -q /path/to/cacti/poller.php
+
+# Every minute (60 seconds)
+* * * * * cacti /usr/bin/php -q /path/to/cacti/poller.php
 ```
 
-This warning message may be recorded in the Cacti logs if you have a mismatch
-between the cron file that runs the poller.php and the settings within Cacti
-itself. Browse to **Console > Configuration > Settings > Poller** _(tab)_ and
-check that the Cron Interval is defined as either 1 minute or 5 minutes.
-
-If the cron interval is 5 minutes, then the schedule within the cron
-configuration file (normally /etc/cron.d/cacti) should be set to:
-
-```console
-*/5 * * * *
-```
-
-For 1 minute intervals, this should be:
-
-```console
-* * * * *
-```
+Install only the matching entry. A per-user crontab omits the `cacti` account
+field. If using `cactid`, check its service configuration and disable the
+equivalent cron entry. Also check for runtime overruns and scheduler errors.
+See the [daemon installation instructions][code-service].
 
 ### Poller Runtime exceeded
 
-```shell
-POLLER: Poller[0] Maximum runtime of xxx seconds exceeded.
+```text
+Maximum runtime of ... seconds exceeded. Exiting.
 ```
 
-This error indicates that Cacti was unable to finish the polling cycle in time.
-This can be for a few reasons.
+This means the poller reached its runtime limit. Check earlier log messages
+and collector statistics to identify the slow or failing work:
 
-- You are using spine and have not entered the correct mysql credentials in
-  spine.conf
-- You do not have an adaquete process setting for cmd.php or thread/process
-  count for spine
-- Network related issue either an network outage or a network slowdown
-- System related trouble cpu/memory exhaustion
-- Insufficient MySQL connections resulting in spine failing
+- Spine cannot connect with its configured database credentials or cannot
+  start from the configured binary/configuration paths.
+- Unreachable devices, slow SNMP requests, or scripts consume the interval.
+- Collector processes or Spine threads are insufficient for the workload,
+  or excessive concurrency overloads the database or system.
+- Database connection limits, CPU, memory, storage I/O, or remote connectivity
+  constrain the cycle.
+
+Resolve the measured bottleneck, then confirm subsequent cycles finish within
+the configured interval. See [poller orchestration][code-poller].
 
 ### RRDtool reports Unknown Error
 
-Sometimes, RRDtool can be rather unhelpful and display the simple error within
-the graph image of "Unknown Error". When this occurs, the best course of action
-would be to grab the command that Cacti uses and see if any more information is
-given at the command line level.
+Edit the affected graph and select **Turn On Graph Debug Mode**. Inspect both
+**RRDtool Command** and **RRDtool Says**. If necessary, run the displayed
+command as the web server account, using the same executable, paths, and
+environment. On Linux, an administrator can use `sudo -u` to select that
+account.
 
-To do this, edit a graph that has the issue, select **Turn On Graph Debug** and
-a new section should appear beneath the graph. This should show both the command
-and what output we received from the tool.
+Graph commands can write binary image data to standard output. When copying
+one that uses `rrdtool graph -` or `graphv -`, change the output destination
+from `-` to a writable temporary image path so diagnostics remain readable.
 
-```console
-RRDtool Command:
-  /usr/bin/rrdtool graph - \
-  --imgformat=PNG \
-  --start='-86400' \
-  --end='-60' \
-  --pango-markup  \
-  --title='localhost - CPU Usage' \
-  --vertical-label='percent' \
-  --slope-mode \
-  --base=1000 \
-  --height=200 \
-  --width=700 \
-  --tabwidth '40' \
-  --rigid \
-  --alt-autoscale-max \
-  --lower-limit='0' \
-  COMMENT:"From 2019/10/19 12\:37\:00 To 2019/10/20 12\:36\:00\c" \
-  COMMENT:"  \n" \
-  --color BACK#F3F3F3 \
-  --color CANVAS#FDFDFD \
-  --color SHADEA#CBCBCB \
-  --color SHADEB#999999 \
-  --color FONT#000000 \
-  --color AXIS#2C4D43 \
-  --color ARROW#2C4D43 \
-  --color FRAME#2C4D43 \
-  --border 1 --font TITLE:11:'Arial' \
-  --font AXIS:8:'Arial' \
-  --font LEGEND:8:'Courier' \
-  --font UNIT:8:'Arial' \
-  --font WATERMARK:6:'Arial' \
-  --slope-mode \
-  --watermark 'Generated by Cacti' \
-  DEF:a='/usr/share/cacti/site/rra/127_0_0_1_5min_cpu_40.rrd':'5min_cpu':MAX \
-  AREA:a#FF0000FF:'CPU Usage'  \
-  GPRINT:a:LAST:'Current\:%8.0lf'  \
-  GPRINT:a:AVERAGE:'Average\:%8.0lf'  \
-  GPRINT:a:MAX:'Maximum\:%8.0lf\n'
+On Windows, reproduce the failure under the relevant application-pool or
+scheduled-task identity. These accounts can have different permissions, PHP
+configurations, and environment variables; an interactive administrator's
+successful command does not prove that the service account can run it.
 
-RRDtool Says:
-  OK
-```
+## Source References
 
-If the output above isn't helpful, simply copy the command section and then run
-it as the user which the website runs as. For Linux, you can do this by either
-`su - <user>` and then running the command, or `sudo -u <user> <command>` to
-stay as your current user but run the command as the website user.
+Cacti behavior in this page was checked against development commit
+[`883b334de`][code-revision]. The links below pin the relevant implementation
+so that setting names, defaults, and authentication behavior can be checked
+when updating this FAQ. Also see [SNMP method selection][code-snmp],
+[device actions][code-device], [collector concurrency][code-collectors], and
+[RRD creation and graph generation][code-rrd].
 
-For Windows, the following command will allow you to spawn a command prompt as
-the website user, from which you can then run the above command to see the
-output.
-
-```console
-runas /user:<machine or domain>\<user> cmd.exe
-```
-
-The newly created command prompt should show the user name if you have entered
-the correct password.
+[manual-1.2]:
+  <https://github.com/Cacti/documentation/tree/1.2.x>
+[code-revision]:
+  <https://github.com/Cacti/cacti/tree/883b334de>
+[code-local-auth]:
+  <https://github.com/Cacti/cacti/blob/883b334de/lib/Auth/LocalAuthLoginProvider.php>
+[code-auth]:
+  <https://github.com/Cacti/cacti/blob/883b334de/lib/auth.php#L4550-L4566>
+[code-cache]:
+  <https://github.com/Cacti/cacti/blob/883b334de/cli/rebuild_poller_cache.php>
+[code-settings]:
+  <https://github.com/Cacti/cacti/blob/883b334de/include/global_settings.php#L1404-L1421>
+[code-variables]:
+  <https://github.com/Cacti/cacti/blob/883b334de/lib/variables.php>
+[code-automation]:
+  <https://github.com/Cacti/cacti/blob/883b334de/poller_automation.php>
+[code-poller]:
+  <https://github.com/Cacti/cacti/blob/883b334de/poller.php>
+[code-service]:
+  <https://github.com/Cacti/cacti/blob/883b334de/service/README.md>
+[code-snmp]:
+  <https://github.com/Cacti/cacti/blob/883b334de/lib/snmp.php>
+[code-device]:
+  <https://github.com/Cacti/cacti/blob/883b334de/host.php>
+[code-collectors]:
+  <https://github.com/Cacti/cacti/blob/883b334de/pollers.php>
+[code-rrd]:
+  <https://github.com/Cacti/cacti/blob/883b334de/lib/rrd.php>
+[net-snmp-config]:
+  <https://www.net-snmp.org/docs/man/snmpd.conf.html>
+[mysql-gone-away]:
+  <https://dev.mysql.com/doc/refman/8.4/en/gone-away.html>
 
 ---
 
