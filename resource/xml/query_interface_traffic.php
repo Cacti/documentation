@@ -1,7 +1,7 @@
 <?php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2025 The Cacti Group                                 |
+ | Copyright (C) 2004-2026 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -41,7 +41,14 @@ $oids = array(
 	'ifOutOctets'   => '.1.3.6.1.2.1.2.2.1.16',
 );
 
-$xml_delimiter  =  '!';
+$xml_delimiter = '!';
+$snmp_retries = (int) read_config_option('snmp_retries');
+
+// The XML supplies twelve connection arguments followed by the operation.
+if (count($_SERVER['argv']) < 14) {
+	fwrite(STDERR, "Usage: query_interface_traffic.php <connection arguments> index|query|get [field] [index]\n");
+	exit(1);
+}
 
 # all required input parms
 $hostname               = $_SERVER['argv'][1];
@@ -59,6 +66,18 @@ $snmp_priv_passphrase   = $_SERVER['argv'][10];
 $snmp_priv_protocol     = $_SERVER['argv'][11];
 $snmp_context           = $_SERVER['argv'][12];
 $cmd                    = $_SERVER['argv'][13];
+if (!in_array($cmd, ['index', 'query', 'get'], true)) {
+	fwrite(STDERR, "Unsupported query operation.\n");
+	exit(1);
+}
+if ($cmd !== 'index' && !array_key_exists($_SERVER['argv'][14] ?? '', $oids)) {
+	fwrite(STDERR, "A supported field is required.\n");
+	exit(1);
+}
+if ($cmd === 'get' && !ctype_digit($_SERVER['argv'][15] ?? '')) {
+	fwrite(STDERR, "A numeric interface index is required.\n");
+	exit(1);
+}
 if (isset($_SERVER['argv'][14])) {
 	$query_field = $_SERVER['argv'][14];
 };
@@ -109,17 +128,18 @@ if ($cmd == 'index') {
 #      interface indices along with the description of the interface
 # -------------------------------------------------------------------------
 elseif ($cmd == 'query' && isset($query_field)) {
-	$arr_index = reindex(cacti_snmp_walk($hostname, $snmp_community,
-		$oids['index'], $snmp_version, $snmp_auth_username,
-		$snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol,
-		$snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, $max_oids, SNMP_POLLER));
-		$arr = reindex(cacti_snmp_walk($hostname, $snmp_community,
+	// Use each returned OID's suffix as its index. Two walks can have
+	// different order or missing rows, so joining them by array offset is unsafe.
+	$rows = cacti_snmp_walk($hostname, $snmp_community,
 		$oids[$query_field], $snmp_version, $snmp_auth_username,
 		$snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol,
-		$snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, $max_oids, SNMP_POLLER));
+		$snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, $max_oids, SNMP_POLLER);
 
-	for ($i=0;($i<sizeof($arr_index));$i++) {
-		print $arr_index[$i] . $xml_delimiter . $arr[$i] . "\n";
+	foreach ($rows as $row) {
+		$index = substr($row['oid'], strrpos($row['oid'], '.') + 1);
+		if (ctype_digit($index)) {
+			print $index . $xml_delimiter . $row['value'] . "\n";
+		}
 	}
 }
 
@@ -142,7 +162,7 @@ elseif ($cmd == 'get' && isset($query_field) && isset($query_index)) {
 	print (cacti_snmp_get($hostname, $snmp_community,
 		$oids[$query_field] . ".$query_index", $snmp_version, $snmp_auth_username,
 		$snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol,
-		$snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, $max_oids, SNMP_POLLER));
+		$snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, SNMP_POLLER));
 } else {
 	print "Invalid use of script query, required parameters:\n\n";
 	print "    <hostname> <cmd>\n";

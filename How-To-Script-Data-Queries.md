@@ -173,14 +173,14 @@ The values of interest are stored in `$return_arr[$i] = $arr[$i][“value”];`.
 ## XML File
 
 This given, the first step will be the xml file defining how to access index
-values only. So change to your `<path_cacti>/resources/script_queries` directory
+values only. So change to your `<path_cacti>/resource/script_queries` directory
 and create a file named **ifTraffic.xml**. You may of course choose your own
 name.
 
 ```xml
 <interface>
     <name>Get Interface Traffic Information</name>
-    <script_path>|path_php_binary| -q |path_cacti|/scripts/query_interface_traffic.php</script_path>
+    <script_path>"|path_php_binary|" -q "|path_cacti|/scripts/query_interface_traffic.php"</script_path>
     <arg_prepend>|host_hostname|</arg_prepend>
     <arg_index>index</arg_index>
 
@@ -348,17 +348,17 @@ The new code implements the **query** function as follows
 #      interface indices along with the description of the interface
 # -------------------------------------------------------------------------
 } elseif ($cmd == "query" && isset($query_field)) {
-    $arr_index = reindex(cacti_snmp_walk($hostname, $snmp_community,
-        $oids["index"], $snmp_version, $snmp_auth_username,
-        $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol,
-        $snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, $max_oids, SNMP_POLLER));
-        $arr = reindex(cacti_snmp_walk($hostname, $snmp_community,
+    $rows = cacti_snmp_walk($hostname, $snmp_community,
         $oids[$query_field], $snmp_version, $snmp_auth_username,
-        $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol,
-        $snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, $max_oids, SNMP_POLLER));
+        $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase,
+        $snmp_priv_protocol, $snmp_context, $snmp_port, $snmp_timeout,
+        $snmp_retries, $max_oids, SNMP_POLLER);
 
-    for ($i=0;($i<sizeof($arr_index));$i++) {
-        print $arr_index[$i] . $xml_delimiter . $arr[$i] . "\n";
+    foreach ($rows as $row) {
+        $index = substr($row['oid'], strrpos($row['oid'], '.') + 1);
+        if (ctype_digit($index)) {
+            print $index . $xml_delimiter . $row['value'] . "\n";
+        }
     }
 ```
 
@@ -385,7 +385,7 @@ Last option is the **get** function
     print (cacti_snmp_get($hostname, $snmp_community,
         $oids[$query_field] . ".$query_index", $snmp_version, $snmp_auth_username,
         $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol,
-        $snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, $max_oids, SNMP_POLLER));
+        $snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, SNMP_POLLER));
 ```
 
 The rest of it is left unchanged. For sake of completeness, I repeat it here
@@ -428,17 +428,17 @@ shown, but is repeated here
 ### The Complete XML File
 
 Of course, we now will have to complete the XML file given in Chapter II. Find
-it at `<path_cacti>/resources/script_queries/ifTraffic.xml`.
+it at `<path_cacti>/resource/script_queries/ifTraffic.xml`.
 
 ```xml
 <interface>
     <name>Get Interface Traffic Information</name>
-    <script_path>|path_php_binary| -q |path_cacti|/scripts/query_interface_traffic.php</script_path>
+    <script_path>"|path_php_binary|" -q "|path_cacti|/scripts/query_interface_traffic.php"</script_path>
     <arg_prepend>|host_hostname| |host_snmp_community| |host_snmp_version| |host_snmp_port| |host_snmp_timeout| |host_max_oids| "|host_snmp_username|" "|host_snmp_password|" "|host_snmp_auth_protocol|" "|host_snmp_priv_passphrase|" "|host_snmp_priv_protocol|" "|host_snmp_context|"</arg_prepend>
     <arg_index>index</arg_index>
     <arg_query>query</arg_query>
     <arg_get>get</arg_get>
-    <output_delimeter>!</output_delimeter>
+    <output_delimiter>!</output_delimiter>
     <index_order>ifIndex</index_order>
     <index_order_type>numeric</index_order_type>
     <index_title_format>|chosen_order_field|</index_title_format>
@@ -824,6 +824,11 @@ please compare the units used. The first graph uses **Bytes**, the latter one
 uses **Bits**. For comparison, it would be necessary to multiply the first one
 with 8. This may be done using a CDEF Turn Bytes into Bits, applied to all items
 of the **Graph Template**. This task is left to you.
+
+The downloadable script below is the runnable example for the current SNMP
+API. It validates operations and fields, reads the configured retry count,
+and preserves interface indices when an agent returns sparse or reordered
+walk results. Earlier fragments on this page illustrate the query protocol.
 
 Please find the example resource, script, and Data Query below. Save
 `ifTraffic.xml` into `./resource/script_queries`, and

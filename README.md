@@ -10,6 +10,27 @@ to install Cacti, configure monitoring, and keep your installation running.
 For released Cacti 1.2 installations, use the [1.2.x manual][manual-1.2] and
 the requirements supplied with your installed version.
 
+![Cacti theme with synthetic device measurements](images/theme-overview.png)
+
+Development Cacti theme with synthetic device measurements. See
+[themes and plugin appearance](Themes.md) for settings and troubleshooting.
+
+## Getting Started
+
+Follow this sequence for a new installation:
+
+1. [Check requirements](Requirements.md).
+2. [Install Cacti](General-Installing-Instructions.md) for your platform.
+3. [Add a device and create its graphs](How-to-Graph-Your-Network.md).
+4. [Verify data collection](Data-Debug.md) and check the
+   [Cacti log](Cacti-Log.md).
+5. [Secure the installation](Hardening-Cacti-Installation.md) before making
+   it available to other users.
+
+For the concepts behind these steps, read
+[Principles of Operation](Principles-of-Operation.md). To find your way around
+Cacti, use [Navigating the User Interface](Navigating-The-User-Interface.md).
+
 ## What Do You Want to Do
 
 <a id="cacti-installation"></a>
@@ -30,24 +51,10 @@ the requirements supplied with your installed version.
   Set up collectors, Spine, remote polling, scheduling, and performance.
 - **[Create and reuse templates](Manual-Index.md#create-and-reuse-templates)**:
   Work with templates, data queries, and package import and export.
+- **[Choose a theme or check plugin appearance](Themes.md)**:
+  Find global and personal theme settings and report display problems.
 - **[Troubleshoot a problem](#troubleshoot-a-problem)**:
   Investigate missing data, failed SNMP queries, and polling errors.
-
-## Getting Started
-
-Follow this sequence for a new installation:
-
-1. [Check requirements](Requirements.md).
-2. [Install Cacti](General-Installing-Instructions.md) for your platform.
-3. [Add a device and create its graphs](How-to-Graph-Your-Network.md).
-4. [Verify data collection](Data-Debug.md) and check the
-   [Cacti log](Cacti-Log.md).
-5. [Secure the installation](Hardening-Cacti-Installation.md) before making
-   it available to other users.
-
-For the concepts behind these steps, read
-[Principles of Operation](Principles-of-Operation.md). To find your way around
-Cacti, use [Navigating the User Interface](Navigating-The-User-Interface.md).
 
 ## Troubleshoot a Problem
 
@@ -68,11 +75,15 @@ Cacti, use [Navigating the User Interface](Navigating-The-User-Interface.md).
 
 <a id="table-of-contents"></a>
 <a id="how-tos"></a>
+<a id="hot-tos"></a>
 <a id="template-specific-documentation"></a>
 <a id="device-template-specific-documentation"></a>
 
 Browse the **[complete manual index](Manual-Index.md)** for every guide,
 including procedures grouped with their related subjects.
+
+For offline reading and runnable query examples, see
+[PDF manuals and example downloads](Downloads.md).
 
 Use the [settings reference](Manual-Index.md#settings-reference),
 [command-line scripts](Command-Line-Scripts.md), and
@@ -95,6 +106,8 @@ need a particular option, command, variable, or graph expression. Check
 
 <a id="development-standards"></a>
 
+- **[Development and testing](Development-and-Testing.md)**: Find source
+  checkouts, automated checks, browser evidence, and contribution workflows.
 - **[Development standards](Manual-Index.md#development-standards)**: Follow
   the documentation, PHP, SQL, and security conventions for your target branch.
 

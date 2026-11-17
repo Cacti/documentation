@@ -15,3 +15,6 @@ manual/*
 .git*
 !.github
 !.github/**
+# Generated navigation validation evidence
+navigation-report.json
+__pycache__/
