@@ -63,6 +63,15 @@ class HtmlManualTest(unittest.TestCase):
         self.assertEqual((self.output / 'Cacti-Github.css').read_text(), 'body { color: black; }')
         self.assertEqual(len(report['sources']), 4)
 
+    def test_localized_guide_has_its_document_language(self):
+        path = self.root / 'resources/manuals/Guide-de.md'
+        path.parent.mkdir(parents=True)
+        path.write_text('# Handbuch\n')
+        self.assets.append('resources/manuals/Guide-de.md')
+        self.build()
+        self.assertIn('<html lang="de">', (self.output / 'resources/manuals/Guide-de.html').read_text())
+        self.assertIn('<html lang="en">', (self.output / 'index.html').read_text())
+
     def test_rebuild_removes_stale_pages_from_owned_output(self):
         self.build()
         (self.output / 'stale.html').write_text('old')
