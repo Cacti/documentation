@@ -34,9 +34,15 @@ def anchors(text):
             fenced = not fenced
         if fenced:
             continue
-        heading = re.match(r'^#{1,6}\s+(.+?)\s*#*$', line)
-        if heading:
-            slug = re.sub(r'[^\w -]', '', heading[1].lower()).replace(' ', '-')
+        parts = line.split(maxsplit=1)
+        if not line.startswith('#') or not parts or not 1 <= len(parts[0]) <= 6 or set(parts[0]) != {'#'}:
+            continue
+        title = parts[1].rstrip() if len(parts) == 2 else ''
+        closing = title.rsplit(maxsplit=1)
+        if closing and set(closing[-1]) == {'#'}:
+            title = closing[0].rstrip() if len(closing) == 2 else ''
+        if title:
+            slug = re.sub(r'[^\w -]', '', title.lower()).replace(' ', '-')
             count = counts.get(slug, 0)
             counts[slug] = count + 1
             result.add(slug + (f'-{count}' if count else ''))

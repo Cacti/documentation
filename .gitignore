@@ -15,6 +15,14 @@ manual/*
 .git*
 !.github
 !.github/**
-# Generated navigation validation evidence
-navigation-report.json
+# Static manual build and browser evidence
+node_modules/
 __pycache__/
+/tests/browser/artifacts/
+html-artifacts/
+.coverage
+/html-check/
+
+/manual-artifacts/
+navigation-report.json
+!.gitattributes

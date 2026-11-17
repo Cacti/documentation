@@ -31,6 +31,9 @@ For the concepts behind these steps, read
 [Principles of Operation](Principles-of-Operation.md). To find your way around
 Cacti, use [Navigating the User Interface](Navigating-The-User-Interface.md).
 
+[Current editions and contributed archives](Other-Manuals.md) include PDF,
+text, localized installation guides, and the development schema reference.
+
 ## What Do You Want to Do
 
 <a id="cacti-installation"></a>
@@ -108,6 +111,8 @@ need a particular option, command, variable, or graph expression. Check
 
 - **[Development and testing](Development-and-Testing.md)**: Find source
   checkouts, automated checks, browser evidence, and contribution workflows.
+- **[HTML manual content and publication](resources/build/HTML-Manual.md)**:
+  Build all chapters and preserve links from the archived HTML manual.
 - **[Development standards](Manual-Index.md#development-standards)**: Follow
   the documentation, PHP, SQL, and security conventions for your target branch.
 

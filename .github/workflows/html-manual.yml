@@ -1,0 +1,104 @@
+name: HTML manual content
+on:
+  pull_request:
+  merge_group:
+    types: [checks_requested]
+  push:
+    branches: [develop]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: html-manual-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  manual:
+    name: Build and verify all manual chapters
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: jdx/mise-action@9b200bcecbfd6303e69a4a261b2e09e3757440a7
+        with:
+          tool_versions: |
+            python 3.12.12
+            uv 0.12.23
+            node 22.23.4
+      - name: Resolve the committed renderer lock
+        run: |
+          mise exec python@3.12.12 uv@0.12.23 -- uv export --locked \
+            --script bin/build_html_docs.py --format requirements-txt \
+            --output-file "$RUNNER_TEMP/html-requirements.txt"
+      - name: Check publication regressions and build the complete manual
+        run: |
+          set -euo pipefail
+          mkdir -p html-artifacts
+          renderer=(mise exec python@3.12.12 uv@0.12.23 -- uv run \
+            --with-requirements "$RUNNER_TEMP/html-requirements.txt" --with coverage==7.13.2)
+          "${renderer[@]}" python -m coverage run --branch --include=bin/build_html_docs.py \
+            -m unittest discover -s bin/tests -p test_html_manual.py
+          "${renderer[@]}" python -m coverage run --append --branch --include=bin/build_html_docs.py \
+            bin/build_html_docs.py --output html --archive html-artifacts/cacti-development-manual.zip
+          "${renderer[@]}" python -m coverage report --fail-under=100
+          "${renderer[@]}" python -m coverage json -o html-artifacts/coverage.json
+      - name: Verify and extract the archive under test
+        run: |
+          mise exec python@3.12.12 -- python - <<'PYCODE'
+          from pathlib import PurePosixPath
+          from zipfile import ZipFile
+          with ZipFile('html-artifacts/cacti-development-manual.zip') as archive:
+              if archive.testzip() is not None:
+                  raise ValueError('Manual ZIP checksum failed')
+              for name in archive.namelist():
+                  path = PurePosixPath(name)
+                  if path.is_absolute() or '..' in path.parts:
+                      raise ValueError('Unsafe archive member')
+              archive.extractall('html-check')
+          PYCODE
+      - name: Install locked browser tooling
+        working-directory: tests/browser
+        run: |
+          mise exec node@22.23.4 -- npm ci --ignore-scripts
+          mise exec node@22.23.4 -- npx --no-install playwright install --with-deps chromium
+      - name: Render every chapter and check legacy bookmarks
+        env:
+          HTML_MANUAL_ROOT: ${{ github.workspace }}/html-check
+        working-directory: tests/browser
+        run: |
+          mkdir -p artifacts
+          mise exec node@22.23.4 -- node --test --test-reporter=spec --test-reporter=junit \
+            --test-reporter-destination=stdout --test-reporter-destination=artifacts/browser-junit.xml \
+            html-manual.test.cjs
+      - name: Summarize actual publication evidence
+        if: always()
+        run: |
+          mise exec python@3.12.12 -- python - <<'PY'
+          import json, os
+          from pathlib import Path
+          path = Path('tests/browser/artifacts/browser-evidence.json')
+          if path.exists():
+              result = json.loads(path.read_text())
+              summary = (f"## HTML manual\n\nComplete: {result.get('complete', False)}\n\n"
+                         f"Rendered pages: {len(result['rendered_pages'])}\n\n"
+                         f"Legacy chapters: {len(result['legacy_pages'])}\n\n"
+                         f"Legacy bookmarks: {result.get('legacy_anchors', 0)}\n\n"
+                         f"Source: {result.get('source_revision', 'unavailable')}\n")
+          else:
+              summary = '## HTML manual\n\nBrowser validation did not complete.\n'
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as output:
+              output.write(summary)
+          PY
+      - name: Preserve the manual, checksums, screenshots and test reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: cacti-html-manual-attempt-${{ github.run_attempt }}
+          path: |
+            html-artifacts/
+            tests/browser/artifacts/
+          if-no-files-found: warn
+          retention-days: 14
