@@ -280,7 +280,9 @@ MariaDB [cacti]> ALTER TABLE `automation_processes` ENGINE=InnoDB;
 MariaDB [cacti]> ALTER TABLE `data_source_stats_hourly_cache` ENGINE=InnoDB;
 MariaDB [cacti]> ALTER TABLE `data_source_stats_hourly_last` ENGINE=InnoDB;
 MariaDB [cacti]> ALTER TABLE `poller_output` ENGINE=InnoDB;
+MariaDB [cacti]> ALTER TABLE `poller_output_boost_local_data_ids` ENGINE=InnoDB;
 MariaDB [cacti]> ALTER TABLE `poller_output_boost_processes` ENGINE=InnoDB;
+MariaDB [cacti]> ALTER TABLE `processes` ENGINE=InnoDB;
 ```
 
 Before restoring database load balancing, verify the table-engine changes,
@@ -364,7 +366,7 @@ $database_default  = 'cacti';
 $database_hostname = 'localhost';
 $database_username = 'cactiuser';
 $database_password = 'REPLACE_WITH_UNIQUE_DATABASE_PASSWORD';
-$database_port     = '3306';
+$database_port     = 3306;
 $url_path          = '/cacti/';
 ```
 
