@@ -77,6 +77,44 @@ Those settings include:
 
 - **SNMP Engine ID** - The default SNMP Engine ID to use (SNMP v3)
 
+## SNMP Behavior
+
+The `SNMP Behavior` settings control how Cacti handles SNMP for all **Devices**.
+They are global, and do not only apply to new **Devices**.
+
+Those settings include:
+
+- **SNMP Agent Support Enabled** - If checked, Cacti populates the SNMP Agent
+  tables with Cacti **Device** and system information.  It does not enable the
+  SNMP Agent itself.  On by default.
+
+- **Enable MD5 and DES for SNMPv3** - The MD5 authentication and DES privacy
+  algorithms are legacy, weak, and unavailable on hardened (FIPS) PHP and
+  Net-SNMP builds.  When this is disabled, which is the default, MD5 and DES are
+  removed from the SNMPv3 Authentication and Privacy Protocol dropdowns shown
+  when editing a **Device** and in the **Automation** SNMP Options, leaving only
+  the stronger SHA and AES algorithms.
+
+- **Enable Credential Cache** - Pre-hardens and caches SNMPv3 credential
+  arguments once per credential change, so each poller process reuses them
+  instead of rebuilding them on every request.  This yields a marginal savings
+  when collecting with SNMPv3 credentials through the Net-SNMP binaries.  Off by
+  default.
+
+- **Max OID Limit** - The default maximum number of SNMP Get OIDs to issue per
+  `snmpget` request.  For **Devices**, this setting is controlled at the
+  **Device** level.  You should only use this setting when using Cacti's SNMP
+  API natively in your scripts or plugins.  The default is `10`.
+
+- **Bulkwalk Fetch Size** - How many OIDs should be returned per `snmpbulkwalk`
+  request.  For **Devices** with large SNMP trees, increasing this size will
+  increase re-index performance over a WAN.  The default is `10`.
+
+- **Disable increasing OID Check** - Controls disabling the check for an
+  increasing OID while walking the OID tree.  This is useful for **Data Query**
+  `Re-index` activities on tables whose OIDs are not returned in increasing
+  order.  Off by default.
+
 ## Availability / Reachability
 
 Cacti's `Availability / Reachability` define how to perform initial checks prior
@@ -104,9 +142,13 @@ Those options include:
   - **SNMP Desc** - Only check the SNMP sysDescription of the **Device**
   - **SNMP getNext** - Only perform a basic `getnext` query for the **Device**
   - **Ping** - Either TCP, UDP, or ICMP pings
+  - **Stream Device** - Uptime and polling statistics are not tracked for the
+    **Device**, and show as `N/A` in the **Device** list
 
 - **Ping Type** - When using an options that leverages **Ping** above, which
-  method
+  method.  Options include `ICMP Ping`, `TCP Ping`, `TCP Ping Closed` and
+  `UDP Ping`.  With `TCP Ping Closed`, a refused connection to the port is
+  also treated as a successful ping
 
 - **Ping Port** - When using TCP or UDP ping, the port to ping
 

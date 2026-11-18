@@ -1,6 +1,6 @@
 # Performance Settings (Boost)
 
-The Performance Settings sub-tab in Cacti contains settings that
+The Boost Settings sub-tab in Cacti contains settings that
 can help improve the life of your Cacti server and significantly
 increase the live and lower the I/O wait of your Cacti system
 through caching of RRDfile disk writes.
@@ -72,22 +72,16 @@ The settings include:
   the primary Cacti admin.  The process will be allowed to
   continue to run, but will issue a WARNING.
 
-- **Enable direct population of poller_output_boost table** -
-  Originally a `spine` only setting, this setting is now
-  supported in both `spine` and `cmd.php`.  Instead of having
-  to move records inside of the **Data Collector** Cacti
-  simply makes two writes, one into the main output table
-  and another into the boost table.  Cacti has to write
-  to the primary output table as some plugins require that
-  data to be there immediately for fault management.
-
-- **Boost Debug Log** - If non-blank and points to a
-  location that is writable, Cacti will log the RRDtool
-  syntax used to update the RRDfiles.
+- **Enable Boost Debugging** - If set, Boost will log debug
+  information directly to the Boost log file.  Enabling it
+  can cause a high I/O rate on the local file system.  The
+  log file location is the **Boost Debug Log** setting on the
+  Paths sub-tab, and it must be in the same directory as the
+  Cacti log file.
 
 ## Image Caching
 
-The Image Caching setting on the Performance sub-tab
+The Image Caching setting on the Boost sub-tab
 basically defined where to store time sensitive
 images caches of your various Cacti **Graphs**.  These
 Cached images only live for a few minutes, but can

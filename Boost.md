@@ -109,10 +109,29 @@ roughly every 6 hours to minimize wear and tear on the SSD storage in use.
 ## Enabling Boost
 
 To find and Enable the Boost settings, you first go to
-`Console > Configuration > Settings > Performance`. From this interface, in the
+`Console > Configuration > Settings > Boost`. From this interface, in the
 image below, you can setup Boost.
 
 ![Boost Settings Screen](images/boost-settings.png)
+
+The main Boost settings, with their defaults, are:
+
+| Setting | Default | Purpose |
+| --- | --- | --- |
+| Enable On-demand RRD Updating | Off | Enables on-demand RRD updating. Required when you have Remote Data Collectors. |
+| How Often Should Boost Update All RRDs | 1 Hour | RRD files are updated when a user requests them, or when this period elapses. |
+| Number of Boost Processes | 1 | The number of concurrent Boost processes used to process the RRDs in the Boost table (1 to 20). |
+| Maximum Records | 1000000 | If the Boost output table exceeds this many records, an update takes place. |
+| Maximum Data Source Items Per Pass | 50000 | How many Data Source Items the Boost RRD updater retrieves in one pass. |
+| Maximum Argument Length | 2000 | The longest argument string Boost sends to RRDtool. |
+| Memory Limit for Boost and Poller | 1 GByte | The maximum memory for the Cacti Poller and the Boost poller. |
+| Maximum RRD Update Script Run Time | 20 Minutes | A warning is logged if the Boost poller runs longer than this. |
+| Enable Boost Debugging | Off | Logs debug information to the Boost log file. This can cause a high I/O rate on the local file system. |
+| Enable Image Caching | Off | Enables the image cache. |
+| Location for Image Files | `<cache>/boost/` | Where Boost places cached image files. |
+
+The Boost log location is set by `Boost Debug Log` on the `Paths` tab. It must
+be in the same directory as the Cacti log file.
 
 As an exercise, lets look at a fictitious setup and determine what the
 `max_heap_table_size` should be. Let's say, for example, that your Cacti systems
@@ -202,6 +221,12 @@ Login to the Cacti system as root and run the following:
 cd /var/www/html/cacti
 php -q poller_boost.php --force
 ```
+
+`poller_boost.php` accepts the following options:
+
+- `--verbose` - Show detailed logs at the command line
+- `--force` - Force the execution of an update process
+- `--debug` - Display verbose output during execution
 
 This operation will take several minutes to complete, at which time there will
 be additional records in the `poller_output_boost` table. So, it might be better

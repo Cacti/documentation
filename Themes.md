@@ -17,10 +17,12 @@ Users can choose **Theme** in their personal settings when those settings
 are available. A personal selection takes precedence over the global default.
 Theme names and available options depend on the installed Cacti version.
 
-The development theme set includes Cacti, Carrot, Dark, Deepness, Hollyberry,
-Midwinter, Modern, Paper Plane, Paw, Raspberry, and Sunrise. Midwinter has light
-and dark palettes. Additional themes installed by an RTM distribution belong
-to that distribution and can have different compatibility requirements.
+The development theme set includes Cacti, Dark, Deepness, Midwinter, Modern,
+Paper Plane, Paw, Raspberry, and Sunrise. Midwinter has light and dark
+palettes. The Carrot and Hollyberry themes were removed, and users of them are
+moved to Modern during the 1.3.0 upgrade. Additional themes installed by an RTM
+distribution belong to that distribution and can have different compatibility
+requirements.
 
 ## Check Plugin Appearance
 
@@ -31,7 +33,8 @@ therefore affect a plugin's titlebars, links, row selection, or status labels.
 
 ![Synthetic Syslog interface alerts](images/theme-plugin-syslog.png)
 
-The Syslog example uses the development Carrot theme and synthetic alerts.
+The Syslog example uses synthetic alerts. Its screenshot was captured with the
+Carrot theme, which is no longer shipped.
 Plugin versions and fixture revisions are recorded with the development tests.
 See [Development and Testing][testing]
 for validation scope and browser evidence.
