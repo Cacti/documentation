@@ -117,6 +117,8 @@ $rdatabase_ssl = false;
 $rdatabase_ssl_key = '';
 $rdatabase_ssl_cert = '';
 $rdatabase_ssl_ca = '';
+$rdatabase_ssl_capath = '';
+$rdatabase_ssl_verify_server_cert = true;
 ```
 
 ---

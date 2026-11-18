@@ -226,7 +226,7 @@ characters, this name must be identifiable within Cacti.
    <arg_query>query</arg_query>
    <arg_get>get</arg_get>
    <arg_num_indexes>num_indexes</arg_num_indexes>
-   <output_delimeter>:</output_delimeter>
+   <output_delimiter>:</output_delimiter>
    <index_order>dskDevice:dskMount</index_order>
    <index_order_type>alphabetic</index_order_type>
    <index_title_format>|chosen_order_field|</index_title_format>
@@ -252,11 +252,14 @@ characters, this name must be identifiable within Cacti.
 | arg_query          | Enter the argument that is to be passed to the script to retrieve a list of values given a field name.                                                                                                                                                                                                                                              |
 | arg_get            | Enter the argument that is to be passed to the script to retrieve a single value given a field name and index value.                                                                                                                                                                                                                                |
 | arg_num_indexes    | Enter the argument that is to be passed to the script to determine the total number of available indexes. If specified, this will be used to determine when to automatically re-cache this script query when it is attached to a device.                                                                                                            |
-| output_delimeter   | Enter the one character delimiter that will be used to separate output values. This is only used when you "query" the script in which case it outputs 'index(delimiter)value'.                                                                                                                                                                      |
+| output_delimiter   | Enter the one character delimiter that will be used to separate output values. This is only used when you "query" the script in which case it outputs 'index(delimiter)value'.                                                                                                                                                                      |
 | index_order        | Cacti will attempt to find the best field to index off of based on whether each row in the query is unique and non-null. If specified, Cacti will perform this check on the fields listed here in the order specified. Only input fields can be specified; separate multiple fields with a colon, as in `ifDescr:ifName:ifIndex`.                                     |
 | index_transient    | If set to 'true', this field instructs Cacti not to stop attempting to Graph an index if it disappears from the host cache as a result of a re-index. This setting is for indexes that come and go, for example PPPoE statistics or user statistics which appear when a user log's in, but disappear a few hours after the connection is terminated. |
 | index_order_type   | For sorting purposes, specify whether the index is numeric or alphanumeric. numeric: The indexes in this script query are to be sorted numerically (ie. 1,2,3,10,20,31) alphabetic: The indexes in this script query are to be sorted alphabetically (1,10,2,20,3,31).                                                                              |
 | index_title_format | Specify the title format to use when representing an index to the user. Any input field name can be used as a variable if enclosed in pipes (&#124;). The variable &#124;chosen_order_field&#124; will be substituted with the field chosen by Cacti to index off of (see index_order above).                                                       |
+
+Cacti also still accepts the old misspelling `<output_delimeter>` for Script
+Queries.
 
 ###### Table 12-6. Script Query XML Field Settings
 
@@ -284,7 +287,7 @@ non-alphanumeric characters, this name must be identifiable within Cacti.
     <arg_query>query</arg_query>
     <arg_get>get</arg_get>
     <arg_num_indexes>num_indexes</arg_num_indexes>
-    <output_delimeter>!</output_delimeter>
+    <output_delimiter>!</output_delimiter>
     <index_order>hrProcessorFrwID</index_order>
     <index_order_type>numeric</index_order_type>
     <index_title_format>CPU#|chosen_order_field|</index_title_format>
@@ -319,7 +322,7 @@ non-alphanumeric characters, this name must be identifiable within Cacti.
 | arg_query          | Enter the argument that is to be passed to the script to retrieve a list of values given a field name.                                                                                                                                                                                                                                              |
 | arg_get            | Enter the argument that is to be passed to the script to retrieve a single value given a field name and index value.                                                                                                                                                                                                                                |
 | arg_num_indexes    | Enter the argument that is to be passed to the script to determine the total number of available indexes. If specified, this will be used to determine when to automatically re-cache this script query when it is attached to a device.                                                                                                            |
-| output_delimeter   | Enter the one character delimiter that will be used to separate output values. This is only used when you "query" the script in which case it outputs 'index(delimiter)value'.                                                                                                                                                                      |
+| output_delimiter   | Enter the one character delimiter that will be used to separate output values. This is only used when you "query" the script in which case it outputs 'index(delimiter)value'.                                                                                                                                                                      |
 | index_order        | Cacti will attempt to find the best field to index off of based on whether each row in the query is unique and non-null. If specified, Cacti will perform this check on the fields listed here in the order specified. Only input fields can be specified; separate multiple fields with a colon, as in `ifDescr:ifName:ifIndex`.                                     |
 | index_transient    | If set to 'true', this field instructs Cacti not to stop attempting to Graph an index if it disappears from the host cache as a result of a re-index. This setting is for indexes that come and go, for example PPPoE statistics or user statistics which appear when a user log's in, but disappear a few hours after the connection is terminated. |
 | index_order_type   | For sorting purposes, specify whether the index is numeric or alphanumeric. numeric: The indexes in this script query are to be sorted numerically (ie. 1,2,3,10,20,31) alphabetic: The indexes in this script query are to be sorted alphabetically (1,10,2,20,3,31).                                                                              |

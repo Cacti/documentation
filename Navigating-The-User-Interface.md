@@ -168,8 +168,8 @@ into separate sub-menus.  We will describe the purpose of each next.
   **Device** Discovery, and Rules for creating **Devices**, **Graphs**,
   and **Trees**.
 - **Presets** - This area contains meta objects that cross Template
-  boundaries and are Global in nature.  They include; **Data Source Profiles**,
-  **CDEFs**, **VDEFs**, **GPrint Presets**, and **Colors**
+  boundaries and are Global in nature.  They include; **Data Profiles**,
+  **SNMP**, **CDEFs**, **VDEFs**, **Colors**, **GPRINTs**, and **Layouts**
 - **Import Export** - This is how you can import and export various Cacti
   Template objects.
 - **Configuration** - This is where you manage **Users**, **User Groups**,

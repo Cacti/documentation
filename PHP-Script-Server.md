@@ -3,8 +3,10 @@
 The **PHP Script Server** is a memory resident PHP interpreter that is launched
 by each Cacti **Data Collector** or poller each polling cycle.  If using
 `cmd.php`, there will be at most one **PHP Script Server** launched per poller
-process.  If using `spine` poller, then up to 10 **PHP Script Servers** will be
-launched in a pool for the various `spine` threads to consume.
+process.  If using `spine` poller, then the number of **PHP Script Servers**
+launched per `spine` process is set by `Number of PHP Script Servers` in the
+**Poller** settings.  Values between 1 and 15 are accepted and the default is
+1.
 
 If you have a number of devices that must gather their data via a script, it's
 very important to utilize the **PHP Script Server**. This feature allows for the
@@ -24,11 +26,12 @@ for both SNMP and non-SNMP based data.
 
 ## Using the Script Server
 
-Cacti contains two sample **PHP Script Server** scripts for reference. They are
-for the collection of HostMib CPU and Disk Partition information. These two
-examples are based off the traditional POPEN version of the HostMib functions
-found in earlier versions of Cacti.  Upgrading from these very old **Data Input
-Methods** to the **PHP Script Server** is not longer supported.
+Cacti ships with a number of **PHP Script Server** scripts for reference.  They
+are the files in the `scripts/` directory whose names begin with `ss_`, for
+example `ss_host_cpu.php` and `ss_host_disk.php`, which collect HostMib CPU and
+Disk Partition information.  The matching **Data Query** XML files are in the
+`resource/script_server/` directory.  Upgrading from the very old POPEN based
+**Data Input Methods** to the **PHP Script Server** is no longer supported.
 
 ## Migration of Existing Scripts and Data Queries to PHP Script Server
 
@@ -170,7 +173,7 @@ somewhat self explanatory by now, you must make the following changes:
 2. If the **Data Template** is based upon a **Data Query**, edit the **Data
    Query** and change it's **Data Input Method** to `Get Script Server Data
    (Indexed)` and change the XML file path to point to the new XML file in the
-   `<path_cacti>/resources/script_server/` directory.
+   `<path_cacti>/resource/script_server/` directory.
 
 3. Your final step is to go to the **Console > System Utilities > Rebuild Poller
    Cache** to apply the new settings.

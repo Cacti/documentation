@@ -29,10 +29,12 @@ keep scheduling separate from individual data collection scripts.
   dependencies in `composer.json` and commit the lockfile; do not commit
   installed package trees or edit generated autoload files.
 
-Load dependencies relative to the application base path after bootstrap:
+After bootstrap, load dependencies with the path constants defined in
+`include/global_path.php`, such as `CACTI_PATH_LIBRARY` and
+`CACTI_PATH_INCLUDE`:
 
 ```php
-require_once($config['base_path'] . '/lib/api_device.php');
+require_once(CACTI_PATH_LIBRARY . '/api_device.php');
 ```
 
 ## Frontend assets
