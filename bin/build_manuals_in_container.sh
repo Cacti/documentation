@@ -19,7 +19,7 @@ uv_version='0.12.23'
 # the same path so the builder can record the source revision.
 git_dir=$(git -C "$root" rev-parse --absolute-git-dir)
 git_common=$(cd "$(git -C "$root" rev-parse --git-common-dir)" && pwd)
-if [ "$#" -eq 0 ]; then
+if [[ "$#" -eq 0 ]]; then
 	set -- --only manual --companions
 fi
 

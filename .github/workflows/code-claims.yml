@@ -37,7 +37,7 @@ jobs:
           python-version: '3.12'
       - name: Test the checker
         run: |
-          python3 -m pip install --quiet coverage==7.13.2
+          python3 -m pip install --quiet --only-binary :all: coverage==7.13.2
           python3 -m coverage run --branch --include=bin/check_code_claims.py \
             -m unittest discover -s bin/tests -p test_code_claims.py
           python3 -m coverage report --fail-under=100
