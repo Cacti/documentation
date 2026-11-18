@@ -82,13 +82,32 @@ executed by FPM rather than served as text. This example exposes only
         Require all granted
         DirectoryIndex index.php
     </Directory>
+
+    # Cacti ships no .htaccess for these paths.
+    <Directory /var/www/html/cacti/service>
+        Require all denied
+    </Directory>
+    <Directory /var/www/html/cacti/include>
+        <FilesMatch "^config(_local)?\.php$">
+            Require all denied
+        </FilesMatch>
+    </Directory>
+    <Directory /var/www/html/cacti/include/vendor>
+        <FilesMatch "\.php$">
+            Require all denied
+        </FilesMatch>
+    </Directory>
 </VirtualHost>
 ```
 
 Install `mod_ssl` if not already present. `AllowOverride All` lets Cacti's
-shipped `.htaccess` restrictions protect private paths; if your policy disables
-overrides, reproduce those restrictions in the server configuration. Do not
-grant general access to private directories as a troubleshooting step.
+shipped `.htaccess` files deny `bin`, `cli`, `contrib`, `log`, `mibs`, `rra`,
+`scripts`, `tests` and the private `cache` subdirectories. Cacti ships no
+`.htaccess` for `service`, the `include/config.php` files or PHP files under
+`include/vendor`, so the example denies them explicitly, as the nginx guides
+do. If your policy disables overrides, reproduce the shipped restrictions in
+the server configuration. Do not grant general access to private directories
+as a troubleshooting step.
 
 ```console
 dnf install -y mod_ssl
