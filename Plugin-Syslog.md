@@ -1,59 +1,86 @@
 # syslog
 
-The syslog plugin is a Cacti plugin that has been around for more than a decade.
-It was inspired by the 'aloe' and 'h.aloe' plugins originally developed by the
-Cacti users sidewinder and Harlequin in the early 2000's.  As you will be able
-to see from the ChangeLog, it has undergone several changes throughout the
-years, and remains, even today when you have enterprise offering from both
+The syslog plugin is a Cacti plugin that has been around for more than a
+decade. It was inspired by the 'aloe' and 'h.aloe' plugins originally developed
+by the Cacti users sidewinder and Harlequin in the early 2000's.  As you will
+be able to see from the ChangeLog, it has undergone several changes throughout
+the years, and remains, even today when you have enterprise offering from both
 Elastic and Splunk, remains a relevant plugin for small to medium sized
 companies.
 
 It provides a simple Syslog event search an Alert generation and notification
 interface that can generate both HTML and SMS messages for operations personnel
-who wish to receive notifications inside of a data or network operations center.
+who wish to receive notifications inside of a data or network operations
+center.
 
 For log events that continue to be generated frequently on a device, such as
 smartd's feature to notify every 15 minutes of an impending drive failure, can
 be quieted using syslog's 'Re-Alert' setting.
 
-Syslog also provides multipoller support which allows
-for scalability and redundancy by leveraging multiple
-servers rules can be created on the main poller and pushed
-to the remotes for ease of management or each server can work independently
+Syslog also provides multipoller support which allows for scalability and
+redundancy by leveraging multiple servers rules can be created on the main
+poller and pushed to the remotes for ease of management or each server can work
+independently
 
 ## Features
 
-* Message filter
+- Message filter
 
-* Message search
+- Message search
 
-* Output to screen or file
+- Output to screen or file
 
-* Date time picker
+- Date time picker
 
-* Event Alerter
+- Event Alerter
 
-* Event Removal (for Events you don't want to see)
+- Event Removal (for Events you don't want to see)
 
-* Filter events by Cacti Graph window from Cacti's Graph View pages
+- Filter events by Cacti Graph window from Cacti's Graph View pages
 
-* Use of native MySQL and MariaDB database partitioning for larger installs
+- Use of native MySQL and MariaDB database partitioning for larger installs
 
-* Remote Log Server connection capabilities
+- Remote Log Server connection capabilities
 
-* Custom column mappings between Remote Log Server and required Syslog columns
+- Custom column mappings between Remote Log Server and required Syslog columns
 
-* Remote poller support
+- Remote poller support
+
+- Saved searches, dashboards, and message recommendations in current
+  development. Check the installed release's README for availability.
 
 ### Notes on upgrades
 
-If you are upgrading to 2.0 from a prior install, you must first uninstall
-syslog and ensure both the syslog, syslog_removal, and syslog_incoming tables
-are removed, and recreated at install time.
+This chapter describes the current development plugin. Use the README and
+release notes at your installed release tag for version-specific instructions:
+[Syslog repository](https://github.com/Cacti/plugin_syslog) and [published
+releases](https://github.com/Cacti/plugin_syslog/releases).
 
-In addition, the rsyslog configuration has changed in 2.5.  So, for example, to
-configure modern rsyslog for Cacti, you MUST create a file called cacti.conf in
-the /etc/rsyslog.d/ directory:
+Back up the Cacti database, any separate Syslog database, and the plugin's
+local configuration before an upgrade. Disable the plugin, replace its files
+while preserving `config.php` or `config_local.php`, then follow Plugin
+Management's upgrade advisor and re-enable it. **Do not uninstall the plugin as
+an upgrade step:** uninstall options can delete messages, rules, and hosts.
+
+<a
+id="note-retention-settings-can-be-changed-after-install-but-db-architecture-will-require-a-reinstall-of-the-plugin"
+></a>
+
+Legacy guides described reinstalling to change the table architecture. Follow
+the installed release's conversion procedure instead; a reinstall can discard
+the data that a migration is meant to preserve.
+
+The development plugin also supplies a read-only schema audit. Run this from
+the Cacti directory as the poller user:
+
+```console
+php plugins/syslog/cli/syslog_schema.php --audit
+```
+
+See the plugin README before using `--repair`, `--upgrade`, or a legacy table
+conversion. New development installs use partitioned history tables; existing
+traditional tables are not automatically converted. Timestamp-precision
+conversion is a separate, destructive operation, not a routine upgrade.
 
 ### Cacti Configuration for RSYSLOG
 
@@ -64,50 +91,31 @@ $ModLoad imudp
 $UDPServerRun 514
 $ModLoad ommysql
 
-$template cacti_syslog,"INSERT INTO syslog_incoming(facility_id, priority_id,
-  program, logtime, host, message) \
-  values (%syslogfacility%, %syslogpriority%, '%programname%',
-  '%timegenerated:::date-mysql%', '%HOSTNAME%', TRIM('%msg%'))", SQL
+$template cacti_syslog,"INSERT INTO syslog_incoming(facility_id, priority_id, program, logtime, host, message) values (%syslogfacility%, %syslogpriority%, '%programname%', '%timegenerated:::date-mysql%', '%HOSTNAME%', TRIM('%msg%'))", SQL
 
 *.* >localhost,my_database,my_user,my_password;cacti_syslog
 ```
 
-This is a change from versions 2.0 to 2.4 and below, which had the following
-file format:
+The default incoming schema uses `logtime`, not separate `date` and `time`
+columns. Use numeric facility and priority values. The example above uses
+rsyslog's legacy configuration syntax; do not mix it with an unbound modern
+`ommysql` action, which would use a different default table and template.
+Replace the database and account placeholders with your local configuration,
+and protect the file because it contains database credentials.
+
+Install your distribution's MySQL output module for rsyslog, validate the
+configuration, then restart the service:
 
 ```console
-$ModLoad imudp
-$UDPServerRun 514
-$ModLoad ommysql
+rsyslogd -N1
+systemctl restart rsyslog
 ```
 
-$template cacti_syslog,"INSERT INTO syslog_incoming(facility_id, priority_id,
-  program, date, time, host, message) \
-  values (%syslogfacility%, %syslogpriority%, '%programname%',
-  '%timereported:::date-mysql%', '%timereported:::date-mysql%', '%HOSTNAME%',
-   TRIM('%msg%'))", SQL
-
-*.* >localhost,my_database,my_user,my_password;cacti_syslog
-
-for RHEL, Rocky Linux, or AlmaLinux systems you will all need to install the rsyslog-mysql package
-
-```shell
-yum install rsyslog-mysql
-systemctl resatrt rsyslog
-```
-
-If you are upgrading to version 2.5 from an earlier version, make sure that you
-update this template format and restart rsyslog.  You may lose some syslog
-data, but doing this in a timely fashion, will minimize data loss.
-
-Ensure you restart rsyslog after these changes are completed.  Other logging
-servers such as Syslog-NG are also supported with this plugin.  Please see some
-additional documentation in the [plugin_syslog repository](https://github.com/Cacti/plugin_syslog)
-
-We are using the pure integer values that rsyslog provides to both the priority
-and facility in this version syslog, which makes the data collection must less
-costly for the database.  We have also started including the 'program' syslog
-column for searching and storage and alert generation.
+Do not load a listener or output module twice if another configuration file
+already loads it. For transport, queue, and current module options, use the
+[rsyslog ommysql documentation][rsyslog-mysql]. Syslog-ng is another supported
+ingestion option. For sub-second timestamps and release-specific settings,
+follow the Syslog README.
 
 ### Device setup
 
@@ -115,12 +123,13 @@ To setup log forwarding from your network switches and routers, and from your
 various Linux, UNIX, and other operating system devices, please see their
 respective documentation.
 
-For Cisco routers switches configuration may look something like this
+For a Cisco switch, a basic forwarding configuration looks like this. Replace
+the example address with the address of your log collector.
 
 ```console
 SW-3750#conf t
 Enter configuration commands, one per line.  End with CNTL/Z.
-SW-3750(config)#logging host 192.168.1.194
+SW-3750(config)#logging host 192.0.2.10
 SW-3750(config)#logging facility local7
 SW-3750(config)#logging rate-limit 100
 SW-3750(config)#
@@ -129,271 +138,196 @@ SW-3750(config)#
 
 ### Mariadb/MYSQL Specific configurations
 
-Finally, it's important, especially in more recent versions of MySQL and MariaDB
-to set a correct SQL Mode.  These more recent SQL's prevent certain previously
-allowable syntax such as an empty data and certain group by limitations in the
-SQL itself.  Therefore, you need to ensure that the SQL mode of the database is
-correct.  To do this, first start by editing either `/etc/my.cnf` or
-`/etc/my.cnf.d/server.cnf` and inserting the SQL mode variable into the database
-configuration.  For example:
+Use the database versions required by your installed Cacti and Syslog release.
+The development plugin supports InnoDB and, on MariaDB, Aria for history.
+Remote Data Collector options require InnoDB. Follow the plugin's setup advisor
+and storage-engine guidance before changing an existing installation.
 
-```ini
-[mysqld]
-sql_mode=NO_ENGINE_SUBSTITUTION,NO_AUTO_CREATE_USER
+Do not copy the old `NO_AUTO_CREATE_USER` SQL mode into a current MySQL
+configuration: [MySQL removed it in 8.0][m]. Inspect the actual
+server and session modes when diagnosing schema errors:
+
+```sql
+SELECT @@GLOBAL.sql_mode, @@SESSION.sql_mode;
 ```
 
-After this change, you should log into the mysql server and run the following
-command:
-
-```console
-mysql> show global variables like 'sql_mode';
-```
-
-And ensure that it matches the setting that you placed in the database
-configuration.  If it does not, please search for the configuration that is
-making this SQL mode other than what you required.  More recent versions of
-MySQL and MariaDB will source multiple database configuration files.
+Use the migration guidance for your database and plugin release rather than
+changing SQL modes for every application on the server.
 
 ## Installing the plugin
 
-1.) Copy the syslog files over to /var/www/html/cacti/plugins
+1. Check the plugin release's README and `INFO`. The current development plugin
+   declares Cacti 1.2.23 or later; Cacti's own PHP requirement also applies.
+2. Place the code under `<path_cacti>/plugins/syslog`. Keep application code
+   readable by the web server and poller; it does not generally need web-server
+   write access. See [Plugin Management](Plugins.md).
+3. Copy `config.php.dist` to `config.php` and set the database configuration
+   before installation. For a remote collector with an independent Syslog
+   database, use `config_local.php.dist` as the template for
+   `config_local.php`. If both files exist, `config_local.php` takes
+   precedence.
+4. Leave `$use_cacti_db = true` to use the Cacti database. For a separate
+   database, create it and its account first, set `$use_cacti_db = false`, and
+   set the `$syslogdb_*` connection values. The Syslog connection needs the
+   privileges required to create, migrate, and write its tables. The Cacti
+   account also needs read access to that database, as described in the README.
+5. Install and enable Syslog under **Console > Configuration > Plugins**.
+   Complete the setup advisor, choose supported storage and retention settings,
+   and assign the intended users the relevant Syslog realms.
+6. Configure your log forwarder to write to `syslog_incoming`, then verify that
+   Cacti's poller processes messages and that search and alert rules work.
 
-2.) ensure permissions are correct the files
-     should typically be owned by the webserver user
+The screenshot below shows an older setup advisor. Current development installs
+use partitioned history; settings and available migration choices depend on the
+installed release and existing schema.
 
-```shell
-chown -R apache:apache syslog
-```
-
-3.) copy config.php.dist to config.php
-
-5.) You have two options for storing syslog information you can either use the existing
-Cacti Database or use a dedicated database for syslog as syslog databases especially
-for large networks can grow pretty quick it may be wise to create a dedicated database.
-To use a dedicated DB first create a database
-in mysql and assign a user you will then change
-
-```console
-$use_cacti_db = true;
-to
-$use_cacti_db = false;
-```
-
-if you intend to use the cacti DB leave config.php as default
-
-6.) install the plugin in the plugins tab located
-    in Console >> configuration >> plugins
-
-7.) You will be presented with the plugin install wizard with options on how
-   you would like the Syslog plugin to be installed options
-   include DB arch and retention time
-
-### Note retention settings can be changed after install but db architecture will require a reinstall of the plugin
-
-![install advisor](images/syslog_install_advisor.png)
-
-You will also need to ensure the cacti user is granted select on the Syslog database
-
-```shell
-GRANT SELECT  ON syslog.* TO  'cacti'@'localhost';
-```
+![Earlier Syslog setup advisor](images/syslog_install_advisor.png)
 
 ## SNMP Trap configuration
 
-To leverage SNMP traps as mentioned you will need to install SNMPTT.
-SNMPTT is used to translate OID information passed from the device to a readable
-format SNMPTT will then write that data into syslog for the Syslog plugin to ingest.
+SNMPTT translates traps received by snmptrapd into messages that Syslog can
+ingest. Paths and service options depend on the distribution's packages.
 
-Follow these steps to complete the setup
+1. Install your distribution's `snmptt` and `snmptrapd` packages.
+2. Configure snmptrapd to emit numeric OIDs with `-On`. Check its service unit
+   for the supported environment file or systemd override. For a package that
+   reads `/etc/sysconfig/snmptrapd`, the option is:
 
-1.) yum install snmptt
+   ```console
+   OPTIONS="-On"
+   ```
 
-2.) enable snmptt and snmptrapd
+3. Configure trap authentication and forward accepted traps to SNMPTT. Replace
+   the community placeholder and restrict access to intended senders. This
+   example uses a community-based sender; use the appropriate authentication
+   configuration for SNMPv3 senders.
 
-```console
-systemctl enable snmptrapd
-systemctl enable snmptt
-systemctl start snmptt
-systemctl start snmptrapd
-```
+   ```console
+   authCommunity log,execute REPLACE_WITH_COMMUNITY
+   traphandle default /usr/sbin/snmptthandler
+   ```
 
-3.) Now that snmptt and snmptrapd are started and enabled you will first need to
-    modify the snmptrapd systemd file to include -on in the startup options
+4. Configure SNMPTT's `snmptt.ini` for daemon mode and Syslog output:
 
-the file is located in /etc/sysconfig/snmptrapd and should look like this after
+   ```ini
+   mode = daemon
+   ```
 
-```console
-# snmptrapd command line options
-# '-f' is implicitly added by snmptrapd systemd unit file
-OPTIONS="-on"
-```
+5. Review the plugin's `contrib/snmptt-syslog-connector.py` for preserving the
+   originating device address. Configure it using the instructions for the
+   installed plugin and SNMPTT packages.
+6. Enable and restart the services, then send a test trap and verify its device
+   identity and message in Syslog:
 
-4.) Now you need to modify the snmptrapd config file to receive snmptraps by
-    default snmptrapd will not process any traps until you configure it to do so
-    you will also need to tell snmptrapd to forward the received traps over to snmptt
-
-Here is an example of configuring snmptrapd to receive snmptraps from a device
-using the public snmp string and forwarding it over to snmptt
-
-```console
-# Example configuration file for snmptrapd
-#
-# No traps are handled by default, you must edit this file!
-#
-# authCommunity   log,execute,net public
-# traphandle SNMPv2-MIB::coldStart    /usr/bin/bin/my_great_script cold
-authCommunity   log,execute,net public
-traphandle default /usr/sbin/snmptthandler
-```
-
-after making all of the changes to the snmptrapd configuration restart
-the snmptrapd process for the changes to take effect.
-
-5.) configure snmptt.ini to operate in daemon mode
-
-By default snmptt already writes data to syslog all that is left is to configure
-daemon mode in snmptt.ini which is located in /etc/snmp
-
-```console
-# Set to either 'standalone' or 'daemon'
-# standalone: snmptt called from snmptrapd.conf
-# daemon: snmptrapd.conf calls snmptthandler
-# Ignored by Windows.  See documentation
-mode = daemon
-```
-
-6.) use the snmptt cacti connector
-
-By default since snmptt resides on the syslog server all of the IP information
-will appear as if its coming from localhost
-to fix this there is a cacti snmptt connector which will format the trap
-to be ingested to the syslog db it is located in the contrib folder
+   ```console
+   systemctl enable snmptrapd snmptt
+   systemctl restart snmptrapd snmptt
+   ```
 
 ## Remote poller deployment options
 
-The syslog plugin can be deployed on each poller or select pollers
-each poller will need to be configured with rsyslog
-each poller will need to be configured with a syslog config_local file
+The syslog plugin can be deployed on each poller or select pollers each poller
+will need to be configured with rsyslog each collector with an independent
+Syslog database needs a local `config_local.php` file; see the plugin README
+for replication destinations
 
 There are a few deployment approaches
 
-1.) Multiple Pollers with a load balancer for syslog
+- Multiple collectors behind a Syslog load balancer.
 
-![multiple Pollers lb](images/syslog-multi-poller-lb.png)
+  ![Multiple collectors with a load balancer](images/syslog-multi-poller-lb.png)
 
-2.) Multiple pollers no balancer but devices send syslog to multiple pollers
+- Devices forwarding to multiple collectors without a load balancer.
 
-![multiple Pollers no lb](images/syslog-multi-poller-no-lb.png)
+  ![Collectors without a load balancer][no-lb-image]
 
-3.) Multiple pollers but devices are assigned to send Syslog to a specific poller
-    for example poller A and device A is at one location
+- Devices assigned to a collector at their site.
 
-![device per poller](images/syslog-device-per-poller.png)
+  ![Devices assigned to one collector](images/syslog-device-per-poller.png)
 
 ## Remote poller setup
 
-To setup each remote poller you will need to enable and configure
- rsyslog with the following steps
+1. Decide whether each collector uses its Cacti database or a separate Syslog
+   database. For an independent database, create it and configure the connection
+   in `config_local.php` before enabling the remote options.
+2. Keep `$use_cacti_db = true` when using the collector's Cacti database. For
+   a separate database, set it to `false` and supply the `$syslogdb_*` values.
+3. Configure rsyslog on the collector using the
+   [current incoming-table template](#cacti-configuration-for-rsyslog). Its
+   output must target the database that this collector's Syslog plugin uses.
+4. Install the appropriate rsyslog MySQL output module, run `rsyslogd -N1`,
+   and restart rsyslog after validation succeeds.
+5. Configure the required Remote Data Collector options under
+   **Console > Configuration > Settings > Syslog**. Remote options require
+   InnoDB. For a separate Main Collector Syslog database, follow the README's
+   `$syslog_replication_main_db_*` destination settings.
+6. Verify local ingestion, processing, and any enabled replication from each
+   collector before sending production traffic to it.
 
-1.) decide if you will use the cacti DB or a separate DB
+![Earlier remote Syslog settings][remote-settings-image]
 
 ### Note on using the cacti DB as mentioned earlier
 
-You have two options for storing Syslog information you can either use the existing
-Cacti Database or use a dedicated database for Syslog as Syslog databases especially
-for large networks can grow pretty quickly it may be wise to create a dedicated database.
-To use a dedicated DB first create a database in MySQL and assign a user then
+A separate Syslog database can isolate growing message history from Cacti's
+own tables. The connection and privileges must match the local collector's
+configuration; do not reuse a Main Collector destination as the incoming
+database unless that is the intended deployment.
 
-```console
-$use_cacti_db = true;
-to
-$use_cacti_db = false;
-```
+<a
+id="note-rules-will-be-replicated-within-one-polling-cycle--to-the-remote-pollers"
+></a>
 
-2.) If you decide to use the cacti database simply leave config_local.php default
+### Rule replication
 
-```console
-$use_cacti_db = true;
-```
-
-3.) If you decide to use a separate DB fill out the Database detailing config_local.php
-
-4.) create a cacti.conf file in /etc/rsyslog.d and fill out either
-your separate DB details or your main cacti DB details
-
-```console
-$ModLoad imudp
-$UDPServerRun 514
-$ModLoad ommysql
-
-$template cacti_syslog,"INSERT INTO syslog_incoming(facility_id, priority_id,
-  program, date, time, host, message) \
-  values (%syslogfacility%, %syslogpriority%, '%programname%', '%timereported:::date-mysql%',
-  '%timereported:::date-mysql%', '%HOSTNAME%', TRIM('%msg%'))", SQL
-
-*.* >localhost,my_database,my_user,my_password;cacti_syslog
-```
-
-5.) install rsyslog-mysql package to allow rsyslog to write to mysql
-
-```console
-yum install rsyslog-mysql
-```
-
-6.) restart rsyslog
-
-```console
-systemctl restart rsyslog
-```
-
-7.) if you would like for rules to be replicated from the main poller
-to the remotes you will need to enable the following syslog settings
-found in configuration >> settings >> syslog
-
-![syslog settings ](images/syslog-multipoller-settings.png)
-
-### note rules will be replicated within one polling cycle  to the remote pollers
-
-if you wish to have each poller operate independently there is no need to enable
-these options.
+Rule replication runs through the poller when enabled. Verify completion in
+the plugin's status and logs rather than assuming a fixed delay when a poller
+or database is unavailable. Independent collectors do not need rule replication.
 
 ### Syslog Alert Rules
 
-Alert rules are used to generate alerts in the cacti log they are also used
-to send out email alerts and command execution to cut tickets to upstream ticketing
-systems or perform initial troubleshooting scripts can also be leveraged
-to call on services such as slack or trello for alerting teams.
+Alert rules are used to generate alerts in the cacti log they are also used to
+send out email alerts and command execution to cut tickets to upstream
+ticketing systems or perform initial troubleshooting scripts can also be
+leveraged to call on services such as slack or trello for alerting teams.
 
-you can leverage the built in variable substitution to format the input to the script
+you can leverage the built in variable substitution to format the input to the
+script
 
 ![Alert Rules](images/syslog-alert-messeges.png)
 
 ### Syslog Removal Rules
 
-The Syslog plugin allows administrators to delete incoming messages
-so they are not stored in the DB.
-For example, if you are not interested in seeing Syslog messages
-every time a user logs into a device you may add a rule to delete the message.
+The Syslog plugin allows administrators to delete incoming messages so they are
+not stored in the DB. For example, if you are not interested in seeing Syslog
+messages every time a user logs into a device you may add a rule to delete the
+message.
 
-to do this click on the Syslog settings tab in the console then click removal rules
+to do this click on the Syslog settings tab in the console then click removal
+rules
 
 ![Removal Rules](images/syslog-remove-messeges.png)
 
 ## Possible Bugs and Feature Enhancements
 
-Bug and feature enhancements for the syslog plugin are handled in GitHub. If you
-find a first search the Cacti forums for a solution before creating an issue in
-GitHub.
+Bug and feature enhancements for the syslog plugin are handled in GitHub. If
+you find a first search the Cacti forums for a solution before creating an
+issue in GitHub.
 
 ## Authors
 
-The syslog plugin has been in development for well over a decade with increasing
-functionality and stibility over that time. There have been several contributors
-to thold over the years. Chief amongst them are Jimmy Conner, Larry Adams,
-SideWinder, and Harlequin. We hope that version 2.0 and beyond are the most
-stable and robust versions of syslog ever published. We are always looking for
-new ideas. So, this won't be the last release of syslog, you can rest assured of
-that.
+The syslog plugin has been in development for well over a decade with
+increasing functionality and stability over that time. There have been several
+contributors to syslog over the years. Chief amongst them are Jimmy Conner,
+Larry Adams, SideWinder, and Harlequin. We hope that version 2.0 and beyond are
+the most stable and robust versions of syslog ever published. We are always
+looking for new ideas. So, this won't be the last release of syslog, you can
+rest assured of that.
+
+[rsyslog-mysql]: https://docs.rsyslog.com/doc/configuration/modules/ommysql.html
+[m]: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html
+[no-lb-image]: images/syslog-multi-poller-no-lb.png
+[remote-settings-image]: images/syslog-multipoller-settings.png
 
 ---
+
 Copyright (c) 2004-2026 The Cacti Group

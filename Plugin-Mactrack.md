@@ -1,128 +1,117 @@
 # MacTrack
 
-The MacTrack plugin is designed to scan network switches, routers and intelligent 
-hubs for connected devices, and record their location either based upon the portname
-or alias of the switch or hub. It also attempts to discover the ip address of the mac 
-address from the routers included in the MacTrack database. MacTrack can also 
-use arpwatch to gether IP to MAC address associations.
+MacTrack scans switches and routers to associate MAC addresses, IP addresses,
+VLANs, and switch ports. It keeps address history, can use arpwatch data, and
+can notify administrators when a watched device reappears on the network.
 
-MacTrack has the ability to also notify admins or security personnel when the MAC 
-address of a missing or stolen computer re-appears on the network. This can be helpful
-in recovering lost equipment. Through MacTrack's interface monitoring feature, 
-a Network Administrator can get a very good idea of where utilization is,
-where there are errors, etc within their network.
+## Requirements and current documentation
 
-In howto is mentioned menu item "Mactrack" or "Mactrack tab". In older versions 
-is called "Device tracking".
+The current development plugin declares Cacti 1.2.29 or later in `INFO` and
+requires PHP 8.2 for its supported runtime and toolchain. Use the requirements
+for the release you install, including any higher requirements of Cacti itself.
+
+Install the plugin as `plugins/mactrack` and enable it through
+[Plugin Management](Plugins.md). For current commands and migration behavior,
+see the [MacTrack README](https://github.com/Cacti/plugin_mactrack) and the
+[release notes](https://github.com/Cacti/plugin_mactrack/releases).
 
 ## Mactrack setup
 
-- Check default settings
-  Configuration -> Settings -> Mactrack tab (or Device tracking in older version)
+1. Check **Console > Configuration > Settings > MacTrack**.
+2. Create a MacTrack site. MacTrack sites are separate from Cacti's core sites.
+3. Add devices or import existing Cacti devices into MacTrack.
+4. Define or enable matching Device Types and their scanning functions.
+5. Optionally import the IEEE OUI database to identify MAC address vendors.
 
-- Create sites (mandatory)
-  At this moment Mactrack's sites have no relation to Cacti's sites
+Older interfaces label MacTrack as **Device Tracking**. Menu wording in older
+screenshots and releases can differ from the current plugin.
 
-- Define Device Types (mandatory)
-  Several device types are provided as an example with the current version. 
-  Devices without device type match will not be processes
+## Create site
 
-- Import IEEE OUI Database (optional)
-  Define SNMP set options to use
-
-
-##Create site
-One of the mandatory steps to start setting Mactrack up is to create sites 
-where we are going to allocate our Mactrack devices.
-Console -> Mactrack -> Sites
-You need add devices to site. You can import some existing Cacti devices into 
-Mactrack or add devices manually on Console -> Mactrack -> Devices
-
-
+Open **Console > MacTrack > Sites** and create a site before assigning devices
+to it. Add devices under **Console > MacTrack > Devices**, or use the import
+action for an existing Cacti device. A Cacti device does not become a MacTrack
+device merely because both products have a site with the same name.
 
 ## Device types
-Device Types
 
-Console -> Mactrack (Device Tracking in previous versions) -> Device Types menu
+Open **Console > MacTrack > Device Types**. A device needs a matching Device
+Type and suitable scanning functions before MacTrack can collect its data.
 
-Create as many device types as you need following this instrunctions. 
-**Description** - give this device type a meaningful description
-**Vendor** - fill in the name for the vendor of this device type
-**Device Type** - choose the type of device. What kind of device is it? Meaning that 
-some scanning functions will be available for some of these types only. 
-Eg: If you set a switch/hub as "Switch/Router" you will then be able to pick 
-an IP scanning function up when the device doesn't really supports it.
-**System Description Match**  - provide key information to help Device 
-Tracking detect the type of device. The wildcard character is the % sign.
-  When you open a device in Cacti, you normally see the following on top of the page.
-  ``
-  System: Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 12.2(53)SE2, RELEASE SOFTWARE (fc3)Technical Support: http://www.cisco.com/techsupportCopyright (c) 1986-2010 by Cisco Systems, Inc.Compiled Wed 21-Apr-10 05:52 by prod_rel_team
-  Uptime: 3176562306
-  Hostname: myswitch101.com
-  ObjectID: .1.3.6.1.4.1.9.1.696
-  ``
-  What you want to make Mactrack look at is something like "C2960" which quickly identify 
-  the hardware platform. Don't waste your time try to match something different 
-  or more complex like "12.2(53)SE2".
+| Field | Purpose |
+| --- | --- |
+| Description | Give the Device Type a recognizable name. |
+| Vendor | Identify the device vendor. |
+| Device Type | Select the hardware role so appropriate scanners are available. |
+| System Description Match | Match the device's SNMP system description; `%` is the wildcard. A platform name is usually more useful than a firmware build string. |
+| Vendor SNMP Object ID Match | Match its system object ID, such as `.1.3.6.1.4.1.9.1.696`. |
+| MAC Address Scanning Function | Choose a scanner appropriate to the switch's layer-two forwarding data. |
+| IP Address Scanning Function | Choose a scanner for the device's ARP or supported address-association data. |
+| 802.1x Scanning Function | Select a supported scanner when collecting authentication data. |
+| Serial Number Base OID | Optionally provide the OID for serial-number collection. |
+| Serial Number Collection Method | Use a walk for multiple values or a get for a single value. |
+| Low User Port Number | Set the first user port, or leave zero for automatic selection. |
+| High User Port Number | Set the last user port, or leave zero for automatic selection. |
 
-**Vendor SNMP Object ID Match** - this is the SNMP OID on this format: .1.3.6.1.4.1.9.1.696
-**MAC Address Scanning Function** - we assume you know what you are looking for here. This function should only be set to switches L2/L3 and not Routers.
-**IP Address Scanning Function** - this function allows you to look at the ARP table and map IP vs MAC. There is an special function for Cisco devices called get_cisco_dhcpsnooping_table that will look at the DHCP Snooping table for switches if enabled.
-**802.1x Scanning Function** - this scanning function was introduced on 4.2 version and it's only for Cisco devices.
-**Serial Number Base OID** - this isn't mandatory but you can specify the SNMP OID to find the serial number to the device.
-**Serial Number Collection Method** - how is the serial number collected for this OID. If 'SNMP Walk', we assume multiple serial numbers. If 'Get', it will be only one.
-**Low User Port Number** - provide the low user port number on this switch. Leave 0 to allow the system to calculate it. Empty assumes 0
-**High User Port Number** - provide the low user port number on this switch. Leave 0 to allow the system to calculate it. Empty assumes 0
+Device Types can be exported to CSV and imported through the same page. Keep a
+copy of customized definitions before changing scanners or upgrading.
 
-Export device types option allows you to export the existing devices types 
-to CSV format so you can later on import them onto new installations, 
-to share them or just to back them up.
-Go to Console -> Mactrack -> Device Types and click the export button.
-For import Device Types you can use button "Import" on the same page.
+## Import OUI Database from IEEE
 
+The OUI database associates MAC address prefixes with their registered vendors.
+Use **MacTrack > Tracking Utilities > Refresh IEEE Vendor MAC/OUI Database**
+when the server has Internet access.
 
-##Import OUI Database from IEEE
+For an offline import, download the IEEE database on a connected machine and
+copy it to the Cacti server. From the plugin directory, run:
 
-This function will download and install the latest OUI database from the 
-IEEE Website. Each Network Interface Card (NIC) has a MAC Address. 
-The MAC Address can be broken into two parts. The first part of the MAC Address 
-contains the Vendor MAC. The Vendor MAC identifies who has manufactured the part. 
-This will be helpful to check for rogue devices on your network.
+```console
+php mactrack_import_ouidb.php -f=/tmp/oui.txt
+```
 
-Go to Mactrack -> Tracking Utilities and click on **Refresh IEEE Vendor MAC/OUI Database**
+Replace `/tmp/oui.txt` with the downloaded file. Run the command as the poller
+user and check its imported-entry totals and any errors.
 
-This option requires internet access so if for some reason your server cannot 
-access internet you could manually download the file from OUI Database copy it 
-to your Cacti's box and import it by hand as follow.
+## History and partitioning
 
-Go to **<cacti_path>/plugins/mactrack**
+The current development plugin supports partitioned MAC and IP history,
+resumable partition rebuilds, and per-device, per-site, and global rules for
+ignoring ports while scanning. Use the instructions for your installed release
+before applying these features.
 
-Assuming that you have copied the file to /tmp
-``
-[root@mycactiserver mactrack]#php mactrack_import_ouidb.php -f=/tmp/out.txt
-Getting OUI Database from the IEEE
-OUI Database Download from IEEE Complete
-........................
-There were '23126' Entries Added/Updated in the database.
-There were '0' Records Removed from the database.
-``
+Existing history is not rebuilt merely by changing the partition-size setting.
+Back up the database and follow the README's partitioning procedure before
+running a rebuild; it needs maintenance time and extra disk space. Run it as the
+poller user. Do not remove a `*_rebuild` table after an interruption: follow the
+documented resume procedure instead.
 
-##Troubleshooting
-Running poller in debug mode
-  Go to <cacti_path>/plugins/mactrack
-  php -q poller_mactrack.php -d -sid=1
-  Run php poller_mactrack.php -h for more options
+## Troubleshooting
 
-Run scanner in debug mode for an specific device
-  Go to <cacti_path>/plugins/mactrack
-  php -q mactrack_scanner.php -d -id=23
-  Run php -q mactrack_scanner.php -h for more options
+Run commands from `<path_cacti>/plugins/mactrack` as the poller user.
+Replace the sample site and device IDs with IDs from your installation.
 
-The scanning function you are looking for does not show up
-  Go to Tracking Tools Menu and click on "Refresh Scanning Functions"
-  Deletes old and potentially stale Device Tracking scanning functions 
-  from the drop-down you see when you edit a device type.
+For a site's poller in debug mode:
 
+```console
+php -q poller_mactrack.php -d -sid=1
+php -q poller_mactrack.php --help
+```
 
+For one device's scanner:
+
+```console
+php -q mactrack_scanner.php -d -id=23
+php -q mactrack_scanner.php --help
+```
+
+If a scanning function is missing from a Device Type's list, use
+**Tracking Utilities > Refresh Scanning Functions** and check the Cacti log.
+Confirm that the device's SNMP settings work and that its Device Type matches
+before changing scanner code.
+
+For a stalled history rebuild, inspect **View Partition Status** and the Cacti
+log, then resume with the same rebuild command described in the README.
+
+---
 
 Copyright (c) 2004-2026 The Cacti Group
