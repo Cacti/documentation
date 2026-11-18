@@ -1,5 +1,5 @@
 {
-  "documentation_base": "c89c9f1147c7",
+  "documentation_base": "e80276e25ea4",
   "build_date": "2026-11-18",
   "builder_sha256": "b4ae314f15a98cb3b615c6e2a10d923d35fbb284580e5bbd5c90b2a7a8cc541e",
   "navigation_sha256": "8f825c79c96297e4b7d4471904db25ffe03950194bebba8e57bbdfd596bb6b47",
@@ -17,7 +17,7 @@
       "Manual-Index.md": "4c12f6314c5bbf05d94176a85e3c6450cd0daa46b528af681985ccb02b68d3ff",
       "Other-Manuals.md": "dbb5aa728e01d59acbd5d63bb9ea2a0eb81dd092c43e64269e2c71941ef28c50",
       "Requirements.md": "c08df21877aa928095eaccb1d5866cf117312aff9be6606706baf5fc99c3ffcb",
-      "General-Installing-Instructions.md": "f473c2d5c4378010a60669c469520dafa0dcca51423cb49c6d6be55c883d73b8",
+      "General-Installing-Instructions.md": "83be1191b4bb4cd8ee04604e47a21243ee3744d0dc022fd6e48474eb31a910d6",
       "Install-Under-Enterprise-Linux-LAMP.md": "13be72575e89183147ac41e79b463d3bb0b41957d8a33bd9cafb7074013f1b38",
       "Installing-Under-Ubuntu-Debian.md": "761ab637c614cabaa6315172fc29d7eb9d25c04ab30a763bb733e9ff5ed7755e",
       "Installing-Under-Windows.md": "37bc088d4de0e74b16d0c15f688a72a0059264628c3320fd48d59023eae97fe2",
@@ -159,6 +159,6 @@
     ],
     "chapters": 139,
     "pdf": "resource/pdf/cacti-manual.pdf",
-    "pdf_sha256": "8a195e2484b2e95cfdfc241ccb55a1b654cad6336b7578276ff331f8c91405d6"
+    "pdf_sha256": "43395404269d5e07403b7ae89654eaf442a285be7e26002d4b4f38d116564db8"
   }
 }
