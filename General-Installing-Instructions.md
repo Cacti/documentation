@@ -277,7 +277,6 @@ InnoDB engine:
 MariaDB [(none)]> use cacti;
 MariaDB [cacti]> ALTER TABLE `automation_ips` ENGINE=InnoDB;
 MariaDB [cacti]> ALTER TABLE `automation_processes` ENGINE=InnoDB;
-MariaDB [cacti]> ALTER TABLE `data_source_stats_hourly_cache` ENGINE=InnoDB;
 MariaDB [cacti]> ALTER TABLE `data_source_stats_hourly_last` ENGINE=InnoDB;
 MariaDB [cacti]> ALTER TABLE `poller_output` ENGINE=InnoDB;
 MariaDB [cacti]> ALTER TABLE `poller_output_boost_local_data_ids` ENGINE=InnoDB;
