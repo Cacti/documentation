@@ -62,9 +62,7 @@ while preserving `config.php` or `config_local.php`, then follow Plugin
 Management's upgrade advisor and re-enable it. **Do not uninstall the plugin as
 an upgrade step:** uninstall options can delete messages, rules, and hosts.
 
-<a
-id="note-retention-settings-can-be-changed-after-install-but-db-architecture-will-require-a-reinstall-of-the-plugin"
-></a>
+<a id="note-retention-settings-can-be-changed-after-install-but-db-architecture-will-require-a-reinstall-of-the-plugin"></a>
 
 Legacy guides described reinstalling to change the table architecture. Follow
 the installed release's conversion procedure instead; a reinstall can discard
@@ -273,9 +271,7 @@ own tables. The connection and privileges must match the local collector's
 configuration; do not reuse a Main Collector destination as the incoming
 database unless that is the intended deployment.
 
-<a
-id="note-rules-will-be-replicated-within-one-polling-cycle--to-the-remote-pollers"
-></a>
+<a id="note-rules-will-be-replicated-within-one-polling-cycle--to-the-remote-pollers"></a>
 
 ### Rule replication
 
