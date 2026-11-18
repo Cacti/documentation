@@ -26,3 +26,7 @@ html-artifacts/
 /manual-artifacts/
 navigation-report.json
 !.gitattributes
+# Generated manual editions are published as release assets
+/resource/manuals/
+/resource/pdf/cacti-manual.pdf
+/resource/pdf/build_manifest.json

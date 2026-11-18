@@ -69,7 +69,7 @@ Check Markdown style, spelling, navigation targets, image paths, and heading
 fragments. Preserve public page names and existing fragment links when
 reorganizing a page. Generated manuals must follow the same chapter order and
 record their source revision and checksums in the
-[download manifest](resource/pdf/build_manifest.json).
+[download manifest](https://github.com/Cacti/documentation/releases/download/manuals-develop/cacti-manual-manifest.json).
 
 [standards]: Manual-Index.md#development-standards
 [contributing]: https://github.com/Cacti/cacti/blob/develop/CONTRIBUTING.md
