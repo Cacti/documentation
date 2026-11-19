@@ -7,6 +7,9 @@ Cacti 1.2 installations, use the [1.2.x manual][manual-1.2]. Menu visibility
 also depends on permissions, enabled features, and plugins. Screenshots can
 show an earlier release or a different theme.
 
+[Current editions and contributed archives](Other-Manuals.md) include PDF,
+text, localized installation guides, and the development schema reference.
+
 Browse by task: [start here](#start-here),
 [monitor and operate](#monitor-and-operate),
 [customize and extend](#customize-and-extend),
@@ -19,12 +22,15 @@ Browse by task: [start here](#start-here),
 ### Install or Upgrade Cacti
 
 Choose the guide for your operating system and installation method.
+Earlier [LAMP][previous-lamp] and [LEMP][previous-lemp] guide URLs point to
+the maintained Enterprise Linux instructions.
 
 - [Requirements](Requirements.md)
 - [General Installing Instructions](General-Installing-Instructions.md)
 - [Enterprise Linux with Apache (LAMP)](Install-Under-Enterprise-Linux-LAMP.md)
-- [Enterprise Linux with Nginx (LEMP)](Install-Under-Enterprise-Linux-LEMP.md)
+- [Rocky Linux 9 and 10 with Nginx (LEMP)][rocky-lemp]
 - [Ubuntu/Debian with Apache (LAMP)](Installing-Under-Ubuntu-Debian.md)
+- [Ubuntu Server 26.04 LTS and 26.10 with Nginx (LEMP)][ubuntu-lemp]
 - [Installing Under Windows](Installing-Under-Windows.md)
 - [Upgrading Cacti Under UNIX Compatible Operating Systems](Upgrading-Cacti.md)
 - [Upgrading Cacti Under Windows](Upgrading-Cacti-Under-Windows.md)
@@ -233,6 +239,11 @@ Find project credits, licensing, support, and additional resources.
 [guide-3]: Architecture/0004-workflow-storage-and-observability.md
 [manual-1.2]: https://github.com/Cacti/documentation/tree/1.2.x
 [videos]: https://www.youtube.com/channel/UC6ROmUGuuLa9BdHWzvGSY1w
+
+[rocky-lemp]: Install-Under-Enterprise-Linux-LEMP.md
+[ubuntu-lemp]: Installing-Under-Ubuntu-LEMP.md
+[previous-lamp]: Install-Under-CentOS_LAMP.md
+[previous-lemp]: Install-Under-CentOS_LEMP.md
 
 ---
 

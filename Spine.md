@@ -1,5 +1,8 @@
 # Spine
 
+Use only the [supported operating systems][supported-os] and maintained
+dependencies compatible with this Cacti branch.
+
 Spine is Cacti's C-based, multithreaded data collector. It replaces `cmd.php`
 as the collection engine; `poller.php` remains the scheduling entry point.
 Actual throughput depends on device latency, scripts, concurrency, database
@@ -179,6 +182,8 @@ A `SYSTEM STATS` log line containing `Method:spine` confirms the selected
 engine, not successful collection of every item. Check errors and actual RRD
 updates as well. See [Data Source Debugging](Data-Debug.md) and
 [The Cacti Log](Cacti-Log.md).
+
+[supported-os]: Requirements.md#supported-operating-systems
 
 ---
 

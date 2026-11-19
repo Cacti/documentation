@@ -56,14 +56,14 @@ class LocalFetcher(URLFetcher):
         return super().fetch(url, headers)
 
 
-def document(title, body):
-    return ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
+def document(title, body, language="en"):
+    return (f'<!doctype html><html lang="{escape(language, quote=True)}"><head><meta charset="utf-8">'
             f'<title>{escape(title)}</title><meta name="author" content="The Cacti Group">'
             f'</head><body>{body}</body></html>')
 
 
-def build_manual(output, revision, built):
-    paths = ordered_pages(ROOT)
+def build_manual(output, revision, built, paths=None, title="Cacti Development Manual", language="en"):
+    paths = ordered_pages(ROOT) if paths is None else paths
     available = set(paths)
     md = MarkdownIt("commonmark", {"html": True}).enable(["table", "strikethrough"])
     chapters = []
@@ -74,7 +74,7 @@ def build_manual(output, revision, built):
         prefix = chapter_id(path)
         tokens = md.parse(path.read_text(encoding="utf-8"))
         counts = Counter()
-        title = path.stem
+        chapter_title = path.stem
         first_heading = True
         for i, token in enumerate(tokens):
             if token.type == "heading_open":
@@ -86,7 +86,7 @@ def build_manual(output, revision, built):
                 counts[ident] += 1
                 token.attrSet("id", f"{prefix}--{ident}" + (f"-{number}" if number else ""))
                 if first_heading:
-                    title = heading
+                    chapter_title = heading
                     first_heading = False
             if token.type in ("html_block", "html_inline"):
                 token.content = re.sub(r'\b(id|name)="([^"]+)"',
@@ -118,21 +118,21 @@ def build_manual(output, revision, built):
                         if not image.is_file():
                             missing.add(str(image.relative_to(ROOT)))
                         child.attrSet("src", image.as_uri())
-        titles.append((prefix, title))
+        titles.append((prefix, chapter_title))
         chapters.append(f'<section class="chapter" id="{prefix}">' + md.renderer.render(tokens, md.options, {}) + '</section>')
     if missing:
         raise ValueError("Missing local images: " + ", ".join(sorted(missing)))
     toc = '<nav class="contents"><h1>Contents</h1><ol>' + ''.join(
         f'<li><a href="#{prefix}">{escape(title)}</a></li>' for prefix, title in titles) + '</ol></nav>'
-    cover = (f'<section class="cover"><h1>Cacti Development Manual</h1>'
+    cover = (f'<section class="cover"><h1>{escape(title)}</h1>'
              '<p class="subtitle">Cacti 1.3 development series</p>'
              f'<p>Documentation source base: {escape(revision)}<br>Built: {built}</p>'
-             '<p>This snapshot includes the XML example refresh in this branch. '
+             '<p>This snapshot follows the development documentation. '
              'The accompanying build manifest records each source file hash.</p>'
              '<p>For Cacti 1.2, use the maintenance manual for your installed release.</p>'
              '<p>Video thumbnails are represented by links; local screenshots are embedded.</p>'
              '<p>Copyright (c) 2004-2026 The Cacti Group</p></section>')
-    HTML(string=document("Cacti Development Manual", cover + toc + ''.join(chapters)),
+    HTML(string=document(title, cover + toc + ''.join(chapters), language),
          base_url=ROOT.as_uri() + "/", url_fetcher=LocalFetcher()).write_pdf(
              output, stylesheets=[CSS(filename=ROOT / "resources/css/pdf.css")],
              pdf_tags=True, optimize_images=True, dpi=144, jpeg_quality=85)
@@ -195,7 +195,8 @@ def build_reportit(output):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--only", choices=("manual", "reportit"))
+    parser.add_argument("--only", choices=("manual", "reportit"), default="manual")
+    parser.add_argument("--companions", action="store_true", help="Also build text and archive replacement editions")
     args = parser.parse_args()
     logging.getLogger("weasyprint").setLevel(logging.ERROR)
     revision = subprocess.check_output(["git", "rev-parse", "--short=12", "HEAD"], cwd=ROOT, text=True).strip()
@@ -219,6 +220,9 @@ def main():
         manifest[kind] = {**info, "pdf": output.relative_to(ROOT).as_posix(), "pdf_sha256": digest(output)}
         print(f"Wrote {output.stat().st_size:,} bytes", flush=True)
     manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n")
+    if args.companions:
+        from build_other_manuals import build
+        build(ROOT, revision, built, build_manual)
 
 
 if __name__ == "__main__":

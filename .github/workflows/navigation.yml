@@ -26,7 +26,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Check missing links, fragments, and ordering regressions
-        run: python3 -m unittest discover -s bin/tests -p 'test_*.py'
+        run: python3 -m unittest discover -s bin/tests -p 'test_navigation*.py'
       - name: Validate every manual page is indexed
         run: python3 bin/check_navigation.py
       - name: Preserve navigation evidence

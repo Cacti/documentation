@@ -26,6 +26,9 @@ Templates**, extensive field descriptions for both **Graphs** and
 Below, you can see a simple version of the Graph Management interface found
 by going to `Console > Management > Graphs`
 
+The screenshots below contain example devices and historical data from an
+earlier interface. Check menu labels against your installed version.
+
 ![Graph Management](images/graphs.png)
 
 From this interface, you can see the Name, and ID of the **Graph**,
