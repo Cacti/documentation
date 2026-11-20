@@ -71,9 +71,12 @@ They include:
 - **SNMP Desc** - Query the SNMP sysDescription in cases where the SNMP Uptime
   OID
   is not available
-- **SNMP GetNext** - Query the first available OID in the OID tree for the
+- **SNMP getNext** - Query the first available OID in the OID tree for the
   **Device**
   Used for certain devices that have limited SNMP support.
+- **Stream Device** - For **Devices** that are collected using stream data.  The
+  **Devices** list shows `N/A` for the uptime, polling time, current time,
+  average time and availability columns of these **Devices**.
 
 ## SNMP Credentials
 

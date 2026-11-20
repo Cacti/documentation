@@ -16,16 +16,18 @@ therefore your Cacti Graphs will develop what are referred to as gaps.
 
 ## Spike Kill Settings
 
-Cacti provides two gap filling options from the user interface. In the image
-below, you can see the default Settings for Cacti's Spike Killer GUI.
+Cacti provides several spike removal options from the user interface. In the
+image below, you can see the default Settings for Cacti's Spike Killer GUI.
 
 ![Settings Spike Kill](images/settings-spikekill.png)
 
 Those settings include:
 
-- **Removal Method** - Cacti supports both Variance and Standard Deviation
-  methods. When calculating those values, you have the ability to filter out
-  outliers such that they don't negatively impact those calculations.
+- **Removal Method** - The method used to find spikes.  The `Standard
+  Deviation` method removes any sample that is a given number of standard
+  deviations away from the average of the samples.  The Gap Fill, Float and
+  Absolute Max methods are chosen from the Spikekill menu next to a **Graph**.
+  See [Spikekill](Spikekill.md) for details.
 
 - **Replacement Method** - When filling the Gap, what data point should be used.
   There is `Last Known Good`, which would be the last good known value,
@@ -37,14 +39,17 @@ Those settings include:
   considered a spike. It only applies to the `Standard Deviation` spike removal
   method.
 
-- **Variance Percentage** - When using the `Variance` spike detection method,
-  the percentage above variance before considering a value a spike.
+- **Max Kills Per RRA** - The maximum number of spikes to remove from a
+  **Graph** RRA.
 
-- **Variance Number of Outliers** - The number of high values to ignore when
-  calculating the Variance.
+- **Absolute Maximum Value** - The maximum raw value of any data point.  When
+  using the `Absolute Max` method, data points above this value are removed.
+  The default is 12.5 Billion (100 Gigabits).
 
-- **Max Kills Per RRA** - The maximum number of spike to remove from any given
-  RRDfile Data Source.
+- **DS Filter** - Specifies the data sources inside an RRDfile upon which
+  Spikekill will operate, as a comma-separated list of index numbers or names.
+  If blank, all data sources match.  For example, `5,traffic_*` matches data
+  source index 5 and any data source whose name begins with `traffic_`.
 
 - **RRDfile Backup Directory** - If you wish to backup RRDfiles that have been
   altered by Spike Kill, they will be placed in this directory.

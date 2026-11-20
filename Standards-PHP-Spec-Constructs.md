@@ -50,10 +50,11 @@ User-facing CLI entry points load `include/cli_check.php`. These bootstrap
 files establish the application environment; a CLI entry point must not load
 the web authentication bootstrap.
 
-After bootstrap, resolve library paths relative to `$config['base_path']`:
+After bootstrap, resolve library paths with the path constants defined in
+`include/global_path.php`, such as `CACTI_PATH_LIBRARY`:
 
 ```php
-require_once($config['base_path'] . '/lib/api_device.php');
+require_once(CACTI_PATH_LIBRARY . '/api_device.php');
 ```
 
 Use `require_once` for required libraries that might already be loaded. Follow

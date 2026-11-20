@@ -20,19 +20,21 @@ We need a way to tell automation what device we are looking for
 in the example above we are looking for a device with the hostname Linux
 this is done via a REGEX any perl based REGEX can be used.
 
-To test this REGEX on existing devices you can click the show eligible Objects
-this will check the Devices currently in cacti for a match.
+To test this REGEX on existing devices you can open the Matching Items tab of
+the rule item, this will check the Devices currently in cacti for a match.
 
 ![Tree Rules Preview](images/automation-tree-rules-edit4.png)
 
-Once a device is a match it will be placed on the default tree.
+Once a device is a match it will be placed on the tree chosen in the rule's
+Tree field.  A Tree is required to save a rule, and it must already exist.
 To change which tree the device will be placed on simply select the tree name
 from the dropdown list.
 
 ![Tree Rules Item Edit](images/automation-tree-rules-edit3.png)
 
-We also have the option to auto create a tree based on our rule in this case
-a new tree Named Linux will be created if it does not already exist.
+Tree rules do not create trees.  They create the header branches defined by
+the rule items, such as a branch named Linux, under the selected tree if the
+branch does not already exist.
 
 ## Video Walkthrough
 

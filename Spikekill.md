@@ -21,20 +21,20 @@ contained inside an RRDfile, and overwriting specific data points.  It offers
    deviation](https://en.wikipedia.org/wiki/Standard_deviation) of the data, and
    overwrites data points that are _N_ times higher than the standard deviation.
 
-2. _Variance Average_
-
-   Calculates the average value of the data, and overwrites data points that are
-   _N_ percent higher than the average.
-
-3. _GapFill_
+2. _GapFill_
 
    Finds gaps in the data (missing data points) and also finds data points that
    are _N_ percent higher than the average, and overwrites them, but only does
    so inside the specified time range.
 
-4. _Float_
+3. _Float_
 
    Overwrites all data points that are within a specified time range.
+
+4. _Absolute Max_
+
+   Overwrites data points inside the specified time range whose value is
+   greater than the _Absolute Maximum Value_.
 
 ## How to use
 
@@ -49,8 +49,10 @@ Spikekill is easily run on a graph with a couple mouse clicks in the Cacti GUI:
    on `Settings` and reviewing each item, making changes if desired.
 
 3. Run Spikekill by choosing one of the four methods available in the drop-down
-   menu. Spikekill runs immediately, and the graph may be modified, depending on
-   your settings.  The graph is refreshed when Spikekill is finished.
+   menu: `Remove StdDev`, `Gap Fill Range`, `Float Range` or
+   `Absolute Maximum`.  The matching `Dry Run` items report what would change
+   without modifying the RRDfile. Spikekill runs immediately, and the graph may
+   be modified, depending on your settings.  The graph is refreshed when Spikekill is finished.
 
 ### CLI
 
@@ -83,17 +85,17 @@ overwrite.  The following settings are customizable:
    is the coefficient which determines how many times above the standard
    deviation the data must be to be considered a spike.
 
-3. _Variance Percentage_
+3. _Absolute Maximum Value_
 
-   When using the Variance Average method, the value of _Variance Percentage_ is
-   the coefficient which determines how much higher than the average the data
-   must be to be considered a spike.
+   When using the Absolute Max method, data points with a raw value greater than
+   this value are overwritten.  The default is 12.5 Billion (100 Gigabits).
 
-4. _Variance Outliers_
+4. _DS Filter_
 
-   When using the Variance Average method, the highest _N_ values and the lowest
-   _N_ values are considered _outliers_.  These outliers are ignored when
-   calculating the average of the data.
+   Specifies the DSes inside an RRD upon which Spikekill will operate.  It is a
+   string of comma-separated index numbers or names of DSes.  If left blank, all
+   DSes match.  For example, `5,traffic_*` matches DS index 5 as well as any DS
+   whose name begins with `traffic_`.
 
 5. _Kills Per RRA_
 
@@ -107,8 +109,8 @@ overwrite.  The following settings are customizable:
    (number_of_RRAs) x (number_of_data_sources) x (Kills_Per_RRA)
    ```
 
-   This only applies when using the `Standard Deviation` or `Variance Average`
-   methods, and does not apply when using the `GapFill` or `Float` methods.
+   This only applies when using the `Standard Deviation` method, and does not
+   apply when using the `GapFill`, `Float` or `Absolute Max` methods.
 
 The above settings are maintatined individually for each Cacti user.  The
 default values can be changed globally in the Cacti settings, found at

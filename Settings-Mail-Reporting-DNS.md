@@ -171,6 +171,18 @@ The image below shows the two settings.
 
 ![DNS Options](images/settings-mrd-dns-options.png)
 
+## Internet Proxy Settings
+
+For core Cacti services or Plugins that require Internet access, you can
+configure a proxy server. The settings include:
+
+- **Internet Proxy Address** - The proxy server and port, in the format
+  `IP:PORT`, for example `192.168.1.1:8080`.
+- **Internet Proxy User** - If your Internet Proxy requires a username, enter it
+  here.
+- **Internet Proxy Password** - If your Internet Proxy requires a password,
+  enter it here.
+
 ---
 
 Copyright (c) 2004-2026 The Cacti Group

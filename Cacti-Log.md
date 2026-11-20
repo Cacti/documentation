@@ -8,9 +8,11 @@ event log
 depending on your OS type.
 
 The Cacti Log is by default ordered from newest event to oldest event, and
-log rotation follows **Settings > Paths** or the operating-system package
+log rotation follows **Settings > Logging** (`Rotate the Cacti Log`,
+`Rotation Frequency` and `Log Retention`) or the operating-system package
 configuration. Cacti can rotate logs daily, weekly, or monthly when its own
-rotation is enabled.
+rotation is enabled. Only the location of the log file, `Cacti Log Path`, is
+set on **Settings > Paths**.
 
 If you have the User Level permission, you can view any available Cacti Standard
 Output or Standard Error log. If you have the Administrative level access,
