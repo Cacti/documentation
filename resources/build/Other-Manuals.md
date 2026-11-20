@@ -50,6 +50,10 @@ Outputs are `resource/pdf/cacti-manual.pdf`, its existing PDF manifest, and
 DDL reference, and a source/checksum manifest. The main manual text preserves
 examples, table cells, image descriptions, and full source links.
 
+These outputs are ignored by Git. After each change to `develop`, the
+`PDF and text manual editions` workflow rebuilds and verifies them and replaces
+the assets of the `manuals-develop` release. Do not commit local builds.
+
 The generated `resources/manuals/Schema-Reference.md` is also committed so it
 can be read online. Rebuild the HTML manual to include these new pages:
 

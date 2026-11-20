@@ -2,7 +2,7 @@
 
 ## PDF Manuals
 
-- [Cacti development manual](resource/pdf/cacti-manual.pdf): A snapshot of the
+- [Cacti development manual][manual-pdf]: A snapshot of the
   current development manual, with a contents list, bookmarks, screenshots,
   and links between chapters. It documents the unreleased Cacti 1.3 series.
 - [ReportIt 3.0 development manual](resource/pdf/manual_reportit_3.0.pdf):
@@ -13,7 +13,7 @@
 [The original ReportIt 0.6.1 PDF](resource/pdf/manual_reportit.pdf)
 remains available as a historical reference.
 
-The [build manifest](resource/pdf/build_manifest.json) records source hashes,
+The [build manifest][pdf-manifest] records source hashes,
 build date, tool versions, and PDF checksums. It identifies the documentation
 base and the exact Markdown content used, including changes in this branch.
 Use the [online manual](README.md) for subsequent documentation updates.
@@ -78,6 +78,8 @@ native libraries.
 [traffic-template]: resource/xml/cacti_data_query_php_interface_traffic.xml
 [reportit-source]:
   <https://github.com/Cacti/plugin_reportit/blob/86726fc5eff51e23baf18834f69da2aa0b1efa77/ReportIt%20Documentation.docx>
+[manual-pdf]: https://github.com/Cacti/documentation/releases/download/manuals-develop/cacti-manual.pdf
+[pdf-manifest]: https://github.com/Cacti/documentation/releases/download/manuals-develop/cacti-manual-manifest.json
 
 ---
 

@@ -8,9 +8,9 @@ styles. They do not import the website's visual design.
 
 ## Complete maintained manuals
 
-- [PDF manual](resource/pdf/cacti-manual.pdf), with all current main chapters,
+- [PDF manual][manual-pdf], with all current main chapters,
   bookmarks, screenshots, and links between chapters.
-- [UTF-8 text manual](resource/manuals/manual.txt), with the same main chapters,
+- [UTF-8 text manual][manual-text], with the same main chapters,
   command examples, image descriptions, and full link destinations.
 - [HTML manual publication](resources/build/HTML-Manual.md), including all
   chapters and legacy chapter URLs.
@@ -27,14 +27,14 @@ welcome; platform checks and runtime limitations still apply.
 
 | Guide | Read online | PDF | Text |
 | --- | --- | --- | --- |
-| German installation and operation | [Deutsch](resources/manuals/Guide-de.md) | [PDF](resource/manuals/cacti-guide-de.pdf) | [Text](resource/manuals/cacti-guide-de.txt) |
-| Turkish installation and operation | [Türkçe](resources/manuals/Guide-tr.md) | [PDF](resource/manuals/cacti-guide-tr.pdf) | [Text](resource/manuals/cacti-guide-tr.txt) |
-| Linux installation | [English](resources/manuals/Install-linux.md) | [PDF](resource/manuals/install-linux.pdf) | [Text](resource/manuals/install-linux.txt) |
-| Russian UNIX installation | [Русский](resources/manuals/Install-ru-unix.md) | [PDF](resource/manuals/install-ru-unix.pdf) | [Text](resource/manuals/install-ru-unix.txt) |
-| Russian Windows installation | [Русский](resources/manuals/Install-ru-windows.md) | [PDF](resource/manuals/install-ru-windows.pdf) | [Text](resource/manuals/install-ru-windows.txt) |
-| Windows installation | [English](Installing-Under-Windows.md) | [PDF](resource/manuals/install-windows.pdf) | [Text](resource/manuals/install-windows.txt) |
-| Migration from Solaris | [English](resources/manuals/Migrate-solaris.md) | [PDF](resource/manuals/migrate-solaris.pdf) | [Text](resource/manuals/migrate-solaris.txt) |
-| Development database schema | [Reference](resources/manuals/Schema-Reference.md) | [PDF](resource/manuals/schema-reference.pdf) | [Text](resource/manuals/schema-reference.txt) |
+| German installation and operation | [Deutsch](resources/manuals/Guide-de.md) | [PDF](https://github.com/Cacti/documentation/releases/download/manuals-develop/cacti-guide-de.pdf) | [Text](https://github.com/Cacti/documentation/releases/download/manuals-develop/cacti-guide-de.txt) |
+| Turkish installation and operation | [Türkçe](resources/manuals/Guide-tr.md) | [PDF](https://github.com/Cacti/documentation/releases/download/manuals-develop/cacti-guide-tr.pdf) | [Text](https://github.com/Cacti/documentation/releases/download/manuals-develop/cacti-guide-tr.txt) |
+| Linux installation | [English](resources/manuals/Install-linux.md) | [PDF](https://github.com/Cacti/documentation/releases/download/manuals-develop/install-linux.pdf) | [Text](https://github.com/Cacti/documentation/releases/download/manuals-develop/install-linux.txt) |
+| Russian UNIX installation | [Русский](resources/manuals/Install-ru-unix.md) | [PDF](https://github.com/Cacti/documentation/releases/download/manuals-develop/install-ru-unix.pdf) | [Text](https://github.com/Cacti/documentation/releases/download/manuals-develop/install-ru-unix.txt) |
+| Russian Windows installation | [Русский](resources/manuals/Install-ru-windows.md) | [PDF](https://github.com/Cacti/documentation/releases/download/manuals-develop/install-ru-windows.pdf) | [Text](https://github.com/Cacti/documentation/releases/download/manuals-develop/install-ru-windows.txt) |
+| Windows installation | [English](Installing-Under-Windows.md) | [PDF](https://github.com/Cacti/documentation/releases/download/manuals-develop/install-windows.pdf) | [Text](https://github.com/Cacti/documentation/releases/download/manuals-develop/install-windows.txt) |
+| Migration from Solaris | [English](resources/manuals/Migrate-solaris.md) | [PDF](https://github.com/Cacti/documentation/releases/download/manuals-develop/migrate-solaris.pdf) | [Text](https://github.com/Cacti/documentation/releases/download/manuals-develop/migrate-solaris.txt) |
+| Development database schema | [Reference](resources/manuals/Schema-Reference.md) | [PDF](https://github.com/Cacti/documentation/releases/download/manuals-develop/schema-reference.pdf) | [Text](https://github.com/Cacti/documentation/releases/download/manuals-develop/schema-reference.txt) |
 
 The German and Turkish appendices include every current main manual chapter.
 Installation editions include the complete platform, first-graph,
@@ -44,7 +44,7 @@ guide rather than an unverified new-install procedure. The Windows guides
 explain the current development dependency restriction before any install
 instructions.
 
-The [schema SQL](resource/manuals/cacti-schema.sql) contains only the pinned
+The [schema SQL][schema-sql] contains only the pinned
 upstream `CREATE TABLE` statements. It is a reference, not an installer or
 upgrade script. It has no seed data and does not describe plugin tables.
 Use the schema supplied with your exact Cacti release for installation.
@@ -85,17 +85,27 @@ documents are not copied or translated into the new guides.
 Follow [manual publication][publication] to rebuild and
 validate every edition. The [edition manifest][editions-manifest]
 records exact sources and checksums. The PDF builder also records its locked
-toolchain in [the PDF manifest](resource/pdf/build_manifest.json).
+toolchain in [the PDF manifest][pdf-manifest].
 
-CI publishes review artifacts; it does not deploy the public file host.
-Maintainers should publish the new editions under distinct versioned names,
-link this index from the download page, and retain the original archive URLs.
+CI rebuilds and verifies every edition after each change to `develop` and
+publishes the results as assets of the
+[development manual editions release][release]. The generated files are not
+committed to this repository.
+
+Maintainers who mirror the editions on the public file host should publish
+them under distinct versioned names, link this index from the download page,
+and retain the original archive URLs.
 Publish the main manual separately from the historic `manual.pdf` and
 `manual.txt` names so an existing archive citation keeps its meaning.
 
 [publication]: resources/build/Other-Manuals.md
+[release]: https://github.com/Cacti/documentation/releases/tag/manuals-develop
+[pdf-manifest]: https://github.com/Cacti/documentation/releases/download/manuals-develop/cacti-manual-manifest.json
+[manual-pdf]: https://github.com/Cacti/documentation/releases/download/manuals-develop/cacti-manual.pdf
+[manual-text]: https://github.com/Cacti/documentation/releases/download/manuals-develop/manual.txt
+[schema-sql]: https://github.com/Cacti/documentation/releases/download/manuals-develop/cacti-schema.sql
 [inventory]: resources/manuals/archive-inventory.json
-[editions-manifest]: resource/manuals/build-manifest.json
+[editions-manifest]: https://github.com/Cacti/documentation/releases/download/manuals-develop/editions-manifest.json
 [stable]: https://github.com/Cacti/documentation/blob/1.2.x/README.md
 [old-de]: https://files.cacti.net/docs/contrib/Cacti-Doku_german.pdf
 [old-tr]: https://files.cacti.net/docs/contrib/Cacti-El-Kitab.pdf
