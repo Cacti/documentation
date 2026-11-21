@@ -113,9 +113,38 @@ Those settings include:
   settings include: Theme, or System. When choosing `System`, your settings page
   will expand where you will then have additional control.
 
+- **Default Font** - When not using Theme based font control, the Pango
+  font-config font name to use for all **Graphs**. Optionally, you may leave it
+  blank and control font settings on a per object basis.
+
 > **NOTE**: The RRDtool Watermark control requires a recent version of RRDtool,
 > such as the 1.7 release. If you attempt to use this setting and your
 > **Graphs** break, then upgrade RRDtool.
+
+## Business Hours Settings
+
+These settings control the display of business hours on **Graphs**.
+
+Those settings include:
+
+- **Start of Business Day** - The time your business hours start. Format:
+  hh:mm. The default is `08:00`.
+
+- **End of Business Day** - The time your business hours end. Format: hh:mm.
+  The default is `18:00`.
+
+- **Hide Weekends** - Only show business hours during weekdays. This is
+  disabled by default.
+
+- **Show business hours** - Display business hours on rrd graphs. This is
+  disabled by default.
+
+- **Color to use for business hours** - The color to be shown for business
+  hours. The default is `ccccccff`.
+
+- **Maximum number of days to show business hours** - After this number of
+  days, the business hours will not be added to the graph. Recommended: 62
+  days. The default is `62`.
 
 ## Font Selection Options
 

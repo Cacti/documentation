@@ -60,6 +60,24 @@ those settings.
 
 ![Settings Spike Kill Batch](images/settings-spikekill-batch.png)
 
+Those settings include:
+
+- **Removal Schedule** - Do you wish to periodically remove spikes from your
+  graphs? If so, select the frequency. The options are `Disabled`,
+  `Every 6 Hours`, `Every 12 Hours`, `Once a Day` and `Every Other Day`, and the
+  default is `Disabled`.
+
+- **Base Time** - The Base Time for Spike removal to occur. For example, if you
+  use `12:00am` and you choose once per day, the batch removal would begin at
+  approximately midnight every day. The default is `12:00am`.
+
+- **Graph Templates to Spike Kill** - When performing batch spike removal, only
+  the templates selected will be acted on.
+
+- **Backup Retention** - When SpikeKill kills spikes in graphs, it makes a
+  backup of the RRDfile. How long should these backup files be retained? The
+  options are `Never` and a list of time spans, and the default is `3 Months`.
+
 Of note is that first of all, the only **Graph Templates** that are shown are
 **Graph Templates** that include `COUNTER` or `DERIVE` type **Data Sources**.
 It is also worth noting that only **Data Query** type **Graph Templates** are

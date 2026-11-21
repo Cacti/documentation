@@ -13,6 +13,11 @@ below show an example of how this might be setup.
 
 ![PHP Mail Function](images/settings-mrd-urls.png)
 
+The setting is **Server Base URL**. This is the server location that will be
+used for links to the Cacti site. This should include the subdirectory if Cacti
+does not run from the root folder. The default is `http://` followed by the host
+name of the server and the Cacti URL path.
+
 ## Mail Settings
 
 Not only Cacti, but several plugins today are still leveraging Email for end

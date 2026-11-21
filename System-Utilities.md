@@ -55,6 +55,41 @@ the recommendations are dynamic in that they change when more system resources a
 detected so if you upgrade your server hardware be sure to check back to this page
 to get the most out of your new hardware.
 
+### Rebuild resource cache
+
+`Console > Utilities > System Utilities > Rebuild Resource Cache`
+
+When operating multiple Data Collectors in Cacti, Cacti will attempt to
+maintain state for key files on all Data Collectors. This includes all core,
+non-install related website and plugin files. When you force a Resource Cache
+rebuild, Cacti will clear the local Resource Cache, and then rebuild it at the
+next scheduled poller start. This will trigger all Remote Data Collectors to
+recheck their website and plugin files for consistency.
+
+### Purge Data Source Statistics
+
+`Console > Utilities > System Utilities > Purge Data Source Statistics`
+
+This menu pick will purge all existing Data Source Statistics from the
+Database. If Data Source Statistics is enabled, the Data Sources Statistics
+will start collection again on the next Data Collector pass.
+
+### SNMP Agent utilities
+
+These entries appear under `Console > Utilities > System Utilities` when SNMP
+Agent Support is enabled in the Poller settings.
+
+- **View SNMP Agent Cache** - This shows all objects being handled by the SNMP
+  Agent.
+- **Rebuild SNMP Agent Cache** - The SNMP cache will be cleared and
+  re-generated if you select this option. Note that it takes another poller run
+  to restore the SNMP cache completely.
+- **View SNMP Agent Notification Log** - This menu pick allows you to view the
+  latest events SNMP Agent has handled in relation to the registered
+  notification receivers.
+- **SNMP Notification Receivers** - Allows Administrators to maintain SNMP
+  notification receivers.
+
 ### RRD cleaner
 
 `Console > utilities > System Utilities > RRDfile Cleaner`

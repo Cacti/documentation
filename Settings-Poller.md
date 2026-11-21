@@ -115,6 +115,13 @@ Those settings include:
   It yields a marginal savings when collecting with SNMPv3 credentials through
   the Net-SNMP binaries.
 
+## Periodic All Device Re-Index
+
+- **Re-Index All Device Schedule** - At what frequency do you wish to Re-Index
+  all **Devices**. This Re-Index will occur at midnight at the frequency that
+  you select. The options are `Disabled`, `Daily`, `Weekly on Sunday` and
+  `Monthly on Sunady`, and the default is `Disabled`.
+
 ## Background Timeout Settings
 
 The settings below limit how long Cacti background processes will be
