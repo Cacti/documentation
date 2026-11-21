@@ -54,12 +54,13 @@ Those settings include:
   is working. The Email that you put on this line will receive the test Email.
 
 - **Mail Services** - This is where you pick one of the three options above for
-  providing Mail Services.
+  providing Mail Services.  The drop-down lists them as `PHP Mail() Function`,
+  `Sendmail` and `SMTP`.  `Sendmail` is not offered when Cacti runs on Windows.
 
 - **Ping Mail Server** - When using the SMTP Mail Services provider, Cacti can
   first ping the Email Server to ensure that it's operational before sending
-  Emails. If the Email Server does not respond, Cacti will issue a warning and
-  continue operations.
+  the test Email. If the Email Server does not respond, Cacti does not send the
+  test Email.
 
 - **From Email Address** - The is the Default From Email address that will be
   used by Cacti and it's plugins, unless the plugin allows overriding the
@@ -132,7 +133,8 @@ Plugin DNS operations. Many plugins allow you to even use their own DNS Options.
 For plugins that require Alternate/Non-System DNS settings, see their
 documentation as to how DNS is setup and used.
 
-The image below shows the two settings.
+The settings are **Primary DNS IP Address**, **Secondary DNS IP Address** and
+**DNS Timeout**, which is in milliseconds and defaults to 500.
 
 ![DNS Options](images/settings-mrd-dns-options.png)
 

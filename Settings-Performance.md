@@ -49,13 +49,11 @@ The settings include:
   begin to be cleared.  This setting works together with the
   **How Often** setting.
 
-- **Maximum Data Sources Items Per Pass** - Cacti will count
-  the number of distinct data sources in your system, and then
-  divide it by this amount, and then make X number of passes
-  through the data.  If you have 1M **Data Sources** and 100M
-  records in the cache, and set the setting to 100k, Cacti
-  will make 10 passes through the **Data Sources** each pass
-  processing approximately 10M cache entries.
+- **Target Archive Rows Per Range** - The Boost updater assigns
+  complete Local Data IDs to contiguous ranges near this row count.
+  A single Local Data ID is never split, so a range can exceed the
+  target.  Lower this value to reduce updater memory and query time.
+  The default value is 50000.
 
 - **Maximum Argument Length** - This is the longest RRDtool
   update command to use.  Most Linux systems allow for a very
@@ -72,14 +70,19 @@ The settings include:
   the primary Cacti admin.  The process will be allowed to
   continue to run, but will issue a WARNING.
 
-- **Enable direct population of poller_output_boost table** -
-  Originally a `spine` only setting, this setting is now
-  supported in both `spine` and `cmd.php`.  Instead of having
-  to move records inside of the **Data Collector** Cacti
-  simply makes two writes, one into the main output table
-  and another into the boost table.  Cacti has to write
-  to the primary output table as some plugins require that
-  data to be there immediately for fault management.
+- **Maximum Failed RRDs Queued** - The maximum number of RRD
+  destinations retained for automatic Boost retry.  Only the latest
+  complete failed update is retained per destination.  The default is
+  10000.
+
+- **Failed RRD Retry Budget** - The maximum number of queued RRD
+  destinations retried by one scheduled Boost run.  The default is 100.
+
+- **Maximum Failed RRD Retries** - Queued RRD updates are explicitly
+  discarded after this many failed automatic attempts.  The default is 8.
+
+- **Maximum Failed RRD Age** - The number of days to retain the latest
+  failed RRD update before it is explicitly discarded.  The default is 7.
 
 - **Boost Debug Log** - If non-blank and points to a
   location that is writable, Cacti will log the RRDtool

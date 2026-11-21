@@ -23,9 +23,10 @@ below, you can see the default Settings for Cacti's Spike Killer GUI.
 
 Those settings include:
 
-- **Removal Method** - Cacti supports both Variance and Standard Deviation
-  methods. When calculating those values, you have the ability to filter out
-  outliers such that they don't negatively impact those calculations.
+- **Removal Method** - Cacti supports both Variance (labeled `Variance Based
+  w/Outliers Removed`) and Standard Deviation methods. When calculating those
+  values, you have the ability to filter out outliers such that they don't
+  negatively impact those calculations.
 
 - **Replacement Method** - When filling the Gap, what data point should be used.
   There is `Last Known Good`, which would be the last good known value,
@@ -60,9 +61,9 @@ those settings.
 ![Settings Spike Kill Batch](images/settings-spikekill-batch.png)
 
 Of note is that first of all, the only **Graph Templates** that are shown are
-**Graph Templates** that include `COUNTER` type **Data Sources**. It is also
-worth noting that only **Data Query** type **Graph Templates** are supported as
-of the current Cacti version.
+**Graph Templates** that include `COUNTER` or `DERIVE` type **Data Sources**.
+It is also worth noting that only **Data Query** type **Graph Templates** are
+supported as of the current Cacti version.
 
 ---
 

@@ -28,27 +28,27 @@ Those settings include:
   Options include:
 
   - **Logfile Only** - Only send log data to the Cacti log file
-  - **Logfile and Syslog** - Send log data to both the Cacti log file and the
-    System log facility
-  - **Syslog Only** - Send select log data to just the System log facility
+  - **Logfile and Syslog/Eventlog** - Send log data to both the Cacti log file
+    and the System log facility
+  - **Syslog/Eventlog Only** - Send select log data to just the System log
+    facility
 
   This setting is quite self explanatory, when it comes to what type of messages
   are sent to the System log facility, see the `Syslog/Eventlog Item Selection`
   section below.
 
-- **General Log Level** - This is the level of logging that Cacti will use.
+- **Generic Log Level** - This is the level of logging that Cacti will use.
   Options include:
 
-  - **NONE** - Don't perform any logging, not recommended.
+  - **NONE** - Syslog Only if Selected, not recommended.
   - **LOW** - Statistics and Errors
   - **MEDIUM** - Statistics, Errors and Results
   - **HIGH** - Statistics, Errors, Results and Major I/O Events
   - **DEBUG** - Statistics, Errors, Results, I/O and Program Flow
-  - **DEVEL** - Developer level messages, mainly **SQL Queries**
+  - **DEVEL** - Developer DEBUG Level
 
   Select the log level that works best for your logging needs.  Be advised that
-  **DEBUG** generates a large amount of log data.  **DEVEL** should only log
-  **SQL Queries**.
+  **DEBUG** generates a large amount of log data.
 
 - **Log Input Validation Issues** - This is a Developer option to log the use of
   request variables that have not been validated through Cacti's validation
@@ -65,8 +65,9 @@ Those settings include:
 - **Selective Plugin Debug** - For Plugins, the same level of debug that is
   available for core Cacti files are available for Plugin files as well.
 
-- **Device Debug** - This is a comma delimited list of Cacti `device_id` that
-  debugging of **Data Collection** services will be enabled for.
+- **Selective Device Debug** - This is a comma delimited list of Cacti
+  `device_id` that debugging of **Data Collection** services will be enabled
+  for.
 
 - **Syslog/Eventlog Item Selection** - In order to not saturate the
   System logging facility, Cacti will only forward some events as defined
@@ -95,6 +96,10 @@ Those settings include:
   come with alternate GetText processors.  You can select the one that works
   best for your environment here.
 
+- **Client TimeZone Support** - How Cacti supports Client Dates based upon the
+  Client browsers timezone.  The options are **Disabled** and **Enabled**, and
+  the default is **Disabled**.
+
 - **Date Display Format** - The default Date/Time display format.
 
 - **Date Separator** - The default Data/Time separator character.
@@ -109,6 +114,9 @@ sub-section.
 
 Those settings include:
 
+- **Show only site specific locations** - Show only locations that are
+  available at a devices selected site.
+
 - **Has Graphs/Data Sources Checked** - If from the Console, you enter
   a pages that has the various **Has** options, if checked here, the default
   will be to check that setting.
@@ -116,10 +124,20 @@ Those settings include:
 - **RRDtool Version** - Selecting the correct RRDtool Version will unlock features
   expected in modern graphing frameworks that leverage SVG (Canvas) rendering.
 
-- **Graph Permission Method** - This defined if a user needs to have access to
-  both a **Device** and **Graph Template** to view a **Devices** **Graphs**,
-  otherwise known as **Restrictive** or that to view a **Devices** **Graphs**
-  the user only needs either the **Device** or **Graph Template** permission.
+- **Enable Gradient Support** - Enable Gradient Support for AREA and STACK
+  charts.
+
+- **Graph Permission Method** - There are four methods for determining a User's
+  Graph Permissions.  Under **Permissive**, the default, a User only needs
+  access to either the **Graph**, **Device** or **Graph Template** to gain
+  access to the **Graphs** that apply to them.  Under **Restrictive**, the User
+  must have access to the **Graph**, or to both the **Device** and the
+  **Graph Template**.  These first two methods have scalability problems for
+  very large installs, so two additional options are available.  **Device
+  Based** means that if you have access to the **Device**, you get access to its
+  **Graphs**.  **Graph Template Based** means that if you have access to the
+  **Graph Template**, you get access to all **Device Graphs** of that
+  **Graph Template**.
 
 - **Graph/Data Source Creation Method** - If you wish to only create **Graphs**
   from **Graph Templates** choose the **Simple** method.  The **Advanced**
@@ -130,9 +148,9 @@ Those settings include:
   able to read all form/setting help inline.  Otherwise, you will receive a
   pop-up to access form help.
 
-- **Delete Verification** - For simple object removal, things that can be removed
-  by clicking and 'X' on the page, whether or not you wish to confirm those
-  deletes.
+- **Deletion Verification** - For simple object removal, things that can be
+  removed by clicking and 'X' on the page, whether or not you wish to confirm
+  those deletes.
 
 - **Data Source Preservation Preset** - Whether or not you wish to preserve
   **Data Sources** by default, or remove them when deleting **Graphs**. In
@@ -141,10 +159,16 @@ Those settings include:
   are managed externally to Cacti, and removing those **Data Sources** by
   default may not be desired.
 
-- **Graph Auto Unlock** - If when editing a Graph you wish to always unlock
+- **Graphs Auto Unlock** - If when editing a Graph you wish to always unlock
   it by default, select this option.  Not that this does have performance
   implications that may make the User Interface slower on vary large systems
   where devices have tens of thousands of **Data Sources**.
+
+- **Local Page Help Only** - By default Cacti page help is located at
+  docs.cacti.net.  If your system does not have access to the Internet, you can
+  download the documentation locally in HTML format and host it in the `docs`
+  location of your Cacti server.  Check this option to use only that local
+  location for page help.
 
 - **Hide Cacti Dashboard** - This is an option used by some plugin developers
   who replace the default Cacti `Console` with their own contents, for example
@@ -164,13 +188,34 @@ Those settings include:
 - **Force Connections over HTTPS** - Even if the web site allows http, redirect
   their browsers to HTTPS.
 
-- **Content-Security Allow Unsafe JavaScript eval() calls** - Allow plugins to use
-  the JavaScript `eval()` function call, which is historically unsafe.  However,
-  some older plugins require it.
+- **Allow Unsafe Remote Data Collector HTTPS** - Allow the use of Self Signed
+  Certificates and allow the hostname of the Certificate to differ from that of
+  the Remote Data Collector.  This option is enabled by default.
+
+- **Allow Unsafe Metacharacters in Data Input Methods** - When unchecked, the
+  default, Cacti restricts shell-style metacharacters such as quotation marks,
+  curly brackets, vertical bars, backslashes, and backticks in
+  **Data Input Methods**.  Check it only if you have older **Data Input
+  Methods** that contain these characters and have not converted them to local
+  scripts in the `scripts` directory.
+
+- **Content-Security Script Policy** - Controls the `script-src` Content
+  Security Policy.  The options are **Allow Non-Nonced Inline JavaScript**,
+  **Allow both unsafe-eval and Non-Nonced Inline JavaScript**, and
+  **Nonce Mode - Reporting Only**.  In the nonce mode, Cacti Plugins that use
+  inline JavaScript must include the nonce attribute from Cacti's built-in
+  function `CactiSecureHeaders::getNonceAttribute()`.
 
 - **Content-Security Alternate Sources** - If for some reason your Cacti site
   requires content from a CDN or a third party site, you can include a space
-  delimited list of URLs that will be able to be traversed for Cacti content.
+  delimited list of domain names that will be permitted to be accessed outside
+  of the Web Server itself.  Sources can include wildcards, for example
+  `*.mydomain.com`, or a protocol, for example `https://*.example.com`.  These
+  Alternate Sources include Image, CSS and JavaScript types only.
+
+- **CSP Violation Report URI** - The URL where browsers POST CSP violation
+  reports in the nonce modes.  Leave it empty to use `csp_report.php` in the
+  Cacti installation.
 
 ## Automation Settings
 
@@ -193,14 +238,20 @@ Those settings include:
 
 - **Automation Notification From Name** - The `From Name` on the Automation Email.
 
-- **Automation From Email** - The `From Email` such as noreply@cacti.net that
-  will be used for Automation notifications.
+- **Automation Notification From Email** - The `From Email` such as
+  noreply@cacti.net that will be used for Automation notifications.
 
 ## Graph Template Defaults
 
 This is where Cacti obtains defaults for **Graph Templates**.
 
 ![Graph Template Defaults](images/settings-general-graph-template-defaults.png)
+
+- **Graph Template Test Data Source** - Check this to test the **Data Sources**
+  prior to their creation for new and newly imported **Graph Templates**.  With
+  test **Data Sources** enabled, if a **Data Source** does not return valid
+  data, the **Graph** will not be created.  Note that a long running script as
+  a **Data Source** increases the time to create **Graphs**.
 
 - **Graph Template Image Format** - When creating a new **Graph Template**
   what `Image Format` should be used.  There is either:

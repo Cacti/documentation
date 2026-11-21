@@ -32,8 +32,9 @@ Those settings include:
 - **Re-index Method for Data Queries** - The default **Re-index" method for new
   **Device Data Queries**
 
-- **Default Interface Speed** - If the **Device** does not include `ifHighSpeed`
-  what should the maximum speed of the interface be set to.
+- **Default Interface Speed** - If Cacti can not determine the interface speed
+  because `ifSpeed` or `ifHighSpeed` is not set or is zero, what should the
+  maximum value on the resulting RRDfiles be set to.
 
 > **NOTE**: **Device Threads** is only applicable when using the spine binary
 
@@ -67,11 +68,11 @@ Those settings include:
 
 - **Auth User** - The default Authentication User to use (SNMP v3)
 
-- **Auth Password** - The default Authentication password to use (SNMP v3)
+- **Auth Passphrase** - The default Authentication Passphrase to use (SNMP v3)
 
 - **Privacy Protocol** - The default Privacy Protocol to use (SNMP v3)
 
-- **Privacy Pass-phrase** - The default Privacy Pass-phrase to use (SNMP v3)
+- **Privacy Passphrase** - The default Privacy Passphrase to use (SNMP v3)
 
 - **SNMP Context** - The default SNMP Context to use (SNMP v3)
 
