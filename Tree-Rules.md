@@ -18,7 +18,8 @@ to start a new rule you are also able to duplicate rules to make it easier as we
 
 We need a way to tell automation what device we are looking for
 in the example above we are looking for a device with the hostname Linux
-this is done via a REGEX any perl based REGEX can be used.
+this is done via a REGEX using the `matches regular expression` operator,
+which the database evaluates with its `REGEXP` operator.
 
 To test this REGEX on existing devices you can click the show eligible Objects
 this will check the Devices currently in cacti for a match.
@@ -31,8 +32,9 @@ from the dropdown list.
 
 ![Tree Rules Item Edit](images/automation-tree-rules-edit3.png)
 
-We also have the option to auto create a tree based on our rule in this case
-a new tree Named Linux will be created if it does not already exist.
+We also have the option to create a branch (a header) in the selected tree based
+on our rule. In this case a new branch named Linux will be created in that tree
+if it does not already exist.
 
 ## Video Walkthrough
 

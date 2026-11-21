@@ -24,23 +24,24 @@ Some of the most important information about the device will be required in this
 window which includes
 
 - **Description** - The name that will appear on **Graphs** by default
-- **IP/Hostname** - The DNS or IP address of the actual **Device**. IPv6 address insert into brackets (example: [2001:abcd:1234::1])
+- **Hostname** - The DNS or IP address of the actual **Device**. IPv6 address insert into brackets (example: [2001:abcd:1234::1])
 - **Poller Association** - Defines which **Data Collector** is responsible for
   pulling information about the **Device**
 - **Device Template** - Cisco, Net-SNMP, Linux, etc - The Cacti object that
   holds all the **Graph Templates** and **Data Queries** to be graphed
-- **Site, Location** - Very important to performing Meta queries, or for
+- **Device Site Association, Location** - Very important to performing Meta
+  queries, or for
   Site level Graph organization on Cacti **Graph Trees**
 - **Availability/Reachability** - Settings that describe **Device**
   timeouts and availability methods.
 - **SNMP information** - SNMP Credentials for connecting to the **Device**
-- **Device Notes** - Arbitrary unstructured information about the **Device**
+- **Notes** - Arbitrary unstructured information about the **Device**
 
 ![Add Device Info Screen](images/add-device-screen.png)
 
 Cacti requires this basic information to be able to monitor the device and once
 entered, click save on the bottom right corner. With the device created you will
-need to add graphs for the device by clicking **Create graphs for this device**
+need to add graphs for the device by clicking **Create Graphs for this Device**
 on the top right hand corner.
 
 Choose a [device template](Device-Templates.md) for the device's exposed
@@ -71,7 +72,7 @@ The device is considered UP even if the tcp ping returns closed
 - **Ping or SNMP Uptime** - Only one needs to be working for Cacti to collect data
 - **SNMP Desc** - Query the SNMP sysDescription in cases where the SNMP Uptime OID
   is not available
-- **SNMP GetNext** - Query the first available OID in the OID tree for the **Device**
+- **SNMP getNext** - Query the first available OID in the OID tree for the **Device**
   Used for certain devices that have limited SNMP support.
 
 ## SNMP Credentials
@@ -94,7 +95,7 @@ you have specified.
 There are some additional options that you should note before starting to use Cacti.
 They include the following:
 
-- **Device Threads** - If your device is far away, and can tolerate multiple threads
+- **Number of Collection Threads** - If your device is far away, and can tolerate multiple threads
   querying information, you can increase this number to reduce the time it takes
   to collect all information.
 - **Maximum OIDs Per Get Request** - Otherwise known as MaxOID's, this SNMP option
