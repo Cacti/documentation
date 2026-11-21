@@ -34,7 +34,7 @@ attacks from the Cacti website. Examples include:
 // Example prepared statements
 $hostname = db_fetch_cell_prepared('SELECT hostname FROM host WHERE id = ?', array($id));
 $host     = db_fetch_row_prepared('SELECT * FROM host WHERE id = ?', array($id));
-$graphs   = db_fetch_assoc('SELECT * FROM graph_local WHERE host_id = ?', array($id));
+$graphs   = db_fetch_assoc_prepared('SELECT * FROM graph_local WHERE host_id = ?', array($id));
 
 db_execute_prepared('UPDATE host SET description = ? WHERE id = ?', array('Local Machines', $id));
 

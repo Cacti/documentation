@@ -4,7 +4,7 @@
 
 In order to create a patch for inclusion into the cacti project, you need to
 create a pull request which holds the changes to be made.  Please note, it is
-better if your request also includes a change to `docs/CHANGELOG` with a brief
+better if your request also includes a change to `CHANGELOG` with a brief
 description of your change (this is included with the distributed project).
 
 The basic steps to creating a pull request are to fork cacti (by clicking on
@@ -138,8 +138,8 @@ you've may have noticed changes being made to the cacti (upstream) project that
 are you not in your origin (forked) or local repos.  If you were to commit a
 pull request using your local changes, there would be quite a few differences.
 You also wouldn't know if there was likely to be a conflict with your changes.
-Travis CI is now running against the cacti repo so conflicts do usually show up
-there if no where else.
+GitHub Actions checks (see `.github/workflows`) run against the cacti repo so
+conflicts do usually show up there if no where else.
 
 In order to get these latest changes, we must pull from the upstream (cacti)
 repo and commit these to our local repo.

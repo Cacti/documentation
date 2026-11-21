@@ -93,7 +93,7 @@ If the main file is a web-based page, it should include `include/auth.php` to
 ensure that the current user is authenticated.
 
 If the main file is a CLI-based program to be run by end users, it should
-include `lib/cli_check.php` and support `-h` and `-v` parameters which run
+include `include/cli_check.php` and support `-h` and `-v` parameters which run
 `display_help()` and `display_version()` respectively.
 
 ```php
