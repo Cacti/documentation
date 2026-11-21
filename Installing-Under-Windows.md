@@ -165,8 +165,9 @@ subdirectories it uses. The web identity also needs Modify permission on `log`,
 its configured temporary/session directories and the Cacti cache subdirectories
 used by features such as real-time graphs. Use the installer's permission
 checks to identify the required paths, including `cache/boost`,
-`cache/mibcache`, `cache/realtime` and `cache/spikekill`. Grant access only to
-the identities and paths that need it, accounting for inherited ACLs.
+`cache/mibcache`, `cache/purifier`, `cache/realtime` and `cache/spikekill`.
+Grant access only to the identities and paths that need it, accounting for
+inherited ACLs.
 
 During installation or signed-package imports, Cacti also needs to write
 queries and scripts under `resource/snmp_queries`, `resource/script_server`,
