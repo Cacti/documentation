@@ -56,7 +56,7 @@ plugin which will not drop the SQL tables and thus save your settings.
    `<path_cacti>/plugins/plugin_name`
 
    ```console
-   cp -R /var/www/html/cacti/plugin/thold /tmp
+   cp -R /var/www/html/cacti/plugins/thold /tmp
    ```
 
 3. git pull or download the new version of the **Plugin**
@@ -105,17 +105,17 @@ the plugin will show to be available to be installed.
 
 ### Dependencies in plugins
 
-Some dependencies such as THOLD aka Thresholds rely on another plugin in this
-case thold reliese on the monitor plugin which is missing in this case you will
-see the below message box in order to continue you must install the required
+Some plugins rely on another plugin. For example, the Monitor plugin requires
+the THOLD aka Thresholds plugin. If the required plugin is missing, you will
+see the below message box. In order to continue you must install the required
 plugin.
 
 ![plugin dependencies](images/plugins-dependencies.png)
 
 ### Delete plugin data and settings
-Some plugins have new functionality and allow you to delete data and plugin
-settings and start from scratcg. This can be done with the trash can icon in
-Console > Configuration > Plugins
+Starting with Cacti 1.3, some plugins have new functionality and allow you to
+delete data and plugin settings and start from scratcg. This can be done with
+the trash can icon in Console > Configuration > Plugins
 
 ---
 

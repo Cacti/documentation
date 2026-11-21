@@ -48,7 +48,7 @@ to the remotes for ease of management or each server can work independently
 ### Notes on upgrades
 
 If you are upgrading to 2.0 from a prior install, you must first uninstall
-syslog and ensure both the syslog, syslog_removal, and syslog_incoming tables
+syslog and ensure both the syslog, syslog_remove, and syslog_incoming tables
 are removed, and recreated at install time.
 
 In addition, the rsyslog configuration has changed in 2.5.  So, for example, to
@@ -328,9 +328,9 @@ $UDPServerRun 514
 $ModLoad ommysql
 
 $template cacti_syslog,"INSERT INTO syslog_incoming(facility_id, priority_id,
-  program, date, time, host, message) \
-  values (%syslogfacility%, %syslogpriority%, '%programname%', '%timereported:::date-mysql%',
-  '%timereported:::date-mysql%', '%HOSTNAME%', TRIM('%msg%'))", SQL
+  program, logtime, host, message) \
+  values (%syslogfacility%, %syslogpriority%, '%programname%',
+  '%timegenerated:::date-mysql%', '%HOSTNAME%', TRIM('%msg%'))", SQL
 
 *.* >localhost,my_database,my_user,my_password;cacti_syslog
 ```

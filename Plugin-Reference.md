@@ -95,7 +95,7 @@ can see a reference INFO file for the myplugin plugin.
 
 ```console
 [info]
-name = mplugin
+name = myplugin
 version = 1.0
 longname = My First Plugin
 author = Depeche Mode

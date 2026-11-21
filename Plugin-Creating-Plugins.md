@@ -38,7 +38,7 @@ setting | description
 *email* | The authors email address for obtaining support.
 *homepage* | If the author maintains a homepage, the address for that page.
 *compat* | The minimum version of Cacti that is required to use this plugin.
-*depends* | A space delimited list of plugins:version that are required to use this plugin.
+*requires* | A space delimited list of plugins:version that are required to use this plugin.
 *capabilities* | A comma delimited list of capabilities for define what capabilities the plugin has primarily remotely.
 *nosync* | A comma delimited list of relative paths that should not be synchronized with the remote data collectors, for example transient folders that may contain quite a bit of data that changes often.
 
@@ -59,7 +59,7 @@ register_hook function later in this document.
 
 ```php
 function plugin_PLUGINNAME_install () {
-     api_plugin_register_hook('PLUGINNAME', 'top_header_tabs', 'PLUGINNAME_show_tab', 'setup.php');
+     api_plugin_register_hook('PLUGINNAME', 'top_graph_header_tabs', 'PLUGINNAME_show_tab', 'setup.php');
 }
 ```
 
@@ -68,7 +68,8 @@ function plugin_PLUGINNAME_install () {
 The next function is the uninstall function.  This is a function that is called
 when someone requests to uninstall your plugin.  You can use this to clean up
 any extra data that is left by your plugin.  If you used the API function to
-install any tables, they will be cleaned up automatically.
+install any tables, they will be cleaned up automatically.  Cacti only calls
+this function if the plugin defines it.
 
 ### plugin_PLUGINNAME_version
 
@@ -95,14 +96,15 @@ The last mandatory function is used for determining whether your plugin is
 ready to be enabled after being installed.
 
 When a plugin is installed, it starts in a disabled state.  Only a few of the
-necessary hooks for the plugin are enabled.  These are the config_settings and
-config_arrays hook.  Anything that uses those hooks will still be available
-while the plugin is disabled.  This allows a user to modify any necessary
-settings for the plugin before the plugin is actually enabled and goes live.
-You can then use this check_config function to determine whether everything is
-correctly setup, before you allow the plugin to be enabled.  From this
-function, you will simply need to return TRUE if everything checks out, or
-return FALSE if something else needs to be setup.
+necessary hooks for the plugin are enabled.  These are the config_settings,
+config_arrays and config_form hooks.  Anything that uses those hooks will still
+be available while the plugin is disabled.  This allows a user to modify any
+necessary settings for the plugin before the plugin is actually enabled and goes
+live.  You can then use this check_config function to determine whether
+everything is correctly setup, before you allow the plugin to be enabled.  From
+this function, you will simply need to return TRUE if everything checks out, or
+return FALSE if something else needs to be setup.  If the plugin does not define
+this function, Cacti treats the plugin as ready to be enabled.
 
 ```php
 function plugin_PLUGINNAME_check_config () {
@@ -159,7 +161,7 @@ Cacti's Console, your setup.php file may look like this.
 
 ```php
 function plugin_PLUGINNAME_install () {
-     api_plugin_register_hook('PLUGINNAME', 'top_header_tabs', 'PLUGINNAME_show_tab', 'setup.php');
+     api_plugin_register_hook('PLUGINNAME', 'top_graph_header_tabs', 'PLUGINNAME_show_tab', 'setup.php');
 }
 
 function PLUGINNAME_show_tab () {
@@ -199,7 +201,7 @@ So to follow our example, your install function would look like this
 
 ```php
 function plugin_PLUGINNAME_install () {
-     api_plugin_register_hook('PLUGINNAME', 'top_header_tabs', 'PLUGINNAME_show_tab', 'setup.php');
+     api_plugin_register_hook('PLUGINNAME', 'top_graph_header_tabs', 'PLUGINNAME_show_tab', 'setup.php');
      api_plugin_register_realm('PLUGINNAME', 'PLUGINNAME.php,', 'View PLUGINNAME', 1);
 }
 ```
