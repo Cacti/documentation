@@ -122,10 +122,10 @@ server {
 
     # nginx does not process Cacti's Apache .htaccess restrictions.
     location ~ (^|/)\. { deny all; }
-    location ~ ^/cacti/(cli|contrib|log|mibs|rra|scripts|service)/ {
+    location ~ ^/cacti/(cli|contrib|log|mibs|rra|scripts|service|tests)/ {
         deny all;
     }
-    location ~ ^/cacti/cache/(boost|mibcache|realtime|spikekill)/ {
+    location ~ ^/cacti/cache/(boost|mibcache|purifier|realtime|spikekill)/ {
         deny all;
     }
     location ~ ^/cacti/include/(config(_local)?\.php|vendor/.*\.php) {
