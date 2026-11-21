@@ -85,8 +85,9 @@ This is the name given to the host-specific **Data Source**. The variable
 **|host_description|** is taken from the actual **Device**. This is to
 distinguish **Data Sources** for different devices. The **Data Input Method** is
 a drop down containing all known scripts and the like. Select the **Data Input
-Method** you just created. The **Associated RRA's** is filled by default. At the
-moment there's no need to change this. The lower part of the screen looks like:
+Method** you just created. The **Data Source Profile** is filled by default. At
+the moment there's no need to change this. The lower part of the screen looks
+like:
 
 ![Data Source Item](images/r-dt2.png)
 
@@ -155,8 +156,8 @@ drop down. Click the plus (+) glyph to see:
 By default, the **Graph Template** is added and shown as **Is Being Graphed**.
 The reason for this is that Cacti now automatically creates **Graphs**
 automatically, unless disabled. If the **Graph Template** shows **Not Being
-Graphed**, you can create the **Graph** by pressing the **Create Graphs** at the
-top of the **Devices** page. Click this link to see:
+Graphed**, you can create the **Graph** by pressing the **Create New Graphs** at
+the top of the **Devices** page. Click this link to see:
 
 ![Create New Graph](images/r-dev3.png)
 
@@ -174,8 +175,8 @@ This will automatically
   Again, you will find the Hosts name replaced for |host_description|
 
 - Create the needed RRDfile with definitions from the **Data Template**. The
-  name of this file is derived from the Host and the **Data Template** in
-  conjunction with an auto-incrementing number.
+  name of this file is derived from the Host, the **Internal Data Source
+  Name** and an auto-incrementing number.
 
 - Create an entry to the poller_item to instruct Cacti to gather data on each
   polling cycle.
