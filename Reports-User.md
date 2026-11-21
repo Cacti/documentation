@@ -16,8 +16,7 @@ shot of the Reports tab is shown below.
 When viewing any **Reports** from this interface, you will see the following
 columns:
 
-- **Report Name** - The name of the Report.
-- **Owner** - The Cacti account that has ownership of the Report.
+- **Report Title** - The name of the Report.
 - **Frequency** - How often the Report is to be sent to the distribution.
 - **Last Run** - The last time that the Report was sent to the distribution.
 - **Next Run** - The approximate next time that the report is to be sent. this
@@ -53,13 +52,13 @@ This section includes:
   custom html/css document that you can use to customize the layout of your
   reports and add corporate branding for example.
 - **Format File to Use** - The specific html/css file to use.
-- **Graphs Linked** - Provide the recipient of the report a ling back to the
+- **Graph Linked** - Provide the recipient of the report a ling back to the
   actual graph in Cacti.
 - **Graph Columns** - The number of Graph columns to use per row.
 - **Graph Width** - The width of each Graph
 - **Graph Height** - The height of each Graph
 - **Thumbnails** - Should the Graphs be rendered in Thumbnail mode
-- **Next Timestamp of Sending Mail Report** - The approximate next time to send
+- **Next Timestamp for Sending Mail Report** - The approximate next time to send
   out the **Report**.
 - **Report Interval** - The frequency to send the report. Options are every X
   Minute, Hours, Days, Weeks, Months on a Day of the Month, Months on the Day of
@@ -71,7 +70,7 @@ This section includes:
 The **Email Frequency** section does not use the same layout as does our
 **Automation Networks**. Correcting that is a future project for the team.
 
-The last section of the **Report Details** is the **Email Sender/Receiver**
+The last section of the **Report Details** is the **Email Sender/Receiver Details**
 section as shown below.
 
 ![Reports Admin Edit](images/reports-edit-2.png)
