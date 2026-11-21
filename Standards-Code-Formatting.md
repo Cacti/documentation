@@ -47,9 +47,9 @@ Tab stops should be set to 4 spaces.
 Below are the vim rules to accomplish this:
 
 ```console
-set expandtab
+set noexpandtab
 set shiftwidth=4
-set softtabstop=4
+set softtabstop=0
 set tabstop=4
 ```
 
@@ -166,16 +166,16 @@ name.
 
 ```php
 define('GRAPH_IMAGE_TYPE_PNG', 1);
-define('GRAPH_IMAGE_TYPE_GIF', 2);
+define('GRAPH_IMAGE_TYPE_SVG', 3);
 ```
 
 `Data input types for data sources`
 
 ```php
-define('DATA_INPUT_TYPE_NONE', 1);
-define('DATA_INPUT_TYPE_DATA_QUERY', 2);
-define('DATA_INPUT_TYPE_SCRIPT', 3);
-define('DATA_INPUT_TYPE_SNMP', 4);
+define('DATA_INPUT_TYPE_SCRIPT', 1);
+define('DATA_INPUT_TYPE_SNMP', 2);
+define('DATA_INPUT_TYPE_SNMP_QUERY', 3);
+define('DATA_INPUT_TYPE_SCRIPT_QUERY', 4);
 ```
 
 ## Common Action Types
