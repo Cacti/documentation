@@ -26,7 +26,10 @@ Those options include:
   to login with a password that does not meet the current complexity
   requirements, they will be forced to change their password.
 - **Expire Inactive Accounts** - Disable inactive accounts after
-  a certain number of days of inactivity.
+  a certain number of days of inactivity.  The Admin account is excluded
+  from this policy.
+- **Expire Password** - The maximum number of days before a password is set
+  to expire.
 - **Password History** - Maintain a list of previous passwords, and
   do not allow a user to use one of those prior passwords during
   their password changes.

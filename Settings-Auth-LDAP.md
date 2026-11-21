@@ -86,14 +86,14 @@ LDAP authentication.
 1. _None_ - This is plain-text, normally on port tcp/389.  Passwords are
  transmitted over the network in clear text between Cacti and the directory.
 
-2. _SSL_ - Commonly known as LDAPS, this is just like LDAP, but encrypted. This
+2. _LDAPS_ - This is just like LDAP, but encrypted. This
  normally runs on port tcp/636. Please note, this is not enabled by default for
  Microsoft's Active Directory because it requires an encryption key and
  certificate to be installed on the AD controller(s).
 
-3. _TLS_ - This is plain LDAP, but a START_TLS command is sent by the client to
- the server to initiate encryption.  Normally runs on port tcp/389 and can be
- entered into during a regular LDAP session.
+3. _LDAP + TLS_ - This is plain LDAP, but a START_TLS command is sent by the
+ client to the server to initiate encryption.  Normally runs on port tcp/389
+ and can be entered into during a regular LDAP session.
 
 Please note that some directories will limit the request types to which they
 respond when there is no encryption on the LDAP communication.
