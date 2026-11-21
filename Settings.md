@@ -30,7 +30,7 @@ The standard Settings sub-tabs include:
   like **Graph** and **Data Source** title lengths, and drop-down sizes
   these Visual settings are global in nature.
 - [Authentication](Settings-Auth.md) - This is where Cacti
-  defines how **Users** are managed.  There are three Classes of **Users**.
+  defines how **Users** are managed.  There are four Classes of **Users**.
 
   They include:
 
