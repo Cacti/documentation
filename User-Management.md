@@ -29,7 +29,7 @@ disabling "guest" (Unauthenticated) access to Cacti.
 
 ## Editing an existing User
 
-To edit an existing user, select the User Management item under the Utilities
+To edit an existing user, select the Users item under the Configuration
 heading on the Cacti menu. Once at the user management screen, click username of
 the user you wish to edit. You will see a screen that looks similar to the image
 below.
@@ -54,21 +54,38 @@ Each of these items are described in this section of the manual.
   (Optional) You can use this field as a more descriptive identifier for the
   user. It is currently only used for display on the user management page.
 
+- **_Email Address_**
+
+  (Optional) An Email Address where the user can be reached.
+
 - **_Password_**
 
   Enter the password for the user twice, once in each text box. Keep in mind
   that passwords are case sensitive and the password will remain unchanged if
   the boxes are both left empty.
 
+- **_Enabled_**
+
+  Determines if the user is able to login.
+
+- **_Locked_**
+
+  Determines if the user account is locked.
+
 - **_Account Options_**
 
-  There are two account related options that can be set for each user.
+  There are three account related options that can be set for each user.
 
-  - **_User Must Change Password at Next Login_**
+  - **_Must Change Password at Next Login_**
 
     Force a password change immediately after the user logs in.
 
-  - **_Allow this User to Keep Custom Graph Settings_**
+  - **_Change Password_**
+
+    Allows the user to change their own password.  This option is on by
+    default.
+
+  - **_Maintain Custom Graph and User Settings_**
 
     Allows user to maintain their own custom graph viewing settings.
 
@@ -132,7 +149,7 @@ in general, these permissions do not apply to editing graphs. You can edit a
 
 ![User Realm Management](images/users-permissions-graph.png)
 
-Cacti supports two Graph Permission models. There is the `Permissive` Graph
+Cacti supports four Graph Permission models. There is the `Permissive` Graph
 permission which states that if a user has access either to the Graph, the
 Device or Graph Template, the user will have access to all the Graphs that match
 that class. For example, in the `Permissive` model, if you have access to the
@@ -146,10 +163,18 @@ the **Device** and **Graph Template**. Using this permission model requires the
 **Users** and **User Groups** have much more specific access if they want to
 gain access to various device Graphs.
 
+The `Permissive` and `Restrictive` models have scalability problems for very
+large installs, so two additional models are available. With `Device Based`,
+access to a **Device** grants access to its **Graphs**. With `Graph Template
+Based`, access to a **Graph Template** grants access to all **Device Graphs**
+of that **Graph Template**. When `Device Based` is selected, the **Template
+Perms** sub-tab is not shown for a **User**. When `Graph Template Based` is
+selected, the **Device Perms** sub-tab is not shown.
+
 We introduced these new permission models and administrative processes to
 simplify the Cacti permission system, and to increase it's usability.
 
-In addition to the `Permissive` and `Restrictive` models, which can be set from
+In addition to the Graph Permission models, which can be set from
 **Console > Configuration > Settings > General**, a **User** or **User Group**
 is either `Allowed` or `Denied` all **Graphs**, **Devices** and **Graph
 Templates** through a setting called the **Default Policy** in each of the
@@ -227,7 +252,7 @@ see those permission changes until their next login.
 
 ## Creating a New User
 
-To create a new user, select the User Management item under the Utilities
+To create a new user, select the Users item under the Configuration
 heading on the Cacti menu. Once at the user management screen, click the plus
 (+) glyph.
 
@@ -314,11 +339,11 @@ would like to copy over an existing user, use Batch Copy.
 
 ![Enable/Disable Users Part 1](images/users-enable-disable1.png)
 
-To enable or disable a set of or a single user, select the User Management item
-under the Utilities heading on the Cacti menu. Once at the **Users** interface,
-highlight the **User** you would like to `Enable` or `Disable` and select either
-`Enable` or `Disable` from the `Choose an action` drop down selection box, click
-`Go` to continue.
+To enable or disable a set of or a single user, select the Users item
+under the Configuration heading on the Cacti menu. Once at the **Users**
+interface, highlight the **User** you would like to `Enable` or `Disable` and
+select either `Enable` or `Disable` from the `Choose an action` drop down
+selection box, click `Go` to continue.
 
 ![Enable/Disable Users Part 2](images/users-enable-disable2.png)
 
@@ -328,8 +353,8 @@ perform the action. Disabling your own account is not permitted.
 ## Batch Copy Users
 
 Batch Copy is a helpful utility that helps Cacti Administrators maintain users.
-Because Cacti does not yet support groups, it is important that there is some
-way to mass update users. This what Batch Copy does for you.
+It is often necessary to mass update users. This is what Batch Copy does for
+you.
 
 ![Batch Copy Users Part 1](images/users-batch-copy1.png)
 

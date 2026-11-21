@@ -10,7 +10,7 @@ will enherit the Template accounts permission settings
 including User Group's and their permissions.
 
 So, as the name implies, you can have from one to many
-LDAP and Active directory listings in the Domains plugin.
+LDAP and Active directory listings in User Domains.
 
 A use example would be for example 3 levels of customers
 who will have access to the system.  For example lets
@@ -30,7 +30,7 @@ If a normal user tries logging as an Administrator, their
 login will be blocked and so on.
 
 The first image shows the list of domains, which domain is
-primary, and the actions you can take on a Domain.
+the default, and the actions you can take on a Domain.
 
 ![User Domains](images/user-domains.png)
 

@@ -9,7 +9,7 @@ cacti from this page you can do the following
 
 - View technical support information.
 
-- Adjust log settings.
+- Administer the Cacti log (Log Administration).
 
 - View the user log for audits.
 
@@ -102,7 +102,7 @@ included in your version.
 
 ### View user login history
 
-`Console > utilities > System Utilities > View user Log`
+`Console > Utilities > System Utilities > View User Log`
 
 In system utilities you are able to view a log of user logins
 both successful and failures The Log will also show what Client IP address
@@ -123,9 +123,9 @@ The average boost record size
 
 ![System Utilities](images/system-utilities-boost2.png)
 
-### Viewing the Data Source Query Cache
+### Viewing the Data Query Cache
 
-`Console > Utilities > System Utilities > View Data Source Query Cache`
+`Console > Utilities > System Utilities > View Data Query Cache`
 
 The Data Query Cache stores information gathered from Data Query input types.
 The values from these fields can be used in the text area of Graphs for Legends,
@@ -141,10 +141,10 @@ This is the data that is being passed to the poller each time it runs.
 
 ![System Utilities](images/system-utilities-viewpcache.png)
 
-### Viewing System log via System Utilities
+### Viewing the Cacti log via Log Administration
 
-You are able to view the system log via the System utilities
-page this will show the RAW log
+You are able to view the Cacti log via the Log Administration
+entry on the System utilities page this will show the RAW log
 this slightly differs from the view log tab as the device names
 will show the device ID rather than
 the Device name this is the same view as you reading the log in the OS
