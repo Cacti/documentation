@@ -29,7 +29,7 @@ screen allows you to add, remove and re-order colors in the list.
 
 Shown in the image below, only Cacti **Colors** are allowed to be selected for
 Aggregate **Color Templates**.  The **Color** drop down can by typed into if you
-wish to search through the list of approximately 340 legacy and *Named Colors*.
+wish to search through the list of more than 400 legacy and *Named Colors*.
 
 ![Color Templates Item Edit](images/color-templates-edit2.png)
 

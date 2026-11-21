@@ -25,7 +25,7 @@ match on.
 You can see how these rules would take place by clicking the show matching
 objects link.
 
-Use both **Show matching devices** and **Show matching objects** to review
+Use both **Show Matching Devices** and **Show Matching Objects** to review
 the scope. These previews show rule matches, not proof that each selected
 metric will poll successfully. Check the resulting graphs on representative
 devices as well.

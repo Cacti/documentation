@@ -78,10 +78,10 @@ From top to bottom, the Graph Action Icons do the following.
 
 Name | Description
 --- | ---
-Graph Details | Allow you to perform precision zooming, view RRDtool debug information and perform CSV exports of your Graph Data.
+Details | Allow you to perform precision zooming, view RRDtool debug information and perform CSV exports of your Graph Data.
 CSV Export | Allows you to directly CSV Export your Graph Data
 Realtime View | Allows you to view your Graphs at down to a 1 second granularity either in place, or in a pop-up Window
-Spike Kill | Allow you to clear up Spikes and Gaps in your Graph
+Kill Spikes | Allow you to clear up Spikes and Gaps in your Graph
 Create Threshold | Create a Threshold for the Graph
 Add to QuickTree | Allow you to select Graphs to add to Trees by simply tooling around the Graphs page.
 

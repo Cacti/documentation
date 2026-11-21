@@ -106,7 +106,9 @@ to do with the **Data Source** name, but is what you will use to identify the
 template throughout Cacti.
 
 Second, you will notice a list of **Data Source** / **Data Source Item** field
-names with Use Per-Data Source Value check-boxes next to each one. The nice
+names with Use Per-Data Source Value check-boxes next to each one (the form
+labels each of them "Check this checkbox if you wish to allow the user to
+override the value on the right during Data Source creation."). The nice
 thing about Templates in Cacti is that you can choose whether to template each
 field on a per-field basis. If you leave the check-box unchecked, every **Data
 Source** attached to the **Data Template** will inherit its value from the
@@ -216,7 +218,9 @@ of the **Graph Template** interface.
 The first thing you must do is give the **Graph Template** a name. This name has
 nothing to do with the graph title, but is what you will use to identify the
 **Graph Template** throughout Cacti. Second, you will notice a list of graph
-field names with Use Per-Graph Value check-boxes next to each one. The nice
+field names with Use Per-Graph Value check-boxes next to each one (the form
+labels each of them "Check this checkbox if you wish to allow the user to
+override the value on the right during Graph creation."). The nice
 thing about Templates in Cacti is that you can choose whether to template each
 field on a per-field basis. If you leave the check-box unchecked, every
 **Graph** owned by the **Graph Template** will inherit its value from the
@@ -236,15 +240,14 @@ Template** will have its own value for that particular field.
 | Auto Scale                               | Enable auto scale for the graph. This option must be check to use the next two options. Upper/Lower limit values are ignored when using auto-scale since these boundaries are determined automatically.                                                                                                           |
 | Auto Scale Options                       | Choose whether you would like to use --alt-autoscale (ignoring given limits), --alt-autoscale-max (accepting a lower limit), --alt-autoscale-min (accepting an upper limit.                                                                                                                                       |
 | Logarithmic Scaling                      | Choose if you want logarithmic y-axis scaling.                                                                                                                                                                                                                                                                    |
-| Scientific Units for Logarithmic Scaling | For linear graphs, scientific units (in magnitudes of k=kilo, M=mega, ...) is default. But for logarithmic graphs, exponential notation is default. Choose if you want logarithmic y-axis scaling and scientific units.                                                                                           |
+| SI Units for Logarithmic Scaling         | For linear graphs, SI units (in magnitudes of k=kilo, M=mega, ...) is default. But for logarithmic graphs, exponential notation is default. Choose if you want logarithmic y-axis scaling and scientific units.                                                                                                   |
 | Rigid Boundaries Mode                    | From the RRDtool manual "Normally rrdgraph will automatically expand the lower and upper limit if the graph contains a value outside the valid range. With this option you can disable this behavior".                                                                                                            |
 | Auto Padding                             | If you have ever created RRDtool based graphs manually, you may have realized how annoying it can be to get text to line up properly. With this option Cacti will do its best to make the columns on your graph legend line up. This option works best when your graph legend has a consistent number of columns. |
-| Allow Graph Export                       | If you choose to use Cacti's static HTML/image export, you can choose whether you want each individual graph to be exported.                                                                                                                                                                                      |
 | Upper Limit                              | The maximum value that will be displayed on the y-axis. This value is ignored is auto-scaling is turned on.                                                                                                                                                                                                       |
 | Lower Limit                              | The minimum value that will be displayed on the y-axis. This value is ignored is auto-scaling is turned on.                                                                                                                                                                                                       |
 | Base Value                               | Whether you want to base the y-axis labels on 1000 or 1024. This field will typically be set to 1024 for memory and 1000 for traffic measurements.                                                                                                                                                                |
 | Unit Grid Value                          | Sets the unit value for the y-axis (--y-grid). You should probably keep the unit short as to keep it readable.                                                                                                                                                                                                    |
-| Unit Exponent Value                      | Sets the 10^e scaling of the y-axis. Valid values for this field are between -18 and 18. For example, you could use 3 to display everything in 'k' (kilo) or -6 to display everything in 'u' (micro).                                                                                                             |
+| Unit Exponent Value                      | Sets the 10^e scaling of the y-axis. Enter a whole number, for example 3 to display everything in 'k' (kilo). Cacti passes only non-negative values to RRDtool, so a negative value such as -6 has no effect on the rendered graph.                                                                               |
 | Vertical Label                           | The text to print on the left edge of the graph. Usually is the units the data on the graph is measured in.                                                                                                                                                                                                       |
 
 ### Auto-scaling Options Explained
@@ -329,7 +332,7 @@ assumptions later.
 | Value                  | This field is only used with the HRULE/VRULE graph item types. Type any valid integer to draw the line at for HRULE or the time of the day HH:MM for VRULE.                                                                                                                                                                                                                                                                                                                                  |
 | GPRINT Type            | If this item is a GPRINT, you can choose how you want the number to be formatted. You can add your own in the GPRINT Presets section of Cacti.                                                                                                                                                                                                                                                                                                                                               |
 | Text Format            | You can enter text to be displayed on the legend here. This field is applicable for all graph item types except for the virtual LEGEND type.                                                                                                                                                                                                                                                                                                                                                 |
-| Hard Return            | Check this box to force graph items onto the next line.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Insert Hard Return     | Check this box to force graph items onto the next line.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
 #### Graph Item Inputs
 
