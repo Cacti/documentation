@@ -130,30 +130,20 @@ SW-3750(config)#
 
 ### Mariadb/MYSQL Specific configurations
 
-Finally, it's important, especially in more recent versions of MySQL and MariaDB
-to set a correct SQL Mode.  These more recent SQL's prevent certain previously
-allowable syntax such as an empty data and certain group by limitations in the
-SQL itself.  Therefore, you need to ensure that the SQL mode of the database is
-correct.  To do this, first start by editing either `/etc/my.cnf` or
-`/etc/my.cnf.d/server.cnf` and inserting the SQL mode variable into the database
-configuration.  For example:
+Do not copy `sql_mode=NO_ENGINE_SUBSTITUTION,NO_AUTO_CREATE_USER` from older
+instructions into a current MySQL configuration, because MySQL removed
+`NO_AUTO_CREATE_USER` in 8.0.  Inspect the modes the database actually uses
+when diagnosing a schema or migration failure:
 
-```ini
-[mysqld]
-sql_mode=NO_ENGINE_SUBSTITUTION,NO_AUTO_CREATE_USER
+```sql
+SELECT @@GLOBAL.sql_mode, @@SESSION.sql_mode;
 ```
 
-After this change, you should log into the mysql server and run the following
-command:
-
-```console
-mysql> show global variables like 'sql_mode';
-```
-
-And ensure that it matches the setting that you placed in the database
-configuration.  If it does not, please search for the configuration that is
-making this SQL mode other than what you required.  More recent versions of
-MySQL and MariaDB will source multiple database configuration files.
+Follow the migration guidance for your database and plugin release rather than
+changing the server-wide modes for all applications.  The plugin's own upgrade
+tool, `cli/upgrade_partitioning.php`, reads the session `sql_mode` and sets it
+for its own session only.  More recent versions of MySQL and MariaDB will
+source multiple database configuration files.
 
 ## Installing the plugin
 
