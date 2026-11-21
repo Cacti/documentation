@@ -18,12 +18,12 @@ Now that you have working SNMP support, follow these steps.
 2. Click Add to add a new device.
 
 3. Type a description, hostname, management IP, and SNMP community. Make sure to
-   select "Generic SNMP-enabled Host" under Host Template and click Create.
+   select "Generic SNMP Device" under Device Template and click Create.
 
-4. Click Create Graphs for this Host at the top of the page.
+4. Click Create Graphs for this Device at the top of the page.
 
-5. You should see one or more interfaces listed under the Data Query [SNMP -
-   Interface Statistics] box. Place a check next to each interface that you want
+5. You should see one or more interfaces listed under the Data Query [Get SNMP
+   Interfaces] box. Place a check next to each interface that you want
    to graph. Below the box, select type of graph that you want to create (bits,
    bytes, summation, etc).
 
@@ -232,7 +232,7 @@ truncated to 15 characters.
 
 **A:** Cacti does this by default to better control graph title formatting. You
 can change this limit, by going to Cacti Settings on the Cacti menu, selecting
-the Visual tab, and changing the value for Data Queries - Maximum Field Length.
+the Visual tab, and changing the value for Data Source Field Length.
 
 ---
 

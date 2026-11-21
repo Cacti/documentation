@@ -77,9 +77,10 @@ overwrite.  The following settings are customizable:
    #3673](https://github.com/Cacti/cacti/issues/3673), where 'Last Known Good'
    is always used, regardless of setting.
 
-2. _Standard Deviations_
+2. _Number of Standard Deviations_
 
-   When using the Standard Deviation method, the value of _Standard Deviations_
+   When using the Standard Deviation method, the value of _Number of Standard
+   Deviations_
    is the coefficient which determines how many times above the standard
    deviation the data must be to be considered a spike.
 
@@ -89,22 +90,24 @@ overwrite.  The following settings are customizable:
    the coefficient which determines how much higher than the average the data
    must be to be considered a spike.
 
-4. _Variance Outliers_
+4. _Variance Number of Outliers_
 
    When using the Variance Average method, the highest _N_ values and the lowest
    _N_ values are considered _outliers_.  These outliers are ignored when
    calculating the average of the data.
 
-5. _Kills Per RRA_
+5. _Max Kills Per RRA_
 
    Spikekill will limit the number of data points that it
-   overwrites to the value of _Kills Per RRA_.  For reference, a single RRDfile
-   can contain multiple _data sources_ and multiple _archives_.  Therefore, the
-   total number of data points that could be overwritten in a single RRDfile
-   will be determined by the formula:
+   overwrites to the value of _Max Kills Per RRA_.  For reference, a single
+   RRDfile can contain multiple _data sources_ and multiple _archives_.
+   Spikekill counts the kills of all data sources in an archive together, and
+   starts the count again for each archive.  Therefore, the total number of data points
+   that could be overwritten in a single RRDfile will be determined by the
+   formula:
 
    ```console
-   (number_of_RRAs) x (number_of_data_sources) x (Kills_Per_RRA)
+   (number_of_RRAs) x (Max_Kills_Per_RRA)
    ```
 
    This only applies when using the `Standard Deviation` or `Variance Average`
@@ -150,8 +153,8 @@ RRA.  Data points are overwritten if they exceed the maximum allowed threshold
 or if they do not reach the minimum required threshold.
 
 Spikekill will cease overwriting data points for any individual RRA when it has
-reached the value of _Kills Per RRA_, counting all DSes of that RRA together.
-It will then begin the process again on the next RRA.
+reached the value of _Max Kills Per RRA_, counting all DSes of that RRA
+together.  It will then begin the process again on the next RRA.
 
 This means that for any given RRA, older spikes will always be overwritten
 before newer spikes.  However, newer spikes in one RRA can still be overwritten

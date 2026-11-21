@@ -14,8 +14,8 @@ SPINE: Host[...] DS[....] WARNING: SNMP timeout detected [500 ms], ignoring host
 ```
 
 For "reasonable" timeouts, this may be related to a snmpbulkwalk issue. To
-change this, see `Settings`, `Poller` and lower the value for `The Maximum SNMP
-OIDs Per SNMP Get Request`. Start at a value of 2 and increase it again, if the
+change this, see `Settings`, `Poller` and lower the value for `SNMP Get OID
+Limit`. Start at a value of 2 and increase it again, if the
 poller starts working. (1 or less disables snmpbulkwalk) Some agent's don't have
 the horsepower to deliver that many OIDs at a time. Therefore, we can reduce the
 number for those older/under-powered devices.
@@ -51,7 +51,7 @@ implemented separately, it does not come with cacti by default.
 
 Now, clear `./log/cacti.log` (or rename it to get a fresh start)
 
-Then, change `Settings`, `Poller Logging Level` to DEBUG for _one_ polling
+Then, change `Settings`, `General`, `Generic Log Level` to DEBUG for _one_ polling
 cycle. You may rename this log as well to avoid more stuff added to it with
 subsequent polling cycles.
 
