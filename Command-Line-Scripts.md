@@ -25,6 +25,15 @@ briefly.
 | add_perms.php          | Automation  | Allows adding permissions to Cacti.                                                             |
 | add_tree.php           | Automation  | Allows adding tree's tree branches and objects to Cacti Trees.                                  |
 | copy_user.php          | Maintenance | Allows creating new users from Templates                                                        |
+| add_datasource.php     | Automation  | Allows adding a Data Source to a Device from a Data Template.                                   |
+| add_group.php          | Automation  | Allows adding a user group, or group permissions, to Cacti.                                     |
+| add_group_perms.php    | Automation  | Allows adding group permissions to graphs, trees, devices or graph templates.                   |
+| add_site.php           | Automation  | Allows adding a Site with its address, timezone and GPS details, geocoding the address if asked, and mapping matching Devices to it. |
+| apply_automation_rules.php | Automation  | Executes Cacti automation rules for Devices selected by id, hostname or description.            |
+| clone_device_template.php | Automation  | Clones parts of a Device Template so that the clone does not interfere with the Device Template it was based on. |
+| host_update_template.php | Automation  | Updates Cacti Devices with the latest Device Template.                                          |
+| remove_device.php      | Automation  | Allows removing Devices selected by description, IP address or id.                              |
+| remove_graphs.php      | Automation  | Allows removing Graphs, selected by Graph Template and optionally Device Template, Device, Graph or Graph name regular expression. |
 
 ## Maintenance Scripts
 
@@ -34,6 +43,17 @@ briefly.
 | poller_graphs_reapply_names.php | Maintenance | Allows selecting re-running of Cacti's suggested values engine for Graphs                                                                                                |
 | poller_reindex_hosts.php        | Maintenance | Batch method to re-index Cacti Devices                                                                                                                                   |
 | analyze_database.php            | Maintenance | Analyzes all Cacti tables rebuilding their index cardinality. Important to run after having added large numbers of Devices and Graphs to Cacti.                          |
+| audit_graph_template_inputs.php | Maintenance | Reports graph template input integrity findings without changing database state.                                                                                         |
+| batchgapfix.php                 | Maintenance | Fills gaps in Graphs over a time range.                                                                                                                                  |
+| float_rrdfiles.php              | Maintenance | Floats a range in selected Graphs using the RRDtool dump and import utility.                                                                                             |
+| poller_data_sources_reapply_names.php | Maintenance | Recalculates Data Source names for the selected Data Templates.                                                                                                          |
+| poller_replicate.php            | Maintenance | Fully synchronizes Remote Data Collectors.                                                                                                                               |
+| refresh_csrf.php                | Maintenance | Deprecated. It no longer rotates anything and is kept only so that scripts that call it keep working.                                                                    |
+| removespikes.php                | Maintenance | Removes spikes from an RRDfile. Defaults are taken from the Cacti database when no options are given.                                                                    |
+| reorder_data_query.php          | Maintenance | Re-orders Cacti Data Queries for a Device or the whole system in batch mode.                                                                                             |
+| rrdresize.php                   | Maintenance | Analyses and reassigns Data Template settings into RRDfiles, backing up the original RRDfiles.                                                                           |
+| show_perms.php                  | Maintenance | Audits database permissions by scanning the Cacti database and reporting the permissions it finds.                                                                       |
+| update_heartbeat.php            | Maintenance | Updates RRDfile heartbeats and the Cacti database to match.                                                                                                              |
 
 ## Repair Scripts
 
@@ -44,6 +64,8 @@ briefly.
 | repair_database.php      | Repair   | Utility to look for common problems with old Cacti databases where objects were removed while still in use. Also rapairs all tables after a system crash. |
 | repair_graphs.php        | Repair   | Utility to repair Cacti Graphs whose structure is damaged due to legacy Cacti behavior.                                                                   |
 | repair_templates.php     | Repair   | Utility to repair Cacti Templates whose structure was damaged due to legacy Cacti behavior.                                                               |
+| push_out_hosts.php       | Repair   | Deprecated. Use rebuild_poller_cache.php.                                                                                                                 |
+| remove_broken_graphs.php | Repair   | Removes broken Graphs, which are Graphs that lack Data Sources.                                                                                           |
 
 ## Repair/Migration Scripts
 
@@ -52,6 +74,8 @@ briefly.
 | audit_database.php | Repair/Migration | Script to audit your Cacti schema, and repair any tables that don't match the stock Cacti schema. It will also upgrade the Cacti schema and run plugin upgrade functions. This is a good migration tool to move database from old versions of Cacti. |
 | convert_tables.php | Repair/Migration | Convert all tables from their current form to the Cacti preferred table type, collation and charset                                                                                                                                                  |
 | splice_rrd.php     | Migration        | Utility that allows two RRDfiles to be merged, and also assists with resampling an old RRDfile to a new RRA configuration, for example moving a Cacti system from 5 minute polling to 1 minute polling.                                              |
+| fix_mediumint.php  | Repair/Migration | Increases the size of key Cacti columns for systems with over a million graphs that have been in service for years.                                                                                                                                  |
+| migrate_poller.php | Repair/Migration | Moves Devices off a given Data Collector to another one.                                                                                                                                                                                             |
 
 ## Install/Upgrade Scripts
 
@@ -63,6 +87,12 @@ briefly.
 | sqltable_to_php.php     | Install/Upgrade | Utility for Plugin Developers to create an object for creating tables in plugins.                                                                                                                                                                                         |
 | structure_rra_paths.php | Install/Upgrade | Utility to convert a system from a flat directory path to a heirarchial one. Important for certain file systems that don't perform well when there are tens or hundreds of thousands of files in a single directory.                                                      |
 | upgrade_database.php    | Install/Upgrade | Utility to upgrade a Cacti database from a point in time to the current release. Or even rerun the database upgrade from a point in the past to catch up with changes. This script should be used in conjunction with the `audit_database.php --repair --upgrade` option. |
+| fetch_plugins.php       | Install/Upgrade | Gathers the latest official plugins from the Cacti Group GitHub site and prepares them for loading and install.                                                                                                                                                           |
+| genkey.php              | Install/Upgrade | Generates a Package Author certificate and key information based upon an ssh key pair.                                                                                                                                                                                    |
+| genmanifest.php         | Install/Upgrade | Generates a Package Author manifest.properties file for a directory of Package files.                                                                                                                                                                                     |
+| import_template.php     | Install/Upgrade | Imports Cacti Templates from an XML file.                                                                                                                                                                                                                                 |
+| plugin_manage.php       | Install/Upgrade | Installs, enables, disables or uninstalls one or more Cacti plugins.                                                                                                                                                                                                      |
+| version.php             | Install/Upgrade | Shows version information, including the development upgrade version.                                                                                                                                                                                                     |
 
 > **NOTE**: Package maintainers may wish to utilize the CLI methods of
 > install_cacti.php and upgrade_database.php to perform in place installations
