@@ -24,7 +24,7 @@ To manage **Devices** within Cacti, click on the Devices menu item. Clicking Add
 will bring up a new device form. The first two fields, Description and Hostname
 are the only two fields that require your input beyond the defaults. If your
 host type is defined under the host template dropdown, be sure to select it
-here. You can always choose "Generic SNMP-enabled Host" if you are just
+here. You can always choose "Generic SNMP Device" if you are just
 graphing traffic or "None" if you are unsure. It is important to remember that
 the host template you choose will not lock you into any particular
 configuration, it will just provide more intelligent defaults for that type of
@@ -41,13 +41,13 @@ host.
   resolved using the standard host resolving mechanisms, e.g. Dynamic Name
   Services (DNS)
 
-- **Host Template** - A Host Template is a container for a list of graph
+- **Device Template** - A Host Template is a container for a list of graph
   templates that will be related to this host.
 
 - **Notes** - Notes for a given device.
 
-- **Disable Host** - Exclude this host from being polled. This is of particular
-  value, if a device is no longer available, but should be
+- **Disable Device** - Exclude this host from being polled. This is of
+  particular value, if a device is no longer available, but should be
   kept e.g. as a reference.
 
 ### Availability/Reachability Options
@@ -58,19 +58,21 @@ host.
   - _**PING or SNMP Uptime**_ - Ping and if successful, move on, if not check SNMP Uptime
   - _**SNMP Uptime**_ - verify the SNMP Uptime only
   - _**SNMP Desc**_ - verify the SNMP System Description
-  - _**SNMP GetNext**_ - verify the very next SNMP OID after .1.3
+  - _**SNMP getNext**_ - verify the very next SNMP OID after .1.3
   - _**PING**_ - perform a ping test, see below
 
 - **Ping Method** - Available only for _**PING and SNMP**_ or _**PING**_
-  - _**ICMP**_ - perform ICMP tests. Requires permissions
-  - _**UDP**_ - perform a UDP test
-  - _**TCP**_ - perform a TCP test
+  - _**ICMP Ping**_ - perform ICMP tests. Requires permissions
+  - _**TCP Ping**_ - perform a TCP test
+  - _**TCP Ping Closed**_ - perform a TCP test and treat a refused connection
+    as a response from the device
+  - _**UDP Ping**_ - perform a UDP test
 
 - **Ping Port** - Available only for UDP/TCP PING test types. Please define the
   port to be tested here. Make sure, that no firewall
   intercepts the test ping.
 
-- **Timeout Value** - After this time, the test fails. Measured in units of
+- **Ping Timeout Value** - After this time, the test fails. Measured in units of
   milliseconds.
 
 - **Ping Retry Count** - The number of times Cacti will attempt to ping a host
@@ -84,14 +86,14 @@ host.
   - _**Version 2**_ - Referred to as SNMP V2c in most SNMP documentations
   - _**Version 3**_ - SNMP V3, supporting authentication and encryption
 
-- **SNMP Community** - SNMP read community for this device
+- **SNMP Community String** - SNMP read community for this device
 
 - **SNMP Port** - UDP port number to use for SNMP (default is 161).
 
 - **SNMP Timeout** - Maximum number of milliseconds Cacti will wait for an SNMP
   response.
 
-- **Maximum OID's Per Get Request** - This is a performance feature. Specifies
+- **Maximum OIDs Per Get Request** - This is a performance feature. Specifies
   the number of OID's that can be obtained in a single SNMP Get request.
   _**WARNING**_: This feature only works when using Spine.
   _**WARNING**_ Some devices do not support values greater than `1` and/or may
@@ -99,30 +101,30 @@ host.
 
 ### Security Options for SNMP V3
 
-- _**SNMP Username**_ - `username` of an SNMP V3 `createUser` statement or
-  equivalent
-
-- _**SNMP Password**_ - `authpassphrase` of an SNMP V3 `createUser` statement
+- _**SNMP Username (v3)**_ - `username` of an SNMP V3 `createUser` statement
   or equivalent
 
-- _**SNMP Auth Protocol**_ - Authentication type of an SNMP V3 `createUser`
-  statement or equivalent. Select either MD5, SHA, SHA-224, SHA-256, SHA-392,
-  or SHA-512. Defaults to MD5.
+- _**SNMP Password (v3)**_ - `authpassphrase` of an SNMP V3 `createUser`
+  statement or equivalent
 
-- _**SNMP Privacy Passphrase**_ - The `privacy passphrase` of an SNMP V3
+- _**SNMP Auth Protocol (v3)**_ - Authentication type of an SNMP V3
+  `createUser` statement or equivalent. Select either MD5, SHA, SHA-224,
+  SHA-256, SHA-384, or SHA-512. Defaults to SHA.
+
+- _**SNMP Privacy Passphrase (v3)**_ - The `privacy passphrase` of an SNMP V3
   `createUser` statement or equivalent.
 
-- _**SNMP Privacy Protocol**_ - The `privacy protocol` of an SNMP V3
-  `createUser` statement or equivalent. Select DES (if available), AES-128,
-  AES-192, or AES-256. Defaults to DES.
+- _**SNMP Privacy Protocol (v3)**_ - The `privacy protocol` of an SNMP V3
+  `createUser` statement or equivalent. Select DES (if available), AES,
+  AES-128, AES-192, AES-192-C, AES-256, or AES-256-C. Defaults to AES.
 
   **NOTE** Spine may not support DES today as some Net-SNMP distributions
   have disabled it.
 
-- _**SNMP Context**_ - When using the View-Based Access Control Model (VACM),
-  it is possible to specify an SNMP Context when mapping a community name to
-  a security name with a `com2sec` directive, with the `group` directive and
-  the `access` directive. This allows for defining special access models. If
+- _**SNMP Context (v3)**_ - When using the View-Based Access Control Model
+  (VACM), it is possible to specify an SNMP Context when mapping a community
+  name to a security name with a `com2sec` directive, with the `group` directive
+  and the `access` directive. This allows for defining special access models. If
   using such a parameter with your target's SNMP configuration, specify the
   context name to be used to access that target here.
 
@@ -307,7 +309,7 @@ IF-MIB::ifType.3 = INTEGER: ethernetCsmacd(6)
 Now that you have created some devices, it is time to create graphs for these
 devices. To do this, select the New Graphs menu option under the Create
 heading. If you're still at the device edit screen, select Create Graphs for
-this Host to see a screen similar to the image pictured below.
+this Device to see a screen similar to the image pictured below.
 
 ![Creating New Graphs](images/new-graphs.png)
 
@@ -321,10 +323,11 @@ additional things to keep in mind. First is that you may encounter the
 situation as pictured above with the "SNMP - Interface Statistics" data query.
 If this occurs you may want to consult the section on debugging data queries to
 see why your data query is not returning any results. Also, you may see a
-"Select a graph type" dropdown box under some data query boxes. Changing the
-value of this dropdown box affects which type of graph Cacti will make after
-clicking the Create button. Cacti only displays this dropdown box when there is
-more than one type to choose from, so it may not be displayed in all cases.
+"Select a Graph Type to Create" dropdown box under some data query boxes.
+Changing the value of this dropdown box affects which type of graph Cacti will
+make after clicking the Create button. Cacti only displays this dropdown box
+when there is more than one type to choose from, so it may not be displayed in
+all cases.
 
 Once you have selected the graphs that you want to create, simply click the
 Create button at the bottom of the page. You will be taken to a new page that

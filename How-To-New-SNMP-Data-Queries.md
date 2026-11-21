@@ -26,7 +26,7 @@ SNMP table: HOST-RESOURCES-MIB::hrStorageTable
 ```
 
 This given, the first step will be the definition of an XML file based on those
-OIDs. So change to your `<path_cacti>/resources/snmp_queries` directory and
+OIDs. So change to your `<path_cacti>/resource/snmp_queries` directory and
 create a file named **hrStorageTable.xml**. You may of course choose your own
 name, but for me it seems appropriate to take the name of the SNMP Table itself.
 Before doing so, it is necessary to identify the Index of that table. Without
@@ -110,7 +110,7 @@ and **Add** a new one:
 ![SNMP Table 2 - Data Query](images/dq-02.preview.png)
 
 Fill in Short and Long Names at your wish. Enter the file name of the XML file
-and don't forget to choose **Get SNMP Data (indexed)**. **Create** to see
+and don't forget to choose **Get SNMP Data (Indexed)**. **Create** to see
 
 ![SNMP Table 3 - Data Query](images/dq-03.preview.png)
 
@@ -120,8 +120,9 @@ and add the new **Data Query** as shown:
 
 ![SNMP Table 1 - Device](images/dev-01.preview.png)
 
-**Index Count Changed** was chosen on purpose to tell cacti to re-index not only
-on reboot but each time the Index Count (e.g. number of partitions) changed.
+**Index Count** was chosen on purpose as the **Re-Index Method** to tell cacti
+to re-index not only on reboot but each time the Index Count (e.g. number of
+partitions) changed.
 When done, see the results as
 
 ![SNMP Table 2 - Device](images/dev-02.preview.png)
@@ -211,7 +212,7 @@ When using **Verbose Query**, you'll now find
 
 ![SNMP Table 5 - Devices](images/dev-12.preview.png)
 
-And clicking **Create Graphs for this host** will result in
+And clicking **Create Graphs for this Device** will result in
 
 ![SNMP Table 6 - Devices](images/dev-13.preview.png)
 
@@ -285,7 +286,7 @@ This works very much the same way as above.
 
 Now we may proceed as said above: Pressing the green circle runs that XML
 definitions against the host and updates the rows/columns. You will notice the
-“missing” second column only when Create Graphs for this Host is selected.
+“missing” second column only when Create Graphs for this Device is selected.
 
 ---
 
@@ -302,9 +303,10 @@ Tasks. Please go to **Data Templates** and **Add**:
 ![SNMP Table 1 - Data Template](images/dt-01.preview.png)
 
 Define the **Name** of the Data Template. When defining the Name of the **Data
-Source**, do not forget to check the **Use Per-Data Source Value (Ignore this
-Value)** checkbox. This will come in useful later. Data Input Method will read
-**Get SNMP Data (Indexed)**. Select the **Data Source Profile** as usual:
+Source**, do not forget to check the checkbox that allows the user to override
+the value during Data Source creation. This will come in useful later. Data
+Input Method will read **Get SNMP Data (Indexed)**. Select the **Data Source
+Profile** as usual:
 
 ![SNMP Table 2 - Data Template](images/dt-02.preview.png)
 
@@ -320,7 +322,7 @@ second **Data Source Item**:
 
 Please pay attention to setting the **Maximum Value** to 'U' (no limit). Else,
 all values exceeding the pre-defined as **NaN**. Now scroll down to the bottom
-of the page and check **Index Type, Index Value and Output Type Id**
+of the page and check **Index Type, Index Value and Output Type ID**
 
 ![SNMP Table 5 - Data Template](images/dt-05.preview.png)
 
@@ -334,8 +336,9 @@ Please go to Graph Templates and Add:
 
 ![Defining Graph Template](images/gt-01.preview.png)
 
-Fill in the header names and don't forget to check the **Use Per-Graph Value
-(Ignore this Value)** for the **Graph Template Title**:
+Fill in the header names and don't forget to check the checkbox that allows the
+user to override the value during Graph creation for the **Graph Template
+Title**:
 
 ![Graph Template Preview](images/gt-02.preview.png)
 
@@ -382,7 +385,7 @@ Now the **Data Query** is complete:
 ## Create Graphs for this Host
 
 Now we're almost done. Everything's ready for use now. So go to your device and
-select **Create Graphs for this Host**. Select some of the partitions you're
+select **Create Graphs for this Device**. Select some of the partitions you're
 interested in:
 
 ![Create Graphs for this host](images/dev-20.preview.png)
@@ -448,7 +451,7 @@ see:
 
 ![Data Query Debug Info](images/dev-30.png)
 
-Now select **Create Graphs for this Host** and notice the change of the column
+Now select **Create Graphs for this Device** and notice the change of the column
 **Allocation Units (Bytes)**. The string “Bytes” has gone:
 
 ![Data Query Table](images/dev-31.preview.png)

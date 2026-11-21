@@ -173,7 +173,7 @@ The values of interest are stored in `$return_arr[$i] = $arr[$i][“value”];`.
 ## XML File
 
 This given, the first step will be the xml file defining how to access index
-values only. So change to your `<path_cacti>/resources/script_queries` directory
+values only. So change to your `<path_cacti>/resource/script_queries` directory
 and create a file named **ifTraffic.xml**. You may of course choose your own
 name.
 
@@ -221,7 +221,7 @@ and **Add** a new one:
 ![Script Data Query - Add 02](images/dq-add-02.preview.png)
 
 Fill in Short and Long Names at your wish. Enter the file name of the XML file
-and don't forget to choose **Get Script Data (indexed)**. **Create** to see
+and don't forget to choose **Get Script Data (Indexed)**. **Create** to see
 
 ![Script Data Query - Add 03](images/dq-add-03.preview.png)
 
@@ -231,8 +231,9 @@ and add the new **Data Query** as shown:
 
 ![Script Data Query - Associate 01](images/dev-dq-01.preview.png)
 
-**Index Count Changed** was chosen on purpose to tell cacti to re-index not only
-on reboot but each time the Index Count (e.g. number of interfaces) changed.
+**Index Count** was chosen on purpose as the **Re-Index Method** to tell cacti
+to re-index not only on reboot but each time the Index Count (e.g. number of
+interfaces) changed.
 When done, see the results as
 
 ![Script Data Query - Associate 02](images/dev-dq-02.preview.png)
@@ -385,7 +386,7 @@ Last option is the **get** function
     print (cacti_snmp_get($hostname, $snmp_community,
         $oids[$query_field] . ".$query_index", $snmp_version, $snmp_auth_username,
         $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol,
-        $snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, $max_oids, SNMP_POLLER));
+        $snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, SNMP_POLLER));
 ```
 
 The rest of it is left unchanged. For sake of completeness, I repeat it here
@@ -428,7 +429,7 @@ shown, but is repeated here
 ### The Complete XML File
 
 Of course, we now will have to complete the XML file given in Chapter II. Find
-it at `<path_cacti>/resources/script_queries/ifTraffic.xml`.
+it at `<path_cacti>/resource/script_queries/ifTraffic.xml`.
 
 ```xml
 <interface>
@@ -452,7 +453,7 @@ Let's discuss the changes
 | arg_query                     | The string passed to the query to perform query requests is given here. So you may modify it to your liking (in this case, the script has to be modified accordingly).                                                                                                                                                                            |
 | arg_get                       | Some as above for get requests                                                                                                                                                                                                                                                                                                                    |
 | output_delimiter              | The delimiter used for query requests to separate index and value                                                                                                                                                                                                                                                                                 |
-| index_order (optional)        | Cacti will attempt to find the best field to index off of based on whether each row in the query is unique and non-null. If specified, Cacti will perform this check on the fields listed here in the order specified. Only input fields can be specified and multiple fields should be delimited with a comma.                                   |
+| index_order (optional)        | Cacti will attempt to find the best field to index off of based on whether each row in the query is unique and non-null. If specified, Cacti will perform this check on the fields listed here in the order specified. Only input fields can be specified and multiple fields should be delimited with a colon.                                   |
 | index_title_format (optional) | Specify the title format to use when representing an index to the user. Any input field name can be used as a variable if enclosed in pipes ( ). The variable `chosen_order_field` will be substituted with the field chosen by Cacti to index off of (see index_order above). Text constants are allowed as well                                 |
 | index_order_type (optional)   | For sorting purposes, specify whether the index is numeric or alphanumeric.                                                                                                                                                                                                                                                                       |
 
@@ -634,16 +635,17 @@ and find:
 
 ![Script Data Query - Data Template 02](images/dev-dt-02.preview.png)
 
-Fill in **Data Template Name**, **Data Source Name**, and, most important,
+Fill in the template **Name**, the **Name** of the **Data Source**, and, most
+important,
 select **Data Input Method** to read **Get Script Data (Indexed)**, and **Data
 Source Profile**.
 
 When creating the **Data Template** and **Graph Template**, you SHOULD check the
-`Use Per Data Source Value` checkbox for name & title. When you first create
-graphs using the data query, it will use the `Suggested Values` to name the
-templates. But then if you ever edit the templates and leave the
-`Use Per Data Source Value` unchecked, then saving will overwrite all the data
-source and graph names.
+checkbox that allows the user to override the value during Data Source or Graph
+creation for name & title. When you first create graphs using the data query,
+it will use the `Suggested Values` to name the templates. But then if you ever
+edit the templates and leave that checkbox unchecked, then saving will
+overwrite all the data source and graph names.
 
 Now, before you press the `Create` button also please proceed to the lower half
 of the form and complete the first RRDfile Data Source. Enter the **Internal
@@ -658,7 +660,7 @@ For the second data source item, please select **New**.
 
 ![Script Data Query - Data Template 05](images/dev-dt-05.png)
 
-Again, fill in the Data Source Name. Pay attention to set the maximum value to 0
+Again, fill in the Data Source Name. Pay attention to set the maximum value to U
 to avoid clipping it off during updating of the RRDfile. COUNTER has to be set
 as done above. **Important!** You have to select the marked Index fields! Now,
 save again and you're done.
@@ -791,7 +793,7 @@ Don't worry about the first two entries; they are home-made.
 ## Creating the Images
 
 Now, let's return to the **Device**, that we've already have used for this Data
-Query. **Create Graphs for this Host**
+Query. **Create Graphs for this Device**
 
 ![Script Data Query - Devices 01](images/dev-dev-10.preview.png)
 
