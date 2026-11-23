@@ -98,11 +98,10 @@ include/graph_arrays.php
   themes/[theme]/                       # Visual theme files
   vendor/
     csrf/                               # CSRF Magic
-    flag-icon-css/                      # Flag Icons
+    flag-icons/                         # Flag Icons
     phpgettext/                         # PHP GetText Library
     phpmailer/                          # PHP Mailer Library
     phpseclib/                          # PHP Security Library
-    phpsnmp/                            # PHP Snmp Library
 ```
 
 ```console

@@ -79,14 +79,16 @@ Please go to **Data Templates** and click Add. You should see:
 
 ![Data Templates New](images/r-dt1.png)
 
-Fill in the **Data Templates Name** with a reasonable text. This name will be
-used to find this Template among others. Then fill in the **Data Source Name**.
-This is the name given to the host-specific **Data Source**. The variable
+Fill in the template **Name** with a reasonable text. This name will be used to
+find this Template among others. Then fill in the **Name** of the **Data
+Source**. This is the name given to the host-specific **Data Source**. The
+variable
 **|host_description|** is taken from the actual **Device**. This is to
 distinguish **Data Sources** for different devices. The **Data Input Method** is
 a drop down containing all known scripts and the like. Select the **Data Input
-Method** you just created. The **Associated RRA's** is filled by default. At the
-moment there's no need to change this. The lower part of the screen looks like:
+Method** you just created. The **Data Source Profile** is filled by default. At
+the moment there's no need to change this. The lower part of the screen looks
+like:
 
 ![Data Source Item](images/r-dt2.png)
 
@@ -98,8 +100,8 @@ may look nicer. Click create to see:
 
 Notice the new drop down **Output Field**. As there is only one Output Field
 defined by our **Data Input Method**, you'll see only this. Here's how to
-connect the **Data Source Name** (used in the RRDfile) to the Output Field of
-the Script. Click **Save** and you're done.
+connect the **Internal Data Source Name** (used in the RRDfile) to the Output
+Field of the Script. Click **Save** and you're done.
 
 ## Creating the Graph Template
 

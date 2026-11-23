@@ -4,7 +4,9 @@
 
 The following are the standards to be used by Cacti Group members and
 Contributes when maintaining the documentation of Cacti or any of its plugins.
-These standards have also been applied to the Travis CI checker on GitHub.
+The style checks are configured in `.mdlrc` and `.mdl_style.rb`.  The `1.2.x`
+branch has no Travis CI configuration and no workflow that runs them, so check
+your changes locally.
 
 ## Reporting corrections / omissions
 
@@ -77,7 +79,8 @@ When creating documentation titles, they should:
 
   _Whilst they are valid markdown, they will result in style errors._
 
-Failure to follow this will result in an `MD001` error during Travis CI checks.
+The `MD001` check is disabled in `.mdl_style.rb`, so `mdl` does not report
+this, but titles should still follow the rule.
 
 ###### Example 1. Incorrect Markdown for Title Levels
 
@@ -370,9 +373,9 @@ cd <cacti_docs>
 bin/check_markdown_style.sh
 ```
 
-Which will generate the same output that is seen on the Travis CI build status.
-You should ensure that any reported errors are corrected before submitting your
-pull request.
+Which will check the files using the style in `.mdl_style.rb`.  You should
+ensure that any reported errors are corrected before submitting your pull
+request.
 
 ```console
 Documentation-Standards.md:221: MD031 Fenced code blocks should be surrounded by blank lines

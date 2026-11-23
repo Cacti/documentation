@@ -24,7 +24,7 @@ e.g. ifInOctets, ifOutOctets, ifInErrors, …The XML file knows them as
 ```
 
 Lets have an example: standard Interface MIB with the corresponding part of the
-`<path_cacti>/resources/snmp_queries/interfaces.xml` file are displayed using
+`<path_cacti>/resource/snmp_queries/interface.xml` file are displayed using
 the following table:
 
 ![SNMP Table 1](images/snmp-dqw-table1.png)
@@ -57,10 +57,10 @@ output parameters of a script (see ping.pl script above). These are the readings
 from the device. By selecting the appropriate row (the one grayed out had been
 selected by me), you tell cacti to retrieve data from the interface defined by
 this index. But how does cacti know, what output parameters it shall retrieve?
-See the Select a Graph type dropdown. It specifies a **Graph Template** defined
-for this Data Query. The Graph Template in turn references a **Data Template**
-which incorporates the needed output parameters as Data Sources. This works
-quite the same way as defined for a Data Input Method.
+See the **Select a Graph Type to Create** dropdown. It specifies a **Graph
+Template** defined for this Data Query. The Graph Template in turn references a
+**Data Template** which incorporates the needed output parameters as Data
+Sources. This works quite the same way as defined for a Data Input Method.
 
 To sum up: the SNMP XML file is somehow a **replacement** for the **Data Input
 Method** described above to be used on indexed values. It tells cacti, what data
@@ -69,7 +69,7 @@ indexes, the XML defines descriptive parameters (direction: input) to be
 displayed in the selection table.
 
 A walkthrough for this is given now. It is based on the already supplied
-interfaces.xml XML file.
+interface.xml XML file.
 
 ## Create a Data Query to tell cacti how to retrieve data
 
@@ -100,7 +100,7 @@ from the *Data Source Item* heading to see:
 The name of the internal RRDtool Data Source (ifOutOctets) is not replaced in
 the Tab until you save your work. By default, *Maximum Value* is set to 100.
 This is way too low for an interface. All readings above this value will be
-stored as NaN by RRDtool. To avoid this, set to 0 (no clipping) or to a
+stored as NaN by RRDtool. To avoid this, set to U (no maximum) or to a
 reasonable value (e.g. interface speed). Don't forget to specify COUNTER! You
 will have noticed, that the name of the data source does not match the Name in
 the interface.xml. Don't worry, the solution to this is given later on. Before
@@ -132,7 +132,7 @@ we can use the ones created for the other **Data Query**.
 Now it's time to re-visit our **Data Query**. Remember the **Associated Graph
 Template** we've left alone in the very first step? Now it will get a meaning.
 Go to **Data Queries** and select our new one. Then press the plus (+) glyph,
-and select *Interface - Traffic (bits/second)* from the drop down as shown
+and select *Interface - Traffic (bits/sec)* from the drop down as shown
 below.  Press **Create** to initialize the association of this **Graph
 Template** with out new **Data Query**.
 
@@ -179,7 +179,7 @@ Now go to your **Device** to add the **Associated Data Query**:
 
 ![Apply Data Query to your Device](images/r-dq-dev1-0.png)
 
-Click **Add** and then **Create Graphs for this Host** to see:
+Click **Add** and then **Create Graphs for this Device** to see:
 
 ![Create Graphs for Data Query](images/r-dq-dev2.png)
 

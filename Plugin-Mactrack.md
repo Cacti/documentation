@@ -89,7 +89,8 @@ The MAC Address can be broken into two parts. The first part of the MAC Addess
 contains the Vendor MAC. The Vendor MAC identifies who has manufactured the part. 
 This will be helpful to check for rogue devices on your network.
 
-Go to Mactrack -> Tracking Utilities and click on **Refresh IEEE Vendor MAC/OUI Database**
+Go to Mactrack Tools -> Tracking Utilities and click on **Refresh IEEE Vendor
+MAC/OUI Database**
 
 This option requires internet access so if for some reason your server cannot 
 access internet you could manually download the file from OUI Database copy it 
@@ -119,7 +120,8 @@ Run scanner in debug mode for an specific device
   Run php -q mactrack_scanner.php -h for more options
 
 The scanning function you are looking for does not show up
-  Go to Tracking Tools Menu and click on "Refresh Scanning Functions"
+  Go to Mactrack Tools -> Tracking Utilities and click on "Refresh Scanning
+  Functions"
   Deletes old and potentially stale Device Tracking scanning functions 
   from the drop-down you see when you edit a device type.
 

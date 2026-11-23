@@ -34,7 +34,7 @@ attacks from the Cacti website. Examples include:
 // Example prepared statements
 $hostname = db_fetch_cell_prepared('SELECT hostname FROM host WHERE id = ?', array($id));
 $host     = db_fetch_row_prepared('SELECT * FROM host WHERE id = ?', array($id));
-$graphs   = db_fetch_assoc('SELECT * FROM graph_local WHERE host_id = ?', array($id));
+$graphs   = db_fetch_assoc_prepared('SELECT * FROM graph_local WHERE host_id = ?', array($id));
 
 db_execute_prepared('UPDATE host SET description = ? WHERE id = ?', array('Local Machines', $id));
 
@@ -122,7 +122,7 @@ $templates = db_fetch_assoc_prepared('SELECT DISTINCT gt.id, gt.name
 
 ```php
 $user_realms = db_fetch_assoc('SELECT ua.id, uar.realm_id
-    FROM user_auth ua, user_auth_realms uar
+    FROM user_auth ua, user_auth_realm uar
     WHERE ua.id = uar.user_id');
 ```
 
@@ -131,7 +131,7 @@ $user_realms = db_fetch_assoc('SELECT ua.id, uar.realm_id
 ```php
 $user_realms = db_fetch_assoc('SELECT ua.id, uar.realm_id
     FROM user_auth ua
-    INNER JOIN user_auth_realms uar
+    INNER JOIN user_auth_realm uar
     ON ua.id = uar.user_id');
 ```
 
