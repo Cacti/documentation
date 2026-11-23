@@ -30,8 +30,8 @@ see the below page where you are able to add **Devices** to the **Tree**.
 
 To add devices to the new tree simply drag an available device to the
 tree and it will be added to the tree.  Cacti currently supports four
-`Sort Types`, which can be either inherited, of left to the author to define
-inheritance and at what level.  See the image below for a visual representation
+`Sort Types` and an `Inherit Parent Sorting` option, which can be either
+inherited, of left to the author to define inheritance and at what level.  See the image below for a visual representation
 of how Tree Sorting is accomplished.
 
 ![Tree Sorting](images/tree-options-sorting.png)
@@ -44,21 +44,22 @@ Name | Name of the tree entry. | The sort order of all trees themselves is
 always alphabetical
 Sorting Type | Manual Ordering (No Sorting) | Y
 ou may chance the sequence at your will
-Alphabetical Ordering |  1, Ab, ab | All sub-trees are ordered alphabetically,
+Alphabetic Ordering |  1, Ab, ab | All sub-trees are ordered alphabetically,
 unless specifies otherwise (you may chance sort options at sub-tree label)
 Natural Ordering | ab1, ab2, ab7, ab10, ab20 | N/A
 Numeric Ordering | 01, 02, 4, 04 | Leading zeroes are not taken into account
 when ordering numerically
 
 End users will not be able to view the **Tree** or it's Graphs until you
-publish it.  To edit a **Tree**, you will be required to lock it for your use.
+publish it.  To edit a **Tree**, you will be required to lock it for your use
+by pressing the **Edit Tree** button.
 The locking is designed to prevent multiple users from editing a **Tree**
 simultaneously.
 
 When a Tree is locked, you can drag & drop the **Sites**, **Devices** and
 **Graphs** over to the Tree menu.  To add a 'Root Branch', simply press the
-button to do so, once you have Root Branches, you may right click on the to
-create sub-branches on the Tree.
+**Add Root Branch** button, once you have Root Branches, you may right click on
+the to create sub-branches on the Tree.
 
 When you single click on a **Site**, the **Devices**, and **Graphs** associated with
 that **Site** should appear in their respective sections.  You can also type into
@@ -66,7 +67,8 @@ the Search fields above the various sections to drill into them.  You can also s
 and control-click on the objects within a section to drag & drop multiple objects
 at one time.
 
-Don't forget to unlock your **Tree** before finishing your editing session.
+Don't forget to press **Finish Editing Tree** to unlock your **Tree** before
+finishing your editing session.
 
 ---
 Copyright (c) 2004-2026 The Cacti Group

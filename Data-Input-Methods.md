@@ -27,7 +27,7 @@ be presented with a few fields to populate on the following screen.
 
 Name | Description
 --- | ---
-Name | Give the data query a name that you will use to identify it
+Name | Give the data input method a name that you will use to identify it
 Input Type | Select the type of **Data Input Method** you are trying to create
 Input String | This field is only used when the Input Type is set to **Script/Command**
 
@@ -90,22 +90,33 @@ The `Field Name` must contain no spaces or other non-alphanumeric characters
 
 If you want to enforce a certain regular expression pattern when the user enters
 a value into `Regular Expression Match (Input Only)` for this Data Input Field,
-it must follow POSIX syntax as it will be passed to PHP's preg() functions.
+it must be a valid PHP `preg_match` pattern, written without delimiters, as
+Cacti passes it to PHP's `preg_match()` function.
 
 If the Data Input Field needs to reference another field internally, you can
 enter this into the `Special Type Code`. For instance, if your field requires an
-IP address from the user, you can enter 'management_ip' here and Cacti will fill
-this field in with the current IP address of the selected host.
+IP address from the user, you can enter 'hostname' here and Cacti will fill
+this field in with the current hostname or IP address of the selected host.
 
 ###### Table 11-3. Special Type Codes
 
 Field Name | Description
 --- | ---
 hostname | The hostname
-management_ip | The ip
+host_id | The Device ID
+location | The Device location
 snmp_community | The SNMP community
 snmp_username | The SNMP username
-snmp_password | The SNMP version
+snmp_password | The SNMP password
+snmp_auth_protocol | The SNMP authentication protocol
+snmp_priv_passphrase | The SNMP privacy passphrase
+snmp_priv_protocol | The SNMP privacy protocol
+snmp_context | The SNMP context
+snmp_engine_id | The SNMP engine ID
+snmp_version | The SNMP version
+snmp_port | The SNMP port
+snmp_timeout | The SNMP timeout
+external_id | The External ID
 
 If you enable the `Update RRDfile`, Cacti will insert the return value from this
 field into the RRDfile. This box needs to be checked for at least one output

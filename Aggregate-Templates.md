@@ -40,26 +40,27 @@ applied to the **Aggregate Graph** legend items. Any `host`, `query` or `input`
 references can be used in the `Prefix` section in order to uniquely identify the
 **Graph Item**.
 
-There are several `Graph Types` transformations that deal with how `AREA`,
+There are several `Graph Type` transformations that deal with how `AREA`,
 `LINEX` and `STACK` items are handled in the resulting **Aggeregate Graph**,
 they include:
 
 - **Keep Graph Types** - No transformation will occur. All `AREA`, `LINE`, and
   `STACKS` will be unchanged.
-- **Keep Type and Stack** - Which means the types will be preserved, but all
-  data will be stacked instead of simply LINEX it will be transformed to
-  LINEX:STACK
-- **Convert to Area/STACK Graph** - All `LINEX` will be converted to `AREA` and
-  stacked.
-- **Convert to LINE1** - All **Graph Items** will be converted to `LINE1`
-- **Convert to LINE2** - All **Graph Items** will be converted to `LINE2`
-- **Convert to LINE3** - All **Graph Items** will be converted to `LINE3`
-- **Convert to LINE1/Stack** - All **Graph Items** will be converted to `LINE1`
-  and stacked.
-- **Convert to LINE2/Stack** - All **Graph Items** will be converted to `LINE2`
-  and stacked.
-- **Convert to LINE3/Stack** - All **Graph Items** will be converted to `LINE3`
-  and stacked.
+- **Keep Type and STACK** - The graph types of the first aggregated graph are
+  preserved (a `STACK` item becomes an `AREA`). The items of every later graph
+  are converted to `STACK`, so the data is stacked.
+- **Convert to AREA/STACK Graph** - On the first aggregated graph, `AREA` items
+  are kept and `LINEX` and `STACK` items become `AREA`. The items of every later
+  graph are converted to `STACK`.
+- **Convert to LINE1 Graph** - All **Graph Items** will be converted to `LINE1`
+- **Convert to LINE2 Graph** - All **Graph Items** will be converted to `LINE2`
+- **Convert to LINE3 Graph** - All **Graph Items** will be converted to `LINE3`
+- **Convert to LINE1/STACK Graph** - Items of the first aggregated graph are
+  converted to `LINE1` and items of every later graph to `LINE:STACK`.
+- **Convert to LINE2/STACK Graph** - Items of the first aggregated graph are
+  converted to `LINE2` and items of every later graph to `LINE:STACK`.
+- **Convert to LINE3/STACK Graph** - Items of the first aggregated graph are
+  converted to `LINE3` and items of every later graph to `LINE:STACK`.
 
 The `Totaling` setting has multiple values. They include:
 

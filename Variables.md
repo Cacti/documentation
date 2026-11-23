@@ -88,7 +88,7 @@ name.
 ## Nth Percentile
 
 ```regex
-|[0-9]:(bits|bytes):[0-9]:(current|total|max|total_peak|all_max_current|all_max_peak|aggregate_max|aggregate_sum|aggregate_current|aggregate):[0-9]|
+|[0-9]{1,2}:(bits|bytes):[0-9]:(current|total|max|total_peak|all_max_current|all_max_peak|aggregate_max|aggregate_sum|aggregate_sum_peak|aggregate_current|aggregate_current_peak|aggregate_peak|aggregate):[0-9]|
 ```
 
 Nth percentile is often used by hosting providers to bill customers based on
@@ -112,7 +112,7 @@ variable you must give it five arguments:
 | [0-9]                                                                                                                       | The first argument is a number between 1 and 99. This number represents the Nth percentile that you would like to calculate.                                              |
 | (bits \| bytes)                                                                                                             | Choose whether you want to represent your Nth percentile in bits or bytes. The only valid values for this field are 'bits' and 'bytes'.                                   |
 | [0-9]                                                                                                                       | This field determines the power of 10 divisor that will be applied to your Nth percentile number. Enter '0' to leave the number alone, '3' for kilo or '6' for mega, etc. |
-| ( current \| total \| max \| total_peak \| all_max_current \| all_max_peak \| aggregate_max \| aggregate_sum \| aggregate ) | Nth Percentile Type - Refer to Nth Types below                                                                                                                            |
+| ( current \| total \| max \| total_peak \| all_max_current \| all_max_peak \| aggregate_max \| aggregate_sum \| aggregate_sum_peak \| aggregate_current \| aggregate_current_peak \| aggregate_peak \| aggregate ) | Nth Percentile Type - Refer to Nth Types below                                                                                                                            |
 | [0-9]                                                                                                                       | Enter the number of digits to use for floating point precision when printing out the final number. The default value for this field is two decimal places.                |
 
 ###### Table 15-2. Nth Percentile Types
@@ -147,7 +147,7 @@ variable you must give it five arguments:
 ## Bandwidth Summation
 
 ```regex
-|sum:([0-9]|auto):(current|total):([0-9]):([0-9]+|auto)|
+|sum:([0-9]|auto):(current|total|atomic):([0-9]):([0-9]+|auto)|
 ```
 
 Bandwidth summation is useful for summing up all values in an RRDfile for a
@@ -155,14 +155,14 @@ given time range. This is typically useful on traffic graphs where you can see a
 total of all traffic that has gone through an interface in a given time period.
 
 In Cacti, bandwidth summation works just like any other graph variable. To use
-this variable you must give it three arguments:
+this variable you must give it four arguments:
 
 ###### Table 15-3. Bandwidth Summation Argument Description
 
 | Name               | Description                                                                                                                                                                                                                                                                        |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ([0-9] \| auto)    | This field determines the power of 10 divisor that will be applied to your number. Enter '0' to leave the number alone, '3' for kilo or '6' for mega, etc. You can also enter 'auto' for this field to have Cacti automatically scale the number and insert the appropriate label. |
-| (current \| total) | You can choose to calculate the summation based on the current data source or a total of all data sources used on the graph. The only valid values for this field are 'current' and 'total'.                                                                                       |
+| (current \| total \| atomic) | You can choose to calculate the summation based on the current data source or a total of all data sources used on the graph. The only valid values for this field are 'current', 'total' and 'atomic'.                                                                                       |
 | [0-9]              | Enter the number of digits to use for floating point precision when printing out the final number. The default value for this field is two decimal places.                                                                                                                         |
 | ([0-9]+ \| auto)   | Enter the number of seconds in the past to perform the summation calculation for. For instance '86400' for 24 hours, '172800' for 48 hours, etc. You can also enter 'auto' for this field to have Cacti use the graph timespan.                                                    |
 
@@ -190,10 +190,12 @@ host fields the correspond to.
 | \|host_hostname\|               | Hostname                                                         |
 | \|host_id\|                     | Numerical ID of the Host as it is maintained in the MySQL Tables |
 | \|host_location\|               | Location                                                         |
+| \|host_management_ip\|          | Hostname (kept for compatibility)                                |
 | \|host_max_oids\|               | SNMP Max OIDs for snmpbulkwalk                                   |
 | \|host_notes\|                  | Administrative Notes                                             |
 | \|host_ping_retries\|           | Ping Retries (Downed Host Detection)                             |
 | \|host_polling_time\|           | Last polling time                                                |
+| \|host_site\|                   | Site name                                                        |
 | \|host_snmp_auth_protocol\|     | SNMP Authentication Protocol (v3)                                |
 | \|host_snmp_community\|         | SNMP Community                                                   |
 | \|host_snmp_context\|           | SNMP Context (v3)                                                |
@@ -212,6 +214,14 @@ host fields the correspond to.
 | \|host_snmp_username\|          | SNMP Username (v3)                                               |
 | \|host_snmp_version\|           | SNMP Version                                                     |
 | \|host_uptime\|                 | SNMP Uptime                                                      |
+
+> **Note**
+>
+> The SNMP credential variables (`|host_snmp_community|`,
+> `|host_snmp_username|`, `|host_snmp_password|`,
+> `|host_snmp_priv_passphrase|`, `|host_snmp_context|` and
+> `|host_snmp_engine_id|`) are removed from graph titles, data source titles
+> and graph legends and are not replaced with their values there.
 
 ## Example Use
 

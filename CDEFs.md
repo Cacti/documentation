@@ -67,18 +67,19 @@ Name | Description
 --- | ---
 Current Graph Item Data Source | The value of the Data Source associated with the Graph Item
 Current Graph Item Polling Interval | This value is otherwise known as the Step in RRDtool terminology
-All Data Sources (No Dupes) | The total of all Data Sources removing any duplicate DEF's
-All Data Sources (With Dupes) | Add the values from all the Data Sources whether or not they are duplicated
-All Similar Data Sources (No Dupes) | Means all Data Sources with the same RRDtool Data Source name like traffic_in, and traffic_out
-All Similar Data Sources (No Dupes) Poller Interval | The max of the poller intervals returned from all similar Data Sources
+All Data Sources (Do not Include Duplicates) | The total of all Data Sources removing any duplicate DEF's
+All Data Sources (Include Duplicates) | Add the values from all the Data Sources whether or not they are duplicated
+All Similar Data Sources (Do not Include Duplicates) | Means all Data Sources with the same RRDtool Data Source name like traffic_in, and traffic_out
+All Similar Data Sources (Do not Include Duplicates) Polling Interval | The polling interval (the step) of the Data Source associated with the Graph Item
+All Similar Data Sources (Include Duplicates) | Add the values from all Data Sources with the same RRDtool Data Source name whether or not they are duplicated
 Current Data Source Item: Minimum Value | The RRDtool minimum value of the Current Data Source
 Current Data Source Item: Maximum Value | The RRDtool maximum value of the Current Data Source
 Graph: Lower Limit | The lower Limit of the Graph
 Graph: Upper Limit | The upper Limit of the Graph
-Count of All Data Sources (No Dupes) | The total count of all Data Sources without Duplication
-Count of All Data Sources (With Dupes) | The total count of all Data Sources including Duplicates
-Count of Similar Data Sources (No Dupes) | The total count of Data Sources with the same RRDtool Data Source Name
-Count of Similar Data Sources (With Dupes) | The total count of Data Sources with the same RRDtool Data Source Name
+Count of All Data Sources (Do not Include Duplicates) | The total count of all Data Sources without Duplication
+Count of All Data Sources (Include Duplicates) | The total count of all Data Sources including Duplicates
+Count of All Similar Data Sources (Do not Include Duplicates) | The total count of Data Sources with the same RRDtool Data Source Name
+Count of All Similar Data Sources (Include Duplicates) | The total count of Data Sources with the same RRDtool Data Source Name
 
 As you can see there is quite a bit of information that can be pulled from
 RRDtool for performing Graphical manipulation of Data.
