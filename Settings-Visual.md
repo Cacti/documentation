@@ -27,13 +27,18 @@ Those settings include:
 - **Rows Per Page** - For all standard Cacti tables, the number of rows to show
   per page.
 
-- **Auto-complete Enabled** - Many drop-downs do not scale well with thousands
-  of items. In those cases, Cacti has enabled a drop-down auto-complete feature
-  most large installs should leverage it. However, if you are a small install
-  you can choose to disable auto-complete.
+- **Select Search Minimum Rows** - The minimum number of options a drop-down
+  must have before Cacti shows a search box inside it. Choose `Always` to show
+  the search box regardless of the number of options. The default is 10.
 
-- **Auto-complete Rows** - The maximum rows to show in an auto-complete
-  response.
+- **Autocomplete Rows** - The number of rows to return from an autocomplete
+  based select pattern match. Many drop-downs do not scale well with thousands
+  of items, so Cacti uses an autocomplete drop-down for them. This is limited by
+  the PHP `max_input_vars` setting.
+
+- **Autocomplete Delay** - The number of milliseconds to wait before initiating
+  a call to the server for autocomplete. Any value less than 500 assumes
+  500ms.
 
 - **Minimum Tree Width** - The minimum width of the Tree panel in Cacti
 

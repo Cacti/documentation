@@ -38,7 +38,7 @@ setting | description
 *email* | The authors email address for obtaining support.
 *homepage* | If the author maintains a homepage, the address for that page.
 *compat* | The minimum version of Cacti that is required to use this plugin.
-*depends* | A space delimited list of plugins:version that are required to use this plugin.
+*requires* | A space delimited list of plugin or plugin:version entries that are required to use this plugin.
 *capabilities* | A comma delimited list of capabilities for define what capabilities the plugin has primarily remotely.
 *nosync* | A comma delimited list of relative paths that should not be synchronized with the remote data collectors, for example transient folders that may contain quite a bit of data that changes often.
 
@@ -95,8 +95,9 @@ The last mandatory function is used for determining whether your plugin is
 ready to be enabled after being installed.
 
 When a plugin is installed, it starts in a disabled state.  Only a few of the
-necessary hooks for the plugin are enabled.  These are the config_settings and
-config_arrays hook.  Anything that uses those hooks will still be available
+necessary hooks for the plugin are enabled.  These are the config_settings,
+config_arrays and config_form hooks.  Anything that uses those hooks will still
+be available
 while the plugin is disabled.  This allows a user to modify any necessary
 settings for the plugin before the plugin is actually enabled and goes live.
 You can then use this check_config function to determine whether everything is
@@ -144,7 +145,7 @@ hook that you require inside our installation function.  This is done via a
 simple API function.
 
 ```php
-api_plugin_register_hook('PLUGINNAME', 'HOOKNAME', 'CALLBACKFUNCTION', 'FILENAME');
+api_plugin_register_hook('PLUGINNAME', 'HOOKNAME', 'CALLBACKFUNCTION', 'FILENAME', $enable);
 ```
 
 Name | Description
@@ -153,6 +154,7 @@ PLUGINNAME | The name of your plugin
 HOOKNAME | The name of the hook you want to register
 CALLBACKFUNCTION | The name of your function to call when the hook is triggered.
 FILENAME | The name of the file which contains the above function (path relative to your plugin directory)
+$enable | Optional boolean, default `false`.  When `true`, the hook is registered as enabled even while the plugin itself is disabled.
 
 Taking our above example, if you wanted to display a new tab at the top of
 Cacti's Console, your setup.php file may look like this.

@@ -95,18 +95,31 @@ use a Perl-compatible regular expression (PCRE), as required by PHP's
 
 If the Data Input Field needs to reference another field internally, you can
 enter this into the `Special Type Code`. For instance, if your field requires an
-IP address from the user, you can enter 'management_ip' here and Cacti will fill
-this field in with the current IP address of the selected host.
+host name from the user, you can enter 'hostname' here and Cacti will fill
+this field in with the host name of the selected host.
 
 ###### Table 11-3. Special Type Codes
 
 Field Name | Description
 --- | ---
 hostname | The hostname
-management_ip | The ip
+host_id | The device id
+location | The device location
 snmp_community | The SNMP community
 snmp_username | The SNMP username
 snmp_password | The SNMPv3 authentication password
+snmp_auth_protocol | The SNMPv3 authentication protocol
+snmp_priv_passphrase | The SNMPv3 privacy passphrase
+snmp_priv_protocol | The SNMPv3 privacy protocol
+snmp_context | The SNMPv3 context
+snmp_engine_id | The SNMPv3 engine id
+snmp_version | The SNMP version
+snmp_port | The SNMP port
+snmp_timeout | The SNMP timeout
+snmp_retries | The SNMP retries
+external_id | The external id
+
+Plugins can add further codes through the `valid_host_fields` hook.
 
 If you enable the `Update RRDfile`, Cacti will insert the return value from this
 field into the RRDfile. This box needs to be checked for at least one output

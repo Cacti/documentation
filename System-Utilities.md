@@ -7,6 +7,13 @@ cacti from this page you can do the following
 
 - Rebuild poller cache.
 
+- Rebuild the resource cache.
+
+- Purge Data Source Statistics.
+
+- Rebuild the SNMP Agent cache and view the SNMP Agent notification log, when
+  SNMP Agent support is enabled.
+
 - View technical support information.
 
 - Adjust log settings.
@@ -29,6 +36,35 @@ this command may take several minutes to hours to complete and therefore
 should not be run from the Cacti UI. You can simply run
 'php -q cli/rebuild_poller_cache.php --help' at the command line for more
 information.
+
+## Rebuild resource cache
+
+`Console > Utilities > System Utilities > Rebuild Resource Cache`
+
+When operating multiple Data Collectors, Cacti attempts to maintain state for
+key files on all Data Collectors.  This includes all core, non-install related
+website and plugin files.  When you force a Resource Cache rebuild, Cacti clears
+the local Resource Cache and rebuilds it at the next scheduled poller start.
+This triggers all Remote Data Collectors to recheck their website and plugin
+files for consistency.
+
+## Purge Data Source Statistics
+
+`Console > Utilities > System Utilities > Purge Data Source Statistics`
+
+This option purges all existing Data Source Statistics from the database.  If
+Data Source Statistics is enabled, collection starts again on the next Data
+Collector pass.
+
+## SNMP Agent utilities
+
+These utilities are shown only when SNMP Agent support is enabled.
+
+- **View SNMP Agent Cache** - Shows all objects being handled by the SNMP Agent.
+- **Rebuild SNMP Agent Cache** - Clears and re-generates the SNMP cache.  It
+  takes another poller run to restore the SNMP cache completely.
+- **View SNMP Agent Notification Log** - Shows the latest events the SNMP Agent
+  has handled in relation to the registered notification receivers.
 
 ### Technical support
 

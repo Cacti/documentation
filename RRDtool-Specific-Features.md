@@ -16,9 +16,9 @@ remains untested.
 | -------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | GAUGE    | Yes       | This is as the term refers to a floating point number that tracks the value reported directly. Unlike the COUNTER, it has not comprehension of past data.                                                             |
 | COUNTER  | Yes       | This is a floating point number that tracks the different between samples to come up with effectively a rate calculation. Used for things like Traffic Graphs where the number reported in SNMP continually increases |
-| DCOUNTER | Yes       | This is the same as a COUNTER, but in Double Precision.                                                                                                                                                               |
+| DCOUNTER | Yes       | This is the same as a COUNTER, but in Double Precision. Requires RRDtool 1.5 or later.                                                                                                                                |
 | DERIVE   | Yes       | This data type measures the Rate of Change of a value, otherwise known as the first derivative to the value. As such, it relies on previous data in order to report the change.                                       |
-| DDERIVE  | Yes       | This is the same as the DERIVE, but in Double Precision                                                                                                                                                               |
+| DDERIVE  | Yes       | This is the same as the DERIVE, but in Double Precision. Requires RRDtool 1.5 or later.                                                                                                                                |
 | ABSOLUTE | Yes       | Is for counters that get reset upon reading. This is often used for fast counters. It is also similar to the DERIVE, or acts very much like it.                                                                       |
 | COMPUTE  | Yes       | Though Cacti claims to support this Data Type. It's not clear that it's presently working.                                                                                                                            |
 
@@ -39,8 +39,8 @@ formats described on the
 
 ### Creating a GPRINT Preset
 
-To create a new GPRINT preset, select the Graph Management menu item under the
-Management heading, and select GPRINT Presets. Click Add to the right and you
+To create a new GPRINT preset, select **Console > Presets > GPRINTs**. Click
+Add to the right and you
 will be presented with an edit page containing two fields. Enter a name for your
 GPRINT preset, and the actual printf-like string in the GPRINT Text field. When
 you are finished, click the Create button to create your new GPRINT preset.

@@ -7,8 +7,8 @@ settings is important, especially for debugging issues.  Cacti's Paths
 sub-tab is broken into the following sub-sections:
 
 - **Required Tool Paths** - Paths that are essential for Cacti's operation
-- **Logging** - Settings associated with Cacti's logging facilities
-   including log rotation
+- **Logging** - The locations of Cacti's log files.  Log level and log
+   rotation settings are on the **Logging** tab
 - **Alternate Poller Path** - Locations for Cacti's spine binary and spine
    config file if not in the established default locations
 - **RRD Cleaner** - Setting for Cacti's RRDfile disposal of removed RRDfile
@@ -51,11 +51,18 @@ RRDtool version.
 for example `/usr/bin/php`. Verify its version and extensions separately from
 the PHP runtime used by the web server.
 
+**Composer Binary Path** - The path to the `composer` binary.  Composer is
+required when installing or upgrading a Cacti instance whose `include/vendor`
+directory is not pre-packaged, for example a Git checkout.
+
+**FPing Binary Path** - The path to the FPing binary file, which provides a
+more precise ping command.
+
 ## Logging
 
-The next set of settings define where Cacti's Standard Output and Standard
-Error files are to be placed, and how they should be rotated, and for how
-long they should be retained.  You can see those settings from the image below.
+The next set of settings define where Cacti's Standard Output, Standard
+Error and Boost log files are to be placed.  You can see those settings from
+the image below.
 
 ![Logfile Settings](images/settings-paths-logging.png)
 
@@ -67,15 +74,11 @@ Those settings include:
 only,
 the location of the Standard Error (stderr) log file.
 
-**Rotate the Cacti Log**  - Determines if Cacti or the package maintainer
-rotates
-the Cacti log.
+**Boost Debug Log** - The log file where Boost writes its information.  It
+must be located in the same directory as the Cacti Log file.
 
-**Rotation Frequency** - Should the Log files be rotated `Daily` or `Weekly`
-or `Monthly`
-
-**Log Retention** - How many generations of Log files should be maintained.
-Older files will be removed automatically.
+Log rotation settings (`Rotate the Cacti Log`, `Rotation Frequency` and
+`Log Retention`) are on the **Logging** tab.
 
 > **NOTE**: Some package maintainers control log rotation and therefore the log
 > rotation settings may be missing from certain version of Cacti if you install

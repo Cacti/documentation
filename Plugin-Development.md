@@ -55,7 +55,7 @@ details on performing each step.
 
 - Remove instances of including top_header.php, top_graph_header.php,
   top_general_header.php and replacing with function calls top_header(),
-  bottom_footer(), top_graph_header(), and top_general_header(). (mandatory)
+  bottom_footer(), and top_graph_header(). (mandatory)
 
 - Adding '&header=false' to most header() function calls to drive Ajax
   rendering. (mandatory)
@@ -115,8 +115,8 @@ includes the following sections:
   supported.
 
 - **requires** - The list of plugins and versions that the current plugin needs
-  in order to operate.  This is a comma delimited list of Plugins with version
-  attributes similar to the **compat** section.
+  in order to operate.  This is a space delimited list of plugins, each with an
+  optional `:version` attribute, for example `thold:1.2.1 monitor`.
 
 - **capabilities** - a comma delimited string of capabilities defining how the
   plugin works with remote data collectors

@@ -126,6 +126,18 @@ works:
 certbot renew --dry-run
 ```
 
+## Cacti Settings
+
+After HTTPS works at the web server, review these two settings under
+**Console > Configuration > Settings**.
+
+- **Force Connections over HTTPS** (`General` tab) - When checked, any attempts
+  to access Cacti will be redirected to HTTPS to ensure high security.
+- **Server Base URL** (`Mail/Reporting/DNS/Proxy` tab, under `URL Linking`) -
+  This is the server location that will be used for links to the Cacti site.
+  This should include the subdirectory if Cacti does not run from the root
+  folder.
+
 ## Verifying the Configuration
 
 After restarting Apache, confirm TLS is working and that weak protocols are

@@ -23,6 +23,17 @@ Those settings include:
 - **Enable Data Source Statistics Collection** - This is setting
   will either enable or disable the statistics collection.
 
+- **Data Collection Method** - Data Source Statistics can use a legacy method
+  that determines peak and average values (`Peak/Average Only`, the default), or
+  an advanced mode that calculates several additional statistical values
+  (`All Statistical Metrics`).  Using `All Statistical Metrics` can place
+  additional CPU and I/O load on the system.
+
+- **Calculate Peaks Stats in Addition to Average Stats** - This option doubles
+  the data collection time.  It uses the `MAX` consolidation function and
+  calculates statistics from the max values in each of the respective time
+  ranges.
+
 - **Number of DSStats Processes** - For very large Cacti installs
   the **Data Source Statistics** can take quite a long time to complete.
   This setting controls the number of concurrent statistics workers.  You can
@@ -48,6 +59,17 @@ Those settings include:
   setting controls the peak memory that the statistics poller
   will be allowed to use.  Most systems can work fine using the
   default 1GByte setting.
+
+### Data Source Retention Settings
+
+- **Save Historical Data in Database Tables** - Keeps a table for each day,
+  week, month, and year of data.  Daily, Weekly, Monthly and Yearly tables are
+  created per day, week, month and year, with the suffixes `YYYYDDD`, `YYYYWW`,
+  `YYYYMM` and `YYYY` respectively.
+
+- **Daily Partition Retention**, **Weekly Partition Retention**,
+  **Monthly Partition Retention** and **Yearly Partition Retention** - How long
+  to keep the daily, weekly, monthly and yearly statistics.
 
 ## RRDfile Checker
 
@@ -85,6 +107,21 @@ The settings above include:
   directory structure has severe performance consequences.  However,
   with the Structured Paths option, Cacti will separate RRDfiles by
   Device ID and use the Data Source ID as the RRDfile name.
+
+- **Directory Pattern** - The directory pattern used for Structured RRD Paths.
+  `Device ID` is the default.  `Device ID/Data Query ID` should be used when you
+  have **Devices** with thousands of **Graphs**.  The choices are:
+
+  - **Device ID**
+  - **Device ID/Data Query ID**
+  - **Device Hash/Device ID**
+  - **Device Hash/Device ID/Data Query ID**
+
+  After changing the pattern, you must run the structured path CLI script again
+  to move the RRDfiles to the new pattern.
+
+- **Max Device Hash Directories** - The maximum number of Device directories to
+  create based upon hashed Device IDs.  The default is 100.
 
 When changing structured-path settings on an existing installation, back up
 files and database definitions, then use `php cli/structure_rra_paths.php
