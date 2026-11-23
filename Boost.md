@@ -132,8 +132,9 @@ ALTER TABLE poller_output_boost,
     ENGINE=memory;
 ```
 
-As previously mentioned, its also important that the `poller_output` table is
-converted to memory, eliminate any disk I/O related to poller updates.
+As previously mentioned, its also important that the `poller_output` table uses
+the memory engine, which is how Cacti creates it by default, to eliminate any
+disk I/O related to poller updates.
 
 Now, you need to determine how many polling cycles will fit into your
 `poller_output_boost` table. In this case, when sizing the `poller_output_boost`

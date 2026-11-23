@@ -15,35 +15,51 @@ briefly.
 
 ## Automation Scripts
 
-| Script                 | Category    | Description                                                                                     |
-| ---------------------- | ----------- | ----------------------------------------------------------------------------------------------- |
-| add_device.php         | Automation  | Allows adding a Device to Cacti. Most device options are included. Some plugin options may not. |
-| change_device.php      | Automation  | Allows editing device details such as IP/Poller association                                    |
-| add_data_query.php     | Automation  | Allows adding a Data Query to Cacti.                                                            |
-| add_graph_template.php | Automation  | Allows adding a Graph Template to Cacti.                                                        |
-| add_graphs.php         | Automation  | Allows adding a Graph to Cacti.                                                                 |
-| add_perms.php          | Automation  | Allows adding permissions to Cacti.                                                             |
-| add_tree.php           | Automation  | Allows adding tree's tree branches and objects to Cacti Trees.                                  |
-| copy_user.php          | Maintenance | Allows creating new users from Templates                                                        |
+| Script                     | Category    | Description                                                                                     |
+| -------------------------- | ----------- | ----------------------------------------------------------------------------------------------- |
+| add_device.php             | Automation  | Allows adding a Device to Cacti. Most device options are included. Some plugin options may not. |
+| change_device.php          | Automation  | Allows editing device details such as IP/Poller association                                     |
+| add_data_query.php         | Automation  | Allows adding a Data Query to Cacti.                                                            |
+| add_graph_template.php     | Automation  | Allows adding a Graph Template to Cacti.                                                        |
+| add_graphs.php             | Automation  | Allows adding a Graph to Cacti.                                                                 |
+| add_perms.php              | Automation  | Allows adding permissions to Cacti.                                                             |
+| add_tree.php               | Automation  | Allows adding tree's tree branches and objects to Cacti Trees.                                  |
+| apply_automation_rules.php | Automation  | Executes Cacti automation rules for devices selected by id, hostname or description.            |
+| remove_device.php          | Automation  | Allows removing Devices selected by id, IP address or description.                              |
+| plugin_manage.php          | Automation  | Allows installing, enabling, disabling and uninstalling plugins.                                |
+| copy_user.php              | Maintenance | Allows creating new users from Templates                                                        |
 
 ## Maintenance Scripts
 
-| Script                          | Category    | Description                                                                                                                                                              |
-| ------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| input_whitelist.php             | Maintenance | To to onboard new Data Input Methods when using Cacti in a high security environment where new Data Input Methods must always be vetted before enabling for general use. |
-| poller_graphs_reapply_names.php | Maintenance | Allows selecting re-running of Cacti's suggested values engine for Graphs                                                                                                |
-| poller_reindex_hosts.php        | Maintenance | Batch method to re-index Cacti Devices                                                                                                                                   |
-| analyze_database.php            | Maintenance | Analyzes all Cacti tables rebuilding their index cardinality. Important to run after having added large numbers of Devices and Graphs to Cacti.                          |
+| Script                                | Category    | Description                                                                                                                                                              |
+| ------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| input_whitelist.php                   | Maintenance | To to onboard new Data Input Methods when using Cacti in a high security environment where new Data Input Methods must always be vetted before enabling for general use. |
+| poller_graphs_reapply_names.php       | Maintenance | Allows selecting re-running of Cacti's suggested values engine for Graphs                                                                                                |
+| poller_reindex_hosts.php              | Maintenance | Batch method to re-index Cacti Devices                                                                                                                                   |
+| analyze_database.php                  | Maintenance | Analyzes all Cacti tables rebuilding their index cardinality. Important to run after having added large numbers of Devices and Graphs to Cacti.                          |
+| batchgapfix.php                       | Maintenance | Fills gaps in Graphs over a time range, using parallel threads.                                                                                                          |
+| float_rrdfiles.php                    | Maintenance | Floats a range of data in selected RRDfiles using the RRDtool dump/import utility.                                                                                       |
+| host_update_template.php              | Maintenance | Updates Cacti Devices with the latest Device Template.                                                                                                                   |
+| poller_data_sources_reapply_names.php | Maintenance | Recalculates Data Source names for the selected Data Templates.                                                                                                          |
+| poller_replicate.php                  | Maintenance | Fully synchronizes Remote Data Collectors.                                                                                                                               |
+| refresh_csrf.php                      | Maintenance | Updates the csrf_secret() key of the Cacti system.                                                                                                                       |
+| remove_broken_graphs.php              | Maintenance | Reports on or removes Graphs that lack Data Sources.                                                                                                                     |
+| remove_graphs.php                     | Maintenance | Removes Graphs selected by Graph Template, Device Template, Device or Graph name expression.                                                                             |
+| removespikes.php                      | Maintenance | Removes spikes from an RRDfile. See [Spikekill](Spikekill.md).                                                                                                           |
+| reorder_data_query.php                | Maintenance | Re-orders Data Queries for a Device or for all Devices in batch mode.                                                                                                    |
+| update_heartbeat.php                  | Maintenance | Updates RRDfile heartbeats and the Cacti database to match.                                                                                                              |
 
 ## Repair Scripts
 
-| Script                   | Category | Description                                                                                                                                               |
-| ------------------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| poller_output_empty.php  | Repair   | Removes bad entries from Cacti's poller output table.                                                                                                     |
-| rebuild_poller_cache.php | Repair   | Batch process to re-populate Cacti's poller cache. NOTE: This script can run for a very long time on large systems.                                       |
-| repair_database.php      | Repair   | Utility to look for common problems with old Cacti databases where objects were removed while still in use. Also rapairs all tables after a system crash. |
-| repair_graphs.php        | Repair   | Utility to repair Cacti Graphs whose structure is damaged due to legacy Cacti behavior.                                                                   |
-| repair_templates.php     | Repair   | Utility to repair Cacti Templates whose structure was damaged due to legacy Cacti behavior.                                                               |
+| Script                          | Category | Description                                                                                                                                               |
+| ------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| poller_output_empty.php         | Repair   | Removes bad entries from Cacti's poller output table.                                                                                                     |
+| audit_graph_template_inputs.php | Repair   | Reports Graph Template input integrity findings without changing the database.                                                                            |
+| push_out_hosts.php              | Repair   | Deprecated. Use `rebuild_poller_cache.php`.                                                                                                               |
+| rebuild_poller_cache.php        | Repair   | Batch process to re-populate Cacti's poller cache. NOTE: This script can run for a very long time on large systems.                                       |
+| repair_database.php             | Repair   | Utility to look for common problems with old Cacti databases where objects were removed while still in use. Also rapairs all tables after a system crash. |
+| repair_graphs.php               | Repair   | Utility to repair Cacti Graphs whose structure is damaged due to legacy Cacti behavior.                                                                   |
+| repair_templates.php            | Repair   | Utility to repair Cacti Templates whose structure was damaged due to legacy Cacti behavior.                                                               |
 
 ## Repair/Migration Scripts
 
@@ -51,13 +67,15 @@ briefly.
 | ------------------ | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | audit_database.php | Repair/Migration | Script to audit your Cacti schema, and repair any tables that don't match the stock Cacti schema. It will also upgrade the Cacti schema and run plugin upgrade functions. This is a good migration tool to move database from old versions of Cacti. |
 | convert_tables.php | Repair/Migration | Convert all tables from their current form to the Cacti preferred table type, collation and charset                                                                                                                                                  |
-| splice_rra.php     | Migration        | Utility that allows two RRDfiles to be merged, and also assists with resampling an old RRDfile to a new RRA configuration, for example moving a Cacti system from 5 minute polling to 1 minute polling.                                              |
+| fix_mediumint.php  | Repair/Migration | Increases the size of key Cacti columns for systems with over a million Graphs that have been in service for years.                                                                                                                                  |
+| splice_rrd.php     | Migration        | Utility that allows two RRDfiles to be merged, and also assists with resampling an old RRDfile to a new RRA configuration, for example moving a Cacti system from 5 minute polling to 1 minute polling.                                              |
 
 ## Install/Upgrade Scripts
 
 | Script                  | Category        | Description                                                                                                                                                                                                                                                               |
 | ----------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| import_package.php      | Install/Upgrade | Import a signed Cacti `.xml.gz` package, including its template definitions and embedded resource files. Run on the main collector; see [Template Import](Import-Template.md). |
+| import_package.php      | Install/Upgrade | Import a signed Cacti `.xml.gz` package, including its template definitions and embedded resource files. Run on the main collector; see [Template Import](Import-Template.md).                                                                                            |
+| import_template.php     | Install/Upgrade | Import a Cacti Template XML file from the command line.                                                                                                                                                                                                                   |
 | install_cacti.php       | Install/Upgrade | Script to install Cacti from a raw schema. Used primarily by distribution maintainers.                                                                                                                                                                                    |
 | md5sum.php              | Install/Upgrade | Utility to verify the MD5SUM of a file.                                                                                                                                                                                                                                   |
 | sqltable_to_php.php     | Install/Upgrade | Utility for Plugin Developers to create an object for creating tables in plugins.                                                                                                                                                                                         |
@@ -102,19 +120,31 @@ Localhost - mtaReceivedVolume   SNMP Version: 1, Community: somesecret, OID: .1.
 There are several circumstances, that may result in the poller cache being out
 of sync. An example would be a change of the name of a script used in a
 `Data Input Method`. This change is _not_ automatically propagated to the poller
-cache. It is required, to run `php -q rebuild poller_cache.php` manually.
+cache. It is required, to run `php -q rebuild_poller_cache.php` manually.
 
 Calling the script with the parameter `--help` yields
 
 ```console
 shell>php -q rebuild_poller_cache.php --help
-Cacti Rebuild Poller Cache Script 1.0, Copyright 2004-2026 - The Cacti Group
+Cacti Rebuild poller cache Tool, Version 1.2.x Copyright (C) 2004-2026 The Cacti Group
 
-usage: rebuild_poller_cache.php [-d] [-h] [--help] [-v] [--version]
+usage: rebuild_poller_cache.php [--host-id=N] [--host-template-id=N] [--data-template-id=N] [--debug]
 
--d            - Display verbose output during execution
--v --version  - Display this help message
--h --help     - Display this help message
+Cacti's repopulate poller cache tool.  This CLI script will
+repopulate poller cache for all or specified hosts.
+
+This utility will run in parallel with the given number of threads,
+Optional:
+ --threads=N           - The number of threads to use to repopulate, default = 5
+ --host-id=N           - Run for a specific Device
+ --host-template-id=N  - Run for a specific Device Template
+ --data-template-id=N  - Run for a specific Data Template
+ --debug               - Display verbose output during execution
+
+System Controlled:
+ --type      - The type and subtype of the rebuild poller cache process
+ --child     - The thread id of the child process
+
 ```
 
 Debug mode lists the data sources items that are worked upon.
@@ -181,17 +211,15 @@ the script with the parameter `--help` yields
 
 ```console
 shell>php -q poller_reindex_hosts.php --help
-Cacti Reindex Host Script 1.2, Copyright 2004-2026 - The Cacti Group
+Cacti Reindex Host Utility, Version 1.2.x (DB: 1.2.x), Copyright (C) 2004-2026 The Cacti Group
+usage: poller_reindex_hosts.php --id=[host_id|all] [--qid=[ID|all]]
+   [--host-descr=[description]] [--debug]
 
-usage: poller_reindex_hosts.php --id=[host_id|All] [--qid=[ID|All]] [--host-descr=[description]]
-                           [-d] [-h] [--help] [-v] [--version]
-
---id=host_id             - The host_id to have data queries reindexed or 'All' to reindex all hosts
---qid=query_id           - Only index on a specific data query id; defaults to 'All'
+--id=host_id             - The host_id to have data queries reindexed or 'all' to reindex all hosts
+--qid=query_id           - Only index on a specific data query id; defaults to 'all'
 --host-descr=description - The host description to filter by (SQL filters acknowledged)
+--force                  - Force Graph and Data Source Suggested Name Re-mapping for all items
 --debug                  - Display verbose output during execution
--v --version             - Display this help message
--h --help                - Display this help message
 ```
 
 Running it in debug mode for the host with `id=2` may yield
@@ -229,7 +257,7 @@ DEBUG: Data query number '3' host: '15' SNMP Query Id: '1' ending
 
 It is possible, to select a host based on its host description using
 `--host-descr=[host description]`. It is allowed to apply an SQL filter
-expression for the description like `--qid=some%descr`. Use this parameter in
+expression for the description like `--host-descr=some%descr`. Use this parameter in
 conjunction with either `--id=[host id]` or `--qid=[data query id]` or both:
 
 ```console
@@ -261,12 +289,12 @@ parameter `--help` yields
 
 ```console
 shell>php -q poller_output_empty.php --help
-Cacti Empty Poller Output Table Script 1.0, Copyright 2004-2026 - The Cacti Group
+Cacti Process Poller Output Utility, Version 1.2.x (DB: 1.2.x), Copyright (C) 2004-2026 The Cacti Group
 
-usage: poller_output_empty.php [-h] [--help] [-v] [--version]
+usage: poller_output_empty.php
 
--v --version  - Display this help message
--h --help     - Display this help message
+A utility to process the poller output table.  This tool is deprecated but should work.
+
 ```
 
 You see, no parameter is required for operating successfully. Under normal
@@ -321,15 +349,20 @@ poller_graphs_reapply_names.php drops in. Calling the script with the parameter
 
 ```console
 shell>php -q poller_graphs_reapply_names.php --help
-Cacti Reapply Graph Names Script 1.0, Copyright 2004-2026 - The Cacti Group
+Cacti Reapply graph Names Utility, Version 1.2.x (DB: 1.2.x), Copyright (C) 2004-2026 The Cacti Group
 
-usage: poller_graphs_reapply_names.php -id=[host_id|All][host_id1|host_id2|...] [-s=[search_string] [-d] [-h] [--help] [-v] [--version]
+usage: poller_graphs_reapply_names.php --host-id=<id|all|N1,N2,...> [--filter=<string>] [--debug]
 
--id=host_id   - The host_id or 'All' or a pipe delimited list of host_id's
--s=search_str - A graph template name or graph title to search for
--d            - Display verbose output during execution
--v --version  - Display this help message
--h --help     - Display this help message
+A utility to reapply Cacti Graph naming rules to existing Graphs in bulk.
+
+Required:
+    --host-id=id|all|N1,N2,... - The device id, 'all' or a comma delimited list of ids
+    --id and -id                 - Aliases for --host-id
+
+Optional:
+    --filter=string            - A Graph Template name or Graph Title to search for
+    --debug                    - Display verbose output during execution
+
 ```
 
 Assume a situation, where the suggested names where changed for the standard
@@ -337,7 +370,7 @@ data query named `SNMP - Get Mounted Partitions`. In this case, you will want to
 rework all graphs for this data query only. A verbose run will yield
 
 ```console
-shell>php -q poller_graphs_reapply_names.php -id=All -d -s="Used space"
+shell>php -q poller_graphs_reapply_names.php --host-id=all -d --filter="Used space"
 WARNING: Do not interrupt this script.  Interrupting during rename can cause issues
 DEBUG: There are '6' Graphs to rename
 DEBUG: Graph Name 'Localhost - Used Space - Memory Buffers' starting
@@ -354,8 +387,8 @@ DEBUG: Graph Name 'Localhost - Used Space - /boot' starting
 DEBUG: Graph Rename Done for Graph 'Localhost - Used Space - /boot'
 ```
 
-Notice the miss-spelling of the word “Space”. The `-s=` option is not case
-sensitive.
+Notice the miss-spelling of the word “Space”. The `--filter` option (also
+accepted as `-s`) is not case sensitive.
 
 ## Copy Local Cacti Users
 
@@ -366,8 +399,8 @@ Calling the script with the parameter `--help` yields
 
 ```console
 shell>php -q copy_user.php --help
-Cacti Copy User Utility, Version 1.2.0, Copyright (C) 2004-2026 The Cacti Group
-usage: copy_cacti_user.php <template user> <new user>
+Cacti Copy User Utility, Version 1.2.x (DB: 1.2.x), Copyright (C) 2004-2026 The Cacti Group
+usage: copy_user.php <template user> <new user>
 
 A utility to copy on local Cacti user and their settings to a new one.
 
@@ -404,42 +437,53 @@ whole list of features it provides. Calling the script with the parameter
 
 ```console
 shell>php -q add_device.php --help
-Add Device Script 1.0, Copyright 2004-2026 - The Cacti Group
-
-A simple command line utility to add a device in Cacti
+Cacti Add Device Utility, Version 1.2.x (DB: 1.2.x), Copyright (C) 2004-2026 The Cacti Group
 
 usage: add_device.php --description=[description] --ip=[IP] --template=[ID] [--notes="[]"] [--disable]
-        [--avail=[ping]] --ping_method=[icmp] --ping_port=[N/A, 1-65534] --ping_retries=[2]
-        [--version=[1|2|3]] [--community=] [--port=161] [--timeout=500]
-        [--username= --password=] [--authproto=] [--privpass= --privproto=] [--context=]
-        [--quiet]
+    [--poller=[id]] [--site=[id] [--external-id=[S]] [--proxy] [--threads=[1]
+    [--avail=[ping]] --ping_method=[icmp] --ping_port=[N/A, 1-65534] --ping_timeout=[N] --ping_retries=[2]
+    [--version=[0|1|2|3]] [--community=] [--port=161] [--timeout=500]
+    [--username= --password=] [--authproto=] [--privpass= --privproto=] [--context=] [--engineid=]
+    [--quiet]
 
-    Required:
-        --description  the name that will be displayed by Cacti in the graphs
-        --ip           self explanatory (can also be a FQDN)
-    Optional:
-        --template     0, is a number (read below to get a list of templates)
-        --notes        '', General information about this host.  Must be enclosed using double quotes.
-        --disable      0, 1 to add this host but to disable checks and 0 to enable it
-        --avail        pingsnmp, [ping][none, snmp, pingsnmp]
-        --ping_method  tcp, icmp|tcp|udp
-        --ping_port    '', 1-65534
-        --ping_retries 2, the number of time to attempt to communicate with a host
-        --version      1, 1|2|3, snmp version
-        --community    '', snmp community string for snmpv1 and snmpv2.  Leave blank for no community
-        --port         161
-        --timeout      500
-        --username     '', snmp username for snmpv3
-        --password     '', snmp password for snmpv3
-        --authproto    '', snmp authentication protocol for snmpv3
-        --privpass     '', snmp privacy passphrase for snmpv3
-        --privproto    '', snmp privacy protocol for snmpv3
-        --context      '', snmp context for snmpv3
+Required:
+    --description  the name that will be displayed by Cacti in the graphs
+    --ip           self explanatory (can also be a FQDN)
 
-    List Options:
-        --list-host-templates
-        --list-communities
-        --quiet - batch mode value return
+Optional:
+    --proxy        if specified, allows adding a second host with same ip address
+    --template     0, is a number (read below to get a list of templates)
+    --location     '', The physical location of the Device.
+    --notes        '', General information about this host.  Must be enclosed using double quotes.
+    --external-id  '', An external ID to align Cacti devices with devices from other systems.
+    --disable      0, 1 to add this host but to disable checks and 0 to enable it
+    --poller       0, numeric poller id that will perform data collection for the device.
+    --site         0, numeric site id that will be associated with the device.
+    --threads      1, numeric number of threads to poll device with.
+    --avail        pingsnmp, [ping][none, snmp, pingsnmp, pingorsnmp]
+    --ping_method  tcp, icmp|tcp|udp
+    --ping_port    '', 1-65534
+    --ping_retries 2, the number of time to attempt to communicate with a host
+    --ping_timeout N, the ping timeout in milliseconds.  Defaults to database setting.
+    --version      1, 0|1|2|3, snmp version.  0 for no snmp
+    --community    '', snmp community string for snmpv1 and snmpv2.  Leave blank for no community
+    --port         161
+    --timeout      500
+    --username     '', snmp username for snmpv3
+    --password     '', snmp password for snmpv3
+    --authproto    '', snmp authentication protocol for snmpv3
+    --privpass     '', snmp privacy passphrase for snmpv3
+    --privproto    '', snmp privacy protocol for snmpv3
+    --context      '', snmp context for snmpv3
+    --engineid     '', snmp engineid for snmpv3
+    --max_oids     10, 1-60, the number of OIDs that can be obtained in a single SNMP Get request
+
+    --bulk_walk    -1, 1-60, the bulk walk chunk size that will be used for bulk walks.  Use -1 for auto-tune.
+
+List Options:
+    --list-host-templates
+    --list-communities
+    --quiet - batch mode value return
 ```
 
 Wow, that's quite a lot of options. To better understand it's use, let's first
@@ -455,7 +499,7 @@ The command lists the templates installed in your database. Use those
 IDs rather than assuming the IDs from another installation.
 
 Why are those `Host Templates` of such importance for this script? Well, when
-using this script to add a new device, there are 3 required parameters. The
+using this script to add a new device, there are 2 required parameters. The
 `description` and the `device ip address` are of course left to you. But for
 assigning the correct `Host Template Id`, you should first know the correct id
 of that very parameter. For the purpose of this chapter we assume to add a
@@ -463,8 +507,9 @@ device that will be associated to a `ucd/net SNMP Host`, so the id of `3` is
 required.
 
 If you do not want to associate the host to any `Host Template Id`, known as
-host template None, either provide the parameter `--template=0` or omit this
-parameter.
+host template None, provide the parameter `--template=0`. If you omit this
+parameter, the script uses the default Device Template from the `Device
+Defaults` settings.
 
 ### List all Community Strings
 
@@ -520,24 +565,23 @@ yields
 ```console
 shell>php -q add_data_query.php --help
 
-Add Data Query Script 1.0, Copyright 2004-2026 - The Cacti Group
-
-A simple command line utility to add a data query to an existing device in Cacti
+Cacti Add Data Query Utility, Version 1.2.x (DB: 1.2.x), Copyright (C) 2004-2026 The Cacti Group
 
 usage: add_data_query.php --host-id=[ID] --data-query-id=[dq_id] --reindex-method=[method] [--quiet]
 
-Required:
-        --host-id         the numerical ID of the host
-        --data-query-id   the numerical ID of the data_query to be added
-        --reindex-method  the reindex method to be used for that data query
-                          0|None   = no reindexing
-                          1|Uptime = Uptime goes Backwards
-                          2|Index  = Index Count Changed
-                          3|Fields = Verify all Fields
+Required Options:
+    --host-id         the numerical ID of the host
+    --data-query-id   the numerical ID of the data_query to be added
+    --reindex-method  the reindex method to be used for that data query
+                      0|None   = no reindexing
+                      1|Uptime = Uptime goes Backwards
+                      2|Index  = Index Count Changed
+                      3|Fields = Verify all Fields
+
 List Options:
-        --list-hosts
-        --list-data-queries
-        --quiet - batch mode value return
+    --list-hosts
+    --list-data-queries
+    --quiet - batch mode value return
 
 If the data query was already associated, it will be reindexed.
 ```
@@ -598,21 +642,19 @@ the whole list of features it provides. Calling the script with the parameter
 ```console
 shell>php -q add_graph_template.php --help
 
-Add Graph Template Script 1.0, Copyright 2004-2026 - The Cacti Group
-
-A simple command line utility to associate a graph template with a host in Cacti
+Cacti Add Graph Template Utility, Version 1.2.x (DB: 1.2.x), Copyright (C) 2004-2026 The Cacti Group
 
 usage: add_graph_template.php --host-id=[ID] --graph-template-id=[ID]
-        [--quiet]
+    [--quiet]
 
 Required:
-        --host-id             the numerical ID of the host
-        --graph_template-id   the numerical ID of the graph template to be added
+    --host-id             the numerical ID of the host
+    --graph-template-id   the numerical ID of the graph template to be added
 
 List Options:
-        --list-hosts
-        --list-graph-templates
-        --quiet - batch mode value return
+    --list-hosts
+    --list-graph-templates
+    --quiet - batch mode value return
 ```
 
 Let's first stick to the listing options
@@ -662,44 +704,46 @@ the script with the parameter `--help` yields
 
 ```console
 shell>php -q add_graphs.php
-Add Graphs Script 1.2, Copyright 2004-2026 - The Cacti Group
-
-A simple command line utility to add graphs in Cacti
+Cacti Add Graphs Utility, Version 1.2.x (DB: 1.2.x), Copyright (C) 2004-2026 The Cacti Group
 
 usage: add_graphs.php --graph-type=[cg|ds] --graph-template-id=[ID]
-        --host-id=[ID] [--graph-title=title] [graph options] [--force] [--quiet]
+    --host-id=[ID] [--graph-title=title] [graph options] [--force] [--quiet]
 
-For cg graphs:
-        [--input-fields="[data-template-id:]field-name=value ..."] [--force]
+Cacti utility for creating graphs via a command line interface.  This utility can
+create both Data Query (ds) type Graphs as well as Graph Template (cg) type graphs.
 
-        --input-fields  If your data template allows for custom input data, you may specify that
-                        here.  The data template id is optional and applies where two input fields
-                        have the same name.
-        --force         If you set this flag, then new cg graphs will be created, even though they
-                        may already exist
+For Non Data Query (cg) Graphs:
+    [--input-fields="[data-template-id:]field-name=value ..."] [--force]
 
-For ds graphs:
-        --snmp-query-id=[ID] --snmp-query-type-id=[ID] --snmp-field=[SNMP Field] --snmp-value=[SNMP Value]
+    --input-fields  If your data template allows for custom input data, you may specify that
+                    here.  The data template id is optional and applies where two input fields
+                    have the same name.
+    --force         If you set this flag, then new cg graphs will be created, even though they
+                    may already exist
 
-        [--graph-title=]       Defaults to what ever is in the graph template/data-source template.
+For Data Query (ds) Graphs:
+    --snmp-query-id=[ID] --snmp-query-type-id=[ID] --snmp-field=[SNMP Field]
+                         --snmp-value=[SNMP Value] | --snmp-value-regex=[REGEX]
+    [--graph-title=S]       Defaults to what ever is in the Graph Template/Data Template.
+    [--reindex-method=N]    The reindex method to be used for that data query.
+                            NOTE: If Data Query is already associated, the reindex method will NOT be changed.
 
-        [--reindex-method=]    the reindex method to be used for that data query
-                               if data query already exists, the reindex method will not be changed
-                        0|None   = no reindexing
-                        1|Uptime = Uptime goes Backwards (Default)
-                        2|Index  = Index Count Changed
-                        3|Fields = Verify all Fields
+    Valid --reindex-methods include
+        0|None   = No reindexing
+        1|Uptime = Uptime goes Backwards (Default)
+        2|Index  = Index Count Changed
+        3|Fields = Verify all Fields
+
+    NOTE: You may supply multiples of the --snmp-field and --snmp-value | --snmp-value-regex arguments.
+
 List Options:
-        --list-hosts
-        --list-graph-templates [--host_template=[ID]]
-        --list-input-fields --graph-template-id=[ID]
-        --list-snmp-queries
-        --list-query-types  --snmp-query-id [ID]
-        --list-snmp-fields  --host-id=[ID] [--snmp-query-id=[ID]]
-        --list-snmp-values  --host-id=[ID] [--snmp-query-id=[ID]] --snmp-field=[Field]
-
-    'cg' graphs are for things like CPU temp/fan speed, while
-    'ds' graphs are for data-source based graphs (interface stats etc.)
+    --list-hosts
+    --list-graph-templates [--host-template-id=[ID]]
+    --list-input-fields --graph-template-id=[ID]
+    --list-snmp-queries
+    --list-query-types  --snmp-query-id [ID]
+    --list-snmp-fields  --host-id=[ID] [--snmp-query-id=[ID]]
+    --list-snmp-values  --host-id=[ID] [--snmp-query-id=[ID]] --snmp-field=[Field]
 ```
 
 Like the graph creation from the console, this task is split into two different
@@ -909,41 +953,40 @@ parameter `--help` yields
 ```console
 shell>php -q add_tree.php --help
 
-Add Tree Script 1.0, Copyright 2004-2026 - The Cacti Group
-
-A simple command line utility to add objects to a tree in Cacti
+Cacti Add Tree Utility, Version 1.2.x (DB: 1.2.x), Copyright (C) 2004-2026 The Cacti Group
 
 usage: add_tree.php  --type=[tree|node] [type-options] [--quiet]
 
 Tree options:
-        --name=[Tree Name]
-        --sort-method=[manual|alpha|natural|numeric]
+    --name=[Tree Name]
+    --sort-method=[manual|alpha|natural|numeric]
 
 Node options:
-        --node-type=[header|host|graph]
-        --tree-id=[ID]
-        [--parent-node=[ID] [Node Type Options]]
+    --node-type=[header|site|host|graph]
+    --tree-id=[ID]
+    [--parent-node=[ID] [Node Type Options]]
 
 Header node options:
-        --name=[Name]
+    --name=[Name]
 
+Site node options:
+    --site-id=[ID]
 Host node options:
-        --host-id=[ID]
-        [--host-group-style=[1|2]]
-        (host group styles:
-         1 = Graph Template,
-         2 = Data Query Index)
+    --host-id=[ID]
+    [--host-group-style=[1|2]]
+    (host group styles:
+     1 = Graph Template,
+     2 = Data Query Index)
 
 Graph node options:
-        --graph-id=[ID]
-        [--rra-id=[ID]]
+    --graph-id=[ID]
 
 List Options:
-        --list-hosts
-        --list-trees
-        --list-nodes --tree-id=[ID]
-        --list-rras
-        --list-graphs --host-id=[ID]
+    --list-sites
+    --list-hosts
+    --list-trees
+    --list-nodes --tree-id=[ID]
+    --list-graphs --host-id=[ID]
 ```
 
 ### List Hosts
@@ -984,23 +1027,6 @@ type    id      text
 Host    7       127.0.0.1       Graph Template
 Host    9       gandalf     Graph Template
 Host    12      gandalf     Graph Template
-```
-
-### List RRAs
-
-For special tree add options, you will require the id of the RRA definition to
-completely specify the add request. That's why the corresponding `--list-rras`
-option is implemented. It goes this way
-
-```console
-shell>php -q add_tree.php --list-rras
-
-Known RRAs:
-id      steps   rows    timespan        name
-1       1       600     86400           Daily (5 Minute Average)
-2       6       700     604800          Weekly (30 Minute Average)
-3       24      775     2678400         Monthly (2 Hour Average)
-4       288     797     33053184        Yearly (1 Day Average)
 ```
 
 ### List Graphs for given Hosts
@@ -1124,17 +1150,6 @@ shell>php -q add_tree.php --type=node --node-type=graph --tree-id=6 --parent-nod
 Added Node node-id: (27)
 ```
 
-In both cases, no explicit `--rra-id` was given. This will default to the Daily
-(5 Minute Average). Specify any other `--rra-id` as given
-
-```console
-shell>php -q add_tree.php --type=node --node-type=graph --tree-id=6 --parent-node=21 --graph-id=1 --rra-id=4
-
-Added Node node-id: (28)
-```
-
-to provide the `--rra-id` for a rra of Yearly (1 Day Average).
-
 ## Add Graph Permissions
 
 This script is used to specify special graph permissions to users. The list of
@@ -1144,20 +1159,19 @@ parameters is displayed as usual when calling the script with the parameter
 ```console
 shell>php -q add_perms.php --help
 
-Add Permissions Script 1.0, Copyright 2004-2026 - The Cacti Group
-
-A simple command line utility to add permissions to tree items in Cacti
+Cacti Add Permissions Utility, Version 1.2.x (DB: 1.2.x), Copyright (C) 2004-2026 The Cacti Group
 
 usage: add_perms.php [ --user-id=[ID] ]
-        --item-type=[graph|tree|host|graph_template]
-        --item-id [--quiet]
+    --item-type=[graph|tree|host|graph_template]
+    --item-id [--quiet]
 
 Where item-id is the id of the object of type item-type
+
 List Options:
-        --list-users
-        --list-trees
-        --list-graph-templates
-        --list-graphs --host-id=[ID]
+    --list-users
+    --list-trees
+    --list-graph-templates
+    --list-graphs --host-id=[ID]
 ```
 
 ### List Users
