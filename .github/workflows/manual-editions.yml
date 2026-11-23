@@ -85,3 +85,46 @@ jobs:
             manual-artifacts/
           if-no-files-found: warn
           retention-days: 14
+  publish:
+    # The build job runs third-party tooling with a read-only token. Only this
+    # job, which runs no repository code, can write the release assets.
+    name: Publish development manual editions
+    needs: editions
+    if: github.ref == 'refs/heads/develop' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    concurrency:
+      group: manual-editions-publish
+      cancel-in-progress: false
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RELEASE_TAG: manuals-develop
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: cacti-manual-editions-attempt-${{ github.run_attempt }}
+          path: built
+      - name: Stage release assets under stable names
+        run: |
+          set -euo pipefail
+          mkdir assets
+          cp built/resource/pdf/cacti-manual.pdf assets/
+          cp built/resource/pdf/build_manifest.json assets/cacti-manual-manifest.json
+          cp built/resource/manuals/build-manifest.json assets/editions-manifest.json
+          for file in built/resource/manuals/*.pdf built/resource/manuals/*.txt built/resource/manuals/*.sql; do
+            cp "$file" assets/
+          done
+          test "$(find assets -type f | wc -l)" -eq 21
+      - name: Replace the development release assets
+        run: |
+          set -euo pipefail
+          notes="Development (Cacti 1.3) manual editions built and verified from ${GITHUB_SHA::12}. Rebuilt after each change to develop."
+          if ! gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release create "$RELEASE_TAG" --target "$GITHUB_SHA" --prerelease --latest=false \
+              --title 'Development manual editions' --notes "$notes"
+          fi
+          gh release upload "$RELEASE_TAG" assets/* --clobber
+          gh release edit "$RELEASE_TAG" --notes "$notes"
