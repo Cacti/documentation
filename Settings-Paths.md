@@ -20,7 +20,7 @@ to the **Data Collector**.  Therefore, you can have one set of paths for
 your Main Cacti site, and another set of paths for your Remote Poller,
 say in the case that they are on Windows.
 
-## Required Tools Paths
+## Required Tool Paths
 
 The image below shows Cacti's **Required Tool Paths** settings.
 

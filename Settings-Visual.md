@@ -27,20 +27,27 @@ Those settings include:
 - **Rows Per Page** - For all standard Cacti tables, the number of rows to show
   per page.
 
-- **Auto-complete Enabled** - Many drop-downs do not scale well with thousands
+- **Autocomplete Enabled** - Many drop-downs do not scale well with thousands
   of items. In those cases, Cacti has enabled a drop-down auto-complete feature
   most large installs should leverage it. However, if you are a small install
   you can choose to disable auto-complete.
 
-- **Auto-complete Rows** - The maximum rows to show in an auto-complete
+- **Autocomplete Rows** - The maximum rows to show in an auto-complete
   response.
+
+- **Select Search Minimum Rows** - The minimum number of options a drop-down
+  must have before Cacti shows a search box inside it.  Choose `Always` to show
+  the search box regardless of the number of options.
 
 - **Minimum Tree Width** - The minimum width of the Tree panel in Cacti
 
 - **Maximum Tree Width** - The maximum width of the Tree panel in Cacti. Above
   this width, tree items will scroll into the panel.
 
-- **Strip Domains from Device Drop-downs** - Strip domain names from Device
+- **Site Graph Template Expansion** - When viewing Site Trees, whether the
+  **Graph Templates** branch is included as a Site sub-branch.
+
+- **Strip Domains from Device Dropdowns** - Strip domain names from Device
   drop-downs to save horizontal filter space.
 
 ## Graph, Data Source, Data Query, Log Settings
@@ -66,12 +73,12 @@ Those settings include:
 - **Default Log Tail Lines** - When viewing the Cacti Log, how many lines should
   appear per page.
 
-- **Maximum number of rows per page** - The maximum number of regular expression
-  search matches to display, when searching.
+- **Maximum number of rows per page** - The user defined number of lines for
+  the Cacti Log to tail when selecting `All lines`.
 
 - **Log Tail Refresh** - The frequency that the log pages should auto-refresh.
 
-- **Exclusion Reg-ex** - This setting allows you to exclude certain log messages
+- **Exclusion Regex** - This setting allows you to exclude certain log messages
   by regular expression from normal users. Expressions that include login log
   entries are common here to mask the login accounts of users.
 
@@ -85,15 +92,18 @@ Those settings include:
 
 - **Enable Real-time Graphing** - Allow Realtime graphs to be used in Cacti.
 
-- **Graph Time-span** - The default system level `Graph Timespan` use use when a
+- **Graph Timespan** - The default system level `Graph Timespan` use use when a
   user opens a Realtime **Graph** for the first time.
 
-- **Refresh Interval** - The default system level `Refresh Interval` for the
-  Realtime interface when a user first opens a Realtime **Graph**.
+- **Minimum Refresh Interval** - The minimal supported time between **Graph**
+  updates in the Realtime interface.  This value is also used to set certain
+  RRDfile attributes.
 
-- **Cacti Directory** - Where should Cacti cache Realtime PNG's and RRDfiles.
+- **Cache Directory** - Where should Cacti cache Realtime PNG's and RRDfiles.
 
 - **Custom Watermark** - A watermark that will appear on every Cacti **Graph**
+
+- **Custom Date Format** - The format to use for `|date_time|` on a **Graph**.
 
 - **Disable RRDtool Watermark** - Every RRDtool Graph includes a vertical
   watermark. This option allows you to disable that.
@@ -103,9 +113,38 @@ Those settings include:
   settings include: Theme, or System. When choosing `System`, your settings page
   will expand where you will then have additional control.
 
+- **Default Font** - When not using Theme based font control, the Pango
+  font-config font name to use for all **Graphs**. Optionally, you may leave it
+  blank and control font settings on a per object basis.
+
 > **NOTE**: The RRDtool Watermark control requires a recent version of RRDtool,
 > such as the 1.7 release. If you attempt to use this setting and your
 > **Graphs** break, then upgrade RRDtool.
+
+## Business Hours Settings
+
+These settings control the display of business hours on **Graphs**.
+
+Those settings include:
+
+- **Start of Business Day** - The time your business hours start. Format:
+  hh:mm. The default is `08:00`.
+
+- **End of Business Day** - The time your business hours end. Format: hh:mm.
+  The default is `18:00`.
+
+- **Hide Weekends** - Only show business hours during weekdays. This is
+  disabled by default.
+
+- **Show business hours** - Display business hours on rrd graphs. This is
+  disabled by default.
+
+- **Color to use for business hours** - The color to be shown for business
+  hours. The default is `ccccccff`.
+
+- **Maximum number of days to show business hours** - After this number of
+  days, the business hours will not be added to the graph. Recommended: 62
+  days. The default is `62`.
 
 ## Font Selection Options
 

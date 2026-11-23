@@ -62,7 +62,7 @@ Those settings include:
   Poller tables.  Since checking this have a very negative impact on
   polling performance, it's disabled by default.
 
-- **Disable Decreasing OID Check** - This setting is for performing
+- **Disable increasing OID Check** - This setting is for performing
   **Data Query** `Re-index` activities for tables whose OID's are not
   structured in an orderly way where the suffix for the OID increases
   in a known way.  Though, in most cases enabling this setting will
@@ -90,12 +90,37 @@ Those settings include:
   setting when using Cacti's SNMP API natively in your scripts
   and Plugins.
 
+- **Refresh Poller Table Per Cycle** - This setting is for single poller
+  systems only.  It rebuilds the poller output table on each polling cycle to
+  prevent the memory table from swapping on very large systems with large
+  databases that could use swap.  It is disabled by default.
+
 - **Disable Resource Cache Replication** - By default Cacti will
   continually replicate it's Website content with it's
   **Remote Data Collectors**.  So, essentially, they are self
   upgradable.  However there are some cases where customers wish
   to upgrade the Central system before allowing the remotes
   to self upgrade.  In those cases, you would enable this feature.
+
+- **Enable MD5 and DES for SNMPv3** - The MD5 authentication and DES privacy
+  algorithms are legacy, weak, and unavailable on hardened (FIPS) PHP and
+  Net-SNMP builds.  When this is disabled, the default, MD5 and DES are removed
+  from the SNMPv3 Authentication and Privacy Protocol drop-downs shown when
+  editing a **Device** and in the Automation SNMP Options, leaving only the
+  stronger SHA and AES algorithms.
+
+- **Enable Credential Cache** - Pre-harden and cache SNMPv3 credential
+  arguments once per credential change so that each poller process reuses them
+  instead of rebuilding them on every request.  This is disabled by default.
+  It yields a marginal savings when collecting with SNMPv3 credentials through
+  the Net-SNMP binaries.
+
+## Periodic All Device Re-Index
+
+- **Re-Index All Device Schedule** - At what frequency do you wish to Re-Index
+  all **Devices**. This Re-Index will occur at midnight at the frequency that
+  you select. The options are `Disabled`, `Daily`, `Weekly on Sunday` and
+  `Monthly on Sunady`, and the default is `Disabled`.
 
 ## Background Timeout Settings
 
@@ -119,10 +144,17 @@ Those settings include:
   a bit of time.  This setting is for the periodic collection and
   not the Daily process.
 
-- **Background Commands Timeout** - Cacti will schedule some commands
+- **RRDChecker Timeout** - The maximum amount of time Cacti's RRDfile
+  check script can run without generating a timeout error and being killed.
+
+- **Poller Commands Timeout** - Cacti will schedule some commands
   to be run offline during normal operations.  This timeout affects
   those commands.  Some activities include some aspects of re-indexing,
   removing old RRDfiles, etc.
+
+- **Poller Command Concurrent Processes** - The number of concurrent Poller
+  Command processes.  There will be at most one concurrent command per host
+  within the Poller Command pool.
 
 - **Maintenance Background Generation Timeout** - Cacti performs daily
   maintenance at midnight every day.  This maintenance can include:
@@ -161,7 +193,7 @@ Those settings include:
 > **NOTE**: The Thread setting only applies if you are using the
 > `spine` poller.  It does not apply to the `cmd.php` poller.
 
-## Additional Spine Parameters
+## Additional Data Collector Settings
 
 These settings are Global Spine poller settings.  They apply to all
 **Data Collectors**.  An image of these settings can be seen below:
@@ -170,10 +202,10 @@ These settings are Global Spine poller settings.  They apply to all
 
 Those settings include:
 
-- **Invalid Data Logging** - By default spine will only log the number
-  of errors it experienced for a **Device**.  If you wish more
-  granularity you can change this settings to either `Summary`
-  or `Detailed` logging.
+- **Invalid Data Logging** - By default, the setting is `None` and no
+  error counts are logged.  You can change this setting to `Summary`,
+  which logs the number of output errors per **Device**, or `Detailed`,
+  which logs every error.
 
 - **Number of PHP Script Servers** - Another level of Spine parallelism
   is it's ability to create a pool of memory resident PHP

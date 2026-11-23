@@ -7,7 +7,8 @@ are sent to. Cacti can optionally log some information to your syslog or event l
 depending on your OS type.
 
 The Cacti Log is by default ordered from newest event to oldest event, and
-the Cacti Log is rotated by Cacti itself once a day.
+the Cacti Log is rotated by Cacti itself, by default once a day. The rotation
+frequency is set by **Rotation Frequency** in the Paths settings.
 
 If you have the User Level permission, you can view any available Cacti Standard
 Output or Standard Error log. If you have the Administrative level access,
@@ -33,9 +34,11 @@ The filters include:
   using the following pattern: YYYY-MM-DD.
 - **Tail Lines** - The number of lines to view from the selected Cacti Log.
 - **Types** - The message types to view. These will be explained below.
-- **Display Order** - The order to display the Log lines, either *Newest First* or *Oldest First*.
+- **Display** - The order to display the Log lines, either *Newest First* or *Oldest First*.
 - **Refresh** - How often to Auto-refresh the interface.
 - **Search** - A perl compatible Regular Expression to search the log with.
+  A second drop-down selects whether to show lines that `Matches` or
+  `Does Not Match` the expression.
 
 The Cacti Log **Types** include the following:
 
@@ -48,6 +51,7 @@ The Cacti Log **Types** include the following:
 - **Errors** - Anything that includes the word **ERROR**
 - **Errors++** - Anything of each **ERROR**, **DEBUG**, and **SQL**
 - **Debug** - Anything that includes the word **DEBUG**
+- **SQL Calls** - Anything that includes the word **SQL**
 - **AutoM8** - Anything that includes the word **AUTOM8**. These message come from
               Cacti automation of Devices, Graphs, and Trees
 - **Non Stats** - Anything that does not include the word **STATS**.

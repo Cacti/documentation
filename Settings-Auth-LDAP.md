@@ -86,14 +86,14 @@ LDAP authentication.
 1. _None_ - This is plain-text, normally on port tcp/389.  Passwords are
  transmitted over the network in clear text between Cacti and the directory.
 
-2. _SSL_ - Commonly known as LDAPS, this is just like LDAP, but encrypted. This
+2. _LDAPS_ - This is just like LDAP, but encrypted. This
  normally runs on port tcp/636. Please note, this is not enabled by default for
  Microsoft's Active Directory because it requires an encryption key and
  certificate to be installed on the AD controller(s).
 
-3. _TLS_ - This is plain LDAP, but a START_TLS command is sent by the client to
- the server to initiate encryption.  Normally runs on port tcp/389 and can be
- entered into during a regular LDAP session.
+3. _LDAP + TLS_ - This is plain LDAP, but a START_TLS command is sent by the
+ client to the server to initiate encryption.  Normally runs on port tcp/389
+ and can be entered into during a regular LDAP session.
 
 Please note that some directories will limit the request types to which they
 respond when there is no encryption on the LDAP communication.
@@ -105,6 +105,38 @@ provides a list of alternate sources from which directory information can be
 obtained.  In the case of a replicated directory such as Microsoft's Active
 Directory, the referral may contain an LDAP URL which could resolve to any
 participating LDAP server, whether correctly configured or not.
+
+#### Other General Settings
+
+The remaining LDAP General Settings are:
+
+- _Server(s)_ - A space delimited list of DNS hostnames or IP addresses for
+  valid LDAP servers. Cacti will attempt to use the LDAP servers from left to
+  right to authenticate a user.
+
+- _Port Standard_ - TCP port for Non-SSL communications including LDAP + TLS.
+  The default is 389.
+
+- _Port SSL_ - TCP port for LDAPS for SSL communications. The default is 636.
+
+- _Protocol Version_ - Protocol Version to connect to the server with. The
+  options are `Version 2` and `Version 3`, and the default is `Version 3`.
+
+- _Connect Timeout_ - The Network Connect Timeout in seconds. The default is 2.
+
+- _Bind Timeout_ - The Bind Timeout in seconds. The default is 5.
+
+- _LDAP Debug Mode_ - If checked, Cacti will log extra LDAP information to the
+  Cacti log during Binding and Searching activities. It is disabled by default.
+
+- _TLS Certificate Requirements_ - Should LDAP verify TLS Certificates when
+  received by the Client. The options are `Never`, `Hard`, `Demand`, `Allow`
+  and `Try`, and the default is `Demand`.
+
+- _Require Group Membership_ - Require the user to be a member of a group to
+  authenticate. Group settings must be set for this to work. Enabling it
+  without proper group settings will cause authentication failure. It is
+  disabled by default.
 
 ### LDAP Group Settings
 

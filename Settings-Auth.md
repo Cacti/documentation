@@ -32,10 +32,12 @@ showing in the image below.
 
 Those options include:
 
-- **Authentication Method** - One of the options below.
-- **Support Authentication Cookies** - Provide Remember me that will keep a user
-  logged in from a single browser instance for up-to 90 days without
-  requesting that they re-validate their passwords.
+- **Authentication Method** - One of the options below. If PHP's LDAP module
+  is not enabled, the LDAP and Multiple LDAP/AD Domains options are not
+  selectable.
+- **Support Authentication Cookies** - Provide a `Keep me signed in` option
+  that will keep a user logged in from a single browser instance for up-to 90
+  days of non-use without requesting that they re-validate their passwords.
 - **Primary Admin** - This is the Primary Cacti Admin account.  This user
   account will receive all Cacti Administrative notification like when
   the Cacti system is experiencing issues.

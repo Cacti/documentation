@@ -5,7 +5,7 @@ about Cacti's **Data Sources** and about settings around how Cacti
 stores it's **Round Robin Archives** Time Series Databases (TSDB),
 otherwise known as RRDfiles.
 
-There are presently to sub-sections for these settings.
+There are presently three sub-sections for these settings.
 
 ## Data Source Statistics
 
@@ -40,7 +40,7 @@ Those settings include:
   default it's stored in a memory table.  You can run out of space.
 
 - **Maintenance Time** - This is the time in the day that Cacti
-  will calculate Monthly and Yearly numbers and perform table
+  will calculate Weekly, Monthly and Yearly numbers and perform table
   maintenance.
 
 - **Memory Limit for Data Source Statistics Data Collector** - This
@@ -48,7 +48,7 @@ Those settings include:
   will be allowed to use.  Most systems can work fine using the
   default 1GByte setting.
 
-## RRDfile Checker
+## RRDfile Check
 
 ![RRD Checker](images/rrd_check.PNG)
 
@@ -56,10 +56,10 @@ RRDfile checker scans RRDfiles and try to find problems like stale values.
 
 Those settings include:
 
-- **Enable RRDfile Checker** - This setting
+- **Enable RRDfile Check** - This setting
   will either enable or disable the RRD checker.
 
-- **Number of RRDfile Checker Processes** - For very large Cacti installs
+- **Number of RRDfile Check Processes** - For very large Cacti installs
   the **RRDfile Checker** can take quite a long time to complete.
   This setting allows Cacti to perform the checks at orders of magnitude faster.
 
@@ -80,10 +80,21 @@ The settings above include:
 - **Location** - Either Local or RRDtool Proxy Server.  The example
   above shows the local storage option.
 
-- **Structured RRD Paths** - In very large systems having a flat
+- **Enable Structured Paths** - In very large systems having a flat
   directory structure has severe performance consequences.  However,
   with the Structured Paths option, Cacti will separate RRDfiles by
   Device ID and use the Data Source ID as the RRDfile name.
+
+- **Directory Pattern** - Which Directory Pattern to use for Structured RRD
+  Paths.  The options are `Device ID`, which is the default,
+  `Device ID/Data Query ID`, `Device Hash/Device ID` and
+  `Device Hash/Device ID/Data Query ID`.  Use `Device ID/Data Query ID` when
+  you have **Devices** with thousands of **Graphs**.  After changing the
+  Directory Pattern, you must run the Structured Path CLI script again.
+
+- **Max Device Hash Directories** - The maximum number of **Device**
+  directories to be created based upon hashed **Device** IDs.  The default is
+  100.
 
 > **NOTE**: If you are migrating from non-structured to structured
 > paths setup, you must run the CLI script to move those files
@@ -104,7 +115,7 @@ The settings above include:
   server.
 
 - **Proxy Port Number** - The port number to connect to in order to
-  communicate with the RRD Proxy.
+  communicate with the RRD Proxy.  The default is 40301.
 
 - **RSA Fingerprint** - The fingerprint of the current public RSA
   key the proxy is using.  This is required to establish a trusted

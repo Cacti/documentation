@@ -27,7 +27,7 @@ Those settings include:
 
 - **Primary Admin** - This is the Cacti primary administrative account
   this account will receive Cacti notifications and can not be deleted.
-- **Guest Account** - This is a special account that allows users to
+- **Guest User** - This is a special account that allows users to
   access certain pages without being prompted for a login and password.
   Setting to `None`, disables this feature.
 - **User Template** - All new users who login for the first time will
@@ -47,8 +47,10 @@ UNIX login account may be `jschmoe`, which grants you certain
 plugin permissions, like controlling your own workload.
 
 The mapfile is a file in CSV format, with the first column
-being the Basic account (aka joe.schmoe@company.com), and the second
-column being the login account (jschmoe).  It is up-to the Cacti
+being the Basic account (aka `joe.schmoe`), and the second
+column being the login account (jschmoe).  When the Basic account
+includes a domain, as in `joe.schmoe@company.com`, Cacti removes the
+`@company.com` part before it searches the first column.  It is up-to the Cacti
 administrator to manage and update this file per their local
 site practices.
 

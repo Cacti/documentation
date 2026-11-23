@@ -9,7 +9,7 @@ cacti from this page you can do the following
 
 - View technical support information.
 
-- Adjust log settings.
+- Administer the Cacti log (Log Administration).
 
 - View the user log for audits.
 
@@ -54,6 +54,41 @@ Any Variable appearing in red indicates a subpar setting and should be looked.
 the recommendations are dynamic in that they change when more system resources are
 detected so if you upgrade your server hardware be sure to check back to this page
 to get the most out of your new hardware.
+
+### Rebuild resource cache
+
+`Console > Utilities > System Utilities > Rebuild Resource Cache`
+
+When operating multiple Data Collectors in Cacti, Cacti will attempt to
+maintain state for key files on all Data Collectors. This includes all core,
+non-install related website and plugin files. When you force a Resource Cache
+rebuild, Cacti will clear the local Resource Cache, and then rebuild it at the
+next scheduled poller start. This will trigger all Remote Data Collectors to
+recheck their website and plugin files for consistency.
+
+### Purge Data Source Statistics
+
+`Console > Utilities > System Utilities > Purge Data Source Statistics`
+
+This menu pick will purge all existing Data Source Statistics from the
+Database. If Data Source Statistics is enabled, the Data Sources Statistics
+will start collection again on the next Data Collector pass.
+
+### SNMP Agent utilities
+
+These entries appear under `Console > Utilities > System Utilities` when SNMP
+Agent Support is enabled in the Poller settings.
+
+- **View SNMP Agent Cache** - This shows all objects being handled by the SNMP
+  Agent.
+- **Rebuild SNMP Agent Cache** - The SNMP cache will be cleared and
+  re-generated if you select this option. Note that it takes another poller run
+  to restore the SNMP cache completely.
+- **View SNMP Agent Notification Log** - This menu pick allows you to view the
+  latest events SNMP Agent has handled in relation to the registered
+  notification receivers.
+- **SNMP Notification Receivers** - Allows Administrators to maintain SNMP
+  notification receivers.
 
 ### RRD cleaner
 
@@ -102,7 +137,7 @@ included in your version.
 
 ### View user login history
 
-`Console > utilities > System Utilities > View user Log`
+`Console > Utilities > System Utilities > View User Log`
 
 In system utilities you are able to view a log of user logins
 both successful and failures The Log will also show what Client IP address
@@ -123,9 +158,9 @@ The average boost record size
 
 ![System Utilities](images/system-utilities-boost2.png)
 
-### Viewing the Data Source Query Cache
+### Viewing the Data Query Cache
 
-`Console > Utilities > System Utilities > View Data Source Query Cache`
+`Console > Utilities > System Utilities > View Data Query Cache`
 
 The Data Query Cache stores information gathered from Data Query input types.
 The values from these fields can be used in the text area of Graphs for Legends,
@@ -141,10 +176,10 @@ This is the data that is being passed to the poller each time it runs.
 
 ![System Utilities](images/system-utilities-viewpcache.png)
 
-### Viewing System log via System Utilities
+### Viewing the Cacti log via Log Administration
 
-You are able to view the system log via the System utilities
-page this will show the RAW log
+You are able to view the Cacti log via the Log Administration
+entry on the System utilities page this will show the RAW log
 this slightly differs from the view log tab as the device names
 will show the device ID rather than
 the Device name this is the same view as you reading the log in the OS
