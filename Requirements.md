@@ -33,9 +33,9 @@ beta OS or an expired point release for these procedures.
 | Component | Deployment guidance |
 | --- | --- |
 | Web server | Maintained PHP-capable Apache, nginx, or IIS FastCGI |
-| PHP | A vendor-maintained PHP branch compatible with Cacti 1.2.31; validate CLI and web PHP with the installer |
-| Database | A maintained MySQL or MariaDB branch; check the actual server with the installer |
-| RRDtool | A maintained distribution package; version 1.5 or later is recommended by the release |
+| PHP | A vendor-maintained PHP branch compatible with Cacti 1.2.31; the installer's own version check is only a 5.4.0 floor, while the bundled libraries require PHP 8.0 or later in 1.2.31 and 8.2 or later on 1.2.x; validate CLI and web PHP with the installer |
+| Database | A maintained MySQL or MariaDB branch; check the actual server with the installer. The 1.2.x installer recommends MySQL 8.0 or later or MariaDB 10.5 or later; the 1.2.31 release named MySQL 5.6 and MariaDB 10.0 |
+| RRDtool | A maintained distribution package; the installer accepts version 1.3 or later, and 1.5 or later is needed for the `DCOUNTER` and `DDERIVE` data source types and the `--skip-past-updates` update option |
 | SNMP | Net-SNMP command-line tools for the collection paths that require them |
 | Spine | Optional; choose a release compatible with Cacti 1.2.31 |
 
@@ -53,17 +53,25 @@ revision may change packaging; use that revision's requirements.
 ## PHP configuration and extensions
 
 The [released extension checks][extensions] cover CLI and web PHP separately.
-Required modules include `ctype`, `date`, `filter`, `gettext`, `gd`, `gmp`,
-`hash`, `json`, `ldap`, `mbstring`, `openssl`, `pcre`, `PDO`, `pdo_mysql`,
+Required modules include `ctype`, `date`, `filter`, `gd`, `gmp`, `hash`,
+`intl`, `json`, `ldap`, `mbstring`, `openssl`, `pcre`, `PDO`, `pdo_mysql`,
 `session`, `simplexml`, `sockets`, `spl`, `standard`, `xml`, and `zlib`, with
-`posix` on Unix and `com_dotnet` on Windows. The Unix polling daemon also needs
-CLI PCNTL support for its forking service mode.
+`posix` and `pcntl` on Unix and `com_dotnet` on Windows. The installer checks
+`pcntl` in CLI PHP only; the Unix polling daemon uses it to fork. The installer
+also reports `snmp`, `gettext` and the `gd` TrueType functions as optional.
+
+The installer also recommends a `memory_limit` of at least 400M (800M before
+PHP 7), a `max_execution_time` of at least 60 seconds, and a valid
+`date.timezone`.
 
 Check `php -v`, `php --ini`, and `php -m`, then inspect the web environment in
 the installer. Modules built into PHP do not need an extra extension load. The
 PHP SNMP extension is optional; external Net-SNMP tools are needed for
-collection paths including SNMPv3 in the PHP poller. Configure executable paths
-and verify them under the actual collector and web accounts.
+collection paths that the extension does not handle. In 1.2.31 this includes
+all SNMPv3 requests. In the 1.2.x branch it includes SNMPv3 requests that use a
+context or engine ID, hex output, walks when `snmpbulkwalk` is present, and
+authentication or privacy protocols the extension rejects. Configure executable
+paths and verify them under the actual collector and web accounts.
 
 ## Database configuration
 
@@ -84,9 +92,11 @@ total_connections = total_processes * (total_threads + script_servers + 1)
 
 Allow headroom for web requests, plugins, maintenance, and other clients.
 Inspect storage engines before sizing memory-table limits. Keep InnoDB
-doublewrite protection enabled; storage advertised as SSD does not by itself
-provide atomic page writes. Review durability before changing commit flushing,
-and do not disable strict SQL modes as a setup shortcut.
+doublewrite protection enabled unless the storage or database provides atomic
+writes. The installer recommends turning it off only on MariaDB 10.2.4 and
+later with `innodb_use_atomic_writes` on. Storage advertised as SSD does not by
+itself provide atomic page writes. Review durability before changing commit
+flushing, and do not disable strict SQL modes as a setup shortcut.
 
 Refer to the [MySQL configuration reference][mysql-variables] or
 [MariaDB InnoDB reference][mariadb-variables] for the exact installed version.

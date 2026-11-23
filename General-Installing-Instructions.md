@@ -60,7 +60,17 @@ or
 The installation of these modules vary by OS. Use the `php -m` command to
 verify that they are installed.
 
-- posix
+- ctype
+
+- date
+
+- filter
+
+- posix (Unix only)
+
+- pcntl (Unix only)
+
+- com_dotnet (Windows only)
 
 - session
 
@@ -71,6 +81,8 @@ verify that they are installed.
 - pdo_mysql
 
 - xml
+
+- simplexml
 
 - ldap
 
@@ -84,6 +96,16 @@ verify that they are installed.
 
 - gd
 
+- gmp
+
+- hash
+
+- intl
+
+- spl
+
+- standard
+
 - zlib
 
 ### PHP Optional Modules
@@ -92,9 +114,7 @@ The following modules are optional, but preferred to be installed.
 
 - snmp
 
-- gmp (for plugin support)
-
-- com or dotnet (windows only)
+- gettext
 
 ### Systems using PHP-FPM
 
@@ -196,6 +216,7 @@ MariaDB [cacti]>> ALTER TABLE `data_source_stats_hourly_cache` ENGINE=InnoDB;
 MariaDB [cacti]>> ALTER TABLE `data_source_stats_hourly_last` ENGINE=InnoDB;
 MariaDB [cacti]>> ALTER TABLE `poller_output` ENGINE=InnoDB;
 MariaDB [cacti]>> ALTER TABLE `poller_output_boost_processes` ENGINE=InnoDB;
+MariaDB [cacti]>> ALTER TABLE `processes` ENGINE=InnoDB;
 ```
 
 Before restoring database load balancing, verify the table-engine changes,

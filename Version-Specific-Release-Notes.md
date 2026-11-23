@@ -63,12 +63,12 @@ The following shows the naming convention used for issues and features listed in
 Below are a few examples of the version, type and description that can be found in the CHANGELOG
 | Version | Feature/Bug   | Description                                                                                                                      |
 | ------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| 1.2.17  | issue#3981    | PHP ERROR: Call to undefined function api_data_source_cache_crc_update()                                                         |
-| 1.2.17  | feature#4013  | Remote Poller - reset avg/max polling time                                                                                       |
+| 1.2.17  | issue#3981    | Missing API include leads to runtime errors in Automation                                                                        |
+| 1.2.17  | feature#4013  | Allow remote pollers statistics to be cleared                                                                                    |
 | 1.2.16  | issue#3704    | When generating a report, the Cascade to Branches function does not as expected                                                  |
 | 1.2.16  | issue#3859    | When viewing graphs, automatic refresh so not always work as expected                                                            |
 | 1.2.16  | feature       | Update Chart.js to version 2.9.4                                                                                                 |
-| 1.2.16  | feature#3923  | Add ability to hide the Graph Drilldown icons by datatecuk                                                                       |
+| 1.2.16  | feature#3923  | Add ability to hide the Graph Drilldown icons                                                                                    |
 | 1.2.16  | feature#3943  | Add hooks for plugins to show custom Graph Source and custom Template URL (List View)                                            |
 | 1.2.13  | security#3628 | Lack of escaping on template import can lead to XSS exposure                                                                     |
 | 1.2.13  | issue#3517    | When generating reports, function looping can occur resulting in 100% cpu usage                                                  |
