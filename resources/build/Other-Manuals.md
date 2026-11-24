@@ -10,7 +10,8 @@ Use Python 3.12 and uv through `mise`. The existing PDF builder's committed
 script lock pins MarkdownIt, WeasyPrint, Mammoth, and Pillow. WeasyPrint also
 needs native Pango libraries and fonts with German, Turkish, and Cyrillic
 glyphs. CI installs DejaVu fonts. Native libraries and fonts affect pagination;
-checksums identify built artifacts, not cross-platform reproducible bytes.
+checksums identify built artifacts, not cross-platform reproducible bytes. The
+container build below uses the CI fonts and libraries.
 
 The main PDF and text editions contain every main chapter selected by
 `bin/check_navigation.py`. German and Turkish editions add localized entries
@@ -35,11 +36,18 @@ mise exec python@3.12 uv@0.12.23 -- uv run --locked --python python \
   --script bin/build_pdf_docs.py --only manual --companions
 ```
 
-On macOS with Homebrew, set `DYLD_FALLBACK_LIBRARY_PATH` to the Homebrew `lib`
-directory after selecting runtimes if WeasyPrint cannot locate Pango. For
-example, use `mise exec python@3.12 uv@0.12.23 -- env` followed by
-`DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib uv run` and the remaining build
-arguments on an Apple Silicon Homebrew installation.
+To build in the same environment as CI, with its fonts, native libraries and
+locked toolchain, run the container build. It needs Docker and accepts the same
+arguments:
+
+```sh
+bin/build_manuals_in_container.sh --only manual --companions
+```
+
+Host builds use the host's fonts, so their pagination and checksums differ
+from the published editions. On macOS, `env` and `uv run` do not pass
+`DYLD_FALLBACK_LIBRARY_PATH` to Python, so WeasyPrint cannot find Homebrew's
+Pango through the command above. Use the container build there.
 
 The command above preserves the
 existing ReportIt edition. The default is the Cacti manual; rebuilding
