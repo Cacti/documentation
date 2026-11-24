@@ -134,6 +134,31 @@ checks succeed, then re-enable collection. Use either the configured cron path
 or the daemon for a collector, not both. Verify logs, data freshness and
 representative RRD updates after normal polling resumes.
 
+## Upgrading from Cacti 0.8.x
+
+Cacti 1.2.x can upgrade a 0.8.x database directly. The installer runs the
+upgrade step of every release between the installed version and the new one,
+starting as far back as 0.8.1, so you do not need to install the intermediate
+releases.
+
+The 1.0.0 step moves the tables of plugins that became part of Cacti into the
+core schema. For example, the Aggregate plugin tables
+`plugin_aggregate_graph_templates` and `plugin_color_templates` become
+`aggregate_graph_templates` and `color_templates`. Your existing data is kept
+under the new table names.
+
+Take these additional precautions for an upgrade that spans major versions:
+
+- Test the upgrade on a copy of the database first, and note any errors
+  before you upgrade the production system.
+- If you move to a new server at the same time, copy the RRDfiles only between
+  systems of the same architecture, for example 64-bit to 64-bit with the same
+  byte order. Otherwise, export each file with `rrdtool dump` on the old
+  system and recreate it with `rrdtool restore` on the new one.
+- Check the database settings the installer recommends before you continue,
+  and review custom templates, scripts and plugins, which may need updating
+  for the new release.
+
 ## Recovery
 
 If the upgrade fails, keep writers stopped while deciding whether to retry or

@@ -296,6 +296,8 @@ the maintained Enterprise Linux instructions.
 
     10.3. [User Domains](User-Domains.md)
 
+    10.4. [User Profile](User-Profile.md)
+
 11. [Configuration - Plugins](Plugins.md)
 
 12. Utilities
@@ -305,6 +307,8 @@ the maintained Enterprise Linux instructions.
     12.2. [Data Debug](Data-Debug.md)
 
     12.3. [External Links](External-Links.md)
+
+    12.4. [SNMP Agent and Notification Receivers](SNMP-Agent.md)
 
 13. Reporting
 

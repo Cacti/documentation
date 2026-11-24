@@ -90,6 +90,9 @@ Agent Support is enabled in the Poller settings.
 - **SNMP Notification Receivers** - Allows Administrators to maintain SNMP
   notification receivers.
 
+See [SNMP Agent and Notification Receivers](SNMP-Agent.md) for what the SNMP
+Agent exposes and how the receivers are configured.
+
 ### RRD cleaner
 
 `Console > Utilities > System Utilities > RRDfile Cleaner`
@@ -103,6 +106,33 @@ You can either archive the selected RRDs
 or have them deleted in the next polling cycle.
 
 ![System Utilities](images/system-utilities-rrdcleaner.png)
+
+The entry is only shown on the main **Data Collector**. The page works as
+follows:
+
+- The list of files is not refreshed on its own. Select `Rescan` to have
+  Cacti search the RRA directory and its sub-directories for `.rrd` files and
+  compare them with the existing **Data Sources**. Files that do not belong
+  to a **Data Source** are listed. `Last Scan` below the list shows when the
+  list was built. An archive directory inside the RRA directory is skipped.
+
+- The list shows the **RRD File Name**, **DS Name**, **DS ID**, **Template
+  ID**, **Template**, **Last Modified** and **Size [KB]** of each file, and
+  the total size of the listed files.
+
+- The **Time Since Update** filter defaults to `< 1 Week`, which shows only
+  files that were modified during the last week. Select `> 1 Week` up to
+  `> 1 Year` to see files that have not been updated for at least that long.
+
+- To act on single files, select them and choose `Delete` or `Archive` from
+  the actions drop-down. The buttons `Delete All` and `Archive All` apply the
+  action to all unknown RRDfiles.
+
+The files are not removed by the web page. The selected action is queued and
+carried out by Cacti's maintenance process, which the main **Data Collector**
+starts at the end of a poller run. `Delete` removes the file. `Archive` moves
+it to the **Archive directory** that is set in
+`Console > Configuration > Settings > Paths`, keeping its sub-directory.
 
 RRDfiles can also be scheduled to be removed automatically.  This option can
 be configured in `Console > Configuration > Settings > Paths` by selecting
@@ -126,6 +156,39 @@ For very large Cacti installs the **RRDfile checker** can take quite
 a long time to complete.
 You can set the number of concurrent parallel processes in `Console > Configuration > Settings > Data`
 
+The entry is only shown on the main **Data Collector**. The checks only run
+when **Enable RRDfile Check** is checked in the
+[Data](Settings-Data.md#rrdfile-check) settings, which is not the default.
+While it is disabled, the page shows the message `RRD check is disabled,
+please enable in Configuration -> Settings -> Data`.
+
+The main **Data Collector** starts `poller_rrdcheck.php` in the background at
+the end of a poller run. The checks themselves run when the **Check
+Frequency** has elapsed. It defaults to `4 Hours`. If **Enable On-demand RRD
+Updating** is checked in the [Performance](Settings-Performance.md) settings,
+the checks run at the end of a Boost run that updated RRDfiles instead. The
+runtime is limited by the **RRDChecker Timeout** in the
+[Poller](Settings-Poller.md) settings.
+
+The page lists the problems that were found with the **Host Description**,
+**Data Source**, **Local Data ID**, **Message** and **Date**. The **Age**
+filter defaults to `< 2 hours`, which shows the problems found during the
+last two hours. Select `> 4 hours` up to `> 5 days` to see older ones. The
+`Purge` button removes all recorded problems. After each run of the checks,
+problems that are older than seven days are removed.
+
+A check can also be started from the command line:
+
+```console
+shell>php -q poller_rrdcheck.php [--force] [--debug]
+```
+
+- `--force` - Force the execution of an update process, even when the check
+  is disabled or the **Check Frequency** has not elapsed. The checks are
+  still left to Boost when Boost is enabled.
+
+- `--debug` - Display verbose output during execution.
+
 ### Viewing Change log from system utilities
 
 With Cacti 1.2.16+, you are now able to view the CHANGELOG information up to the
@@ -145,6 +208,31 @@ the login originated from along with info
 if the login was based on password or token based login.
 
 ![System Utilities](images/system-utilities-viewulog.png)
+
+The page is titled **User Login History** and requires the
+**Settings/Utilities** permission. Each row shows the **User**, **Full
+Name**, **Authentication Realm**, **Date**, **Result** and **IP Address** of
+one login attempt. The **Result** is one of `Success - Password`, `Success -
+Token`, `Success - Password Change` or `Failed`. A password change that a
+**User** makes on the `Change Password` page, see
+[User Profile](User-Profile.md#changing-your-password), is recorded as
+`Success - Password Change`.
+
+The filter offers the following options:
+
+- **User** - `All`, a single user, or `Deleted/Invalid` for entries whose
+  user name does not match an existing account.
+
+- **Result** - `Any` or one of the results listed above.
+
+- **Search** - Matches the user name, the date, the full name and the IP
+  address.
+
+The `Purge` button does not empty the log completely. For every existing
+account it keeps the most recent `Success - Password` entry and the most
+recent `Success - Token` entry, and removes the older ones together with all
+`Failed` entries. Entries of accounts that no longer exist are removed
+entirely.
 
 ### View boost update status and stats
 
