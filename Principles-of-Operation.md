@@ -38,7 +38,7 @@ to be physical locations.  Cacti can organize **Devices** and it's
 
 These are the physical or virtual hosts or containers that gather
 data about a group of devices either within a network or a site.
-They are resiliant in that if the central Cacti server is not reachable,
+They are resilient in that if the central Cacti server is not reachable,
 they will cache data and wait for it to become available again.
 
 Cacti supports upto dozens of Data Collectors today.  Some customers
@@ -150,7 +150,7 @@ use your own | invoke Nagios agents
 
 and much more...
 
-There a two ways extending Cacti's build-in capabilities:
+There are two ways of extending Cacti's built-in capabilities:
 
 [Data Input Methods](Data-Input-Methods.md) for querying **single or
 multiple**, but **non-indexed** readings

@@ -28,7 +28,7 @@ to management then clicking on devices.
 
 You can also see the total amount of data sources by checking the poller stats
 on the system. Click the log tab and filter by stats and lookout for the below
-messege
+message
 
 ```console
 2019/05/24 17:21:11 - SYSTEM STATS: Time:9.5913 Method:spine Processes:2 Threads:2 Hosts:14 HostsPerProcess:7 DataSources:162 RRDsProcessed:117

@@ -248,7 +248,7 @@ shell> crontab -e -u cactiuser
 
 Pay attention to custom scripts. It is required, that external commands called
 from there are in the `$PATH` of the cactiuser running the poller. It is
-therefor recommended to provide `/full/path/to/external/command`
+therefore recommended to provide `/full/path/to/external/command`
 
 User "criggie" reported an issue with running smartctl. It was complaining "you
 are not root" so a quick `chmod +s` on the script fixed that problem.

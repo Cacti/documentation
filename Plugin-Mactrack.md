@@ -31,7 +31,7 @@ is called "Device tracking".
   Define SNMP set options to use
 
 
-##Create site
+## Create site
 One of the mandatory steps to start setting Mactrack up is to create sites 
 where we are going to allocate our Mactrack devices.
 Console -> Mactrack -> Sites
@@ -81,11 +81,11 @@ Go to Console -> Mactrack -> Device Types and click the export button.
 For import Device Types you can use button "Import" on the same page.
 
 
-##Import OUI Database from IEEE
+## Import OUI Database from IEEE
 
 This function will download and install the latest OUI database from the 
 IEEE Website. Each Network Interface Card (NIC) has a MAC Address. 
-The MAC Address can be broken into two parts. The first part of the MAC Addess 
+The MAC Address can be broken into two parts. The first part of the MAC Address 
 contains the Vendor MAC. The Vendor MAC identifies who has manufactured the part. 
 This will be helpful to check for rogue devices on your network.
 
@@ -108,7 +108,7 @@ There were '23126' Entries Added/Updated in the database.
 There were '0' Records Removed from the database.
 ``
 
-##Troubleshooting
+## Troubleshooting
 Running poller in debug mode
   Go to <cacti_path>/plugins/mactrack
   php -q poller_mactrack.php -d -sid=1

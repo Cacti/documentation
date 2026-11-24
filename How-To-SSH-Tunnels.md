@@ -1,7 +1,7 @@
 # How To Setup SSH Tunnels to graph a remote Unix server
 
 Howto created by `fmangeant` at [Cacti
-Forum](http://forums.cacti.net/viewtopic.php?t=24960)
+Forum](https://forums.cacti.net/viewtopic.php?t=24960)
 
 This HowTo will explain how to use SSH tunnels to graph a Unix server that
 isn't directly reachable by your Cacti server :
