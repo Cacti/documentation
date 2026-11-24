@@ -1,34 +1,34 @@
 # Script Data Query Walkthrough
 
-Goal of this HowTo will be to show the **principles of writing a Script Query**,
-including script, xml and all needed templates. Why should you create such a
-thing? Suppose, your target features some indexed readings, that are **not**
+The goal of this HowTo will be to show the **principles of writing a Script Query**,
+including script, XML and all needed templates. Why should you create such a
+thing? Suppose your target features some indexed readings that are **not**
 available via SNMP but by some other method (e.g. wget/cgi, ssh, NRPE, …).
-Writing a Script Data Queries works very much the same way as SNMP Data Queries.
+Writing Script Data Queries works very much the same way as SNMP Data Queries.
 But nevertheless, I'll take you through all of the steps now.
 
 The example uses PHP. Why PHP? First, it's easier to copy stuff from already
-existing PHP scripts. Second, it would be possible to use cacti functions. It
-should be possible to imagine, how this works with other programming languages.
-Strictly speaking, I'm not that PHP expert. So be patient with me.
+existing PHP scripts. Second, it would be possible to use Cacti functions. It
+should be possible to imagine how this works with other programming languages.
+Strictly speaking, I'm not that much of a PHP expert. So be patient with me.
 
 Please pay attention. This HowTo will not explain how to write a **Script Server
 Data Query** (yes, there is such a thing!). It would not introduce that many
 changes. But this will be left to some other HowTo.
 
-Personally, my primary goal was to use an example, that all users should be able
+Personally, my primary goal was to use an example that all users should be able
 to copy to execute each and every step on its own. Unfortunately, there seems to
-be no example, that is common enough and interesting at the same time. So I'm
-sorry to announce, that this HowTo will show “Interface Traffic Data Gathering”.
+be no example that is common enough and interesting at the same time. So I'm
+sorry to announce that this HowTo will show “Interface Traffic Data Gathering”.
 Yes, I know, this is not that new. And surely, it will not be as fast as pure
 SNMP. So, to my shame, I suppose that this will never make it into any
 production environment. But, again, this is not the primary goal.
 
 Before starting the work, I feel encouraged to point out a drawback of this
-approach. Cacti will start a PHP instance, each time it has to fetch a value
+approach. Cacti will start a PHP instance each time it has to fetch a value
 from the target device. This is not that fast, obviously. And it will not
 prosper from the performance boost when switching over from cmd.php to Spine. Of
-course, even Spine will need to start php! And that's exactly, where the thingy
+course, even Spine will need to start PHP! And that's exactly where the thingy
 called **Script Server Data Query** drops in. But let's leave this for the next
 main chapter.
 
@@ -36,7 +36,7 @@ The code runs on Cacti 0.8.7 versions.
 
 ## Basic Script
 
-The starting point will be some very basic php script. Put it into
+The starting point will be some very basic PHP script. Put it into
 `<path_cacti>/scripts/query_interface_traffic.php`. It will show interface
 indices only for the given target host. The script takes two parameters as
 input, the **hostname** of the target and the string **index**. You have to
@@ -119,7 +119,7 @@ function reindex($arr) {
 }
 ```
 
-It will be called like this
+It will be called like this:
 
 ```shell
 php -q query_interface_traffic.php <your target host> index
@@ -133,8 +133,8 @@ As you see, my `<target>` has 4 indices (interfaces).
 
 ### Discussion: function_reindex
 
-You may wonder why this function drops in. Well, lets have a look at
-`cacti_snmp_walk`. This function is part of cacti itself and eases the use of
+You may wonder why this function drops in. Well, let's have a look at
+`cacti_snmp_walk`. This function is part of Cacti itself and eases the use of
 SNMP. That's why I call it here. But unfortunately, its output looks like:
 
 ```text
@@ -172,7 +172,7 @@ The values of interest are stored in `$return_arr[$i] = $arr[$i][“value”];`.
 
 ## XML File
 
-This given, the first step will be the xml file defining how to access index
+This given, the first step will be the XML file defining how to access index
 values only. So change to your `<path_cacti>/resource/script_queries` directory
 and create a file named **ifTraffic.xml**. You may of course choose your own
 name.
@@ -194,12 +194,12 @@ name.
 </interface>
 ```
 
-Lets talk about the header elements
+Let's talk about the header elements:
 
 | field       | description                                                                                                                                                                                             |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name        | Short Name; chose your own one if you want                                                                                                                                                              |
-| script_path | Whole command to execute the script from cli. `path_php_binary`is a cacti builtin variable for`/the/full/path/to/php`. `path_cacti` in turn gives the path of the current cacti installation directory. |
+| name        | Short Name; choose your own one if you want                                                                                                                                                             |
+| script_path | Whole command to execute the script from cli. `path_php_binary` is a Cacti builtin variable for `/the/full/path/to/php`. `path_cacti` in turn gives the path of the current Cacti installation directory. |
 | arg_prepend | All arguments passed to the script go here. There are some builtin variables, again. `host_hostname` represents the hostname of the device this query will be associated to.                            |
 | arg_index   | The string given here will be passed just after all `<arg_prepend>` to the script for indexing requests. Up to now, this is the only method our script will answer to.                                  |
 | fields      | All fields will be defined in this section. Up to now, only the index field is defined                                                                                                                  |
@@ -208,10 +208,10 @@ Lets talk about the header elements
 
 | direction | Description                                                                                                                                                                               |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| input     | defines all fields that serve as a descriptive information to a specific table index. These values will not be graphed but may be printed in e.g.graph titles by means of `query\_<name>` |
+| input     | defines all fields that serve as a descriptive information to a specific table index. These values will not be graphed but may be printed in e.g. graph titles by means of `query\_<name>` |
 | output    | defines all fields that will yield a number that should be stored in some RRDfile                                                                                                         |
 
-Now save this file and lets turn to cacti to implement this one. First, go to
+Now save this file and let's turn to Cacti to implement this one. First, go to
 **Data Queries** to see
 
 ![Script Data Query - Add 01](images/dq-add-01.preview.png)
@@ -226,12 +226,12 @@ and don't forget to choose **Get Script Data (indexed)**. **Create** to see
 ![Script Data Query - Add 03](images/dq-add-03.preview.png)
 
 It has now **Successfully located XML file**. But this does not mean that there
-are no errors. So lets go on with that. Turn to the **Device** you want to query
+are no errors. So let's go on with that. Turn to the **Device** you want to query
 and add the new **Data Query** as shown:
 
 ![Script Data Query - Associate 01](images/dev-dq-01.preview.png)
 
-**Index Count Changed** was chosen on purpose to tell cacti to re-index not only
+**Index Count Changed** was chosen on purpose to tell Cacti to re-index not only
 on reboot but each time the Index Count (e.g. number of interfaces) changed.
 When done, see the results as
 
@@ -243,7 +243,7 @@ To see your script at work, select **Verbose Query** to see:
 
 ## Completing the Script
 
-Now, lets improve our basic script. First, lets define all the variables (OIDs),
+Now, let's improve our basic script. First, let's define all the variables (OIDs)
 this script should ask for.
 
 ```php
@@ -362,7 +362,7 @@ The new code implements the **query** function as follows
     }
 ```
 
-Last option is the **get** function
+The last option is the **get** function
 
 ```php
 #
@@ -388,7 +388,7 @@ Last option is the **get** function
         $snmp_context, $snmp_port, $snmp_timeout, $snmp_retries, SNMP_POLLER));
 ```
 
-The rest of it is left unchanged. For sake of completeness, I repeat it here
+The rest of it is left unchanged. For the sake of completeness, I repeat it here
 
 ```php
 # -------------------------------------------------------------------------
@@ -414,7 +414,7 @@ function reindex($arr) {
 ```
 
 You may want to copy all those fragments together and replace the basic script.
-Now, lets have a try using the command line. The “index” option was already
+Now, let's have a try using the command line. The “index” option was already
 shown, but is repeated here
 
 ```console
@@ -427,8 +427,9 @@ shown, but is repeated here
 
 ### The Complete XML File
 
-Of course, we now will have to complete the XML file given in Chapter II. Find
-it at `<path_cacti>/resource/script_queries/ifTraffic.xml`.
+Of course, we now will have to complete the XML file given in the
+[XML File](#xml-file) section. Find it at
+`<path_cacti>/resource/script_queries/ifTraffic.xml`.
 
 ```xml
 <interface>
@@ -448,9 +449,9 @@ Let's discuss the changes
 
 | Field                         | Description                                                                                                                                                                                                                                                                                                                                       |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| arg_prepend                   | some more parameters were added to provide all necessary values for the script. They are position-dependent. You may notice the strange tics I've added to e.g. host_snmp_username and host_snmp_password. If you're not using those SNMP V3 parameters, they must be quoted, else the script would fail because two parameters would be missing. |
+| arg_prepend                   | Some more parameters were added to provide all necessary values for the script. They are position-dependent. You may notice the strange tics I've added to e.g. host_snmp_username and host_snmp_password. If you're not using those SNMP V3 parameters, they must be quoted, else the script would fail because two parameters would be missing. |
 | arg_query                     | The string passed to the query to perform query requests is given here. So you may modify it to your liking (in this case, the script has to be modified accordingly).                                                                                                                                                                            |
-| arg_get                       | Some as above for get requests                                                                                                                                                                                                                                                                                                                    |
+| arg_get                       | Same as above for get requests                                                                                                                                                                                                                                                                                                                    |
 | output_delimiter              | The delimiter used for query requests to separate index and value                                                                                                                                                                                                                                                                                 |
 | index_order (optional)        | Cacti will attempt to find the best field to index off of based on whether each row in the query is unique and non-null. If specified, Cacti will perform this check on the fields listed here in the order specified. Only input fields can be specified and multiple fields should be delimited with a comma.                                   |
 | index_title_format (optional) | Specify the title format to use when representing an index to the user. Any input field name can be used as a variable if enclosed in pipes ( ). The variable `chosen_order_field` will be substituted with the field chosen by Cacti to index off of (see index_order above). Text constants are allowed as well                                 |
@@ -461,7 +462,7 @@ Let's discuss the changes
 | numeric    | The indexes in this script query are to be sorted numerically (ie. 1,2,3,10,20,31) |
 | alphabetic | The indexes in this script query are to be sorted alphabetically (1,10,2,20,3,31)  |
 
-Now lets turn to the fields section:
+Now let's turn to the fields section:
 
 ```xml
     ....
@@ -530,12 +531,12 @@ Now lets turn to the fields section:
 ```
 
 These fields are related to the **OID** array of the script. **Attention**: The
-**query_name** strings must match the OID names **exactly!** Please notice, that
+**query_name** strings must match the OID names **exactly!** Please notice that
 all but the last two fields use **direction input**. All variables representing
 numeric values to be graphed must be defined as **direction output** instead.
 
-Now, lets test the “query” option. The keyword “query” must be given along with
-the variable, that should be queried. The script now will scan all indices and
+Now, let's test the “query” option. The keyword “query” must be given along with
+the variable that should be queried. The script now will scan all indices and
 report the contents of the given variable as follows:
 
 ```console
@@ -547,10 +548,10 @@ report the contents of the given variable as follows:
 ```
 
 The output reports the index, followed by the chosen delimiter. Then, the
-content of the requested variable is printed
+content of the requested variable is printed.
 
 Last, the “get” option is shown. The keyword “get” is required, followed again
-by the variable (see above). Last needed option is the index, for which the
+by the variable (see above). The last needed option is the index, for which the
 “get” should be performed. Contrary to the “query” option, only one index is
 scanned. So the index number is not required and will not be printed.
 
@@ -563,7 +564,7 @@ The output is not followed by a “newline”!
 
 ## See it at work
 
-Lets return to the **Device** and perform a **Verbose Query** again. The result
+Let's return to the **Device** and perform a **Verbose Query** again. The result
 is as follows
 
 ```console
@@ -618,14 +619,14 @@ is as follows
 ```
 
 Of course, snmp_username and snmp_user_password and more may differ from your
-installation defaults. Read it carefully, and you'll notice, that all XML
+installation defaults. Read it carefully, and you'll notice that all XML
 **fields** were scanned and the output shown. All? No, not all. The **direction
 output** fields are missing! But this is on purpose as those won't make sense as
 header fields but will be written to RRDfiles.
 
 ## Create the Data Template
 
-As usual, next step is to create the **Data Template**. Select that menu item
+As usual, the next step is to create the **Data Template**. Select that menu item
 and **Add**:
 
 ![Script Data Query - Data Template 01](images/dev-dt-01.preview.png)
@@ -647,7 +648,7 @@ source and graph names.
 
 Now, before you press the `Create` button also please proceed to the lower half
 of the form and complete the first RRDfile Data Source. Enter the **Internal
-Data Source Name**. You may select this name freely, though note your are
+Data Source Name**. You may select this name freely, though note you are
 limited to only 19 characters and spaces are not allowed. There's no need to
 match it to any of the XML field names. As the OID is a **COUNTER**, the **Data
 Source Type** must be selected appropriately. `Create`.
@@ -665,7 +666,7 @@ save again and you're done.
 
 ## Create the Graph Template
 
-Now, its time for the **Graph Template**. Select this menu item and **Add**.
+Now, it's time for the **Graph Template**. Select this menu item and **Add**.
 
 ![Script Data Query - Graph Template 01](images/dev-gt-01.preview.png)
 
@@ -696,14 +697,14 @@ and remove the newline by deselecting the checkbox
 
 ![Script Data Query - Graph Template 08](images/dev-gt-08.png)
 
-Now lets add the same data source again, but as a LINE1, MAXimum with a slightly
-changed color. Newline is checked this time
+Now let's add the same data source again, but as a LINE1, MAXimum with a slightly
+changed color. Newline is checked this time.
 
 ![Script Data Query - Graph Template 09](images/dev-gt-09.preview.png)
 
-Pooh. Now lets apply the same procedure for the **Outgoing Traffic**.
+Pooh. Now let's apply the same procedure for the **Outgoing Traffic**.
 Personally, I love those outgoing stuff to be presented on the negative y-axis.
-So we'll have to apply some CDEF magic to some items. Lets see
+So we'll have to apply some CDEF magic to some items. Let's see
 
 ![Script Data Query - Graph Template 10](images/dev-gt-10.preview.png)
 
@@ -725,22 +726,22 @@ newline
 
 ![Script Data Query - Graph Template 14](images/dev-gt-14.preview.png)
 
-Hoping, you've got all those steps correctly, finally **Save** your work. Take a
+Hoping you've got all those steps correct, finally **Save** your work. Take a
 cup of coffee to get your brains free again, kiss your wife, hug your children
 and/or pet your dog; sequence is arbitrary.
 
 ## Associate Graph Template with Data Query
 
-Huh, that sound complicated. Why would it be necessary to do so? Let me explain:
-You remember the **Data Template**, do you? The names of the data source item
-was chosen arbitrary. The Graph Items were associated with those data source
+Huh, that sounds complicated. Why would it be necessary to do so? Let me explain:
+You remember the **Data Template**, do you? The names of the data source items
+were chosen arbitrarily. The Graph Items were associated with those data source
 items, but those in turn were not related to anything in the XML file. Not
 related? Not yet! So, let's revisit the **Data Query**. Remember the lower part
 on **Associated Graph Templates**. Click **Add**
 
 ![Script Data Query - Graph Template 15](images/dev-dq-20.preview.png)
 
-fill in a name for your choice and select the Graph Template that we have
+fill in a name of your choice and select the Graph Template that we have
 created in the last step.
 
 ![Script Data Query - Graph Template 16](images/dev-dq-21.preview.png)
@@ -750,12 +751,12 @@ created in the last step.
 ![Script Data Query - Graph Template 17](images/dev-dq-22.preview.png)
 
 First, let's have a look at the upper half of the screen. The red box to the
-left show the **Internal Data Source Names** names taken from the **Data
+left shows the **Internal Data Source Names** taken from the **Data
 Template** that is associated with the **Graph template** we've just added. The
 red box to the middle has a dropdown for each data source item. The dropdown
 list contains all **output** fields taken from the XML file. In our case, there
 are only two of them. The red box to the right must be checked on each line, to
-make the association valid. Now, lets turn to the lower half of the screen,
+make the association valid. Now, let's turn to the lower half of the screen,
 denoted **Suggested Values**
 
 ![Script Data Query - Suggested Value 01](images/dev-dq-23.png)
@@ -767,9 +768,9 @@ Click **Add**, one by one
 ![Script Data Query - Suggested Value 02](images/dev-dq-24.preview.png)
 
 Notice the second **title** I've added here. If more than one entry is present,
-they are applied from top to bottom, until a match is found. Match means, that
+they are applied from top to bottom, until a match is found. Match means that
 all variables present are filled. Of course, you may add more than one variable
-taken from the XML file. But pay attention, that not all devices will fill all
+taken from the XML file. But pay attention that not all devices will fill all
 those variables. So my router does, sigh. You may use all **input** variables
 listed in the XML file. A `<variable>` may be listed as `|query_<variable>|`,
 e.g. for ifalias write `|query_ifalias|` and so forth.
@@ -780,7 +781,7 @@ Click **Save**, and find the new Graph Template added to the list of
 ![Script Data Query - Suggested Value 03](images/dev-dq-25.preview.png)
 
 You may continue to add more **Graph Templates**, each of them may be related to
-other output field of the XML file. Find, as an example, lots of graph templates
+another output field of the XML file. Find, as an example, lots of graph templates
 associated to the standard `Interface Statistics` Data Query to get an idea what
 I'm talking about.
 
@@ -790,7 +791,7 @@ Don't worry about the first two entries; they are home-made.
 
 ## Creating the Images
 
-Now, let's return to the **Device**, that we've already have used for this Data
+Now, let's return to the **Device** that we've already used for this Data
 Query. **Create Graphs for this Host**
 
 ![Script Data Query - Devices 01](images/dev-dev-10.preview.png)
@@ -822,7 +823,7 @@ this example, don't worry about that.
 Having a closer view, you may notice a difference in magnitude (y-axis). But
 please compare the units used. The first graph uses **Bytes**, the latter one
 uses **Bits**. For comparison, it would be necessary to multiply the first one
-with 8. This may be done using a CDEF Turn Bytes into Bits, applied to all items
+by 8. This may be done using a CDEF Turn Bytes into Bits, applied to all items
 of the **Graph Template**. This task is left to you.
 
 The downloadable script below is the runnable example for the current SNMP

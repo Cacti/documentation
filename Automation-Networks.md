@@ -39,13 +39,13 @@ save.
 
 ![Automation Networks Edit General](images/automation-networks-edit1.png)
 
-Ensure that if you have a SNMP rule for this part of the network to select the
-SNMP option set this will tie the network to the SNMP rules
+Ensure that if you have an SNMP rule for this part of the network to select the
+SNMP option set. This will tie the network to the SNMP rules
 
 ![Automation Networks Edit General](images/automation-reachability-settings.png)
 
 To begin the scanner click on the bottom right drop down and select "Discover
-Now" this will start the discovery
+Now". This will start the discovery
 
 ![Automation Networks](images/automation-networks.png)
 

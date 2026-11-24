@@ -15,7 +15,7 @@ there was previously no way to write all that data every 5 minutes. So, the
 buffering helped with maintaining a consistent run-time, and minimizing the user
 experience disruption from all that blocking Disk I/O.
 
-In the modern Data Center, where we find an abundance of NVMe, Flash, and SSD's,
+In the modern Data Center, where we find an abundance of NVMe, Flash, and SSDs,
 the impact of all that I/O has been reduced. However, Boost now serves as a way
 to extend the life of your Flash media and therefore increase the availability
 of your Cacti server over its lifetime.
@@ -24,7 +24,7 @@ The Boost function in Cacti has several features that can be enabled or disabled
 on demand by the Cacti Administrator. They include:
 
 - **On Demand RRD Updates** - Required in ALL multiple **Data Collector**
-  installs and control the mass update of RRDfiles through periodic dumping of
+  installs and controls the mass update of RRDfiles through periodic dumping of
   Cacti's Boost cache.
 - **Image Caching** - caches PNG and SVG representations of the Cacti **Graphs**
   to reduce the overall CPU utilization of the Cacti server infrastructure.
@@ -71,7 +71,7 @@ important. That will be explained in more detail later on in this chapter.
 
 ## Checking how your system is configured
 
-To see how your system is configured, you can goto
+To see how your system is configured, you can go to
 `Console > Utilities > System Utilities > View Boost Status` option, when you go
 there, you will see an image similar to that below.
 
@@ -90,7 +90,7 @@ Additionally, you can tell
 - The average 'Bytes/Record' is 62
 - We have unlimited Records that can be stored there
 
-From that Data, we know if we were to use a Memory Table, at present it's width
+From that Data, we know if we were to use a Memory Table, at present its width
 could be say 100 Bytes and we could cut memory use by 80%.
 
 We can also estimate from this interface, how large our `max_heap_table_size`
@@ -133,9 +133,9 @@ The main Boost settings, with their defaults, are:
 The Boost log location is set by `Boost Debug Log` on the `Paths` tab. It must
 be in the same directory as the Cacti log file.
 
-As an exercise, lets look at a fictitious setup and determine what the
-`max_heap_table_size` should be. Let's say, for example, that your Cacti systems
-**Poller Cache** contains 200k rows, and the maximum length of any rows output
+As an exercise, let's look at a fictitious setup and determine what the
+`max_heap_table_size` should be. Let's say, for example, that your Cacti
+system's **Poller Cache** contains 200k rows, and the maximum length of any rows output
 is 20 bytes, about the size of a 64bit counter value.
 
 If you are running scripts, ones that return very long results, like the MySQL
@@ -162,14 +162,14 @@ ALTER TABLE poller_output_boost
     ENGINE=MEMORY;
 ```
 
-As previously mentioned, its also important that the `poller_output` table is
-converted to memory, eliminate any disk I/O related to poller updates.
+As previously mentioned, it's also important that the `poller_output` table is
+converted to memory to eliminate any disk I/O related to poller updates.
 
 Now, you need to determine how many polling cycles will fit into your
 `poller_output_boost` table. In this case, when sizing the `poller_output_boost`
 table, you take the output column width and add 34 bytes per record. So, in this
 case, each data source result to be stored in the `poller_output_boost` table
-would take 84bytes.
+would take 84 bytes.
 
 Then, with the Maximum Heap Table size in hand, and let's say the default is
 16MBytes for the largest table (the MySQL default), you can calculate the number
@@ -215,7 +215,7 @@ Then, save the file, and restart MySQL. Once this is done, you are ready to
 
 If you are planning on system maintenance and are using MEMORY storage in
 MySQL or MariaDB, flush your Boost Cache before the system is taken offline.
-Login to the Cacti system as root and run the following:
+Log in to the Cacti system as root and run the following:
 
 ```console
 cd /var/www/html/cacti
@@ -232,7 +232,7 @@ This operation will take several minutes to complete, at which time there will
 be additional records in the `poller_output_boost` table. So, it might be better
 that after the `poller_boost.php` process is complete, to modify the
 `poller_output_boost` table to InnoDB before reboot, and then convert it back to
-memory after they system maintenance is complete.
+memory after the system maintenance is complete.
 
 ---
 

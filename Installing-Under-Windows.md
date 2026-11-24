@@ -131,10 +131,10 @@ Follow the [PHP IIS instructions][php-iis] and Microsoft's
 
 2. Create the Cacti site/application and a dedicated application pool. Match
    the pool architecture to PHP. In Handler Mappings, map `*.php` through
-      `FastCgiModule` to `C:\php\php-cgi.exe`, not `php.exe`. Use the
-   corresponding
-   FastCGI application entry and allow script execution for the application.
-   PHP 8 does not provide `php8isapi.dll`; do not configure an ISAPI filter.
+   `FastCgiModule` to `C:\php\php-cgi.exe`, not `php.exe`. Use the
+   corresponding FastCGI application entry and allow script execution for the
+   application. PHP 8 does not provide `php8isapi.dll`; do not configure an
+   ISAPI filter.
 
 3. Add `index.php` to the site's Default Document list. Apply the PHP CGI
    settings required by the PHP IIS guide, including `cgi.force_redirect=0`
@@ -290,7 +290,7 @@ Verify Spine from that account before selecting it as the poller in Cacti.
    | --- | --- |
    | PHP binary | `C:/php/php.exe` |
    | RRDtool | `C:/rrdtool/rrdtool.exe` |
-      | SNMP tools, if used | `C:/usr/bin/snmpget.exe`, `snmpwalk.exe`, `snmpbulkwalk.exe`, `snmpgetnext.exe` |
+   | SNMP tools, if used | `C:/usr/bin/snmpget.exe`, `snmpwalk.exe`, `snmpbulkwalk.exe`, `snmpgetnext.exe` |
    | Cacti log | `C:/inetpub/wwwroot/cacti/log/cacti.log` |
    | Spine, if used | `C:/spine/spine.exe` |
 
@@ -298,9 +298,9 @@ Verify Spine from that account before selecting it as the poller in Cacti.
    separate Spine configuration path if selecting Spine.
 
 4. Create devices and graphs deliberately, or configure discovery and
-   automation
-   rules for the intended network. Installing Cacti does not establish that
-   every discovered device exposes all measurements in its selected template.
+   automation rules for the intended network. Installing Cacti does not
+   establish that every discovered device exposes all measurements in its
+   selected template.
 
 ## Schedule and verify the poller
 

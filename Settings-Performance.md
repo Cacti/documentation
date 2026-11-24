@@ -2,11 +2,11 @@
 
 The Boost Settings sub-tab in Cacti contains settings that
 can help improve the life of your Cacti server and significantly
-increase the live and lower the I/O wait of your Cacti system
+lower the I/O wait of your Cacti system
 through caching of RRDfile disk writes.
 
-It will also reduce the number of CPU cores require to render
-Cacti **Graphs** due to it's image cache mechanism.
+It will also reduce the number of CPU cores required to render
+Cacti **Graphs** due to its image cache mechanism.
 
 We will explain how these settings work briefly in the next
 two sections.  However, there is a more detailed guide in
@@ -82,13 +82,13 @@ The settings include:
 ## Image Caching
 
 The Image Caching setting on the Boost sub-tab
-basically defined where to store time sensitive
-images caches of your various Cacti **Graphs**.  These
+basically defines where to store time sensitive
+image caches of your various Cacti **Graphs**.  These
 Cached images only live for a few minutes, but can
 be consumed by multiple users simultaneously.
 
 The image of the settings is shown below.  They are
-fairly self explanatory.
+fairly self-explanatory.
 
 ![Image Caching](images/settings-boost-image-cache.png)
 

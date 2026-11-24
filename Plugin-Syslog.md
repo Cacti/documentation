@@ -2,13 +2,12 @@
 
 The syslog plugin is a Cacti plugin that has been around for more than a
 decade. It was inspired by the 'aloe' and 'h.aloe' plugins originally developed
-by the Cacti users sidewinder and Harlequin in the early 2000's.  As you will
+by the Cacti users sidewinder and Harlequin in the early 2000s.  As you will
 be able to see from the ChangeLog, it has undergone several changes throughout
-the years, and remains, even today when you have enterprise offering from both
-Elastic and Splunk, remains a relevant plugin for small to medium sized
-companies.
+the years, and remains a relevant plugin for small to medium-sized companies,
+even today when enterprise offerings exist from both Elastic and Splunk.
 
-It provides a simple Syslog event search an Alert generation and notification
+It provides a simple Syslog event search, alert generation, and notification
 interface that can generate both HTML and SMS messages for operations personnel
 who wish to receive notifications inside of a data or network operations
 center.
@@ -17,10 +16,10 @@ For log events that continue to be generated frequently on a device, such as
 smartd's feature to notify every 15 minutes of an impending drive failure, can
 be quieted using syslog's 'Re-Alert' setting.
 
-Syslog also provides multipoller support which allows for scalability and
-redundancy by leveraging multiple servers rules can be created on the main
-poller and pushed to the remotes for ease of management or each server can work
-independently
+Syslog also provides multipoller support, which allows for scalability and
+redundancy by leveraging multiple servers. Rules can be created on the main
+poller and pushed to the remotes for ease of management, or each server can work
+independently.
 
 ## Features
 
@@ -68,17 +67,22 @@ Legacy guides described reinstalling to change the table architecture. Follow
 the installed release's conversion procedure instead; a reinstall can discard
 the data that a migration is meant to preserve.
 
-The development plugin also supplies a read-only schema audit. Run this from
-the Cacti directory as the poller user:
+The development plugin also supplies a schema audit that reports missing tables
+and runs no migrations. Run this from the Cacti directory as the poller user:
 
 ```console
 php plugins/syslog/cli/syslog_schema.php --audit
 ```
 
-See the plugin README before using `--repair`, `--upgrade`, or a legacy table
-conversion. New development installs use partitioned history tables; existing
-traditional tables are not automatically converted. Timestamp-precision
-conversion is a separate, destructive operation, not a routine upgrade.
+Replacing the plugin files does not upgrade the plugin, and a passing audit does
+not show that an upgrade has completed. Run `php plugins/syslog/cli/syslog_schema.php --upgrade`
+from the Cacti directory as the poller user, or disable and then enable the
+plugin to open the Upgrade Advisor; Plugin Management shows the new version
+when the upgrade is done. See the plugin README before using `--repair` or a
+legacy table conversion. New development installs use partitioned history
+tables; existing traditional tables are not automatically converted.
+Timestamp-precision conversion is a separate maintenance-window operation, not a
+routine upgrade; it preserves messages unless `--discard-data` is given.
 
 ### Cacti Configuration for RSYSLOG
 
@@ -155,7 +159,8 @@ changing SQL modes for every application on the server.
 ## Installing the plugin
 
 1. Check the plugin release's README and `INFO`. The current development plugin
-   declares Cacti 1.2.23 or later; Cacti's own PHP requirement also applies.
+   declares Cacti 1.2.23 or later and needs PHP 8.0 or later; Cacti's own PHP
+   requirement also applies.
 2. Place the code under `<path_cacti>/plugins/syslog`. Keep application code
    readable by the web server and poller; it does not generally need web-server
    write access. See [Plugin Management](Plugins.md).
@@ -224,12 +229,12 @@ ingest. Paths and service options depend on the distribution's packages.
 
 ## Remote poller deployment options
 
-The syslog plugin can be deployed on each poller or select pollers each poller
-will need to be configured with rsyslog each collector with an independent
-Syslog database needs a local `config_local.php` file; see the plugin README
-for replication destinations
+The syslog plugin can be deployed on each poller or on select pollers. Each
+poller will need to be configured with rsyslog, and each collector with an
+independent Syslog database needs a local `config_local.php` file; see the
+plugin README for replication destinations.
 
-There are a few deployment approaches
+There are a few deployment approaches:
 
 - Multiple collectors behind a Syslog load balancer.
 
@@ -281,25 +286,25 @@ or database is unavailable. Independent collectors do not need rule replication.
 
 ### Syslog Alert Rules
 
-Alert rules are used to generate alerts in the cacti log they are also used to
-send out email alerts and command execution to cut tickets to upstream
-ticketing systems or perform initial troubleshooting scripts can also be
-leveraged to call on services such as slack or trello for alerting teams.
+Alert rules are used to generate alerts in the Cacti log. They are also used to
+send out email alerts and to run commands that cut tickets in upstream
+ticketing systems or perform initial troubleshooting. Scripts can also be
+leveraged to call on services such as Slack or Trello for alerting teams.
 
-you can leverage the built in variable substitution to format the input to the
-script
+You can leverage the built-in variable substitution to format the input to the
+script.
 
 ![Alert Rules](images/syslog-alert-messeges.png)
 
 ### Syslog Removal Rules
 
 The Syslog plugin allows administrators to delete incoming messages so they are
-not stored in the DB. For example, if you are not interested in seeing Syslog
-messages every time a user logs into a device you may add a rule to delete the
-message.
+not stored in the DB, or to transfer them to the `syslog_removed` table. For
+example, if you are not interested in seeing Syslog messages every time a user
+logs into a device, you may add a rule to delete the message.
 
-to do this click on the Syslog settings tab in the console then click removal
-rules
+To do this, click on the Syslog settings tab in the console, then click removal
+rules.
 
 ![Removal Rules](images/syslog-remove-messeges.png)
 

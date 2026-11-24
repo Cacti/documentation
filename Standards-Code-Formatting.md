@@ -13,14 +13,14 @@ The checked-in formatter configuration takes precedence over these examples.
 
 The main conventions are:
 
-- Initial white space must be tabs not spaces followed by the use of spaces to
-   align elements after initial tab.
+- Initial white space must be tabs, not spaces, followed by the use of spaces to
+   align elements after the initial tab.
 
 - In a block of variable assignments or array elements (moved to multi-line) it
    is acceptable, but not required, to use spaces to align the `=` or `=>` for
-   purpose of readability.
+   the purpose of readability.
 
-- Bracketing/braces should start on the same line of the statement.  For
+- Bracketing/braces should start on the same line as the statement.  For
    example:
    - `if (expression) {`,
    - `} else {`,
@@ -123,7 +123,7 @@ foreach ($array as $key => $value) {
 
 All function names should begin with an identifier (see below) and end with
 an action.
-The identifier should generally be derived from the name of the file which
+The identifier should generally be derived from the name of the file in which
 the function resides.
 
 `Returns all users`
@@ -328,7 +328,7 @@ Do not concatenate untrusted values into SQL.
 
 6) In your SQL WHERE and SELECT, where functions are involved
 
-    1. Ensure that there are spaces between parameter
+    1. Ensure that there are spaces between parameters
     2. Ensure operators and variables are separated by spaces
 
 ## Comments
@@ -398,7 +398,7 @@ the file.
 
 All functions must be preceded by a comment describing the purpose, argument
 list, and return type of the function. It should be formatted per
-PHP DocBlock specifications as follow:
+PHP DocBlock specifications as follows:
 
 ```php
 /**

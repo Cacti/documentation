@@ -19,7 +19,7 @@ Output or Standard Error log. If you have the Administrative level access,
 you may additionally purge information from the logs.
 
 As a Cacti Administrator, you have the ability to filter out some message types
-from users for example, one message type that people like to filter out is
+from users, for example, one message type that people like to filter out is
 "AUTH" messages that tell you who is logging into the Cacti Web Site.
 You can edit these removal rules from the Cacti Settings page.
 

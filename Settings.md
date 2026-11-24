@@ -1,8 +1,8 @@
 # Settings
 
 Cacti has numerous settings that can be changed from the Web
-Interface.  Cacti, from it's inception desired to have as many settings
-as possible to be configurable without having to goto the Command Line to
+Interface.  Cacti, from its inception, desired to have as many settings
+as possible to be configurable without having to go to the Command Line to
 make them.  While, for the most part this is still true, there are
 several settings that must be configured in the config.php which we
 will cover in a separate sub-section.
@@ -19,9 +19,8 @@ The standard Settings sub-tabs include:
    options, and log rotation (`Rotate the Cacti Log`, `Rotation Frequency` and
    `Log Retention`).  The location of the log files is set on the Paths tab.
 - [Device Defaults](Settings-Device-Defaults.md) - This is where you can
-   establish
-   presets that every new Cacti **Device** gets by default, through
-   **Automation**, the CLI or though the Web Interface.
+   establish presets that every new Cacti **Device** gets by default, through
+   **Automation**, the CLI or through the Web Interface.
 - [Poller](Settings-Poller.md) - Though most **Poller** settings have been
    moved to the **Data Collectors**, some are still managed at the system
    level including the poller type to use, script server and a number
@@ -34,8 +33,8 @@ The standard Settings sub-tabs include:
    module allows for the saving of key metrics that are important in
    dash-boarding plugins in Cacti.
 - [Visual](Settings-Visual.md) - This is where you can set some preset
-   like **Graph** and **Data Source** title lengths, and drop-down sizes
-   these Visual settings are global in nature.
+   like **Graph** and **Data Source** title lengths, and drop-down sizes.
+   These Visual settings are global in nature.
 - [Authentication](Settings-Auth.md) - This is where Cacti
    defines how **Users** are managed.  The available methods depend on the Cacti
    version.
@@ -45,9 +44,9 @@ The standard Settings sub-tabs include:
    - [Local Users](Settings-Auth-Local.md) - Authentication and Authorization
       are handled in Cacti. Passwords are stored as hashes.
    - [Basic Users](Settings-Auth-Basic.md) - Authentication outside of Cacti,
-      for example SAML2, TACACS+, NIS, etc.). Authorization remains in Cacti
+      for example SAML2, TACACS+, NIS, etc. Authorization remains in Cacti.
    - [LDAP Users](Settings-Auth-LDAP.md) - Authentication outside of Cacti,
-      either LDAP or Active Directory.  Authorization remains in Cacti
+      either LDAP or Active Directory.  Authorization remains in Cacti.
    - [Login Providers](Login-Providers.md) - LDAP, Active Directory, SAML2, and
       OpenID Connect on the unreleased development branch.
    - [Multiple Domains](Settings-Domains.md) - Cacti 1.2 directory domains with
@@ -64,7 +63,7 @@ The standard Settings sub-tabs include:
    Simple Mail Transfer Protocol (SMTP) settings used for general
    notification across all of Cacti.
 
-In addition, to the base settings, Cacti Plugins can extend settings
+In addition to the base settings, Cacti Plugins can extend settings
 for their own purposes.  When a Plugin has few settings
 that it uses, the Cacti Group has recommended a sub-tab called
 `Misc` for those Plugins for their purposes.  Most Plugins

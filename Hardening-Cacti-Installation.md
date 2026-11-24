@@ -47,6 +47,9 @@ chmod -R 755               /var/www/html/cacti
 chown -R www-data:www-data /var/www/html/cacti/rra \
                            /var/www/html/cacti/log \
                            /var/www/html/cacti/cache
+chmod -R 750              /var/www/html/cacti/rra \
+                           /var/www/html/cacti/log \
+                           /var/www/html/cacti/cache
 
 # Protect the database credentials in config.php.  The recursive 755 above
 # leaves it world-readable; restrict it to root and the web user.
@@ -205,9 +208,9 @@ setsebool -P httpd_can_network_connect_db on
 
 ### Poller Systemd Drop-in
 
-The Cacti spine poller runs as a separate daemon and may need to connect
+The Cacti Spine poller runs as a separate daemon and may need to connect
 outward for SNMP.  Do not force it into the `httpd_t` domain: that confines
-spine to Apache's policy rather than freeing it, and outbound access in
+Spine to Apache's policy rather than freeing it, and outbound access in
 `httpd_t` is still gated by booleans.  If SNMP polling is blocked by SELinux,
 enable the relevant boolean instead and leave the daemon in its own domain:
 

@@ -11,7 +11,7 @@ directly reachable by your Cacti server.
 In this example, the Cacti server can reach the Gateway, which can reach the
 target server.
 
-> **Important — TCP vs UDP**: SSH port forwarding (`-L`) is TCP-only. Standard
+> **Important: TCP vs UDP**: SSH port forwarding (`-L`) is TCP-only. Standard
 > SNMP uses UDP port 161 and **cannot** be tunneled this way. This guide works
 > only when the target's `snmpd` is explicitly configured to accept TCP
 > transport (as shown below). It is **not** suitable for most network devices

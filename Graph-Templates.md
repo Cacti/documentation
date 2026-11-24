@@ -1,13 +1,13 @@
 # Graph Templates
 
-**Graph Templates** are Cacti objects that allows you to define how RRDtool is
+**Graph Templates** are Cacti objects that allow you to define how RRDtool is
 to render a Cacti **Graph**.  Most RRDtool options are supported including
-CDEF's and VDEF's, Left and Right Axis, Ticks and Dashes, multiple Auto Scaling,
+CDEFs and VDEFs, Left and Right Axis, Ticks and Dashes, multiple Auto Scaling,
 Grid, and Legend Options.
 
 The purpose of **Graph Templates** is to simplify the **Automation** process by
 pre-defining the layout of **Graphs** for various metrics that are to be
-monitored in Cacti.  When used in Conjunction with Cacti's **Graph Rules**, you
+monitored in Cacti.  When used in conjunction with Cacti's **Graph Rules**, you
 can automatically create just about any **Data Query** based **Graph** during
 Cacti's **Network Discovery** process.
 
@@ -50,11 +50,11 @@ The editor groups its fields into these sections:
 | Axis Options | Right-axis conversion and formatting. |
 | Legend Options | Legend placement and formatting. |
 
-Each of these sections are displayed below for reference.  For more information
+Each of these sections is displayed below for reference.  For more information
 on how to use these options, please visit the [RRDtool
 Website](https://RRDtool.org).
 
-The *Graph Items* make up what is draw within the canvas of the Graph.  There
+The *Graph Items* make up what is drawn within the canvas of the Graph.  There
 are several *Graph Item* types including:
 
 ###### Table 3. Common graph item types
@@ -111,8 +111,8 @@ conversion of stored measurements. **Slope Mode** smooths the rendered lines.
 ## Graph Template - Scaling Options
 
 The *Scaling Options* allow the Administrator to apply either *Rigid* or *Auto
-Scaling* settings to the resulting *Graph*.  These options are fairly self
-explanatory.  However, you can always view the RRDtool Documentation online for
+Scaling* settings to the resulting *Graph*.  These options are fairly
+self-explanatory.  However, you can always view the RRDtool Documentation online for
 more information.
 
 ![Scaling Options](images/graph-templates-edit3.png)
@@ -133,7 +133,7 @@ The *Axis Options* allow you to define a *Right Axis* and optional *Formatters*.
 ## Graph Template - Legend Options
 
 The *Legend* options allow you to specify how the *Legend* should be placed on
-the resulting **Graph** modern RRDtool has several options that were not
+the resulting **Graph**. Modern RRDtool has several options that were not
 available in Cacti prior to Cacti 1.0.
 
 ![Legend Options](images/graph-templates-edit6.png)

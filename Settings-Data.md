@@ -1,8 +1,8 @@
 # Data Settings
 
-The Cacti Data settings includes settings for gathering statistical data
+The Cacti Data settings include settings for gathering statistical data
 about Cacti's **Data Sources** and about settings around how Cacti
-stores it's **Round Robin Archives** Time Series Databases (TSDB),
+stores its **Round Robin Archives** Time Series Databases (TSDB),
 otherwise known as RRDfiles.
 
 The sections below cover statistics, file checks, and storage.
@@ -20,7 +20,7 @@ Below you will find an image of the default settings.
 
 Those settings include:
 
-- **Enable Data Source Statistics Collection** - This is setting
+- **Enable Data Source Statistics Collection** - This setting
   will either enable or disable the statistics collection.
 
 - **Data Collection Method** - Data Source Statistics can use a legacy method
@@ -75,7 +75,7 @@ Those settings include:
 
 ![RRD Checker](images/rrd_check.png)
 
-RRDfile checker scans RRDfiles and try to find problems like stale values.
+RRDfile checker scans RRDfiles and tries to find problems like stale values.
 
 Those settings include:
 
@@ -94,7 +94,7 @@ Those settings include:
 ## Data Storage Settings
 
 These settings determine how you store your RRDfiles.  This
-sub-section has two layouts as showing in the images below.
+sub-section has two layouts as shown in the images below.
 
 ![Data Storage Local](images/settings-data-local.png)
 

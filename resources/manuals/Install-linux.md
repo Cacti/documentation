@@ -30,8 +30,7 @@ the web installer over restricted HTTPS access and change initial credentials.
 [Spine](../../Spine.md) is optional and must match the Cacti version.
 
 Add a device, confirm its SNMP settings, create graphs, and wait several
-polling
-intervals. Follow [How to Graph Your
+polling intervals. Follow [How to Graph Your
 Network](../../How-to-Graph-Your-Network.md).
 
 ![Example graph with populated historical data](../../images/graphs-edit.png)

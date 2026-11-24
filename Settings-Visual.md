@@ -71,8 +71,8 @@ Those settings include:
 - **Default Log Tail Lines** - When viewing the Cacti Log, how many lines should
   appear per page.
 
-- **Maximum number of rows per page** - The maximum number of regular expression
-  search matches to display, when searching.
+- **Maximum number of rows per page** - The number of lines the Cacti Log
+  viewer tails when a user selects **All Lines**. The default is 1000.
 
 - **Log Tail Refresh** - The frequency that the log pages should auto-refresh.
 
@@ -96,7 +96,7 @@ Those settings include:
 - **Refresh Interval** - The default system level `Refresh Interval` for the
   Realtime interface when a user first opens a Realtime **Graph**.
 
-- **Cacti Directory** - Where should Cacti cache Realtime PNG's and RRDfiles.
+- **Cacti Directory** - Where should Cacti cache Realtime PNGs and RRDfiles.
 
 - **Custom Watermark** - A watermark that will appear on every Cacti **Graph**
 
@@ -108,9 +108,9 @@ Those settings include:
   settings include: Theme, or System. When choosing `System`, your settings page
   will expand where you will then have additional control.
 
-> **NOTE**: The RRDtool Watermark control requires a recent version of RRDtool,
-> such as the 1.7 release. If you attempt to use this setting and your
-> **Graphs** break, then upgrade RRDtool.
+> **NOTE**: The RRDtool Watermark control is supported by RRDtool 1.5, the
+> minimum release Cacti supports, and later. If you attempt to use this setting
+> and your **Graphs** break, then upgrade RRDtool.
 
 ## Font Selection Options
 
@@ -121,7 +121,7 @@ Theme settings.
 
 The sizes are in pixels, and the Font Settings can either be a True Type Font
 file path, or a valid Pango font-config value. For more information on Pango
-font-config values, see your operating systems documentation. However, you can
+font-config values, see your operating system's documentation. However, you can
 normally see all the fonts installed on your Linux system by issuing the
 following command `fc-list`.
 

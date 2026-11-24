@@ -20,11 +20,11 @@ Those options include:
 
 - **Minimum Length** - The minimum length password that is acceptable
 - **Require Mix Case** - Require that the password have mixed case
-- **Require Number** - The password must includes a number.
+- **Require Number** - The password must include a number.
 - **Require Special Character** - The password must include a Special
   Character.
 - **Force Complexity Upon Old Passwords** - If set, and a user attempts
-  to login with a password that does not meet the current complexity
+  to log in with a password that does not meet the current complexity
   requirements, they will be forced to change their password.
 - **Expire Inactive Accounts** - Disable inactive accounts after
   a certain number of days of inactivity.  The Admin account is excluded from
@@ -41,12 +41,12 @@ If a user attempts to use an incorrect password more than a certain
 number of times without a successful login, Cacti can automatically
 lock out the user from that account for a certain amount of time.
 This technique prevents hackers from continually attempting to
-break a users password from the Cacti interface.  The images
+break a user's password from the Cacti interface.  The image
 below shows the two settings associated with this Cacti feature.
 
 ![Local Lockout Settings](images/settings-auth-local-locking.png)
 
-The settings are fairly self explanatory, so additional detail is no
+The settings are fairly self-explanatory, so additional detail is not
 provided here.
 
 ## Pwned Checks

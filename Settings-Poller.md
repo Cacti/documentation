@@ -1,7 +1,7 @@
 # Poller Settings
 
-The Poller sub-tab of the Cacti settings are where you go to control
-many aspects of **Data Collection** in Cacti, you control various base
+The Poller sub-tab of the Cacti settings is where you go to control
+many aspects of **Data Collection** in Cacti. You control various base
 collection frequencies, communication timeouts, and other settings that
 impact how Cacti's **Data Collection** works.
 
@@ -30,7 +30,7 @@ Those settings include:
   this is the default `Full Sync` interval it will use.  In the current
   Cacti design, a `Full Sync` should only be required when attempting
   to replicate local authentication or authorization data to
-  **Remote Data Collectors**, of if you have made changes that would
+  **Remote Data Collectors**, or if you have made changes that would
   otherwise impact the behavior of a **Remote Data Collector** when it
   was offline.
 
@@ -43,24 +43,24 @@ Those settings include:
 > should be `1 Minute` as well.
 
 - **Cron/Daemon Interval** - This is the frequency at which either the Cacti
-  daemon (cactid.php), or the systems crontab/task-manager should relaunch
-  every **Data Collectors** Poller process.
+  daemon (cactid.php), or the system's crontab/task-manager should relaunch
+  every **Data Collector's** Poller process.
 
 - **Balance Process Load** - This setting will sort the devices such that
   each concurrent Cacti process is polling the same number of **Data Sources**.
   Otherwise, Cacti will simply order the hosts by their `device ids`.
 
-- **Debug Output Width** - This is a diagnostic settings that you would only
+- **Debug Output Width** - This is a diagnostic setting that you would only
   enable from time to time if you wish to check if the output from your
   **Data Collector** scripts exceeded the output width in the various
-  Poller tables.  Since checking this have a very negative impact on
+  Poller tables.  Since checking this has a very negative impact on
   polling performance, it's disabled by default.
 
 - **Remote Agent Timeout** - When Cacti either needs information from
   a **Data Collector**, like `ping` latency from the collector to one
   of the **Devices** it's monitoring, or when a **Remote Data Collector**
   needs information from the main Cacti server, this is the timeout
-  for receiving a handshake from that server.  It's use to keep the
+  for receiving a handshake from that server.  It's used to keep the
   Website from locking up in the case a **Data Collector** is not
   responding due to being down.
 
@@ -69,7 +69,7 @@ Those settings include:
   memory table from swapping on very large systems with large databases.
 
 - **Disable Resource Cache Replication** - By default Cacti will
-  continually replicate it's Website content with it's
+  continually replicate its Website content with its
   **Remote Data Collectors**.  So, essentially, they are self
   upgradable.  However there are some cases where customers wish
   to upgrade the Central system before allowing the remotes
@@ -145,17 +145,17 @@ Those settings include:
 
 - **Invalid Data Logging** - By default spine will only log the number
   of errors it experienced for a **Device**.  If you wish more
-  granularity you can change this settings to either `Summary`
+  granularity you can change this setting to either `Summary`
   or `Detailed` logging.
 
 - **Number of PHP Script Servers** - Another level of Spine parallelism
-  is it's ability to create a pool of memory resident PHP
+  is its ability to create a pool of memory resident PHP
   interpreters for running PHP scripts, making spine very powerful.
   Every concurrent process will have this many memory resident
   PHP interpreters pooled for running scripts.
 
 - **Script and Script Server Timeout Value** - This is the timeout
-  to stop run-on script from blocking poller performance.  If a script
+  to stop run-on scripts from blocking poller performance.  If a script
   exceeds this timeout, it will generate a log message.
 
 - **Poller Output Not Empty Debouncing** - If some **Data Sources** cause your

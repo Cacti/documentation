@@ -3,12 +3,13 @@
 This section will describe **Tree Rules** in Cacti.
 
 Tree rules allow Automation to bunch up devices based on matches
-on rules we come up with you can say bunch all Cisco devices on to a Cisco tree.
-Or if you have a site where all of the hostnames start with siteb you can
-have a site b tree etc see below for some examples.
+on rules we come up with. You can say bunch all Cisco devices on to a Cisco
+tree. Or if you have a site where all of the hostnames start with siteb, you can
+have a site b tree, etc. See below for some examples.
 
-To get started you will need to create a Tree rule on the top right click the +
-to start a new rule you are also able to duplicate rules to make it easier as well.
+To get started you will need to create a Tree rule. On the top right, click the +
+to start a new rule. You are also able to duplicate rules to make it easier as
+well.
 
 ![Tree Rules](images/automation-tree-rules.png)
 
@@ -16,12 +17,12 @@ to start a new rule you are also able to duplicate rules to make it easier as we
 
 ![Tree Rules Item Edit](images/automation-tree-rules-edit2.png)
 
-We need a way to tell automation what device we are looking for
-in the example above we are looking for a device with the hostname Linux
-this is done via a REGEX any perl based REGEX can be used.
+We need a way to tell automation what device we are looking for.
+In the example above we are looking for a device with the hostname Linux.
+This is done via a REGEX; any Perl based REGEX can be used.
 
 To test this REGEX on existing devices you can open the Matching Items tab of
-the rule item, this will check the Devices currently in cacti for a match.
+the rule item; this will check the Devices currently in Cacti for a match.
 
 ![Tree Rules Preview](images/automation-tree-rules-edit4.png)
 

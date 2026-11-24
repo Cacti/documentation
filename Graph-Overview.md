@@ -1,8 +1,8 @@
 # Graph Overview
 
 Almost everything in Cacti is somehow related to a **Graph**. At any time, you can
-list all available **Graph** by clicking on `Console > Management > Graphs` menu
-pick. While it is possible to manually create graphs through this interface,
+list all available **Graphs** by clicking on `Console > Management > Graphs`
+menu pick. While it is possible to manually create graphs through this interface,
 new users should follow the instructions provided in the next chapter for
 creating **New Graphs** in Cacti.
 
@@ -13,7 +13,7 @@ RRDtool without requiring users to understand how RRDtool works. With this in
 mind, every **Graph** in Cacti has certain settings and at least one **Graph Item**
 associated with it. While graph settings define the overall properties of a
 **Graph**, the **Graph Items** define the data that is to be represented on the **Graph**.
-So the **Graph Items** define which data to display and how it should displayed,
+So the **Graph Items** define which data to display and how it should be displayed,
 and also define what should be displayed on the legend.
 
 Each **Graph** and **Graph Item** has a set of parameters which control various aspects
@@ -32,8 +32,8 @@ earlier interface. Check menu labels against your installed version.
 ![Graph Management](images/graphs.png)
 
 From this interface, you can see the Name, and ID of the **Graph**,
-the Source **Graph Template**, and it's size.  At the bottom of the page, there
-is a list of Action that can be taken on **Graphs**.  These actions are fairly
+the Source **Graph Template**, and its size.  At the bottom of the page, there
+is a list of Actions that can be taken on **Graphs**.  These actions are fairly
 extensive, and are also extended as you add **Plugins** to Cacti.
 
 When you click on the Name of the **Graph**, you will be taken to a `Graph Edit`
@@ -42,7 +42,7 @@ page as shown below.
 ![Graph Management Edit](images/graphs-edit.png)
 
 In most cases, where the **Graph** is owned by a **Graph Template**, there is
-not much your can do on this page.  However, in the case that a **Graph**
+not much you can do on this page.  However, in the case that a **Graph**
 is not managed by a template as in the image below, there are many more
 options you will have when working with the **Graph**.  The downside of
 not leveraging a **Graph Template** for your **Graphs** is that you have

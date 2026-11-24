@@ -2,7 +2,7 @@
 
 Cacti's Path Settings include mainly the locations of core binaries that
 Cacti must call in order to operate correctly.  Generally, these binaries
-are included in the Web Servers path, but being able to override these
+are included in the Web Server's path, but being able to override these
 settings is important, especially for debugging issues.  Cacti's Paths
 sub-tab is broken into the following sub-sections:
 
@@ -11,11 +11,11 @@ sub-tab is broken into the following sub-sections:
    rotation settings are on the **Logging** tab
 - **Alternate Poller Path** - Locations for Cacti's spine binary and spine
    config file if not in the established default locations
-- **RRD Cleaner** - Setting for Cacti's RRDfile disposal of removed RRDfile
+- **RRD Cleaner** - Settings for Cacti's RRDfile disposal of removed RRDfiles
    when Data Sources are removed.
 
 When using Cacti's **Remote Data Collectors** or **Remote Pollers** the
-settings that refer for a `File Path`, or `Directory Path` will be local
+settings that refer to a `File Path`, or `Directory Path` will be local
 to the **Data Collector**.  Therefore, you can have one set of paths for
 your Main Cacti site, and another set of paths for your Remote Poller,
 say in the case that they are on Windows.
@@ -34,7 +34,7 @@ Those settings include:
 
 **snmpbulkwalk Binary Path** - This is the path to the `snmpbulkwalk` binary.
 This binary
-path is essential if you use SNMPv2 of SNMPv3 versions where **Data Queries**
+path is essential if you use SNMPv2 or SNMPv3 versions where **Data Queries**
 perform
 bulkwalks by default to increase performance.
 
@@ -81,8 +81,8 @@ Log rotation settings (`Rotate the Cacti Log`, `Rotation Frequency` and
 `Log Retention`) are on the **Logging** tab.
 
 > **NOTE**: Some package maintainers control log rotation and therefore the log
-> rotation settings may be missing from certain version of Cacti if you install
-> through a packaging tool such as `apt-get`, `yum` or `dnf`
+> rotation settings may be missing from certain versions of Cacti if you install
+> through a packaging tool such as `apt-get`, `yum` or `dnf`.
 
 ## Alternate Poller Path
 
@@ -105,7 +105,7 @@ Those settings include:
 
    - **pwd** - The same directory as spine
    - **../etc/** - One sibling `etc` directory of the `spine` binary directory.
-   - **/etc/** - The systems /etc/ directory.
+   - **/etc/** - The system's /etc/ directory.
 
 ## RRD Cleaner
 
@@ -125,11 +125,11 @@ Those settings include:
 - **RRDfile Auto Clean Method** - This is the method to perform cleanup.
    Options include:
 
-   - **Delete** - Simply remote the files once the **Data Source** is removed
+   - **Delete** - Simply remove the files once the **Data Source** is removed
    - **Archive** - Archive the RRDfile to an Archive directory once it's
      removed.
 
-- **Archive directory** - The Archive directory to move old RRDfile to.
+- **Archive directory** - The Archive directory to move old RRDfiles to.
 
 ---
 Copyright (c) 2004-2026 The Cacti Group
