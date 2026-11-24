@@ -19,3 +19,13 @@ updates:
     groups:
       python-tools: {patterns: ["*"], update-types: [minor, patch]}
     commit-message: {prefix: deps, include: scope}
+  - package-ecosystem: npm
+    directory: /tests/browser
+    target-branch: develop
+    schedule: {interval: weekly, day: friday}
+    open-pull-requests-limit: 5
+    cooldown: {default-days: 7}
+    groups:
+      browser-tests: {patterns: ["*"]}
+    labels: [dependencies, javascript]
+    commit-message: {prefix: deps, include: scope}
