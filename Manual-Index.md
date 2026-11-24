@@ -72,6 +72,7 @@ Organize monitoring, automate discovery, manage access, and create reports.
 - [Automation SNMP Options](SNMP-Options.md)
 - [User Management](User-Management.md)
 - [User Group Management](User-Group-Management.md)
+- [User Profile](User-Profile.md)
 - [Login Providers](Login-Providers.md)
 - [User Domains (1.2)](User-Domains.md)
 - [Reports Administration](Reports-Admin.md)
@@ -81,6 +82,7 @@ Organize monitoring, automate discovery, manage access, and create reports.
 - [Report Events](Reports-Events.md)
 - [Other Report Management Options](Reports-Other-Options.md)
 - [System Utilities](System-Utilities.md)
+- [SNMP Agent and Notification Receivers](SNMP-Agent.md)
 
 ### Configure Data Collection
 

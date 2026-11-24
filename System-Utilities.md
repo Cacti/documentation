@@ -66,6 +66,9 @@ These utilities are shown only when SNMP Agent support is enabled.
 - **View SNMP Agent Notification Log** - Shows the latest events the SNMP Agent
   has handled in relation to the registered notification receivers.
 
+See [SNMP Agent and Notification Receivers](SNMP-Agent.md) for how the cache
+and the receivers are used.
+
 ### Technical support
 
 Cacti technical support page.  Used by developers and technical support
@@ -111,6 +114,27 @@ the RRDfile autoclean selection.
 
 ![System Utilities](images/rrd-autoclean.png)
 
+In the development source, the cleaner is its own menu entry,
+`Console > Utilities > RRDfile Cleaner`, and requires the
+**Settings/Utilities** permission.  The entry is not shown on a
+**Remote Data Collector**.  To use it:
+
+1. Press **Rescan**.  Cacti lists the RRDfiles found under the `rra`
+   directory, or reported by the RRDtool Proxy Server when that storage
+   location is selected, that no **Data Source** in Cacti uses.  Files in the
+   **Archive directory** are skipped when that directory is inside the `rra`
+   directory.  The legend shows the total size and the time of the
+   **Last Scan**.
+2. Narrow the list with **Search** and **Time Since Update**, which filters on
+   how long ago each file was last modified.
+3. Select files and choose **Delete** or **Archive** from the action
+   drop-down, or press **Delete All** or **Archive All** to schedule every
+   listed file.
+
+The page only schedules the work.  The files are deleted, or moved to the
+**Archive directory** set on the Paths tab, by Cacti's maintenance process
+during a later polling cycle.  A deleted file cannot be recovered by Cacti.
+
 ### RRDfile Checker
 
 `Console > utilities > System Utilities > RRDfile Checker`
@@ -126,6 +150,36 @@ scheduled time and tests the stored data:
 For very large Cacti installs the **RRDfile checker** can take quite
 a long time to complete.
 You can set the number of concurrent parallel processes in `Console > Configuration > Settings > Data`
+
+In the development source, the checker is found at
+`Console > Troubleshooting > RRDfile Checker`, the settings tab is labeled
+**Data/Statistics**, and the page requires the **Settings/Utilities**
+permission.  The entry is not shown on a **Remote Data Collector**.  The check
+is disabled by default; until **Enable RRDfile Check** is checked in
+[Data Settings](Settings-Data.md#rrdfile-checker), the page only reports that
+the check is disabled.
+
+When enabled, the main **Data Collector** starts `poller_rrdcheck.php` in the
+background at the end of each polling cycle, and the check runs when the
+**Check Frequency** has elapsed.  When **Boost** on-demand RRD updates are
+enabled, the check runs when the Boost poller finishes instead.  The run is
+limited by the **RRDChecker Timeout** on the
+[Scheduler](Settings-Poller.md#scheduler-settings) tab.
+
+Each finding is listed with the **Host Description**, **Data Source**,
+**Local Data ID**, **Message** and **Date**.  The messages cover:
+
+- An RRDfile that does not exist or is not writable
+- An RRDfile whose modify time or last update is older than one hour
+- An RRDfile step or minimal heartbeat that does not match the
+  **Data Source Profile**
+- Data Sources that the database and the RRDfile do not have in common
+- No data returned, stale values, or more than 50% NaN values in the last hour
+  or the last 24 hours
+
+Use **Search** and **Age** to filter the list.  **Purge** removes all findings
+from the database.  Findings older than 7 days are removed when a check
+completes.
 
 ### Viewing Change log from system utilities
 
@@ -146,6 +200,26 @@ the login originated from along with info
 if the login was based on password or token-based login.
 
 ![System Utilities](images/system-utilities-viewulog.png)
+
+In the development source, the log is its own menu entry,
+`Console > Utilities > User Log`, titled **User Login History**, and requires
+the **Settings/Utilities** permission.  Each row shows the **User**,
+**Full Name**, **Authentication Realm**, **Date**, **Result** and
+**IP Address** of one login attempt.  The **Result** is one of:
+
+- **Success - Password** - A login with a password.
+- **Success - Token** - A login with an authentication cookie, or a verified
+  two-factor authentication token.
+- **Success - Password Change**
+- **Failed**
+
+Filter the list with **Search**, **User** and **Result**.  The **User** filter
+also offers **Deleted/Invalid**, for attempts whose account no longer exists.
+
+**Purge** asks for confirmation and then removes the failed attempts, all but
+the most recent successful password login and token login of each existing
+user, and every entry for a user that no longer exists.  If logging is set to
+both Cacti and Syslog, the log information remains in Syslog.
 
 ### View boost update status and stats
 

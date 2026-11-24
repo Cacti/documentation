@@ -89,14 +89,22 @@ The image below shows the default layout for these sub-sections.
 Those settings include:
 
 - **Enable Real-time Graphing** - Allow Realtime graphs to be used in Cacti.
+  Checked by default.
 
-- **Graph Time-span** - The default system level `Graph Timespan` to use when a
-  user opens a Realtime **Graph** for the first time.
+- **Graph Timespan** - The default system level `Graph Timespan` to use when a
+  user opens a Realtime **Graph** for the first time.  The default is 1 Minute.
 
-- **Refresh Interval** - The default system level `Refresh Interval` for the
-  Realtime interface when a user first opens a Realtime **Graph**.
+- **Minimum Refresh Interval** - The minimal supported time between Realtime
+  **Graph** updates.  The default is 10 Seconds.  A **Device** that caches its
+  data and does not provide realtime updates can need a higher value to avoid
+  gaps.
 
-- **Cacti Directory** - Where should Cacti cache Realtime PNGs and RRDfiles.
+- **Cache Directory** - Where should Cacti cache Realtime PNGs and RRDfiles.
+  The default is the `realtime` directory under the Cacti cache path.  The
+  path must be absolute and writable.
+
+See [Realtime Graphs](Viewing-Graphs.md#realtime-graphs) for how these settings
+are used.
 
 - **Custom Watermark** - A watermark that will appear on every Cacti **Graph**
 

@@ -2,6 +2,8 @@
 
 This area of Cacti is where you configure core notification settings as well as
 settings for using alternate DNS servers associated with certain Cacti plugins.
+In the development source, this settings tab is labeled
+**Mail/Reporting/DNS/Proxy**.
 
 ## URL Linking
 

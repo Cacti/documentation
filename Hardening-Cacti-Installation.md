@@ -121,6 +121,44 @@ location ~ ^/cacti/(scripts|resource)/.*\.php$ {
 }
 ```
 
+### Directories That Cacti Denies by Default
+
+Cacti ships an `.htaccess` file that denies all web access in each of these
+directories:
+
+| Directory | Contents |
+| --- | --- |
+| `bin/` | Maintenance and build scripts |
+| `cli/` | Command-line scripts |
+| `contrib/` | Contributed files |
+| `log/` | The Cacti log |
+| `mibs/` | MIB files for the SNMP Agent |
+| `rra/` | RRDfiles |
+| `scripts/` | Data collection scripts |
+| `cache/boost/`, `cache/mibcache/`, `cache/realtime/`, `cache/spikekill/` | Generated cache files |
+
+Apache applies these files only when `AllowOverride` permits it for the Cacti
+directory. Nginx and other web servers ignore `.htaccess` files. If either
+applies to you, deny the same directories in the server configuration.
+
+For Apache, inside your Cacti `<VirtualHost>`:
+
+```apache
+<DirectoryMatch "^/var/www/html/cacti/(bin|cli|contrib|log|mibs|rra|scripts|cache/(boost|mibcache|realtime|spikekill))/">
+    Require all denied
+</DirectoryMatch>
+```
+
+For Nginx, inside your Cacti `server` block:
+
+```nginx
+location ~ ^/cacti/(bin|cli|contrib|log|mibs|rra|scripts|cache/(boost|mibcache|realtime|spikekill))/ {
+    deny all;
+}
+```
+
+Adjust the path and the `/cacti/` prefix to match your installation.
+
 ---
 
 ## 3. PHP-FPM Pool Hardening

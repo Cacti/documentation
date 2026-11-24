@@ -3,7 +3,8 @@
 The Boost Settings sub-tab in Cacti contains settings that
 can help improve the life of your Cacti server and significantly
 lower the I/O wait of your Cacti system
-through caching of RRDfile disk writes.
+through caching of RRDfile disk writes.  In the development source, this
+settings tab is labeled **Boost**.
 
 It will also reduce the number of CPU cores required to render
 Cacti **Graphs** due to its image cache mechanism.
