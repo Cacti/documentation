@@ -2,12 +2,12 @@
 
 ## Overview
 
-In order to create a patch for inclusion into the cacti project, you need to
+In order to create a patch for inclusion into the Cacti project, you need to
 create a pull request which holds the changes to be made.  Please note, it is
 better if your request also includes a change to `CHANGELOG` with a brief
 description of your change (this is included with the distributed project).
 
-The basic steps to creating a pull request are to fork cacti (by clicking on
+The basic steps to creating a pull request are to fork Cacti (by clicking on
 "Fork") into your own repo on GitHub. You can use just the main develop branch
 of your forked repo as long as all future changes can also appear in the same
 pull request (until it is merged).  However, it is cleaner to create a separate
@@ -28,13 +28,15 @@ later.
 * **upstream** is the **repo** that you have forked from on GitHub
 
 * **branch** is similar to a **fork** but within an existing **repo** contains a
-  separate area of work * **commit** is a collection of changes that are stored
+  separate area of work
+
+* **commit** is a collection of changes that are stored
   together
 
-* **git** is a command that should be installed locally on the developers
+* **git** is a command that should be installed locally on the developer's
   machine
 
-* **Issue-1153** is an example branch whose name is based of the number of the
+* **Issue-1153** is an example branch whose name is based on the number of the
   issue created on GitHub
 
 _Note: During this page, any reference to Issue-1153 is the branch name that
@@ -46,7 +48,7 @@ The first time you come to use `git` if you try to commit, it will use your
 local settings to mark the commit with a username and email address.  However,
 if these are not defined, then it will use username@machinename as the email
 address and username as the name.  These details will be stored against the
-commit that you make so it is always advisably to set them.  To change these,
+commit that you make so it is always advisable to set them.  To change these,
 use
 
 ```shell
@@ -56,12 +58,12 @@ git config --global user.email "email@example.com"
 
 ## Creating your local clone
 
-1. Fork cacti on github.com using the Fork button that appears top right of the
+1. Fork Cacti on github.com using the Fork button that appears top right of the
    code area.
 
    ![create fork](images/patch-creation-clone.png)
 
-2. Clone the source to your local machine, you can use one of the following two
+2. Clone the source to your local machine; you can use one of the following two
    lines.  The second allows you to clone into a directory of your own naming,
    whilst the first takes the repo's name.
 
@@ -96,7 +98,8 @@ git config --global user.email "email@example.com"
    ![image](images/patch-creation-branch.png)
 
 To checkout the newly created branch, you need to pull down the latest GitHub
-information using `git fetch` before perform the checkout.  It will as follows:
+information using `git fetch` before performing the checkout.  It will be as
+follows:
 
 ```shell
 git fetch
@@ -104,7 +107,7 @@ git checkout Issue-1153
 ```
 
 At this point, you will have a local repo (which is a replica of your forked
-cacti repo) downloaded and available to edit with the changes you wish to make.
+Cacti repo) downloaded and available to edit with the changes you wish to make.
 At any time, whilst making changes or once all done, you can see the files that
 have changed using `git status` and if you want to see the actual differences
 then you would use `git diff`.
@@ -113,7 +116,7 @@ then you would use `git diff`.
 
 To commit any changes that you have made, you must first commit them to your
 local repo. This does not affect the online GitHub repo that you have forked
-from cacti's repo.  Neither of these are touched at this time.
+from Cacti's repo.  Neither of these are touched at this time.
 
 1. Add any change file to the commitment list using either `git stage` or `git
    add` (they are both the same command)
@@ -134,14 +137,14 @@ note, this has not yet published these changes on GitHub to your forked repo.
 ## Update with the latest development source
 
 Before you publish your local changes back to GitHub (or even afterwards),
-you've may have noticed changes being made to the cacti (upstream) project that
-are you not in your origin (forked) or local repos.  If you were to commit a
+you may have noticed changes being made to the Cacti (upstream) project that
+are not in your origin (forked) or local repos.  If you were to commit a
 pull request using your local changes, there would be quite a few differences.
 You also wouldn't know if there was likely to be a conflict with your changes.
-GitHub Actions checks (see `.github/workflows`) run against the cacti repo so
-conflicts do usually show up there if no where else.
+GitHub Actions checks (see `.github/workflows`) run against the Cacti repo so
+conflicts do usually show up there if nowhere else.
 
-In order to get these latest changes, we must pull from the upstream (cacti)
+In order to get these latest changes, we must pull from the upstream (Cacti)
 repo and commit these to our local repo.
 
 1. If you have previously added an upstream repo, you may skip this step.  If
@@ -172,12 +175,12 @@ repo and commit these to our local repo.
    listed as being in conflict needs to be edited by looking for the `<<<` and `>>>`
    points.
 
-5. Edit these points (and there may be more that one set in a given file) as you
+5. Edit these points (and there may be more than one set in a given file) as you
    will see both the original upstream version and your edited version.  You must
    remove everything but the changes you desire including the chevron points before
    you exit the file leaving it in a full working state.
 
-6. Once your done editing all the conflicts, you must add the file so that `git`
+6. Once you're done editing all the conflicts, you must add the file so that `git`
    knows you wish to commit this file later.
 
    ```shell
@@ -197,10 +200,10 @@ repo and commit these to our local repo.
 
 ## Getting changes back up to GitHub
 
-In order to get changes back from your local repo back to Github in your forked
+In order to get changes back from your local repo back to GitHub in your forked
 repo, you need to "push" the changes back up.
 
-1. Push those latest merges up to github
+1. Push those latest merges up to GitHub
 
    ```shell
    git push
@@ -209,14 +212,14 @@ repo, you need to "push" the changes back up.
 At this point, if you have not saved your GitHub credentials, these will be
 prompted for and you will have to manually enter.
 
-_Note: this will NOT have affected the main cacti repo at all, only your forked
+_Note: this will NOT have affected the main Cacti repo at all, only your forked
 copy._
 
 ## Updating other branches
 
 If you want to update to the latest develop source on the develop branch, or
 master on the master branch just repeat the "Update with the latest development
-source" against the appropriate branches instead.  eg, update origin/develop
+source" against the appropriate branches instead.  e.g., update origin/develop
 with upstream/develop or origin/master with upstream/master.
 
 ## Creating a git patch and applying it elsewhere
@@ -226,7 +229,7 @@ branch, it's worth performing the following:
 
 1. Get the commit hash number from github.com or from `git log`
 
-2. Create a patch file of the difference by comparing the provided has with it's
+2. Create a patch file of the difference by comparing the provided hash with its
    parent (^)
 
    ```shell
@@ -245,29 +248,29 @@ convention that keeps them unique.
 ## Creating a pull request on the cacti repo
 
 Once you have committed and published all the changes that you need to make for
-your issue/fix/enhancement, you will need to let the cacti group know that these
+your issue/fix/enhancement, you will need to let the Cacti group know that these
 changes are available.  To do this, you can browse to your code and then click
 on pull request
 
 ![cacti - create pull request 1](images/patch-creation-pull-request-1.png)
 
-This will then switch you automatically over to the cacti repo, create a pull
+This will then switch you automatically over to the Cacti repo, create a pull
 request and fill in details as much as possible.  You will then have the
 opportunity to edit the title and enter a description.  It would be wise to put
-as much detail as possible, and if you referring back to a previous issue, place
-a link to that too.
+as much detail as possible, and if you are referring back to a previous issue,
+place a link to that too.
 
 ![cacti - create pull request 2](images/patch-creation-pull-request-2.png)
 
 After you have entered the details above, double check the changes that follow
 and make sure you have no conflicts again.  It is normal to have conflicts here
-if you have no been updating your local repo with the changes from the upstream
-(cacti) repo.  If not, everything will look OK.
+if you have not been updating your local repo with the changes from the upstream
+(Cacti) repo.  If not, everything will look OK.
 
 ![cacti - create pull request 3](images/patch-creation-pull-request-3.png)
 
 If you are positive that you have everything in order, click Create Pull Request
-and this will be submitted to the cacti repo. Once the developers there have
+and this will be submitted to the Cacti repo. Once the developers there have
 reviewed your changes they will either suggest some alterations or they will
 successfully commit your code in.
 

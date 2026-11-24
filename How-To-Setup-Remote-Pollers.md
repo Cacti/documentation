@@ -1,17 +1,17 @@
 # Remote Poller Setup
 
-Remote Pollers add complexity to your cacti setup while also massively extended
+Remote Pollers add complexity to your Cacti setup while also massively extending
 the scalability of it.  Remote Pollers allow system admins to distribute
 the load of polling between different servers as well as provide another source
 of polling close to a device.
 
-For example you may have a device in Toronto but if your pollers are in New York
-the network latency may causes issues with your metrics having a remote poller
+For example, you may have a device in Toronto but if your pollers are in New York
+the network latency may cause issues with your metrics.  Having a remote poller
 in Toronto in this case will help with that issue.
 
 ## Setup Instructions
 
-The process of remote poller installation is similar to cacti installation.
+The process of remote poller installation is similar to Cacti installation.
 In the wizard, select **New Remote Poller**. Use the same version of Cacti
 as the primary installation.
 
@@ -21,7 +21,7 @@ With this setup the following layout is assumed
 
 - Remote poller 1 server IP is 192.168.1.10
 
-- Remote poller 2 servers Ip is 192.168.1.20
+- Remote poller 2 server's IP is 192.168.1.20
 
 ## Database Configuration
 
@@ -100,8 +100,8 @@ RDB_Port 3306
 
 ## Spine poller and max connections
 
-Since in a multi poller setup Spine is highly recommended you will need
-to follow the following calculation when that calculation would be:
+Since Spine is highly recommended in a multi-poller setup, you will need
+to use the following calculation:
 
 ```console
 connections = spine-processes x ( 1 + threads-per-process  + PHP servers )

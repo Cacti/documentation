@@ -4,7 +4,7 @@ This section will describe the user view to Cacti's **Reports** feature.
 
 The **Reports User** interface allows you to see and manage your own reports.
 This is unlike the **Reports Administration** interface that allows you to
-manage others reports in addition to your own.
+manage others' reports in addition to your own.
 
 ## The Web Interface
 
@@ -19,12 +19,12 @@ columns:
 - **Report Title** - The name of the Report.
 - **Frequency** - How often the Report is to be sent to the distribution.
 - **Last Run** - The last time that the Report was sent to the distribution.
-- **Next Run** - The approximate next time that the report is to be sent. this
+- **Next Run** - The approximate next time that the report is to be sent. This
   is not an exact number. It does depend on the poller first running. So,
   depending on how long your poller runs for, this time could be off by a few
   minutes.
 - **From** - The From Name portion of the From Email address
-- **To** - The list of Emails that the reports is to be sent to.
+- **To** - The list of Emails that the report is to be sent to.
 - **Type** - The Image format and the type of embedding done in the Email.
 - **Enabled** - Is the Report able to be sent on the Schedule.
 
@@ -39,7 +39,7 @@ The actions that you can take on an existing Report as an Administrator include:
 ## Report Editing
 
 When you click the Add button on the right side of the **Reports** page, or
-Click on the Report Name of an existing Report, you will be presented with the
+click on the Report Name of an existing Report, you will be presented with the
 interface below.
 
 ![Reports User Edit](images/reports-edit-1.png)
@@ -52,7 +52,7 @@ This section includes:
   custom html/css document that you can use to customize the layout of your
   reports and add corporate branding for example.
 - **Format File to Use** - The specific html/css file to use.
-- **Graph Linked** - Provide the recipient of the report a ling back to the
+- **Graph Linked** - Provide the recipient of the report a link back to the
   actual graph in Cacti.
 - **Graph Columns** - The number of Graph columns to use per row.
 - **Graph Width** - The width of each Graph
@@ -64,7 +64,7 @@ This section includes:
   Minute, Hours, Days, Weeks, Months on a Day of the Month, Months on the Day of
   the Week, and Years.
 - **Interval Frequency** - How often to send, for example if you select Days,
-  and the Interval is one, it means every day, if you select 2, it means every
+  and the Interval is one, it means every day; if you select 2, it means every
   other day.
 
 The **Email Frequency** section does not use the same layout as does our
@@ -86,12 +86,12 @@ From here you can set the following columns.
   should receive the Report.
 - **BCC Address(es)** - An anonymized list of Email recipients
 - **Image attach type** - This defines how the Cacti Graph images get attached
-  to the Email. Maybe are for legacy purposes. Most users will use Inline PNG or
+  to the Email. Many are for legacy purposes. Most users will use Inline PNG or
   Inline JPG.
 
-Once you save a new **Report** additional Tabs will show up. Those tabs are:
+Once you save a new **Report**, additional Tabs will show up. Those tabs are:
 
-- **Items** - The Graph's, Tree's, Text, Horizontal Rules, and Device's to place
+- **Items** - The Graphs, Trees, Text, Horizontal Rules, and Devices to place
   on the Report.
 - **Preview** - See a Preview of your Report
 - **Events** - Approximate Future Event Days for your Report to be sent. This

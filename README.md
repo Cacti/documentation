@@ -122,7 +122,7 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 6. [How To's](README.md#how-tos)
 
-   This section contains how to's for several topics.
+   This section contains how-tos for several topics.
 
 7. [Video Tutorials](README.md#video-tutorials)
 

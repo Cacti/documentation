@@ -5,10 +5,10 @@
 **Q:** How do I create traffic graphs?
 
 **A:** Before you can create traffic graphs, Cacti must have working SNMP
-support. One way to do this is to compile PHP with SNMP support built in, many
+support. One way to do this is to compile PHP with SNMP support built in; many
 times you can install the 'php-snmp' package to do this. The second option is to
 have Cacti call the snmpget and snmpwalk binaries from your ucd-snmp or net-snmp
-installation. You can use the about page to determine whether to are using
+installation. You can use the about page to determine whether you are using
 "built-in" or "external" SNMP support.
 
 Now that you have working SNMP support, follow these steps.
@@ -24,8 +24,8 @@ Now that you have working SNMP support, follow these steps.
 
 5. You should see one or more interfaces listed under the Data Query [Get SNMP
    Interfaces] box. Place a check next to each interface that you want
-   to graph. Below the box, select type of graph that you want to create (bits,
-   bytes, summation, etc).
+   to graph. Below the box, select the type of graph that you want to create
+   (bits, bytes, summation, etc).
 
 6. Click Create, and Create again on the following screen to create your graphs.
 
@@ -54,8 +54,8 @@ presented with text that looks like:
 If this happens, it usually means that you have not enabled the PHP module to
 work with your web server software. This can be as simple as running `a2enmod`
 on Ubuntu, or having to manually create a configuration for nginx under another
-flavour of Linux. For specific help on enabling PHP, search the internet using
-your favourite search engine with keywords such as:
+flavor of Linux. For specific help on enabling PHP, search the internet using
+your favorite search engine with keywords such as:
 
 > How do I enable PHP under ...
 
@@ -66,7 +66,7 @@ installation documents included that may also help.
 
 ---
 
-**Q:** I have forgotten my 'admin' password to Cacti, how do I reset it?
+**Q:** I have forgotten my 'admin' password to Cacti; how do I reset it?
 
 **A:** To reset the admin account password back to the default of 'admin',
 connect to your Cacti database at the command line.
@@ -86,16 +86,16 @@ MySQL> update user_auth set password=md5('admin') where username='admin';
 **Q:** I am polling thousands of items and poller.php takes more than 5 minutes
 to run.
 
-**A:** Give Spine, the fast replacement for poller.php a try. Unlike poller.php,
-Spine is written in c and makes use of threads. On a typical installation, it is
-not uncommon for Spine to poll about 50000 items in less then 10 seconds. Spine
-supports upto several threads per poller process and can also poll a single
-hosts with more than a single thread.
+**A:** Give Spine, the fast replacement for poller.php, a try. Unlike
+poller.php, Spine is written in C and makes use of threads. On a typical
+installation, it is not uncommon for Spine to poll about 50000 items in less
+than 10 seconds. Spine supports up to several threads per poller process and can
+also poll a single host with more than a single thread.
 
-If using spine alone does not help, look to both the amount of memory and CPU
-threads are available on your Cacti server. You should generally not use more
-than 2 times the number of CPU threads as you have spine threads. Remember,
-every spine thread has to also talk to the database, so having more CPU threads
+If using Spine alone does not help, look to both the amount of memory and CPU
+threads available on your Cacti server. You should generally not use more
+than 2 times the number of CPU threads as you have Spine threads. Remember,
+every Spine thread has to also talk to the database, so having more CPU threads
 on your Cacti server has a direct impact on performance. If you make the thread
 setting too high, it will actually decrease performance. So, be careful.
 
@@ -131,7 +131,7 @@ and 'net-snmp' packages to their latest versions should fix this problem.
 file being used by snmpd is the correct config file. For Redhat Linux, snmpconf
 creates the `/etc/snmpd.conf`, but snmpd uses `/etc/snmpd/snmpd.conf`.
 
-If this doesn't work a very simple config file is:
+If this doesn't work, a very simple config file is:
 
 ```console
     # contact
@@ -159,9 +159,9 @@ systemctl enable snmpd
 systemctl restart snmpd
 ```
 
-Though there are many more advanced settings available in net-snmp, it generally
-recommended to keep a simpler configuration unless your information security
-policies require more stringent settings.
+Though there are many more advanced settings available in net-snmp, it is
+generally recommended to keep a simpler configuration unless your information
+security policies require more stringent settings.
 
 ---
 
@@ -170,16 +170,16 @@ happening. Where should I go to see the issue?
 
 **A:** You should click the **Log** tab at the top of the page. When you get to
 the **Log** tab, you should search for an entry "SYSTEM STATS:". If you do not
-find that entry, it means that you Cacti Data Collector, otherwise known as the
-Cacti Poller is not running.
+find that entry, it means that your Cacti Data Collector, otherwise known as the
+Cacti Poller, is not running.
 
 This can happen if you have neglected to create either a CRON entry for the
-Cacti Poller, or registered and started the `cactid` service available in the
+Cacti Poller, or register and start the `cactid` service available in the
 latest Cacti. If you find that the CRON entry is there, you should look at your
-systems CRON log for entries like **permission denied**. Sometimes the user
+system's CRON log for entries like **permission denied**. Sometimes the user
 accounts you have selected to run the CRON are not permitted to do so. We
 strongly recommend that you use the `cactid` service with Cacti 1.x though and
-avoid CRON based Data Collection though.
+avoid CRON based Data Collection.
 
 ## Graphs
 
@@ -201,17 +201,17 @@ shell> php poller.php
 ```
 
 If you have files in your 'rra/' directory, but your graphs still appear as
-broken images, you should enable graph debug mode see exactly why the graphs are
-not rendering. To do this go into Cacti, select Graph Management from the menu,
-select any graph listed, and select Turn On Graph Debug Mode.
+broken images, you should enable graph debug mode to see exactly why the graphs
+are not rendering. To do this, go into Cacti, select Graph Management from the
+menu, select any graph listed, and select Turn On Graph Debug Mode.
 
 ---
 
 **Q:** My graphs render, but they do not contain any data.
 
-**A:** More often than not, this problem's cause is permissions. For instance if
-you run poller.php manually as root for testing, any .rrd files that it creates
-will be owned by root. Now when poller.php runs from cron, it will not be able
+**A:** More often than not, this problem's cause is permissions. For instance,
+if you run poller.php manually as root for testing, any .rrd files that it
+creates will be owned by root. Now when poller.php runs from cron, it will not be able
 to update these .rrd files because they are owned by root. You can double check
 the owner of your .rrd files by running the following command in your Cacti
 directory:
@@ -231,7 +231,7 @@ will see no data on the graph.
 truncated to 15 characters.
 
 **A:** Cacti does this by default to better control graph title formatting. You
-can change this limit, by going to Cacti Settings on the Cacti menu, selecting
+can change this limit by going to Cacti Settings on the Cacti menu, selecting
 the Visual tab, and changing the value for Data Source Field Length.
 
 ---
@@ -251,12 +251,12 @@ that will remove them for you.
 ---
 
 **Q:** I have a remote poller that is timing out but SNMP timing to the devices
-is fine
+is fine.
 
 **A:** Check that the network connection between the Remote poller and Main
-poller is working ok if the link has very high latency this can cause the
+poller is working OK. If the link has very high latency, this can cause the
 polling times to increase as the data being transferred from the remote poller
-will be slowed causing the poll not to finish in time
+will be slowed, causing the poll not to finish in time.
 
 ---
 
@@ -326,12 +326,12 @@ POLLER: Poller[0] Maximum runtime of xxx seconds exceeded.
 This error indicates that Cacti was unable to finish the polling cycle in time.
 This can be for a few reasons.
 
-- You are using spine and have not entered the correct mysql credentials in
+- You are using spine and have not entered the correct MySQL credentials in
   spine.conf
-- You do not have an adaquete process setting for cmd.php or thread/process
+- You do not have an adequate process setting for cmd.php or thread/process
   count for spine
-- Network related issue either an network outage or a network slowdown
-- System related trouble cpu/memory exhaustion
+- Network related issue, either a network outage or a network slowdown
+- System related trouble CPU/memory exhaustion
 - Insufficient MySQL connections resulting in spine failing
 
 ### RRDtool reports Unknown Error

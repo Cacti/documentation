@@ -2,7 +2,7 @@
 
 Some SNMP servers can be extended with custom scripts or programs. The output of the running script can then 
 be read using the OID and can therefore be easily used in Cacti. An example is the thermometer on the USB port.
-In combination with [Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md), this is a very simple way to display such data
+In combination with [Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md), this is a very simple way to display such data.
 
 We will show the procedure for the very extensive Net-SNMP and FreeBSD BSNMPD.
 
@@ -18,7 +18,7 @@ We will show the procedure for the very extensive Net-SNMP and FreeBSD BSNMPD.
   NET-SNMP-EXTEND-MIB::nsExtendOutNumLines."test" = INTEGER: 1
   NET-SNMP-EXTEND-MIB::nsExtendResult."test" = INTEGER: 0``
 
-  For Cacti you need numeric OID, you can use snmptranslate:
+  For Cacti you need a numeric OID, you can use snmptranslate:
   **> snmptranslate -On NET-SNMP-EXTEND-MIB::nsExtendOutput1Line.\"test\"**
 
   The result is an OID that we can use:
@@ -26,7 +26,7 @@ We will show the procedure for the very extensive Net-SNMP and FreeBSD BSNMPD.
 
 
 ## FreeBSD BNSMPD
-  You need install bsnmp-ucd
+  You need to install bsnmp-ucd
   **> pkg install bsnmp-ucd**
 
   Add these lines to /etc/snmpd.config and restart bsnmpd
@@ -37,7 +37,7 @@ We will show the procedure for the very extensive Net-SNMP and FreeBSD BSNMPD.
   extNames.1 = "second command"
   extCommand.1 = "/path/to/script.sh param1"
 
-  Name and result of first command have the same intex:
+  Name and result of first command have the same index:
   **> snmpwalk -v2c -c testing 127.0.0.1 .1.3.6.1.4.1.2021.8.1.2.0**
   ``.1.3.6.1.4.1.2021.8.1.2.0 = STRING: first command``
 

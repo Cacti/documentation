@@ -2,12 +2,12 @@
 
 General Settings in Cacti consist of the following categories:
 
-- **Log Settings** - This is where you setup Cacti's logging
+- **Log Settings** - This is where you set up Cacti's logging
 - **Internationalization (i18n)** - Settings around how Cacti handles languages
   other than English
 - **Other Settings** - Other not object settings in Cacti
 - **Site Security** - Web Site Security settings such as `Content-Security-Policy`,
-  use of external JavaScript API's for plugins like Google Maps, forcing https, etc.
+  use of external JavaScript APIs for plugins like Google Maps, forcing https, etc.
 - **Automation** - Miscellaneous settings around Cacti's Automation
 - **Graph Template Defaults** - Defaults for **Graph Templates**
 
@@ -18,7 +18,7 @@ Each of these settings will be documented below.
 Cacti has the ability to log at various levels for various files.  It has the ability
 to log to both the standard cacti.log file, as well as sending some notifications
 to Syslog for forwarding to centralized logging servers.  The image below
-show what this settings sub-tab section looks like:
+shows what this settings sub-tab section looks like:
 
 ![Log Settings](images/settings-general-log-settings.png)
 
@@ -33,8 +33,8 @@ Those settings include:
   - **Syslog/Eventlog Only** - Send select log data to just the System log
     facility
 
-  This setting is quite self explanatory, when it comes to what type of messages
-  are sent to the System log facility, see the `Syslog/Eventlog Item Selection`
+  This setting is quite self-explanatory when it comes to what type of messages
+  are sent to the System log facility; see the `Syslog/Eventlog Item Selection`
   section below.
 
 - **Generic Log Level** - This is the level of logging that Cacti will use.
@@ -54,16 +54,16 @@ Those settings include:
   request variables that have not been validated through Cacti's validation
   functions.
 
-- **Data Source Tracing** - This is a debug options for logging of program
+- **Data Source Tracing** - This is a debug option for logging of program
   flow around the creation of **Data Sources**.
 
 - **Selective File Debug** - A Multi-select setting that allows you to place
-  any Cacti file to be placed into debug mode.  This prevents the cacti.log
+  any Cacti file into debug mode.  This prevents the cacti.log
   file from being flooded with messages as is common in a general debug
   context.
 
 - **Selective Plugin Debug** - For Plugins, the same level of debug that is
-  available for core Cacti files are available for Plugin files as well.
+  available for core Cacti files is available for Plugin files as well.
 
 - **Selective Device Debug** - This is a comma delimited list of Cacti
   `device_id` that debugging of **Data Collection** services will be enabled
@@ -91,23 +91,23 @@ Those settings include:
 - **Auto Language Detection** - Whether or not Cacti should read the language
   from the browser and use that language by default.
 
-- **Preferred Language Processor** - Some PHP distributions doe not come with
+- **Preferred Language Processor** - Some PHP distributions do not come with
   the php-gettext module.  In those cases, the various Linux distributions
   come with alternate GetText processors.  You can select the one that works
   best for your environment here.
 
 - **Client TimeZone Support** - How Cacti supports Client Dates based upon the
-  Client browsers timezone.  The options are **Disabled** and **Enabled**, and
+  Client browser's timezone.  The options are **Disabled** and **Enabled**, and
   the default is **Disabled**.
 
 - **Date Display Format** - The default Date/Time display format.
 
-- **Date Separator** - The default Data/Time separator character.
+- **Date Separator** - The default Date/Time separator character.
 
 ## Other Settings
 
 These are additional settings for Cacti that fall into various categories, but that
-done have enough entries to justify a separate section.  The image below shows that
+do not have enough entries to justify a separate section.  The image below shows that
 sub-section.
 
 ![Other Settings](images/settings-general-other-settings.png)
@@ -115,10 +115,10 @@ sub-section.
 Those settings include:
 
 - **Show only site specific locations** - Show only locations that are
-  available at a devices selected site.
+  available at a device's selected site.
 
 - **Has Graphs/Data Sources Checked** - If from the Console, you enter
-  a pages that has the various **Has** options, if checked here, the default
+  a page that has the various **Has** options, if checked here, the default
   will be to check that setting.
 
 - **RRDtool Version** - Selecting the correct RRDtool Version will unlock features
@@ -149,7 +149,7 @@ Those settings include:
   pop-up to access form help.
 
 - **Deletion Verification** - For simple object removal, things that can be
-  removed by clicking and 'X' on the page, whether or not you wish to confirm
+  removed by clicking an 'X' on the page, whether or not you wish to confirm
   those deletes.
 
 - **Data Source Preservation Preset** - Whether or not you wish to preserve
@@ -160,8 +160,8 @@ Those settings include:
   default may not be desired.
 
 - **Graphs Auto Unlock** - If when editing a Graph you wish to always unlock
-  it by default, select this option.  Not that this does have performance
-  implications that may make the User Interface slower on vary large systems
+  it by default, select this option.  Note that this does have performance
+  implications that may make the User Interface slower on very large systems
   where devices have tens of thousands of **Data Sources**.
 
 - **Local Page Help Only** - By default Cacti page help is located at
@@ -175,7 +175,7 @@ Those settings include:
   the Intropage plugin.
 
 - **Enable Drag-N-Drop** - Certain Cacti pages allow Drag-N-Drop.  If you
-  with to use it, check that option.
+  wish to use it, check that option.
 
 ## Site Security
 
@@ -227,11 +227,11 @@ Those settings include:
 
 - **Enable Automatic Graph Creation** - If a Cacti **Device** has Non **Data Query**
   **Graph Templates** associated with it, create those **Graphs** automatically when
-  adding a new **Device**.  Additionally, if you have **Graph Rules** apply those
+  adding a new **Device**.  Additionally, if you have **Graph Rules**, apply those
   at **Device** creation time and save time.
 
 - **Enable Automatic Tree Item Creation** - If you have Cacti **Tree Rules** apply
-  then at **Device** creation and save time.
+  them at **Device** creation and save time.
 
 - **Automation Notification To Email** - When Network Automation finishes, send
   a notification to this Email address.
@@ -257,7 +257,7 @@ This is where Cacti obtains defaults for **Graph Templates**.
   what `Image Format` should be used.  There is either:
 
   **SVG** - Scalable Vector Graphics (preferred, though larger size)
-  **PNG** - Portable Network Graphics (backup, smaller but loose resolution
+  **PNG** - Portable Network Graphics (backup, smaller but lose resolution
   when scaled)
 
 - **Graph Template Height** - The height in pixels of the Graph Canvas for new

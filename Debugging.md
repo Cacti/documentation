@@ -1,6 +1,6 @@
 # Debugging
 
-Cacti users sometimes complain about NaN's in their graphs. Unfortunately, there
+Cacti users sometimes complain about NaNs in their graphs. Unfortunately, there
 are several reasons for this result. The following is a step-by-step procedure
 recommended for debugging.
 
@@ -16,7 +16,7 @@ SPINE: Host[...] DS[....] WARNING: SNMP timeout detected [500 ms], ignoring host
 For "reasonable" timeouts, this may be related to a snmpbulkwalk issue. To
 change this, see `Settings`, `Poller` and lower the value for `SNMP Get OID
 Limit`. Start at a value of 2 and increase it again, if the
-poller starts working. (1 or less disables snmpbulkwalk) Some agent's don't have
+poller starts working. (1 or less disables snmpbulkwalk) Some agents don't have
 the horsepower to deliver that many OIDs at a time. Therefore, we can reduce the
 number for those older/under-powered devices.
 
@@ -32,8 +32,8 @@ su - cactiuser
 ... (check output)
 ```
 
-For SNMP, snmpget the _exact_ OID you're asking for, using same community string
-and SNMP version as defined within cacti. For an OID of `.1.3.6.1.4.something`,
+For SNMP, snmpget the _exact_ OID you're asking for, using the same community string
+and SNMP version as defined within Cacti. For an OID of `.1.3.6.1.4.something`,
 community string of `very-secret` and version 2 for target host `target-host`
 this would look like
 
@@ -45,11 +45,11 @@ snmpget -c very-secret -v 2c target-host .1.3.6.1.4.something
 ## Check Cacti's poller
 
 First make sure that crontab always shows poller.php. This program will either
-call cmd.php, the PHP based poller _or_ spine, the fast alternative, written in
+call cmd.php, the PHP based poller _or_ Spine, the fast alternative, written in
 C. Define the poller you're using at `Settings`, `Poller`. Spine has to be
-implemented separately, it does not come with cacti by default.
+implemented separately; it does not come with Cacti by default.
 
-Now, clear `./log/cacti.log` (or rename it to get a fresh start)
+Now, clear `./log/cacti.log` (or rename it to get a fresh start).
 
 Then, change `Settings`, `General`, `Generic Log Level` to DEBUG for _one_ polling
 cycle. You may rename this log as well to avoid more stuff added to it with
@@ -63,8 +63,8 @@ from the `Devices` menu when editing the host: The URL contains a string like
 id=<id>
 ```
 
-Check, whether the output is as expected. If not, check your script (e.g.
-`/full/path/to/perl`). If OK, proceed to next step
+Check whether the output is as expected. If not, check your script (e.g.
+`/full/path/to/perl`). If OK, proceed to the next step.
 
 This procedure may be replaced by running the poller manually for the failing
 host only. To do so, you need the `<id>`, again. If you're using cmd.php, set
@@ -88,7 +88,7 @@ output.
 ## Check MySQL updating
 
 In most cases, this step can be skipped. You may want to return to this step if
-the next one fails (e.g. no rrdtool update to be found)
+the next one fails (e.g. no rrdtool update to be found).
 
 From debug log, find the MySQL update statement for that host concerning table
 `poller_output`. On very rare occasions, this will fail. Copy that SQL statement
@@ -106,7 +106,7 @@ rrdtool update <filename> --template ...
 You should find exactly one update statement for each file.
 
 RRDfiles should be created by the poller. If it does not create them, it will
-not fill them either. If it does check your `Poller Cache` from Utilities and
+not fill them either. If it does, check your `Poller Cache` from Utilities and
 search for your target. Does the query show up here?
 
 ## Check RRDfile ownership
@@ -133,17 +133,17 @@ chown cactiuser:cactiuser *.rrd
 ## Check RRDfile numbers
 
 You're perhaps wondering about this step, if the former was OK. But due to data
-sources MINIMUM and MAXIMUM definitions, it is possible, that valid updates for
+sources MINIMUM and MAXIMUM definitions, it is possible that valid updates for
 RRDfiles are suppressed, because MINIMUM was not reached or MAXIMUM was
 exceeded.
 
-Assuming, you've got some valid `rrdtool update` in step 3, perform a
+Assuming you've got some valid `rrdtool update` in step 3, perform a
 
 ```sh
 rrdtool fetch <RRDfile> AVERAGE
 ```
 
-and look at the last 10-20 lines. If you find NaN's there, perform
+and look at the last 10-20 lines. If you find NaNs there, perform
 
 ```sh
 rrdtool info <RRDfile>
@@ -157,7 +157,7 @@ ds[loss].max = 1.0000000000e+02
 ```
 
 In this example, MINIMUM = 0 and MAXIMUM = 100. For a `ds.[...].type=GAUGE`
-verify, that e.g. the number returned by the script does not exceed
+verify that e.g. the number returned by the script does not exceed
 `ds[...].MAX` (same holds for MINIMUM, respectively).
 
 If you run into this, not only should you update the data source definition
@@ -174,21 +174,21 @@ well. For standard 300 seconds polling intervals (step=300), it is wise to set
 `minimal_heartbeat` to 600 seconds. If a single update is missing and the next
 one occurs in less than 600 seconds from the last one, RRDtool will interpolate
 the missing update. Thus, gaps are "filled" automatically by interpolation. Be
-aware of the fact, that this is no "real" data! Again, this must be done in the
+aware of the fact that this is no "real" data! Again, this must be done in the
 Data Template itself and by using `rrdtool tune` for all existing RRDfiles of
 this type.
 
 ## Check `rrdtool graph` statement
 
-Last resort would be to check, that the correct data sources are used. Go to
+Last resort would be to check that the correct data sources are used. Go to
 `Graph Management` and select your Graph. Enable DEBUG Mode to find the whole
 `rrdtool graph` statement. You should notice the `DEF` statements. They specify
-the RRDfile and data source to be used. You may check, that all of them are as
+the RRDfile and data source to be used. You may check that all of them are as
 wanted.
 
 ## Miscellaneous
 
-Up to current cacti 0.8.6h, table `poller_output` may increase beyond reasonable
+Up to current Cacti 0.8.6h, table `poller_output` may increase beyond reasonable
 size.
 
 This is commonly due to php.ini's memory settings of 8MB default. Change this to
@@ -200,26 +200,26 @@ To check this, run the following SQL from MySQL CLI (or phpMyAdmin or the like)
 select count(*) from poller_output;
 ```
 
-If the result is huge, you may get rid of those stuff by
+If the result is huge, you may get rid of that stuff by
 
 ```sql
 truncate table poller_output;
 ```
 
-As of current SVN code for upcoming cacti 0.9, I saw measures were taken on both
+As of current SVN code for upcoming Cacti 0.9, I saw measures were taken on both
 issues (memory size, truncating poller_output).
 
 ## RPM Installation
 
-Most rpm installations will setup the crontab entry now. If you've followed the
+Most rpm installations will set up the crontab entry now. If you've followed the
 installation instructions to the letter (which you should always do ;-) ), you
-may now have two poller running. That's not a good thing, though. Most rpm
-installations will setup cron in `/etc/cron.d/cacti`
+may now have two pollers running. That's not a good thing, though. Most rpm
+installations will set up cron in `/etc/cron.d/cacti`
 
 Now check all your crontab, especially `/etc/crontab` and crontab of users root
 and cactiuser. Leave only one poller entry for all of them. Personally, I've
-chosen `/etc/cron.d/cacti` to avoid problems when updating RPM's. Most often,
-you won't remember this item when updating lots of RPM's, so I felt more secure
+chosen `/etc/cron.d/cacti` to avoid problems when updating RPMs. Most often,
+you won't remember this item when updating lots of RPMs, so I felt more secure
 to put it here. And I've made some slight modifications, see
 
 ```sh
@@ -246,12 +246,12 @@ shell> crontab -e -u cactiuser
 
 ## Not NaN, but 0 (zero) values
 
-Pay attention to custom scripts. It is required, that external commands called
+Pay attention to custom scripts. It is required that external commands called
 from there are in the `$PATH` of the cactiuser running the poller. It is
 therefore recommended to provide `/full/path/to/external/command`
 
 User "criggie" reported an issue with running smartctl. It was complaining "you
-are not root" so a quick `chmod +s` on the script fixed that problem.
+are not root," so a quick `chmod +s` on the script fixed that problem.
 
 ---
 Copyright (c) 2004-2026 The Cacti Group

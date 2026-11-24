@@ -1,9 +1,9 @@
 # Report Events
 
 On this page, you can simply see on what dates and approximate times that the
-**Reports** scheduler will send future report.  You can see from the image below
-this the report will be sent every day at approximately 09:18:30.  The poller frequency
-or Data Collector interval is 30 seconds on this system.
+**Reports** scheduler will send future reports.  You can see from the image
+below that the report will be sent every day at approximately 09:18:30.  The
+poller frequency or Data Collector interval is 30 seconds on this system.
 
 ![Report Events](images/reports-events.png)
 

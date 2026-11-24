@@ -7,7 +7,7 @@ Each **Tree** consists of zero or more branches that contain
 leaf nodes such as **Graphs**, **Devices** and **Sites**. It's a very powerful
 way of organizing your **Graphs**.
 
-Below we can see the current **Trees** we have setup on our Cacti
+Below we can see the current **Trees** we have set up on our Cacti
 server. To get to this screen click `Console > Management > Trees`.
 
 From this page you can add or remove **Trees** as required.
@@ -31,8 +31,8 @@ see the below page where you are able to add **Devices** to the **Tree**.
 To add devices to the new tree simply drag an available device to the
 tree and it will be added to the tree.  Cacti currently supports four
 `Sort Types` and an `Inherit Parent Sorting` option, which can be either
-inherited, of left to the author to define inheritance and at what level.  See the image below for a visual representation
-of how Tree Sorting is accomplished.
+inherited, or left to the author to define inheritance and at what level.  See
+the image below for a visual representation of how Tree Sorting is accomplished.
 
 ![Tree Sorting](images/tree-options-sorting.png)
 
@@ -40,17 +40,13 @@ of how Tree Sorting is accomplished.
 
 Field | Value | Description
 --- | --- | ---
-Name | Name of the tree entry. | The sort order of all trees themselves is
-always alphabetical
-Sorting Type | Manual Ordering (No Sorting) | Y
-ou may chance the sequence at your will
-Alphabetic Ordering |  1, Ab, ab | All sub-trees are ordered alphabetically,
-unless specifies otherwise (you may chance sort options at sub-tree label)
+Name | Name of the tree entry. | The sort order of all trees themselves is always alphabetical
+Sorting Type | Manual Ordering (No Sorting) | You may change the sequence at your will
+Alphabetic Ordering |  1, Ab, ab | All sub-trees are ordered alphabetically, unless specified otherwise (you may change sort options at sub-tree label)
 Natural Ordering | ab1, ab2, ab7, ab10, ab20 | N/A
-Numeric Ordering | 01, 02, 4, 04 | Leading zeroes are not taken into account
-when ordering numerically
+Numeric Ordering | 01, 02, 4, 04 | Leading zeroes are not taken into account when ordering numerically
 
-End users will not be able to view the **Tree** or it's Graphs until you
+End users will not be able to view the **Tree** or its Graphs until you
 publish it.  To edit a **Tree**, you will be required to lock it for your use
 by pressing the **Edit Tree** button.
 The locking is designed to prevent multiple users from editing a **Tree**
@@ -58,7 +54,7 @@ simultaneously.
 
 When a Tree is locked, you can drag & drop the **Sites**, **Devices** and
 **Graphs** over to the Tree menu.  To add a 'Root Branch', simply press the
-**Add Root Branch** button, once you have Root Branches, you may right click on
+**Add Root Branch** button; once you have Root Branches, you may right click on
 the to create sub-branches on the Tree.
 
 When you single click on a **Site**, the **Devices**, and **Graphs** associated with

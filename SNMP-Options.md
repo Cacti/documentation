@@ -18,13 +18,13 @@ For a device already managed by Cacti, configure its polling credentials in
 bulk credential update for existing devices. Keep the device's SNMP settings
 consistent with its agent and the collector that polls it.
 
-![SNMP Options](images/automation-snmp-options.png).
+![SNMP Options](images/automation-snmp-options.png)
 
-![SNMP Options Edit](images/automation-snmp-options-edit1.png).
+![SNMP Options Edit](images/automation-snmp-options-edit1.png)
 
-![SNMP Options Item Edit SNMPv1/2](images/automation-snmp-options-edit2.png).
+![SNMP Options Item Edit SNMPv1/2](images/automation-snmp-options-edit2.png)
 
-![SNMP Options Item Edit SNMPv3](images/automation-snmp-options-edit3.png).
+![SNMP Options Item Edit SNMPv3](images/automation-snmp-options-edit3.png)
 
 Before starting a scan, confirm that the selected set contains the intended
 credentials and that the collector can reach the target agents. A successful

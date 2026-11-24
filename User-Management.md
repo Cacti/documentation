@@ -5,18 +5,18 @@ enables you to manage **User** and **User Group** access to those **Graphs** as
 well as various other areas of Cacti. Each **User** has a variety of settings
 and permissions. Some of these settings can be controlled by the individual
 **User** via editing their Profile, or controlled by the Cacti Administrator. A
-**Users** Cacti permissions are only modifiable by authorized Cacti
+**User's** Cacti permissions are only modifiable by authorized Cacti
 Administrators.
 
-Note: for a users to see new settings, they will have to log off and back in
+Note: for users to see new settings, they will have to log off and back in
 again to view.
 
 ![User Management](images/users-list.png)
 
 Out of the box, there are two users that come with every Cacti installation. The
 "admin" user - the main user that by default has access to see and change
-everything in Cacti. This is the user that you first login with in Cacti, and it
-is probably a good idea to keep around unless you know otherwise. The second
+everything in Cacti. This is the user that you first log in with in Cacti, and
+it is probably a good idea to keep around unless you know otherwise. The second
 user is the "guest" user, which controls which areas/graphs are allowed for
 unauthenticated users.
 
@@ -30,24 +30,24 @@ disabling "guest" (Unauthenticated) access to Cacti.
 ## Editing an existing User
 
 To edit an existing user, select the Users item under the Configuration
-heading on the Cacti menu. Once at the user management screen, click username of
-the user you wish to edit. You will see a screen that looks similar to the image
-below.
+heading on the Cacti menu. Once at the user management screen, click the
+username of the user you wish to edit. You will see a screen that looks similar
+to the image below.
 
 ![Editing a User](images/users-edit.png)
 
 At minimum, you must specify a User Name and a Password for each user. Each user
 field is described in more detail below. In addition to these fields, each user
-can have their own realm permissions", graph permissions, and graph settings.
-Each of these items are described in this section of the manual.
+can have their own realm permissions, graph permissions, and graph settings.
+Each of these items is described in this section of the manual.
 
 ### User Management Options
 
 - **_User Name_**
 
   This field contains the login name for the user. There are no character limits
-  this field, but it would make sense to keep it to alphanumeric characters to
-  maintain simplicity.
+  on this field, but it would make sense to keep it to alphanumeric characters
+  to maintain simplicity.
 
 - **_Full Name_**
 
@@ -66,7 +66,7 @@ Each of these items are described in this section of the manual.
 
 - **_Enabled_**
 
-  Determines if the user is able to login.
+  Determines if the user is able to log in.
 
 - **_Locked_**
 
@@ -144,8 +144,8 @@ need Console Access and any additional realms that you see fit.
 
 **Graph Permissions** control which graphs a user is allowed to view. However,
 in general, these permissions do not apply to editing graphs. You can edit a
-**Users** **Graph Permissions** either by assigning that **User** to one to many
-**User Groups**, or by modifying their **Graph Permissions** directly.
+**User's** **Graph Permissions** either by assigning that **User** to one to
+many **User Groups**, or by modifying their **Graph Permissions** directly.
 
 ![User Realm Management](images/users-permissions-graph.png)
 
@@ -153,7 +153,7 @@ Cacti supports four Graph Permission models. There is the `Permissive` Graph
 permission which states that if a user has access either to the Graph, the
 Device or Graph Template, the user will have access to all the Graphs that match
 that class. For example, in the `Permissive` model, if you have access to the
-**Device**, you have access to all it's **Graphs**. If you have access to a
+**Device**, you have access to all its **Graphs**. If you have access to a
 **Graph Template**, you have access to every **Device Graph** that matches that
 **Graph Template**.
 
@@ -172,16 +172,17 @@ Perms** sub-tab is not shown for a **User**. When `Graph Template Based` is
 selected, the **Device Perms** sub-tab is not shown.
 
 We introduced these new permission models and administrative processes to
-simplify the Cacti permission system, and to increase it's usability.
+simplify the Cacti permission system, and to increase its usability.
 
 In addition to the Graph Permission models, which can be set from
 **Console > Configuration > Settings > General**, a **User** or **User Group**
 is either `Allowed` or `Denied` all **Graphs**, **Devices** and **Graph
 Templates** through a setting called the **Default Policy** in each of the
 Permission Tabs. The **Graph Permissions** tab includes an `Effective Policy`,
-which combines all the **Users** various **User Group** and **User** permissions
-to provide an effective permission. If the **Graph** is ultimately permitted for
-the **User** to view, you will see for what reason from this Permission tab.
+which combines all the **User's** various **User Group** and **User**
+permissions to provide an effective permission. If the **Graph** is ultimately
+permitted for the **User** to view, you will see for what reason from this
+Permission tab.
 
 Note: even if a **User** is denied access to a **Device** or **Graph Template**,
 but has access to at least one **Graph** from that **Device** or **Graph
@@ -220,19 +221,19 @@ mentioned above, revoking **Graph Template** access does not necessarily block a
 
 Cacti allows the Administrator to `Grant` and `Revoke` **Tree** permissions from
 this tab. The Cacti **Tree** permissions are a single level security object.
-However, when you browse a **Tree** to it's various branches, a user will only
+However, when you browse a **Tree** to its various branches, a user will only
 be allowed access to the Graphs and Devices that they have access to. Managing
 permissions to **Trees** is identical to **Graphs**, **Devices** and **Graph
-Templates** otherwise. Additionally, Cacti has will hide branches from a
+Templates** otherwise. Additionally, Cacti will hide branches from a
 **User** when they have no access to any **Devices** or **Graphs** within it.
 
 ## User Specific Settings
 
 Cacti optionally allows **Users** to control certain **User Settings** such as
 their `Email Address` and `Full Name`. However, the Cacti Administrator also has
-the ability to view a **Users** settings and modify them for the **User** from
+the ability to view a **User's** settings and modify them for the **User** from
 the **User Settings** tab. This feature allows the Cacti Administrator to better
-support their **Users**. However, you can disable a **Users** ability to modify
+support their **Users**. However, you can disable a **User's** ability to modify
 defaults from the `General` **User Management** tab. This is important for the
 `guest` account for example.
 
@@ -247,7 +248,7 @@ defaults from the `General` **User Management** tab. This is important for the
 In order to increase Cacti User Interface performance, when a **User** first
 checks for their permissions after login to either **Devices** or **Graph
 Templates** those permissions are cached for their entire login session. If you
-change a **Users** **Device** or **Graph Template** permissions, they will not
+change a **User's** **Device** or **Graph Template** permissions, they will not
 see those permission changes until their next login.
 
 ## Creating a New User
@@ -285,35 +286,35 @@ From this sub-tab, you can assign or remove users from various **User Groups**.
 
 ### Graph Perms
 
-From this sub-tab, you can view a users `Effective` Graph permissions and also
+From this sub-tab, you can view a user's `Effective` Graph permissions and also
 `Grant` or `Revoke` access to **Graphs** for an individual **User**.
 
 ![Graph Permissions](images/users-permissions-graph.png)
 
 ### Device Perms
 
-From this sub-tab, you can view and edit a users **Device** permissions. Note
-that removing a users permission to a **Device** can be overridden if they have
+From this sub-tab, you can view and edit a user's **Device** permissions. Note
+that removing a user's permission to a **Device** can be overridden if they have
 access to either a **Graph** or, depending on the permission model you have
-chosen, a **Devices** **Graph Template**.
+chosen, a **Device's** **Graph Template**.
 
 ![Graph Permissions](images/users-permissions-device.png)
 
 ### Template Perms
 
-From this sub-tab, you can `Grant` or `Revoke` a **Users** access to various
+From this sub-tab, you can `Grant` or `Revoke` a **User's** access to various
 Cacti **Graph Templates**.
 
 ![Graph Permissions](images/users-permissions-templates.png)
 
 ### Tree Perms
 
-From this sub-tab, you can `Grant` or `Revoke` a **Users** access to the various
-Cacti **Trees**.
+From this sub-tab, you can `Grant` or `Revoke` a **User's** access to the
+various Cacti **Trees**.
 
 ### User Settings
 
-From this sub-tab, you can modify a **Users** settings to assist the **User**
+From this sub-tab, you can modify a **User's** settings to assist the **User**
 with their use of Cacti, or to set defaults for that **User**.
 
 ![User Settings](images/users-settings.png)
@@ -331,7 +332,7 @@ will be used as the source **User**.
 ![Copy a User Part 2](images/users-copy2.png)
 
 Specify the New Username, New Full Name and New Realm of the new user. Click
-`Continue` to copy the selected template user to the the designated new user. An
+`Continue` to copy the selected template user to the designated new user. An
 error will be returned if you attempt to copy over an existing user. If you
 would like to copy over an existing user, use Batch Copy.
 
@@ -361,14 +362,14 @@ you.
 To Batch Copy a set of or a single user, select the **Users** interface under
 **Console > Configuration**. Once at the **Users** interface, highlight the
 **Users** you would like to batch copy information to and select `Batch Copy`
-from the `Choose and action` drop down selection box, click `Go` to continue.
+from the `Choose an action` drop down selection box, click `Go` to continue.
 
 ![Batch Copy Users Part 2](images/users-batch-copy2.png)
 
 Select the `Template User` and confirm that you want to `Batch Copy` the listed
 **Users**. Click `Continue` to perform the action.
 
-It is important to note that when using `Batch Copy` the original **Users**
+It is important to note that when using `Batch Copy` the original **User's**
 `Full Name`, `Password`, `Login Realm` and `Enable` status will be retained, all
 other fields will be overwritten with values from the selected `Template User`.
 
@@ -376,11 +377,9 @@ other fields will be overwritten with values from the selected `Template User`.
 
 ![Delete Users Part 1](images/users-delete1.png)
 
-To delete a set of or a single **User**, highlight the **Users** from
-****Console
-
-> Configuration > Users**** interface, then select `Delete` from the
-> `Choose an action` drop down selection box and press `Go` to continue.
+To delete a single **User** or a set of **Users**, highlight them in the
+**Console > Configuration > Users** interface, then select `Delete` from the
+`Choose an action` drop down selection box and press `Go` to continue.
 
 ![Delete Users Part 2](images/users-delete2.png)
 
@@ -393,8 +392,8 @@ By default, Guest or Anonymous access is disabled in Cacti. Enabling "Guest"
 access is easy. But, you must understand that you should only allow the
 designated "Guest" user access to what you authorized. It is not suggested that
 you give the designated "Guest" user more than just access to graphs. To enable
-guest access, first, need a designated "Guest" user. Cacti by default comes with
-one already created that has access to only graphs.
+guest access, first, you need a designated "Guest" user. Cacti by default comes
+with one already created that has access to only graphs.
 
 It is important to note that the default guest user has access to all graphs on
 the system. Once you have created the "Guest" user, you need to tell Cacti what

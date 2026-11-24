@@ -3,7 +3,7 @@
 ## Overview
 
 Over the years Cacti has attempted to adhere to standards in code construction,
-syntax, style, etc. It has been a very organic grow which has resulted in some
+syntax, style, etc. It has been a very organic growth which has resulted in some
 mixed styles. Cacti is in the process of moving to [PHP Standards
 Recommendations](http://www.php-fig.org/psr/) (PSR) standards.
 
@@ -17,7 +17,7 @@ syntax standard with the following exceptions:
   is acceptable, but not required, to use spaces to align the `=` or `=>` for the
   purpose of readability.
 
-- Bracketing/braces should start on the same line of the statement.  For example:
+- Bracketing/braces should start on the same line as the statement.  For example:
   - `if (expression) {`,
   - `} else {`,
   - and `} elseif {`
@@ -33,7 +33,7 @@ syntax standard with the following exceptions:
 - White-space inside of evaluations is discouraged.  For example:
   - `if (expression) {` and not `if ( expression ) {`.
 
-- Using single quotes to enclose strings, and arrays. This save quite a bit of
+- Using single quotes to enclose strings and arrays. This saves quite a bit of
   page processing time.  Use of double quotes is acceptable in certain circumstances.
 
 All style guidelines should be followed exactly as shown in these examples,
@@ -118,7 +118,7 @@ foreach ($array as $key => $value) {
 
 All function names should begin with an identifier (see below) and end with
 an action.
-The identifier should generally be derived from the name of the file which
+The identifier should generally be derived from the name of the file in which
 the function resides.
 
 `Returns all users`
@@ -325,8 +325,8 @@ function big_array_process(&$big_array) {
 ## Database Calls
 
 Ensure that you indent your Database calls by a single tab per indentation level
-and that you break up database calls by the various provisos.  A few well defined
-database queries can be seen in the examples below
+and that you break up database calls by the various provisos.  A few well-defined
+database queries can be seen in the examples below:
 
 ```php
 $devices = db_fetch_assoc_prepared('SELECT *
@@ -354,7 +354,7 @@ $vdefs = db_fetch_assoc("SELECT rs.*,
 1) Ensure that you use prepared statements as in the first example whenever
 you can.
 
-2) If you can not use prepared statements, ensure that you properly
+2) If you cannot use prepared statements, ensure that you properly
 escape any database SQL WHERE logic properly.
 
 3) Always use the term `AS` to define an alias.
@@ -367,7 +367,7 @@ escape any database SQL WHERE logic properly.
 
 6) In your SQL WHERE and SELECT, where functions are involved
 
-    1. Ensure that there are spaces between parameter
+    1. Ensure that there are spaces between parameters
     2. Ensure operators and variables are separated by spaces
 
 ## Comments
@@ -437,7 +437,7 @@ the file.
 
 All functions must be preceded by a comment describing the purpose, argument
 list, and return type of the function. It should be formatted per
-PHP DocBlock specifications as follow:
+PHP DocBlock specifications as follows:
 
 ```php
 /**

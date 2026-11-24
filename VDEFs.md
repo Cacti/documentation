@@ -2,16 +2,16 @@
 
 ## Background
 
-VDEF's in Cacti are a one to one analog to VDEF's in RRDtool.  Cacti
-simply provides and interface to create and manage them.  Once the
-VDEF's are created in Cacti they can be imported and exported globally.
+VDEFs in Cacti are a one to one analog to VDEFs in RRDtool.  Cacti
+simply provides an interface to create and manage them.  Once the
+VDEFs are created in Cacti they can be imported and exported globally.
 
-VDEFS's are mathematical formulas that instead of operating on just
-one Data Point in the RRDfile, oerate on the entire Data Set in the time
-range selected.  So, VDEF's become an excellent tool to replace
+VDEFs are mathematical formulas that instead of operating on just
+one Data Point in the RRDfile, operate on the entire Data Set in the time
+range selected.  So, VDEFs become an excellent tool to replace
 Nth Percentile and Bandwidth function in Cacti with the VDEF equivalents.
 
-The are referenced in Cacti graphs as VNAMES.  However, as mentioned before
+They are referenced in Cacti graphs as VNAMES.  However, as mentioned before
 Cacti automatically assigns VNAMES.  So, to perform complex operations,
 you will have to experiment to determine the VNAME of your VDEF as you
 build your **Graph Template**.  But in their simplest forms, they are
@@ -25,18 +25,19 @@ it's not broken.
 
 ## VDEF Interface
 
-In the image below, you can see all the VDEF's that are included in Cacti by
-default.  They are included just to get you thinking about how your would use
-them.  You can see straight away the first and the last items are 95th Percentile
-and Bandwidth (or Total) VDEF's.  Other examples are pretty self explanatory.
+In the image below, you can see all the VDEFs that are included in Cacti by
+default.  They are included just to get you thinking about how you would use
+them.  You can see straight away the first and the last items are 95th
+Percentile and Bandwidth (or Total) VDEFs.  Other examples are pretty self
+explanatory.
 
-You will also note that you can Delete or Duplicate the VDEF's, but as with
-CDEF's you can not Delete a VDEF that is being used in a **Graph**.
+You will also note that you can Delete or Duplicate the VDEFs, but as with
+CDEFs, you cannot Delete a VDEF that is being used in a **Graph**.
 
 ![VDEFS](images/vdefs.png)
 
 In the image below, you can also see that their interface very closely resembles
-the CDEF Interface.  Unlike the CDEF's, there is presently only one
+the CDEF Interface.  Unlike the CDEFs, there is presently only one
 `Special Data Source` and that's the Current Data Source, which makes sense
 when you think about it.
 

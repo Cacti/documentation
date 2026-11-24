@@ -7,12 +7,12 @@ replication, support of Cacti Boost and, if needed, the RRDcached daemon. It
 allows system administrators to split Cacti's access resources across machines
 without the need for NFS.
 
-Due the fact that updates to files may contain sensitive data and to prevent
-undesired updates, RRDtool proxy utilizes high encrypted connections (RSA2048
+Due to the fact that updates to files may contain sensitive data and to prevent
+undesired updates, RRDtool proxy utilizes highly encrypted connections (RSA2048
 and AES192) with continuously changing keys.  This ensures a secured connection
 between the proxy and registered clients and/or other proxies.
 
-A local service port is provided to allow administrators are able to access a
+A local service port is provided to allow administrators to access a
 separate command line interface which provides easy access to configure and
 debug the proxy.
 
@@ -72,9 +72,9 @@ which can be run at any point using the -w parameter.
  -w --wizard    - Start Configuration Wizard
 ```
 
-When running through the wizard, the status of items will appear on the right
-hand side of the screen.  When an item is successfully completed, the status of
-`[OK]` will be shown in green (when color is supported) as seen below:
+When running through the wizard, the status of items will appear on the
+right-hand side of the screen.  When an item is successfully completed, the
+status of `[OK]` will be shown in green (when color is supported) as seen below:
 
 ```shell
 Checking System Requirements...
@@ -96,7 +96,7 @@ Green | Success and without issue
 Yellow | Warnings and will be ignored, correct the problem if needed
 Red | Errors and will not be ignored, may prevent continuation
 
-When the wziard prompts for the various settings that are available, you can
+When the wizard prompts for the various settings that are available, you can
 accept the default value simply by pressing return to accept it. Below are a few
 of these settings and the default values that can be accepted:
 
@@ -154,8 +154,8 @@ rrdp#
 
 - Data replication has been completed to 95%, but is still not ready
 
-- NET-SNMP pass persistent daemon and MIB needs to written to make proxy stats
-  available through SNMP
+- Net-SNMP pass persistent daemon and MIB needs to be written to make proxy
+  stats available through SNMP
 
 ---
 Copyright (c) 2004-2026 The Cacti Group

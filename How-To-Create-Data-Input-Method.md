@@ -1,13 +1,13 @@
 # Data Input Methods - From Script Output to Complete Graph
 
 In this How-To we will take you through the process of creating a script and
-then from the scripts output generate a complete **Graph Template** that you can
-apply to your Cacti system. You should be able to reproduce this process
+then from the script's output generate a complete **Graph Template** that you
+can apply to your Cacti system. You should be able to reproduce this process
 regardless of the script type in question.
 
 ## Data Input Method returning a single value
 
-Lets start with a simple script that takes a hostname or IP address as input
+Let's start with a simple script that takes a hostname or IP address as input
 parameter returning a single value.
 
 `<path_cacti>/scripts/ping.pl`:
@@ -43,13 +43,13 @@ Methods** and click **Add**. You should see:
 Please fill in **Name**, select **Script/Command** as Input Type and provide the
 command that should be used to retrieve the data. You may use `<path_cacti>` as
 a symbolical name for the path_to_your_Cacti_installation. Those commands will
-be executed from crontab; so pay attention to providing full path to binaries if
-required (e.g. `/usr/bin/perl` instead of `perl`). Enter all **Input
-Parameters** in `<>` brackets. Click create to see:
+be executed from crontab; so pay attention to providing the full path to
+binaries if required (e.g. `/usr/bin/perl` instead of `perl`). Enter all
+**Input Parameters** in `<>` brackets. Click create to see:
 
 ![Data Input Methods edit](images/r-dim2.png)
 
-Now lets define the **Input Fields**. Click **Add** as given above to see:
+Now let's define the **Input Fields**. Click **Add** as given above to see:
 
 ![Input Fields](images/r-dim3.png)
 
@@ -61,7 +61,7 @@ the current device. Click create to see:
 
 ![Output Fields](images/r-dim4.png)
 
-At least, define the **Output Fields**. Again, click **Add** as described above:
+Finally, define the **Output Fields**. Again, click **Add** as described above:
 
 ![Output Fields 2](images/r-dim5.png)
 
@@ -74,7 +74,7 @@ Click **Save** and you're done.
 
 ## Creating the Data Template
 
-Now you want to tell Cacti, how to store the data retrieved from this script.
+Now you want to tell Cacti how to store the data retrieved from this script.
 Please go to **Data Templates** and click Add. You should see:
 
 ![Data Templates New](images/r-dt1.png)
@@ -105,7 +105,7 @@ Field of the Script. Click **Save** and you're done.
 
 ## Creating the Graph Template
 
-Now you want to tell Cacti, how to present the data retrieved from this script.
+Now you want to tell Cacti how to present the data retrieved from this script.
 Please go to **Graph Templates** and click **Add**. You should see:
 
 ![Graph Template New](images/r-gt1.png)
@@ -129,7 +129,7 @@ Format** that will be shown underneath the **Graph** as a legend. Again,
 ![Graph Template Items 3](images/r-gt4.png)
 
 Notice, that not only an entry was made under **Graph Template Items**, but
-under **Graph Item Inputs** as well. Don't bother with that now. Lets fill some
+under **Graph Item Inputs** as well. Don't bother with that now. Let's fill some
 more nice legends, see:
 
 ![Graph Template Items 4](images/r-gt5.png)
@@ -155,7 +155,7 @@ drop down. Click the plus (+) glyph to see:
 ![Associate Data Queries](images/r-dev2.png)
 
 By default, the **Graph Template** is added and shown as **Is Being Graphed**.
-The reason for this is that Cacti now automatically creates **Graphs**
+The reason for this is that Cacti now creates **Graphs**
 automatically, unless disabled. If the **Graph Template** shows **Not Being
 Graphed**, you can create the **Graph** by pressing the **Create Graphs** at the
 top of the **Devices** page. Click this link to see:
@@ -169,11 +169,11 @@ Check the box that belongs to the new template and Create. See the results:
 This will automatically
 
 - Create the needed **Graph Description** from the **Graph Template**. As you
-  may notice from the success message, this **Graph** takes the hosts name in
-  it: **router - Test ping** (router is the hosts name of this example).
+  may notice from the success message, this **Graph** takes the host's name in
+  it: **router - Test ping** (router is the host's name of this example).
 
 - Create the needed **Data Source Description** from the **Data Template**.
-  Again, you will find the Hosts name replaced for |host_description|
+  Again, you will find the host's name replaced for |host_description|
 
 - Create the needed RRDfile with definitions from the **Data Template**. The
   name of this file is derived from the Host and the **Data Template** in
@@ -191,9 +191,9 @@ may look like:
 
 ## Walkthrough: Script with more Output Parameters
 
-The script below will be implemented in perl. Please note that any supported
+The script below will be implemented in Perl. Please note that any supported
 language is supported using Cacti from direct command execution to scripts
-written in perl, python, php, bash, etc.
+written in Perl, Python, PHP, bash, etc.
 
 ```shell
 #!/usr/bin/perl -w
@@ -281,7 +281,7 @@ printf("udpInDatagrams:%s udpOutDatagrams:%s", # <<< cacti requires this format!
 $session->close;
 ```
 
-It should produce following output, when executed from command line:
+It should produce the following output, when executed from command line:
 
 ```console
 [prompt]> perl udp_packets.pl localhost 161 public 1
@@ -329,9 +329,9 @@ the other. All of them are listed in sequence, starting with `<host>`:
 
 ![More Scripts dim 7](images/dim-add07.png)
 
-We've used some of Cacti builtin parameters. When applied to a host, those
-variables will be replaced by the hosts actual settings. Then, this command will
-be stored in the poller_command table. Now **Save** your work to see
+We've used some of Cacti's built-in parameters. When applied to a host, those
+variables will be replaced by the host's actual settings. Then, this command
+will be stored in the poller_command table. Now **Save** your work to see
 
 ![More Scripts dim 8](images/dim-add08.preview.png)
 
@@ -345,7 +345,7 @@ Now udpOutDatagrams:
 ![More Scripts dim 10](images/dim-add10.preview.png)
 
 Be careful to avoid typos. The strings entered here must **exactly** match those
-spitted out by the script. **Double check Output Fields**! Now, results should
+spat out by the script. **Double check Output Fields**! Now, results should
 be like
 
 ![More Scripts dim 11](images/dim-add11.preview.png)
@@ -357,18 +357,18 @@ Finally Save and be proud!
 ## The Data Template
 
 The previous step explained how to call the script that retrieves the data. Now
-it's time to tell Cacti, how to store them in RRDfiles. You will need a single
+it's time to tell Cacti how to store them in RRDfiles. You will need a single
 **Data Template** only, even if two different output fields will be stored. RRD
-files are able to store more than one output fields; RRDtool's name for those is
+files are able to store more than one output field; RRDtool's name for those is
 **Data Source**. So we will create
 
 1. One single **Data Template** representing one RRDfile
 
 2. Two output fields/data sources
 
-The first step is quite the same as Create the **Data Template** for a simple
+The first step is quite the same as creating the **Data Template** for a simple
 **Data Input Method**. For sure, we provide a different name, **Example - UDP
-Packets**. Now, let's enter the first **Data Source**. Again, its like above.
+Packets**. Now, let's enter the first **Data Source**. Again, it's like above.
 But we now provide the name of **udpInPackets**, enter a **Maximum value** of
 100,000 and select the **Data Source Type** of COUNTER.
 

@@ -20,7 +20,7 @@ poller.php with crontab or cactid.php for systemd!
 To activate Spine instead of cmd.php, please visit
 `Console > Configuration > Settings > Poller` and select spine and save as the
 `Poller Type`. If it's not showing as an available `Poller Type` this means
-either it has not been installed, or it's path has not been defined on the
+either it has not been installed, or its path has not been defined on the
 `Paths` tab within Settings.
 
 Once saved, poller.php will use Spine on all subsequent polling cycles. Before
@@ -41,7 +41,7 @@ Choose Processes together with thread counts and
 database connection capacity. CPU count alone does not determine the
 appropriate settings.
 
-When using spine, you must be senstivive to the number of connections that are
+When using spine, you must be sensitive to the number of connections that are
 available for MySQL or MariaDB. Under
 `Console > Utilities > System Utilities > General` Cacti will provide a
 recommended `max_connection` for MySQL/MariaDB.
@@ -63,8 +63,8 @@ recommended `max_connection` for MySQL/MariaDB.
 
 | Name                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Maximum OIDs Per Get Request | The maximum number of SNMP get OIDs to issue per SNMP request. Increasing this value increases poller performance over slow links. The maximum value is 60 OIDs, but that value is highly dependent on the MTU for your links to the remote devices. In some cases, using a **Remote Data Collector** is much more effective for polling remote **Davices**. Additionally, some **Device Types** do not handle large SNMP OID get requests. It's best to experiment until you find the correct setting. |
-| Number of Collection Threads | The maximum number spine threads used to gather information from a **Device**. When using this setting at the **Device** level, you have to ensure that you have enough threads allocated to a process so as to not block other **Devices** being polled from the same spine binary.                                                                                                                                                                                                                    |
+| Maximum OIDs Per Get Request | The maximum number of SNMP get OIDs to issue per SNMP request. Increasing this value increases poller performance over slow links. The maximum value is 60 OIDs, but that value is highly dependent on the MTU for your links to the remote devices. In some cases, using a **Remote Data Collector** is much more effective for polling remote **Devices**. Additionally, some **Device Types** do not handle large SNMP OID get requests. It's best to experiment until you find the correct setting. |
+| Number of Collection Threads | The maximum number of spine threads used to gather information from a **Device**. When using this setting at the **Device** level, you have to ensure that you have enough threads allocated to a process so as to not block other **Devices** being polled from the same spine binary.                                                                                                                                                                                                                    |
 
 ### Installing Spine
 
@@ -111,7 +111,7 @@ execution privileges merely to resolve a failed configuration check.
 
 ### Testing/Debugging spine via command line
 
-spine offer a a few different ways at the command line to test its
+spine offers a few different ways at the command line to test its
 functionality. Here are a few examples of some tests you can run by executing
 spine.
 
@@ -179,9 +179,9 @@ SPINE: Using spine config file [../etc/spine.conf]
 
 #### Spine debug via GUI
 
-You are also able to view spine debug information via the log file also spine
-allows you to raise the level of detail it provides in the log if you want to
-debug a specific device and see the spine output click enable device debug.
+You are also able to view spine debug information via the log file.  Also, spine
+allows you to raise the level of detail it provides in the log.  If you want to
+debug a specific device and see the spine output, click enable device debug.
 
 Below is an example output of Spine debug info via the log file
 
@@ -190,13 +190,13 @@ Below is an example output of Spine debug info via the log file
 To enable more detailed spine logging go to
 `Console > Configuration > Settings > Poller`
 
-You can choose from Detailed,Summary or No logging for Invalid data
+You can choose from Detailed, Summary or No logging for Invalid data
 
 Detailed Logging will be similar to cmd.php in that you will get a report for
-each data source that is having an issue
+each data source that is having an issue.
 
 Summary provides a count of how many data sources are having an issue per
-device
+device.
 
 ![spine](images/spine-parameters.png)
 
@@ -206,15 +206,15 @@ device
 2021/01/08 14:38:44 - SPINE: Poller[1] PID[14838] FATAL: Unable to read configuration file! (Spine init)
 ```
 
-Ensure that you have spine.conf in /usr/local/spine/etc on first install
+Ensure that you have spine.conf in /usr/local/spine/etc.  On first install,
 `spine.conf` may be `spine.conf.dist`.
 
 ```shell
 DEBUG Falling back to UDP Ping Due to SetUID Issues
 ```
 
-This is a permissions issue with spine ensure you have give spine the proper
-permissions
+This is a permissions issue with spine; ensure you have given spine the proper
+permissions.
 
 ```shell
 chmod u+s /usr/local/spine/bin/spine

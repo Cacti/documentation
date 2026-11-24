@@ -1,8 +1,8 @@
 # RRDtool Specific Features
 
 Cacti supports most RRDtool features. In this chapter, many of those features,
-and some Cacti implementation specifics around them will be discussed. As
-RRDtool is a continually changing Times Series Database (TSDB) and **Graph**
+and some Cacti implementation specifics around them, will be discussed. As
+RRDtool is a continually changing Time Series Database (TSDB) and **Graph**
 rendering framework, this guide may be a little behind on all the RRDtool
 features that Cacti supports.
 
@@ -14,24 +14,24 @@ remains untested.
 
 | Type     | Supported | Description                                                                                                                                                                                                           |
 | -------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GAUGE    | Yes       | This is as the term refers to a floating point number that tracks the value reported directly. Unlike the COUNTER, it has not comprehension of past data.                                                             |
-| COUNTER  | Yes       | This is a floating point number that tracks the different between samples to come up with effectively a rate calculation. Used for things like Traffic Graphs where the number reported in SNMP continually increases |
+| GAUGE    | Yes       | This is as the term refers to a floating point number that tracks the value reported directly. Unlike the COUNTER, it has no comprehension of past data.                                                             |
+| COUNTER  | Yes       | This is a floating point number that tracks the difference between samples to come up with effectively a rate calculation. Used for things like Traffic Graphs where the number reported in SNMP continually increases |
 | DCOUNTER | Yes       | This is the same as a COUNTER, but in Double Precision. It is offered when RRDtool 1.5 or higher is installed.                                                                                                        |
 | DERIVE   | Yes       | This data type measures the Rate of Change of a value, otherwise known as the first derivative to the value. As such, it relies on previous data in order to report the change.                                       |
 | DDERIVE  | Yes       | This is the same as the DERIVE, but in Double Precision. It is offered when RRDtool 1.5 or higher is installed.                                                                                                       |
 | ABSOLUTE | Yes       | Is for counters that get reset upon reading. This is often used for fast counters. It is also similar to the DERIVE, or acts very much like it.                                                                       |
-| COMPUTE  | Yes       | Though Cacti claims to support this Data Type. It's not clear that it's presently working.                                                                                                                            |
+| COMPUTE  | Yes       | Though Cacti claims to support this Data Type, it's not clear that it's presently working.                                                                                                                            |
 
 > **NOTE**: Presently `Holt-Winters Forecasting` is not supported in Cacti and
 > The Cacti Group has no plans on supporting it. If you would like
 > `Holt-Winters Forecasting` supported in Cacti, you will need to submit a pull
-> request including documentation if you require it's functionality.
+> request including documentation if you require its functionality.
 
 ## GPRINT Presets
 
 A GPRINT is a graph item type that enables you to print the values of data
 sources on a graph. They are typically used to represent legend values on the
-graph. The output format of these numbers are controlled by a printf-like format
+graph. The output format of these numbers is controlled by a printf-like format
 string. Cacti enables you to keep a global list of these strings that can be
 applied to any graph item throughout Cacti. You can see the list of available
 formats described on the
@@ -53,9 +53,9 @@ Cacti. These generally cover just about all use cases presently.
 ## CDEF's
 
 CDEF's allow you to apply mathematical functions to graph data to alter output.
-The concept of a CDEF comes straight from RRDtool, and are written in reverse
-polish notation (RPN). For more information regarding the syntax of CDEF's,
-check out the
+The concept of a CDEF comes straight from RRDtool, and they are written in
+reverse polish notation (RPN). For more information regarding the syntax of
+CDEF's, check out the
 [CDEF tutorial](https://oss.oetiker.ch/rrdtool/tut/cdeftutorial.en.html).
 
 From the image below, you can see that Cacti provides a rich set of CDEF's out
@@ -71,11 +71,11 @@ section. Once at this screen, click Add to the right. You will be prompted for a
 CDEF name, for which you can type anything used to describe your CDEF. Click the
 Create button so you are redirected back to the edit page, now with an empty
 CDEF Items box. Construct your CDEF by adding an item for each element in the
-CDEF string, common types such as operators and functions are enumerated for
+CDEF string; common types such as operators and functions are enumerated for
 your convenience. Below is a basic description of each CDEF item type. You can
 see from the image below that CDEF's follow a Reverse Polish Notation (RPN),
-which was a very popular way of computing back in the 70's and 80's when
-computing devices had much less memory. However, RPN is elegant in it's
+which was a very popular way of computing back in the 70s and 80s when
+computing devices had much less memory. However, RPN is elegant in its
 simplicity.
 
 ![Default Cacti CDEF Example](images/cdefs-default-example.png)
@@ -86,7 +86,7 @@ Cacti provides several CDEF Item Types to represent a **Data Source** in order
 to provide additional functionality. See below for the documentation. Cacti
 presently does not allow you to specify a VNAME for your DEFS, CDEF's and
 VDEF's, but instead uses a string pattern to assign them. You will have to take
-note of then when creating a **Graph Template**. Those Special Data Source types
+note of them when creating a **Graph Template**. Those Special Data Source types
 are documented below in the next few sections.
 
 | Type                | Description                                                                                                                                                                                                                                                                                                                                                                      |
@@ -99,13 +99,13 @@ are documented below in the next few sections.
 
 ## VDEF's
 
-VDEF's provide greater functionality then their ancestor CDEF's and may be able
+VDEF's provide greater functionality than their ancestor CDEF's and may be able
 to replace some legacy Cacti functionality like Nth Percentile **Graph
 Template** logic. They should be used whenever possible for your **Graph
 Templates**.
 
-You can see from the image below, that 95th percentile and total bandwidth could
-be replace by using one of the VDEF's below.
+You can see from the image below that 95th percentile and total bandwidth could
+be replaced by using one of the VDEF's below.
 
 ![Default Cacti VDEF's](images/vdefs-default.png)
 
@@ -116,7 +116,7 @@ section. Once at this screen, click Add to the right. You will be prompted for a
 VDEF name, for which you can type anything used to describe your VDEF. Click the
 Create button so you are redirected back to the edit page, now with an empty
 VDEF Items box. Construct your VDEF by adding an item for each element in the
-VDEF string, common types such as operators and functions are enumerated for
+VDEF string; common types such as operators and functions are enumerated for
 your convenience. Below is a basic description of each VDEF item type. The image
 below shows an example VDEF for the Bandwidth type VDEF.
 
@@ -124,12 +124,12 @@ below shows an example VDEF for the Bandwidth type VDEF.
 
 For additional information on CDEF's and VDEF's see that specific section of the
 documentation. Additionally, you can find examples on the
-[RRDtool Website](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_data.en.html#VDEF)
+[RRDtool Website](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_data.en.html#VDEF).
 
 ### Special Data Sources
 
 The Special Data Source selection introduces some variables not known to plain
-vanilla RRDtool. Let's spend some few words of them to unleash their power.
+vanilla RRDtool. Let's spend a few words on them to unleash their power.
 
 ###### Table 19-2. CDEF Special Data Source
 
@@ -137,8 +137,8 @@ vanilla RRDtool. Let's spend some few words of them to unleash their power.
 | --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Current Graph Item Data Source                                        | Will be replaced by the DEF name of the RRDtool data source referred by the graph item this CDEF is associated to.                                                                                                                                                                                                                                                                                                                 |
 | All Data Sources (Do not Include Duplicates)                          | Will add up all data sources of the whole graph to form a total. A data source that appears more than once will be counted only once. Data sources that differ by consolidation functions only are NOT counted as different data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted only once). It is NOT required to associate the graph item to any data source!                                                    |
-| All Data Sources (Include Duplicates)                                 | Will add up all data sources of the whole graph to form a total. A data source that appears more than once will be counted for each time of it's appearance. Data sources that differ by consolidation functions only are NOT counted as different data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted only once). It is NOT required to associate the graph item to any data source!                             |
-| All Similar Data Sources (Do not Include Duplicates)                  | It is REQUIRED to associate the graph item to the data source that shall be totaled! Let's assume the data source is named "traffic_in". Then, cacti will add up all data sources "traffic_in" of the whole graph to form a data source specific total (e.g. Total traffic In). Data sources with different consolidation functions are counted as same data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted once) |
+| All Data Sources (Include Duplicates)                                 | Will add up all data sources of the whole graph to form a total. A data source that appears more than once will be counted for each time of its appearance. Data sources that differ by consolidation functions only are NOT counted as different data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted only once). It is NOT required to associate the graph item to any data source!                             |
+| All Similar Data Sources (Do not Include Duplicates)                  | It is REQUIRED to associate the graph item to the data source that shall be totaled! Let's assume the data source is named "traffic_in". Then, Cacti will add up all data sources "traffic_in" of the whole graph to form a data source specific total (e.g. Total traffic In). Data sources with different consolidation functions are counted as same data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted once) |
 | All Similar Data Sources (Include Duplicates)                         | It is REQUIRED to associate the graph item to the data source that shall be totaled! If a data source appears multiple times, it will be added this many times.                                                                                                                                                                                                                                                                    |
 | Current Graph Item Polling Interval                                   | Will be replaced by the step, in seconds, of the RRDfile of the data source referred by the graph item this CDEF is associated to. If the graph item has no data source, the `Poller Interval` setting is used.                                                                                                                                                                                                                    |
 | All Similar Data Sources (Do not Include Duplicates) Polling Interval | Will be replaced by the step, in seconds, of the RRDfile of the data source referred by the graph item this CDEF is associated to, in the same way as `Current Graph Item Polling Interval`. If the graph item has no data source, the `Poller Interval` setting is used.                                                                                                                                                          |
@@ -147,8 +147,8 @@ vanilla RRDtool. Let's spend some few words of them to unleash their power.
 | Graph: Lower Limit                                                    | Taken from the Graph Template: fetches the Lower Limit defined to the Graph Template. This is independent of all --alt-autoscaling options. It is NOT the dynamically determined lower boundary of the graph!                                                                                                                                                                                                                      |
 | Graph: Upper Limit                                                    | Taken from the Graph Template: fetches the Upper Limit defined to the Graph Template. This is independent of all --alt-autoscaling options. It is NOT the dynamically determined upper boundary of the graph!                                                                                                                                                                                                                      |
 | Count of All Data Sources (Do not Include Duplicates)                 | Will count the number of all data sources of the whole graph. A data source that appears more than once will be counted only once. Data sources that differ by consolidation functions only are NOT counted as different data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted only once). It is NOT required to associate the graph item to any data source!                                                       |
-| Count of All Data Sources (Include Duplicates)                        | Will count the number of all data sources of the whole graph. A data source that appears more than once will be counted for each time of it's appearance. Data sources that differ by consolidation functions only are NOT counted as different data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted only once). It is NOT required to associate the graph item to any data source!                                |
-| Count of All Similar Data Sources (Do not Include Duplicates)         | It is REQUIRED to associate the graph item to the data source that shall be counted! Let's assume the data source is named "traffic_in". Then, cacti will count all data sources "traffic_in" of the whole graph. Data sources with different consolidation functions are counted as same data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted once)                                                               |
+| Count of All Data Sources (Include Duplicates)                        | Will count the number of all data sources of the whole graph. A data source that appears more than once will be counted for each time of its appearance. Data sources that differ by consolidation functions only are NOT counted as different data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted only once). It is NOT required to associate the graph item to any data source!                                |
+| Count of All Similar Data Sources (Do not Include Duplicates)         | It is REQUIRED to associate the graph item to the data source that shall be counted! Let's assume the data source is named "traffic_in". Then, Cacti will count all data sources "traffic_in" of the whole graph. Data sources with different consolidation functions are counted as same data sources (e.g. traffic_in:AVERAGE and traffic_in:MAX are counted once)                                                               |
 | Count of All Similar Data Sources (Include Duplicates)                | It is REQUIRED to associate the graph item to the data source that shall be counted! If a data source appears multiple times, it will be counted this many times.                                                                                                                                                                                                                                                                  |
 
 While the `All Data Sources/Similar Data Sources` pseudo CDEF variables perform
@@ -163,7 +163,7 @@ CDEF:
 
 Let's have some examples:
 
-This is the list of graph items defined. Please note, that Item numbers 17-20
+This is the list of graph items defined. Please note that Item numbers 17-20
 are duplicates of Item numbers 1-4. Even if it usually does not make sense, for
 this discussion it is very valuable. Item numbers 21-24 are related to a
 `cdef=ALL_DATA_SOURCES_NODUPS`.
@@ -250,12 +250,12 @@ GPRINT:cdefca:MAX:"Maximum:%8.2lf%sn"
 ```
 
 The data sources are denoted by the letters `a` to `h`. `cdefca` represents the
-important part. You surely notice, that all data sources using consolidation
+important part. You surely notice that all data sources using consolidation
 function `AVERAGE` are taken into account while `MAX` is skipped. Please pay
 attention to the data source denoted by `a`. Even though the data source appears
 twice, the cdef shows it only once. This is due to the duplicate suppression.
 
-This is the list of graph items defined. Please note, that Item numbers 17-20
+This is the list of graph items defined. Please note that Item numbers 17-20
 are duplicates of Item numbers 1-4. Even if it usually does not make sense, for
 this discussion it is very valuable. Item numbers 21-24 are related to a
 `cdef=ALL_DATA_SOURCES_DUPS`
@@ -343,15 +343,15 @@ GPRINT:cdefca:MAX:"Maximum:%8.2lf%sn"
 
 Again, the data sources are denoted by the letters `a` to `h` and `cdefca`
 represents the important part. Please pay attention to the data source denoted
-by `a` appearing twice in this cdef. This is, because it appears twice (Item
+by `a` appearing twice in this cdef. This is because it appears twice (Item
 numbers 17-20) in the graph item list and duplicate suppression is not in
 effect.
 
 Everything is very much like the above; again Item numbers 17-20 are duplicates
 of Item numbers 1-4. Item numbers 21-24 are related to a
 `cdef=SIMILAR_DATA_SOURCES_NODUPS` and are associated with the data source
-`traffic_in` of the `1`. target (it does not matter, which target is chosen, as
-long as you only choose a `traffic_in` data source)
+`traffic_in` of the `1`. target (it does not matter which target is chosen, as
+long as you only choose a `traffic_in` data source).
 
 | Graph Item | Data Source                              | Graph Item Type | CF Type |
 | :--------- | :--------------------------------------- | --------------: | ------: |
@@ -438,24 +438,24 @@ GPRINT:cdefcd:MAX:"Maximum:%8.2lf%sn"
 
 `cdefca` calculates the `SUM` of `all traffic_in` data sources, but pays
 attention only to consolidation function `AVERAGE`. Duplicate suppression makes
-sure, that the second occurrence of the `1`. target is not taken into account.
-So it's only summing data source `a` and `c`. `cdefca` is used the the `LINE1`
+sure that the second occurrence of the `1`. target is not taken into account.
+So it's only summing data source `a` and `c`. `cdefca` is used for the `LINE1`
 graph item with exact match for consolidation function `AVERAGE` as well as for
 the best matched consolidation functions `LAST` and `MIN`.
 
 `cdefcd` calculates the `SUM` of all `traffic_in` data sources, but pays
 attention only to consolidation function `MAX`. Again, duplicate suppression is
 in effect. So it's only summing data source `b` and `d`. `cdefcd` is used for
-the graph item with exact match for consolidation function `MAX` only. This is,
+the graph item with exact match for consolidation function `MAX` only. This is
 because my rra settings only define `AVERAGE` and `MAX`, where `LAST` and `MIN`
 are omitted. This may differ for installations defining `LAST` and `MIN` as
 well.
 
-Again, please note, that Item numbers 17-20 are duplicates of Item numbers 1-4.
+Again, please note that Item numbers 17-20 are duplicates of Item numbers 1-4.
 Item numbers 21-24 are related to a `cdef=SIMILAR_DATA_SOURCES_DUPS` and are
 associated with the data source `traffic_in` of the `1` target (it does not
-matter, which target is chosen, as long as you only choose a `traffic_in` data
-source)
+matter which target is chosen, as long as you only choose a `traffic_in` data
+source).
 
 | Graph Item | Data Source                              | Graph Item Type | CF Type |
 | :--------- | :--------------------------------------- | --------------: | ------: |
@@ -539,7 +539,7 @@ GPRINT:cdefca:AVERAGE:"Average:%8.2lf%s" \
 GPRINT:cdefcd:MAX:"Maximum:%8.2lf%sn"
 ```
 
-`cdefca` and `cdefcd` represents the important part. You surely notice, that all
+`cdefca` and `cdefcd` represent the important part. You surely notice that all
 data sources using consolidation function AVERAGE are taken into account for
 calculation `cdefca`, while `MAX` is calculated with `cdefcd`. Please pay
 attention to the data source denoted by `a` and `b`, respectively, appearing
@@ -549,16 +549,16 @@ twice in those CDEFs as expected.
 
 This example is based on the standard data template
 `ucd/net - Hard Drive Space`. Cacti ships an associated graph template named
-`ucd/net - Available Disk Space`. Often, users complain about the fact, that
+`ucd/net - Available Disk Space`. Often, users complain about the fact that
 this template prints free and used space as absolute figures only. But instead
-of knowing, that your data partition has about 10GB used space, you may be
+of knowing that your data partition has about 10GB used space, you may be
 interested in the percentage used. So let's create a simple example to show the
 power of the recently introduced special data sources.
 
 To make it work, we need two new CDEFs. The first one may come in useful for a
 bunch of different graph templates. It's named `Make Current Data Source 0`. On
 a first glance, you may wonder why this CDEF is needed. It is used for those
-data sources, that will be used for calculations but shall not show up
+data sources that will be used for calculations but shall not show up
 themselves. Here's the definition
 
 `cdef=CURRENT_DATA_SOURCE,0,*`
@@ -620,16 +620,16 @@ LINE1:cdefb:"" \
 AREA:cdefc#FF0000FF:"% Used"
 ```
 
-`cdefa` and `cdefb` are used to make the according graph items zero. `cdefc`
+`cdefa` and `cdefb` are used to make the corresponding graph items zero. `cdefc`
 performs the percentage calculation.
 
 You may of course add `GPRINT` legends as usual. If you do this for the "% Used"
-entry only, you will get surprising results, if your RRDfile holds either
+entry only, you will get surprising results if your RRDfile holds either
 `MAXIMUM`, `LAST` and/or `MINIMUM` consolidation function(s). This is left as an
 exercise to you :)
 
 This set of CDEFs is used to colorize the background of a graph with different
-colors for day, night and weekends. The CDEFs are created as usual, we will show
+colors for day, night and weekends. The CDEFs are created as usual; we will show
 the CDEF definition only. Examples are taken from RRDtool-users mailing list
 courtesy Erik de Mare. Here are the definitions
 
@@ -646,16 +646,16 @@ cdef=LTIME,86400,%,28800,LT,INF,LTIME,86400,%,64800,GT,INF,UNKN,CURRENT_DATA_SOU
 `cdef=LTIME,604800,%,172800,GT,LTIME,604800,%,345600,LT,INF,UNKN,CURRENT_DATA_SOURCE,*,IF,UNKN,CURRENT_DATA_SOURCE,*,IF`
 
 The value of `86400` represents the number of seconds of a day, whereas `28800`
-represents `8:00`, defined as the start of the day. End of the day, `64800` is
-assumed at `18:00`. Please replace those values if required. For weekends, same
-logic applies.
+represents `8:00`, defined as the start of the day. The end of the day, `64800`,
+is assumed at `18:00`. Please replace those values if required. For weekends,
+the same logic applies.
 
 Now, let's apply those new CDEFs to a Graph Template. For this example, I've
 chosen the `Unix - Processes` that applies to `localhost` only. In turn, please
 create three new graph items, associate the processes data source, make them
 AREAs, select a color and opacity. Choose the `daytime`, `nighttime` and
 `weekend` CDEF in this sequence. As a last step, move those three new graph
-items to the top. I've chosen opacity of `20%` for Item numbers 1 to 3.
+items to the top. I've chosen an opacity of `20%` for Item numbers 1 to 3.
 
 | Graph Item | Data Source               | Graph Item Type | CF Type | Item Color |
 | :--------- | :------------------------ | --------------: | ------: | :--------- |

@@ -1,7 +1,7 @@
 # Poller Settings
 
-The Poller sub-tab of the Cacti settings are where you go to control
-many aspects of **Data Collection** in Cacti, you control various base
+The Poller sub-tab of the Cacti settings is where you go to control
+many aspects of **Data Collection** in Cacti.  You control various base
 collection frequencies, communication timeouts, and other settings that
 impact how Cacti's **Data Collection** works.
 
@@ -26,7 +26,7 @@ Those settings include:
   any Cacti system that's participating in a multi-level Operations
   Framework.
 
-- **Poller Type** - This is where you define either Cacti's built in poller
+- **Poller Type** - This is where you define either Cacti's built-in poller
   `cmd.php`, or use the more robust poller `spine`.  You will not see the
   `spine` drop-down option unless it has first been installed, and the
   `spine` binary path defined from
@@ -36,7 +36,7 @@ Those settings include:
   this is the default `Full Sync` interval it will use.  In the current
   Cacti design, a `Full Sync` should only be required when attempting
   to replicate local authentication or authorization data to
-  **Remote Data Collectors**, of if you have made changes that would
+  **Remote Data Collectors**, or if you have made changes that would
   otherwise impact the behavior of a **Remote Data Collector** when it
   was offline.
 
@@ -49,21 +49,21 @@ Those settings include:
 > should be `1 Minute` as well.
 
 - **Cron/Daemon Interval** - This is the frequency at which either the Cacti
-  daemon (cactid.php), or the systems crontab/task-manager should relaunch
-  every **Data Collectors** Poller process.
+  daemon (cactid.php), or the system's crontab/task-manager should relaunch
+  every **Data Collector's** Poller process.
 
 - **Balance Process Load** - This setting will sort the devices such that
   each concurrent Cacti process is polling the same number of **Data Sources**.
   Otherwise, Cacti will simply order the hosts by their `device ids`.
 
-- **Debug Output Width** - This is a diagnostic settings that you would only
+- **Debug Output Width** - This is a diagnostic setting that you would only
   enable from time to time if you wish to check if the output from your
   **Data Collector** scripts exceeded the output width in the various
-  Poller tables.  Since checking this have a very negative impact on
+  Poller tables.  Since checking this has a very negative impact on
   polling performance, it's disabled by default.
 
 - **Disable increasing OID Check** - This setting is for performing
-  **Data Query** `Re-index` activities for tables whose OID's are not
+  **Data Query** `Re-index` activities for tables whose OIDs are not
   structured in an orderly way where the suffix for the OID increases
   in a known way.  Though, in most cases enabling this setting will
   not be harmless.  There may be some cases where it would slow the
@@ -73,11 +73,11 @@ Those settings include:
   a **Data Collector**, like `ping` latency from the collector to one
   of the **Devices** it's monitoring, or when a **Remote Data Collector**
   needs information from the main Cacti server, this is the timeout
-  for receiving a handshake from that server.  It's use to keep the
+  for receiving a handshake from that server.  It's used to keep the
   Website from locking up in the case a **Data Collector** is not
   responding due to being down.
 
-- **SNMP Bulkwalk Fetch Size** - This controls how many OID's are
+- **SNMP Bulkwalk Fetch Size** - This controls how many OIDs are
   returned per UDP turn when obtaining `snmpwalk` data from an
   SNMP enabled **Device**.
 
@@ -96,9 +96,9 @@ Those settings include:
   databases that could use swap.  It is disabled by default.
 
 - **Disable Resource Cache Replication** - By default Cacti will
-  continually replicate it's Website content with it's
+  continually replicate its Website content with its
   **Remote Data Collectors**.  So, essentially, they are self
-  upgradable.  However there are some cases where customers wish
+  upgradable.  However, there are some cases where customers wish
   to upgrade the Central system before allowing the remotes
   to self upgrade.  In those cases, you would enable this feature.
 
@@ -120,14 +120,14 @@ Those settings include:
 - **Re-Index All Device Schedule** - At what frequency do you wish to Re-Index
   all **Devices**. This Re-Index will occur at midnight at the frequency that
   you select. The options are `Disabled`, `Daily`, `Weekly on Sunday` and
-  `Monthly on Sunady`, and the default is `Disabled`.
+  `Monthly on Sunday`, and the default is `Disabled`.
 
 ## Background Timeout Settings
 
 The settings below limit how long Cacti background processes will be
-allowed to run before timing out and being killed the system and
+allowed to run before timing out and being killed by the system and
 notifying the Cacti administrator.  These background timeouts are
-required to keep Cacti performing a peak performance by not allowing
+required to keep Cacti performing at peak performance by not allowing
 certain tasks to re-spawn while they are still running causing
 system overload.  Below is the image of those settings.
 
@@ -159,11 +159,11 @@ Those settings include:
 - **Maintenance Background Generation Timeout** - Cacti performs daily
   maintenance at midnight every day.  This maintenance can include:
   rotating logs, purging old logs, calculating **Data Source**
-  statistics, etc.  This setting controls it maximum allowed runtime.
+  statistics, etc.  This setting controls its maximum allowed runtime.
 
 - **Spikekill Background Generation Timeout** - If you are using Cacti's
   prophylactic spike-killer process on your Data Queries, this will control
-  it's maximum allowed run-time.
+  its maximum allowed run-time.
 
 ## Data Collector Defaults
 
@@ -172,10 +172,10 @@ settings.  They are maintained at the **Data Collector** level due to the
 fact that not all **Data Collectors** are created equally.  You may have
 one **Data Collector** that's collecting data from 1,000 hosts, and another
 that is collecting from 10.  Maybe one is a Raspberry Pi and the other
-a two socket EPYC chip.  You would not want the same settings for each.
+a two-socket EPYC chip.  You would not want the same settings for each.
 
-These settings are only the defaults, when you fist create a
-**Data Collector**, once you save them, the setting stays with the
+These settings are only the defaults when you first create a
+**Data Collector**; once you save them, the setting stays with the
 individual **Data Collector**.  Below, you can see an image of those
 settings.
 
@@ -208,13 +208,13 @@ Those settings include:
   which logs every error.
 
 - **Number of PHP Script Servers** - Another level of Spine parallelism
-  is it's ability to create a pool of memory resident PHP
+  is its ability to create a pool of memory resident PHP
   interpreters for running PHP scripts, making spine very powerful.
   Every concurrent process will have this many memory resident
   PHP interpreters pooled for running scripts.
 
 - **Script and Script Server Timeout Value** - This is the timeout
-  to stop run-on script from blocking poller performance.  If a script
+  to stop run-on scripts from blocking poller performance.  If a script
   exceeds this timeout, it will generate a log message.
 
 ---

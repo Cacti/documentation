@@ -23,11 +23,11 @@ columns:
 - **Frequency** - How often the Report is to be sent to the distribution.
 - **Last Run** - The last time that the Report was sent to the distribution.
 - **Next Run** - The approximate next time that the report is to be sent.
-  this is not an exact number.  It does depend on the poller first running.  So,
+  This is not an exact number.  It does depend on the poller first running.  So,
   depending on how long your poller runs for, this time could be off by a
   few minutes.
 - **From** - The From Name portion of the From Email address
-- **To** - The list of Emails that the reports is to be sent to.
+- **To** - The list of Emails that the report is to be sent to.
 - **Type** - The Image format and the type of embedding done in the Email.
 - **Enabled** - Is the Report able to be sent on the Schedule.
 
@@ -42,7 +42,7 @@ The actions that you can take on an existing Report as an Administrator include:
 
 ## Report Editing
 
-When you click the Add button on the right side of the **Reports** page, or Click
+When you click the Add button on the right side of the **Reports** page, or click
 the Report Name of an existing Report, you will be presented with the interface below.
 
 ![Reports Admin Edit](images/reports-edit-1.png)
@@ -55,7 +55,7 @@ This section includes:
  custom html/css document that you can use to customize the layout of your
  reports and add corporate branding for example.
 - **Format File to Use** - The specific html/css file to use.
-- **Graph Linked** - Provide the recipient of the report a ling back to the actual
+- **Graph Linked** - Provide the recipient of the report a link back to the actual
   graph in Cacti.
 - **Graph Columns** - The number of Graph columns to use per row.
 - **Graph Width** - The width of each Graph
@@ -66,7 +66,7 @@ This section includes:
    Hours, Days, Weeks, Months on a Day of the Month, Months on the Day of the Week,
   and Years.
 - **Interval Frequency** - How often to send, for example if you select Days,
-  and the Interval is one, it means every day, if you select 2,
+  and the Interval is one, it means every day; if you select 2,
   it means every other day.
 
 The **Email Frequency** section does not use the same layout as does our
@@ -86,13 +86,13 @@ From here you can set the following columns.
   receive the Report.
 - **BCC Address(es)** - An anonymized list of Email recipients
 - **Image attach type** - This defines how the Cacti Graph images get attached
-to the  Email.  Maybe are for legacy purposes.  Most users will use
+to the Email.  Some are for legacy purposes.  Most users will use
 Inline PNG or Inline JPG.
 
-Once you save a new **Report** additional Tabs will show up.  Those tabs are:
+Once you save a new **Report**, additional Tabs will show up.  Those tabs are:
 
-- **Items** - The Graph's, Tree's, Text, Horizontal Rules,
-   and Device's to place on the Report.
+- **Items** - The Graphs, Trees, Text, Horizontal Rules,
+   and Devices to place on the Report.
 - **Preview** - See a Preview of your Report
 - **Events** - Approximate Future Event Days for your Report to be sent.  
 This helps interpret the idiosyncrasies of the scheduler design.

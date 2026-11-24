@@ -9,7 +9,7 @@ the configured web server, PHP handler, and database start at boot.
 ## Required Packages for Most Operating Systems
 
 Depending on your operating system and PHP version, certain packages are
-required for Cacti. The largest variable in these requirements come with regard
+required for Cacti. The largest variable in these requirements comes with regard
 to PHP and MySQL/MariaDB.
 
 Installation requirements include the packages below. The installation of these
@@ -17,20 +17,20 @@ packages will vary by operating system.
 
 ### Base OS
 
-- apache, IIS, or nginx
+- Apache, IIS, or nginx
 
 - net-snmp, net-snmp-utils
 
 - rrdtool
 
-- help2man (for spine)
+- help2man (for Spine)
 
-- dos2unix (for spine)
+- dos2unix (for Spine)
 
 - development packages (gcc, automake, autoconf, libtool, either mysql-devel or
   mariadb-devel, net-snmp-devel, help2man)
 
-  (for spine)
+  (for Spine)
 
 ### Database
 
@@ -57,7 +57,7 @@ or
 
 ### PHP Modules
 
-The installation of these modules vary by OS. Use the `php -m` command to
+The installation of these modules varies by OS. Use the `php -m` command to
 verify that they are installed.
 
 - ctype
@@ -198,13 +198,13 @@ installer will make specific recommendations on MySQL/MariaDB settings. Follow
 those as applicable for your OS.
 
 Galera clustering: There are several tables which are set to use the MEMORY
-storage engine which do not get replicated among nodes which can cause
+storage engine which do not get replicated among nodes, which can cause
 problems. If you configure Cacti to only connect to one node of your cluster
 and are not load balancing this does not apply to you.
 
 If you are running multiple nodes in a load-balanced environment where you
-connect to a VIP you should remove all but one node from rotation during Cacti
-installation or update. After the installation/update login to your MySQL
+connect to a VIP, you should remove all but one node from rotation during Cacti
+installation or update. After the installation/update, log in to your MySQL
 server and execute the following commands to update those tables to use the
 InnoDB engine:
 
@@ -385,13 +385,13 @@ the configured account.
 
 Spine is a very fast data collection engine, written in C. It is an optional
 replacement for cmd.php. If you decide to use it, you will have to install it
-explicitly. It does not come with cacti itself.
+explicitly. It does not come with Cacti itself.
 
 The easiest way is to install Spine using rpm or ports. You will find packages
-for Spine at the main cacti site or from your distribution.
+for Spine at the main Cacti site or from your distribution.
 
-To compile Spine, download it to any location of your liking. Then, issue from
-the downloaded directory following commands
+To compile Spine, download it to any location of your liking. Then, issue the
+following commands from the downloaded directory:
 
 ```sh
 ./bootstrap
@@ -400,7 +400,7 @@ the downloaded directory following commands
 After `bootstrap` succeeds, follow the release's build instructions to
 configure, compile and install Spine.
 
-Assuming, you've managed to install spine correctly, you will have to configure
+Assuming you've managed to install Spine correctly, you will have to configure
 it. Use the installed `spine.conf.dist` as the example, and configure the
 actual Spine configuration path in Cacti. Use the same database account and
 secret as the Cacti configuration, and restrict file access to the poller

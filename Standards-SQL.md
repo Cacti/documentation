@@ -1,14 +1,14 @@
 # SQL Standards
 
-Special care must be taken for Cacti to properly support multiple DBMS's.
+Special care must be taken for Cacti to properly support multiple DBMSs.
 
 ## Quotes
 
 When writing queries do not use quotes around numeric values. While MySQL is not
-strict about types, most DBMS's assume that any value contained within quotes is
+strict about types, most DBMSs assume that any value contained within quotes is
 a string.
 
-As well, single quotes are used unless a variable is referenced
+As well, single quotes are used unless a variable is referenced.
 
 ```php
 $graphs = db_fetch_assoc('SELECT * FROM graph WHERE height >= 150');
@@ -21,8 +21,8 @@ $rows = db_fetch_cell("SELECT count(*) FROM $archive_table");
 ## DBMS Functions
 
 Do not use functions in SQL queries that are provided only by a single DBMS.
-These functions are generally not uniformly support or even available in all
-DBMS's. Common examples of such functions are `MD5()`, `CONCAT()`, and `NOW()`.
+These functions are generally not uniformly supported or even available in all
+DBMSs. Common examples of such functions are `MD5()`, `CONCAT()`, and `NOW()`.
 
 ## SQL Injection
 
@@ -52,8 +52,8 @@ db_execute(UPDATE host SET hostname = '$myhost' WHERE id = $id");
   should be wrapped onto a continuation line for ease of use and readability.
   The following keywords should also be placed at the start of a new line:
 
-  - joins statements (excluding JOIN itself which should not be used) (eg, INNER
-    JOIN, LEFT JOIN, RIGHT JOIN, OUTER JOIN, CROSS JOIN)
+  - join statements (excluding JOIN itself which should not be used) (e.g.,
+    INNER JOIN, LEFT JOIN, RIGHT JOIN, OUTER JOIN, CROSS JOIN)
 
     **Note:** \*Any implicit join or JOIN without one of the modifiers should be
     converted to an explicit join with a modifier. When converting the implicit

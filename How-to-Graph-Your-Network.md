@@ -2,7 +2,7 @@
 
 At this point, you probably realize that graphing is Cacti's greatest strength.
 Cacti has many powerful features that provide complex graphing and data
-acquisition, some which have a slight learning curve. Do not let that stop you
+acquisition, some of which have a slight learning curve. Do not let that stop you
 however, because graphing your network is incredibly simple.
 
 The next two sections will outline the two basic steps which are typically
@@ -10,7 +10,7 @@ required to create **Graphs** for most **Devices** or **Device Types**.
 
 > **NOTE**: The process described below is the Classic way for you to
 > create and manage **Devices** and **Graphs**.  However, Cacti now
-> allows your to Automate many of these tasks in the **Automation**
+> allows you to Automate many of these tasks in the **Automation**
 > section of the Console.  That topic is covered in the Automation Chapter.
 
 ## Creating a Device
@@ -27,7 +27,7 @@ host type is defined under the host template dropdown, be sure to select it
 here. You can always choose "Generic SNMP Device" if you are just
 graphing traffic or "None" if you are unsure. It is important to remember that
 the host template you choose will not lock you into any particular
-configuration, it will just provide more intelligent defaults for that type of
+configuration; it will just provide more intelligent defaults for that type of
 host.
 
 ![Adding a New Device](images/new-device.png)
@@ -38,8 +38,8 @@ host.
   device list. You may refer to it e.g. in graph titles.
 
 - **Hostname** - Either an IP address or a hostname. The hostname will be
-  resolved using the standard host resolving mechanisms, e.g. Dynamic Name
-  Services (DNS)
+  resolved using the standard host resolving mechanisms, e.g. Domain Name
+  System (DNS).
 
 - **Device Template** - A Host Template is a container for a list of graph
   templates that will be related to this host.
@@ -47,7 +47,7 @@ host.
 - **Notes** - Notes for a given device.
 
 - **Disable Device** - Exclude this host from being polled. This is of
-  particular value, if a device is no longer available, but should be
+  particular value if a device is no longer available, but should be
   kept e.g. as a reference.
 
 ### Availability/Reachability Options
@@ -69,7 +69,7 @@ host.
   - _**UDP Ping**_ - perform a UDP test
 
 - **Ping Port** - Available only for UDP/TCP PING test types. Please define the
-  port to be tested here. Make sure, that no firewall
+  port to be tested here. Make sure that no firewall
   intercepts the test ping.
 
 - **Ping Timeout Value** - After this time, the test fails. Measured in units of
@@ -81,9 +81,9 @@ host.
 ### SNMP Options
 
 - **SNMP Version**
-  - _**Version 1**_ - Use SNMP Version 1. Be aware, that 64bit counters are not
+  - _**Version 1**_ - Use SNMP Version 1. Be aware that 64bit counters are not
   supported in this SNMP version.
-  - _**Version 2**_ - Referred to as SNMP V2c in most SNMP documentations
+  - _**Version 2**_ - Referred to as SNMP V2c in most SNMP documentation
   - _**Version 3**_ - SNMP V3, supporting authentication and encryption
 
 - **SNMP Community String** - SNMP read community for this device
@@ -94,10 +94,10 @@ host.
   response.
 
 - **Maximum OIDs Per Get Request** - This is a performance feature. Specifies
-  the number of OID's that can be obtained in a single SNMP Get request.
+  the number of OIDs that can be obtained in a single SNMP Get request.
   _**WARNING**_: This feature only works when using Spine.
   _**WARNING**_ Some devices do not support values greater than `1` and/or may
-  reports as unknown data if this value is too high.
+  report as unknown data if this value is too high.
 
 ### Security Options for SNMP V3
 
@@ -134,7 +134,7 @@ providing a valid community string, you should see various statistics listed at
 the top of the page. If you see "SNMP error" instead, this indicates an SNMP
 problem between Cacti and your device.
 
-Towards the bottom of the page there will be two addition boxes, Associated
+Towards the bottom of the page there will be two additional boxes, Associated
 Data Queries, and Associated Graph Templates. If you selected a host template
 on the previous page, there will probably be a few items in each box. If there
 is nothing listed in either box, you will need to associate at least one data
@@ -156,7 +156,7 @@ does not change an existing graph from 32-bit to 64-bit counters.
 
 The way in which Cacti retrieves SNMP information from a host has an effect on
 which SNMP-related options are supported. Currently there are three types of
-SNMP retrieval methods in Cacti and are outlined below.
+SNMP retrieval methods in Cacti, outlined below.
 
 #### SNMP Retrieval Types
 
@@ -256,7 +256,7 @@ VACM Configuration
            v1 or v2c access, LEVEL will need to be noauth.
 ```
 
-As an example, following definitions in the snmpd configuration create a set of
+As an example, the following definitions in the snmpd configuration create a set of
 definitions for use with SNMP V3
 
 ```ini
@@ -286,7 +286,7 @@ view    all included   .iso      80
 access groupv3    ""      any       auth      exact  all    all    all
 ```
 
-When adding this stuff to your snmp configuration, please remember to restart
+When adding this stuff to your SNMP configuration, please remember to restart
 the agent. Verify this setting using
 
 ```sh

@@ -2,10 +2,10 @@
 
 ## Summary
 
-Below you will find the release note for all versions of Cacti 1.0.0 and above.
+Below you will find the release notes for all versions of Cacti 1.0.0 and above.
 Release notes for earlier Cacti versions have been excluded due to the large
 list of changes that have occurred over the years, and since Cacti 0.8.x is no
-longer supported, it's a good time to for the purposes of this document, move
+longer supported, it's a good time to, for the purposes of this document, move
 them aside.
 
 For Cacti 1.2.31, use the [published release notes][release-1231] and the
@@ -47,20 +47,21 @@ The following plugins have been merged into the core Cacti code as of version
 | autom8     | Graph and Tree creation automation                       |
 | discovery  | Network Discovery and Device automation                  |
 | spikekill  | Removes spikes from Graphs                               |
-| superlinks | Allows administrators to links to additional sites       |
+| superlinks | Allows administrators to link to additional sites       |
 
 ## ChangeLog for All Cacti 1.x Releases
 
-The following shows the naming convention used for issues and features listed in the CHANGELOG for both cacti and it's plugins
+The following shows the naming convention used for issues and features listed in the CHANGELOG for both cacti and its plugins
 
 | Category         | Description                                                                   |
 | ---------------- | ----------------------------------------------------------------------------- |
 | issue[issue#]    | Normal issues either experienced by a Developer or logged in GitHub and fixed |
 | feature[issue#]  | Features either implemented or logged in GitHub and addressed                 |
 | security[issue#] | Security vulnerability either fixed or logged in GitHub and addressed         |
-| bug[bug#]        | Feature of Bug reported in the old Cacti Mantis system that was addressed.    |
+| bug[bug#]        | Feature or Bug reported in the old Cacti Mantis system that was addressed.    |
 
 Below are a few examples of the version, type and description that can be found in the CHANGELOG
+
 | Version | Feature/Bug   | Description                                                                                                                      |
 | ------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | 1.2.17  | issue#3981    | Missing API include leads to runtime errors in Automation                                                                        |

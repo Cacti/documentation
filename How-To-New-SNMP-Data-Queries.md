@@ -1,11 +1,11 @@
 # SNMP Data Query Walkthrough
 
-This walkthrough will show you how to implement a new SNMP Data Query. Assuming,
+This walkthrough will show you how to implement a new SNMP Data Query. Assuming
 you know the SNMP table, the next steps show how to proceed.
 
 ## Building Raw XML File
 
-The starting point will be snmptable for a well know table of the HOSTS MIB:
+The starting point will be snmptable for a well-known table of the HOSTS MIB:
 
 ```console
 snmptable -c <community> -v 1 <host> HOST-RESOURCES-MIB::hrStorageTable
@@ -72,7 +72,7 @@ The first index is `.1.3.6.1.2.1.25.2.3.1.1.1`, but the Index Base is
 </interface>
 ```
 
-Lets talk about the header elements
+Let's talk about the header elements
 
 | Field            | Description                                                                       |
 | ---------------- | --------------------------------------------------------------------------------- |
@@ -82,11 +82,11 @@ Lets talk about the header elements
 | index_order_type | numeric instead of alphabetic sorting                                             |
 | oid_index        | the index of the table                                                            |
 
-There are more header elements, but for sake of simplification, we'll stick to
-that for now.
+There are more header elements, but for the sake of simplification, we'll stick
+to that for now.
 
-Lets turn to the fields. They correspond to the columns of the snmptable. For
-debugging purpose it is recommended to start with the Index field first. This
+Let's turn to the fields. They correspond to the columns of the snmptable. For
+debugging purposes it is recommended to start with the Index field first. This
 will keep the XML as tiny as possible. The `<fields>` section contains one or
 more fields, each beginning with `<field_description>` and ending with
 `</field_description>`. It is recommended but not necessary to take the textual
@@ -100,7 +100,7 @@ representation of the OID or an abbreviation of that.
 | Direction | Input (for values that may be printed as COMMENTs or the like). Output (for values that shall be graphed, e.g. COUNTERs or GAUGEs).                   |
 | OID       | the real OID as numeric representation                                                                                                                |
 
-Now save this file and lets turn to cacti to implement this one. First, go to
+Now save this file and let's turn to Cacti to implement this one. First, go to
 **Data Queries** to see
 
 ![SNMP Table 1 - Data Query](images/dq-01.preview.png)
@@ -115,26 +115,26 @@ and don't forget to choose **Get SNMP Data (Indexed)**. **Create** to see
 ![SNMP Table 3 - Data Query](images/dq-03.preview.png)
 
 It has now **Successfully located XML file**. But this does not mean that there
-are no errors. So lets go on with that. Turn to the **Device** you want to query
-and add the new **Data Query** as shown:
+are no errors. So let's go on with that. Turn to the **Device** you want to
+query and add the new **Data Query** as shown:
 
 ![SNMP Table 1 - Device](images/dev-01.preview.png)
 
-**Index Count** was chosen on purpose as the **Re-Index Method** to tell cacti
+**Index Count** was chosen on purpose as the **Re-Index Method** to tell Cacti
 to re-index not only on reboot but each time the Index Count (e.g. number of
 partitions) changed.
 When done, see the results as
 
 ![SNMP Table 2 - Device](images/dev-02.preview.png)
 
-You'll notice, that on my laptop there are 11 indices = 11 partitions. So the
+You'll notice that on my laptop there are 11 indices = 11 partitions. So the
 XML worked up to now! To make this clear, select **Verbose Query** to see:
 
 ![SNMP Table Preview - Device](images/dev-03.preview.png)
 
 ## Insert all descriptive table columns
 
-Now lets put all descriptive table columns into the SNMP Query XML file. This
+Now let's put all descriptive table columns into the SNMP Query XML file. This
 refers to
 
 - hrStorageType
@@ -189,16 +189,16 @@ must.
 ```
 
 The `<name></name>` information will later show up as a column heading. Don't
-forget to provide the correct base OIDs. Remember, that the **Index** will
+forget to provide the correct base OIDs. Remember that the **Index** will
 always be appended to those OIDs, e.g. the first Description will be fetched
 from OID = `.1.3.6.1.2.1.25.2.3.1.3.1` (that is base OID =
 `.1.3.6.1.2.1.25.2.3.1.3` together with the appended index `.1` will form the
-complete OID `.1.3.6.1.2.1.25.2.3.1.3.1.`
+complete OID `.1.3.6.1.2.1.25.2.3.1.3.1.`).
 
-Please notice, that all fields that will yield descriptive columns only take
+Please notice that all fields that will yield descriptive columns only take
 `<direction>input</direction>`
 
-If you have completed your work, turn to the cacti web interface and select your
+If you have completed your work, turn to the Cacti web interface and select your
 host from the **Devices** list to see:
 
 ![SNMP Table 3 - Devices](images/dev-10.preview.png)
@@ -216,14 +216,14 @@ And clicking **Create Graphs for this Device** will result in
 
 ![SNMP Table 6 - Devices](images/dev-13.preview.png)
 
-You're not supposed to really create graphs at this moment, cause the XML is not
-yet complete. And you'll notice, that the second column does not present very
+You're not supposed to really create graphs at this moment, because the XML is
+not yet complete. And you'll notice that the second column does not present very
 useful information. So it may be omitted in later steps.
 
 ## Getting the Output Values
 
-Now lets modify the XML again. As said earlier, the second column is not very
-meaningful, so lets drop it. To get the output values, I appended the last two
+Now let's modify the XML again. As said earlier, the second column is not very
+meaningful, so let's drop it. To get the output values, I appended the last two
 XML field descriptions, see:
 
 ```xml
@@ -284,19 +284,19 @@ This works very much the same way as above.
 
 - Give the corresponding base OIDs
 
-Now we may proceed as said above: Pressing the green circle runs that XML
+Now we may proceed as said above: Pressing the green circle runs those XML
 definitions against the host and updates the rows/columns. You will notice the
 “missing” second column only when Create Graphs for this Device is selected.
 
 ---
 
 Note: Don't forget to set `<direction>output</direction>` for all
-variables/fields, that should be stored in RRDfiles and be graphed!. This is the
+variables/fields that should be stored in RRDfiles and be graphed! This is the
 mistake that occurs most often.
 
 ### Defining the Data Template
 
-The Data Template will define, how the data is retrieved by the XML Query is
+The Data Template will define how the data retrieved by the XML Query is
 saved. For more information about the principles of operation, please see Common
 Tasks. Please go to **Data Templates** and **Add**:
 
@@ -330,7 +330,7 @@ of the page and check **Index Type, Index Value and Output Type ID**
 
 ### Defining the Graph Template
 
-The Graph Template will define, how the data is presented. For more information
+The Graph Template will define how the data is presented. For more information
 about the principles of operation, please see [Graph Templates](Graph-Templates.md).
 Please go to Graph Templates and Add:
 
@@ -394,12 +394,12 @@ and **Create** to see:
 
 ![Graphs created](images/dev-21.preview.png)
 
-Lets visit the **Data Sources**:
+Let's visit the **Data Sources**:
 
 ![Host Data Sources](images/ds-01.preview.png)
 
 As you can see, the **Suggested Values** of the Data Query defined the Name of
-the Data Template. So lets go to **Graph Management**:
+the Data Template. So let's go to **Graph Management**:
 
 ![Graph Management Preview](images/gm-01.preview.png)
 
@@ -413,7 +413,7 @@ This might be the end of the show. While it should be enough to define some
 explain.
 
 As you may have noticed, the quantities defined by this example are counted in
-Units, not Bytes. This is somewhat inconvenient but may be changed. Lets wait
+Units, not Bytes. This is somewhat inconvenient but may be changed. Let's wait
 for the next Section...
 
 ### VALUE/REGEXP in Action
@@ -460,7 +460,7 @@ To use these values, we define a CDEF:
 
 ![CDEF Preview](images/cdef-01.preview.png)
 
-Notice, that with recent releases of cacti, it is possible to use `|query_*|`
+Notice that with recent releases of Cacti, it is possible to use `|query_*|`
 values within CDEFs. Finally, go to **Graph Templates** and use this CDEF with
 all **Graph Items**:
 

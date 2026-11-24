@@ -6,8 +6,8 @@ following sections.
 
 ## Be Aware
 
-New authentication settings may not take effect immediately. We recommend to
-open a **new** private browser window to test configuration changes.
+New authentication settings may not take effect immediately. We recommend
+opening a **new** private browser window to test configuration changes.
 
 ## Defining some terms
 
@@ -26,7 +26,7 @@ Before proceeding, please ensure you are familiar with the following terms:
  for organizational and management purposes.
 
 3. _DN_ - Short for _distinguished name_, a string that represents a
- unique object in the directory.  There can not be two DNs alike
+ unique object in the directory.  There cannot be two DNs alike
  in a directory.  In Microsoft's _Active Directory_, this is a string
  like 'CN=Joseph,OU=Accounting,OU=Users,DC=corp,DC=example,DC=com'.
 
@@ -39,8 +39,8 @@ Before proceeding, please ensure you are familiar with the following terms:
  correct for that user.
 
 6. _sAMAccountName_ - An attribute found in Microsoft's _Active Directory_
- directory, and is what we casually know as a _username_.  The _sAMAccountName_
- does not uniquely represent an object in the Active Directory,
+ directory, and it is what we casually know as a _username_.  The
+ _sAMAccountName_ does not uniquely represent an object in the Active Directory,
  whereas the _DN_ does.
 
 ## Configuring LDAP
@@ -67,7 +67,7 @@ LDAP authentication.
 
  ```domain\<username>```
 
-2._Anonymous Searching_ - In this routine, Cacti connects to LDAP with no
+2. _Anonymous Searching_ - In this routine, Cacti connects to LDAP with no
  authentication and attempts to perform a search for the _username_, in an
  attempt to retrieve the specific DN associated with the username.  Once
  the specific DN of the username is found, Cacti binds to LDAP using the DN of
@@ -75,7 +75,7 @@ LDAP authentication.
  default, Microsoft's Active Directory does not permit anonymous searches, and
  will refuse the search request.
 
-3.Specific Searching_- In this routine, Cacti binds to LDAP using a service
+3. _Specific Searching_ - In this routine, Cacti binds to LDAP using a service
  account that was provided beforehand, then performs a search for the
  _username_, in an attempt to retrieve the specific DN associated with the
  username.  Once the specific DN of the username is found, Cacti binds to LDAP
@@ -143,9 +143,9 @@ The remaining LDAP General Settings are:
 Cacti can enforce that a user be a member of a specific directory group to be
 granted access to Cacti.  This is useful when your directory contains a mix of
 users who should and should not be granted access to Cacti.  For Cacti to
-require that the user be apart of a group, Cacti will send a _compare_ request
+require that the user be a part of a group, Cacti will send a _compare_ request
 to the directory server asking the server if a specific group has any
-parameters that contain a specific username.  As an example, a compare requests
+parameters that contain a specific username.  As an example, a compare request
 asks the following type of question:
 
 Does there exist a group named
@@ -162,14 +162,14 @@ The following three settings determine the content of the compare request.
 CN=cacti-admins,OU=Admin_Groups,OU=Groups,DC=corp,DC=company,DC=com
 ```
 
-2.Group Member Attribute_ - The name of the attribute into which the
+2. _Group Member Attribute_ - The name of the attribute into which the
  directory server should search for the user.  For example:
 
 ```bash
 member
 ```
 
-3.Group Member Type_ - The format of the text string which should represent
+3. _Group Member Type_ - The format of the text string which should represent
  the user.
 
 ### Specific Search Settings
@@ -180,7 +180,7 @@ member
  _search base_ setting is useful to reduce the portion of the directory that is
  searched, thus increasing speed and reducing processor load on the directory
  server.  This setting is also useful if you want to restrict access to Cacti to
- users who exist in a particular location in the director heierarchy.
+ users who exist in a particular location in the directory hierarchy.
 
 2. _Search Filter_ - The criteria for which the directory server should search.
  Any parameters that the server is capable of understanding are permitted here.
@@ -192,17 +192,17 @@ member
 (sAMAccountName=<username>)
 ```
 
-But more complex filers are also permitted, such as:
+But more complex filters are also permitted, such as:
 
 ```bash
 (&(sAMAccountName=<username>)(memberOf=CN=cacti-admins,OU=Admin_Groups,OU=Groups
 ,DC=corp,DC=company,DC=com))
 ```
 
-3.Search Distinguished Name (DN)_ - The username of the service account with
+3. _Search Distinguished Name (DN)_ - The username of the service account with
  which Cacti will bind to the directory.
 
-4.Search Password_ - The password of the service account with which Cacti
+4. _Search Password_ - The password of the service account with which Cacti
  will bind to the directory.
 
 ### LDAP CN Settings
@@ -225,7 +225,7 @@ directory.
 2. _Email_ - The LDAP attribute name which contains a user's email address.
  One common example is 'mail'.
 
-**Always user lower case**. No matter if the directory's attribute name contains
+**Always use lower case**. No matter if the directory's attribute name contains
 uppercase characters (e.g. `fullName`), the respective field must be filled
 out in lower-case (`fullname`).
 
@@ -297,7 +297,7 @@ all directory servers, and that all directory servers are properly configured.
 
 ## Common Scenarios
 
-These following scenarios are designed to help you see the different ways to
+The following scenarios are designed to help you see the different ways to
 harness the power of LDAP and build a working LDAP configuration in your
 environment.
 
@@ -330,7 +330,7 @@ authorized users.
 
 To handle this scenario by manually authorizing users within Cacti, navigate to
 the Authentication settings, and set the `User Template` field to 'No User'.
-Set the `Mode` to 'No Searching'.  Set the `Distinguished Name (DN)` field t
+Set the `Mode` to 'No Searching'.  Set the `Distinguished Name (DN)` field to
  ```<username>@example.com```, where 'example.com' is the name of your domain.
 Next, navigate to the `Users` page and create a new user where the username
 matches the username in the directory.  Set the user's `Realm` to 'LDAP'.

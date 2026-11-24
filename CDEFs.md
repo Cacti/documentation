@@ -3,7 +3,7 @@
 ## Background
 
 CDEF's in Cacti are a one to one analog to CDEF's in RRDtool.  Cacti
-simply provides and interface to create and manage them.  Once the
+simply provides an interface to create and manage them.  Once the
 CDEF's are created in Cacti they can be imported and exported globally.
 
 CDEF's are mathematical formulas that either modify the numeric data from
@@ -38,15 +38,15 @@ like the CURRENT_DATA_SOURCE which means that when you Add a **Graph Item** to
 either a **Graph Template** or **Graph**, you can select a CDEF.  The
 **Data Source** associated with that **Graph Items** is the CURRENT_DATA_SOURCE.
 
-After that, you may see a numeric number, followed by a math operator.  That the
-simplest form of a CDEF.  If you have drag & drop enabled, you can re-order the
+After that, you may see a numeric number, followed by a math operator.  That is
+the simplest form of a CDEF.  If you have drag & drop enabled, you can re-order the
 CDEF items using drag & drop.  Otherwise you will see arrows that allow you
 to move the CDEF Items up and down.
 
 ![CDEFs Edit](images/cdefs-edit1.png)
 
 When editing a CDEF, the first decision is what Type of Data you want to put on
-the Stack, you options as shown in the image below.  They include:
+the Stack, your options as shown in the image below.  They include:
 
 Name | Description
 --- | ---
@@ -90,8 +90,8 @@ RRDtool for performing Graphical manipulation of Data.
 
 This list of CDEF functions is long and it's best to refer directly to the
 [RRDtool Manual](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_rpn.en.html) for meanings
-and examples of their use.  Cacti supports all of them, if you find one that is not
-supported, open an [Issue on Github](https://github.com/Cacti/cacti/issues).
+and examples of their use.  Cacti supports all of them; if you find one that is not
+supported, open an [Issue on GitHub](https://github.com/Cacti/cacti/issues).
 
 ---
 Copyright (c) 2004-2026 The Cacti Group

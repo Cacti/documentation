@@ -5,7 +5,7 @@ upon a mapping controlled by **Data Templates** and their corresponding **Data
 Sources**.  These resulting **Data Templates** and **Data Sources** can then be
 used to create **Graph Templates** and **Graphs**.
 
-Cacti includes a number of build in **Data Input Methods** for **SNMP** data and
+Cacti includes a number of built-in **Data Input Methods** for **SNMP** data and
 for **Script**, **Script Server** and **SNMP Data Queries**.
 
 Outside of the built in **Data Input Methods**, the Cacti Administrator can
@@ -13,7 +13,7 @@ create virtually any **Data Input Method** based upon a **Script**, or a PHP
 **Script Server** script.  The **Script** based **Data Input Method** allows
 Cacti to virtually collect data from anywhere, though the built in **SNMP** and
 **Script Server** methods provide the greatest scalability in Cacti.  Both
-**Data Queries**, and PHP **Script Server** topics will be covered in later
+**Data Queries** and PHP **Script Server** topics will be covered in later
 sections of the documentation.
 
 ## Creating a Data Input Method
@@ -36,8 +36,8 @@ readable name given to the **Data Input Method**.  Careful consideration should
 be made to help uniquely identify the **Data Source**.  Having very similar
 names can lead to confusion when utilizing them as your Cacti system grows.
 
-Valid options for `Input Type` are **Script/Command**, and **Script Server**.
-As mentioned previously, Cacti provides built in **Data Input Methods** for SNMP
+Valid options for `Input Type` are **Script/Command** and **Script Server**.
+As mentioned previously, Cacti provides built-in **Data Input Methods** for SNMP
 data gathering and for SNMP, **Script**, and **Script Server** based **Data
 Queries**.  Though present in the Cacti database, they are hidden from user
 view.
@@ -59,7 +59,7 @@ Fields`.
 
 The `Input Fields` box is used to define any fields that require information
 from the user or from various data within the Cacti Database such as the
-hostname, ip address, host id, etc. Any input fields referenced to in the input
+hostname, ip address, host id, etc. Any input fields referenced in the input
 string must be defined here.
 
 The `Output Fields` box is used to define each field that you expect back from
@@ -81,7 +81,7 @@ Name | Description
 Field/Field Name | You will be presented a drop down list of the unused braced input fields from the command
 Friendly Name | Enter a more descriptive name for this field
 Regular Expression Match (Input Only) | Enter a valid regular expression as to how to modify the output
-Allow Empty Input (Input Only) | Can the input value of this field blank or not
+Allow Empty Input (Input Only) | Can the input value of this field be blank or not
 Special Type Code (Input Only) | Pull the input data from the Cacti database and don't prompt the user for this input value
 Update RRDfile (Output Only) | Checked if you intend this output data to be stored in an RRDfile
 

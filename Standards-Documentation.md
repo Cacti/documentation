@@ -3,7 +3,7 @@
 ## Introduction
 
 The following are the standards to be used by Cacti Group members and
-Contributes when maintaining the documentation of Cacti or any of its plugins.
+Contributors when maintaining the documentation of Cacti or any of its plugins.
 The style checks are configured in `.mdlrc` and `.mdl_style.rb`.  The `1.2.x`
 branch has no Travis CI configuration and no workflow that runs them, so check
 your changes locally.
@@ -77,7 +77,7 @@ When creating documentation titles, they should:
 
 - not use other title definition symbols
 
-  _Whilst they are valid markdown, they will result in style errors._
+  _While they are valid markdown, they will result in style errors._
 
 The `MD001` check is disabled in `.mdl_style.rb`, so `mdl` does not report
 this, but titles should still follow the rule.
@@ -157,7 +157,7 @@ The menus are located at the top of the page ...
 Titles for examples, images and tables are the only exception to the Title Level
 rule. These are normally set to 6 (Six) hash symbols (e.g., `######`). The
 format of the text should be such that it reads the type of caption, a number,
-full stop, then the description
+period, then the description
 
 ```markdown
 ###### <caption type> <number>. <description>
@@ -213,12 +213,12 @@ All lists should:
 
   `MD006 Consider starting bulleted lists at the beginning of the line`
 
-- use a digit following by a full stop for numbered lists
+- use a digit followed by a period for numbered lists
 
-- should have a single space between the list item marker and the start of the
+- have a single space between the list item marker and the start of the
   text
 
-- have blanks lines around items in the same fashion as titles
+- have blank lines around items in the same fashion as titles
 
   `MD030 Spaces after list markers`
 
@@ -277,7 +277,7 @@ use the `--help` parameter on the command
 
 All code blocks must be:
 
-- surround by blank lines to separate them from other text
+- surrounded by blank lines to separate them from other text
 
   `MD031 Fenced code blocks should be surrounded by blank lines`
 
@@ -306,7 +306,7 @@ Also ` will actually be displayed not interpreted
 
 The style used on the fenced code block should match the contents of the code
 block. In the above example, we used `markdown` as we were displaying a markdown
-example. The following table is a basic example what is most commonly used in
+example. The following table is a basic example of what is most commonly used in
 the documentation:
 
 |     Type | Markdown Language | Usage                                      |
@@ -348,7 +348,7 @@ Paragraph 2 text
 ## Link new files to README.md
 
 Before testing your changes make sure you add the necessary links to README.md
-for any new files
+for any new files.
 
 Running this script will help you check for any missing links.
 
@@ -359,13 +359,13 @@ bin/check_missing_link.sh
 ## Testing changes
 
 To locally test the changes made to any Markdown document, you will need to have
-ruby installed and then run:
+Ruby installed and then run:
 
 ```console
 gem install mdl
 ```
 
-If this pre-requisite has already been completed, then you can simply type the
+If this prerequisite has already been completed, then you can simply type the
 following into your shell
 
 ```console

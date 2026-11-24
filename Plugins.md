@@ -1,8 +1,8 @@
 # Plugin Management
 
-Installing or updating plugins on cacti is a simple procedure.
+Installing or updating plugins on Cacti is a simple procedure.
 For most of the plugins a few basic steps are enough, which are described below.
-Each plugin directory should contain a README.md file. We recommend to study
+Each plugin directory should contain a README.md file. We recommend studying
 this file. It may contain important installation information.
 
 ## Installing Plugins
@@ -26,28 +26,28 @@ this file. It may contain important installation information.
    chown -R apache:apache plugin_thold
    ```
 
-3. From `Console > Configuration > Plugins` Install the plugin by Clicking on
-   the wrench Icon as showng below.
+3. From `Console > Configuration > Plugins` Install the plugin by clicking on
+   the wrench icon as shown below.
 
-   Below you will now see the THOLD plugin available to install in this case we
-   are installing thold
+   Below you will now see the THOLD plugin available to install.  In this case we
+   are installing thold.
 
    ![thold plugin](images/thold-install.png)
 
-4. After installing the plugin by clicking on the grey gear you will now how to
-   enable it this can be done via clicking on the green check mark
+4. After installing the plugin by clicking on the grey gear you will now have to
+   enable it.  This can be done via clicking on the green check mark.
 
    ![thold plugin enable](images/thold-enable.png)
 
 After this, the **Plugin** is installed and enabled. However, there will likely
-be onfiguration that must take place after the **Plugin** is enabled. See the
+be configuration that must take place after the **Plugin** is enabled. See the
 **Plugin** documentation for instructions on how to configure and use them.
 
 ## Updating a Plugin
 
 Updating a plugin not only keeps you up to date with the latest release of the
 code for that plugin. It also allows you to keep all of your settings for that
-plugin ensure you DO NOT UNINSTALL the plugin. You must instead disable the
+plugin provided you DO NOT UNINSTALL the plugin. You must instead disable the
 plugin which will not drop the SQL tables and thus save your settings.
 
 1. Disable the **Plugin** you want to update
@@ -65,13 +65,13 @@ plugin which will not drop the SQL tables and thus save your settings.
    git pull
    ```
 
-4. Change name of **Plugin** folder i.e plugin_thold to thold
+4. Change name of **Plugin** folder i.e. plugin_thold to thold
 
    ```console
    mv plugin_thold thold
    ```
 
-5. Assign proper permissions usually either www-data for Ubuntu/debian or apache
+5. Assign proper permissions usually either www-data for Ubuntu/Debian or apache
    for RHEL/Rocky Linux/AlmaLinux
 
    ```console
@@ -82,26 +82,26 @@ plugin which will not drop the SQL tables and thus save your settings.
 
 ### Video Walkthrough
 
-[![Video Tuturial](http://img.youtube.com/vi/TPKu-2XYKok/0.jpg)](https://youtu.be/TPKu-2XYKok)
+[![Video Tutorial](http://img.youtube.com/vi/TPKu-2XYKok/0.jpg)](https://youtu.be/TPKu-2XYKok)
 
 ## Uninstall a Plugin
 
 To uninstall a plugin go into the plugins page
 `Console > Configuration > Plugins` Click on the plugin to Disable the plugin.
 
-Click on the red dot beside the plugin to uninstall the plugin a dialogue box
-will appear now click uninstall.
+Click on the red dot beside the plugin to uninstall the plugin.  A dialogue box
+will appear; now click uninstall.
 
 ![uninstall plugin](images/plugins-uninstall.png)
 
-This will uninstall the plugin from cacti but will NOT remove the files from the
-server to do that you must manually remove the plugin until you remove the files
-the plugin will show to be available to be installed.
+This will uninstall the plugin from Cacti but will NOT remove the files from the
+server.  To do that you must manually remove the plugin.  Until you remove the
+files, the plugin will show to be available to be installed.
 
 > **WARNING**: Uninstalling a Cacti **Plugin** generally also removes any
 > database tables that that **Plugin** created, which means your data! Before
 > uninstalling **Plugins**, it would be wise to have a backup strategy in place
-> in case you accidentally uninstall a **Plugin** and loose your data!
+> in case you accidentally uninstall a **Plugin** and lose your data!
 
 ### Dependencies in plugins
 
@@ -114,7 +114,7 @@ plugin.
 
 ### Delete plugin data and settings
 Starting with Cacti 1.3, some plugins have new functionality and allow you to
-delete data and plugin settings and start from scratcg. This can be done with
+delete data and plugin settings and start from scratch. This can be done with
 the trash can icon in Console > Configuration > Plugins
 
 ---

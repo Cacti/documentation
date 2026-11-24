@@ -16,15 +16,15 @@ if ((is_array($array)) && (sizeof($array) > 0)) {
 }
 ```
 
-It should be noted that with PHP 7.2 use of `list() = each()` syntax will result
-in warnings and/or errors.  It should also be noted that 7.2 also introduced the
-need for the variable to implement ICountable which are arrays and objects.  You
-should therefore check if `variable !=== false` before using `sizeof()` or
-`count()`
+It should be noted that with PHP 7.2, use of `list() = each()` syntax will
+result in warnings and/or errors.  It should also be noted that 7.2 also
+introduced the need for the variable to implement ICountable which are arrays
+and objects.  You should therefore check if `variable !=== false` before using
+`sizeof()` or `count()`.
 
 ## Error Return Values
 
-When an a function needs to return a generic error, it is best to return boolean
+When a function needs to return a generic error, it is best to return boolean
 `false` in PHP. This makes it very straightforward to check for.
 
 ```php
@@ -36,7 +36,7 @@ if (file_list() === false) {
 ## Regular Expressions Are Slow
 
 Only use PHP's regular expression parsing functions (`preg_match`,
-`preg_replace`, `preg_quote`, etc) when absolutely needed. Often simpler
+`preg_replace`, `preg_quote`, etc.) when absolutely needed. Often simpler
 functions such as `strstr()`, `str_replace()`, `substr()`, and `explode()` can
 be used, and are much faster.
 
@@ -81,7 +81,7 @@ and
 'This is a ' . $test
 ```
 
-Don't bother trying to break out variables out of the string if you are just
+Don't bother trying to break variables out of the string if you are just
 going to have to concatenate them.
 
 ## Including other PHP files

@@ -3,8 +3,8 @@
 See [Supported Devices in Cacti 1.2](Supported-Devices.md) for the bundled
 package inventory, generic SNMP coverage and device compatibility limits.
 
-**Device Templates** are Cacti objects that allows you to define classes of
-**Devices** that includes from one to many **Graph Templates**, **Data Queries**
+**Device Templates** are Cacti objects that allow you to define classes of
+**Devices** that include from one to many **Graph Templates**, **Data Queries**
 and other **Plugin** related object types.
 
 **Device Templates** make a common set of **Graph Templates** and **Data
@@ -25,11 +25,11 @@ The **Device Templates** main screen looks like the image below:
 
 ![Device Templates Page](images/device-templates.png)
 
-From this page, you can see the title of each **Device Template**, it's ID which
+From this page, you can see the title of each **Device Template**, its ID which
 is important for the Cacti CLI scripts.  You can see if the **Device Template**
 can be removed, and the number of **Devices** using the **Device Template**.
-Templates that are used by **Devices** can not be removed and therefore if you
-attempt to remove one of these Templates, you will receive and error message.
+Templates that are used by **Devices** cannot be removed and therefore if you
+attempt to remove one of these Templates, you will receive an error message.
 
 From the drop down there are three options, they are:
 
@@ -50,7 +50,7 @@ Templates** defined on the system, so there is no way to select one.
 
 To add a **Graph Template** or **Data Query** to the **Device Template**, simply
 select it from the drop down, and press the *Add* button.  There is no need to
-*Save* afterwards.  To removed one of these items, simply press the x glyph to
+*Save* afterwards.  To remove one of these items, simply press the x glyph to
 the right of the desired **Graph Template** or **Data Query**.
 
 ---
