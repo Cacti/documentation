@@ -158,6 +158,22 @@ tool, `cli/upgrade_partitioning.php`, reads the session `sql_mode` and sets it
 for its own session only.  More recent versions of MySQL and MariaDB will
 source multiple database configuration files.
 
+## Requirements
+
+* This section documents Syslog 4.2 (release tag `v4.2`), the latest
+  published release for Cacti 1.2.x.
+
+* Cacti 1.2.23 or later, from the plugin's `INFO` file.
+
+* No other plugin is required.
+
+* A syslog server, such as rsyslog or Syslog-NG, that inserts messages into
+  the `syslog_incoming` table, as described under
+  [Cacti Configuration for RSYSLOG](#cacti-configuration-for-rsyslog).
+
+* Email alerts and reports are sent through Cacti's own mail functions, so
+  Cacti's mail settings must work.
+
 ## Installing the plugin
 
 Requirements: Cacti 1.2.23 or later, PHP 8.0 or later, and MySQL or MariaDB
@@ -206,6 +222,62 @@ You will also need to ensure the Cacti database user is granted select on the Sy
 ```shell
 GRANT SELECT  ON syslog.* TO  'cactiuser'@'localhost';
 ```
+
+The install advisor offers these choices:
+
+* **What upgrade/install type do you wish to use**: **Truncate Syslog
+  Table**, **Inline Upgrade** or **Background Upgrade**
+
+* **Database Storage Engine**: **MyISAM Storage** or **InnoDB Storage**
+  (default)
+
+* **Database Architecture**: **Traditional Table** or **Partitioned Table**
+  (default)
+
+* **Retention Policy**: the number of days of messages to keep (default
+  30 days)
+
+* **Partitions per Day**: 1 (default), 2, 4, 6 or 12
+
+## Permissions
+
+Syslog registers two realms. Grant them to users in **Console >
+Configuration > Users** or to groups in **Console > Configuration > User
+Groups**.
+
+###### Table 1. Syslog realms
+
+| Realm                               | Pages                                                         | Grants                                         |
+| ----------------------------------- | ------------------------------------------------------------- | ---------------------------------------------- |
+| **Plugin -> Syslog User**           | `syslog.php`                                                  | The **Syslog** tab: message and alert viewing  |
+| **Plugin -> Syslog Administration** | `syslog_alerts.php`, `syslog_removal.php`, `syslog_reports.php` | Alert, Removal and Report Rules management     |
+
+## Settings
+
+Syslog adds a **Syslog** tab to **Console > Configuration > Settings**. The
+tab has four sections.
+
+###### Table 2. Syslog settings
+
+| Section                    | Label                                               | Default          | Purpose                                                                                                    |
+| -------------------------- | --------------------------------------------------- | ---------------- | ---------------------------------------------------------------------------------------------------------- |
+| General Settings           | **Syslog Enabled**                                  | Checked          | Transfers records from the incoming table to the main table and enables Alerts and Reports                  |
+| General Settings           | **Enable Statistics Gathering**                     | Unchecked        | Keeps statistics on where messages arrive from and adds the **Statistics** tab                              |
+| General Settings           | **Strip Domains**                                   | Empty            | Comma-delimited domains to remove from host names                                                           |
+| General Settings           | **Validate Hostnames**                              | Unchecked        | Assigns records with an invalid host name to the host `invalidhost`                                         |
+| General Settings           | **Refresh Interval**                                | 5 Minutes        | Refresh time of the **Syslog** page                                                                         |
+| General Settings           | **Max Report Records**                              | 100 Records      | Maximum records shown in a Threshold alert report                                                           |
+| General Settings           | **Command for Opening Tickets**                     | Empty            | Command run to open help desk tickets, called with `--alert-name`, `--severity`, `--hostlist`, `--message` |
+| HTML Notification Settings | **Enable HTML Based Email**                         | Checked          | Sends Email in HTML; otherwise plain text                                                                   |
+| HTML Notification Settings | **Format File to Use**                              | `default.format` | HTML and CSS wrapper for reports, from the `formats` directory                                              |
+| Data Retention Settings    | **Syslog Retention**                                | 1 Month          | Number of days to keep events                                                                               |
+| Data Retention Settings    | **Syslog Alert Retention**                          | 1 Month          | Number of days to keep alert logs                                                                           |
+| Remote Message Processing  | **Enable Remote Data Collector Message Processing** | Unchecked        | Remote Data Collectors keep their own Syslog databases, configured in `config_local.php`                    |
+| Remote Message Processing  | **Remote Data Collector Rules Sync**                | Unchecked        | Sends the Main Cacti Alert, Removal and Report rules to the Remote Data Collectors                          |
+
+When **Syslog Enabled** is unchecked, the syslog server keeps adding messages
+to the `syslog_incoming` table, but they are not transferred, and no alerts or
+reports are produced.
 
 ## SNMP Trap configuration
 
@@ -372,6 +444,41 @@ Collector keeps its Syslog database under another name, set
 a separate database server or credentials, also set
 `$syslog_replication_main_db_hostname`, the username, and the password there.
 
+## Using Syslog
+
+Users with the **Plugin -> Syslog User** realm see a **Syslog** tab at the top
+of the page. It has these tabs:
+
+* **System Logs**: searches and lists the stored messages. Filter by
+  **Devices**, **Facility**, **Priority**, **Program**, **Timespan** and
+  search text, and choose the **Record Type**: **Main Records**, **Removed
+  Records** or **All Records**.
+
+* **Statistics**: shown when **Enable Statistics Gathering** is checked.
+  Lists message counts by **Device Name**, **Facility**, **Priority** and
+  **Program**.
+
+* **Alert Logs**: lists the alerts that have been triggered. Selecting an
+  alert shows the messages that triggered it.
+
+In Cacti's graph view, a graph whose device is known to Syslog gets a
+**Display Syslog in Range** button. It opens the **System Logs** tab filtered
+to that device and to the time range of the graph.
+
+Administrators with the **Plugin -> Syslog Administration** realm manage
+rules under **Console > Syslog Settings**, which has three entries: **Alert
+Rules**, **Removal Rules** and **Report Rules**. Each rule list can
+**Delete**, **Disable**, **Enable** or **Export** selected rules, and each
+rule type can be imported from a local file or from pasted text.
+
+To search for messages from one device:
+
+1. Open the **Syslog** tab and select **System Logs**.
+
+2. Choose the device under **Devices** and a **Timespan**.
+
+3. Enter text in **Search** if needed and press **Go**.
+
 ### Syslog Alert Rules
 
 Alert rules are used to generate alerts in the cacti log they are also used
@@ -395,6 +502,84 @@ to do this click on the Syslog settings tab in the console then click removal ru
 
 ![Removal Rules](images/syslog-remove-messeges.PNG)
 
+A removal rule's **Method of Removal** is either **Deletion** (the default)
+or **Transferal** to the `syslog_removed` table.
+
+### Syslog Report Rules
+
+Report rules Email a list of matching messages on a schedule. Each rule has a
+**String Match Type** and **Message Match String**, a **Frequency** of
+**Daily** or **Weekly**, a **Send Time**, an **Email Body Text** and the
+recipients in **Notification List** or **Email Addresses**.
+
+Alert rules, removal rules and report rules share the same match types:
+**Begins with**, **Contains**, **Ends with**, **Hostname is**, **Program
+is**, **Facility is** and **SQL Expression**.
+
+## Background Processing
+
+Syslog uses Cacti's `poller_bottom` hook. At the end of each Cacti polling
+cycle it starts `syslog_process.php` in the background. When **Syslog
+Enabled** is checked, each run:
+
+1. Removes messages and partitions older than **Syslog Retention**.
+
+2. Updates the host, program, facility and priority reference tables, and
+   the statistics when they are enabled.
+
+3. Applies the removal rules to the incoming messages.
+
+4. Applies the alert rules and sends notifications.
+
+5. Moves the remaining incoming messages to the `syslog` table.
+
+6. Sends the report rules that are due.
+
+Messages that stay in `syslog_incoming` for more than one hour are deleted,
+and alert logs older than **Syslog Alert Retention** are removed. A summary of
+each run is written to the Cacti log.
+
+## Command-Line Tools
+
+Run these scripts from the `plugins/syslog` directory as the user that runs
+the Cacti poller.
+
+`syslog_process.php` is the processing script that the poller starts. Run it
+by hand to see what it does, or to send the reports immediately:
+
+```console
+php syslog_process.php [--debug] [--force-report]
+```
+
+* `--debug` or `-d`: provide more verbose debug output
+
+* `--force-report` or `-F`: send the Email reports now
+
+* `--version` or `-V`: display the version
+
+* `--help` or `-h`: display the help
+
+`syslog_batch_transfer.php` is the batch process that moves old messages out
+of the main view. It accepts `--debug` (`-d`), `--version` and `--help`.
+
+## Troubleshooting
+
+* The Cacti log shows `WARNING: You have installed the Syslog plugin, but you
+  have not properly set a config.php or config_local.php`. Copy
+  `config.php.dist` to `config.php` in the plugin directory and set the
+  database values. The **Syslog** tab and menu are hidden until the file
+  exists and is readable.
+
+* The log shows `WARNING: Syslog record transferral and alerting/reporting is
+  disabled.` Check **Syslog Enabled** in the **Syslog** settings tab.
+
+* Devices that no longer send messages stay in the device list. Remove them
+  with **Purge Syslog Devices** under **Console > Utilities > System
+  Utilities**.
+
+* If a ticket command fails, the Cacti log records `ERROR: Ticket Command
+  Failed.` with the alert name, exit code and output.
+
 ## Possible Bugs and Feature Enhancements
 
 Bug and feature enhancements for the syslog plugin are handled in GitHub. If you
@@ -410,6 +595,13 @@ SideWinder, and Harlequin. We hope that version 2.0 and beyond are the most
 stable and robust versions of syslog ever published. We are always looking for
 new ideas. So, this won't be the last release of syslog, you can rest assured of
 that.
+
+## More Information
+
+* [Syslog plugin repository](https://github.com/Cacti/plugin_syslog)
+
+* [README](https://github.com/Cacti/plugin_syslog/blob/v4.2/README.md) for
+  Syslog 4.2
 
 ---
 Copyright (c) 2004-2026 The Cacti Group

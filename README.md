@@ -372,7 +372,37 @@ the maintained Enterprise Linux instructions.
 
 3. [Mactrack Plugin documentation](Plugin-Mactrack.md)
 
-4. [ReportIt Plugin documentation](resource/pdf/manual_reportit.pdf)
+4. [Thold Plugin documentation](Plugin-Thold.md)
+
+5. [Monitor Plugin documentation](Plugin-Monitor.md)
+
+6. [Maintenance Plugin documentation](Plugin-Maint.md)
+
+7. [Intropage Plugin documentation](Plugin-Intropage.md)
+
+8. [Host MIB Plugin documentation](Plugin-Hmib.md)
+
+9. [APC UPS Plugin documentation](Plugin-Apcupsd.md)
+
+10. [Evidence Plugin documentation](Plugin-Evidence.md)
+
+11. [FlowView Plugin documentation](Plugin-Flowview.md)
+
+12. [MikroTik Plugin documentation](Plugin-Mikrotik.md)
+
+13. [ReportIt Plugin documentation](Plugin-Reportit.md)
+
+14. [Router Configs Plugin documentation](Plugin-Routerconfigs.md)
+
+15. [Service Check Plugin documentation](Plugin-Servcheck.md)
+
+16. [Slowlog Plugin documentation](Plugin-Slowlog.md)
+
+17. [Weathermap Plugin documentation](Plugin-Weathermap.md)
+
+18. [WMI Plugin documentation](Plugin-Wmi.md)
+
+19. [ReportIt legacy PDF manual](resource/pdf/manual_reportit.pdf)
    (older version, PDF format)
 
 ### How Tos
