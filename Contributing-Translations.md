@@ -105,7 +105,7 @@ characters, on a test installation.
 The PO Editor will create both a PO and MO file every time you save the file.
 The final name of the file will have to be changed to Cacti's standard naming.
 For example, Poedit saves the file from the example above as `fr_FR.po`, but
-Cacti will need these files name in hyphenated format, so: `fr_FR.po`, becomes
+Cacti will need these file names in hyphenated format, so: `fr_FR.po`, becomes
 `fr-FR.po`. Make that note especially if you are starting a new language.
 
 ## Considerations

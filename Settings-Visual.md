@@ -28,7 +28,7 @@ Those settings include:
   per page.
 
 - **Autocomplete Enabled** - Many drop-downs do not scale well with thousands
-  of items. In those cases, Cacti has enabled a drop-down auto-complete feature
+  of items. In those cases, Cacti has enabled a drop-down auto-complete feature;
   most large installs should leverage it. However, if you are a small install
   you can choose to disable auto-complete.
 
@@ -92,14 +92,14 @@ Those settings include:
 
 - **Enable Real-time Graphing** - Allow Realtime graphs to be used in Cacti.
 
-- **Graph Timespan** - The default system level `Graph Timespan` use use when a
+- **Graph Timespan** - The default system level `Graph Timespan` to use when a
   user opens a Realtime **Graph** for the first time.
 
 - **Minimum Refresh Interval** - The minimal supported time between **Graph**
   updates in the Realtime interface.  This value is also used to set certain
   RRDfile attributes.
 
-- **Cache Directory** - Where should Cacti cache Realtime PNG's and RRDfiles.
+- **Cache Directory** - Where should Cacti cache Realtime PNGs and RRDfiles.
 
 - **Custom Watermark** - A watermark that will appear on every Cacti **Graph**
 
@@ -155,7 +155,7 @@ Theme settings.
 
 The sizes are in pixels, and the Font Settings can either be a True Type Font
 file path, or a valid Pango font-config value. For more information on Pango
-font-config values, see your operating systems documentation. However, you can
+font-config values, see your operating system's documentation. However, you can
 normally see all the fonts installed on your Linux system by issuing the
 following command `fc-list`.
 

@@ -7,8 +7,8 @@ how to create a pull request.  Pull requests are how we accept submissions from
 the community for Code and Documentation.
 
 Pull requests are always created against the **develop** branch, unless
-otherwise instructed. Detailed guide on how to create Pull Requests on GitHub
-under [Standards-Patch-Creation](Standards-Patch-Creation.md) section.
+otherwise instructed. A detailed guide on how to create Pull Requests on GitHub
+is in the [Standards-Patch-Creation](Standards-Patch-Creation.md) section.
 
 ## Code Contributions
 
@@ -37,7 +37,7 @@ You can view all the repositories of code that Cacti publicly shares on GitHub
 at this [link](https://github.com/Cacti), or to go specifically to the [Cacti
 source code](https://github.com/Cacti/cacti), [issue
 tracker](https://github.com/Cacti/cacti/issues), and [internal
-Wiki](https://github.com/Cacti/cacti/wiki)
+Wiki](https://github.com/Cacti/cacti/wiki).
 
 ## Documentation Contributions
 
@@ -48,7 +48,7 @@ Request to it.
 Unlike the various standards for coding depending on the type of code you are
 attempting to contribute, there is only one set of [Documentation
 Standards](Standards-Documentation.md) at this time.  Please try to ensure that
-your code confirms to this, as there are strict checks in place which will fail
+your code conforms to this, as there are strict checks in place which will fail
 your submission if it fails these standards.
 
 ---

@@ -1,15 +1,15 @@
 # Mail/Reporting/DNS Settings
 
 This area of Cacti is where you configure core notification settings as well as
-settings to using alternate DNS' servers associated with certain Cacti plugins.
+settings for using alternate DNS servers associated with certain Cacti plugins.
 
 ## URL Linking
 
 The URL Linking settings provide the Cacti administrator a URL prefix that will
 point properly to the main Cacti site for both core Cacti functions and Plugins
-to create URL for their use. Generally this URL should include the full DNS name
-of the Cacti server, and the correct protocol, for example HTTPS. The image
-below show an example of how this might be setup.
+to create URLs for their use. Generally this URL should include the full DNS
+name of the Cacti server, and the correct protocol, for example HTTPS. The image
+below shows an example of how this might be set up.
 
 ![PHP Mail Function](images/settings-mrd-urls.png)
 
@@ -23,23 +23,23 @@ name of the server and the Cacti URL path.
 Not only Cacti, but several plugins today are still leveraging Email for end
 user and administrative notification. Cacti uses the very popular PHP-Mailer 3rd
 party component to facilitate Email notification service. In this section, you
-will pick the method that you wish to provide Email notification an it's
+will pick the method that you wish to provide Email notification and its
 settings. Cacti actually provides three methods. They include:
 
 - **PHP Mail Function** - PHP has a built-in mail facility where PHP will
   communicate with the localhost mail facilities to send mail. This is useful if
-  your Cacti system is setup as an anonymous forwarder to a corporate mail
+  your Cacti system is set up as an anonymous forwarder to a corporate mail
   system.
 
 - **Sendmail Binary** - This method relies on the `sendmail` binary to properly
   communicate with your corporate mail systems. Like the **PHP Mail Function**,
-  it requires that your localhost be properly setup to send mail through a
+  it requires that your localhost be properly set up to send mail through a
   forwarding setup.
 
 - **Simple Mail Transfer Protocol (SMTP)** - This is the most configurable
   option where Cacti can send Emails directly to the Email server.
 
-In the sections below, we will document each of these options in more details.
+In the sections below, we will document each of these options in more detail.
 
 ## Emailing Options
 
@@ -50,7 +50,7 @@ shown in the image below.
 
 Those settings include:
 
-- **Notify Primary Admin of Issues** - When certain anomalous Cacti events table
+- **Notify Primary Admin of Issues** - When certain anomalous Cacti events take
   place that justify the notification of the Cacti administrator, by checking
   this option, you will receive those notifications.
 
@@ -67,8 +67,8 @@ Those settings include:
   the test Email. If the Email Server does not respond, Cacti does not send the
   test Email.
 
-- **From Email Address** - The is the Default From Email address that will be
-  used by Cacti and it's plugins, unless the plugin allows overriding the
+- **From Email Address** - This is the Default From Email address that will be
+  used by Cacti and its plugins, unless the plugin allows overriding the
   option. The common entry would be something of the form `noreply@mydomain.com`
   unless you have a desire to receive responses from recipients.
 
@@ -79,11 +79,11 @@ Those settings include:
 - **Word Wrap** - If not using HTML based Emailing, this will force a word wrap
   on text data at the length specified.
 
-The next sections will document the various **Mail Services**
+The next sections will document the various **Mail Services**.
 
 ### PHP Mail Function
 
-There are no settings for this function. It leverages the Cacti servers mail
+There are no settings for this function. It leverages the Cacti server's mail
 configuration to send mail notification.
 
 ### Sendmail Binary
@@ -112,7 +112,7 @@ Those options include:
 - **SMTP Port** - The TCP Port to use to communicate with the SMTP Server
 - **SMTP Username** - The username to use for SMTP communications if your SMTP
   Server requires authentication.
-- **SMTP Password** - The password to use for SMTP communications if you SMTP
+- **SMTP Password** - The password to use for SMTP communications if your SMTP
   Server requires authentication.
 - **SMTP Security** - The security protocol to use for SMTP communications. The
   options include: None, SSL, and TLS. The most popular being TLS today due to
@@ -122,7 +122,7 @@ Those options include:
 
 ## Reporting Presets
 
-Cacti Reporting can generate very large Email attachments. Therefore the
+Cacti Reporting can generate very large Email attachments. Therefore, the
 **Reporting Presets** allow you to control the traffic associated with
 reporting. From here, you can also set presets for the image type and logging.
 You can see the settings from the image below.
@@ -136,7 +136,7 @@ Since these settings are straightforward, no further explanation is given here.
 The DNS Options allow you to specify a primary and secondary DNS to use for
 Plugin DNS operations. Many plugins allow you to even use their own DNS Options.
 For plugins that require Alternate/Non-System DNS settings, see their
-documentation as to how DNS is setup and used.
+documentation as to how DNS is set up and used.
 
 The settings are **Primary DNS IP Address**, **Secondary DNS IP Address** and
 **DNS Timeout**, which is in milliseconds and defaults to 500.

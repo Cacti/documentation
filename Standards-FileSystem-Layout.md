@@ -7,8 +7,8 @@ structure. The naming structure may contain a **category token** and/or an
 ## Token
 
 Under each category directory, functions should be broken out into multiple
-files where applicable. All files must begin with the name of category (ie. its
-parent directory name). Valid token names are
+files where applicable. All files must begin with the name of the category
+(i.e., its parent directory name). Valid token names are
 
 * auth
 * automation
@@ -79,7 +79,7 @@ information in these files that are meaningful to the entire program. Also
 under the `include/` directory is a directory for each category (graph, device,
 etc), where information specific to that category is to be stored.
 
-Constants that are made available everyone in the program
+Constants that are made available to everyone in the program
 
 ```console
 include/global_constants.php
@@ -132,18 +132,18 @@ include/graph_arrays.php
 
 ### lib/
 
-Functions that must be accessed globally should be stored in the ''lib/''
+Functions that must be accessed globally should be stored in the `lib/`
 directory. This is where most of the heavy lifting in Cacti occurs.
 
 Directly under the `lib/` directory, the files beginning with the `api`
-prefix are core Cacti API's that are only to be used by third party
+prefix are core Cacti APIs that are only to be used by third party
 developers and should NEVER include a call to a
 `$_REQUEST`, `$_POST`, or `$_GET` variable.
 
-Files that have the `html` prefix, generally invole the rendering of page
+Files that have the `html` prefix, generally involve the rendering of page
 content, for example the `html_form.php` library draws forms and
-`html_validate.php` includes functions to validate page variables there
-are other various files in the current cacti `lib/` directory that will
+`html_validate.php` includes functions to validate page variables.  There
+are other various files in the current Cacti `lib/` directory that will
 over time be changing with the migration to the next major version of
 Cacti.  So, these rules may change over time.
 
@@ -156,9 +156,9 @@ lib/api_graph.php
 
 ### locales/
 
-Language-related files are stored here to handle the multi-lingual natural of
+Language-related files are stored here to handle the multi-lingual nature of
 Cacti. These can be updated by running the `update-pot.sh` script.  It is
-advised to do this whenever you are submitting a change to the Cacti via Pull
+advised to do this whenever you are submitting a change to Cacti via Pull
 Request.  Otherwise, language translations can be missed.
 
 ### plugins/
@@ -172,7 +172,7 @@ INFO file that details the plugin.
 To reduce bloat, each file and/or function should include any and all files
 which it relies on.
 
-The following function directly relies the libraries related to sequences and
+The following function directly relies on the libraries related to sequences and
 reading graph information. The `require_once` directive is used instead of
 `require` to prevent PHP re-declaration errors.
 

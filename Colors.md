@@ -1,12 +1,12 @@
 # Colors
 
-Colors in Cacti come in two types and used to maintain a list of colors that can
-be used in Cacti for **Graph Templates** and **Graphs**.
+Colors in Cacti come in two types and are used to maintain a list of colors that
+can be used in Cacti for **Graph Templates** and **Graphs**.
 
 The first type are the legacy Cacti colors imported from earlier versions of
 Cacti. Starting with Cacti 1.0, Cacti started to support the concept of *Named
 Colors* which come from a well known dictionary of well defined colors.  *Named
-Colors* are read only in Cacti. While the legacy Cacti colors can be named as
+Colors* are read only in Cacti, while the legacy Cacti colors can be named as
 the Cacti administrator desires.
 
 The image below shows a list of Cacti *Named Colors*.  You can see that there is
@@ -26,7 +26,7 @@ Color hex value.
 
 Below, you can see the color picker that allows you to visually find the
 appealing color.  You can also use hex values that were previously supported in
-earlier Cacti version.
+earlier Cacti versions.
 
 ![Colors Color Edit](images/colors-edit2.png)
 

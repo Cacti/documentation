@@ -15,7 +15,7 @@ then select `Create Aggregate from Template` from the Cacti Actions drop-down.
 
 Once you have created your **Aggregate Graphs**, they behave like any other
 Cacti Graph. They can be a part of a Tree, zoomed, etc. They have an added
-bonus - you can add and remove **Graphs** from aggregate in a very controlled
+bonus - you can add and remove **Graphs** from aggregates in a very controlled
 way, reducing the effort to maintain them during their life-cycle.
 
 If you wish to change settings for **Graphs** managed by the **Aggregate
@@ -26,13 +26,13 @@ settings. See [Aggregate Graphs](Aggregates.md) for membership and propagation.
 
 ## Aggregate Template Interface
 
-The images below shows an Aggregate Template for Traffic.
+The images below show an Aggregate Template for Traffic.
 
 ![Aggregate Templates](images/aggregate-templates.png)
 
 When you edit the **Aggregate Template**, you are presented with an interface
-that allows you to define the Graph Canvas as well as it's formatting. You
-should experiment until you find the mechanism that works best to suite your
+that allows you to define the Graph Canvas as well as its formatting. You
+should experiment until you find the mechanism that works best to suit your
 needs.
 
 The `Aggregate Template` `Prefix` setting allows you to provide a pattern to be
@@ -41,7 +41,7 @@ references can be used in the `Prefix` section in order to uniquely identify the
 **Graph Item**.
 
 There are several `Graph Type` transformations that deal with how `AREA`,
-`LINEX` and `STACK` items are handled in the resulting **Aggeregate Graph**,
+`LINEX` and `STACK` items are handled in the resulting **Aggregate Graph**,
 they include:
 
 - **Keep Graph Types** - No transformation will occur. All `AREA`, `LINE`, and
@@ -128,7 +128,7 @@ options here, only let you know that you can override them in your resulting
 ## Summary
 
 There are several combinations of options that you can use when working with an
-**Aggregate Template**. Some of these options will results in horrible and
+**Aggregate Template**. Some of these options will result in horrible and
 unexpected outcomes, so you will have to experiment until you come up with a
 desirable **Aggregate Template**.
 

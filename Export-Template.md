@@ -16,13 +16,13 @@ copying omitted or legacy dependencies.
 An export with dependencies can include:
 
 1. The device template name and its identity
-2. All the Graph Templates and their GUID's
-3. All the Graph Template inputs and their GUID's
-4. All the Data Templates and their GUID's
-5. All the Data Input Method's and their GUID's
-6. All the GPrint Presets and their GUID's
-7. All the CDEF's and VDEF's and their GUID's
-8. All the Data Source Profiles and their GUID's
+2. All the Graph Templates and their GUIDs
+3. All the Graph Template inputs and their GUIDs
+4. All the Data Templates and their GUIDs
+5. All the Data Input Methods and their GUIDs
+6. All the GPrint Presets and their GUIDs
+7. All the CDEFs and VDEFs and their GUIDs
+8. All the Data Source Profiles and their GUIDs
 
 Most fields use XML escaping. Data-input command strings can be
 base64-encoded; decode only fields defined that way by the format. For

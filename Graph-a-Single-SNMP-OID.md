@@ -8,7 +8,7 @@ not see this **Graph Template** listed under **Graph Templates**, install the
 **Generic SNMP Device Package** using the `import_package.php` command line
 script located in Cacti's cli directory.
 
-To start the process of creating a new graph for your OID, click go to
+To start the process of creating a new graph for your OID, go to
 `Console > Create > New Graphs`, and from there find the **Device** you would
 like to add the **Graph** to.
 
@@ -44,7 +44,7 @@ From this interface, you must define various attributes for your resulting
 | (Data Source) Data Source Type [snmp_oid] | How the data from the OID should be stored by RRDtool and interpreted on the graph. If the value of the OID represents the actual data, you should use GAUGE for this field. If the OID value is a constantly incremented number, you should use COUNTER for this field. The two remaining field values, DERIVE and ABSOLUTE can be ignored in most situations. |
 | (Custom Data) OID                         | The actual SNMP OID to graph. It is typically a good idea to enter the number OID here as opposed to using MIB names. For example, `1.3.6.1.2.1.25.1.6.0` is the HOST-RESOURCES-MIB process-count scalar, where exposed by the agent. Use GAUGE for that value.                                                                                                                 |
 
-So, based upon your specific OID that you are graphing, You will need to fill
+So, based upon your specific OID that you are graphing, you will need to fill
 out these fields before the new graph can be created properly.
 
 When finished filling in values for these fields, click the Create button. Your
@@ -53,7 +53,7 @@ menu pick.
 
 > **NOTE**: When comparing the Table above, to the image, you will see that the
 > `Opacity/Alpha Channel` pick is missing from the interface. To add it, you
-> simply need > to edit the `Generic SNMP OID` > **Graph Template**, add a new
+> simply need to edit the `Generic SNMP OID` **Graph Template**, add a new
 > **Graph Item Input** override to the Alpha/Opacity on the Graph Template as
 > shown below. That topic will be covered in the **Graph Template** section of
 > the manual though.

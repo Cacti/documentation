@@ -1,8 +1,8 @@
 # Data Settings
 
-The Cacti Data settings includes settings for gathering statistical data
+The Cacti Data settings include settings for gathering statistical data
 about Cacti's **Data Sources** and about settings around how Cacti
-stores it's **Round Robin Archives** Time Series Databases (TSDB),
+stores its **Round Robin Archives** Time Series Databases (TSDB),
 otherwise known as RRDfiles.
 
 There are presently three sub-sections for these settings.
@@ -20,7 +20,7 @@ Below you will find an image of the default settings.
 
 Those settings include:
 
-- **Enable Data Source Statistics Collection** - This is setting
+- **Enable Data Source Statistics Collection** - This setting
   will either enable or disable the statistics collection.
 
 - **Number of DSStats Processes** - For very large Cacti installs
@@ -31,7 +31,7 @@ Those settings include:
 
 - **Daily Update Frequency** - This setting determines how often
   daily averages and peaks should be calculated.  You can set
-  it to run hourly, upto every 6 hours, or after Cacti's boost
+  it to run hourly, up to every 6 hours, or after Cacti's boost
   process completes.
 
 - **Hourly Average Window** - This is a floating time window where
@@ -52,7 +52,7 @@ Those settings include:
 
 ![RRD Checker](images/rrd_check.PNG)
 
-RRDfile checker scans RRDfiles and try to find problems like stale values.
+The RRDfile checker scans RRDfiles and tries to find problems like stale values.
 
 Those settings include:
 
@@ -65,13 +65,13 @@ Those settings include:
 
 - **Check Frequency** - This setting determines how often
   checks should be executed.  You can set
-  it to run hourly, upto 24 hours, or after Cacti's boost
+  it to run hourly, up to 24 hours, or after Cacti's boost
   process completes.
 
 ## Data Storage Settings
 
 These settings determine how you store your RRDfiles.  This
-sub-section has two layouts as showing in the images below.
+sub-section has two layouts as shown in the images below.
 
 ![Data Storage Local](images/settings-data-local.png)
 

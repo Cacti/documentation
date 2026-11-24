@@ -3,12 +3,12 @@
 ## Walkthrough: A New SNMP Data Query
 
 For SNMP Queries, you won't need to create a data retrieval script. Cacti will
-use SNMP to retrieve information. But cacti will need additional information on
+use SNMP to retrieve information. But Cacti will need additional information on
 how the indexed data is structured. Think about a table (a MIB table in this
-case); you'll have to tell cacti about the table structure. This is done by
-defining an XML file. Basically, you have to define the index to tell cacti
+case); you'll have to tell Cacti about the table structure. This is done by
+defining an XML file. Basically, you have to define the index to tell Cacti
 about the number of rows and about their unique index. This index is later used
-to access each rows data. Furthermore, you may define columns, that serve as
+to access each rows data. Furthermore, you may define columns that serve as
 **descriptive fields** to be shown in the selection table. The XML file knows
 them as
 
@@ -16,14 +16,14 @@ them as
 <direction>input</direction>
 ```
 
-You will have to define those fields, that will be queried for the readings,
-e.g. ifInOctets, ifOutOctets, ifInErrors, …The XML file knows them as
+You will have to define those fields that will be queried for the readings,
+e.g. ifInOctets, ifOutOctets, ifInErrors, … The XML file knows them as
 
 ```xml
 <direction>output</direction>
 ```
 
-Lets have an example: standard Interface MIB with the corresponding part of the
+Let's have an example: standard Interface MIB with the corresponding part of the
 `<path_cacti>/resource/snmp_queries/interface.xml` file are displayed using
 the following table:
 
@@ -55,16 +55,16 @@ descriptive information to each row to help you identify the proper interface to
 use. Those parameters of `<direction>output</direction>` can be compared to
 output parameters of a script (see ping.pl script above). These are the readings
 from the device. By selecting the appropriate row (the one grayed out had been
-selected by me), you tell cacti to retrieve data from the interface defined by
-this index. But how does cacti know, what output parameters it shall retrieve?
+selected by me), you tell Cacti to retrieve data from the interface defined by
+this index. But how does Cacti know what output parameters it shall retrieve?
 See the **Select a Graph Type to Create** dropdown. It specifies a **Graph
 Template** defined for this Data Query. The Graph Template in turn references a
 **Data Template** which incorporates the needed output parameters as Data
 Sources. This works quite the same way as defined for a Data Input Method.
 
 To sum up: the SNMP XML file is somehow a **replacement** for the **Data Input
-Method** described above to be used on indexed values. It tells cacti, what data
-it should retrieve (direction: output). To help you identifying the relevant
+Method** described above to be used on indexed values. It tells Cacti what data
+it should retrieve (direction: output). To help you identify the relevant
 indexes, the XML defines descriptive parameters (direction: input) to be
 displayed in the selection table.
 
@@ -82,9 +82,9 @@ Data (Indexed)** as **Data Input Method**. Press **Create** to see:
 
 ![Fill Data for Data Query](images/r-dq2.png)
 
-See, that cacti found the XML file. Don't bother with the Associated Graph
+See that Cacti found the XML file. Don't bother with the Associated Graph
 Templates at the moment. The success message does not include checking of the
-XML file's content. Not lets proceed to the next definitions.
+XML file's content. Now let's proceed to the next definitions.
 
 ## Create a Data Template to tell Cacti how to store data
 
@@ -98,18 +98,18 @@ from the *Data Source Item* heading to see:
 ![Enter new Data Source Item](images/r-dq-dt1.png)
 
 The name of the internal RRDtool Data Source (ifOutOctets) is not replaced in
-the Tab until you save your work. By default, *Maximum Value* is set to 100.
-This is way too low for an interface. All readings above this value will be
-stored as NaN by RRDtool. To avoid this, set to U (no maximum) or to a
-reasonable value (e.g. interface speed). Don't forget to specify COUNTER! You
-will have noticed, that the name of the data source does not match the Name in
+the Tab until you save your work. By default, *Maximum Value* is set to U
+(no maximum). You may keep it or set a reasonable value (e.g. interface
+speed); all readings above a maximum will be stored as NaN by RRDtool.
+Don't forget to specify COUNTER! You
+will have noticed that the name of the data source does not match the Name in
 the interface.xml. Don't worry, the solution to this is given later on. Before
 leaving, pay attention to the bottom of the page:
 
 ![Check Indexes for Data Query Data Template](images/r-dq-dt2.png)
 
 This is specific to indexed **Data Queries**. You will have to check the last
-three items to make indexing work. All other items should be left alone, there
+three items to make indexing work. All other items should be left alone; their
 values will be taken from the appropriate device definitions. Now click **Save**
 and you're done with this step.
 
@@ -134,7 +134,7 @@ Template** we've left alone in the very first step? Now it will get a meaning.
 Go to **Data Queries** and select our new one. Then press the plus (+) glyph,
 and select *Interface - Traffic (bits/sec)* from the drop down as shown
 below.  Press **Create** to initialize the association of this **Graph
-Template** with out new **Data Query**.
+Template** with our new **Data Query**.
 
 ![Add new associated Graph Template](images/r-dq3-0.png)
 
@@ -146,12 +146,12 @@ Values*.
 
 ![Creating new associated Graph Template](images/r-dq4.png)
 
-In addition, we need to setup any *Suggested Values* as you can see from the
+In addition, we need to set up any *Suggested Values* as you can see from the
 example below.  *Suggested Values* are optional when the **Data Query** can have
 a multitude of suggested names based upon the output from the **Data Query**.
 For both the *Suggested Values - Graphs* and *Suggested Values - Data Sources*,
 we must include the name of the column, and the *Suggested Value* which can
-includes the special tag *|query_xmlcolumn|* as shown in the examples below.
+include the special tag *|query_xmlcolumn|* as shown in the examples below.
 
 ![Suggested Values for Associated Graph Template](images/r-dq5.png)
 
@@ -189,7 +189,7 @@ Query**, there will be no *Associated Graph Type* drop down.  Once you create
 more than one **Associated Graph Template** for the **Data Query**, you will see
 a drop down just above the **Create** button showing the available **Graph
 Templates** for the **Data Query** in question, like the *SNMP - Interface
-Statistics* as show below.
+Statistics* as shown below.
 
 ![Additional Associated Graph Templates Example](images/r-dq-dev3.png)
 

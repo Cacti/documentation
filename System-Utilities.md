@@ -2,8 +2,8 @@
 
 This section will describe **System Utilities** in Cacti.
 
-The system utilities page in cacti contains tools used for administering
-cacti from this page you can do the following
+The system utilities page in Cacti contains tools used for administering
+Cacti.  From this page, you can do the following:
 
 - Rebuild poller cache.
 
@@ -34,26 +34,26 @@ information.
 
 Cacti technical support page.  Used by developers and technical support
 persons to assist with issues in Cacti.  Includes checks for common
-configuration issues.  There is also built-in checks that help you tune
+configuration issues.  There are also built-in checks that help you tune
 your Cacti installation.
 
-For example in the technical support section under the summary, you will see a
-calculation for how many MySQL connections. You should have (Cacti 1.2.16+)
-you will also show poller information such as the last polling time process
-count and more detailed info that can be used for a quick view of how the
+For example, in the technical support section under the summary, you will see a
+calculation for how many MySQL connections you should have (Cacti 1.2.16+).
+You will also see poller information such as the last polling time, process
+count, and more detailed info that can be used for a quick view of how the
 system is configured.
 
 ![System Utilities](images/system-utilities-poller.png).
 
-You will also see all of the system variables such as allocated php memory
-as well as mysql variables.
+You will also see all of the system variables such as allocated PHP memory
+as well as MySQL variables.
 
 ![System Utilities](images/system-utilities-db.png)
 
-Any Variable appearing in red indicates a subpar setting and should be looked.
-the recommendations are dynamic in that they change when more system resources are
-detected so if you upgrade your server hardware be sure to check back to this page
-to get the most out of your new hardware.
+Any Variable appearing in red indicates a subpar setting and should be looked
+at.  The recommendations are dynamic in that they change when more system
+resources are detected, so if you upgrade your server hardware be sure to check
+back to this page to get the most out of your new hardware.
 
 ### Rebuild resource cache
 
@@ -92,19 +92,19 @@ Agent Support is enabled in the Poller settings.
 
 ### RRD cleaner
 
-`Console > utilities > System Utilities > RRDfile Cleaner`
+`Console > Utilities > System Utilities > RRDfile Cleaner`
 
 When you delete Data Sources from Cacti, the corresponding RRDfiles are not
 removed automatically. Use this utility to facilitate the removal of
 these old files.
 
-In system utilities you can manually start the RRD cleaning procedure
-You can either archive the selected RRD's
-to have them deleted in the next polling cycle
+In system utilities you can manually start the RRD cleaning procedure.
+You can either archive the selected RRDs
+or have them deleted in the next polling cycle.
 
 ![System Utilities](images/system-utilities-rrdcleaner.png)
 
-RRDfiles can also be schedule to automatically be removed this option can
+RRDfiles can also be scheduled to be removed automatically.  This option can
 be configured in `Console > Configuration > Settings > Paths` by selecting
 the RRDfile autoclean selection.
 
@@ -112,7 +112,7 @@ the RRDfile autoclean selection.
 
 ### RRDfile Checker
 
-`Console > utilities > System Utilities > RRDfile Checker`
+`Console > Utilities > System Utilities > RRDfile Checker`
 
 The RRDfile checker is a tool that scans all RRDfiles at a
 scheduled time and tests the stored data:
@@ -124,7 +124,7 @@ scheduled time and tests the stored data:
 
 For very large Cacti installs the **RRDfile checker** can take quite
 a long time to complete.
-You can set number of concurrent parallel processes in `Console > Configuration > Settings > Data`
+You can set the number of concurrent parallel processes in `Console > Configuration > Settings > Data`
 
 ### Viewing Change log from system utilities
 
@@ -139,10 +139,10 @@ included in your version.
 
 `Console > Utilities > System Utilities > View User Log`
 
-In system utilities you are able to view a log of user logins
-both successful and failures The Log will also show what Client IP address
+In system utilities you are able to view a log of user logins,
+both successful and failed.  The Log will also show what Client IP address
 the login originated from along with info
-if the login was based on password or token based login
+if the login was based on password or token based login.
 
 ![System Utilities](images/system-utilities-viewulog.png)
 
@@ -150,9 +150,9 @@ if the login was based on password or token based login
 
 `Console > Utilities > System Utilities > View Boost Status`
 
-In this view you can see statistics on how Boost is running you will be able to see
-Information such as when the last time boost started, How long it ran for,
-The average boost record size
+In this view you can see statistics on how Boost is running.  You will be able
+to see information such as when the last time Boost started, how long it ran
+for, and the average Boost record size.
 
 ![System Utilities](images/system-utilities-boost1.png)
 
@@ -164,7 +164,7 @@ The average boost record size
 
 The Data Query Cache stores information gathered from Data Query input types.
 The values from these fields can be used in the text area of Graphs for Legends,
-Vertical Labels, and GPRINTS as well as in CDEF's.
+Vertical Labels, and GPRINTs as well as in CDEFs.
 
 ![System Utilities](images/system-utilities-viewdqcache.png)
 
@@ -179,10 +179,10 @@ This is the data that is being passed to the poller each time it runs.
 ### Viewing the Cacti log via Log Administration
 
 You are able to view the Cacti log via the Log Administration
-entry on the System utilities page this will show the RAW log
-this slightly differs from the view log tab as the device names
+entry on the System utilities page.  This will show the RAW log.
+This slightly differs from the view log tab as the device names
 will show the device ID rather than
-the Device name this is the same view as you reading the log in the OS
+the Device name.  This is the same view as when you read the log in the OS.
 
 ![System Utilities](images/system-utilities-viewclog.png)
 

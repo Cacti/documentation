@@ -4,7 +4,7 @@
 
 Never trust input regardless of where it is coming from! The responsibility
 falls on the library functions to ensure that potentially dangerous input does
-not introduce a security hole. Some sort of sanitation, validation, or quoting
+not introduce a security hole. Some sort of sanitization, validation, or quoting
 must be provided for **all** arguments in a function. This ensures that bad
 data does not make its way into an SQL string, a filename, an executable, or
 even another function.
@@ -16,7 +16,7 @@ you are using unvalidated data.  They include:
 
 * get_filter_request_var('somevariable') - This function call, by default,
   will validate that the variable `$_REQUEST['somevariable']` returned
-  is actually an integer, if not, Cacti will block the the page
+  is actually an integer, if not, Cacti will block the page
   function from continuing.
 
 * get_filter_request_var('somevariable', 'options') - This version of the
@@ -28,7 +28,7 @@ you are using unvalidated data.  They include:
 Generally speaking, you should never use either `$_GET`, `$_REQUEST` or
 `$_POST` in your Cacti code.  Use the validators.  When you do, you can
 turn on the Cacti setting `Log Input Validation Issues` when you are
-developing, and you Cacti log will include warnings when an invalidate
+developing, and your Cacti log will include warnings when an invalid
 variable has been encountered.
 
 ## Prepared Statements
@@ -60,7 +60,7 @@ $somevalue = db_fetch_cell_prepared('SELECT COUNT(*)
 
 Cacti provides an escaping function to reduce the likelihood of XSS
 vulnerabilities in Cacti leading to exploitation of other Web Sites.
-Cacti itself has a very restrictive XSS mitigation policy in affect
+Cacti itself has a very restrictive XSS mitigation policy in effect
 by default, but following proper output escaping minimizes problems.
 
 The following example is how to, and not to escape output:

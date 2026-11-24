@@ -2,13 +2,12 @@
 
 The syslog plugin is a Cacti plugin that has been around for more than a decade.
 It was inspired by the 'aloe' and 'h.aloe' plugins originally developed by the
-Cacti users sidewinder and Harlequin in the early 2000's.  As you will be able
+Cacti users sidewinder and Harlequin in the early 2000s.  As you will be able
 to see from the ChangeLog, it has undergone several changes throughout the
-years, and remains, even today when you have enterprise offering from both
-Elastic and Splunk, remains a relevant plugin for small to medium sized
-companies.
+years, and remains a relevant plugin for small to medium-sized companies, even
+today when enterprise offerings exist from both Elastic and Splunk.
 
-It provides a simple Syslog event search an Alert generation and notification
+It provides a simple Syslog event search, alert generation, and notification
 interface that can generate both HTML and SMS messages for operations personnel
 who wish to receive notifications inside of a data or network operations center.
 
@@ -16,10 +15,10 @@ For log events that continue to be generated frequently on a device, such as
 smartd's feature to notify every 15 minutes of an impending drive failure, can
 be quieted using syslog's 'Re-Alert' setting.
 
-Syslog also provides multipoller support which allows
+Syslog also provides multipoller support, which allows
 for scalability and redundancy by leveraging multiple
-servers rules can be created on the main poller and pushed
-to the remotes for ease of management or each server can work independently
+servers. Rules can be created on the main poller and pushed
+to the remotes for ease of management, or each server can work independently.
 
 ## Features
 
@@ -45,7 +44,21 @@ to the remotes for ease of management or each server can work independently
 
 * Remote poller support
 
+The plugin's development branch (version 5.0) adds dashboards, saved searches,
+pipeline health alerts, message recommendations, hourly partitioning and, on
+MariaDB, millisecond timestamps. It supports only InnoDB and, on MariaDB, Aria
+tables, and new installs always use partitioned tables. See the
+[Syslog README](https://github.com/Cacti/plugin_syslog#readme) for these
+features.
+
 ### Notes on upgrades
+
+Replacing the plugin files does not upgrade the plugin. After copying in a new
+version, run `php plugins/syslog/cli/syslog_schema.php --upgrade` from the Cacti
+base directory as the poller user, or disable and then enable the plugin in
+Plugin Management to open the Syslog Upgrade Advisor. Do not uninstall the
+plugin as an upgrade step, because the uninstall options can delete messages,
+rules, and hosts.
 
 If you are upgrading to 2.0 from a prior install, you must first uninstall
 syslog and ensure both the syslog, syslog_remove, and syslog_incoming tables
@@ -79,7 +92,6 @@ file format:
 $ModLoad imudp
 $UDPServerRun 514
 $ModLoad ommysql
-```
 
 $template cacti_syslog,"INSERT INTO syslog_incoming(facility_id, priority_id,
   program, date, time, host, message) \
@@ -88,12 +100,13 @@ $template cacti_syslog,"INSERT INTO syslog_incoming(facility_id, priority_id,
    TRIM('%msg%'))", SQL
 
 *.* >localhost,my_database,my_user,my_password;cacti_syslog
+```
 
-for RHEL, Rocky Linux, or AlmaLinux systems you will all need to install the rsyslog-mysql package
+For RHEL, Rocky Linux, or AlmaLinux systems you will also need to install the rsyslog-mysql package
 
 ```shell
 yum install rsyslog-mysql
-systemctl resatrt rsyslog
+systemctl restart rsyslog
 ```
 
 If you are upgrading to version 2.5 from an earlier version, make sure that you
@@ -106,7 +119,7 @@ additional documentation here: [Cacti Documentation
 Site](https://docs.cacti.net/plugin:syslog.config)
 
 We are using the pure integer values that rsyslog provides to both the priority
-and facility in this version syslog, which makes the data collection must less
+and facility in this version syslog, which makes the data collection much less
 costly for the database.  We have also started including the 'program' syslog
 column for searching and storage and alert generation.
 
@@ -147,6 +160,9 @@ source multiple database configuration files.
 
 ## Installing the plugin
 
+Requirements: Cacti 1.2.23 or later, PHP 8.0 or later, and MySQL or MariaDB
+using InnoDB (or Aria on MariaDB).
+
 1.) Copy the syslog files over to /var/www/html/cacti/plugins
 
 2.) ensure permissions are correct the files
@@ -158,11 +174,11 @@ chown -R apache:apache syslog
 
 3.) copy config.php.dist to config.php
 
-5.) You have two options for storing syslog information you can either use the existing
-Cacti Database or use a dedicated database for syslog as syslog databases especially
-for large networks can grow pretty quick it may be wise to create a dedicated database.
-To use a dedicated DB first create a database
-in mysql and assign a user you will then change
+4.) You have two options for storing syslog information: you can either use the existing
+Cacti Database or use a dedicated database for syslog. Syslog databases, especially
+for large networks, can grow quickly, so it may be wise to create a dedicated database.
+To use a dedicated DB, first create a database
+in MySQL and assign a user, then change
 
 ```console
 $use_cacti_db = true;
@@ -170,12 +186,14 @@ to
 $use_cacti_db = false;
 ```
 
-if you intend to use the cacti DB leave config.php as default
+If you intend to use the Cacti DB, leave config.php as default. For a dedicated
+DB, also set the `$syslogdb_*` values to the new database and a user that can
+create and write its tables.
 
-6.) install the plugin in the plugins tab located
+5.) Install the plugin in the plugins tab located
     in Console >> configuration >> plugins
 
-7.) You will be presented with the plugin install wizard with options on how
+6.) You will be presented with the plugin install wizard with options on how
    you would like the Syslog plugin to be installed options
    include DB arch and retention time
 
@@ -183,10 +201,10 @@ if you intend to use the cacti DB leave config.php as default
 
 ![install advisor](images/syslog_install_advisor.PNG)
 
-You will also need to ensure the cacti user is granted select on the Syslog database
+You will also need to ensure the Cacti database user is granted select on the Syslog database
 
 ```shell
-GRANT SELECT  ON syslog.* TO  'cacti'@'localhost';
+GRANT SELECT  ON syslog.* TO  'cactiuser'@'localhost';
 ```
 
 ## SNMP Trap configuration
@@ -208,20 +226,20 @@ systemctl start snmptt
 systemctl start snmptrapd
 ```
 
-3.) Now that snmptt and snmptrapd are started and enabled you will first need to
-    modify the snmptrapd systemd file to include -on in the startup options
+3.) Now that snmptt and snmptrapd are started and enabled, you will first need to
+    modify the snmptrapd systemd file to include -On in the startup options
 
 the file is located in /etc/sysconfig/snmptrapd and should look like this after
 
 ```console
 # snmptrapd command line options
 # '-f' is implicitly added by snmptrapd systemd unit file
-OPTIONS="-on"
+OPTIONS="-On"
 ```
 
-4.) Now you need to modify the snmptrapd config file to receive snmptraps by
-    default snmptrapd will not process any traps until you configure it to do so
-    you will also need to tell snmptrapd to forward the received traps over to snmptt
+4.) Now you need to modify the snmptrapd config file to receive snmptraps. By
+    default, snmptrapd will not process any traps until you configure it to do so.
+    You will also need to tell snmptrapd to forward the received traps over to snmptt.
 
 Here is an example of configuring snmptrapd to receive snmptraps from a device
 using the public snmp string and forwarding it over to snmptt
@@ -348,6 +366,12 @@ found in configuration >> settings >> syslog
 if you wish to have each poller operate independently there is no need to enable
 these options.
 
+Remote Data Collector options require the InnoDB storage engine. If the Main
+Collector keeps its Syslog database under another name, set
+`$syslog_replication_main_db_default` in the remote collector's config file; for
+a separate database server or credentials, also set
+`$syslog_replication_main_db_hostname`, the username, and the password there.
+
 ### Syslog Alert Rules
 
 Alert rules are used to generate alerts in the cacti log they are also used
@@ -362,7 +386,8 @@ you can leverage the built in variable substitution to format the input to the s
 ### Syslog Removal Rules
 
 The Syslog plugin allows administrators to delete incoming messages
-so they are not stored in the DB.
+so they are not stored in the DB, or to transfer them to the `syslog_removed`
+table.
 For example, if you are not interested in seeing Syslog messages
 every time a user logs into a device you may add a rule to delete the message.
 
@@ -379,8 +404,8 @@ GitHub.
 ## Authors
 
 The syslog plugin has been in development for well over a decade with increasing
-functionality and stibility over that time. There have been several contributors
-to thold over the years. Chief amongst them are Jimmy Conner, Larry Adams,
+functionality and stability over that time. There have been several contributors
+to syslog over the years. Chief amongst them are Jimmy Conner, Larry Adams,
 SideWinder, and Harlequin. We hope that version 2.0 and beyond are the most
 stable and robust versions of syslog ever published. We are always looking for
 new ideas. So, this won't be the last release of syslog, you can rest assured of

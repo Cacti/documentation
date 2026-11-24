@@ -24,12 +24,12 @@ Some of the most important information about the device will be required in this
 window which includes
 
 - **Description** - The name that will appear on **Graphs** by default
-- **Hostname** - The DNS or IP address of the actual **Device**. IPv6 address insert into brackets (example: [2001:abcd:1234::1])
+- **Hostname** - The DNS or IP address of the actual **Device**. Insert an IPv6 address into brackets (example: [2001:abcd:1234::1])
 - **Poller Association** - Defines which **Data Collector** is responsible for
   pulling information about the **Device**
 - **Device Template** - Cisco, Net-SNMP, Linux, etc - The Cacti object that
   holds all the **Graph Templates** and **Data Queries** to be graphed
-- **Device Site Association, Location** - Very important to performing Meta
+- **Device Site Association, Location** - Very important for performing Meta
   queries, or for
   Site level Graph organization on Cacti **Graph Trees**
 - **Availability/Reachability** - Settings that describe **Device**
@@ -67,12 +67,12 @@ They include:
 - **SNMP Uptime** - Query the SNMP Uptime Instance OID
 - **Ping and SNMP Uptime** - Ping the device but also check the SNMP Uptime
   Instance OID
-- **Ping** - Either ICMP, TCP at a port, or UDP as a port. Newer version has an additional method TCP Ping Closed. 
-The device is considered UP even if the tcp ping returns closed 
+- **Ping** - Either ICMP, TCP at a port, or UDP as a port. Newer versions have an additional method, TCP Ping Closed.
+The device is considered UP even if the TCP ping returns closed
 - **Ping or SNMP Uptime** - Only one needs to be working for Cacti to collect data
-- **SNMP Desc** - Query the SNMP sysDescription in cases where the SNMP Uptime OID
+- **SNMP Desc** - Query the SNMP sysDescr in cases where the SNMP Uptime OID
   is not available
-- **SNMP getNext** - Query the first available OID in the OID tree for the **Device**
+- **SNMP getNext** - Query the first available OID in the OID tree for the **Device**.
   Used for certain devices that have limited SNMP support.
 
 ## SNMP Credentials
@@ -98,19 +98,19 @@ They include the following:
 - **Number of Collection Threads** - If your device is far away, and can tolerate multiple threads
   querying information, you can increase this number to reduce the time it takes
   to collect all information.
-- **Maximum OIDs Per Get Request** - Otherwise known as MaxOID's, this SNMP option
+- **Maximum OIDs Per Get Request** - Otherwise known as MaxOIDs, this SNMP option
   will allow the SNMP client to gather more metrics per get request.  Please keep
-  in mind that the higher you make this number, the longer a SNMP respond may take.
+  in mind that the higher you make this number, the longer an SNMP response may take.
   So, you have to be sensitive about the SNMP timeout as the number gets larger.
-  Since, by default SNMP is generally collected over UDP, you will also be limited
-  in the number of responses depending on how many routers or VPN's you traverse
-  to reach a device.  When traversing VPN connections, many VPN's limit the MTU
-  to around 500 bytes, which will significantly limit how large the Max OID's can
+  Since, by default, SNMP is generally collected over UDP, you will also be limited
+  in the number of responses depending on how many routers or VPNs you traverse
+  to reach a device.  When traversing VPN connections, many VPNs limit the MTU
+  to around 500 bytes, which will significantly limit how large the Max OIDs can
   be.  In some cases, it may be better to deploy a **Remote Data Collector** when
-  your device is either far way from a latency perspective, or that you must
-  traverse VPN's to communicate with.
+  your device is either far away from a latency perspective, or that you must
+  traverse VPNs to communicate with.
 - **External ID** - This field is normally used for Asset Tracking information for
-  the **Device**, but it use is entirely up to the System Administrator.
+  the **Device**, but its use is entirely up to the System Administrator.
 
 ## Plugin Behavior
 
@@ -126,7 +126,7 @@ you can provide about the device including things like:
 
 ## Creating devices via CLI script
 
-You can also create device by using the CLI script located at /cactidir/cli/
+You can also create a device by using the CLI script located at /cactidir/cli/
 
 ```console
 usage: add_device.php --description=[description] --ip=[IP] --template=[ID] [--notes="[]"] [--disable]

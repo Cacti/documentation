@@ -2,11 +2,11 @@
 
 ## Background
 
-Cacti, when it was first invented in 2001 by Ian Berry, his vision was to make it
+When Cacti was first invented in 2001 by Ian Berry, his vision was to make it
 the fastest and easiest way to view and render Network Monitoring **Graphs** for
-people in the Network, Site, and Data Center Operations Space.  As such, it's focus
-from the very beginning was on render just one thing, **Graphs**.  So, as such,
-the second **Top Tab** on a Cacti system is the **Graphs** tab.
+people in the Network, Site, and Data Center Operations Space.  As such, its
+focus from the very beginning was on rendering just one thing, **Graphs**.  So,
+as such, the second **Top Tab** on a Cacti system is the **Graphs** tab.
 
 ## The Graphs Top Tab
 
@@ -67,7 +67,7 @@ per Page setting, you can press the `Save` button, if you have the correct
 permissions and save those defaults for your next login.
 
 Depending again on permissions, to the right of the **Graphs**, you will find a
-number of action icons that allow you to operate on the **Graphs**
+number of action icons that allow you to operate on the **Graphs**.
 
 The image below shows what that might look like if you have the **Thold** and
 **QuickTree** **Plugins** installed.
@@ -93,7 +93,7 @@ zooming, you will zoom all the **Graphs** on a page.  It's quite powerful.
 
 ![Graph Zoom Context Menu](images/graph-view-zoom-context-menu.png)
 
-There are many options for the Zoom menu.  Instead of explaining them here
+There are many options for the Zoom menu.  Instead of explaining them here,
 try them out for yourself.
 
 ---

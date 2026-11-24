@@ -2,10 +2,10 @@
 
 This section will describe **Device Rules** in Cacti.
 
-Cacti Automation relies on create device Rules these rules help the automation
+Cacti Automation relies on device Rules. These rules help the automation
 process figure out what type of device is being scanned.  Based on the device
 rule REGEX the automation engine can apply the appropriate template to the
-device i.e if there is a REGEX for IOS.  The automation engine may pick the
+device i.e., if there is a REGEX for IOS, the automation engine may pick the
 Cisco router template for the device.
 
 ![Automation Device Rules](images/automation-device-templates.png)
@@ -25,8 +25,8 @@ substring such as `Cisco IOS` if it is present. Apply that match to the system
 description, not the system name. Avoid assuming that every device from a
 vendor returns the same description or supports the same measurements.
 
-Using this info automation would apply the appropriate device template you
-choose.  If you see below we match for a system that matches Linux once a
+Using this info, automation would apply the appropriate device template you
+choose.  If you look below, we match for a system that matches Linux. Once a
 device is found with the matching description it is assigned the Net-SNMP device
 template.
 

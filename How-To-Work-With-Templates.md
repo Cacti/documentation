@@ -19,7 +19,7 @@ UDP-MIB::udpInErrors.0 = Counter32: 0
 UDP-MIB::udpOutDatagrams.0 = Counter32: 8406
 ```
 
-As cacti does not use the MIBs but pure ASN.1 OIDs, let's search the OID used as
+As Cacti does not use the MIBs but pure ASN.1 OIDs, let's search the OID used as
 `udpInDatagrams`:
 
 ```console
@@ -32,7 +32,7 @@ snmpwalk -c <community string> -v1 -On <device> udp
 
 The needed OID is .1.3.6.1.2.1.7.1.0. Now learn how to enter this into a new
 Cacti Data Template: Please proceed to Data Templates and filter for SNMP. Check
-the SNMP - Generic OID Template
+the SNMP - Generic OID Template.
 
 ![Data Templates](images/data-templates.png)
 
@@ -83,13 +83,13 @@ and **Create** to see:
 
 ![Graph Template New 3](images/graph-templates-new2.png)
 
-Now let's add some **Graph Template** **Graph Items**. They will specify,
+Now let's add some **Graph Template** **Graph Items**. They will specify
 which **Data Sources** defined by some **Data Template** should be displayed
 on the **Graph**. Please click Add as shown on the last image:
 
 ![Graph Template Items 1](images/graph-templates-item1.png)
 
-Now click Save to see the resulting image below.  Not that both the
+Now click Save to see the resulting image below.  Note that both the
 **Graph Item** and the **Graph Item Input** have been created.
 
 ![Graph Template Items 1](images/graph-templates-item1s.png)
@@ -112,20 +112,20 @@ Now we could have continued to add the UDP Datagrams In by adding a second
 RRDfile Data Source to our **Data Template**, but we will skip that for this
 exercise and continue now that our **Graph Template** is reasonably completed.
 
-At this point, since we only added **Graph Items** to the **Graph Template**
+At this point, since we only added **Graph Items** to the **Graph Template**,
 there is no need to resave it at this point.  We can simply continue to the
 next step.
 
 Now, you may add this new **Graph Template** to any **Devices** that
-responds to the udp OID we specified in the **Data Template**. But in this
+respond to the udp OID we specified in the **Data Template**. But in this
 case, please wait a moment. Let's first proceed to the **Device Template**
-and use this new **Graph Gemplate** for our first own **Device Template**.
+and use this new **Graph Template** for our first own **Device Template**.
 
 ## Device Template Creation
 
 The next task is to create a new **Device Template**. So, select **Device**
 under `Console > Templates` and press the Add button as in previous
-examples.  When you do that, you will be presented with an page that
+examples.  When you do that, you will be presented with a page that
 resembles the one below.
 
 ![Add Host Template](images/device-template-add.png)

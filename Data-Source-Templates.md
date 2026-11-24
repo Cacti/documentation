@@ -1,6 +1,6 @@
 # Data Source Templates
 
-Data sources serve an important role in Cacti data sources are data points
+Data sources serve an important role in Cacti; data sources are data points
 collected from the devices you monitor in Cacti.
 
 Data sources take the data that has been collected by the poller.
@@ -10,7 +10,7 @@ The Data source then holds the value to be presented to the graph.
 The Data source template is then associated with a graph template.
 
 These data sources can be for example incoming traffic on an interface. Cacti
-allows you to create data source templates to associate to data queries the
+allows you to create data source templates to associate to data queries; the
 template allows you to describe what type of data Cacti should expect.
 
 To create a Data source you will need to select the proper data input there are
@@ -20,13 +20,13 @@ data (indexed.)
 You would use Get SNMP data (indexed) for interfaces for example as Cacti would
 need to query the device to find the interface index. You would use Get SNMP
 data and put in a single OID for an OID that won't change for example CPU usage
-generally does not have an index and the OID won't change
+generally does not have an index and the OID won't change.
 
 You will also need to tell the template what the data source type is. The most
-common ones being Gauge and Counter. These data types come from the RRDtool its
-self. Below are the supported data types and their uses. For more information
+common ones being Gauge and Counter. These data types come from the RRDtool
+itself. Below are the supported data types and their uses. For more information
 see
-[RRD Tool Create Function](https://oss.oetiker.ch/rrdtool/doc/rrdcreate.en.html)
+[RRDtool Create Function](https://oss.oetiker.ch/rrdtool/doc/rrdcreate.en.html)
 
 ## GAUGE
 
@@ -47,8 +47,8 @@ accordingly by adding an appropriate value to the result.
 
 Available when the configured RRDtool version is 1.5 or later.
 
-DCOUNTER the same as COUNTER, but for quantities expressed as double-precision
-floating point number. It could be used to track quantities that increment by
+DCOUNTER is the same as COUNTER, but for quantities expressed as
+double-precision floating point number. It could be used to track quantities that increment by
 non-integer numbers, i.e. number of seconds that some routine has taken to run,
 total weight processed by some technology equipment etc.
 
@@ -71,8 +71,8 @@ like COUNTER but without overflow checks. So if your counter does not reset at
 
 Available when the configured RRDtool version is 1.5 or later.
 
-DDERIVE the same as DERIVE, but for quantities expressed as double-precision
-floating point number.
+DDERIVE is the same as DERIVE, but for quantities expressed as
+double-precision floating point number.
 
 > **NOTE**: on COUNTER vs DERIVE
 >
@@ -86,7 +86,7 @@ floating point number.
 > counter resets for a legitimate counter wrap.
 >
 > For a 5 minute step and 32-bit counter, the probability of mistaking a counter
-> resetfor a legitimate wrap is arguably about 0.8% per 1Mbps of maximum
+> reset for a legitimate wrap is arguably about 0.8% per 1Mbps of maximum
 > bandwidth. Note that this equates to 80% for 100Mbps interfaces, so for high
 > bandwidth interfaces and a 32bit counter, DERIVE with min=0 is probably
 > preferable. If you are using a 64bit counter, just about any max setting will
@@ -124,8 +124,8 @@ documentation page.
 ![Data-Source-Templates](images/datasource-template.png)
 
 What is also an important setting is the internal data source name. This will
-be used to associate the Data source with the Graph template. so be sure to
-name is something that is recognizable.
+be used to associate the Data source with the Graph template, so be sure to
+name it something that is recognizable.
 
 ![Data-Source-Templates](images/datasource-template2.png)
 

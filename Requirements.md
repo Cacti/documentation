@@ -33,7 +33,7 @@ beta OS or an expired point release for these procedures.
 | Component | Deployment guidance |
 | --- | --- |
 | Web server | Maintained PHP-capable Apache, nginx, or IIS FastCGI |
-| PHP | A vendor-maintained PHP branch compatible with Cacti 1.2.31; the installer's own version check is only a 5.4.0 floor, while the bundled libraries require PHP 8.0 or later in 1.2.31 and 8.2 or later on 1.2.x; validate CLI and web PHP with the installer |
+| PHP | A vendor-maintained PHP branch compatible with Cacti 1.2.31; the installer's own version check is only a 5.4.0 floor, while the bundled libraries require PHP 8.0 or later in the 1.2.31 release and PHP 8.2 or later on the unreleased 1.2.x branch; validate CLI and web PHP with the installer |
 | Database | A maintained MySQL or MariaDB branch; check the actual server with the installer. The 1.2.x installer recommends MySQL 8.0 or later or MariaDB 10.5 or later; the 1.2.31 release named MySQL 5.6 and MariaDB 10.0 |
 | RRDtool | A maintained distribution package; the installer accepts version 1.3 or later, and 1.5 or later is needed for the `DCOUNTER` and `DDERIVE` data source types and the `--skip-past-updates` update option |
 | SNMP | Net-SNMP command-line tools for the collection paths that require them |

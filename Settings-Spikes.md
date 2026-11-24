@@ -1,13 +1,13 @@
 # Spike Kill
 
 Certain types of RRDtool based **Data Sources** can from time to time generate
-what are look like to the casual observer spikes. These spikes can make your
+what look like spikes to the casual observer. These spikes can make your
 Cacti **Graphs** unreadable.
 
-Spike happen when you either have set no maximum value on your Cacti **Data
+Spikes happen when you either have set no maximum value on your Cacti **Data
 Template** by using a 'U' as the Maximum Value, or when certain `COUNTER` based
 RRDfiles have their counter data overflow, and start counting again from zero.
-When this happens recent versions of RRDtool, like version 1.7, handle these
+When this happens, recent versions of RRDtool, like version 1.7, handle these
 overflows quite well, but for some older RRDtool versions, these changes can
 result in these spikes.
 
@@ -44,10 +44,10 @@ Those settings include:
 - **Variance Number of Outliers** - The number of high values to ignore when
   calculating the Variance.
 
-- **Max Kills Per RRA** - The maximum number of spike to remove from any given
+- **Max Kills Per RRA** - The maximum number of spikes to remove from any given
   RRDfile Data Source.
 
-- **RRDfile Backup Directory** - If you wish to backup RRDfiles that have been
+- **RRDfile Backup Directory** - If you wish to back up RRDfiles that have been
   altered by Spike Kill, they will be placed in this directory.
 
 ## Batch Spike Kill Settings
