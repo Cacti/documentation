@@ -4,7 +4,7 @@ After you initiate a scan from automation, Cacti will compare devices
 found to the device rules and SNMP options you set.
 
 If Cacti is unable to match the device to a device template or unable to
-find a proper SNMP credential.
+find a proper SNMP credential, the device will be put in this section.
 
 Also, if you have the automatically add to Cacti set to off, the devices will
 also be put in this section.

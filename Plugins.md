@@ -27,14 +27,14 @@ this file. It may contain important installation information.
    ```
 
 3. From `Console > Configuration > Plugins` Install the plugin by clicking on
-   the wrench icon as shown below.
+   the gear icon as shown below.
 
    Below you will now see the THOLD plugin available to install.  In this case we
    are installing thold.
 
    ![thold plugin](images/thold-install.png)
 
-4. After installing the plugin by clicking on the grey gear you will now have to
+4. After installing the plugin by clicking on the gear icon you will now have to
    enable it.  This can be done via clicking on the green check mark.
 
    ![thold plugin enable](images/thold-enable.png)

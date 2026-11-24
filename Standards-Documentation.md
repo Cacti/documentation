@@ -335,7 +335,7 @@ This would produce: [text for link](https://url/wanted)
 ### Horizontal Rules
 
 Horizontal rules should be made using three or more consecutive hyphens on a
-single line. Again, these should be surrounded by spaces.
+single line. Again, these should be surrounded by blank lines.
 
 ```markdown
 Paragraph 1 text

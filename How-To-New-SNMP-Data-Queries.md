@@ -321,8 +321,8 @@ second **Data Source Item**:
 ![SNMP Table 4 - Data Template](images/dt-04.preview.png)
 
 Please pay attention to setting the **Maximum Value** to 'U' (no limit). Else,
-all values exceeding the pre-defined as **NaN**. Now scroll down to the bottom
-of the page and check **Index Type, Index Value and Output Type ID**
+all values exceeding the maximum are stored as **NaN**. Now scroll down to the
+bottom of the page and check **Index Type, Index Value and Output Type ID**
 
 ![SNMP Table 5 - Data Template](images/dt-05.preview.png)
 
@@ -399,7 +399,7 @@ Let's visit the **Data Sources**:
 ![Host Data Sources](images/ds-01.preview.png)
 
 As you can see, the **Suggested Values** of the Data Query defined the Name of
-the Data Template. So let's go to **Graph Management**:
+the Data Source. So let's go to **Graph Management**:
 
 ![Graph Management Preview](images/gm-01.preview.png)
 

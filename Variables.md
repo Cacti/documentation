@@ -63,7 +63,7 @@ different Case.
 |query_field_name|
 ```
 
-You can place the value of any data query field on the by including this
+You can place the value of any data query field on the graph by including this
 variable. Make sure to substitute "field_name" with the actual data query field
 name.
 

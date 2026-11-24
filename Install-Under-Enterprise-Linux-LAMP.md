@@ -100,7 +100,7 @@ import `cacti.sql`, and configure `include/config.php`. The examples there use
 Complete the dependency and filesystem-permission checks before opening the
 installer. The database account and operating-system service accounts are
 separate identities. Grant runtime write access to the actual FPM and poller
-accounts, not automatically to the nginx master process or the database user.
+accounts, not automatically to the Apache parent process or the database user.
 Keep executable code and credentials protected during normal operation.
 
 Open `https://cacti.example.com/cacti/` and complete the installer. Configure

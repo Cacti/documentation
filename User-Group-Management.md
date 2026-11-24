@@ -69,7 +69,7 @@ choose.
 
 ![User Groups Graph Permissions](images/user-groups-edit-graph-permissions.png)
 
-You can find the **Permission** and **Restrictive** permission setting on
+You can find the **Permissive** and **Restrictive** permission setting on
 Cacti's configuration page at `Console > Configuration > Settings > General`.
 We have not covered the **Device**, **Template**, **Tree** or **Settings**
 sub-tabs here.  If you would like more information on them, see the User

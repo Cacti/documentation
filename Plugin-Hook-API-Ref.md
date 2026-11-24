@@ -1150,7 +1150,7 @@ This hook is called after the data source title cache is updated.
 
 This hook is part of a series of hooks that allow you to add custom user
 settings. Consider a plug-in called "abc". In that plug-in, you want to save
-custom settings on a per user basis. Therefore, following our unpublished ?
+custom settings on a per user basis. Therefore, following our unpublished
 table naming standards, you would create a table called "abc_settings". When you
 tab over to the "abc" plug-in, you are provided an "abc settings" on the right
 similar to "Graphs". The next series of hooks allow you to present those

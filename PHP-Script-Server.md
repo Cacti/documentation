@@ -199,7 +199,7 @@ Script Server** command line to exit the script server.
    following:
 
    ```sh
-   script server> /path_cacti/scripts/ss_myserver_file.php my_function argument1 argument2 ...
+   script server> /path_cacti/scripts/ss_myserver_file.php ss_myfunction argument1 argument2 ...
    ```
 
    In the Windows environment, your example could be the following:

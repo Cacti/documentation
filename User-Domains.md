@@ -24,7 +24,7 @@ Each of these user groups is controlled by Active Directory.
 There are AD User Groups that map one-to-one with these
 Groups.  When you have these three Domains set up and enabled,
 when you go to the Cacti Login screen there will be a drop-down
-settings with the three Domains listed in the drop-down.
+with the three Domains listed in it.
 
 If a normal user tries logging in as an Administrator, their
 login will be blocked and so on.

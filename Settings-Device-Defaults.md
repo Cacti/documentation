@@ -102,7 +102,7 @@ Those options include:
     through SNMP. Both methods must work for the device to be **Up**
   - **Ping or SNMP Uptime** - If either method works, consider the **Device Up**
   - **SNMP Uptime** - Only check the SNMP sysUptimeInstance of the **Device**
-  - **SNMP Desc** - Only check the SNMP sysDescription of the **Device**
+  - **SNMP Desc** - Only check the SNMP sysDescr of the **Device**
   - **SNMP getNext** - Only perform a basic `getnext` query for the **Device**
   - **Ping** - Either TCP, UDP, or ICMP pings
 

@@ -51,7 +51,7 @@ source:
 |    30 second | Monthly   |      46kb |    30 second | Yearly    |     140kb |
 |     1 minute | Daily     |      93kb |     1 minute | Weekly    |      45kb |
 |     1 minute | Monthly   |      47kb |     1 minute | Yearly    |     140kb |
-|     5 minute | Daily     |       19b |     5 minute | Weekly    |      22kb |
+|     5 minute | Daily     |      19kb |     5 minute | Weekly    |      22kb |
 |     5 minute | Monthly   |      25kb |     5 minute | Yearly    |      26kb |
 
 ### Viewing all Data sources by device

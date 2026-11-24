@@ -84,9 +84,9 @@ From here you can set the following columns.
 - **From Email Address** - The From Email address.  For example *noreply@mydomain.com*
 - **To Email Address(es)** - A comma delimited list of Email addresses that should
   receive the Report.
-- **BCC Address(es)** - An anonymized list of Email recipients
+- **BCC Address(es)** - A comma delimited list of blind carbon copy recipients
 - **Image attach type** - This defines how the Cacti Graph images get attached
-to the Email.  Some are for legacy purposes.  Most users will use
+to the Email.  Many are for legacy purposes.  Most users will use
 Inline PNG or Inline JPG.
 
 Once you save a new **Report**, additional Tabs will show up.  Those tabs are:

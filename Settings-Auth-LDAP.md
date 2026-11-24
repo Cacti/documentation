@@ -311,7 +311,7 @@ To handle this scenario, start by creating a new local user in Cacti with
 read-only permissions.  Name the user 'MyLdapTemplate'.  Next, in Cacti's
 Authentication settings, set the `User Template` field to 'MyLdapTemplate'.
 Set the `Mode` to 'No Searching'.  Set the `Distinguished Name (DN)` field to
-```<username>@example.com'```, where 'example.com' is the name of your domain.
+```<username>@example.com```, where 'example.com' is the name of your domain.
 When any user logs in to Cacti, their password will be checked against the LDAP
 directory and they'll be granted access to Cacti with read-only access (from
 the LDAP template user).  Once a new user logs in, Cacti will create a local
@@ -352,8 +352,8 @@ Name (DN)` to the name of the group.  Set `Group Member Attribute` to 'member'.
  Set `Group Member Type` to 'Distinguished Name'.  Set `Search Base` to the DN
 of the hierarchical structure in the directory which contains all the users,
 such as 'OU=Users,DC=example,DC=com'.  Set `Search Filter` to
-```'sAMAccountName=<username>'```.  Set `Search Distinguished Name (DN)` to the
-username of the service account you created in the directory.  Set `Search
+```'(sAMAccountName=<username>)'```.  Set `Search Distinguished Name (DN)` to
+the username of the service account you created in the directory.  Set `Search
 Password` to the password for the service account.  Optionally, set `Full Name`
 to the directory attribute that contains the user's name, such as 'cn', and
 also set `Email` to the directory attribute that contains the user's email

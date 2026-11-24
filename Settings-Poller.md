@@ -66,7 +66,7 @@ Those settings include:
   **Data Query** `Re-index` activities for tables whose OIDs are not
   structured in an orderly way where the suffix for the OID increases
   in a known way.  Though, in most cases enabling this setting will
-  not be harmless.  There may be some cases where it would slow the
+  be harmless.  There may be some cases where it would slow the
   `Re-index` process.
 
 - **Remote Agent Timeout** - When Cacti either needs information from

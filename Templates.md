@@ -131,9 +131,9 @@ non-templated fields.
 | Data Source Active  | This is a quick and easy way to tell Cacti to stop gathering data for this **Data Template**. The resulting **Data Source** can still be used on **Graphs**, but no data will be fed to it until it is made active again.                                                                                                                           |
 
 > **NOTE:** For most **Data Templates**, you should not have to check
-> the Use Per-Graph Value check-box for the name field. The Templating should
-> handle this just fine. However, the Generic SNMP OID **Data Template** has
-> this value checked to allow you to create Graphs and Data Sources on a
+> the Use Per-Data Source Value check-box for the name field. The Templating
+> should handle this just fine. However, the Generic SNMP OID **Data Template**
+> has this value checked to allow you to create Graphs and Data Sources on a
 > piecemeal basis.
 
 When you are finished filling in values for the **Data Template**, click Create

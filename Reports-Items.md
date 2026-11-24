@@ -85,14 +85,12 @@ In this case, there are no filters, just selections.  They include:
 - **Graph Tree** - The name of the Cacti Tree to include in the report.
 
 - **Graph Tree Branch** - The specific Branch to include
-
-if you are only wanting to include a portion of the **Tree**
+  if you are only wanting to include a portion of the **Tree**
 
 - **Cascade to Branches** - Walk all the **Graph Trees** branches
 
 - **Graph Name Regular Expression** - A MySQL/MariaDB compatible Regular
-
-Expression of Graph Names to include in the Report.
+  Expression of Graph Names to include in the Report.
 
 - **Graph Timespan** - The time range to show for the Graph.
 

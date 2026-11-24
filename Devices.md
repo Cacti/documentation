@@ -70,7 +70,7 @@ They include:
 - **Ping** - Either ICMP, TCP at a port, or UDP as a port. Newer versions have an additional method, TCP Ping Closed.
 The device is considered UP even if the TCP ping returns closed
 - **Ping or SNMP Uptime** - Only one needs to be working for Cacti to collect data
-- **SNMP Desc** - Query the SNMP sysDescription in cases where the SNMP Uptime OID
+- **SNMP Desc** - Query the SNMP sysDescr in cases where the SNMP Uptime OID
   is not available
 - **SNMP getNext** - Query the first available OID in the OID tree for the **Device**.
   Used for certain devices that have limited SNMP support.

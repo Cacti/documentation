@@ -5,7 +5,7 @@ General Settings in Cacti consist of the following categories:
 - **Log Settings** - This is where you set up Cacti's logging
 - **Internationalization (i18n)** - Settings around how Cacti handles languages
   other than English
-- **Other Settings** - Other not object settings in Cacti
+- **Other Settings** - Other miscellaneous settings in Cacti
 - **Site Security** - Web Site Security settings such as `Content-Security-Policy`,
   use of external JavaScript APIs for plugins like Google Maps, forcing https, etc.
 - **Automation** - Miscellaneous settings around Cacti's Automation

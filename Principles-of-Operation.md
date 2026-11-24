@@ -42,7 +42,7 @@ They are resilient in that if the central Cacti server is not reachable,
 they will cache data and wait for it to become available again.
 
 Cacti supports up to dozens of Data Collectors today.  Some customers
-use something as simple as a Raspberry Pi or Nuk for
+use something as simple as a Raspberry Pi or NUC for
 Data Collectors.  However, Virtual Machines are preferred as they
 can be migrated live which does not interrupt data collection.
 
@@ -179,8 +179,8 @@ results with others.
 Cacti is not just a Graphing platform; it's also a Network Operations
 Framework.  Through the dozens of plugins and user contributed
 Graph Templates, the sky is the limit as to what can be done using the
-Cacti Framework.  It's stood the test of time now in its 19th year
-of existence in the Open Source world.
+Cacti Framework.  It's stood the test of time
+in the Open Source world.
 
 ---
 Copyright (c) 2004-2026 The Cacti Group

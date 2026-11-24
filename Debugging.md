@@ -137,7 +137,7 @@ sources MINIMUM and MAXIMUM definitions, it is possible that valid updates for
 RRDfiles are suppressed, because MINIMUM was not reached or MAXIMUM was
 exceeded.
 
-Assuming you've got some valid `rrdtool update` in step 3, perform a
+Assuming you've got some valid `rrdtool update` in the log, perform a
 
 ```sh
 rrdtool fetch <RRDfile> AVERAGE

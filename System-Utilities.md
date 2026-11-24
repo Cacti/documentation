@@ -92,7 +92,7 @@ Agent Support is enabled in the Poller settings.
 
 ### RRD cleaner
 
-`Console > utilities > System Utilities > RRDfile Cleaner`
+`Console > Utilities > System Utilities > RRDfile Cleaner`
 
 When you delete Data Sources from Cacti, the corresponding RRDfiles are not
 removed automatically. Use this utility to facilitate the removal of
@@ -112,7 +112,7 @@ the RRDfile autoclean selection.
 
 ### RRDfile Checker
 
-`Console > utilities > System Utilities > RRDfile Checker`
+`Console > Utilities > System Utilities > RRDfile Checker`
 
 The RRDfile checker is a tool that scans all RRDfiles at a
 scheduled time and tests the stored data:

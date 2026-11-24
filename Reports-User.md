@@ -73,7 +73,7 @@ The **Email Frequency** section does not use the same layout as does our
 The last section of the **Report Details** is the **Email Sender/Receiver Details**
 section as shown below.
 
-![Reports Admin Edit](images/reports-edit-2.png)
+![Reports User Edit](images/reports-edit-2.png)
 
 From here you can set the following columns.
 
@@ -84,7 +84,7 @@ From here you can set the following columns.
   `noreply@mydomain.com`
 - **To Email Address(es)** - A comma delimited list of Email addresses that
   should receive the Report.
-- **BCC Address(es)** - An anonymized list of Email recipients
+- **BCC Address(es)** - A comma delimited list of blind carbon copy recipients
 - **Image attach type** - This defines how the Cacti Graph images get attached
   to the Email. Many are for legacy purposes. Most users will use Inline PNG or
   Inline JPG.

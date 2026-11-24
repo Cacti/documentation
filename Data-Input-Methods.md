@@ -33,8 +33,9 @@ Input String | This field is only used when the Input Type is set to **Script/Co
 
 The `Name` specified will be used throughout Cacti to identify the human
 readable name given to the **Data Input Method**.  Careful consideration should
-be made to help uniquely identify the **Data Source**.  Having very similar
-names can lead to confusion when utilizing them as your Cacti system grows.
+be made to help uniquely identify the **Data Input Method**.  Having very
+similar names can lead to confusion when utilizing them as your Cacti system
+grows.
 
 Valid options for `Input Type` are **Script/Command** and **Script Server**.
 As mentioned previously, Cacti provides built-in **Data Input Methods** for SNMP

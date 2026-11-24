@@ -325,7 +325,7 @@ non-alphanumeric characters, this name must be identifiable within Cacti.
 | index_order_type   | For sorting purposes, specify whether the index is numeric or alphanumeric. numeric: The indexes in this script query are to be sorted numerically (i.e. 1,2,3,10,20,31) alphabetic: The indexes in this script query are to be sorted alphabetically (1,10,2,20,3,31).                                                                              |
 | index_title_format | Specify the title format to use when representing an index to the user. Any input field name can be used as a variable if enclosed in pipes (&#124;). The variable &#124;chosen_order_field&#124; will be substituted with the field chosen by Cacti to index off of (see index_order above).                                                       |
 
-###### Table 12-6. Script Server XML Field Settings
+###### Table 12-8. Script Server XML Field Settings
 
 Each field contained within the Script Query must be defined under the field tag
 as shown in the example above. In addition, each defined field in the Script

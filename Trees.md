@@ -36,7 +36,7 @@ the image below for a visual representation of how Tree Sorting is accomplished.
 
 ![Tree Sorting](images/tree-options-sorting.png)
 
-### Table 8-1. Tree Sporting Type Definitions
+### Table 8-1. Tree Sorting Type Definitions
 
 Field | Value | Description
 --- | --- | ---
@@ -55,7 +55,7 @@ simultaneously.
 When a Tree is locked, you can drag & drop the **Sites**, **Devices** and
 **Graphs** over to the Tree menu.  To add a 'Root Branch', simply press the
 **Add Root Branch** button; once you have Root Branches, you may right click on
-the to create sub-branches on the Tree.
+them to create sub-branches on the Tree.
 
 When you single click on a **Site**, the **Devices**, and **Graphs** associated with
 that **Site** should appear in their respective sections.  You can also type into

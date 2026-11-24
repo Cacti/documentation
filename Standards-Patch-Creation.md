@@ -276,8 +276,8 @@ successfully commit your code in.
 
 Once your code has been pulled in, you should see an option to safely delete the
 branch that you created at the bottom of the pull request.  Clicking this will
-remove the repo from public view (though you can later revert this if you wish
-to).
+remove the branch from public view (though you can later revert this if you
+wish to).
 
 ## Alternative to setting upstream on push
 

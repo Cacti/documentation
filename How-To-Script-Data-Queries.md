@@ -32,8 +32,6 @@ course, even Spine will need to start PHP! And that's exactly where the thingy
 called **Script Server Data Query** drops in. But let's leave this for the next
 main chapter.
 
-The code runs on Cacti 0.8.7 versions.
-
 ## Basic Script
 
 The starting point will be some very basic PHP script. Put it into

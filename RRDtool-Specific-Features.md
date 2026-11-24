@@ -639,7 +639,7 @@ courtesy Erik de Mare. Here are the definitions
 
 #### Background for Nighttime
 
-cdef=LTIME,86400,%,28800,LT,INF,LTIME,86400,%,64800,GT,INF,UNKN,CURRENT_DATA_SOURCE,\*,IF,IF`
+`cdef=LTIME,86400,%,28800,LT,INF,LTIME,86400,%,64800,GT,INF,UNKN,CURRENT_DATA_SOURCE,*,IF,IF`
 
 #### Background for Weekend
 

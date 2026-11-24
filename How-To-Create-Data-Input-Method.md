@@ -374,8 +374,8 @@ But we now provide the name of **udpInPackets**, enter a **Maximum value** of
 
 ![Data Template - Two DS, Step1](images/dim-add13.preview.png)
 
-Then save and find with the exception that the _Output Field_ will be set to
-_None Selected_. Therefore, before adding the second _Data Source Item_, make
+Then save and you will find that the _Output Field_ is set to
+_Not Selected_. Therefore, before adding the second _Data Source Item_, make
 sure you select the _Output Field_ of _udpInDatagrams_ and press the Save button
 to create the association.
 

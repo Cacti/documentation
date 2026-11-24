@@ -55,7 +55,7 @@ some scanning functions will be available for some of these types only.
 E.g., if you set a switch/hub as "Switch/Router" you will then be able to pick
 an IP scanning function up when the device doesn't really support it.
 **System Description Match**  - provide key information to help Device
-Tracking detect the type of device. The wildcard character is the % sign.
+Tracking detect the type of device. The wildcard character is the * sign.
   When you open a device in Cacti, you normally see the following on top of the page.
   ``
   System: Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 12.2(53)SE2, RELEASE SOFTWARE (fc3)Technical Support: http://www.cisco.com/techsupportCopyright (c) 1986-2010 by Cisco Systems, Inc.Compiled Wed 21-Apr-10 05:52 by prod_rel_team

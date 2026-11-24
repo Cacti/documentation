@@ -98,10 +98,10 @@ from the *Data Source Item* heading to see:
 ![Enter new Data Source Item](images/r-dq-dt1.png)
 
 The name of the internal RRDtool Data Source (ifOutOctets) is not replaced in
-the Tab until you save your work. By default, *Maximum Value* is set to 100.
-This is way too low for an interface. All readings above this value will be
-stored as NaN by RRDtool. To avoid this, set to U (no maximum) or to a
-reasonable value (e.g. interface speed). Don't forget to specify COUNTER! You
+the Tab until you save your work. By default, *Maximum Value* is set to U
+(no maximum). You may keep it or set a reasonable value (e.g. interface
+speed); all readings above a maximum will be stored as NaN by RRDtool.
+Don't forget to specify COUNTER! You
 will have noticed that the name of the data source does not match the Name in
 the interface.xml. Don't worry, the solution to this is given later on. Before
 leaving, pay attention to the bottom of the page:

@@ -27,7 +27,7 @@ briefly.
 | apply_automation_rules.php | Automation  | Executes Cacti automation rules for devices selected by id, hostname or description.            |
 | remove_device.php          | Automation  | Allows removing Devices selected by id, IP address or description.                              |
 | plugin_manage.php          | Automation  | Allows installing, enabling, disabling and uninstalling plugins.                                |
-| copy_user.php              | Maintenance | Allows creating new users from Templates                                                        |
+| copy_user.php              | Automation  | Allows creating new users from Templates                                                        |
 
 ## Maintenance Scripts
 
@@ -68,7 +68,7 @@ briefly.
 | audit_database.php | Repair/Migration | Script to audit your Cacti schema, and repair any tables that don't match the stock Cacti schema. It will also upgrade the Cacti schema and run plugin upgrade functions. This is a good migration tool to move databases from old versions of Cacti. |
 | convert_tables.php | Repair/Migration | Convert all tables from their current form to the Cacti preferred table type, collation and charset                                                                                                                                                  |
 | fix_mediumint.php  | Repair/Migration | Increases the size of key Cacti columns for systems with over a million Graphs that have been in service for years.                                                                                                                                  |
-| splice_rrd.php     | Migration        | Utility that allows two RRDfiles to be merged, and also assists with resampling an old RRDfile to a new RRA configuration, for example moving a Cacti system from 5 minute polling to 1 minute polling.                                              |
+| splice_rrd.php     | Repair/Migration | Utility that allows two RRDfiles to be merged, and also assists with resampling an old RRDfile to a new RRA configuration, for example moving a Cacti system from 5 minute polling to 1 minute polling.                                              |
 
 ## Install/Upgrade Scripts
 
@@ -193,8 +193,9 @@ has been rebooted by querying sysUptime (.1.3.6.1.2.1.1.3.0). If the current
 value for the uptime is lower than the previous one (uptime goes backwards), a
 reboot is assumed and a re-index is performed.
 
-If the method is set to `Index Count Change`, e.g. the number of interfaces,
-without checking sysUptime. It is of particular interest in cases where indexed
+If the method is set to `Index Count Changed`, Cacti checks the number of
+indexed items, e.g. the number of interfaces, without checking sysUptime. It
+is of particular interest in cases where indexed
 entries may change without the need of a reboot. As modern operating systems
 seldom require reboots for system configuration changes, you may want to
 consider this setting for many cases (e.g. creating a new filesystem without
@@ -342,7 +343,8 @@ debug messages that usually show up in `cacti.log`.
 ## Reapply Suggested Names to Graphs
 
 For a general understanding of suggested names used with data queries, please
-see ?. Be aware that changes to the `Suggested Names` section of a data query
+see [Data Queries](Data-Queries.md#associated-graph-templates). Be aware that
+changes to the `Suggested Names` section of a data query
 will not automatically be propagated to all existing graphs. This is where
 poller_graphs_reapply_names.php drops in. Calling the script with the parameter
 `--help` yields
@@ -1279,7 +1281,7 @@ shell>php -q add_perms.php --user-id=4 --item-type=graph_template --item-id=25
 ```
 
 `--user-id=4` must specify an existing user. Else, an error message will be
-printed. As `--item-type=graph_template` is given, `--item-id=1` must specify a
+printed. As `--item-type=graph_template` is given, `--item-id=25` must specify a
 valid graph_template (the Interface - Traffic (bytes/sec) in this case). Again,
 if no graph template with this specific id exists, an error message will be
 printed. No output is produced on successful operations.
@@ -1292,7 +1294,7 @@ shell>php -q add_perms.php --user-id=4 --item-type=graph --item-id=8
 ```
 
 `--user-id=4` must specify an existing user. Else, an error message will be
-printed. As `--item-type=graph` is given, `--item-id=1` must specify a valid
+printed. As `--item-type=graph` is given, `--item-id=8` must specify a valid
 graph. Again, if no graph with this specific id exists, an error
 message will be printed. No output is produced on successful operations.
 

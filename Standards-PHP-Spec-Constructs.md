@@ -18,8 +18,8 @@ if ((is_array($array)) && (sizeof($array) > 0)) {
 
 It should be noted that with PHP 7.2, use of `list() = each()` syntax will
 result in warnings and/or errors.  It should also be noted that 7.2 also
-introduced the need for the variable to implement ICountable which are arrays
-and objects.  You should therefore check if `variable !=== false` before using
+introduced the need for the variable to implement Countable which are arrays
+and objects.  You should therefore check if `variable !== false` before using
 `sizeof()` or `count()`.
 
 ## Error Return Values

@@ -227,14 +227,14 @@ systemctl start snmptrapd
 ```
 
 3.) Now that snmptt and snmptrapd are started and enabled, you will first need to
-    modify the snmptrapd systemd file to include -on in the startup options
+    modify the snmptrapd systemd file to include -On in the startup options
 
 the file is located in /etc/sysconfig/snmptrapd and should look like this after
 
 ```console
 # snmptrapd command line options
 # '-f' is implicitly added by snmptrapd systemd unit file
-OPTIONS="-on"
+OPTIONS="-On"
 ```
 
 4.) Now you need to modify the snmptrapd config file to receive snmptraps. By
