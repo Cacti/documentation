@@ -43,7 +43,7 @@ under `plugins/NAME`, using the directory name declared by that plugin.
 | [TopX](https://github.com/Cacti/plugin_topx) | Display ranked graph and data-source views; check repository compatibility before use. | `plugins/topx` |
 | [Weathermap](https://github.com/Cacti/plugin_weathermap) | Build network maps whose links and nodes display monitored values. | `plugins/weathermap` |
 | [Webseer](https://github.com/Cacti/plugin_webseer) | Monitor website availability and response timing. | `plugins/webseer` |
-| [WMI](https://github.com/Cacti/plugin_wmi) | Collect Windows performance and inventory data through WMI transports. | `plugins/wmi` |
+| [WMI](https://github.com/Cacti/plugin_wmi) | Collect Windows performance and inventory data through WMI transports; marked as under development and not for production use. | `plugins/wmi` |
 
 ## Detailed manual pages
 
