@@ -14,12 +14,12 @@ allows you to create data source templates to associate to data queries the
 template allows you to describe what type of data Cacti should expect.
 
 To create a Data source you will need to select the proper data input there are
-several options but the most popular ones would be GET SNMP data or GET SNMP
-data (indexed.)
+several options but the most popular ones would be Get SNMP Data or Get SNMP
+Data (Indexed).
 
-You would use Get SNMP data (indexed) for interfaces for example as Cacti would
+You would use Get SNMP Data (Indexed) for interfaces for example as Cacti would
 need to query the device to find the interface index. You would use Get SNMP
-data and put in a single OID for an OID that won't change for example CPU usage
+Data and put in a single OID for an OID that won't change for example CPU usage
 generally does not have an index and the OID won't change
 
 You will also need to tell the template what the data source type is. The most

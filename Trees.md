@@ -42,7 +42,7 @@ Field | Value | Description
 --- | --- | ---
 Name | Name of the tree entry. | The sort order of all trees themselves is always alphabetical
 Sorting Type | Manual Ordering (No Sorting) | You may change the sequence at your will
-Alphabetical Ordering | 1, Ab, ab | All sub-trees are ordered alphabetically, unless specified otherwise (you may change sort options at sub-tree label)
+Alphabetic Ordering | 1, Ab, ab | All sub-trees are ordered alphabetically, unless specified otherwise (you may change sort options at sub-tree label)
 Natural Ordering | ab1, ab2, ab7, ab10, ab20 | N/A
 Numeric Ordering | 01, 02, 4, 04 | Leading zeroes are not taken into account when ordering numerically
 

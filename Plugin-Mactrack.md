@@ -17,7 +17,7 @@ see the [MacTrack README](https://github.com/Cacti/plugin_mactrack) and the
 
 ## Mactrack setup
 
-1. Check **Console > Configuration > Settings > MacTrack**.
+1. Check **Console > Configuration > Settings > Mactrack**.
 2. Create a MacTrack site. MacTrack sites are separate from Cacti's core sites.
 3. Add devices or import existing Cacti devices into MacTrack.
 4. Define or enable matching Device Types and their scanning functions.
@@ -28,14 +28,14 @@ screenshots and releases can differ from the current plugin.
 
 ## Create site
 
-Open **Console > MacTrack > Sites** and create a site before assigning devices
-to it. Add devices under **Console > MacTrack > Devices**, or use the import
+Open **Console > Mactrack > Sites** and create a site before assigning devices
+to it. Add devices under **Console > Mactrack > Devices**, or use the import
 action for an existing Cacti device. A Cacti device does not become a MacTrack
 device merely because both products have a site with the same name.
 
 ## Device types
 
-Open **Console > MacTrack > Device Types**. A device needs a matching Device
+Open **Console > Mactrack > Device Types**. A device needs a matching Device
 Type and suitable scanning functions before MacTrack can collect its data.
 
 | Field | Purpose |
@@ -43,7 +43,7 @@ Type and suitable scanning functions before MacTrack can collect its data.
 | Description | Give the Device Type a recognizable name. |
 | Vendor | Identify the device vendor. |
 | Device Type | Select the hardware role so appropriate scanners are available. |
-| System Description Match | Match the device's SNMP system description; `%` is the wildcard. A platform name is usually more useful than a firmware build string. |
+| System Description Match | Match the device's SNMP system description; `*` is the wildcard. A platform name is usually more useful than a firmware build string. |
 | Vendor SNMP Object ID Match | Match its system object ID, such as `.1.3.6.1.4.1.9.1.696`. |
 | MAC Address Scanning Function | Choose a scanner appropriate to the switch's layer-two forwarding data. |
 | IP Address Scanning Function | Choose a scanner for the device's ARP or supported address-association data. |
@@ -59,7 +59,8 @@ copy of customized definitions before changing scanners or upgrading.
 ## Import OUI Database from IEEE
 
 The OUI database associates MAC address prefixes with their registered vendors.
-Use **MacTrack > Tracking Utilities > Refresh IEEE Vendor MAC/OUI Database**
+Use **Mactrack Tools > Tracking Utilities > Refresh IEEE Vendor MAC/OUI
+Database**
 when the server has Internet access.
 
 For an offline import, download the IEEE database on a connected machine and

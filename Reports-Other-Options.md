@@ -1,8 +1,8 @@
 # Other Report Management Options
 
 Not only can you add and remove **Report Items** from the **Reports** interface,
-but you can also add **Graphs**, **Devices**, and **Trees** to a **Report** from
-the Cacti Console under **Graphs**, **Devices** and **Trees** pages.
+but you can also add **Graphs** and **Devices** to a **Report** from
+the Cacti Console under **Graphs** and **Devices** pages.
 
 For each Management section, you will find a drop-down that looks similar to the
 Drop down below.  Note that from this interface, you will not be able to add any

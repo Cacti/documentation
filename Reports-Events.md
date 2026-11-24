@@ -1,14 +1,19 @@
 # Report Events
 
-On this page, you can simply see on what dates and approximate times that the
-**Reports** scheduler will send future report.  You can see from the image below
-this the report will be sent every day at approximately 09:18:30.  The poller frequency
-or Data Collector interval is 30 seconds on this system.
+The report editor has **Details**, **Items** and **View Reports** sub-tabs.
+It has no **Events** sub-tab, so no page lists the dates and times of future
+sends.  The **Next Start** column on the **Reports** list shows when a report
+is next due to start.
+
+The image below shows an **Events** page that the develop source does not
+contain.
 
 ![Report Events](images/reports-events.png)
 
-Currently Cacti does not record past events in a Database table or store the published
-report in either PDF or other document format in a Database for historical reference.
+Cacti records each report it sends in the `reports_log` table, including the
+report output as sent.  To view an earlier send, select it in the **Report
+Date** drop-down on the **View Reports** sub-tab.  See
+[Report Preview](Reports-Preview.md).
 
 ---
 Copyright (c) 2004-2026 The Cacti Group
