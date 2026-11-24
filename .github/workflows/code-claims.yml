@@ -22,22 +22,22 @@ jobs:
     env:
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: Check out the Cacti source this manual documents
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: Cacti/cacti
           ref: develop
           path: cacti-source
           persist-credentials: false
-      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: '3.12'
       - name: Test the checker
         run: |
-          python3 -m pip install --quiet --only-binary :all: coverage==7.13.2
+          python3 -m pip install --quiet --only-binary :all: --require-hashes -r .github/coverage-requirements.txt
           python3 -m coverage run --branch --include=bin/check_code_claims.py \
             -m unittest discover -s bin/tests -p test_code_claims.py
           python3 -m coverage report --fail-under=100
@@ -45,3 +45,32 @@ jobs:
         run: |
           echo "Cacti develop $(git -C cacti-source rev-parse --short=12 HEAD)"
           python3 bin/check_code_claims.py --cacti cacti-source
+  report-drift:
+    # Separate from the checkout/check job so only this step, which runs no
+    # repository code, holds issues: write permission.
+    name: Report documentation drift
+    needs: claims
+    if: failure() && github.event_name == 'schedule' && github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      ISSUE_TITLE: 'Scheduled check: documentation drift detected against Cacti develop'
+    steps:
+      - name: Open or update the drift tracking issue
+        run: |
+          set -euo pipefail
+          run_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          existing=$(gh issue list --state open --search "in:title \"${ISSUE_TITLE}\"" \
+            --json number,title --jq '.[] | select(.title == env.ISSUE_TITLE) | .number' | head -n 1)
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "Scheduled drift check failed again on $(date -u +%Y-%m-%d): ${run_url}"
+          else
+            gh issue create --title "$ISSUE_TITLE" \
+              --body "The weekly scheduled \`code-claims\` check detected statements in \`develop\` documentation that no longer match \`Cacti/cacti@develop\`.
+
+          Failing run: ${run_url}"
+          fi

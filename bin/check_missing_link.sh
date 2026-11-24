@@ -18,5 +18,5 @@
 # Check that documentation is linked from the front page or manual index.
 
 set -eu
-DOC_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+DOC_ROOT=$(CDPATH='' cd -- "$(dirname -- "$0")/.." && pwd)
 exec python3 "$DOC_ROOT/bin/check_navigation.py" "$@"

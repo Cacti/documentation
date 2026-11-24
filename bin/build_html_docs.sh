@@ -17,6 +17,6 @@
 #
 # Build all manual content with the locked Markdown renderer.
 set -eu
-DOC_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+DOC_ROOT=$(CDPATH='' cd -- "$(dirname -- "$0")/.." && pwd)
 exec mise exec python@3.12 uv@0.12.23 -- uv run --locked --python python \
   --script "$DOC_ROOT/bin/build_html_docs.py" "$@"
