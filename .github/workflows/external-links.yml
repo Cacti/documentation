@@ -25,7 +25,7 @@ jobs:
           archive='lychee-x86_64-unknown-linux-gnu.tar.gz'
           checksum='1f4e0ef7f6554a6ed33dd7ac144fb2e1bbed98598e7af973042fc5cd43951c9a'
           mkdir -p "$RUNNER_TEMP/lychee"
-          curl -fsSL -o "$RUNNER_TEMP/$archive" \
+          curl --proto '=https' --tlsv1.2 -fsSL -o "$RUNNER_TEMP/$archive" \
             "https://github.com/lycheeverse/lychee/releases/download/lychee-${version}/${archive}"
           echo "${checksum}  ${RUNNER_TEMP}/${archive}" | sha256sum -c --quiet
           tar -xzf "$RUNNER_TEMP/$archive" -C "$RUNNER_TEMP/lychee"
