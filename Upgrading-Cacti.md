@@ -4,9 +4,8 @@ Use only the [supported operating systems][supported-os] and maintained
 dependencies compatible with this Cacti branch.
 
 This procedure covers a source installation upgrading to Cacti development
-(1.3). For a
-package-managed installation, use the package maintainer's upgrade procedure
-and configuration-file handling. See the separate guides for
+(1.3). For a package-managed installation, use the package maintainer's upgrade
+procedure and configuration-file handling. See the separate guides for
 [Windows](Upgrading-Cacti-Under-Windows.md) and
 [FreeBSD](Upgrading-Cacti-Under-FreeBSD.md).
 

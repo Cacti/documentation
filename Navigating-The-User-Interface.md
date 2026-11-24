@@ -5,12 +5,12 @@ theme, and installed plugins. The screenshots illustrate navigation and may
 show an earlier theme or release.
 
 The Cacti User Interface is visually broken into multiple panels.  Each major
-panel is designed to hold content.  Depending on the Cacti Theme you use
-some of these panel may not be visible at the Theme Developers discretion.  The
-common panels are:
+panel is designed to hold content.  Depending on the Cacti Theme you use,
+some of these panels may not be visible at the Theme Developer's discretion.
+The common panels are:
 
-- **Top Tabs** - Where you perform major navigation separate content
-- **Navigation Area** - If the content in navigated to by the Top Tab has a
+- **Top Tabs** - Where you perform major navigation to separate content
+- **Navigation Area** - If the content is navigated to by the Top Tab has a
   menu,
   it will be found here.
 - **Breadcrumb Bar** - This is where you can see where in the Cacti interface
@@ -30,7 +30,7 @@ with the Footer.
 
 In Cacti, when you click on the **Top Tab**, you will by default enter a
 completely different section of Cacti.  Cacti's Top Tabs are designed
-to mimic browser tabs, this helps with users orienting themselves to the
+to mimic browser tabs; this helps with users orienting themselves to the
 various sections of Cacti.  When you have many **Plugins** installed as
 in the example above, you can see clearly the benefit of these
 navigation aids.
@@ -45,10 +45,10 @@ various sub-panels.
 ![Cacti Layout Subpanels](images/navigation-layout-subpanel.png)
 
 Most of Cacti's pages are laid out in this fashion.  However, what goes into
-the Cacti **Content Area** is completely under the **Plugin** authors
+the Cacti **Content Area** is completely under the **Plugin** author's
 control.
 
-At the Theme developers discretion, all pages should include both the **Top
+At the Theme developer's discretion, all pages should include both the **Top
 Tab**
 and **Breadcrumb Bar**.  Inside of the **Breadcrumb Bar** or **Top Tab** panels
 you should always see the *User Profile and Menu* on the right.
@@ -90,7 +90,7 @@ start by describing the Cacti *Console*.
 
 - **Table Filters**
 
-  Any **Cacti Table** can include a **Table Filters**.  These filters can be
+  Any **Cacti Table** can include **Table Filters**.  These filters can be
   used to limit the data returned to a **Cacti Table**.
 
 - **Actions Dropdown**
@@ -158,25 +158,25 @@ into separate sub-menus.  We will describe the purpose of each next.
   **Device**, **Tree**, **Data Source**, and **Aggregate** non-templated
   objects reside.  When you install Cacti **Plugins**, you will find
   they extend this sub-menu.
-- **Data Collection** - This is where you define rules for **Data Collection**
+- **Data Collection** - This is where you define rules for **Data Collection**.
   Examples include: **Data Collectors**, **Data Input Methods** and
-  **Data Queries**
+  **Data Queries**.
 - **Templates** - This is where you find all of Cacti's various Templates
-  outside of Automation.  By default, You will find Templates for
+  outside of Automation.  By default, you will find Templates for
   **Graphs**, **Data Sources**, **Devices**, **Aggregates**, and **Colors**.
 - **Automation** - This sub-menu is where you find rules for automating
   **Device** Discovery, and Rules for creating **Devices**, **Graphs**,
   and **Trees**.
 - **Presets** - This area contains meta objects that cross Template
-  boundaries and are Global in nature.  They include; **Data Profiles**,
-  **SNMP**, **CDEFs**, **VDEFs**, **Colors**, **GPRINTs**, and **Layouts**
+  boundaries and are Global in nature.  They include: **Data Profiles**,
+  **SNMP**, **CDEFs**, **VDEFs**, **Colors**, **GPRINTs**, and **Layouts**.
 - **Import Export** - This is how you can import and export various Cacti
   Template objects.
 - **Configuration** - This is where you manage **Users**, **User Groups**,
   **Login Providers**, **Global Settings**, and **Plugins** on the development
   branch. Cacti 1.2 has **User Domains** instead.
-- **Utilities** - This is where Cacti includes common utilities that can be use
-  in the Web Portal without having to goto the Command line.
+- **Utilities** - This is where Cacti includes common utilities that can be used
+  in the Web Portal without having to go to the command line.
 - **Troubleshooting** - There are some handy utilities here that help
   diagnose common problems with Cacti.
 

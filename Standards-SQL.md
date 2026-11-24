@@ -6,7 +6,7 @@ the target branch's supported database versions before adding SQL syntax.
 ## Quotes
 
 When writing queries do not use quotes around numeric values. While MySQL is not
-strict about types, most DBMS's assume that any value contained within quotes is
+strict about types, most DBMSs assume that any value contained within quotes is
 a string.
 
 Use single-quoted PHP strings for literal SQL where possible. Bind changing
@@ -48,7 +48,7 @@ concatenate user-supplied SQL, even when ordinary values are parameterized.
    should be wrapped onto a continuation line for ease of use and readability.
    The following keywords should also be placed at the start of a new line:
 
-   - joins statements (excluding JOIN itself which should not be used) (eg,
+   - join statements (excluding JOIN itself which should not be used) (e.g.,
      INNER
       JOIN, LEFT JOIN, RIGHT JOIN, OUTER JOIN, CROSS JOIN)
 

@@ -40,7 +40,8 @@ contained inside an RRDfile, and overwriting specific data points.  It offers
 
 ### GUI
 
-Spikekill is easily run on a graph with a couple mouse clicks in the Cacti GUI:
+Spikekill is easily run on a graph with a couple of mouse clicks in the Cacti
+GUI:
 
 1. On Cacti's main `Graph` tab, click the Spikekill icon
    ![Spikekill-icon](images/spikekill.gif) next to a graph.
@@ -112,7 +113,7 @@ overwrite.  The following settings are customizable:
    This only applies when using the `Standard Deviation` method, and does not
    apply when using the `GapFill`, `Float` or `Absolute Max` methods.
 
-The above settings are maintatined individually for each Cacti user.  The
+The above settings are maintained individually for each Cacti user.  The
 default values can be changed globally in the Cacti settings, found at
 Configuration > Settings > Spikes.  A user can change her or his individual
 settings by selecting different choices in the Spikekill menu which appears

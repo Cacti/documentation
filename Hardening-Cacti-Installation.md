@@ -205,9 +205,9 @@ setsebool -P httpd_can_network_connect_db on
 
 ### Poller Systemd Drop-in
 
-The Cacti spine poller runs as a separate daemon and may need to connect
+The Cacti Spine poller runs as a separate daemon and may need to connect
 outward for SNMP.  Do not force it into the `httpd_t` domain: that confines
-spine to Apache's policy rather than freeing it, and outbound access in
+Spine to Apache's policy rather than freeing it, and outbound access in
 `httpd_t` is still gated by booleans.  If SNMP polling is blocked by SELinux,
 enable the relevant boolean instead and leave the daemon in its own domain:
 

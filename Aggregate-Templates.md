@@ -26,13 +26,13 @@ settings. See [Aggregate Graphs](Aggregates.md) for membership and propagation.
 
 ## Aggregate Template Interface
 
-The images below shows an Aggregate Template for Traffic.
+The image below shows an Aggregate Template for Traffic.
 
 ![Aggregate Templates](images/aggregate-templates.png)
 
 When you edit the **Aggregate Template**, you are presented with an interface
-that allows you to define the Graph Canvas as well as it's formatting. You
-should experiment until you find the mechanism that works best to suite your
+that allows you to define the Graph Canvas as well as its formatting. You
+should experiment until you find the mechanism that works best to suit your
 needs.
 
 The `Aggregate Template` `Prefix` setting allows you to provide a pattern to be
@@ -127,7 +127,7 @@ options here, only let you know that you can override them in your resulting
 ## Summary
 
 There are several combinations of options that you can use when working with an
-**Aggregate Template**. Some of these options will results in horrible and
+**Aggregate Template**. Some of these options will result in horrible and
 unexpected outcomes, so you will have to experiment until you come up with a
 desirable **Aggregate Template**.
 

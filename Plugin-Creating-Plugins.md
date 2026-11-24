@@ -27,19 +27,19 @@ functions, no code that runs automatically.
 Every Cacti plugin must have an INFO file.  Any legacy plugins that do not have
 an INFO file will not work with Cacti 1.x.  This was done intentionally so that
 plugin users could know ahead of time that their plugin was not designed for
-Cacti 1.x.  The info file includes several line including:
+Cacti 1.x.  The info file includes several lines including:
 
 setting | description
 :--- | :---
-*name* | The short name for the plugin.  Must be alpha with no spaces and match  the directory name.
+*name* | The short name for the plugin.  Must be alpha with no spaces and match the directory name.
 *version* | The version of the plugin.  Use two to three decimal places.
 *longname* | A user readable short description for the plugin.
 *author* | The author of the plugin.
-*email* | The authors email address for obtaining support.
+*email* | The author's email address for obtaining support.
 *homepage* | If the author maintains a homepage, the address for that page.
 *compat* | The minimum version of Cacti that is required to use this plugin.
 *requires* | A space delimited list of plugin or plugin:version entries that are required to use this plugin.
-*capabilities* | A comma delimited list of capabilities for define what capabilities the plugin has primarily remotely.
+*capabilities* | A comma delimited list of capabilities that define what capabilities the plugin has primarily remotely.
 *nosync* | A comma delimited list of relative paths that should not be synchronized with the remote data collectors, for example transient folders that may contain quite a bit of data that changes often.
 
 ## Mandatory functions
@@ -49,7 +49,7 @@ for your plugin to properly be detected, and to properly function.
 
 ### plugin_PLUGINNAME_install
 
-This first function is the installation function that is ran when a request is
+This first function is the installation function that is run when a request is
 received to install your plugin.  There are no arguments passed to this
 function.
 
@@ -101,9 +101,9 @@ be available
 while the plugin is disabled.  This allows a user to modify any necessary
 settings for the plugin before the plugin is actually enabled and goes live.
 You can then use this check_config function to determine whether everything is
-correctly setup, before you allow the plugin to be enabled.  From this
+correctly set up, before you allow the plugin to be enabled.  From this
 function, you will simply need to return TRUE if everything checks out, or
-return FALSE if something else needs to be setup.
+return FALSE if something else needs to be set up.
 
 ```php
 function plugin_PLUGINNAME_check_config () {
@@ -137,10 +137,10 @@ function plugin_PLUGINNAME_remove_data() {
 #### Registering Hooks
 
 The way that your plugin is able to interact within Cacti is via the many hooks
-that are placed into the interface.  As cacti processes the various visual
+that are placed into the interface.  As Cacti processes the various visual
 pages and backend functions, it will call specific hook functions which passes
 control over to any plugins that might want to interact with that aspect of
-cacti.  In order to utilize these hooks, your plugin must register for each
+Cacti.  In order to utilize these hooks, your plugin must register for each
 hook that you require inside our installation function.  This is done via a
 simple API function.
 
@@ -184,7 +184,7 @@ different functional duties (ex: separating out the viewing and the
 configuration sections of your plugin).
 
 We need to call this hook in the same function as we registered for hooks.
-Either of the api calls can come first (there is no order necessary)
+Either of the API calls can come first (there is no order necessary).
 
 ```php
 api_plugin_register_realm('PLUGINNAME', 'FILENAMETORESTRICT', 'DISPLAYTEXT', 1);
@@ -192,7 +192,7 @@ api_plugin_register_realm('PLUGINNAME', 'FILENAMETORESTRICT', 'DISPLAYTEXT', 1);
 
 Name | Description
 --- | ---
-PLUGINNAME | Your plugins name
+PLUGINNAME | Your plugin's name
 FILENAMETORESTRICT | the filename (relative to your plugin directory) to restrict access to, you can separate multiple with a comma
 DISPLAYTEXT | This is the text that will display on the User Permissions form for this Realm
 1 or 0 (true or false) | This tells it whether to automatically grant permission to the 'admin' user account (true)

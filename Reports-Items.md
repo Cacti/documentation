@@ -21,13 +21,13 @@ An example **Report Items** interface can be seen below.
 ![Report Item](images/reports-items.png)
 
 From this image, you can see a combination of **Graphs**, **Devices**, and a **Device**
-showing only **Graphs** that include *eth0*, and *SCSI* in their titles indicating
+showing only **Graphs** that include *eth0* and *SCSI* in their titles indicating
 something about Interface Graphs and Disk Utilization Graphs.
 
 ## Item Edit Page
 
-When you either add a new Item by pressing the Add button on the right,
-Clicking on the Item # on the left, you will be presented a page
+When you either add a new Item by pressing the Add button on the right, or
+clicking on the Item # on the left, you will be presented a page
 that is personalized depending on the *Item Type*.
 When you add an item for the first time, you will see the image below.
 
@@ -45,8 +45,8 @@ The columns for a **Graph** Type **Report Item** include:
 - **Graph Template** - A filter that will show only Graphs
    from a specific Graph Template.
 
-The options above are only Filter to reduce the Graph list when you
-actually select the **Graph Name**, it will apply those filters
+The options above are only Filters to reduce the Graph list when you
+actually select the **Graph Name**; it will apply those filters
 to narrow in on the Graphs to display in the drop-down.
 All of the filters above are *optional*.
 
@@ -55,14 +55,14 @@ The last sections are for the specific Graph in question including:
 - **Graph Name** - The name of the Graph to include.
 - **Graph Timespan** - The time range to show for the Graph.
 - **Alignment** - Should the Graph be Center, Left or Right Aligned on the page.
-- **Sequence**  - The Graph Items Sequence number.  This is a Read Only variable.
+- **Sequence**  - The Graph Item's Sequence number.  This is a Read Only variable.
 
-When, you change the **Report Item** to **Device** the layout of the page will
+When you change the **Report Item** to **Device**, the layout of the page will
 change and you will see the form shown below.
 
 ![Report Item Device Item](images/reports-item-device.png)
 
-In this case, the **Site**, and **Device Template** both remain Filters, the **Device**
+In this case, the **Site** and **Device Template** both remain Filters; the **Device**
 represents the **Device** to include on the **Report**.
 After that, the options below define what Graphs from the Device are to be included.
 
@@ -71,34 +71,32 @@ After that, the options below define what Graphs from the Device are to be inclu
   to only those matching the Regular Expression.
 - **Graph Timespan** - The time range to show for the Graph.
 - **Alignment** - Should the Graph be Center, Left or Right Aligned on the page.
-- **Sequence**  - The Graph Items Sequence number.  This is a Read Only variable.
+- **Sequence**  - The Graph Item's Sequence number.  This is a Read Only variable.
 
 The last **Report Item** that we will document here is the **Tree** type.
-The Text and Horizontal Rule types are pretty much self explanatory.
+The Text and Horizontal Rule types are pretty much self-explanatory.
 The image below is the layout that will be shown
 when you change the **Report Item** to **Tree**.
 
 ![Report Item Tree Item](images/reports-item-tree.png)
 
-In this case, there are no filter, just selections.  They include:
+In this case, there are no filters, just selections.  They include:
 
 - **Graph Tree** - The name of the Cacti Tree to include in the report.
 
 - **Graph Tree Branch** - The specific Branch to include
+  if you are only wanting to include a portion of the **Tree**
 
-if you are only wanting to include aportion of the **Tree**
-
-- **Cascade to Branches** - Walk all the **Graph Trees** branches
+- **Cascade to Branches** - Walk all the **Graph Trees'** branches
 
 - **Graph Name Regular Expression** - A MySQL/MariaDB compatible Regular
-
-Expression of Graph Names to include in the Report.
+  Expression of Graph Names to include in the Report.
 
 - **Graph Timespan** - The time range to show for the Graph.
 
 - **Alignment** - Should the Graph be Center, Left or Right Aligned on the page.
 
-- **Sequence**  - The Graph Items Sequence number.  This is a Read Only variable.
+- **Sequence**  - The Graph Item's Sequence number.  This is a Read Only variable.
 
 ---
 Copyright (c) 2004-2026 The Cacti Group

@@ -2,11 +2,11 @@
 
 ## Background
 
-CDEF's in Cacti are a one to one analog to CDEF's in RRDtool.  Cacti
+CDEFs in Cacti are a one to one analog to CDEFs in RRDtool.  Cacti
 simply provides an interface to create and manage them.  Once the
-CDEF's are created in Cacti they can be imported and exported globally.
+CDEFs are created in Cacti they can be imported and exported globally.
 
-CDEF's are mathematical formulas that either modify the numeric data from
+CDEFs are mathematical formulas that either modify the numeric data from
 one to many data sources or VNAMES that you have in your **Graph Template**.
 
 The format of the mathematical formulas is called Reverse Polish Notation (RPN).
@@ -15,14 +15,14 @@ HP and other Calculators to solve Engineering problems.  The reason we still
 use it today is that it follows a simple Stack principle.  In other words,
 it's not broken.
 
-CDEF's can get very complex as there are several mathematical functions
+CDEFs can get very complex as there are several mathematical functions
 available in the RRDtool command set.
 
 ## CDEF Interface
 
-In the image below, you can see all the CDEF's that are included in Cacti by
+In the image below, you can see all the CDEFs that are included in Cacti by
 default.  There are quite a few of them.  Many of the formulas in use are quite
-simple.  If you want to view Tutorials on how to work with CDEF's you should
+simple.  If you want to view Tutorials on how to work with CDEFs you should
 go to the [RRDtool Tutorial](https://oss.oetiker.ch/rrdtool/tut/cdeftutorial.en.html).
 There is also documentation at the [RRDtool Website](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_data.en.html#CDEF).
 
@@ -32,7 +32,7 @@ but note you will not be able to Delete any CDEF that is associated with a Cacti
 
 ![CDEFs](images/cdefs.png)
 
-When you Click on the CDEF's name, you will enter into an Edit screen.  From there
+When you click on the CDEF's name, you will enter into an Edit screen.  From there
 you will see an ordered list of your Stack.  It normally will begin with something
 like the CURRENT_DATA_SOURCE which means that when you Add a **Graph Item** to
 either a **Graph Template** or **Graph**, you can select a CDEF.  The

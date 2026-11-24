@@ -3,7 +3,7 @@
 ## Data Collector Background
 
 Cacti can support from one to many **Data Collectors**.  There are two types
-of **Data Collectors** they are:
+of **Data Collectors**. They are:
 
 - **Main Data Collector** - This is essentially your core Cacti server
   and database.  The **Main Data Collector** is also referred to as
@@ -14,7 +14,7 @@ of **Data Collectors** they are:
   also referred to as **Remote Pollers**.
 
 Due to the design of the Cacti **Remote Data Collector**, someone at the
-remote site, can actually login to that **Data Collector** and interact
+remote site can actually log in to that **Data Collector** and interact
 with it as if their **Data Collector** was the **Main Data Collector**.
 Additionally, if for some reason the **Main Data Collector** becomes
 unavailable due to a WAN outage for example, the data for the **Devices**
@@ -41,7 +41,7 @@ SNMP, and device availability checks have their own network requirements.
 The image below shows the current online collector (aka pollers).  On this page,
 we can see the current, average, and max data collection times, the
 **Data Collector** processes and threads used, the number of **Devices** as well
-as what those **Devices** are polling.  The Actions drop-down allows your to
+as what those **Devices** are polling.  The Actions drop-down allows you to
 Enable, Disable, and Delete **Remote Data Collectors**.  There is also a
 `Full Sync` option there.  The `Full Sync` option will replicate key Cacti
 tables to the selected **Remote Data Collectors** for things like
@@ -68,7 +68,7 @@ by the **Remote Data Collectors**.
 When editing the **Remote Data Collector** in the images below, you can see that
 it shares many of the settings of the **Main Data Collector** with the addition
 of a `TimeZone` setting and MySQL/MariaDB credentials and a `Test Connection`
-button.  Generally, these setting are only use during the initial setup
+button.  Generally, these settings are only used during the initial setup
 of Cacti, and afterwards for diagnostics only.
 
 ![Data Collectors Edit Remote](images/data-collectors-edit-remote1.png)

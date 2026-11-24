@@ -6,11 +6,11 @@ The Reference Plugin(s) are generic plugins that implement key pieces of the
 Plugin Architecture.
 
 They are broken down into several separate plugins, each covering different
-portions of the [Hook API Reference](Plugin-Hook-API-Ref.md)
+portions of the [Hook API Reference](Plugin-Hook-API-Ref.md).
 
 ## Standard Files
 
-The following files should be included in every plugin
+The following files should be included in every plugin:
 
 * CHANGELOG
 * INFO
@@ -81,14 +81,14 @@ myplugin/
 
 The four core sub-directories included in your plugin should be docs, images,
 lib, and include.  As previously mentioned, each of these directories should
-include an index.php that points to it's parent directory index.php.  This way
+include an index.php that points to its parent directory index.php.  This way
 we prevent people from randomly browsing the contents of our web site.
 
 The two main files required for every plugin are the INFO and the setup.php
 file.  Without these two files, the plugin directory will not be recognized as a
 valid plugin and will be skipped.
 
-The INFO file is formatted as Microsoft standard INI file.  It contains
+The INFO file is formatted as a Microsoft standard INI file.  It contains
 information about the plugin including its version, author, dependencies,
 functions, and minimum version of Cacti and other plugins required.  Below, you
 can see a reference INFO file for the myplugin plugin.
@@ -131,7 +131,7 @@ function plugin_myplugin_version() {
 
 Without these core functions, in your setup.php, your plugin will not fully
 operate.  We will document those functions and what they should include as we
-continue to document the plugin design principals.
+continue to document the plugin design principles.
 
 Any core plugin functions should always be placed in the lib/functions.php file,
 and settings should go into the include/settings.php file.  The plugin

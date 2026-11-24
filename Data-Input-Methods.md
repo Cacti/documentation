@@ -5,7 +5,7 @@ upon a mapping controlled by **Data Templates** and their corresponding **Data
 Sources**.  These resulting **Data Templates** and **Data Sources** can then be
 used to create **Graph Templates** and **Graphs**.
 
-Cacti includes a number of build in **Data Input Methods** for **SNMP** data and
+Cacti includes a number of built in **Data Input Methods** for **SNMP** data and
 for **Script**, **Script Server** and **SNMP Data Queries**.
 
 Outside of the built in **Data Input Methods**, the Cacti Administrator can
@@ -59,7 +59,7 @@ Fields`.
 
 The `Input Fields` box is used to define any fields that require information
 from the user or from various data within the Cacti Database such as the
-hostname, ip address, host id, etc. Any input fields referenced to in the input
+hostname, ip address, host id, etc. Any input fields referenced in the input
 string must be defined here.
 
 The `Output Fields` box is used to define each field that you expect back from
@@ -81,7 +81,7 @@ Name | Description
 Field/Field Name | You will be presented a drop down list of the unused braced input fields from the command
 Friendly Name | Enter a more descriptive name for this field
 Regular Expression Match (Input Only) | Enter a valid regular expression as to how to modify the output
-Allow Empty Input (Input Only) | Can the input value of this field blank or not
+Allow Empty Input (Input Only) | Can the input value of this field be blank or not
 Special Type Code (Input Only) | Pull the input data from the Cacti database and don't prompt the user for this input value
 Update RRDfile (Output Only) | Checked if you intend this output data to be stored in an RRDfile
 
@@ -94,7 +94,7 @@ use a Perl-compatible regular expression (PCRE), as required by PHP's
 `preg_*` functions.
 
 If the Data Input Field needs to reference another field internally, you can
-enter this into the `Special Type Code`. For instance, if your field requires an
+enter this into the `Special Type Code`. For instance, if your field requires a
 host name from the user, you can enter 'hostname' here and Cacti will fill
 this field in with the host name of the selected host.
 

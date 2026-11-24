@@ -96,7 +96,7 @@ Those settings include:
 - **Refresh Interval** - The default system level `Refresh Interval` for the
   Realtime interface when a user first opens a Realtime **Graph**.
 
-- **Cacti Directory** - Where should Cacti cache Realtime PNG's and RRDfiles.
+- **Cacti Directory** - Where should Cacti cache Realtime PNGs and RRDfiles.
 
 - **Custom Watermark** - A watermark that will appear on every Cacti **Graph**
 
@@ -121,7 +121,7 @@ Theme settings.
 
 The sizes are in pixels, and the Font Settings can either be a True Type Font
 file path, or a valid Pango font-config value. For more information on Pango
-font-config values, see your operating systems documentation. However, you can
+font-config values, see your operating system's documentation. However, you can
 normally see all the fonts installed on your Linux system by issuing the
 following command `fc-list`.
 

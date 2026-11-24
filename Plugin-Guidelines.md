@@ -3,7 +3,7 @@
 ## Overview
 
 This section will help the Cacti plugin developer structure their plugins.
-However, the best way to create a plugin is to borrow someone elses.  There
+However, the best way to create a plugin is to borrow someone else's.  There
 are Cacti plugin examples on [Cacti's GitHub page](https://github.com/Cacti) and
 you can find them all over GitHub just by searching.
 

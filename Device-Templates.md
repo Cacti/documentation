@@ -18,7 +18,7 @@ From this page, you can see the title of each **Device Template**, and its ID,
 which is important for the Cacti CLI scripts.  You can see if the **Device
 Template** can be removed, and the number of **Devices** using the **Device
 Template**.
-Templates that are used by **Devices** can not be removed and therefore if you
+Templates that are used by **Devices** cannot be removed and therefore if you
 attempt to remove one of these Templates, you will receive an error message.
 
 From the drop down there are the following options:

@@ -28,9 +28,8 @@ This does not replace backups or provide automatic failover of the main server.
 An operating-system scheduler or the Cacti daemon starts `poller.php`.
 It coordinates collection and launches the configured engine: the PHP
 `cmd.php` poller or the C-based [Spine](Spine.md) poller. The scheduler
-interval,
-poller interval, and data-source profiles must agree; changing cron alone does
-not change an existing RRD file's sampling interval.
+interval, poller interval, and data-source profiles must agree; changing cron
+alone does not change an existing RRD file's sampling interval.
 
 ## Data retrieval
 

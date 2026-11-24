@@ -3,12 +3,12 @@
 This section will describe **Graph Rules** in Cacti.
 
 Graph rules are used by the Cacti automation process after a device has been
-identified and a template has been applied the next step is graph creation.
+identified and a template has been applied, the next step is graph creation.
 Graph rules are processed from top to bottom.
 
 The graph rule matches the graph template by looking at the data fields
-chosen that are available in the data query for example below we are creating
-graphs for interface traffic the data query has several fields available to
+chosen that are available in the data query. For example, below we are creating
+graphs for interface traffic. The data query has several fields available to
 match on.
 
 You can see how these rules would take place by clicking the show matching
@@ -22,7 +22,7 @@ Matching Objects** to verify the rule. If both administrative and operational
 state must be up, also filter `ifAdminStatus`; `ifOperStatus` alone does not
 test both states.
 
-A device selection Criteria is also important Cacti needs a way to find which
+A device selection Criteria is also important. Cacti needs a way to find which
 device it needs to match.  In the below example we are matching any device
 that has an interface that is up and is not a Windows server.
 
@@ -37,13 +37,13 @@ Criteria](images/automation-graph-rules-edit2.png)
 ![Automation Graph Rules Graph
 Criteria](images/automation-graph-rules-edit3.png)
 
-This output shows us which devices match our devices rules this can help with
+This output shows us which devices match our device rules. This can help with
 tweaking rules as needed.
 
 ![Automation Graph Rules Matching
 Devices](images/automation-graph-rules-edit4.png)
 
-This output shows which interfaces,drives,sensors etc will be graphed based
+This output shows which interfaces, drives, sensors, etc. will be graphed based
 on the graph rules.
 
 ![Automation Graph Rules Matching

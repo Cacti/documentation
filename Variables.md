@@ -2,7 +2,7 @@
 
 ## Graph Variables
 
-Graphs Variables are special use replacement variables used to take information
+Graph Variables are special use replacement variables used to take information
 from the following objects and use them in the context of a Cacti Graph:
 
 - **Cacti Device** - host information
@@ -10,7 +10,7 @@ from the following objects and use them in the context of a Cacti Graph:
 - **Data Input** - input variables
 - **Nth Percentile** - formulas
 
-It also allows you additional one single use replacement variables like:
+It also allows you additional single use replacement variables like:
 
 - **Data Source Name** - The name of your Data Source
 - **Date Time** - The date and time the graph was rendered.
@@ -50,8 +50,8 @@ See attached examples to understand usage.
 
 ![Example of a Graph Template using |data_source_title|](images/graph-variables-data-source-title.png)
 
-The example graphs below, show how the output may look, but for a slightly
-different Case.
+The example graphs below show how the output may look, but for a slightly
+different case.
 
 ![Example 1 of a Graph making use of |data_source_title|](images/data-source-title-example1.png)
 
@@ -63,7 +63,7 @@ different Case.
 |query_field_name|
 ```
 
-You can place the value of any data query field on the by including this
+You can place the value of any data query field on the graph by including this
 variable. Make sure to substitute "field_name" with the actual data query field
 name.
 
@@ -121,7 +121,7 @@ variable you must give it five arguments:
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | current                | Calculates the Nth percentile based off the selected data source on the graph item which the variable is used. This type requires a selected Data Source Item in the graph item in which it is defined.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | total                  | Calculates the Nth percentile based off the selected data source on the graph item which the variable is used. But unlike current, this function totals the Nth percentile results of all same named data source names on the graph. Example, all traffic_in would have their Nth percentile calculated and then totaled. This type requires a selected Data Source Item in the graph item in which it is defined.                                                                                                                                                                                                                                                             |
-| max                    | Calculates the Nth percentile based off the selected data source on the graph item which the variable is used, but it is important to note that it selects the higher of the values for each row in data source and then uses the resulting set to calculate the Nth percentile. Example, you have selected a interface data source for traffic_in, this will evaluate traffic_out and traffic_in for that selected data source (RRDtool file) and select the higher of the two values for each row of data. The resulting max values are used to calculate the Nth percentile value. This type requires a selected Data Source Item in the graph item in which it is defined. |
+| max                    | Calculates the Nth percentile based off the selected data source on the graph item which the variable is used, but it is important to note that it selects the higher of the values for each row in data source and then uses the resulting set to calculate the Nth percentile. Example, you have selected an interface data source for traffic_in, this will evaluate traffic_out and traffic_in for that selected data source (RRDtool file) and select the higher of the two values for each row of data. The resulting max values are used to calculate the Nth percentile value. This type requires a selected Data Source Item in the graph item in which it is defined. |
 | total_peak             | Calculates the Nth percentile based on the max for each data source defined on the graph. Example, the max is taken for each data source defined on the graph, but it\'s the max of traffic_in or traffic_out for that data source (RRDtool file). The resulting max values are summed and returned.                                                                                                                                                                                                                                                                                                                                                                           |
 | all_max_current        | Calculates the Nth percentile based off the selected data source on the graph item which the variable is used, but it only selects the highest (max) value of all the data source items on the graph. Example, there are 3 data sources defined on the graph, the selected data source is traffic_in, all data sources for traffic_in will be compared against each other and the highest Nth value of all graph items will be selected as the result. This type requires a selected Data Source Item in the graph item in which it is defined.                                                                                                                                |
 | all_max_peak           | Calculates the Nth percentile by selecting the highest (max) calculated max Nth percentile value for each data source (RRDtool file) selected on the graph. Example, 3 data sources are defined on the graph, for each data source, the max Nth percentile is calculated, and out of the resulting set of values, the highest value is selected and returned.                                                                                                                                                                                                                                                                                                                  |
@@ -180,7 +180,7 @@ this variable you must give it three arguments:
 
 Host variables represent host data and can be placed in graph or data source
 titles. The following table describes which host variables can be used and which
-host fields the correspond to.
+host fields they correspond to.
 
 ###### Table 15-4. Host Variables
 

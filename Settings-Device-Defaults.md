@@ -3,12 +3,12 @@
 Cacti has multiple ways to create **Devices**. Those methods include:
 
 - **Manual** - Create Devices one at a time through the User Interface
-- **CLI** - Through Cacti's Command Line Interfaces (CLI's)
+- **CLI** - Through Cacti's Command Line Interfaces (CLIs)
 - **Automation** - Through Cacti's Network Discovery
 
 When using any of these methods, Cacti needs a way to apply a default for a new
-**Device** if the user does not specify on, be it any of the three methods
-above. That is what this settings sub-tab if for.
+**Device** if the user does not specify one, be it any of the three methods
+above. That is what this settings sub-tab is for.
 
 ## General Defaults
 
@@ -29,7 +29,7 @@ Those settings include:
 - **Device Threads** - The default number of Device Threads to assign to a new
   **Device**
 
-- **Re-index Method for Data Queries** - The default **Re-index" method for new
+- **Re-index Method for Data Queries** - The default **Re-index** method for new
   **Device Data Queries**
 
 - **Default Interface Speed** - If the **Device** does not include `ifHighSpeed`
@@ -40,9 +40,9 @@ Those settings include:
 ## SNMP Defaults
 
 Similar to the `General Defaults`, the `SNMP Defaults` control what SNMP
-settings to use for new \*_Devices_ if the user does not specify any. The image
+settings to use for new **Devices** if the user does not specify any. The image
 below shows the settings when using first SNMP v2 and then SNMP v3. If you are
-using SNMP v1 or v2, you will have much less required settings.
+using SNMP v1 or v2, you will have far fewer required settings.
 
 ![SNMP Defaults](images/settings-device-defaults-snmp-defaults-v1v2.png)
 
@@ -63,7 +63,7 @@ Those settings include:
 
 - **Security Level** - The default Security Level (SNMP v3)
 
-- **Auth Protocol** - The default Authentication Portocol to use (SNMP v3)
+- **Auth Protocol** - The default Authentication Protocol to use (SNMP v3)
 
 - **Auth User** - The default Authentication User to use (SNMP v3)
 
@@ -119,19 +119,19 @@ Those settings include:
 
 Cacti's `Availability / Reachability` define how to perform initial checks prior
 to polling to see if the **Device** is alive or not. Attempting to gather large
-amounts of data from a **Device** that is down, is counter-productive.
+amounts of data from a **Device** that is down is counter-productive.
 
-Availability / Reachability is generally performned using a `ping`. These
+Availability / Reachability is generally performed using a `ping`. These
 `pings` come in many formats, and Cacti supports all of the reasonable ones. In
 the image below, you can see the settings for one of the combination cases.
-Depending on your `ping` method, you may receive less options.
+Depending on your `ping` method, you may receive fewer options.
 
 ![SNMP Defaults](images/settings-device-defaults-availability.png)
 
 Those options include:
 
 - **Downed Device Detection** - The method by which Cacti should `ping` the
-  **Device**, SNMP `pings` involve querying a specific OID. Options include:
+  **Device**; SNMP `pings` involve querying a specific OID. Options include:
 
   - **None** - Only used for devices having their data collected through a
     back-end agent
@@ -145,7 +145,7 @@ Those options include:
   - **Stream Device** - Uptime and polling statistics are not tracked for the
     **Device**, and show as `N/A` in the **Device** list
 
-- **Ping Type** - When using an options that leverages **Ping** above, which
+- **Ping Type** - When using an option that leverages **Ping** above, which
   method.  Options include `ICMP Ping`, `TCP Ping`, `TCP Ping Closed` and
   `UDP Ping`.  With `TCP Ping Closed`, a refused connection to the port is
   also treated as a successful ping
@@ -159,7 +159,7 @@ Those options include:
 ## Up / Down Settings
 
 The Up / Down Settings define how many polling cycles that a Device must not
-respond to be considered truly `Down`, and when at device is returning from
+respond to be considered truly `Down`, and when a device is returning from
 `Down`, how many polling cycles to keep a device in `Recovering` state before
 returning it to `Up`. The image below shows the two settings for the **Device**.
 There is really no reason to explain these two settings in any additional

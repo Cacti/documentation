@@ -31,11 +31,10 @@ and retest rather than lowering global limits for every device.
 
 Run a data-input script as the actual poller account, using the configured
 interpreter, arguments and environment. Compare its output with the expected
-field names and numeric values in the [Data Input Method](Data-Input-
-Methods.md).
-For a script-server input, use the [PHP Script Server](PHP-Script-Server.md)
-procedure; executing a function-based script directly is not an equivalent
-test.
+field names and numeric values in the
+[Data Input Method](Data-Input-Methods.md). For a script-server input, use the
+[PHP Script Server](PHP-Script-Server.md) procedure; executing a
+function-based script directly is not an equivalent test.
 
 For SNMP, query the exact OID with the same version, context and access
 settings

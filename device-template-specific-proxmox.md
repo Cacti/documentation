@@ -1,6 +1,6 @@
 # Proxmox - external storage usage
 
-The Linux template is used for Proxmox, it allows you to create disk usage graphs.
+The Linux template is used for Proxmox; it allows you to create disk usage graphs.
 However, this is not always possible with external storage.
 
 You can check the usage of volumes on external storage with the `pvesm status` command.
@@ -19,7 +19,7 @@ local               dir     active        98497780        23395264        700529
 apt-get install sudo
 ```
 
-Run `visudo` and add line
+Run `visudo` and add a line
 ```console
 Debian-snmp ALL=(ALL) NOPASSWD: /usr/sbin/pvesm status
 ```
@@ -47,7 +47,7 @@ systemctl daemon-reload
 > the script to a single command, which limits the blast radius of a
 > compromised snmpd process.
 
-Create new shell script `/usr/local/bin/monitoring.sh`:
+Create a new shell script `/usr/local/bin/monitoring.sh`:
 ```console
 #!/bin/bash
 
@@ -71,7 +71,7 @@ systemctl daemon-reload
 systemctl restart snmpd
 ```
 
-Now we can check if data are in snmp:
+Now we can check if data are in SNMP:
 ```console
 snmpwalk -v2c -c your_community -On  localhost .1.3.6.1.4.1.8072.1.3 
 .1.3.6.1.4.1.8072.1.3.2.1.0 = INTEGER: 2
@@ -98,13 +98,14 @@ snmpwalk -v2c -c your_community -On  localhost .1.3.6.1.4.1.8072.1.3
 .1.3.6.1.4.1.8072.1.3.2.3.1.3.5.108.111.99.97.108 = INTEGER: 1
 ```
 
-These OIDs contain requested information. OID depends on names used in snmpd.conf:
+These OIDs contain the requested information. The OID depends on the names
+used in snmpd.conf:
 ```console
 .1.3.6.1.4.1.8072.1.3.2.3.1.1.5.108.111.99.97.108 = STRING: "23.75"
 .1.3.6.1.4.1.8072.1.3.2.3.1.1.11.97.108.108.101.116.114.97.45.108.118.109 = STRING: "17.95"
 ```
 
-We can graph these OIDs with SNMP - generic OID template (Graph-a-Single-SNMP-OID.md)
+We can graph these OIDs with the [SNMP - generic OID template](Graph-a-Single-SNMP-OID.md).
 
 ---
 

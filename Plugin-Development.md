@@ -24,15 +24,15 @@ There are a number of popular plugins including:
 
 In theory, these plugins can be integrated into Cacti very simply, and removed
 without breaking Cacti.  However, it must be noted to always review the
-plugins documentation before you start to use it.
+plugin's documentation before you start to use it.
 
 ## Legacy Plugins Notice
 
 Plugins written for Cacti 0.8.x require modifications in order to be compatible
 with Cacti 1.x.  There are several changes that all plugin developers need to
-be aware of. Any of the Cacti Group maintained plugin can be
+be aware of. Any of the Cacti Group maintained plugins can be
 used as reference plugins for driving your plugin migration to the 1.x
-framework and are available on [Github](https://github.com/Cacti/).
+framework and are available on [GitHub](https://github.com/Cacti/).
 
 ## Plugin Migration
 
@@ -104,11 +104,11 @@ includes the following sections:
 
 - **longname** - A description for the plugin
 
-- **author** - The plugins author
+- **author** - The plugin's author
 
 - **email** - An email contact in order to reach the author
 
-- **homepage** - A link to the plugin authors homepage
+- **homepage** - A link to the plugin author's homepage
 
 - **compat** - Prior to Cacti 1.3, the minimum version of Cacti to support the
   plugin.  After Cacti 1.3, it will represent the range of Cacti versions
@@ -159,13 +159,13 @@ nosync = config.php
 capabilities = online_view:1, online_mgmt:1, offline_view:1, offline_mgmt:1, remote_collect:0, remote_poller:1
 ```
 
-Here we can see that the config.php file in the plugin directory will not be copied over to remove 
-pollers, and we can see that syslog allow for remote data collection. using the 
+Here we can see that the config.php file in the plugin directory will not be copied over to remote
+pollers, and we can see that syslog allows for remote data collection using the
 **remote_poller:1** capabilities attribute.
 
 ### Changes in Cacti 1.3+
 
-Starting with Cacti 1.3 and beyond, the **compat** and **requires** lines can 
+Starting with Cacti 1.3 and beyond, the **compat** and **requires** lines can
 include ranges of support.  For example, the following will be supported:
 
 ```
@@ -173,12 +173,12 @@ compat = >=1.2.15 <1.3.0
 requires = thold:>1.2.1 <=2.0, monitor:>2.0 
 ```
 
-Before Cacti 1.3, the **compat** and **requires** attributes assumed always >=
-there were never provisions for < or <= to for any plugin.  Due to changes in the
+Before Cacti 1.3, the **compat** and **requires** attributes assumed >= always.
+There were never provisions for < or <= for any plugin.  Due to changes in the
 Plugin Architecture, this will change starting with Cacti 1.3.
 
 As mentioned, there are some very good examples of how to create or migrate
-plugins in the various Cacti plugins included on The Cacti Groups GitHub site.
+plugins in the various Cacti plugins included on The Cacti Group's GitHub site.
 Also, for a very simple Cacti page, you can look at vdef.php as an example.
 You can use this as a template to manage a table using the Cacti framework.
 For a simple plugin example, please review the gexport plugin.
@@ -186,7 +186,7 @@ For a simple plugin example, please review the gexport plugin.
 ## Charting Functionality
 
 Several JavaScript based HTML5 Charting packages have been included in Cacti in
-an effort to assist plugin developers who wish to use graphing API's in their
+an effort to assist plugin developers who wish to use graphing APIs in their
 plugins other than RRDtool.
 
 - [Billboard.js](https://naver.github.io/billboard.js/)

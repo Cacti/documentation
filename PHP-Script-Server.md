@@ -14,9 +14,10 @@ rapid execution of PHP based **Scripts** and **Data Queries** in Cacti thus
 reducing **Data Collector** polling times.
 
 The reason that the **PHP Script Server** is so fast is that the PHP interpreter
-is started in memory one time, and for every **Data Source** polled, it's
-controlling function is interpreted only once. The resulting much faster script
-execution and reduced load average during the **Data Collectors** life cycle.
+is started in memory one time, and for every **Data Source** polled, its
+controlling function is interpreted only once. This results in much faster
+script execution and reduced load average during the **Data Collector's** life
+cycle.
 Using the **PHP Script Server** process over the traditional exec() process nets
 roughly a 20+ fold speed improvement in Cacti's **Data Collection** process.
 
@@ -41,7 +42,7 @@ format.
 
 ### Script File Changes
 
-First, if your script is written in another languages, say Perl, or Python, you
+First, if your script is written in another language, say Perl or Python, you
 need to convert it to PHP.  Then, each PHP Script file must be changed to the
 new Script Server format. The changes are not dramatic, but required for the
 proper operation of the **PHP Script Server**. Note that you should use PHP
@@ -51,9 +52,9 @@ the steps below to complete the migration.
 
 1. Copy your existing script to a new name. The name must begin `ss_` followed
    by your script name. The `ss_` identifies the script as being a script server
-   variety of the a PHP script and is named that way to easily identify them in
+   variety of a PHP script and is named that way to easily identify them in
    your install. For example, if you previously had a script called
-   `get_mysql_stats.php`, it's new name would be `ss_get_mysql_stats.php`.
+   `get_mysql_stats.php`, its new name would be `ss_get_mysql_stats.php`.
 
 2. Edit the new PHP script and add the following required lines to the file,
    where `ss_myfunction` is the same as your filename.
@@ -72,7 +73,7 @@ the steps below to complete the migration.
    ?>
    ```
 
-3. What was originally just mainline code, must be replaced with a function
+3. What was originally just mainline code must be replaced with a function
    name. For example, if your program previously contained the following three
    lines of code:
 
@@ -98,7 +99,7 @@ the steps below to complete the migration.
    must prefix them to make them unique among all functions. Our recommendation
    would be to prefix all functions with the name of the main function. For
    example if you have a function called "meme" you would rename it to
-   `ss_myfunction_meme`. This guarantee's correct **PHP Script Server**
+   `ss_myfunction_meme`. This guarantees correct **PHP Script Server**
    functionality.
 
 5. The last step is to change the function call that could have traditionally
@@ -115,7 +116,7 @@ the steps below to complete the migration.
    }
    ```
 
-   Be careful, when writing Script Server Data Queries. Use the `return`
+   Be careful when writing Script Server Data Queries. Use the `return`
    function for returning results of the GET operation. But use `print` for
    `index` and `query` operations, e.g.
 
@@ -146,7 +147,7 @@ below:
    <script_path>|path_php_binary| -q |path_cacti|/scripts/myfucntion.php</script_path>
    ```
 
-   to simply the following:
+   simply to the following:
 
    ```xml
    <script_path>|path_cacti|/scripts/ss_myfunction.php</script_path>
@@ -164,14 +165,14 @@ below:
 
 ### Data Query & Data Template Changes
 
-Your **Data Queries** and **Data Templates** must be also modified. Although
-somewhat self explanatory by now, you must make the following changes:
+Your **Data Queries** and **Data Templates** must also be modified. Although
+somewhat self-explanatory by now, you must make the following changes:
 
 1. If the **Data Template** is based upon a **Script** and not a **Data Query**,
-   change it's **Data Input Method** to `Script Server`.
+   change its **Data Input Method** to `Script Server`.
 
 2. If the **Data Template** is based upon a **Data Query**, edit the **Data
-   Query** and change it's **Data Input Method** to `Get Script Server Data
+   Query** and change its **Data Input Method** to `Get Script Server Data
    (Indexed)` and change the XML file path to point to the new XML file in the
    `<path_cacti>/resource/script_server/` directory.
 
@@ -184,7 +185,7 @@ migrated to the **PHP Script Server**.
 ## Testing Your Script in the Script Server
 
 To test your script in the script server, simply follow the instructions below.
-When you have finished you testing, simply type "quit" + `<CR>` at the **PHP
+When you have finished your testing, simply type "quit" + `<CR>` at the **PHP
 Script Server** command line to exit the script server.
 
 1. Start the script server - You can do this by typing the following command:
@@ -193,8 +194,8 @@ Script Server** command line to exit the script server.
    shell> php <path_cacti>/script_server.php
    ```
 
-   > **NOTE**: Due to a bug in Windows implementation of PHP, you must type the
-   > full path name to the `script_server.php` file.
+   > **NOTE**: Due to a bug in the Windows implementation of PHP, you must
+   > type the full path name to the `script_server.php` file.
 
 2. Type in your command - Using the example from above, you would type in the
    following:
@@ -209,7 +210,7 @@ Script Server** command line to exit the script server.
    script server> c:\www\root\cacti\script\ss_myserver_file.php ss_myfunction argument1 argument2 ...
    ```
 
-3. If your script and function is operating properly, you should get a result.
+3. If your script and function are operating properly, you should get a result.
 
    ```sh
    script server> c:\www\root\cacti\script\ss_myserver_file.php ss_myfunction argument1 argument2 ...
@@ -219,7 +220,7 @@ Script Server** command line to exit the script server.
 4. To quit the script server, simply type `quit <CR>` at the command line.
 
    > **Note**: If there are errors in your script, you must restart the script
-   > server before your retest your code.
+   > server before you retest your code.
 
 ---
 Copyright (c) 2004-2026 The Cacti Group
