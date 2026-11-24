@@ -2,23 +2,43 @@
 
 ![Cacti](images/logo.svg)
 
-This manual documents released Cacti 1.2.31. Development versions have
-different requirements; use the [development manual][manual-dev] for those.
+Cacti collects measurements from network devices, servers, and applications
+and uses RRDtool to store time-series data and display graphs. Use this manual
+to install Cacti, configure monitoring, and keep your installation running.
 
-Start with [Requirements](Requirements.md), then choose the operating-system
-guide under [Cacti Installation](#cacti-installation). For an existing
-installation, follow the upgrade guide instead of the fresh-install commands.
+**Version:** This manual documents released Cacti 1.2.31. Development versions
+have different requirements; use the [development manual][manual-dev] for
+those.
 
-Cacti is designed to be a complete graphing solution based on the RRDtool's
-framework. Its goal is to make a network administrator's job easier by taking
-care of all the necessary details necessary to create meaningful graphs.
+## Getting Started
 
-Please see the official Cacti website for information, support, and updates.
+Follow this sequence for a new installation:
+
+1. [Check requirements](Requirements.md).
+2. Choose the operating-system guide under
+   [Cacti Installation](#cacti-installation).
+3. [Add a device and create its graphs](How-to-Graph-Your-Network.md).
+4. [Verify data collection](Data-Debug.md) and check the
+   [Cacti log](Cacti-Log.md).
+
+For an existing installation, follow the upgrade guide for your platform under
+[Cacti Installation](#cacti-installation) instead of the fresh-install
+commands.
+
+For the concepts behind these steps, read
+[Principles of Operation](Principles-of-Operation.md). If graphs are empty or
+polling fails, start with [Debugging](Debugging.md) and the
+[Frequently Asked Questions](Frequently-Asked-Questions.md).
+
+For downloads and news, visit the [Cacti website](https://www.cacti.net/).
+For community support, use the [Cacti Forums](https://forums.cacti.net/).
 
 ## Core Developers - Both active and emeritus
-Active Developers
 
-### Developers working on Cacti, its Architecture, Documentation and Future Releases.
+### Active Developers
+
+Developers working on Cacti, its architecture, documentation and future
+releases.
 
 - Larry Adams (TheWitness)
 - Mark Brugnoli-Vinten (netniV)
@@ -27,29 +47,38 @@ Active Developers
 - Andreas Braun (browniebraun)
 - Thomas Urban (phalek)
 - Jing Chen (ddb4github)
+- Thomas Vincent (somethingwithproof)
 
-### Contributors to Documentation, QA, Packaging, the Forums and our YouTube page.
+### Contributors
+
+Contributors to documentation, QA, packaging, the forums and the YouTube
+channel.
 
 - Sean Mancini (bmfmancini)
-- J.P. Pasnak, CD (Linegod)
 - Chris Bell (Windows) (BSOD2600)
 - Paul Gevers (Debian) (paulgevers)
 - Morten Stevens (Fedora) (mortenstevens)
 
-### Members of the original Cacti Group that have since moved on in their careers.
-### We continue to wish them the best.
+### Emeritus Members
+
+Members of the original Cacti Group who have since moved on in their careers.
+We continue to wish them the best.
 
 - Ian Berry (raX)
 - Reinhard Scheck (gandalf)
 - Tony Roman (rony)
 - Andy Blyler (ablyler)
 
+### In Memoriam
+
+Jeff Pasnak, credited as **J.P. Pasnak, CD (Linegod)**, was a longtime core
+contributor. Cacti's [1.2.31 release announcement][release] records his
+passing and honors his contributions to the project and community.
+
 ## Thanks
 
-A very special thanks to Tobi Oetiker, the creator of RRDtool and the very
-popular MRTG. The users of Cacti - especially anyone who has taken the time to
-create a bug report, or otherwise help fix a Cacti related problem. Also to
-anyone who has contributed to supporting Cacti.
+Thank you to Tobi Oetiker, the creator of RRDtool and MRTG, and to everyone
+who reports problems, contributes fixes, or supports Cacti and its users.
 
 Cacti is licensed under the GNU GPL:
 
@@ -77,9 +106,8 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 3. [Advanced Operations](README.md#advanced-operations)
 
-   This section covers more advanced material such as using a advanced data
-   collection and replacement variables that can be used within **Templates**,
-   etc.
+   This section covers advanced data collection, replacement variables that
+   can be used within **Templates**, debugging and release notes.
 
 4. [Plugin Development](README.md#plugin-development)
 
@@ -87,20 +115,33 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
    hooks, references, etc. More information can be found on the
    [Cacti Forums](https://forums.cacti.net/viewforum.php?f=6).
 
-5. [How To's](README.md#how-tos)
+5. [Plugins](README.md#plugins)
+
+   This section lists the supported plugins and the plugin manuals kept in
+   this repository.
+
+6. [How To's](README.md#how-tos)
 
    This section contains how to's for several topics.
 
-6. [Contributing](README.md#contributing)
+7. [Video Tutorials](README.md#video-tutorials)
+
+   This section links to the official Cacti YouTube channel.
+
+8. [Contributing](README.md#contributing)
 
    This section contains information on how to contribute to Cacti.
 
-7. [Development Standards](README.md#development-standards)
+9. [Development Standards](README.md#development-standards)
 
-   This section contains the relevant information on how to ensure that any
-   contribution is kept to the same standards that are applied for the Cacti
-   Group. It should be noted that non-compliance does not mean automatically
-   exclusion of proposed changes.
+   This section contains the standards the Cacti Group applies to
+   contributions. Non-compliance does not automatically exclude a proposed
+   change.
+
+10. [Template Specific Documentation][template-docs]
+
+    This section contains configuration requirements for particular
+    templates.
 
 ### Known Issues
 
@@ -217,7 +258,7 @@ the maintained Enterprise Linux instructions.
 
    7.2. [Export Templates](Export-Template.md)
 
-8. [Settings (w/o Auth)](Settings.md)
+8. [Settings](Settings.md)
 
    8.1. [General](Settings-General.md)
 
@@ -247,7 +288,7 @@ the maintained Enterprise Linux instructions.
 
    9.4. [Domains Auth](Settings-Domains.md)
 
-10. [Configuration - Users, Groups and Domains](Settings-Users-Groups-Domains.md)
+10. [Configuration - Users, Groups and Domains][users-groups-domains]
 
     10.1. [Users](User-Management.md)
 
@@ -267,7 +308,7 @@ the maintained Enterprise Linux instructions.
 
 13. Reporting
 
-    13.1. [Reports Admistrative Interface](Reports-Admin.md)
+    13.1. [Reports Administrative Interface](Reports-Admin.md)
 
     13.2. [Reports User Interface](Reports-User.md)
 
@@ -327,7 +368,8 @@ the maintained Enterprise Linux instructions.
 
 3. [Mactrack Plugin documentation](Plugin-Mactrack.md)
 
-4. [ReportIt Plugin documentation](resource/pdf/manual_reportit.pdf) Older version, pdf format
+4. [ReportIt Plugin documentation](resource/pdf/manual_reportit.pdf)
+   (older version, PDF format)
 
 ### How Tos
 
@@ -337,7 +379,7 @@ the maintained Enterprise Linux instructions.
 
 3. [How To Work with Data Queries](How-To-Data-Queries.md)
 
-4. [How To Work with Existing SNMP Data Queries](How-To-Existing-SNMP-Data-Queries.md)
+4. [How To Work with Existing SNMP Data Queries][existing-snmp-queries]
 
 5. [How To Work with New SNMP Data Queries](How-To-New-SNMP-Data-Queries.md)
 
@@ -353,17 +395,18 @@ the maintained Enterprise Linux instructions.
 
 11. [Graph a Single SNMP OID](Graph-a-Single-SNMP-OID.md)
 
-12. [How To Extend snmpd with custom script/data](How-To-SNMP-Custom-Script.md)
+12. [How To Extend snmpd with custom script/data][snmp-custom-script]
 
-13. [Change poller interval from 5 minutes to 1 minute ](How-To-Poller-5-to-1-min.md)
+13. [Change poller interval from 5 minutes to 1 minute][poller-interval]
 
-14. [Convert from Package based install to source on Ubuntu/Debian](convert-from-package-to-source-debian-ubuntu.md)
+14. [Convert from Package install to source on Ubuntu/Debian][package-to-source]
 
 ### Video Tutorials
 
-Watch Howto's and Tutorials on the Cacti Official YouTube page if you prefer. If you would have any ideas for videos or would like to contribute let us know !
-
-[Cacti Official Youtube Channel](https://www.youtube.com/channel/UC6ROmUGuuLa9BdHWzvGSY1w)
+Watch how-tos and tutorials on the [official Cacti YouTube channel][videos].
+Check the demonstrated version against your installation. If you have ideas
+for videos or would like to contribute, let us know on the
+[Cacti Forums](https://forums.cacti.net/).
 
 ### Contributing
 
@@ -389,13 +432,22 @@ Watch Howto's and Tutorials on the Cacti Official YouTube page if you prefer. If
 
 ### Template Specific Documentation
 
-This section will be for template specific configuration requirements
+This section contains template specific configuration requirements.
 
 1. [Apache Server Template](template_apache_config.md)
 
 2. [ESXi/VMWare Template](template_esxi_config.md)
 
 [manual-dev]:<https://github.com/Cacti/documentation/tree/develop>
+[release]: https://github.com/Cacti/cacti/releases/tag/release%2F1.2.31
+[videos]: https://www.youtube.com/channel/UC6ROmUGuuLa9BdHWzvGSY1w
+[template-docs]: README.md#template-specific-documentation
+
+[users-groups-domains]: Settings-Users-Groups-Domains.md
+[existing-snmp-queries]: How-To-Existing-SNMP-Data-Queries.md
+[snmp-custom-script]: How-To-SNMP-Custom-Script.md
+[poller-interval]: How-To-Poller-5-to-1-min.md
+[package-to-source]: convert-from-package-to-source-debian-ubuntu.md
 
 [previous-lamp]: Install-Under-CentOS_LAMP.md
 [previous-lemp]: Install-Under-CentOS_LEMP.md
