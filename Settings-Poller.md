@@ -20,12 +20,6 @@ Those settings include:
   **Data Collectors**.  It's really intended to allow you to put Cacti
   in maintenance mode with a single click.
 
-- **SNMP Agent Support Enabled** - The SNMP Agent has a measurable amount
-  of overhead on larger systems.  Therefore, if you are not using it, you
-  should disable it.  However, the SNMP Agent is a marvelous addition to
-  any Cacti system that's participating in a multi-level Operations
-  Framework.
-
 - **Poller Type** - This is where you define either Cacti's built-in poller
   `cmd.php`, or use the more robust poller `spine`.  You will not see the
   `spine` drop-down option unless it has first been installed, and the
@@ -62,13 +56,6 @@ Those settings include:
   Poller tables.  Since checking this has a very negative impact on
   polling performance, it's disabled by default.
 
-- **Disable increasing OID Check** - This setting is for performing
-  **Data Query** `Re-index` activities for tables whose OIDs are not
-  structured in an orderly way where the suffix for the OID increases
-  in a known way.  Though, in most cases enabling this setting will
-  be harmless.  There may be some cases where it would slow the
-  `Re-index` process.
-
 - **Remote Agent Timeout** - When Cacti either needs information from
   a **Data Collector**, like `ping` latency from the collector to one
   of the **Devices** it's monitoring, or when a **Remote Data Collector**
@@ -76,19 +63,6 @@ Those settings include:
   for receiving a handshake from that server.  It's used to keep the
   Website from locking up in the case a **Data Collector** is not
   responding due to being down.
-
-- **SNMP Bulkwalk Fetch Size** - This controls how many OIDs are
-  returned per UDP turn when obtaining `snmpwalk` data from an
-  SNMP enabled **Device**.
-
-> **NOTE**: This only works with SNMP v2 and v3.  It is not supported
-> on older SNMP v1 **Devices**.
-
-- **SNMP Get OID Limit** - The default maximum number of SNMP Get
-  OIDs to issue per `snmpget` request.  For **Devices**, this setting
-  is controlled at the **Device** level.  You should only use this
-  setting when using Cacti's SNMP API natively in your scripts
-  and Plugins.
 
 - **Refresh Poller Table Per Cycle** - This setting is for single poller
   systems only.  It rebuilds the poller output table on each polling cycle to
@@ -102,6 +76,19 @@ Those settings include:
   to upgrade the Central system before allowing the remotes
   to self upgrade.  In those cases, you would enable this feature.
 
+## SNMP Behavior
+
+The **SNMP Behavior** settings control how Cacti handles SNMP.  They are in
+their own section of the Poller sub-tab, below the **General Settings**.
+
+Those settings include:
+
+- **SNMP Agent Support Enabled** - The SNMP Agent has a measurable amount
+  of overhead on larger systems.  Therefore, if you are not using it, you
+  should disable it.  However, the SNMP Agent is a marvelous addition to
+  any Cacti system that's participating in a multi-level Operations
+  Framework.
+
 - **Enable MD5 and DES for SNMPv3** - The MD5 authentication and DES privacy
   algorithms are legacy, weak, and unavailable on hardened (FIPS) PHP and
   Net-SNMP builds.  When this is disabled, the default, MD5 and DES are removed
@@ -114,6 +101,26 @@ Those settings include:
   instead of rebuilding them on every request.  This is disabled by default.
   It yields a marginal savings when collecting with SNMPv3 credentials through
   the Net-SNMP binaries.
+
+- **SNMP Get OID Limit** - The default maximum number of SNMP Get
+  OIDs to issue per `snmpget` request.  For **Devices**, this setting
+  is controlled at the **Device** level.  You should only use this
+  setting when using Cacti's SNMP API natively in your scripts
+  and Plugins.
+
+- **SNMP Bulkwalk Fetch Size** - This controls how many OIDs are
+  returned per UDP turn when obtaining `snmpwalk` data from an
+  SNMP enabled **Device**.
+
+> **NOTE**: This only works with SNMP v2 and v3.  It is not supported
+> on older SNMP v1 **Devices**.
+
+- **Disable increasing OID Check** - This setting is for performing
+  **Data Query** `Re-index` activities for tables whose OIDs are not
+  structured in an orderly way where the suffix for the OID increases
+  in a known way.  Though, in most cases enabling this setting will
+  be harmless.  There may be some cases where it would slow the
+  `Re-index` process.
 
 ## Periodic All Device Re-Index
 
@@ -198,7 +205,7 @@ Those settings include:
 These settings are Global Spine poller settings.  They apply to all
 **Data Collectors**.  An image of these settings can be seen below:
 
-![Additional Spine Parameters](images/settings-poller-spine.png)
+![Additional Data Collector Settings](images/settings-poller-spine.png)
 
 Those settings include:
 
