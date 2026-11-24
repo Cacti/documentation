@@ -40,40 +40,41 @@ For community support, use the [Cacti Forums](https://forums.cacti.net/).
 Developers working on Cacti, its architecture, documentation and future
 releases.
 
-- Larry Adams (TheWitness)
-- Mark Brugnoli-Vinten (netniV)
-- Jimmy Conner (cigamit)
-- Petr Macek (xmacan)
-- Andreas Braun (browniebraun)
-- Thomas Urban (phalek)
-- Jing Chen (ddb4github)
-- Thomas Vincent (somethingwithproof)
+- [Larry Adams](https://github.com/TheWitness) (TheWitness)
+- [Mark Brugnoli-Vinten](https://github.com/netniV) (netniV)
+- [Jimmy Conner](https://github.com/cigamit) (cigamit)
+- [Petr Macek](https://github.com/xmacan) (xmacan)
+- [Sean Mancini](https://github.com/bmfmancini) (bmfmancini)
+- [Andreas Braun](https://github.com/browniebraun) (browniebraun)
+- [Thomas Vincent](https://github.com/somethingwithproof) (somethingwithproof)
 
 ### Contributors
 
 Contributors to documentation, QA, packaging, the forums and the YouTube
 channel.
 
-- Sean Mancini (bmfmancini)
-- Chris Bell (Windows) (BSOD2600)
-- Paul Gevers (Debian) (paulgevers)
-- Morten Stevens (Fedora) (mortenstevens)
+- [Thomas Urban](https://github.com/thurban) (phalek)
+- [Paul Gevers](https://github.com/paulgevers) (Debian) (paulgevers)
+- [Morten Stevens](https://github.com/mortenstevens) (Fedora) (mortenstevens)
 
 ### Emeritus Members
 
 Members of the original Cacti Group who have since moved on in their careers.
 We continue to wish them the best.
 
-- Ian Berry (raX)
-- Reinhard Scheck (gandalf)
-- Tony Roman (rony)
-- Andy Blyler (ablyler)
+- [Ian Berry](https://github.com/iankberry) (raX)
+- [Reinhard Scheck](https://github.com/gan-dalf) (gandalf)
+- [Tony Roman](https://github.com/ronytomen) (rony)
+- [Chris Bell](https://github.com/BSOD2600) (Windows) (BSOD2600)
+- [Andy Blyler](https://github.com/ablyler) (ablyler)
+- [Jing Chen](https://github.com/ddb4github) (ddb4github)
 
 ### In Memoriam
 
-Jeff Pasnak, credited as **J.P. Pasnak, CD (Linegod)**, was a longtime core
-contributor. Cacti's [1.2.31 release announcement][release] records his
-passing and honors his contributions to the project and community.
+[Jeff Pasnak](https://github.com/Linegod), credited as
+**J.P. Pasnak, CD (Linegod)**, was a longtime core contributor. Cacti's
+[1.2.31 release announcement][release] records his passing and honors his
+contributions to the project and community.
 
 ## Thanks
 
@@ -372,7 +373,37 @@ the maintained Enterprise Linux instructions.
 
 3. [Mactrack Plugin documentation](Plugin-Mactrack.md)
 
-4. [ReportIt Plugin documentation](resource/pdf/manual_reportit.pdf)
+4. [Thold Plugin documentation](Plugin-Thold.md)
+
+5. [Monitor Plugin documentation](Plugin-Monitor.md)
+
+6. [Maintenance Plugin documentation](Plugin-Maint.md)
+
+7. [Intropage Plugin documentation](Plugin-Intropage.md)
+
+8. [Host MIB Plugin documentation](Plugin-Hmib.md)
+
+9. [APC UPS Plugin documentation](Plugin-Apcupsd.md)
+
+10. [Evidence Plugin documentation](Plugin-Evidence.md)
+
+11. [FlowView Plugin documentation](Plugin-Flowview.md)
+
+12. [MikroTik Plugin documentation](Plugin-Mikrotik.md)
+
+13. [ReportIt Plugin documentation](Plugin-Reportit.md)
+
+14. [Router Configs Plugin documentation](Plugin-Routerconfigs.md)
+
+15. [Service Check Plugin documentation](Plugin-Servcheck.md)
+
+16. [Slowlog Plugin documentation](Plugin-Slowlog.md)
+
+17. [Weathermap Plugin documentation](Plugin-Weathermap.md)
+
+18. [WMI Plugin documentation](Plugin-Wmi.md)
+
+19. [ReportIt legacy PDF manual](resource/pdf/manual_reportit.pdf)
    (older version, PDF format)
 
 ### How Tos
