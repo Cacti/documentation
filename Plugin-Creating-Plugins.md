@@ -183,7 +183,7 @@ Permissions form for the page you desire to restrict access to.  You can create
 different functional duties (ex: separating out the viewing and the
 configuration sections of your plugin).
 
-We need to call this hook in the same function as we registered for hooks.
+We need to make this API call in the same function where we registered hooks.
 Either of the API calls can come first (there is no order necessary).
 
 ```php
@@ -202,7 +202,7 @@ So to follow our example, your install function would look like this
 ```php
 function plugin_PLUGINNAME_install () {
      api_plugin_register_hook('PLUGINNAME', 'top_header_tabs', 'PLUGINNAME_show_tab', 'setup.php');
-     api_plugin_register_realm('PLUGINNAME', 'PLUGINNAME.php,', 'View PLUGINNAME', 1);
+     api_plugin_register_realm('PLUGINNAME', 'PLUGINNAME.php', 'View PLUGINNAME', 1);
 }
 ```
 

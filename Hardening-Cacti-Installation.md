@@ -47,6 +47,9 @@ chmod -R 755               /var/www/html/cacti
 chown -R www-data:www-data /var/www/html/cacti/rra \
                            /var/www/html/cacti/log \
                            /var/www/html/cacti/cache
+chmod -R 750              /var/www/html/cacti/rra \
+                           /var/www/html/cacti/log \
+                           /var/www/html/cacti/cache
 
 # Protect the database credentials in config.php.  The recursive 755 above
 # leaves it world-readable; restrict it to root and the web user.

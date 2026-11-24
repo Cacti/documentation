@@ -8,7 +8,7 @@ in 1.2, not a separate plugin.
 User Domains in Cacti are a way of providing Custom Login
 experiences to differing groups of users and using LDAP
 or Active Directory Group Permissions to limit who
-can login using those customer permissions.
+can login using those custom permissions.
 
 Once a user logs in for the first time, their permissions
 will inherit the Template account's permission settings

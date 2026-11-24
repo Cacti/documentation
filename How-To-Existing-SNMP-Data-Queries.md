@@ -53,17 +53,19 @@ Now you can map
 All those are `<direction>input</direction>` Parameters. They serve as
 descriptive information to each row to help you identify the proper interface to
 use. Those parameters of `<direction>output</direction>` can be compared to
-output parameters of a script (see ping.pl script above). These are the readings
-from the device. By selecting the appropriate row (the one grayed out had been
-selected by me), you tell Cacti to retrieve data from the interface defined by
-this index. But how does Cacti know, what output parameters it shall retrieve?
+output parameters of a script (see the ping.pl script in
+[Data Input Methods](How-To-Create-Data-Input-Method.md)). These are the
+readings from the device. By selecting the appropriate row (the one grayed
+out had been selected by me), you tell Cacti to retrieve data from the
+interface defined by this index. But how does Cacti know, what output
+parameters it shall retrieve?
 See the Select a Graph type dropdown. It specifies a **Graph Template** defined
 for this Data Query. The Graph Template in turn references a **Data Template**
 which incorporates the needed output parameters as Data Sources. This works
 quite the same way as defined for a Data Input Method.
 
 To sum up: the SNMP XML file is somehow a **replacement** for the **Data Input
-Method** described above to be used on indexed values. It tells Cacti, what data
+Method** described there to be used on indexed values. It tells Cacti, what data
 it should retrieve (direction: output). To help you identifying the relevant
 indexes, the XML defines descriptive parameters (direction: input) to be
 displayed in the selection table.
@@ -88,7 +90,7 @@ XML file's content. Now let's proceed to the next definitions.
 
 ## Create a Data Template to tell Cacti how to store data
 
-This is the exact copy of the definitions made above. So I do not repeat
+This works like the **Data Template** in that walkthrough. So I do not repeat
 everything here. **Data Input Method** must be selected as **Get SNMP Data
 (Indexed)**. As this data source is a COUNTER type, select this as the *Data
 Source Type*. But after saving the new Data Source definition, you may want to

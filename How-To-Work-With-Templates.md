@@ -146,7 +146,7 @@ and Add it:
 
 ![Host Template Associate Graph Template 2](images/device-template-new-gts.png)
 
-Next, let's add the Data Query already selected above:
+Next, let's add a **Data Query**:
 
 ![Host Template - Data Query](images/device-template-new-dqs.png)
 

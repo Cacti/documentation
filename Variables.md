@@ -159,7 +159,7 @@ given time range. This is typically useful on traffic graphs where you can see a
 total of all traffic that has gone through an interface in a given time period.
 
 In Cacti, bandwidth summation works just like any other graph variable. To use
-this variable you must give it three arguments:
+this variable you must give it four arguments:
 
 ###### Table 15-3. Bandwidth Summation Argument Description
 

@@ -67,9 +67,9 @@ GRANT SELECT ON mysql.time_zone_name TO 'cactiuser'@'localhost';
 EXIT;
 ```
 
-Load the system timezone data and the schema into this new database. A MariaDB
-installation may provide `mariadb-tzinfo-to-sql` as the timezone utility's
-name.
+Load the system timezone data into the `mysql` database and the Cacti schema
+into this new database. A MariaDB installation may provide
+`mariadb-tzinfo-to-sql` as the timezone utility's name.
 
 ```console
 mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql

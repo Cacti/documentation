@@ -79,7 +79,7 @@ myplugin/
 
 ## Contents of Files
 
-The four core sub-directories included in your plugin should be docs, images,
+The three core sub-directories included in your plugin should be images,
 lib, and include.  As previously mentioned, each of these directories should
 include an index.php that points to its parent directory index.php.  This way
 we prevent people from randomly browsing the contents of our web site.
@@ -95,7 +95,7 @@ can see a reference INFO file for the myplugin plugin.
 
 ```console
 [info]
-name = mplugin
+name = myplugin
 version = 1.0
 longname = My First Plugin
 author = Depeche Mode

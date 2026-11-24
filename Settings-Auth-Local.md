@@ -41,8 +41,8 @@ If a user attempts to use an incorrect password more than a certain
 number of times without a successful login, Cacti can automatically
 lock out the user from that account for a certain amount of time.
 This technique prevents hackers from continually attempting to
-break a user's password from the Cacti interface.  The images
-below show the two settings associated with this Cacti feature.
+break a user's password from the Cacti interface.  The image
+below shows the two settings associated with this Cacti feature.
 
 ![Local Lockout Settings](images/settings-auth-local-locking.png)
 

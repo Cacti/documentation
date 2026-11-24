@@ -27,7 +27,7 @@ be presented with a few fields to populate on the following screen.
 
 Name | Description
 --- | ---
-Name | Give the data query a name that you will use to identify it
+Name | Give the data input method a name that you will use to identify it
 Input Type | Select the type of **Data Input Method** you are trying to create
 Input String | This field is only used when the Input Type is set to **Script/Command**
 

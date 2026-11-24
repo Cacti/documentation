@@ -28,7 +28,7 @@ requirements, though it will perform better with the recommended (or higher).
 
 ### Minimum Requirements
 
-- PHP Version 7.1 or higher
+- PHP Version 8.2 or higher
   Installation must include and enable the following modules:
 
   - Sockets
@@ -49,7 +49,7 @@ requirements, though it will perform better with the recommended (or higher).
 
 All minimum requirements must be met, though the following are more optional:
 
-- PHP Version 7.3 or higher
+- PHP Version 8.2 or higher
   Include all minimum recommendation modules
 
 - RRDtool 1.7 or higher
@@ -64,7 +64,7 @@ which can be run at any point using the -w parameter.
 ```shell
  php rrdtool-proxy.php --help
 
- RRDtool Proxy v1.2.7
+ RRDtool Proxy v1.2.17
  Copyright (C) 2004-2026 The Cacti Group
  usage: rrdtool-proxy.php [--wizard] [-w] [--version] [-v]
  Optional:
@@ -134,7 +134,7 @@ rrdp#sh version
 #  \____/\__,_|\___|\__|_| \/ \_/\/ \_/___,'   \/    |_|  \___/_/\_\__, |
 #                                                                   |___/
 
- RRDtool Proxy v1.2.7
+ RRDtool Proxy v1.2.17
  Copyright (C) 2004-2026 The Cacti Group
  rrdp uptime is 14 days, 0 hours, 4 minutes, 14 seconds
  Memory usage 0.18872917 % (2026464/1073741824 in bytes)

@@ -2,7 +2,7 @@
 
 The Boost Settings sub-tab in Cacti contains settings that
 can help improve the life of your Cacti server and significantly
-increase the live and lower the I/O wait of your Cacti system
+lower the I/O wait of your Cacti system
 through caching of RRDfile disk writes.
 
 It will also reduce the number of CPU cores required to render

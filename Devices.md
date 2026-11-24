@@ -68,7 +68,7 @@ They include:
   The device is considered UP even if the TCP ping returns closed
 - **Ping or SNMP Uptime** - Only one needs to be working for Cacti to collect
   data
-- **SNMP Desc** - Query the SNMP sysDescription in cases where the SNMP Uptime
+- **SNMP Desc** - Query the SNMP `sysDescr` in cases where the SNMP Uptime
   OID
   is not available
 - **SNMP getNext** - Query the first available OID in the OID tree for the
@@ -134,7 +134,8 @@ you can provide about the device including things like:
 - **Criticality** - How important is the device
 - **Failure and Recovery Counts** - How long till a device is treated as truly
   down.
-- **Ping Thresholds** - What RTL is considered bad when reaching a device
+- **Ping Thresholds** - What round-trip latency is considered bad when
+  reaching a device
 
 ## Creating devices via CLI script
 

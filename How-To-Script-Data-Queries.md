@@ -427,8 +427,9 @@ shown, but is repeated here
 
 ### The Complete XML File
 
-Of course, we now will have to complete the XML file given in Chapter II. Find
-it at `<path_cacti>/resource/script_queries/ifTraffic.xml`.
+Of course, we now will have to complete the XML file given in the
+[XML File](#xml-file) section. Find it at
+`<path_cacti>/resource/script_queries/ifTraffic.xml`.
 
 ```xml
 <interface>

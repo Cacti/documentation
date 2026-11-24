@@ -396,7 +396,7 @@ Let's visit the **Data Sources**:
 ![Host Data Sources](images/ds-01.preview.png)
 
 As you can see, the **Suggested Values** of the Data Query defined the Name of
-the Data Template. So let's go to **Graph Management**:
+the Data Source. So let's go to **Graph Management**:
 
 ![Graph Management Preview](images/gm-01.preview.png)
 

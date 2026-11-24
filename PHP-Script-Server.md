@@ -144,7 +144,7 @@ below:
 1. Modify the `<script_path>` tag. Change it from:
 
    ```xml
-   <script_path>|path_php_binary| -q |path_cacti|/scripts/myfucntion.php</script_path>
+   <script_path>|path_php_binary| -q |path_cacti|/scripts/myfunction.php</script_path>
    ```
 
    simply to the following:

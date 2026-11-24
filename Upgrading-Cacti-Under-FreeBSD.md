@@ -62,7 +62,6 @@ part of this procedure without a separate compatibility plan.
 For a binary package installation, review the proposed package transaction
 before applying it. The [FreeBSD Handbook][packages] describes package
 upgrades. Run the following with appropriate administrator privileges.
-
 Discover the installed flavor first:
 
 ```sh
