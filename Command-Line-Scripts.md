@@ -20,6 +20,7 @@ briefly.
 | add_device.php             | Automation  | Allows adding a Device to Cacti. Most device options are included. Some plugin options may not. |
 | change_device.php          | Automation  | Allows editing device details such as IP/Poller association                                     |
 | add_data_query.php         | Automation  | Allows adding a Data Query to Cacti.                                                            |
+| add_datasource.php         | Automation  | Allows adding a Data Source to a Device from a Data Template.                                   |
 | add_graph_template.php     | Automation  | Allows adding a Graph Template to Cacti.                                                        |
 | add_graphs.php             | Automation  | Allows adding a Graph to Cacti.                                                                 |
 | add_perms.php              | Automation  | Allows adding permissions to Cacti.                                                             |
@@ -697,6 +698,42 @@ shell>php -q add_graph_template.php --host-id=11 --graph-template-id=7
 
 Success: Graph Template associated for host: (11: router) - graph-template: (7: Unix - Ping Latency)
 ```
+
+## Add a Data Source to an existing Host
+
+The script `add_datasource.php` creates a single **Data Source** for a
+**Device** from a **Data Template**, without creating a **Graph**. Calling the
+script with the parameter `--help` yields
+
+```console
+shell>php -q add_datasource.php --help
+Cacti Add Data Source, Version 1.2.x (DB: 1.2.x), Copyright (C) 2004-2026 The Cacti Group
+usage: add_datasource.php --host-id=[ID] --data-template-id=[ID]
+
+Cacti utility for adding datasources via a command line interface.
+
+--host-id=id - The host id
+--data-template-id=id - The numerical ID of the data template to be added
+```
+
+Both options are required. The script also accepts `--version` to print its
+version. Unlike the scripts above, it has no list options, so you have to know
+the id of the host and the id of the data template beforehand. The host ids
+are printed by, for example, `add_data_query.php --list-hosts`.
+
+### Add a Data Source
+
+```console
+shell>php -q add_datasource.php --host-id=11 --data-template-id=3
+DS Added - DS[42]
+```
+
+The number in brackets is the id of the new **Data Source**. The script
+creates the **Data Source**, applies the **Data Template** to it, updates its
+title and then rebuilds the poller cache entries of that **Data Source**.
+
+The script only checks that both values are numeric. It does not verify that
+the host or the data template exists, so check both ids before you run it.
 
 ## Add a New Graph
 
