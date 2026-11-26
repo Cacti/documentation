@@ -108,10 +108,11 @@ leaving, pay attention to the bottom of the page:
 
 ![Check Indexes for Data Query Data Template](images/r-dq-dt2.png)
 
-This is specific to indexed **Data Queries**. You will have to check the last
-three items to make indexing work. All other items should be left alone; their
-values will be taken from the appropriate device definitions. Now click **Save**
-and you're done with this step.
+This is specific to indexed **Data Queries**. The last three items (*Index
+Type*, *Index Value* and *Output Type ID*) are checked by default and cannot be
+cleared, because indexing needs them. All other items should be left alone;
+their values will be taken from the appropriate device definitions. Now click
+**Save** and you're done with this step.
 
 > Note that if you wish to hand Edit mappings of various indexed interfaces
 > manually for each **Graph** in the future, you should check the following
