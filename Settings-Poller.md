@@ -134,12 +134,12 @@ maintained on each **Data Collector**, since not all
 that's collecting data from 1,000 hosts, and another that is collecting from 10.
 The thread setting only applies if you are using the `spine` poller.
 
-## Additional Spine Parameters
+## Additional Data Collector Settings
 
 These settings are Global Spine poller settings.  They apply to all
 **Data Collectors**.  An image of these settings can be seen below:
 
-![Additional Spine Parameters](images/settings-poller-spine.png)
+![Additional Data Collector Settings](images/settings-poller-spine.png)
 
 Those settings include:
 
