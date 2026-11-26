@@ -18,8 +18,7 @@
 # Helper shell script to run documentation markdown style validation
 
 # Confirm mdl (markdownlint) is installed
-MDL_PATH=$(which mdl)
-if [ $? -gt 0 ]
+if ! MDL_PATH=$(command -v mdl)
 then
 	echo "ERROR: mdl (markdownlint) not installed"
 	echo
@@ -27,17 +26,15 @@ then
 	exit 1
 fi
 
-# Determine if running script with out arguments so that path will be relative
-if [ -n "${*}" ]
+# Determine if running script without arguments so that path will be relative
+if [ $# -eq 0 ]
 then
-	ARGV="${*}"
-else
-	ARGV="."
+	set -- .
 fi
 
 # Run mdl with documentation repository configuration
-MDL_OUTPUT=$(${MDL_PATH} -c .mdlrc ${ARGV})
-MDL_RESULT=$?
+MDL_RESULT=0
+MDL_OUTPUT=$("${MDL_PATH}" -c .mdlrc "$@") || MDL_RESULT=$?
 echo "${MDL_OUTPUT}" | grep -v "RULES.md"
 if [ $MDL_RESULT -gt 0 ]
 then

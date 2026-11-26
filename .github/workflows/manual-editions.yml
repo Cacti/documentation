@@ -10,21 +10,28 @@ permissions:
   contents: read
 concurrency:
   group: manual-editions-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   editions:
     name: Build and verify current manual editions
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785
+      - uses: jdx/mise-action@924e7c586e33d7d4bae9c14e26c5d22e2beb6e78 # v5.3.0
         with:
           tool_versions: |
             python 3.12.12
             uv 0.12.23
+      - name: Cache uv downloads
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.cache/uv
+          key: uv-pdf-${{ runner.os }}-${{ hashFiles('bin/build_pdf_docs.py.lock', '.github/coverage-requirements.txt', '.github/pypdf-requirements.txt') }}
+          restore-keys: |
+            uv-pdf-${{ runner.os }}-
       - name: Install native PDF libraries, fonts, and review tools
         run: |
           sudo apt-get update
@@ -32,28 +39,33 @@ jobs:
             libharfbuzz-subset0 fonts-dejavu-core fonts-dejavu-extra poppler-utils
       - name: Export the committed PDF tool lock
         run: |
+          set -euo pipefail
           mkdir -p manual-artifacts
           mise exec python@3.12.12 uv@0.12.23 -- uv export --locked \
             --script bin/build_pdf_docs.py --format requirements-txt \
             --output-file "$RUNNER_TEMP/pdf-requirements.txt"
+          mise exec python@3.12.12 uv@0.12.23 -- uv venv --python python "$RUNNER_TEMP/pdf-venv"
+          mise exec python@3.12.12 uv@0.12.23 -- uv pip install \
+            --python "$RUNNER_TEMP/pdf-venv/bin/python" --only-binary :all: --require-hashes \
+            -r "$RUNNER_TEMP/pdf-requirements.txt" \
+            -r .github/coverage-requirements.txt \
+            -r .github/pypdf-requirements.txt
       - name: Test edition selection, text conversion, and schema provenance
         run: |
-          renderer=(mise exec python@3.12.12 uv@0.12.23 -- uv run \
-            --with-requirements "$RUNNER_TEMP/pdf-requirements.txt" --with coverage==7.13.2)
-          "${renderer[@]}" python -m coverage run --branch --include=bin/build_other_manuals.py \
+          set -euo pipefail
+          venv_python="$RUNNER_TEMP/pdf-venv/bin/python"
+          "$venv_python" -m coverage run --branch --include=bin/build_other_manuals.py \
             -m unittest discover -s bin/tests -p test_other_manuals.py
-          "${renderer[@]}" python -m unittest discover -s bin/tests -p test_navigation_anchors.py
-          "${renderer[@]}" python -m coverage report --fail-under=100
-          "${renderer[@]}" python -m coverage json -o manual-artifacts/coverage.json
+          "$venv_python" -m unittest discover -s bin/tests -p test_navigation_anchors.py
+          "$venv_python" -m coverage report --fail-under=100
+          "$venv_python" -m coverage json -o manual-artifacts/coverage.json
       - name: Build every current PDF and text edition
         run: |
           mise exec python@3.12.12 uv@0.12.23 -- uv run --locked --python python \
             --script bin/build_pdf_docs.py --only manual --companions
       - name: Verify actual PDFs, complete text appendices, hashes, and populated preview
         run: |
-          mise exec python@3.12.12 uv@0.12.23 -- uv run \
-            --with-requirements "$RUNNER_TEMP/pdf-requirements.txt" --with pypdf==6.12.2 \
-            python bin/tests/verify_other_manuals.py
+          "$RUNNER_TEMP/pdf-venv/bin/python" bin/tests/verify_other_manuals.py
       - name: Summarize publication evidence
         if: always()
         run: |
@@ -75,7 +87,7 @@ jobs:
           PY
       - name: Preserve manuals, manifests, coverage, and populated PDF preview
         if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: cacti-manual-editions-attempt-${{ github.run_attempt }}
           path: |
@@ -103,13 +115,14 @@ jobs:
       GH_REPO: ${{ github.repository }}
       RELEASE_TAG: manuals-develop
     steps:
-      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: cacti-manual-editions-attempt-${{ github.run_attempt }}
           path: built
-      - name: Stage release assets under stable names
+      - name: Stage and verify release assets against build manifests
         run: |
           set -euo pipefail
+          shopt -s nullglob
           mkdir assets
           cp built/resource/pdf/cacti-manual.pdf assets/
           cp built/resource/pdf/build_manifest.json assets/cacti-manual-manifest.json
@@ -117,7 +130,51 @@ jobs:
           for file in built/resource/manuals/*.pdf built/resource/manuals/*.txt built/resource/manuals/*.sql; do
             cp "$file" assets/
           done
-          test "$(find assets -type f | wc -l)" -eq 21
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path, PurePosixPath
+
+          assets = Path('assets')
+          editions_manifest = json.loads((assets / 'editions-manifest.json').read_text(encoding='utf-8'))
+          manual_manifest = json.loads((assets / 'cacti-manual-manifest.json').read_text(encoding='utf-8'))
+
+          expected_hashes = dict(editions_manifest.get('files', {}))
+          if not expected_hashes:
+              raise SystemExit('editions-manifest.json lists no output files')
+
+          manual_entry = manual_manifest.get('manual', {})
+          manual_pdf_rel = manual_entry.get('pdf')
+          manual_pdf_sha = manual_entry.get('pdf_sha256')
+          if not manual_pdf_rel or not manual_pdf_sha:
+              raise SystemExit('cacti-manual-manifest.json is missing manual PDF metadata')
+          manual_pdf_name = PurePosixPath(manual_pdf_rel).name
+          if manual_pdf_name in expected_hashes:
+              raise SystemExit(f'Duplicate asset name in manifests: {manual_pdf_name}')
+          expected_hashes[manual_pdf_name] = manual_pdf_sha
+
+          for name in expected_hashes:
+              if PurePosixPath(name).name != name or name in {'', '.', '..'}:
+                  raise SystemExit(f'Invalid asset filename in manifest: {name}')
+
+          expected_files = set(expected_hashes) | {'editions-manifest.json', 'cacti-manual-manifest.json'}
+          actual_entries = list(assets.iterdir())
+          if any(not entry.is_file() or entry.is_symlink() for entry in actual_entries):
+              raise SystemExit('Staged assets directory contains a non-regular file or symlink')
+          actual_files = {entry.name for entry in actual_entries}
+
+          missing = sorted(expected_files - actual_files)
+          unexpected = sorted(actual_files - expected_files)
+          if missing or unexpected:
+              raise SystemExit(f'Staged assets mismatch (missing={missing}, unexpected={unexpected})')
+
+          for name, expected_sha in sorted(expected_hashes.items()):
+              actual_sha = hashlib.sha256((assets / name).read_bytes()).hexdigest()
+              if actual_sha != expected_sha:
+                  raise SystemExit(f'SHA-256 mismatch for {name}: {actual_sha} != {expected_sha}')
+
+          print(f'Verified {len(actual_files)} staged release assets against manifests.')
+          PY
       - name: Replace the development release assets
         run: |
           set -euo pipefail

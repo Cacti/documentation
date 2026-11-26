@@ -1,0 +1,55 @@
+name: External links
+on:
+  schedule:
+    # Weekly audit of external HTTP(S) links; intentionally non-blocking for PRs.
+    - cron: '23 5 * * 0'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: docs-external-links-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  links:
+    name: Check external links
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install verified lychee binary
+        run: |
+          set -euo pipefail
+          version='v0.24.2'
+          archive='lychee-x86_64-unknown-linux-gnu.tar.gz'
+          checksum='1f4e0ef7f6554a6ed33dd7ac144fb2e1bbed98598e7af973042fc5cd43951c9a'
+          mkdir -p "$RUNNER_TEMP/lychee"
+          curl --proto '=https' --tlsv1.2 -fsSL -o "$RUNNER_TEMP/$archive" \
+            "https://github.com/lycheeverse/lychee/releases/download/lychee-${version}/${archive}"
+          echo "${checksum}  ${RUNNER_TEMP}/${archive}" | sha256sum -c --quiet
+          tar -xzf "$RUNNER_TEMP/$archive" -C "$RUNNER_TEMP/lychee"
+      - name: Check external HTTP(S) links across Markdown files
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          "$RUNNER_TEMP/lychee/lychee" \
+            --no-progress \
+            --scheme http \
+            --scheme https \
+            --exclude-private \
+            --exclude-loopback \
+            --exclude-link-local \
+            --exclude '^https?://(www\.)?example\.(com|org|net)(/|$)' \
+            --max-retries 3 \
+            --retry-wait-time 2 \
+            --format markdown \
+            --output "$RUNNER_TEMP/lychee-report.md" \
+            '**/*.md'
+      - name: Publish link check report to job summary
+        if: always()
+        run: |
+          if [ -f "$RUNNER_TEMP/lychee-report.md" ]; then
+            cat "$RUNNER_TEMP/lychee-report.md" >> "$GITHUB_STEP_SUMMARY"
+          fi
