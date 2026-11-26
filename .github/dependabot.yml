@@ -29,3 +29,24 @@ updates:
       browser-tests: {patterns: ["*"]}
     labels: [dependencies, javascript]
     commit-message: {prefix: deps, include: scope}
+  # Dependabot reads this file only from the default branch, so the 1.2.x
+  # branch is kept up to date from here.
+  - package-ecosystem: github-actions
+    directory: /
+    target-branch: 1.2.x
+    schedule: {interval: weekly, day: friday}
+    open-pull-requests-limit: 5
+    cooldown: {default-days: 7}
+    groups:
+      github-actions: {patterns: ["*"]}
+    labels: [dependencies, github-actions]
+    commit-message: {prefix: ci, include: scope}
+  - package-ecosystem: pip
+    directory: /.github
+    target-branch: 1.2.x
+    schedule: {interval: weekly, day: friday}
+    open-pull-requests-limit: 5
+    cooldown: {default-days: 7}
+    groups:
+      python-tools: {patterns: ["*"], update-types: [minor, patch]}
+    commit-message: {prefix: deps, include: scope}
