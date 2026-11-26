@@ -23,6 +23,7 @@ Here is a list of the plugins we support and a short description of them.
   - Acknowledgment levels
 
   [Thold plugin homepage](https://github.com/Cacti/plugin_thold)
+  and [manual page](Plugin-Thold.md)
 
 - **Intropage**
 
@@ -35,6 +36,7 @@ Here is a list of the plugins we support and a short description of them.
   - Respects Cacti's user permissions
 
   [Intropage plugin homepage](https://github.com/Cacti/plugin_intropage)
+  and [manual page](Plugin-Intropage.md)
 
 - **Maint**
 
@@ -43,6 +45,7 @@ Here is a list of the plugins we support and a short description of them.
   - One time or Recurring schedule
 
   [Maint plugin homepage](https://github.com/Cacti/plugin_maint)
+  and [manual page](Plugin-Maint.md)
 
 - **Monitor**
 
@@ -56,6 +59,7 @@ Here is a list of the plugins we support and a short description of them.
   - Supports Monitoring Devices by Criticality
 
   [Monitor plugin homepage](https://github.com/Cacti/plugin_monitor)
+  and [manual page](Plugin-Monitor.md)
 
 - **Mikrotik**
 
@@ -70,17 +74,20 @@ Here is a list of the plugins we support and a short description of them.
   - Viewing of Devices and summary statistics, Users, Queue Trees, Access Points, HotSpots, Interfaces, Wireless Station, and Health (sensor) information
 
   [Mikrotik plugin homepage](https://github.com/Cacti/plugin_mikrotik)
+  and [manual page](Plugin-Mikrotik.md)
 
 - **Routerconfigs**
 
   The routerconfigs plugin is designed to receive and create backups from your network devices.
   It also provides the ability to view and diff those router configurations as they change over time.
-  Devices are backed up with TFTP transfers or SSH command capture, depending
-  on the device type, and the built-in device types cover many vendors, not
-  only Cisco. TFTP device types need a reachable TFTP server; SSH capture
-  device types need PHP's `ssh2` extension.
+  The plugin logs in to each device over SSH or Telnet and has it copy its
+  configuration to a TFTP server, or downloads the file over SCP or SFTP,
+  depending on the device type. The built-in device types cover many vendors,
+  not only Cisco. TFTP device types need a reachable TFTP server; the SSH, SCP
+  and SFTP connection types need PHP's `ssh2` extension.
 
   [Routerconfigs plugin homepage](https://github.com/Cacti/plugin_routerconfigs)
+  and [manual page](Plugin-Routerconfigs.md)
 
 - **ReportIt**
 
@@ -95,6 +102,7 @@ Here is a list of the plugins we support and a short description of them.
   - Scheduled reports via email
 
   [Reportit plugin homepage](https://github.com/Cacti/plugin_reportit)
+  and [manual page](Plugin-Reportit.md)
 
 - **Evidence**
 
@@ -106,6 +114,7 @@ Here is a list of the plugins we support and a short description of them.
   - Vendor specific information
 
   [Evidence plugin homepage](https://github.com/Cacti/plugin_evidence)
+  and [manual page](Plugin-Evidence.md)
 
 - **Mactrack**
 
@@ -118,6 +127,7 @@ Here is a list of the plugins we support and a short description of them.
   - Tells you when someone is connected who shouldn't be
 
   [Mactrack plugin homepage](https://github.com/Cacti/plugin_mactrack)
+  and [manual page](Plugin-Mactrack.md)
 
 - **FlowView**
 
@@ -130,6 +140,7 @@ Here is a list of the plugins we support and a short description of them.
   - Customizable Scheduled Reports
 
   [Flowview plugin homepage](https://github.com/Cacti/plugin_flowview)
+  and [manual page](Plugin-Flowview.md)
 
 - **Servcheck**
 
@@ -144,6 +155,7 @@ Here is a list of the plugins we support and a short description of them.
    - notify when last result is different
 
   [Servcheck plugin homepage](https://github.com/Cacti/plugin_servcheck)
+  and [manual page](Plugin-Servcheck.md)
 
 - **HMIB**
 
@@ -153,6 +165,7 @@ Here is a list of the plugins we support and a short description of them.
   memory and storage utilization, hardware details, and installed software.
 
   [Hmib plugin homepage](https://github.com/Cacti/plugin_hmib)
+  and [manual page](Plugin-Hmib.md)
 
 - **Weathermap**
 
@@ -161,6 +174,7 @@ Here is a list of the plugins we support and a short description of them.
   state of the network.
 
   [Weathermap plugin homepage](https://github.com/Cacti/plugin_weathermap)
+  and [manual page](Plugin-Weathermap.md)
 
 - **Syslog**
 
@@ -180,6 +194,7 @@ Here is a list of the plugins we support and a short description of them.
   - Ability to run alert specific commands at Alert and Re-alert times
 
   [Syslog plugin homepage](https://github.com/Cacti/plugin_syslog)
+  and [manual page](Plugin-Syslog.md)
 
 - **Slowlog**
 
@@ -187,6 +202,7 @@ Here is a list of the plugins we support and a short description of them.
   query log into the Cacti database and analyze it.
 
   [Slowlog plugin homepage](https://github.com/Cacti/plugin_slowlog)
+  and [manual page](Plugin-Slowlog.md)
 
 - **Apcupsd**
 
@@ -195,12 +211,14 @@ Here is a list of the plugins we support and a short description of them.
   on APC and other types of UPS' over various network topologies such as USB,
   Modbus, Ethernet, etc. We have added basic SNMP support in order to provide
   direct access to certain models over the SNMP protocol, thus removing the need
-  for an apcupsd host to provide the monitoring details as well. Version 1.4.0
-  also adds support for UPSs served by a Network UPS Tools (NUT) server.
+  for an apcupsd host to provide the monitoring details as well. Support for UPSs
+  served by a Network UPS Tools (NUT) server is in the plugin's development
+  branch and is not part of the published 1.2 release.
   - Track UPS status
   - Log information to Cacti database
 
   [Apcupsd plugin homepage](https://github.com/Cacti/plugin_apcupsd)
+  and [manual page](Plugin-Apcupsd.md)
 
 
 - **WMI**
@@ -214,3 +232,4 @@ Here is a list of the plugins we support and a short description of them.
   not recommended for production systems.
 
   [WMI plugin homepage](https://github.com/Cacti/plugin_wmi)
+  and [manual page](Plugin-Wmi.md)
