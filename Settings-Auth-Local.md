@@ -67,6 +67,11 @@ haveibeenpwned.com:
 - **Token Lifetime** - How long the Two Factor Authentication token lasts before
   being rechecked, up to a maximum of 1 week.
 
+Both settings follow the development source: **Enable Localized 2FA** is
+unchecked by default and **Token Lifetime** defaults to 1 Day.  Each user then
+enables two-factor authentication for their own account; see
+[Two-Factor Authentication](User-Profile.md#two-factor-authentication).
+
 ## Account Email Notification
 
 These settings control informational Emails sent when an account is created or

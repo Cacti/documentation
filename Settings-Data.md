@@ -5,7 +5,8 @@ about Cacti's **Data Sources** and about settings around how Cacti
 stores its **Round Robin Archives** Time Series Databases (TSDB),
 otherwise known as RRDfiles.
 
-The sections below cover statistics, file checks, and storage.
+The sections below cover statistics, file checks, and storage.  In the
+development source, this settings tab is labeled **Data/Statistics**.
 
 ## Data Source Statistics
 
@@ -71,6 +72,46 @@ Those settings include:
   **Monthly Partition Retention** and **Yearly Partition Retention** - How long
   to keep the daily, weekly, monthly and yearly statistics.
 
+### Data Source Statistics Defaults and Collection
+
+In the development source, the statistics settings have these defaults:
+
+| Setting                                                | Default           |
+| ------------------------------------------------------ | ----------------- |
+| Enable Data Source Statistics Collection               | Unchecked         |
+| Data Collection Method                                 | Peak/Average Only |
+| Calculate Peaks Stats in Addition to Average Stats     | Unchecked         |
+| Number of DSStats Processes                            | 1 Process         |
+| Daily Update Frequency                                 | 1 Hour            |
+| Hourly Average Window                                  | 1 Hour            |
+| Maintenance Time                                       | 12:00am           |
+| Memory Limit for Data Source Statistics Data Collector | 1 GByte           |
+| Save Historical Data in Database Tables                | Unchecked         |
+
+When collection is enabled, the main **Data Collector** starts
+`poller_dsstats.php` in the background at the end of each polling cycle.  That
+script maintains the hourly cache on every run, and calculates the daily
+statistics at the **Daily Update Frequency**.  The weekly, monthly and yearly
+statistics are calculated once a day, after the **Maintenance Time**.
+
+When **Boost** on-demand RRD updates are enabled, the daily statistics are
+calculated when the Boost poller finishes, instead of at the
+**Daily Update Frequency**.  If **Daily Update Frequency** is set to
+`After Boost` while Boost is not enabled, Cacti logs a warning and resets the
+frequency to 1 hour.
+
+The run is limited by the **Data Source Statistics Timeout** on the
+[Scheduler](Settings-Poller.md#scheduler-settings) tab.  To start a run by
+hand, for example after enabling the feature, use:
+
+```console
+php -q poller_dsstats.php --force --debug
+```
+
+`--force` forces the update process to run and `--debug` displays verbose
+output.  To remove all collected statistics, use **Purge Data Source
+Statistics** in [System Utilities](System-Utilities.md).
+
 ## RRDfile Checker
 
 ![RRD Checker](images/rrd_check.png)
@@ -90,6 +131,12 @@ Those settings include:
   checks should be executed.  You can set
   it to run hourly, up to 24 hours, or after Cacti's boost
   process completes.
+
+In the development source, the first two settings are labeled
+**Enable RRDfile Check** and **Number of RRDfile Check Processes**, under the
+**RRDfile Check** heading.  The check is disabled by default, uses 1 process,
+and has a **Check Frequency** of 4 hours.  The results are shown by the
+[RRDfile Checker](System-Utilities.md#rrdfile-checker).
 
 ## Data Storage Settings
 

@@ -15,7 +15,7 @@ The standard Settings sub-tabs include:
 - [Paths](Settings-Paths.md) - Mostly, this sub-tab holds all settings
    that the Cacti administrator has control of.  It also includes some
    settings around RRDfile maintenance.
-- **Logging** - Log destination, log level and verbosity, selective debug
+- [Logging](Settings-General.md#log-settings) - Log destination, log level and verbosity, selective debug
    options, and log rotation (`Rotate the Cacti Log`, `Rotation Frequency` and
    `Log Retention`).  The location of the log files is set on the Paths tab.
 - [Device Defaults](Settings-Device-Defaults.md) - This is where you can
@@ -25,10 +25,10 @@ The standard Settings sub-tabs include:
    moved to the **Data Collectors**, some are still managed at the system
    level including the poller type to use, script server and a number
    of additional settings.
-- **Scheduler** - System-level limits for scheduled background tasks, such as
-   `Max Running Tasks`, `Default Maximum Task Runtime` and several task
-   timeouts.
-- [Data](Settings-Data.md) - This is where you can enable the RRDproxy
+- [Scheduler](Settings-Poller.md#scheduler-settings) - System-level limits for
+   scheduled background tasks, such as `Max Running Tasks`,
+   `Default Maximum Task Runtime` and several task timeouts.
+- [Data/Statistics](Settings-Data.md) - This is where you can enable the RRDproxy
    and **Data Source Statistics** collection.  The **Data Source Statistics**
    module allows for the saving of key metrics that are important in
    dash-boarding plugins in Cacti.

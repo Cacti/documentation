@@ -98,6 +98,31 @@ Those settings include:
 - **Log Rotation** - `Rotate the Cacti Log`, `Rotation Frequency` and
    `Log Retention`.
 
+   - **Rotate the Cacti Log** - Rotates the Cacti Log periodically.
+   - **Rotation Frequency** - How often the logs are rotated: `Daily`,
+      `Weekly` or `Monthly`.
+   - **Log Retention** - How many log files to retain, from 0 to 365.  Use 0
+      to never remove any logs.
+
+In the development source, the **Logging** tab has these defaults:
+
+| Setting                        | Default                             |
+| ------------------------------ | ----------------------------------- |
+| Log Destination                | Logfile Only                        |
+| Log Actions                    | Purge                               |
+| Generic Log Level              | LOW - Statistics and Errors         |
+| Expand log details             | FULL - Display and search expansion |
+| Log Input Validation Issues    | NONE - No reporting                 |
+| Data Source Tracing            | Unchecked                           |
+| Log Ignored General Errors     | Unchecked                           |
+| Selective File Debug           | No files selected                   |
+| Selective Plugin Debug         | No plugins selected                 |
+| Selective Device Debug         | Empty                               |
+| Syslog/Eventlog Item Selection | Errors only                         |
+| Rotate the Cacti Log           | Checked                             |
+| Rotation Frequency             | Daily                               |
+| Log Retention                  | 7                                   |
+
 ## Internationalization (i18n)
 
 The image below shows system level Internationalization settings for Cacti,
