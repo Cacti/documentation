@@ -1,0 +1,37 @@
+name: CI and shell lint
+on:
+  pull_request:
+  merge_group:
+    types: [checks_requested]
+  push:
+    branches: [1.2.x]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: docs-ci-lint-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  lint:
+    name: Lint workflows and shell scripts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install verified actionlint binary
+        run: |
+          set -euo pipefail
+          version='1.7.12'
+          archive="actionlint_${version}_linux_amd64.tar.gz"
+          checksum='8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8'
+          mkdir -p "$RUNNER_TEMP/actionlint"
+          curl --proto '=https' --tlsv1.2 -fsSL -o "$RUNNER_TEMP/$archive" \
+            "https://github.com/rhysd/actionlint/releases/download/v${version}/${archive}"
+          echo "${checksum}  ${RUNNER_TEMP}/${archive}" | sha256sum -c --quiet
+          tar -xzf "$RUNNER_TEMP/$archive" -C "$RUNNER_TEMP/actionlint" actionlint
+      - name: Lint GitHub Actions workflows
+        run: '"$RUNNER_TEMP/actionlint/actionlint"'
+      - name: Lint shell scripts
+        run: shellcheck bin/*.sh

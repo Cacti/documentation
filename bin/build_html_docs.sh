@@ -50,7 +50,7 @@ then
 fi
 
 # determine base path of the repository
-BASE_PATH="$( cd "$(dirname "$0")" ; pwd -P | sed 's/\/bin//')"
+BASE_PATH="$( cd "$(dirname "$0")" || exit 1 ; pwd -P | sed 's/\/bin//')"
 
 # create output directory if needed
 if [ ! -d "${BASE_PATH}/${ODIR}/images" ]
@@ -83,7 +83,7 @@ fi
 
 # process markdown files into html
 echo "Converting files..."
-for FILE in $(find "${BASE_PATH}" -name "*.md")
+while IFS= read -r -d '' FILE
 do
 	IFILE=${FILE//$BASE_PATH\/}
 	OFILE=${ODIR}/${IFILE//.md/.html}
@@ -103,7 +103,7 @@ do
 		--css=Cacti-Github.css \
 		--metadata=pagetitle:"$TITLE" \
 		-T "Cacti"
-done
+done < <(find "${BASE_PATH}" -name "*.md" -print0)
 
 # done
 exit 0
