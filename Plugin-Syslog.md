@@ -156,6 +156,27 @@ SELECT @@GLOBAL.sql_mode, @@SESSION.sql_mode;
 Use the migration guidance for your database and plugin release rather than
 changing SQL modes for every application on the server.
 
+## Requirements
+
+This page follows the plugin's `develop` branch, which is unreleased and can
+change. That branch declares version 5.0 and Cacti compatibility 1.2.23 in its
+`INFO` file. Use the README and release notes of the release you install.
+
+- Cacti 1.2.23 or later, as declared in `INFO`, and PHP 8.0 or later as stated
+  in the plugin README. Cacti's own PHP and database requirements also apply.
+- No other plugin is listed in `INFO` as required. Thold is optional: its
+  notification lists can be selected for pipeline health email, and Alarm
+  Manager is optional for forwarding alarms (see [Settings](#settings)).
+- MySQL or MariaDB. Only InnoDB and, on MariaDB, Aria are supported for the
+  message tables, and any Remote Data Collector option requires InnoDB.
+- Cacti's **PHP Binary Path** setting (`path_php_binary`) must be valid,
+  because the poller starts `syslog_process.php` with it.
+- An rsyslog or syslog-ng service that writes into the `syslog_incoming`
+  table. See the sections above.
+- Optional: the PHP `pcntl` and POSIX extensions. Without them, or on Windows,
+  setting **Maximum Syslog Processing Processes** above 1 has no effect and
+  processing runs in a single process.
+
 ## Installing the plugin
 
 1. Check the plugin release's README and `INFO`. The current development plugin
@@ -185,6 +206,110 @@ use partitioned history; settings and available migration choices depend on the
 installed release and existing schema.
 
 ![Earlier Syslog setup advisor](images/syslog_install_advisor.png)
+
+## Permissions
+
+Syslog registers these realms. Assign them to users or groups under
+**Console > Configuration > Users** or **User Groups**, on the **Realm
+Permissions** tab.
+
+| Realm | Pages covered |
+| --- | --- |
+| Syslog User | `syslog.php` (the Syslog tab) |
+| Rule Viewer | `syslog_alerts.php`, `syslog_removal.php`, `syslog_reports.php` |
+| Rule Administrator | `syslog_rule_administrator.php`, `syslog_device_rules.php` |
+| Syslog Administration | `syslog_saved_searches.php`, `syslog_dashboards.php`, `syslog_recommendations.php` |
+| Share Saved Templates | `syslog_saved_searches_share.php` |
+| Share Dashboards | `syslog_dashboards_share.php` |
+
+## Settings
+
+Settings are on the **Syslog** tab of **Console > Configuration > Settings**.
+The tab is divided into sections. The table lists the settings an
+administrator usually has to decide on. The remaining settings, such as the
+alert maintenance windows, cooldowns, and recovery pacing for remote
+collectors, are described in the interface next to each field.
+
+| Section | Setting | Default | Purpose |
+| --- | --- | --- | --- |
+| General Settings | Syslog Enabled | on | Moves records from the incoming table to the main table and enables alerts and reports. Messages still accumulate in the incoming table while disabled. |
+| General Settings | Forward alarms to Alarm Manager | off | Lets rules that use the Alarm Manager destination forward alarms. |
+| General Settings | Strip Domains | empty | Comma-delimited domains to remove from device names. |
+| General Settings | Refresh Interval | 300 | Seconds before the Syslog page refreshes. |
+| General Settings | Skip Total Row Count | off | Avoids counting every match on the System Logs and Alert Logs tabs; the page shows Previous and Next links. |
+| General Settings | Max Report Records | 100 | Maximum records shown in a threshold alert report. |
+| General Settings | Maximum Syslog Processing Processes | 1 | Number of parallel worker processes. |
+| General Settings | Command for Opening Tickets | empty | Command run for rules with **Open Ticket** set. It receives `--alert-name`, `--severity`, `--hostlist` and `--message`. |
+| Host Discovery Options | Enable Hostname Resolution | off | Resolves incoming host names through DNS, then the Cacti device table. |
+| Host Discovery Options | Skip DNS Resolution for incoming hosts | off | Never uses DNS lookups. |
+| HTML Notification Settings | Enable HTML Based Email | on | Sends alert email as HTML instead of plain text. |
+| HTML Notification Settings | Format File to Use | default.format | HTML and CSS wrapper for reports. |
+| Data Retention and Partitioning | Syslog Retention | 30 | Days to keep messages. |
+| Data Retention and Partitioning | Partitioning Level | Daily | Partition size. A change takes effect only after `cli/upgrade_partitioning.php` rebuilds the tables. |
+| Data Retention and Partitioning | Partition Pre-create Window | 3 Days | Days of future partitions to maintain. |
+| Data Retention and Partitioning | Partition Recovery Limit | 3 per run | Missing partitions created on each poller run. |
+| Data Retention and Partitioning | Collector Staleness Threshold | 300 | Delay before pipeline health alerts warn. |
+| Data Retention and Partitioning | Collector Backlog Threshold | 10000 | Unprocessed messages that trigger a warning on the status page. |
+| Pipeline Health Alerts | Pipeline Health Notification List | None | Thold notification list for health email. |
+| Pipeline Health Alerts | Pipeline Health Email Recipients | empty | Comma-separated recipients for health email. |
+| Pipeline Health Alerts | Pipeline Health Reminder Interval | 1 hour | Repeat interval for ongoing problems. |
+| Pipeline Health Alerts | Syslog Alert Retention | 30 | Days to keep alert logs. |
+| Alert Suppression and Maintenance | Default Alert Cooldown | 0 | Minutes to suppress repeat notifications for a rule. 0 disables. |
+| Alert Suppression and Maintenance | Default Duplicate Suppression | 0 | Minutes to suppress an identical matched message set. 0 disables. |
+| Remote Message Processing | Enable Remote Data Collector Message Processing | off | Remote collectors process messages in their own Syslog database. |
+| Remote Message Processing | Remote Data Collector Rules Sync | off | Sends the main poller's alert, removal and report rules to remote collectors. |
+| Remote Message Processing | Store Records on Remote Collector | off | Keeps processed messages on the remote collector after delivery. |
+
+**Syslog Alert Retention** is listed under the Pipeline Health Alerts heading.
+
+## Using Syslog
+
+Users with the **Syslog User** realm see a **Syslog** tab in the Cacti header.
+Rule pages are in the **Syslog Settings** menu group of the Console, which
+contains **Alert Rules**, **Device Alert Rules**, **Removal Rules**,
+**Report Rules**, **Saved Search Templates**, **Dashboards**, and
+**Recommendations**. The **Purge Syslog Devices** button, which removes
+devices that no longer report, is in the Syslog Utilities section of the
+Cacti Utilities page.
+
+The Syslog page has these tabs:
+
+- **System Logs**: stored messages with a filter, saved searches, and export.
+- **Alert Logs**: messages that triggered alert rules.
+- **Breached Thresholds**: active threshold breaches, shown only when enabled
+  threshold rules exist.
+- **Dashboard**: charts built from saved searches.
+- **Syslog Status**: collector and pipeline health, including the pipeline
+  health card and partition state.
+
+The screenshot shows the **System Logs** tab with the message filter and a
+list of messages. The example uses synthetic data.
+
+![System Logs tab with synthetic messages][messages-image]
+
+To search messages for one device from a graph:
+
+1. Open a graph in **Graphs** (the graph view page) for a device.
+2. Select the **Display Syslog in Range** icon beside the graph. It appears
+   only when Syslog knows the device by its description or host name.
+3. The System Logs tab opens filtered to that device and the graph's time
+   range.
+
+To create an alert rule:
+
+1. Open **Console > Syslog Settings > Alert Rules** and add a rule.
+2. Set the **Name**, **Severity**, **Reporting Level**, **Reporting Method**,
+   **Match Type**, and **Message Match String**.
+3. Under email options, set a **Notification List** or **Emails to Notify**.
+   Optionally set an **Alert command**, a **Recovery command**, or **Open
+   Ticket**.
+4. Set **Enabled** and save.
+
+Removal rules, under **Console > Syslog Settings > Removal Rules**, use a
+**String Match Type**, a **Syslog Message Match String**, and a **Method of
+Removal** to delete messages or move them to `syslog_removed`. Report rules
+under **Report Rules** send matching messages by email at a chosen
+**Frequency** and **Send Time**.
 
 ## SNMP Trap configuration
 
@@ -308,6 +433,104 @@ rules.
 
 ![Removal Rules](images/syslog-remove-messeges.png)
 
+## How It Collects Data
+
+Syslog does not poll devices. rsyslog or syslog-ng writes messages into the
+`syslog_incoming` table. Syslog registers a `poller_bottom` hook, so at the end
+of each Cacti polling cycle it checks pipeline health and starts
+`syslog_process.php` in the background with Cacti's PHP binary.
+
+The processor moves messages from the incoming table to the `syslog` table,
+applies removal and alert rules, and sends reports. When **Maximum Syslog
+Processing Processes** is above 1, it starts worker processes that each handle
+a range of incoming messages. Syslog also maintains partitions of the `syslog`
+and `syslog_removed` tables, creating future partitions and removing expired
+ones according to **Syslog Retention** and **Partition Pre-create Window**.
+Alert logs are kept for **Syslog Alert Retention** days.
+
+On a remote collector with its own database, processed messages are delivered
+to the Main Collector and the rule tables are replicated through Cacti's
+`replicate_out` hook when **Remote Data Collector Rules Sync** is enabled.
+
+The `syslog` table and the incoming table grow with message volume. Choose
+retention and partitioning with that growth in mind.
+
+## Command-Line Tools
+
+Run these from the Cacti directory as the poller user.
+
+The processing script is normally started by the poller. Run it by hand to
+test or to send reports now:
+
+```console
+usage: syslog_process.php [--debug] [--force-report]
+
+options:
+    --force-report   Send email reports now.
+    --debug          Provide more verbose debug output.
+```
+
+The script also accepts worker options (`--child`, `--run-id`, `--phase`,
+`--seq-start`, `--seq-end`, `--lock-owner`), which the master process uses
+internally.
+
+`cli/syslog_schema.php` audits and repairs the database schema:
+
+```console
+usage: syslog_schema.php --audit | --repair | --upgrade
+
+    --audit   - Report missing tables without changing the schema.
+    --repair  - Repair missing tables and rerun schema migrations.
+    --upgrade - Upgrade the schema, including missing-table repair.
+    --version - Display version information.
+    --help    - Display this help.
+```
+
+`cli/upgrade_partitioning.php` rebuilds the message tables to change the
+partitioning level or timestamp precision:
+
+```console
+usage: upgrade_partitioning.php [--partition=hourly|daily] [--convert-ms] [--preserve-data | --discard-data]
+    [--source-time-zone=<zone>] [--confirm]
+
+    --partition     - Save and apply this Partitioning Level instead of the one in Settings.
+    --convert-ms    - Also convert pipeline timestamps to TIMESTAMP(3); MariaDB only.
+    --preserve-data - Preserve existing messages (the default), copying 50,000 rows at a time.
+    --discard-data  - Delete messages in rebuilt tables; never discard the outbox.
+    --source-time-zone - IANA zone (for example America/New_York) of legacy DATETIME values.
+    --confirm       - Skip confirmation, not the size and maintenance warnings.
+```
+
+Back up the database and disable **Syslog Enabled** first. The utility refuses
+to start while processing is enabled or running. The plugin README describes
+the full maintenance procedure.
+
+## Troubleshooting
+
+- Syslog does not process messages and the poller log shows `WARNING: You have
+  installed the Syslog plugin, but you have not properly set a config.php or
+  config_local.php`: copy `config.php.dist` to `config.php` (or
+  `config_local.php.dist` to `config_local.php`) and set the database values.
+- The log shows `ERROR: Syslog database or schema is unavailable; skipping
+  processing.`: the plugin cannot connect to its database or the tables are
+  missing. Run `cli/syslog_schema.php --audit` to list missing tables.
+- Messages accumulate in `syslog_incoming`: check that **Syslog Enabled** is
+  on, that the Cacti poller runs, and that **PHP Binary Path** is correct. The
+  **Syslog Status** tab shows backlog and processing state.
+- The log shows `NOTE: Syslog processing skipped while
+  cli/upgrade_partitioning.php rebuilds the message tables.`: processing
+  resumes when the rebuild finishes.
+- Saving the Syslog settings is refused: the retention, pre-create window and
+  Partitioning Level need more partitions than the database server allows.
+  Hourly partitioning also requires a finite retention.
+- A change to **Partitioning Level** has no effect: it applies only after
+  `cli/upgrade_partitioning.php` rebuilds the tables.
+- Worker processes are not used: parallel processing needs the PHP `pcntl` and
+  POSIX extensions and is not available on Windows.
+- A ticket command does not run: it runs only when the executable named at the
+  start of **Command for Opening Tickets** exists and is executable. Failures
+  are written to the Cacti log with the `SYSLOG` tag.
+
 ## Possible Bugs and Feature Enhancements
 
 Bug and feature enhancements for the syslog plugin are handled in GitHub. If
@@ -324,9 +547,18 @@ the most stable and robust versions of syslog ever published. We are always
 looking for new ideas. So, this won't be the last release of syslog, you can
 rest assured of that.
 
+## More Information
+
+- [Syslog plugin repository](https://github.com/Cacti/plugin_syslog)
+- [Syslog plugin README][syslog-readme]
+- [Plugin Management](Plugins.md)
+- [Supported plugins](supported-plugins.md)
+
 [rsyslog-mysql]: https://docs.rsyslog.com/doc/configuration/modules/ommysql.html
 [m]: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html
 [no-lb-image]: images/syslog-multi-poller-no-lb.png
+[messages-image]: images/plugin-syslog-messages.png
+[syslog-readme]: https://github.com/Cacti/plugin_syslog/blob/develop/README.md
 [remote-settings-image]: images/syslog-multipoller-settings.png
 
 ---
